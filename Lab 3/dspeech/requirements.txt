@@ -1,0 +1,11 @@
+colorama
+deepspeech
+halo
+log-symbols
+numpy
+PyAudio
+scipy
+six
+spinners
+termcolor
+webrtcvad
