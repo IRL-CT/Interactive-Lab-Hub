@@ -9,8 +9,8 @@ install_package() {
 }
 
 # Install pip package
-echo "Installing piper-tts via pip..."
-pip install piper-tts
+echo "Installing piper-tts via pip for local user..."
+pip install piper-tts --user
 echo "piper-tts installed!"
 
 # Install packages using apt-get

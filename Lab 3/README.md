@@ -29,12 +29,15 @@ pi@ixe00:~/Interactive-Lab-Hub $ git push
 Option 2: On your your own GitHub repo, [create pull request](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2022Fall/readings/Submitting%20Labs.md) to get updates from the class Interactive-Lab-Hub. After you have latest updates online, go on your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull` to get updates from your own GitHub repo.
 
 ## Part 1.
+### Setup 
+Run the setup script
+```chmod u+x setup.sh && sudo ./setup.sh  ```
 
 ### Text to Speech 
 
 In this part of lab, we are going to start peeking into the world of audio on your Pi! 
 
-We will be using the microphone and speaker on your webcamera. In the home directory of your Pi, there is a folder called `text2speech` containing several shell scripts. `cd` to the folder and list out all the files by `ls`:
+We will be using the microphone and speaker on your webcamera. In the directory is a folder called `speech-scripts` containing several shell scripts. `cd` to the folder and list out all the files by `ls`:
 
 ```
 pi@ixe00:~/text2speech $ ls
@@ -42,7 +45,7 @@ Download        festival_demo.sh  GoogleTTS_demo.sh  pico2text_demo.sh
 espeak_demo.sh  flite_demo.sh     lookdave.wav
 ```
 
-You can run these shell files by typing `./filename`, for example, typing `./espeak_demo.sh` and see what happens. Take some time to look at each script and see how it works. You can see a script by typing `cat filename`. For instance:
+You can run these shell files `.sh` by typing `./filename`, for example, typing `./espeak_demo.sh` and see what happens. Take some time to look at each script and see how it works. You can see a script by typing `cat filename`. For instance:
 
 ```
 pi@ixe00:~/text2speech $ cat festival_demo.sh 
@@ -57,8 +60,6 @@ You can also play audio files directly with `aplay filename`. Try typing `aplay 
 
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 (This shell file should be saved to your own repo for this lab.)
-
-Bonus: If this topic is very exciting to you, you can try out this new TTS system we recently learned about: https://github.com/rhasspy/larynx
 
 ### Speech to Text
 
