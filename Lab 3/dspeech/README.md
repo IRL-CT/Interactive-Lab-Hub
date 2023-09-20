@@ -1,4 +1,6 @@
 # DeepSpeech
+# ! We did not get this running for pi4 with 64Bit raspbian
+# If YOU find a replicable method for getting DeepSpeech running please submit a PR
 
 This uses [Mozilla DeepSpeech](https://github.com/mozilla/DeepSpeech) and works shockingly well even on the Pi. 
 
