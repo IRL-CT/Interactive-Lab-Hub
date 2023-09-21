@@ -94,21 +94,10 @@ Test if vosk works by transcribing text:
 vosk-transcriber -i recorded_mono.wav -o test.txt
 ```
 
-Now, we need to find out where your webcam's audio device is connected to the Pi. Use `arecord -l` to get the card and device number:
+You can use vosk with the mirophone by running 
 ```
-pi@ixe00:~/speech2text $ arecord -l
-**** List of CAPTURE Hardware Devices ****
-card 1: Device [Usb Audio Device], device 0: USB Audio [USB Audio]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
+python test_micropphone.py -m en
 ```
-In particular, look at `test_words.py` and make sure you understand how the vocab is defined. 
-
-The example above shows a scenario where the audio device is at card 1, device 0. Now, use `nano vosk_demo_mic.sh` and change the `hw` parameter. In the case as shown above, change it to `hw:1,0`, which stands for card 1, device 0.  
-
-Now, look at which camera you have. Do you have the cylinder camera (likely the case if you received it when we first handed out kits), change the `-r 16000` parameter to `-r 44100`. If you have the IMISES camera, check if your rate parameter says `-r 16000`. Save the file using Write Out and press enter.
-
-Then try `./vosk_demo_mic.sh`
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
