@@ -83,9 +83,17 @@ echo 'This sentence is spoken first. This sentence is synthesized while the firs
   
 ### Speech to Text
 
-Now examine the `speech2text` folder. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
+Next setup speech to text.We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
+```
+pip3 install vosk
+```
 
-In particular, look at `test_words.py` and make sure you understand how the vocab is defined. 
+Test if vosk works by transcribing text:
+
+```
+vosk-transcriber -i recorded_mono.wav -o test.txt
+```
+
 Now, we need to find out where your webcam's audio device is connected to the Pi. Use `arecord -l` to get the card and device number:
 ```
 pi@ixe00:~/speech2text $ arecord -l
@@ -94,6 +102,8 @@ card 1: Device [Usb Audio Device], device 0: USB Audio [USB Audio]
   Subdevices: 1/1
   Subdevice #0: subdevice #0
 ```
+In particular, look at `test_words.py` and make sure you understand how the vocab is defined. 
+
 The example above shows a scenario where the audio device is at card 1, device 0. Now, use `nano vosk_demo_mic.sh` and change the `hw` parameter. In the case as shown above, change it to `hw:1,0`, which stands for card 1, device 0.  
 
 Now, look at which camera you have. Do you have the cylinder camera (likely the case if you received it when we first handed out kits), change the `-r 16000` parameter to `-r 44100`. If you have the IMISES camera, check if your rate parameter says `-r 16000`. Save the file using Write Out and press enter.
@@ -102,9 +112,6 @@ Then try `./vosk_demo_mic.sh`
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
-Bonus 
-```
-pip install piper-tts
 ```
 ### Serving Pages
 
