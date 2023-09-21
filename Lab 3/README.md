@@ -61,6 +61,26 @@ You can also play audio files directly with `aplay filename`. Try typing `aplay 
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 (This shell file should be saved to your own repo for this lab.)
 
+---
+Bonus:
+[Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspbarry pi which can be installed easily through python with:
+```
+pip install piper-tts
+```
+and used from the command line. Running the command below the first time will download the model, concurrent runs will be faster. 
+```
+echo 'Welcome to the world of speech synthesis!' | piper \
+  --model en_US-lessac-medium \
+  --output_file welcome.wav
+```
+Many more languages are supported and audio can be streamed dirctly to an audio output, rather than into an file by:
+
+```
+echo 'This sentence is spoken first. This sentence is synthesized while the first sentence is spoken.' | \
+  piper --model en_US-lessac-medium --output-raw | \
+  aplay -r 22050 -f S16_LE -t raw -
+```
+  
 ### Speech to Text
 
 Now examine the `speech2text` folder. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
@@ -82,6 +102,10 @@ Then try `./vosk_demo_mic.sh`
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
+Bonus 
+```
+pip install piper-tts
+```
 ### Serving Pages
 
 In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
