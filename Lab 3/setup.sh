@@ -9,9 +9,9 @@ install_package() {
 }
 
 # Install pip package
-echo "Installing piper-tts via pip for local user..."
-pip install piper-tts --user
-echo "piper-tts installed!"
+# echo "Installing piper-tts via pip for local user..."
+# pip install piper-tts --user
+# echo "piper-tts installed!"
 
 # Install packages using apt-get
 install_package "festival" sudo apt-get install festival
