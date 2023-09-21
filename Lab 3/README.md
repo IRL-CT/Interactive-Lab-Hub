@@ -61,29 +61,6 @@ You can also play audio files directly with `aplay filename`. Try typing `aplay 
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 (This shell file should be saved to your own repo for this lab.)
 
-
-### Speech to Text
-
-Now examine the `speech2text` folder. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
-
-In particular, look at `test_words.py` and make sure you understand how the vocab is defined. 
-Now, we need to find out where your webcam's audio device is connected to the Pi. Use `arecord -l` to get the card and device number:
-```
-pi@ixe00:~/speech2text $ arecord -l
-**** List of CAPTURE Hardware Devices ****
-card 1: Device [Usb Audio Device], device 0: USB Audio [USB Audio]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-```
-The example above shows a scenario where the audio device is at card 1, device 0. Now, use `nano vosk_demo_mic.sh` and change the `hw` parameter. In the case as shown above, change it to `hw:1,0`, which stands for card 1, device 0.  
-
-Now, look at which camera you have. Do you have the cylinder camera (likely the case if you received it when we first handed out kits), change the `-r 16000` parameter to `-r 44100`. If you have the IMISES camera, check if your rate parameter says `-r 16000`. Save the file using Write Out and press enter.
-
-Then try `./vosk_demo_mic.sh`
-
-\*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
-
-=======
 ---
 Bonus:
 [Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspbarry pi which can be installed easily through python with:
@@ -97,6 +74,7 @@ echo 'Welcome to the world of speech synthesis!' | piper \
   --output_file welcome.wav
 ```
 Many more languages are supported and audio can be streamed dirctly to an audio output, rather than into an file by:
+
 
 ```
 echo 'This sentence is spoken first. This sentence is synthesized while the first sentence is spoken.' | \
@@ -123,8 +101,8 @@ python test_micropphone.py -m en
 ```
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+ 
 
-`
 
 ### Serving Pages
 

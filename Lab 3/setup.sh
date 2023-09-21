@@ -8,11 +8,10 @@ install_package() {
     echo "$1 installed!"
 }
 
-# Install pip package
-
-echo "Installing piper-tts via pip for local user..."
-pip install piper-tts --user
-echo "piper-tts installed!"
+# Install pip package 
+# echo "Installing piper-tts via pip for local user..."
+# pip install piper-tts --user
+# echo "piper-tts installed!"
 
  
 
