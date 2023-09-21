@@ -1,27 +1,26 @@
 # Prep your Pi
 
 
-
 ### To prepare your Pi, you will need:
 
-- [Raspberry Pi 3 Model B+](https://www.adafruit.com/product/3775)
-- [Power Supply](https://www.adafruit.com/product/1995?gclid=CjwKCAjwsMGYBhAEEiwAGUXJaRS6xBHTIB8hwFMjAqyRN_WXwSqd_Pp4JQCHI_IARTlKnsx84jXbchoCdxUQAvD_BwE)
-- [SD card + Reader](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/112990066/10290294)
+- Raspberry Pi 4
+- Power Supply
+- SD card + Reader
 - [Adafruit MiniPiTFT](https://www.adafruit.com/product/4393)
 
 
 ### Burn your Pi image to your SD card
 #### On your computer 
 - Download the [Raspberry Pi Imager](https://www.raspberrypi.org/software/)
-- Download the our copy of Raspbian at [this Google Drive link](https://drive.google.com/file/d/1gPjAT3f9wx_zDGMp-tRjsLZzMrqa2LZ2/view?usp=sharing).
-Download and use the ``.img`` file in the Raspberry Pi Imager.
+- Download our copy of Raspbian at [this Cornell Box link](https://cornell.box.com/s/60k22dze3h7js9nt2hzse90bxwm9i1cc).
+Download and use the ``pi_image_09-05-23.zip`` file directly in the Raspberry Pi Imager (do not unzip).
 
-- If using windows: [Windows 10 SSH Client](https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh) or [PuTTY](https://www.putty.org/)
+- If using windows: [Windows 11 SSH Client](https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh), [PuTTY](https://www.putty.org/) or [VS Code SSH](https://code.visualstudio.com/learn/develop-cloud/ssh-lab-machines). 
 
 ### Setting up your OS for the Pi
 1. Plug the SD card into your computer using the card reader
 
-2. Go download and install the [Raspberry Pi Imager](https://www.raspberrypi.org/software/) on your laptop, download the the customed [image file](https://drive.google.com/file/d/1gPjAT3f9wx_zDGMp-tRjsLZzMrqa2LZ2/view?usp=sharing) we made for the class. Open the Raspberry Pi Imager and choose the downloaded image file from "Choose OS" and the SD card from "Choose SD card".
+2. Go download and install the [Raspberry Pi Imager](https://www.raspberrypi.org/software/) on your laptop, download the the customed image file we made for the class. Open the Raspberry Pi Imager and choose the downloaded image file from "Choose OS" and the SD card from "Choose SD card".
 
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/wiki/images/pi_imager_os_select.png" alt="choose os" height="200" />
 
@@ -44,19 +43,25 @@ Download and use the ``.img`` file in the Raspberry Pi Imager.
 
 #### Connecting to your Pi remotely
 
-Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While you could plug in a monitor, keyboard, and mouse we will be connecting to your Pi over [SSH](https://en.wikipedia.org/wiki/Secure_Shell). You can do this in [Mac Terminal](https://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line) or [Windows 10 SSH Client](https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh). Make sure you connect your laptop to the same network as you entered in your Imager Advanced Settings above.
+Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While you could plug in a monitor, keyboard, and mouse we will be connecting to your Pi over [SSH](https://en.wikipedia.org/wiki/Secure_Shell). You can do this in [Mac Terminal](https://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line) or [Windows 10 SSH Client](https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh). 
+
+*Note: This set up assumes you boot your raspberry pi the first time when on campus or in The House. If you have a screen, mouse and keyboard you can edit the /etc/wpa_supplicant/wpa_supplicant.conf on the pi to make it connect to your home network already now.*
+
 
 1. When you boot up your Pi, the MiniPiTFT should have the following information shown:
 	
 	````
 	IP: xxx.xxx.xxx.xxx
-	MAC: xx:xx:xx:xx:xx:xx
 	NET: [YourWifiNetwork]
+	MAC: xx:xx:xx:xx:xx:xx
 	````
-	
+
 	The IP address is what you will need to SSH your Pi later through the same network. The media access control address (MAC address) is a unique identifier assigned to a network interface controller, you will need it later for registering the device if you are using Cornell network (e.g. RedRover). The NET shows which WiFi network your Pi is connected to.
 	
-	For MAC address: If you are planning to use Cornell network (e.g. RedRover and eduroam), you will have to register the device (your Pi) to the Cornell System to get it online. Please follow the instructions [here](https://it.cornell.edu/wifi-wired/register-device-doesnt-have-browser) from Cornell. If you are using the House network, you will need to register the device (your Pi) through [whitesky](https://myaccount.wscmdu.com/myaccount/devices). You might need to wait for a few minutes for your Pi to actually get online after registering it.
+	For MAC address: If you are planning to use Cornell network (e.g. RedRover and eduroam), you will have to register the device (your Pi) to the Cornell System to get it online. Please follow the instructions [here](https://it.cornell.edu/wifi-wired/register-device-doesnt-have-browser) from Cornell. To get the wifi mac address type `cat /sys/class/net/wlan0/address` in the terminal once looged in to you pi and verify its the same shown on the Pis screen. If you are using the House network, you will need to register the device (your Pi) through [whitesky](https://myaccount.wscmdu.com/myaccount/devices). You might need to wait for a few minutes for your Pi to actually get online after registering it.
+
+	*Note: Next to the screen are two buttons. We configured the top left button on this screen to shutdown your Pi. Do this before you disconnect the power source. 
+	The bottom left button is configured to reboot the Pi.*
 
 2. Verify your Pi is online. In the terminal of your laptop, type `ping <Your Pi's IP Address shown on the MiniPiTFT>` and press enter. If your Pi is online, you should get similar messages as below (with different IP address):
     	
@@ -159,6 +164,8 @@ network={
 ```
 
 Under "The House" and "RedRover", add your home WiFi name and password to the bottom of the file. 
+
+*If the pi and you are at a new location without external screen and mouse you can also [create a new  E:\wpa_supplicant.conf file]((https://www.glennklockwood.com/sysadmin-howtos/rpi-headless-boot.html)) with your desktop computer directly on the SD card root which will overwrite the network configuration.*
 
 ### Refresh your knowledge of command line interfaces: 
 

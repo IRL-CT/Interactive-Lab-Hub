@@ -2,6 +2,8 @@
 
 # Staging Interaction
 
+\*\***NAME OF COLLABORATORS HERE**\*\*
+
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
 There is no actor that plays Tinkerbell--her existence in the play comes from the interactions that the other characters have with her.

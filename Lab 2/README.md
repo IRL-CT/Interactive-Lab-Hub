@@ -23,7 +23,7 @@ Before the start of lab Thursday, [pull changes from the Interactive Lab Hub](ht
 
   ```
   Interactive-Lab-Hub $ git remote add upstream https://github.com/FAR-Lab/Interactive-Lab-Hub.git
-  Interactive-Lab-Hub $ git pull upstream Fall2022
+  Interactive-Lab-Hub $ git pull upstream Fall2023
   ```
   
   The reason why we are adding a upstream with **course lab-hub** instead of yours is because the local Interactive-Lab-Hub folder is linked with your own git repo already. Try typing ``git remote -v`` and you should see there is the origin branch with your own git repo. We here add the upstream to get latest updates from the teaching team by pulling the **course lab-hub** to your local machine. After your local folder got the latest updates, push them to your remote git repo by running:
@@ -34,6 +34,9 @@ Before the start of lab Thursday, [pull changes from the Interactive Lab Hub](ht
   Interactive-Lab-Hub $ git push
   ```
   Your local and remote should now be up to date with the most recent files.
+
+The new GitHub.com UI makes this step easy from the webbrowser:
+![image](https://github.com/FAR-Lab/Interactive-Lab-Hub/assets/90477986/91d0fbc8-2eba-401f-a5a7-66640910cb62)
 
 
 2. ### Get Kit and Inventory Parts
@@ -82,6 +85,12 @@ pi@raspberrypi:~ $ source venv/bin/activate
 
 ```
 ### Setup Personal Access Tokens on GitHub
+Set your git name and email so that commits appear under your name.
+```
+git config --global user.name "Your Name"
+git config --global user.email "yourNetID@cornell.edu"
+```
+
 The support for password authentication of GitHub was removed on August 13, 2021. That is, in order to link and sync your own lab-hub repo with your Pi, you will have to set up a "Personal Access Tokens" to act as the password for your GitHub account on your Pi when using git command, such as `git clone` and `git push`.
 
 Following the steps listed [here](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) from GitHub to set up a token. Depends on your preference, you can set up and select the scopes, or permissions, you would like to grant the token. This token will act as your GitHub password later when you use the terminal on your Pi to sync files with your lab-hub repo.
@@ -116,7 +125,7 @@ We have asked you to equip the [Adafruit MiniPiTFT](https://www.adafruit.com/pro
 
 <img src="https://cdn-learn.adafruit.com/assets/assets/000/082/842/large1024/adafruit_products_4393_iso_ORIG_2019_10.jpg" height="200" />
 
-The Raspberry Pi 3 has a variety of interfacing options. When you plug the pi in the red power LED turns on. Any time the SD card is accessed the green LED flashes. It has standard USB ports and HDMI ports. Less familiar it has a set of 20x2 pin headers that allow you to connect a various peripherals.
+The Raspberry Pi 4 has a variety of interfacing options. When you plug the pi in the red power LED turns on. Any time the SD card is accessed the green LED flashes. It has standard USB ports and HDMI ports. Less familiar it has a set of 20x2 pin headers that allow you to connect a various peripherals.
 
 <img src="https://maker.pro/storage/g9KLAxU/g9KLAxUiJb9e4Zp1xcxrMhbCDyc3QWPdSunYAoew.png" height="400" />
 
@@ -124,7 +133,7 @@ To learn more about any individual pin and what it is for go to [pinout.xyz](htt
 
 ### Hardware (you have already done this in the prep)
 
-From your kit take out the display and the [Raspberry Pi 3](https://cdn-shop.adafruit.com/970x728/3775-07.jpg)
+From your kit take out the display and the [Raspberry Pi 4](https://cdn-shop.adafruit.com/970x728/3775-07.jpg)
 
 Line up the screen and press it on the headers. The hole in the screen should match up with the hole on the raspberry pi.
 
