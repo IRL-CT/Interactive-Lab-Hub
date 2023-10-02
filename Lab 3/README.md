@@ -83,7 +83,6 @@ echo 'Welcome to the world of speech synthesis!' | piper \
 ```
 Check the file that was created by running `aplay welcome.wav`. Many more languages are supported and audio can be streamed dirctly to an audio output, rather than into an file by:
 
-
 ```
 echo 'This sentence is spoken first. This sentence is synthesized while the first sentence is spoken.' | \
   piper --model en_US-lessac-medium --output-raw | \
@@ -110,8 +109,6 @@ python test_microphone.py -m en
 ```
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
- 
-
 
 
 ### Serving Pages
