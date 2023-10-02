@@ -12,6 +12,8 @@ We will focus on **audio** as the main modality for interaction to start; these 
 
 Students who have not already received a web camera will receive their [IMISES web cameras](https://www.amazon.com/Microphone-Speaker-Balance-Conference-Streaming/dp/B0B7B7SYSY/ref=sr_1_3?keywords=webcam%2Bwith%2Bmicrophone%2Band%2Bspeaker&qid=1663090960&s=electronics&sprefix=webcam%2Bwith%2Bmicrophone%2Band%2Bsp%2Celectronics%2C123&sr=1-3&th=1) on Thursday at the beginning of lab. If you cannot make it to class on Thursday, please contact the TAs to ensure you get your web camera. 
 
+**Please note:** connect the webcam/speaker/microphone while the pi is *off*. 
+
 ### Get the Latest Content
 
 As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. There are 2 ways you can do so:
@@ -30,6 +32,9 @@ Option 2: On your your own GitHub repo, [create pull request](https://github.com
 
 ## Part 1.
 ### Setup 
+
+*DO NOT* forget to work on your virtual environment! 
+
 Run the setup script
 ```chmod u+x setup.sh && sudo ./setup.sh  ```
 
@@ -40,7 +45,7 @@ In this part of lab, we are going to start peeking into the world of audio on yo
 We will be using the microphone and speaker on your webcamera. In the directory is a folder called `speech-scripts` containing several shell scripts. `cd` to the folder and list out all the files by `ls`:
 
 ```
-pi@ixe00:~/text2speech $ ls
+pi@ixe00:~/speech-scripts $ ls
 Download        festival_demo.sh  GoogleTTS_demo.sh  pico2text_demo.sh
 espeak_demo.sh  flite_demo.sh     lookdave.wav
 ```
@@ -48,13 +53,16 @@ espeak_demo.sh  flite_demo.sh     lookdave.wav
 You can run these shell files `.sh` by typing `./filename`, for example, typing `./espeak_demo.sh` and see what happens. Take some time to look at each script and see how it works. You can see a script by typing `cat filename`. For instance:
 
 ```
-pi@ixe00:~/text2speech $ cat festival_demo.sh 
+pi@ixe00:~/speech-scripts $ cat festival_demo.sh 
 #from: https://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)#Festival_Text_to_Speech
-
+```
+You can test the commands by running
+```
 echo "Just what do you think you're doing, Dave?" | festival --tts
 ```
 
-Now, you might wonder what exactly is a `.sh` file? Typically, a `.sh` file is a shell script which you can execute in a terminal. The example files we offer here are for you to figure out the ways to play with audio on your Pi!
+Now, you might wonder what exactly is a `.sh` file? 
+Typically, a `.sh` file is a shell script which you can execute in a terminal. The example files we offer here are for you to figure out the ways to play with audio on your Pi!
 
 You can also play audio files directly with `aplay filename`. Try typing `aplay lookdave.wav`.
 
@@ -63,7 +71,7 @@ You can also play audio files directly with `aplay filename`. Try typing `aplay 
 
 ---
 Bonus:
-[Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspbarry pi which can be installed easily through python with:
+[Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspberry pi which can be installed easily through python with:
 ```
 pip install piper-tts
 ```
@@ -73,7 +81,7 @@ echo 'Welcome to the world of speech synthesis!' | piper \
   --model en_US-lessac-medium \
   --output_file welcome.wav
 ```
-Many more languages are supported and audio can be streamed dirctly to an audio output, rather than into an file by:
+Check the file that was created by running `aplay welcome.wav`. Many more languages are supported and audio can be streamed dirctly to an audio output, rather than into an file by:
 
 
 ```
@@ -84,9 +92,10 @@ echo 'This sentence is spoken first. This sentence is synthesized while the firs
   
 ### Speech to Text
 
-Next setup speech to text.We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
+Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
 ```
-pip3 install vosk
+pip install vosk
+pip install sounddevice
 ```
 
 Test if vosk works by transcribing text:
@@ -95,13 +104,14 @@ Test if vosk works by transcribing text:
 vosk-transcriber -i recorded_mono.wav -o test.txt
 ```
 
-You can use vosk with the mirophone by running 
+You can use vosk with the microphone by running 
 ```
-python test_micropphone.py -m en
+python test_microphone.py -m en
 ```
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
  
+
 
 
 ### Serving Pages
