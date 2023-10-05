@@ -22,3 +22,4 @@ rpi-ws281x
 RPi.GPIO
 spidev
 sysv-ipc
+sparkfun-qwiic-proximity
