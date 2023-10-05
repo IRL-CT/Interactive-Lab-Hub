@@ -41,6 +41,7 @@ Option 3: (preferred) use the Github.com interface to update the changes.
 * Cutting board
 * Cutting tools
 * Markers
+* New hardware for your kit will be handed out. Update your parts list. 
 
 (We do offer shared cutting board, cutting tools, and markers on the class cart during the lab, so do not worry if you don't have them!)
 
