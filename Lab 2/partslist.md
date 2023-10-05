@@ -10,7 +10,7 @@
 
 1 x [Card Reader](https://www.bhphotovideo.com/c/product/751120-REG/Iogear_GFR204SD_10_in_1_USB_2_0_SD_MicroSD_MMC.html)
 
-1 x [Copper Foil Tape](https://www.amazon.com/Conductive-Shielding-Repellent-Electrical-Grounding/dp/B0741ZRP4W/ref=sr_1_5?dchild=1&keywords=conductive+copper+tape&qid=1628142003&sr=8-5)[N/A YET]
+1 x [Copper Foil Tape](https://www.amazon.com/Conductive-Shielding-Repellent-Electrical-Grounding/dp/B0741ZRP4W/ref=sr_1_5?dchild=1&keywords=conductive+copper+tape&qid=1628142003&sr=8-5)
 
 2 x [Alligator Clips](https://www.amazon.com/WGGE-WG-026-Pieces-Colors-Alligator/dp/B06ZXSCLDH/ref=sr_1_3)
 
@@ -26,23 +26,21 @@
 
 1 x [Adafruit MPR121 Capacitive Touch Sensor QT](https://www.adafruit.com/product/4830)
 
-1 x [SparkFun Qwiic Joystick](https://www.sparkfun.com/products/15168) [N/A YET] 
+1 x [SparkFun Qwiic OLED Display](https://www.sparkfun.com/products/17153)
 
-1 x [SparkFun Qwiic OLED Display](https://www.sparkfun.com/products/17153) [N/A YET] 
+1 x [SparkFun Qwiic Button - Red LED](https://www.sparkfun.com/products/15932)
 
-1 x [SparkFun Qwiic Button - Red LED](https://www.sparkfun.com/products/15932) [N/A YET] 
+1 x [SparkFun Qwiic Button - Green LED](https://www.sparkfun.com/products/16842)
 
-1 x [SparkFun Qwiic Button - Green LED](https://www.sparkfun.com/products/16842) [N/A YET] 
+1 x [SparkFun Distance Sensor](https://www.sparkfun.com/products/15177)
 
-1 x [SparkFun Distance Sensor](https://www.sparkfun.com/products/15177) [N/A YET] 
-
-1 x [SparkFun Qwiic SHIM](https://www.sparkfun.com/products/15794) [N/A YET] 
+1 x [SparkFun Qwiic SHIM](https://www.sparkfun.com/products/15794)
 
 1 x [Breadboard](https://www.adafruit.com/product/4539)
 
 1 x [AdafruitI2C GPIO Expander Breakout](https://www.adafruit.com/product/5545)
 
-1 x [EDUP 1080P 2MP Computer Webcam 1080p microphone CMOS 1/2.9" Sensor USB](https://www.alibaba.com/product-detail/EDUP-1080P-2MP-Computer-Webcam-1080p_1600269604427.html)  [N/A YET]
+1 x [EDUP 1080P 2MP Computer Webcam 1080p microphone CMOS 1/2.9" Sensor USB](https://www.alibaba.com/product-detail/EDUP-1080P-2MP-Computer-Webcam-1080p_1600269604427.html)
 
 
 
@@ -63,6 +61,18 @@
 10 x [NeoKey 1x4 QT I2C - Four Mechanical Key Switches with NeoPixels - STEMMA QT / Qwiic](https://www.adafruit.com/product/4980)
 
 10 x [Adafruit 16-Channel 12-bit PWM/Servo Driver - I2C interface - PCA9685](https://www.adafruit.com/product/815)
+
+10 x [SparkFun Qwiic Joystick](https://www.sparkfun.com/products/15168)
+
+10 x [SparkFun I2S Audio Breakout](https://www.sparkfun.com/products/14809)
+
+30 x [SparkFun Qwiic Alphanumeric Display](https://www.sparkfun.com/products/19297)
+
+10 x [SparkFun Capacitive Touch Slider](https://www.sparkfun.com/products/15344)
+
+10 x [SparkFun Qwiic Dynamic NFC/RFID Tag](https://www.sparkfun.com/products/21274)
+
+
 
 
 ## Missing Parts here
