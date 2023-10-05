@@ -85,7 +85,6 @@ We want to introduce you to the [capacitive sensor](https://learn.adafruit.com/a
 
 <p float="left">
 <img src="https://cdn-learn.adafruit.com/guides/cropped_images/000/003/226/medium640/MPR121_top_angle.jpg?1609282424" height="150" />
-<img src="https://m.media-amazon.com/images/G/01/apparel/rcxgs/tile._CB483369110_.gif" height="150">
 </p>
 
 Plug in the capacitive sensor board with the QWIIC connector. Connect your Twizzlers with either the copper tape or the alligator clips (the clips work better). Install the latest requirements from your working virtual environment:
