@@ -223,6 +223,11 @@ Another convenient way to remotely connect to your Pi is using VNC (Virtual Netw
 After that a login window should appear, use your normal logins (originally: Account=pi, Password=raspberry).
 ![](images/VNC2.png)
 
+You might want to change a few settings to improve the VNC experience such as changing the display resolution.
+To change the resolution, run the command sudo raspi-config, navigate to Display Options > VNC Resolution, and choose an option.
+See here for more troubleshooting [realvnc.com Pi Setup](https://help.realvnc.com/hc/en-us/articles/360002249917-VNC-Connect-and-Raspberry-Pi). 
+
+
 At that point the normal RPi desktop should appear and you can start and stop programs from here. 
 
 
