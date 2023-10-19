@@ -2,3 +2,5 @@
 *.tflite
 *.scorer
 venv
+venv*
+__*
