@@ -19,6 +19,9 @@ source venv-mp/bin/activate
 ``````
 
 Install dependencies in it
+
+In case you did not do last labs optional parts run this command: ```sudo apt-get install libasound2-dev```
+
 ``````
 (venv-mp) pip install mediapipe pyalsaaudio opencv-python
 ``````
