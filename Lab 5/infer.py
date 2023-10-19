@@ -76,7 +76,7 @@ with torch.no_grad():
         input_batch = input_tensor.unsqueeze(0)
 
         # run model
-        output = net(input_batch
+        output = net(input_batch)
         top = list(enumerate(output[0].softmax(dim=0)))
         top.sort(key=lambda x: x[1], reverse=True)
         for idx, val in top[:2]:
