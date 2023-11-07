@@ -137,6 +137,10 @@ The first step on the path to *collective* enlightenment, plug the [APDS-9960 Pr
 The second step to achieving our great enlightenment is to run `color.py`. We have talked about this sensor back in Lab 2 and Lab 4, this script is similar to what you have done before! Remember to activate the `circuitpython` virtual environment you have been using during this semester before running the script:
 
  ```
+<<<<<<< HEAD
+ (circuitpython) pi@raspberrypi:~ Interactive-Lab-Hub/Lab 6 $ systemctl stop mini-screen.service
+=======
+>>>>>>> 8e99dc9211fcf070dcfb72e5414459e1072c66da
  (circuitpython) pi@raspberrypi:~ Interactive-Lab-Hub/Lab 6 $ python color.py
  ...
  ```
@@ -145,10 +149,13 @@ By running the script, wou will find the two squares on the display. Half is sho
 
 (A message from the previous TA, Ilan: I was not super careful with handling the loop so you may need to press more than once if the timing isn't quite right. Also, I haven't load-tested it so things might just immediately break when everyone pushes the button at once.)
 
+<<<<<<< HEAD
+=======
 You may ask "but what if I missed class?" Am I not admitted into the collective enlightenment of the *OneColor*?
 
 Of course not! You can go to [https://one-true-colornet.glitch.me/](https://one-true-colornet.glitch.me/) and become one with the ColorNet on the inter-webs. Glitch is a great tool for prototyping sites, interfaces and web-apps that's worth taking some time to get familiar with if you have a chance. Its not super pertinent for the class but good to know either way. 
 
+>>>>>>> 8e99dc9211fcf070dcfb72e5414459e1072c66da
 **\*\*\*Can you set up the script that can read the color anyone else publish and display it on your screen?\*\*\***
 
 
