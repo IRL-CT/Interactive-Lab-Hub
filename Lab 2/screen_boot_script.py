@@ -12,7 +12,7 @@ from adafruit_rgb_display import st7789
 
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
-cs_pin = digitalio.DigitalInOut(board.CE0)
+cs_pin = digitalio.DigitalInOut(board.D5) 
 dc_pin = digitalio.DigitalInOut(board.D25)
 reset_pin = None
 
@@ -96,7 +96,7 @@ while True:
     cmd = "hostname -I | cut -d' ' -f1"
     IP = "IP: " + subprocess.check_output(cmd, shell=True).decode("utf-8")
     draw.text((x, y), IP, font=font, fill="#FFFFFF")
-    y += font.getsize(IP)[1]
+    y += font.size
 
     # Network Name
     try:
@@ -107,14 +107,14 @@ while True:
 
 
     draw.text((x, y), Network, font=font, fill="#FFFFFF")
-    y += font.getsize(Network)[1]
+    y += font.size
 
 
     # MAC Address
-    MAC = "MAC: " + subprocess.check_output("cat /sys/class/net/eth0/address", shell=True).decode("utf-8").strip()
+    MAC = "MAC: " + subprocess.check_output("cat /sys/class/net/wlan0/address", shell=True).decode("utf-8").strip()
     draw.text((x - mac_scroll_position, y), MAC, font=font, fill="#FFFFFF")
-    y += font.getsize(MAC)[1]
-    mac_scroll_position = (mac_scroll_position + 5) % font.getsize(MAC)[0]
+    y += font.size
+    mac_scroll_position = (mac_scroll_position + 5) % font.size
 
     # CPU Usage, Memory and Disk Usage
     CPU = subprocess.check_output("top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'", shell=True).decode("utf-8")
@@ -122,8 +122,8 @@ while True:
     Disk = subprocess.check_output('df -h | awk \'$NF=="/"{printf "Disk: %d/%d GB  %s", $3,$2,$5}\'', shell=True).decode("utf-8")
     CPUMemDisk = CPU + "  |  " + MemUsage + "  |  " + Disk
     draw.text((x - cpu_mem_disk_scroll_position, y), CPUMemDisk, font=font, fill="#00FF00")
-    y += font.getsize(CPUMemDisk)[1]
-    cpu_mem_disk_scroll_position = (cpu_mem_disk_scroll_position + 5) % font.getsize(CPUMemDisk)[0]
+    y += font.size
+    cpu_mem_disk_scroll_position = (cpu_mem_disk_scroll_position + 5) % font.size
 
     # CPU Temperature
     Temp = subprocess.check_output("cat /sys/class/thermal/thermal_zone0/temp |  awk '{printf \"CPU Temp: %.1f C\", $(NF-0) / 1000}'", shell=True).decode("utf-8")
