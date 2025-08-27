@@ -62,13 +62,17 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 
 To stage an interaction with your interactive device, think about:
 
-_Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
+_Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening? 
+The setting is the study rooms in the Master's Studio. It typically happens during the day or evening, but can happen at any time. 
 
 _Players:_ Who is involved in the interaction? Who else is there? If you reflect on the design of current day interactive devices like the Amazon Alexa, it’s clear they didn’t take into account people who had roommates, or the presence of children. Think through all the people who are in the setting.
+Those invovled in the interaction include students and other academics looking for a space to study or do work. One scenario is where a person is trying to find a room and sees that room A is booked because the light is red. Another scenario may be where a person is trying to find a room and sees that room A is not booked because the light is green, meaning they can enter the room as they please. There might be a group of people who are using the room or need to use the room, so these would be additional characters/players. 
 
 _Activity:_ What is happening between the actors?
+The actors interact by viewing and interpreting the light. Between 
 
 _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
+The goal of each player to to ensure an efficient and seamless study room occupation system irregardless of whether or not someone has booked a room. Each player can either book a room for an available time (if the room is not already occupied) or can ..................
 
 The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
