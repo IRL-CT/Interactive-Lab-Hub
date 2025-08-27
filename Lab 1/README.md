@@ -1,8 +1,7 @@
 
 
 # Staging Interaction
-
-\*\***NAME OF COLLABORATOR HERE**\*\*
+NAME OF COLLABORATORS: Arya Prasad, Saksham Saraswat, Grace Myers **\*\*
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -69,7 +68,7 @@ _Players:_ Who is involved in the interaction? Who else is there? If you reflect
 Those invovled in the interaction include students and other academics looking for a space to study or do work. One scenario is where a person is trying to find a room and sees that room A is booked because the light is red. Another scenario may be where a person is trying to find a room and sees that room A is not booked because the light is green, meaning they can enter the room as they please. There might be a group of people who are using the room or need to use the room, so these would be additional characters/players. 
 
 _Activity:_ What is happening between the actors?
-The actors interact by viewing and interpreting the light. Between 
+The actors interact by viewing and interpreting the light. Between ..................
 
 _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
 The goal of each player to to ensure an efficient and seamless study room occupation system irregardless of whether or not someone has booked a room. Each player can either book a room for an available time (if the room is not already occupied) or can ..................
