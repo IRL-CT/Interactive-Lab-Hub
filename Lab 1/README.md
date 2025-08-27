@@ -74,6 +74,12 @@ The interactive device can be anything *except* a computer, a tablet computer or
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
+The interactive device will be a heart rate indicator that displays different colors of light according to the player's heart rate. The device will calculate the heart rate zone using the player's age and current heart rate according to the table in this [webpage](https://blog.maximumperform.com/2021/02/08/heart-health-month-heart-rate-heart-rate-zones/).
+
+Specifically, for zone 1, which indicates a very light exercise like warm-up or cool-down, the device emits white light. For zone 2, which represents a light exercise, the device emits blue light. For zone 3, which suggests a moderate level of exercise, the device emits green light. For zone 4, which is the threshold zone, the device emits yellow light. As for zone 5, which implies the most intense level of exercise, the device emits red light.
+
+---
+
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
