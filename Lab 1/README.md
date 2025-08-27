@@ -79,9 +79,8 @@ Goals here.**\*\*
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
-\*\***Pictures of my storyboards:
+**Pictures of my storyboards:**
 <img width="720" height="550" alt="image" src="https://github.com/user-attachments/assets/b5414ffe-0786-4981-ab72-6d3fdecb5cbc" />
-**\*\*
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
@@ -107,13 +106,14 @@ We invented this tool for this lab!
 
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
-\*\***Give us feedback on Tinkerbelle.**\*\*
+\*\***Give us feedback on Tinkerbelle：Super cool, easy to use, love it!!**\*\*
 
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
-\*\***Include your first attempts at recording the set-up video here.**\*\*
+**My first attempts at recording the set-up video:**
+https://github.com/user-attachments/assets/0bd5e533-a002-4805-93af-e4647c730e1b
 
 Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
 
