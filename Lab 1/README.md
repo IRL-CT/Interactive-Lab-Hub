@@ -13,11 +13,11 @@ For this assignment, you are going to:
 
 A) [Plan](#part-a-plan) 
 
-B) [Act out the interaction](#part-b-act-out-the-interaction) 
+B) [Act out the interaction](#part-1b-act-out-the-interaction) 
 
-C) [Prototype the device](#part-c-prototype-the-device)
+C) [Prototype the device](#part-1c-prototype-the-device)
 
-D) [Wizard the device](#part-d-wizard-the-device) 
+D) [Wizard the device](#part-1d-wizard-the-device) 
 
 E) [Costume the device](#part-e-costume-the-device)
 
