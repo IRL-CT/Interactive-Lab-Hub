@@ -86,6 +86,20 @@ _Players_: Sarah and Mary, two roommates
 _Activity_: Sarah is trying to cook steak  
 _Goals_: Sarah really wants to eat great steak  
 
+**Weather Alarm**: alerts user if the weather is good for desired activity  
+
+**Smart Sleep Light:** changes brightness and hue depending on user's activity or habits  
+_Setting_: In a bedroom at night
+_Players_: Student
+_Activity_: Student is studying 
+_Goals_: Student wants to go to bed soon and get a good nights rest
+
+**QuickTicket:** light up wristband that allows users to go through ticket checking faster with indicator wristband that scans  
+_Setting_: At a concert venue  
+_Players_: a lot of concertgoers and security  
+_Activity_: getting into the concert/going through security  
+_Goals_: getting crowd into the venue quickly and securely  
+
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
