@@ -94,6 +94,15 @@ There are several activities going on in the library. Each of them displays a un
 3. librarians can remotely turn on lighting for a bookmark sitting on the shelf, providing recommendations on several books at once
 4. people who are initially working or on a mission in the library can be inspired to talk to people who have the smart bookmarks on
 
+**Goal**
+These correspond to the 1-5 player personas above:
+1. finding a book
+2. enjoy reading
+3. working/studying
+4. returning a book, etc
+5. assist with finding a book
+
+
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
