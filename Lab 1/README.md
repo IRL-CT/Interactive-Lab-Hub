@@ -11,7 +11,7 @@
 ## Lab Overview
 For this assignment, you are going to:
 
-A) [Plan](#part-a-plan) 
+A) [Plan](#part-1a-plan) 
 
 B) [Act out the interaction](#part-1b-act-out-the-interaction) 
 
