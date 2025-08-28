@@ -75,11 +75,8 @@ The interactive device can be anything *except* a computer, a tablet computer or
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
 Pet Health Detector
-
 Setting: In a house
-
 Players: Cat and owner
-
 Activity: 
 
 
