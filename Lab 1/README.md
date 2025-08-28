@@ -74,6 +74,26 @@ The interactive device can be anything *except* a computer, a tablet computer or
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
+**Setting**
+The setting is in a library. It could be anytime of the day, but for this particular example, let's say, it's 5:45pm after my Interactive lab, and I step into an imaginary library on campus.
+
+**Players**
+The primary player involved in the interaction is me - someone who has just stepped into the library, looking for a book to read. People in the library are considered secondary players. Here are some profile that I considered: 
+
+1. People in the library to browse and kill time, potentially looking for a book
+2. People in the library who are reading a book
+3. People who are working/studying in the library
+4. People who are in the library primarily because they are on a mission. i.e. returning a book
+5. People who work in the library, i.e. librarians
+
+**Activitiy**
+There are several activities going on in the library. Each of them displays a unique interaction and usecase made possible by this device. When placing the smart bookmark on the page, beams with different colors that reflects the general mood of that part of the book.
+
+1. people who are looking for books can interact with people who are reading with 'smart bookmarks' that is displaying an interesting mood
+2. between people who are reading, they are now able to connect and start a conversation with matching mood
+3. librarians can remotely turn on lighting for a bookmark sitting on the shelf, providing recommendations on several books at once
+4. people who are initially working or on a mission in the library can be inspired to talk to people who have the smart bookmarks on
+
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
@@ -81,7 +101,9 @@ Storyboards are a tool for visually exploring a users interaction with a device.
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
-
+1. mood lighting for books can also be serving as a lighting feature in the dark
+2. make sure to control brightness so it doesn't disturb other people in the room
+3. zoom in on one or two personas so that the prototype don't get too complicated too fast
 
 ## Part B. Act out the Interaction
 
@@ -91,6 +113,10 @@ Try physically acting out the interaction you planned. For now, you can just pre
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
 
+Of all 4 usecases listed above, #3 seems the most promising and #2 is more interesting. #1 and #4 are somewhat ok but they don't add as much value as I previously imagined.
+Particularly for locating a book on the isle through the smart bookmark could be challenging. The level of brightness is something to be experimented upon. Also, the design for the device itself might be critical, it needs to be sticking out from the pages and emit enough light.
+
+For all the resonse above, the lab work will be focusing on **#2 "social reader" usecase**, which involve two readers actively reading with their smart bookmark turned on. This indicates they are interested in finding other people to read together. The beaming light guide them to congregate in different corners of the library and engage with conversation with fellow readers.
 
 ## Part C. Prototype the device
 
@@ -103,7 +129,7 @@ We invented this tool for this lab!
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
-
+For controller it should be port 5001 and not 5000. 
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
