@@ -108,6 +108,18 @@ Present your ideas to the other people in your breakout room (or in small groups
 
 \*\***Summarize feedback you got here.**\*\*
 
+**Pet Diagnostics:**  
+- Maybe the pet could wear it like a collar to constantly monitor its info
+
+**Cooking Helper:**  
+- Is it affected by the heat, may damage the device?
+- Not too intuitive if just colors - maybe forget what they mean?
+
+**QuickTicket:**
+- What's the mechanism for not reusing it
+- Apple Wallet already exists, a little redundant
+- Price, users will need to buy another device 
+
 
 ## Part B. Act out the Interaction
 
