@@ -2,7 +2,7 @@
 
 # Staging Interaction
 
-\*\***Collaborator: Wenzhuo Ma**\*\*
+\*\***Collaborator: Yoyo Wang**\*\*
 
 
 
@@ -38,7 +38,7 @@ _Goals:_ Help chefs avoid missing or forgetting steps by visualizing cooking pro
 
 \*\***Include pictures of your storyboards here**\*\*
 
-![](storyboard.jpeg)
+![](Storyboard.jpg)
 
 
 \*\***Summarize feedback you got here.**\*\*
@@ -78,7 +78,7 @@ We initially used a mobile phone as the display device for the slides to immitat
 
 
 \*\***Include sketches of what your devices might look like here.**\*\*
-![](Costume.jpeg)
+![](Costumes.jpg)
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 
@@ -95,7 +95,7 @@ https://drive.google.com/file/d/1lDDAwDMCFRYFSha0AIaA3D5vYPw4H2aj/view?usp=shari
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 
-Wenzhuo Ma
+Yoyo Wang
 
 
 
