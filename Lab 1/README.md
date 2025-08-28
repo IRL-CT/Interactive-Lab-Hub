@@ -74,13 +74,14 @@ The interactive device can be anything *except* a computer, a tablet computer or
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
-**Pet Health Detector**
-Setting: In a house  
+**Pet Diagnostics**: indicates if a pet is healthy or not 
+Setting: In a house 
 Players: Cat and owner  
-Activity:   
+Activity: The cat is acting strange and the owner is worried
+Goals: The owner wants to know if the cat is sick or just being weird
 
 **Cooking Helper**: uses colors to indicate if something is done cooking/need to adjust temperature etc.  
-Setting: In a kitchen  
+Setting: In a kitchen at dinnertime
 Players: Sarah and Mary, two roommates  
 Activity: Sarah is trying to cook steak  
 Goals: Sarah really wants to eat great steak  
