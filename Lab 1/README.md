@@ -81,6 +81,15 @@ Storyboards are a tool for visually exploring a users interaction with a device.
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
+nothing difference fron a noreal screen
+gradient to show the estimated time of waiting.
+----
+cat can understand
+can just dont listen to you 
+cat friendly colors!!!
+----
+how it worked
+if that is a violation to change others colth
 
 
 ## Part B. Act out the Interaction
@@ -113,6 +122,7 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
+
 
 
 ## Part E. Costume the device
