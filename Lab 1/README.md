@@ -74,13 +74,26 @@ The interactive device can be anything *except* a computer, a tablet computer or
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
-Setting: On the roads or in the gym when a person is jogging or training
+**Setting:** 
 
-Players: The main person who wears the device
+At the house at Cornell Tech
 
-Activity: When he/she is exercising and the device will detect the health condition of that person and make changes to the color with respect to different condition stages.
+**Players:**
 
-Goals: The goal is to let the person know how effectively their exercise has been achieved and monitor their body status at the same time.
+A: The room that owns the device 
+
+B: The people who want to visit the household
+
+**Activity:**
+
+- Whenever A wants to chat with others, they can change the color of the light to 'green', and if B sees the green signal, they can visit A
+- Whenever A wants to study with others, they can change the color of the light to 'blue', and if B sees the blue signal, they can come and study with A and discuss together.
+- Whenever A wants to have lunch or dinner with others, they can change the color of the light to 'orange', and if B sees the orange signal, they can bring their own dishes to A's home and have a great time.
+- If A is not available(e.g., not at home, busy at other tasks, or doesn't want to be bothered), change the color to 'red', so when B passes by the door, they will not try to disturb A.
+
+**Goals:**
+
+The goal is to develop a more engaging neighborhood around the house and still maintain the privacy of each resident at the same time.
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
