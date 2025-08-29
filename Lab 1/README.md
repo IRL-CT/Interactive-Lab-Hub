@@ -86,10 +86,6 @@ _Players_: Sarah and Mary, two roommates
 _Activity_: Sarah is trying to cook steak  
 _Goals_: Sarah really wants to eat great steak  
 
-****: alerts user if the weather is good for desired activity   
-
-
-
 **SleepSmartly:** changes brightness and hue depending on user's activity or habits  
 _Setting_: In a bedroom at night  
 _Players_: Student  
@@ -110,6 +106,21 @@ _Goals_: getting crowd into the venue quickly and securely
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
+**Pet Diagnostics**:  
+![IMG_0651](https://github.com/user-attachments/assets/46692ea1-e08b-4905-9c94-0b1cb8af75f6)  
+
+**Cooking Helper**:  
+![IMG_0650](https://github.com/user-attachments/assets/d7ef74b7-fb96-44bf-8bfb-9ea58718343f)  
+
+**SleepSmartly:**  
+Night  
+![IMG_0653](https://github.com/user-attachments/assets/925c7990-5faa-49a7-ad57-936e1c7c007c)  
+Morning  
+![IMG_0654](https://github.com/user-attachments/assets/dcc43dce-f504-4bdd-a389-338c04fc0776)  
+
+**QuickTicket:**  
+![IMG_0652](https://github.com/user-attachments/assets/19fb67d2-a0f8-48b5-a07b-28d454b1c806)  
+
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
