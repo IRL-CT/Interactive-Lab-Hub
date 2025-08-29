@@ -74,23 +74,25 @@ _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening th
 The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
-_Setting:_ The setting is a large esports arena throughout the tournament timeline — from the opening matches, through wins and losses, to the final championship moment. The environment shifts with the emotional intensity of the competition: early rounds are calm and anticipatory, mid rounds tense, match point thrilling, and the final victory explosive.
+_Setting:_ The setting is a large esports arena throughout the tournament timeline — from the opening matches, through wins and losses, to the final championship moment. Lighting is an important component here that reflects the current situation of the match and the audience atmosphere.
 
 _Players:_ 
 Team/players (on stage) – Competing for the champion. Their performance determines how the lights (wristbands) respond.
-Audience (in the seats, each with a wristband) – Each has their own support team and a corresponding wristband. They actively contribute to the atmosphere 
-Device (the wristbands) – A reflection of the game's current situation and 
+Audience (in the seats, each with a wristband) – Each has their own support team and a corresponding wristband. Their actions could also change the light effects.
 
-_Activity:_ Team lifts the glowing “trophy light”; crowd chants; cameras pan. The light stays steady and radiant.
+_Activity:_ 
+At the beginning of the game, the brightness of the two parties' wristbands is at the same level. As the game progresses, when one team wins a round, the winning team's wristbands will shine brighter, and the losing team's wristbands will become dimmer. As a team is eliminated, the wristband will go completely dark. As the team wins the final championship, the wristband will glow with golden light. When the audience is cheering for their team between games, such as waving their hands, the wristband's brightness also grows stronger.
 
 _Goals:_ 
-Team: Celebrate and signal dominance.
-Audience: Show admiration and excitement.
-Device (light): Symbolize the team’s summit with a powerful, unwavering glow.
+Team: Win the champion.
+Audience: Cheer for their supported team.
+Device (light): Symbolize the team's winning status. 
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
+![image](https://github.com/user-attachments/assets/a1923570-12a5-47ac-850d-ed8562f9c03b)
+
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
@@ -104,6 +106,7 @@ Present your ideas to the other people in your breakout room (or in small groups
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
+
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
 
