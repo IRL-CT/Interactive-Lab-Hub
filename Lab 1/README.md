@@ -86,13 +86,20 @@ _Players_: Sarah and Mary, two roommates
 _Activity_: Sarah is trying to cook steak  
 _Goals_: Sarah really wants to eat great steak  
 
-**Weather Alarm**: alerts user if the weather is good for desired activity  
+****: alerts user if the weather is good for desired activity   
 
-**Smart Sleep Light:** changes brightness and hue depending on user's activity or habits  
-_Setting_: In a bedroom at night
-_Players_: Student
-_Activity_: Student is studying 
-_Goals_: Student wants to go to bed soon and get a good nights rest
+
+
+**SleepSmartly:** changes brightness and hue depending on user's activity or habits  
+_Setting_: In a bedroom at night  
+_Players_: Student  
+_Activity_: Student is studying  
+_Goals_: Student wants to go to bed soon and get a good nights rest  
+
+_Setting_: In a bedroom in the morning  
+_Players_: Student  
+_Activity_: Student is sleeping  
+_Goals_: Student wants to wake up naturally at their chosen time  
 
 **QuickTicket:** light up wristband that allows users to go through ticket checking faster with indicator wristband that scans  
 _Setting_: At a concert venue  
