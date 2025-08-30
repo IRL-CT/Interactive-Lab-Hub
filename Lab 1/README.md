@@ -176,7 +176,7 @@ Aurora is attending the ball, but the fairies can’t decide on a color for her 
 ![5750B34F-3A92-4C1F-BB00-B74E048E5DE1_1_102_o](https://hackmd.io/_uploads/Skxdbgeqgx.jpg)
 Orange is a clever 10/10 cat who understands color signals—blue means “pet me,” yellow means “food.” But when the human introduced red and pink, Orange ignored the button, since cats can’t tell colors in the orange-red range.
 ### Device #3: AdaptFlashlight
-![image]([https://hackmd.io/_uploads/HJGb_lxcxl.jpg](https://github.com/chenyingyu-main/Interactive-Lab-Hub/blob/Fall2025/Lab%201/Images/AdaptFlashlight.JPG))
+![image](Lab 1/Images/AdaptFlashlight.JPG)
 With AdaptFlashlight, the hero creates a cape that changes color to unlock new powers—blue for waterproof, orange for fireproof—turning it into the ultimate superhero outfit.
 
 ### Device #4: EmotionCard
