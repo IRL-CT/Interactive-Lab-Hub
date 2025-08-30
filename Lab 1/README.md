@@ -176,7 +176,7 @@ Do last week’s assignment again, but this time:
 ## My Lab 1 Work
 
 ### Storyboard
-![Storyboard sketch](./storyboard.png)
+![Storyboard](./storyboards.png)
 
 ### Prototype Photos
 ![Prototype](./prototype.jpg)
