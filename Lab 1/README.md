@@ -75,44 +75,32 @@ The interactive device can be anything *except* a computer, a tablet computer or
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
 **Setting**
-The setting is in a library. It could be anytime of the day, but for this particular example, let's say, it's 5:45pm after my Interactive lab, and I step into an imaginary library on campus.
+The setting is at home, in the living room. It's anytime during the day, it could be day time when I am working.
 
 **Players**
-The primary player involved in the interaction is me - someone who has just stepped into the library, looking for a book to read. People in the library are considered secondary players. Here are some profile that I considered: 
-
-1. People in the library to browse and kill time, potentially looking for a book
-2. People in the library who are reading a book
-3. People who are working/studying in the library
-4. People who are in the library primarily because they are on a mission. i.e. returning a book
-5. People who work in the library, i.e. librarians
+There is one primary player involved in the interaction who is wearing this "smart eyeguard". There could be more than one person in the living room, it could be my roommate or friends hanging out there as well.
 
 **Activitiy**
-There are several activities going on in the library. Each of them displays a unique interaction and usecase made possible by this device. When placing the smart bookmark on the page, beams with different colors that reflects the general mood of that part of the book.
+The primary player is interacting with the "smart eyeguard" when the eyeguard detects screens in its field. The notification light changes whenever the primary player is too close to a screen.
 
-1. people who are looking for books can interact with people who are reading with 'smart bookmarks' that is displaying an interesting mood
-2. between people who are reading, they are now able to connect and start a conversation with matching mood
-3. librarians can remotely turn on lighting for a bookmark sitting on the shelf, providing recommendations on several books at once
-4. people who are initially working or on a mission in the library can be inspired to talk to people who have the smart bookmarks on
+While others without this wearable device may not directly interacting with it, they may also be participating in this activity by looking at the notification light and reminds the pimrary player of safe screen distance when the primary player is too focused on the work.
 
 **Goal**
-These correspond to the 1-5 player personas above:
-1. finding a book
-2. enjoy reading
-3. working/studying
-4. returning a book, etc
-5. assist with finding a book
-
+The goals of primary player is to be more concious of safe screen distance when working/studying/entertaining in front of screens. The focus here is to maintain better eye care/health, as well as achieving better work-life balance. The goal for secondary players is to support primary player in keeping up with their posture and screen distance.
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
 
+![Safeguard Eye Design 1](<media/Safeguard Eye-1 2.jpg>)
+![Safeguard Eye Design 2](<media/Safeguard Eye-2 2.jpg>)
+
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
-1. mood lighting for books can also be serving as a lighting feature in the dark
-2. make sure to control brightness so it doesn't disturb other people in the room
-3. zoom in on one or two personas so that the prototype don't get too complicated too fast
+1. zoom in on one or two personas so that the prototype don't get too complicated too fast
+2. flesh out the persona so it's not just "anybody who's working", the usecase can be applied universally but finding a persona can add more to our storyline and prototyping
+3. understand accessibility, what does it mean for people with light sensitivity or color blindness to use this device, etc
 
 ## Part B. Act out the Interaction
 
@@ -122,10 +110,7 @@ Try physically acting out the interaction you planned. For now, you can just pre
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
 
-Of all 4 usecases listed above, #3 seems the most promising and #2 is more interesting. #1 and #4 are somewhat ok but they don't add as much value as I previously imagined.
-Particularly for locating a book on the isle through the smart bookmark could be challenging. The level of brightness is something to be experimented upon. Also, the design for the device itself might be critical, it needs to be sticking out from the pages and emit enough light.
 
-For all the resonse above, the lab work will be focusing on **#2 "social reader" usecase**, which involve two readers actively reading with their smart bookmark turned on. This indicates they are interested in finding other people to read together. The beaming light guide them to congregate in different corners of the library and engage with conversation with fellow readers.
 
 ## Part C. Prototype the device
 
@@ -145,10 +130,17 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
-Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
+Goal: When user is working extremely close to the screen, user needs to be reminded and interrupted. This means red light will keep on unless user adjusts the pose.
+[Setup Video - Prototype #1](https://youtube.com/shorts/h3eZ_ZJQwZ0?feature=share)
+
+Now, change the goal within the same setting, and update the interaction with the paper prototype. 
+
+Goal: When the user is looking at a screen in a non ideal distance, however not extremely dangerous, user needs to be reminded with a flash of orange light.
+
+[Setup Video - Prototype #2](https://youtu.be/7NIxbgCaVXc)
+
 
 \*\***Show the follow-up work here.**\*\*
-
 
 ## Part E. Costume the device
 
@@ -158,16 +150,54 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 
+My thought on this device - it is a wearbale device. It should be: 
+1. lightweight
+2. somewhat waterproof
+3. compatible with the prescription lenses
+4. chargable or battery powered - so the frame has to be somewhat thick enough and sturdy enough to hold microelectronics
+
+I came up with three different style of devices:
+
+Smart Glasses type
+The screen is built into the frame.
+![Device Prototype 1](media/Device%20Proto-1.jpg)
+![Device Prototype 2](media/Device%20Proto-2.jpg)
+
+Clip on type
+This type can be clipped onto a regular glass.
+![Device Prototype 3](media/Device%20Proto-3.jpg)
+![Device Prototype Clip On](media/Device%20Proto-clipon.jpeg)
+
+USB type
+This type needs to be plugged into the screen/device when user is actively working.
+![Device Prototype 4](media/Device%20Proto-4.jpg)
+![Device Prototype USB](media/Device%20Proto-usb.JPG)
+
+
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+
+Opportunities: 
+1. Some devices like iPhone already have a safe screen distance/eye care notification feature. 
+2. Meta's Ray Ban glasses are smart glasses that can do much more than just lighting. This proves that these devices are definitely achievable and are somewhat tested and accepted by users.
+
+Some concerns include: 
+1. Where the light notification should be placed - this is a tricky question because if we place the light too close to the eye, we may end up harming the users. 
+2. How to adjust lighting based on individual sensitivity to light? This is a tradeoff between universal application and accessibility.
 
 
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
 
+[Interactive Prototype - Glasses](https://youtu.be/Q_AB_Nn7LpI)
+[Interactive Prototype - Clip On](https://youtu.be/nOppyAEX1wo)
+[Interactive Prototype - USB](https://youtu.be/ywBN6FlimgQ)
+
+
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
+I want to acknowledge my friend Victoria who is not participating in this course. She is exposed to 10+hr of screen time during the day and has turned on the safe screen distance feature on her iPhone, which I drew the inspiration for this project from.
 
 
 # Staging Interaction, Part 2 
