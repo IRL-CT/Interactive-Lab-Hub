@@ -2,7 +2,14 @@
 
 # Staging Interaction
 
-\*\***COLLABORATOR: Amanda Lu, Shreya Kethi Reddy, Miriam Alex, Ying Yu Chen (Me)**\*\*
+\*\***COLLABORATOR: Amanda Lu, Miriam Alex, Shreya Kethi Reddy, Ying Yu Chen (Me)**\*\*
+
+
+
+<details>
+<summary>Click to toggle contents of Lab1 Description</summary>
+    
+# Staging Interaction
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -11,9 +18,7 @@ There is no actor that plays Tinkerbell--her existence in the play comes from th
 For lab this week, we draw on this and other inspirations from theatre to stage interactions with a device where the main mode of display/output for the interactive device you are designing is lighting. You will plot the interaction with a storyboard, and use your computer and a smartphone to experiment with what the interactions will look and feel like. 
 
 _Make sure you read all the instructions and understand the whole of the laboratory activity before starting!_
-
-
-
+    
 ## Prep
 
 ### To start the semester, you will need:
@@ -21,7 +26,7 @@ _Make sure you read all the instructions and understand the whole of the laborat
 2. Set up your own Github "Lab Hub" repository by forking the [Interactive-Lab-Hub repository](https://github.com/FAR-Lab/Interactive-Lab-Hub). To get lab updates, simply [use GitHub's "Sync fork" button when new content is available](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
 
 3. Set up the README.md for your Hub repository (for instance, so that it has your name and points to your own Lab 1). You can [learn how to organize and format your README.md here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax). Make sure to include links to your submissions so they are easy to find.
-
+    
 
 ### For this lab, you will need:
 1. Paper
@@ -40,9 +45,15 @@ _Make sure you read all the instructions and understand the whole of the laborat
 
 ### The Report
 This README.md page in your own repository should be edited to include the work you have done (the deliverables mentioned above). Following the format below, you can delete everything but the headers and the sections between the **stars**. Write the answers to the questions under the starred sentences. Include any material that explains what you did in this lab hub folder, and link it in your README.md for the lab.
+    
+</details>
+
+
+
+
 
 ## Lab Overview
-For this assignment, you are going to:
+For this assignment, we are going to:
 
 A) [Plan](#part-a-plan) 
 
@@ -56,10 +67,13 @@ E) [Costume the device](#part-e-costume-the-device)
 
 F) [Record the interaction](#part-f-record)
 
-Labs are due on Mondays. Make sure this page is linked to on your main class hub page.
+Labs are due on Mondays (Sep 1st, 2025).
 
 ## Part A. Plan 
+<details>
+<summary>Click to toggle contents of `Instructions for Part A`</summary>
 
+#### Setting, Players, Activity and Goals
 To stage an interaction with your interactive device, think about:
 
 _Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
@@ -72,22 +86,117 @@ _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening th
 
 The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
-\*\***Describe your setting, players, activity and goals here.**\*\*
-
+#### Storyboards
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
-\*\***Include pictures of your storyboards here**\*\*
-
+#### Feedback
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
+    
+</details>
 
+\*\***Describe your setting, players, activity and goals here.**\*\*
+### Devive #1: RhythmDiscoball
+**Setting:**
+A dance party or social gathering where lighting plays a key role in boosting the mood.
+
+**Players:**
+Dancers, spectators, DJ / music controller
+
+**Activity:**
+As the music plays and dancers move, RhythmDiscoball shifts its light colors and patterns to match the atmosphere.
+
+**Goals:**
+* **Dancers:** Allow their movements to influence and amplify the surrounding atmosphere.
+* **Spectators:** Enhance their audio-visual experience by immersing them in vibrant, responsive colors.
+* **DJ / Music Controller:** Amaze the crowd by having the music visualized through dynamic lighting.
+
+
+### Device #2: CatCommunicationButton
+**Setting:**
+Inside a household shared by cats and humans. The device becomes useful whenever humans try to understand their pets’ needs.
+
+**Players:**
+Humans and cats living in the house
+
+**Activity:**
+Humans can set specific colors to represent different cat needs, such as food, play, or going outside. When cats press the button, it detects what they want and lights up in the corresponding color to show their request. Similarly, humans can press the button to display a color, signaling their intention to the cats (as long as the cats can recognize the color.
+
+**Goals:**
+* **Humans:** Understand what their cats want and respond.
+* **Cats:** Command their humans to take action and fulfill their needs.
+### Device #3: AdaptFlashlight
+**Setting:**
+Anywhere people may want to adapt their clothes to the environment, such as making them waterproof at the beach or fire-resistant during an emergency.
+
+**Players:**
+Users who operate the flashlight and people whose clothes are illuminated by the flashlight
+
+**Activity:**
+By shining the AdaptFlashlight on clothing, users can instantly alter its properties—for example, turning ordinary fabric into waterproof or fireproof material.
+
+**Goals:**
+* **Humans:** Adapt their clothing to different situations without needing to bring extra outfits.
+### Device #4: EmotionCard
+**Setting:**
+Used anytime and anywhere when someone wants to express their feelings but finds it difficult to do so.
+
+**Players:**
+The person carrying the card, their friends/ family, and anyone who sees the card
+
+**Activity:**
+The EmotionCard detects signals such as body temperature and pulse, then visualizes the user’s current emotional state through colors or light patterns on the card.
+
+**Goals:**
+* **The person carrying the card:** Gain awareness and understanding of their current emotions.
+* **Whoever sees the card:** Understand the user’s emotional state and respond appropriately.
+### Device #5: GlowBoard
+**Setting:**
+A shop (mainly those that require preparation in between, such as bakeries).
+
+**Players:**
+Shop owner, customers (inside or outside the shop), pedestrians (passersby), delivery workers
+
+**Activity:** The shop owner communicates the current supply status to customers through the GlowBoard. When customers wish to make a purchase, they can easily check the GlowBoard to see whether the items are available.
+
+**Goals:**
+* **Shop owner:** Ensure smooth operation by managing supply and demand, preparing products in time, and keeping customers informed.
+* **Customers:** Can easily know the availability of items and purchase them at the right time.
+* **Pedestrians:** Notice availability signals and decide whether to stop and buy.
+* **Delivery workers:** Pick up the ordered items efficiently once they are ready.
+
+
+---
+
+\*\***Include pictures of your storyboards here**\*\*
+### Devive #1: RhythmDiscoball
+![IMG_1643](https://hackmd.io/_uploads/SkvPR1lcgx.jpg)
+Aurora is attending the ball, but the fairies can’t decide on a color for her dress. One fairy suggests using music, so with the RhythmDiscoball, her white dress reflects changing lights that match the rhythm, creating a lively atmosphere.
+
+### Devive #2: CatCommunicationButton
+![5750B34F-3A92-4C1F-BB00-B74E048E5DE1_1_102_o](https://hackmd.io/_uploads/Skxdbgeqgx.jpg)
+Orange is a clever 10/10 cat who understands color signals—blue means “pet me,” yellow means “food.” But when the human introduced red and pink, Orange ignored the button, since cats can’t tell colors in the orange-red range.
+### Device #3: AdaptFlashlight
+![092061D4-00EC-45FB-BBE8-18118FFC1616_1_102_o](https://hackmd.io/_uploads/HJGb_lxcxl.jpg)
+With AdaptFlashlight, the hero creates a cape that changes color to unlock new powers—blue for waterproof, orange for fireproof—turning it into the ultimate superhero outfit.
+
+### Device #4: EmotionCard
+![6D62CEE8-122C-4A86-A358-51959695E45F_1_102_o](https://hackmd.io/_uploads/rJOc5xe5gg.jpg)
+Orange is a poker-faced person who struggles to show feelings. With the EmotionCard, Orange can finally express emotions—showing happiness after a meal, or fear during a horror movie. In the end, Orange feels delighted to share true emotions with friends and family.
+
+### Device #5: GlowBoard
+![IMG_1642](https://hackmd.io/_uploads/Hy7mR9k5gl.jpg)
+The shop owner updates the GlowBoard to indicate when cinnamon rolls are ready, sold out (being baked), so customers know their status until the shop closes for the day.
+
+---
 \*\***Summarize feedback you got here.**\*\*
+
 nothing difference fron a noreal screen
 gradient to show the estimated time of waiting.
-----
+
 cat can understand
 can just dont listen to you 
 cat friendly colors!!!
-----
+
 how it worked
 if that is a violation to change others colth
 
