@@ -80,11 +80,16 @@ A royal hall at night. The story has three short scenes: the maid with fruit, th
   - Maid: to poison the King and take revenge.  
   - Queen: to kill the King with poisoned wine.  
   - General: to strike the King down with his sword.  
-  - King: to survive these threats and keep his rule. 
+  - King: to survive these threats and keep his rule.  
 
-Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
-
+&nbsp;
 \*\***Include pictures of your storyboards here**\*\*
+
+Here is the storyboard for our interaction design:
+
+![Storyboard](./storyboards.png)
+
+&nbsp;
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
@@ -96,6 +101,7 @@ Present your ideas to the other people in your breakout room (or in small groups
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
+Yes. On paper, the glowing light effects (green, purple, white, red) looked very clear and dramatic. But when acting them out, it was harder to present the glow and control the timing of the color changes smoothly. Also, the emotional reactions of the King and the Queen felt stronger in the drawings than in the short performance, because it was hard to act them out.
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
 
