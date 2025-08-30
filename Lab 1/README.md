@@ -94,7 +94,7 @@ Present your ideas to the other people in your breakout room (or in small groups
     
 </details>
 
-    <span style="background-color: yellow;">This has a yellow background.</span>
+> Don’t forget to check out the link for the storyboards—we’ve created 20 exciting scenarios in total!
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 ### Devive #1: RhythmDiscoball
