@@ -82,7 +82,6 @@ A royal hall at night. The story has three short scenes: the maid with fruit, th
   - General: to strike the King down with his sword.  
   - King: to survive these threats and keep his rule.  
 
-&nbsp;
 \*\***Include pictures of your storyboards here**\*\*
 
 Here is the storyboard for our interaction design:
@@ -120,7 +119,12 @@ This tool was quite easy to set up. Once we learned how to control the lighting,
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
-\*\***Include your first attempts at recording the set-up video here.**\*\*
+\*\***Include your first attempts at recording the set-up video here.**\*\*  
+In our first recording attempt, we prepared to manually control the lighting transitions. In the first two assassination scenes, where the King survives, we used a slow color shift in the lights to suggest rising tension before fading back to normal. In the final scene, to emphasize the success of the assassination, we highlighted the sword with a bright white glow followed by a rapid shift to red flashing light, underscoring the dramatic climax of the King’s death.
+
+In the first try-out scene, where the Maid offers the poisoned fruit bowl to the King, the glow was controlled from the laptop and shifted in real time on the phone screen. At first, the bowl glowed green, but as the King reached out his hand, it turned red—showing that if he ate it, he would be poisoned. However, because of his suspicion, he pulled back, and the red glow faded away. **放尝试第一幕zoom录屏+手机灯光变化**
+
+
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
@@ -135,8 +139,8 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 
-\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
-
+\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
+Our design comes from the storyline. We wanted to disguise the device as different weapons: a fruit bowl, a knife, and a cup of wine. We drew these objects, cut them out, and placed them over the phone screen. With Tinkerbelle’s lighting, the phone could show different effects—for example, green light for the fruit bowl, purple light for the wine, and white light for the knife. When each object turned into a weapon to kill the King, the light changed to red.
 
 ## Part F. Record
 
@@ -144,7 +148,7 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
-
+I (Huiying Zhan) collaborated with Qinrui Li and Jiayi Sun. I first proposed the storyline, while Jiayi took the lead in refining and writing the script. Qinrui and I mainly worked on drawing the storyboards. All three of us contributed to making the props. During filming, Jiayi served as the main videographer and editor, Qinrui controlled the lighting, and I arranged the actors’ movements and blocking. We worked together smoothly, and each of us made essential contributions to the group. The project would not have been complete without any one of us. We were very satisfied with the final outcome. We would also like to thank GitHub resources, the Tinkerbelle tool, and the iPhone recording software for their support.
 
 
 # Staging Interaction, Part 2 
