@@ -2,7 +2,7 @@
 
 # Staging Interaction
 
-\*\***NAME OF COLLABORATOR HERE**\*\*
+\*\***N/A**\*\*
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -77,6 +77,14 @@ The interactive device can be anything *except* a computer, a tablet computer or
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
+![Storyboard 1 - Charging Status Indicator](https://github.com/user-attachments/assets/2fc15da1-2bc2-45c0-8185-03f0244b5669)
+![Storyboard 2 - Weather Indicator](https://github.com/user-attachments/assets/d47a7809-f1bc-434e-ad5b-9565212fa008)
+![Storyboard 3 - Remote Locator](https://github.com/user-attachments/assets/a7ae9e04-cf3a-405f-9f15-86f0933873ff)
+![Storyboard 4 - Smart Mailbox](https://github.com/user-attachments/assets/956fbb86-fdc1-4dd9-bdaa-b9b84c715d0e)
+![Storyboard 5 - Smart Pot](https://github.com/user-attachments/assets/9cc9c13b-d71e-4c6f-ae03-8ec9f0223ed6)
+![Storyboard 6 - Sunrise Light](https://github.com/user-attachments/assets/d20818a9-ea7d-499b-85e8-0c63cab82e83)
+![Storyboard 7 - Fish Tank Monitor](https://github.com/user-attachments/assets/af753d6f-f6a4-48cd-9c7e-2a9f70eb7b82)
+
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
