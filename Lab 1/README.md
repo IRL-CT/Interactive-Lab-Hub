@@ -94,9 +94,11 @@ Present your ideas to the other people in your breakout room (or in small groups
     
 </details>
 
-> Don’t forget to check out the link for the storyboards—we’ve created 20 exciting scenarios in total!
+
+
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
+>>Don’t forget to check out the <ins>link</ins> for the storyboards—we’ve created **20** exciting scenarios in total!
 ### Devive #1: RhythmDiscoball
 **Setting:**
 A dance party or social gathering where lighting plays a key role in boosting the mood.
