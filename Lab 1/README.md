@@ -73,6 +73,9 @@ _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening th
 The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
+![Page 1](https://github.com/user-attachments/assets/281de04b-c0d5-43a3-9183-0e92ad9bc495)
+![Page 2](https://github.com/user-attachments/assets/9605eb55-c705-44d5-9add-ed6d548c833c)
+
 
 **Storyboard 1 – Charging Status Indicator**
 Setting: A bedroom nightstand or desk, at night or during the day when the phone needs charging.  
@@ -147,7 +150,19 @@ Storyboards are a tool for visually exploring a users interaction with a device.
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
+[Feedback.pdf](https://github.com/user-attachments/files/22061634/Feedback.pdf)
 
+I presented my seven storyboard ideas to my breakout room group. I explained the plan (setting, players, activity, and goals)for each storyboard and showed my 4–frame sketches.  
+
+**Feedback I received:**
+They liked that the interactions were very clear and easy to understand - like a storybook.
+They suggested keeping the light colour consistent across frames to avoid confusion (e.g., yellow = warming, green = good, red = bad).  
+They mentioned that for the sunrise alarm, the gradual brightness idea was intuitive and could work well in real life e.g. at hotels or luxury apartments.  
+
+**What I improved:**
+I made sure the light colours in all storyboards were consistent and clearly indicated the right status.  
+I simplified my sketches to make them easier to follow (fewer background details).  
+I made the captions shorter and more direct so they fit neatly under each frame.  
 
 ## Part B. Act out the Interaction
 
