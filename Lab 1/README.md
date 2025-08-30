@@ -190,16 +190,19 @@ The shop owner updates the GlowBoard to indicate when cinnamon rolls are ready, 
 ---
 \*\***Summarize feedback you got here.**\*\*
 
-nothing difference fron a noreal screen
-gradient to show the estimated time of waiting.
 
-cat can understand
-can just dont listen to you 
-cat friendly colors!!!
+### Devive #2: CatCommunicationButton
+1. Consider limiting the light signals to colors that are cat-friendly and easy for them to distinguish.
+2. Cats might not always respond—how can you ensure they actually understand the signals?
+3. Since cats often ignore commands, how would this device be different from normal interactions?
 
-how it worked
-if that is a violation to change others colth
 
+### Device #3: AdaptFlashlight
+1. Clarify how exactly the flashlight works to change clothing properties.
+2. Would it be an issue (or even a violation) to alter someone else’s clothing without permission?
+### Device #5: GlowBoard
+1. Maybe the GlowBoard could use gradient colors to show the estimated waiting time, making it more informative.
+2. It doesn’t seem very different from a normal screen—how is it unique?
 
 ## Part B. Act out the Interaction
 
