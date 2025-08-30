@@ -98,13 +98,11 @@ Present your ideas to the other people in your breakout room (or in small groups
 
 ## Part B. Act out the Interaction
 
-Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
-
-\*\***Are there things that seemed better on paper than acted out?**\*\*
+\*\***Are there things that seemed better on paper than acted out?**\*\*  
 Yes. On paper, the glowing light effects (green, purple, white, red) looked very clear and dramatic. But when acting them out, it was harder to present the glow and control the timing of the color changes smoothly. Also, the emotional reactions of the King and the Queen felt stronger in the drawings than in the short performance, because it was hard to act them out.
 
-\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
-
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*  
+We realized that by adjusting the intensity of the lighting, we could highlight the interaction between the characters and the objects, and that adding background sound would make the video more vivid.
 
 ## Part C. Prototype the device
 
@@ -117,7 +115,7 @@ We invented this tool for this lab!
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
-
+This tool was quite easy to set up. Once we learned how to control the lighting, we use it flexibly. It was also very convenient, since it worked well with the phone and could be controlled from the computer. The phone screen changed colors instantly, which enhanced the performance effect.
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
