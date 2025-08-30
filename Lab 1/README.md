@@ -185,5 +185,7 @@ Do last week’s assignment again, but this time:
 [Watch the demo video here](https://youtu.be/xxxxxxx)
 
 ### Reflection
-In this lab, we experimented with ...
+Through this lab, I learned how to turn a simple idea on paper into an interactive prototype using Tinkerbelle. At first, it was challenging to coordinate the timing of the lighting with the actors’ movements, but after several trials we managed to control it more smoothly. Working with my collaborators also taught me how important teamwork is. Each of us focused on different parts such as story writing, storyboard drawing, prop making, and video editing, and the project would not have been complete without everyone’s contribution.
+
+One of the biggest insights was realizing how much stronger the performance became when we acted it out on video compared to the storyboard. The lights, sound, and movement combined to create a more dramatic and engaging effect. If we had more time, I would like to experiment more lighting transitions to make the scenes even more immersive. Overall, I feel satisfied with the final outcome and proud of what our group accomplished.
 
