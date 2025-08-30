@@ -135,12 +135,11 @@ Goal: When user is working extremely close to the screen, user needs to be remin
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
+\*\***Show the follow-up work here.**\*\*
+
 Goal: When the user is looking at a screen in a non ideal distance, however not extremely dangerous, user needs to be reminded with a flash of orange light.
 
 [Setup Video - Prototype #2](https://youtu.be/7NIxbgCaVXc)
-
-
-\*\***Show the follow-up work here.**\*\*
 
 ## Part E. Costume the device
 
@@ -189,9 +188,9 @@ Some concerns include:
 
 \*\***Take a video of your prototyped interaction.**\*\*
 
-[Interactive Prototype - Glasses](https://youtu.be/Q_AB_Nn7LpI)
-[Interactive Prototype - Clip On](https://youtu.be/nOppyAEX1wo)
-[Interactive Prototype - USB](https://youtu.be/ywBN6FlimgQ)
+1. [Interactive Prototype - Glasses](https://youtu.be/Q_AB_Nn7LpI)
+2. [Interactive Prototype - Clip On](https://youtu.be/nOppyAEX1wo)
+3. [Interactive Prototype - USB](https://youtu.be/ywBN6FlimgQ)
 
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
