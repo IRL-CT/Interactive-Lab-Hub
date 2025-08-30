@@ -74,6 +74,64 @@ The interactive device can be anything *except* a computer, a tablet computer or
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
+**Storyboard 1 – Charging Status Indicator**
+Setting: A bedroom nightstand or desk, at night or during the day when the phone needs charging.
+Players: The phone owner.
+Activity: The user places their phone on the wireless charger and glances at the light to check charging progress.
+Goals:
+  User: To know when the phone is fully charged without unlocking it.
+  Device: To communicate charging status clearly using light colour.
+
+**Storyboard 2 – Smart Entryway Weather Indicator**
+Setting: House entryway.
+Players: The person living in the house (and potentially family/housemates).
+Activity: The user checks the light above the door before heading outside.
+Goals:
+  User: To know if they need an umbrella, coat, or other gear before going out.
+  Device: To indicate good or bad weather quickly.
+  
+**Storyboard 3 – Remote Locator**
+Setting: Living room.
+Players: The person watching TV.
+Activity: The user notices the remote is missing, uses the app to trigger the light on the remote, and retrieves it.
+Goals:
+  User: To find the remote quickly and avoid wasting time searching.
+  Device: To make the remote’s location obvious through a glowing light.
+
+**Storyboard 4 – Smart Mailbox**
+Setting: Outside the house or at the apartment mailbox area, any time mail is expected.
+Players: Resident, mail carrier.
+Activity: The resident looks at the mailbox light before walking to it.
+Goals:
+  User: To avoid checking an empty mailbox unnecessarily or to check at night.
+  Device: To signal whether mail has been delivered (green = empty, red = full).
+
+**Storyboard 5 – Smart Pot**
+Setting: Kitchen stove area.
+Players: Home cook, pot, stove.
+Activity: The user puts water to boil, and the pot detects temperature rise, turning on a light when boiling point is reached.
+Goals:
+  User: To know when water reaches boiling without constantly watching.
+  Device: To visually alert user with light when boiling is complete.
+
+**Storyboard 6 – Sunrise Alarm Light**
+Setting: Bedroom, early morning before wake-up time.
+Players: User (sleeping person).
+Activity: Light gradually brightens before wake-up time to simulate sunrise.
+Goals:
+  User: To wake up more naturally and gently.
+  Device: To gradually prepare user’s body for waking by increasing light brightness.
+
+**Storyboard 7 – Fish Tank Monitor**
+Setting: Living room or wherever the fish bowl is placed
+Players: Fish, fish owner.
+Activity: Light on the lid indicates water quality. Owner refills or cleans water when needed.
+Goals:
+  User: To maintain healthy water for the fish and know when it needs changing.
+  Device: To alert user to water condition through light colour changes.
+
+
+
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
