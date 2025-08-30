@@ -143,9 +143,15 @@ Present your ideas to the other people in your breakout room (or in small groups
 
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
-\*\***Are there things that seemed better on paper than acted out?**\*\*
+\*\***Are there things that seemed better on paper than acted out?**\*\*  
+- The Cooking Helper device being clipped onto the pan seems a bit inconvenient, depending on what food is being cooked. If it's not meat, the thermometer might be a bit hard to use.
+- The QuickTicket wristband can be hard to see if someone is wearing a jacket covering it. It can take up extra time when going through the lines for security to check.
+- SleepSmartly: if it is mounted on the wall, it seems more difficult to configure.  
 
-\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*  
+- The Cooking Helper could have different accessories in addition to the thermometer that can be used depending on the situation.
+- CookingHelper: or, instead of clipping the device onto a pan, it can be built into the stovetop or fan for convenience.  
+- SleepSmartly: add a remote to control the device (turn it on/off or set the timer)
 
 
 ## Part C. Prototype the device
