@@ -60,19 +60,27 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 
 ## Part A. Plan 
 
-To stage an interaction with your interactive device, think about:
-
-_Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
-
-_Players:_ Who is involved in the interaction? Who else is there? If you reflect on the design of current day interactive devices like the Amazon Alexa, it’s clear they didn’t take into account people who had roommates, or the presence of children. Think through all the people who are in the setting.
-
-_Activity:_ What is happening between the actors?
-
-_Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
-
-The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
-
 \*\***Describe your setting, players, activity and goals here.**\*\*
+
+- **Setting:**  
+A royal hall at night. The story has three short scenes: the maid with fruit, the queen with wine, and the general with a sword. Each scene reveals a motive and a plan to kill the King, with light effects used to build the mood and drive the drama.
+
+- **Players:**  
+  - The King: the main target of all three plots.  
+  - The Maid: a servant who wants revenge for her family.  
+  - The Queen: once loved the King, now hates him after betrayal.  
+  - The General: once a loyal soldier, now a rebel.
+ 
+- **Activity:**  
+  1. *The Maid’s Poisoned Fruit* — At the banquet, the maid brings a glowing fruit bowl. The King reaches for the fruit, the light turns red, but he pulls back. The glow fades.  
+  2. *The Queen’s Poisoned Wine* — The Queen raises a cup of glowing purple wine. She offers it to the King, his hand moves close, the light turns red, but he refuses to drink. The glow fades.
+  3. *The Rebel’s Blade* — The general walks forward and takes his sword. The sword glows white, then red. He draws it, the King dies, and his crown falls.
+
+- **Goals:**  
+  - Maid: to poison the King and take revenge.  
+  - Queen: to kill the King with poisoned wine.  
+  - General: to strike the King down with his sword.  
+  - King: to survive these threats and keep his rule. 
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
