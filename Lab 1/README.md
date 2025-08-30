@@ -169,22 +169,22 @@ Shop owner, customers (inside or outside the shop), pedestrians (passersby), del
 
 \*\***Include pictures of your storyboards here**\*\*
 ### Devive #1: RhythmDiscoball
-![IMG_1643](https://hackmd.io/_uploads/SkvPR1lcgx.jpg)
+![image](Images/RhythmDiscoball.JPG)
 Aurora is attending the ball, but the fairies can’t decide on a color for her dress. One fairy suggests using music, so with the RhythmDiscoball, her white dress reflects changing lights that match the rhythm, creating a lively atmosphere.
 
 ### Devive #2: CatCommunicationButton
-![5750B34F-3A92-4C1F-BB00-B74E048E5DE1_1_102_o](https://hackmd.io/_uploads/Skxdbgeqgx.jpg)
+![image](Images/CatCommunicationButton.JPG)
 Orange is a clever 10/10 cat who understands color signals—blue means “pet me,” yellow means “food.” But when the human introduced red and pink, Orange ignored the button, since cats can’t tell colors in the orange-red range.
 ### Device #3: AdaptFlashlight
 ![image](Images/AdaptFlashlight.JPG)
 With AdaptFlashlight, the hero creates a cape that changes color to unlock new powers—blue for waterproof, orange for fireproof—turning it into the ultimate superhero outfit.
 
 ### Device #4: EmotionCard
-![6D62CEE8-122C-4A86-A358-51959695E45F_1_102_o](https://hackmd.io/_uploads/rJOc5xe5gg.jpg)
+![image](Images/EmotionCard.JPG)
 Orange is a poker-faced person who struggles to show feelings. With the EmotionCard, Orange can finally express emotions—showing happiness after a meal, or fear during a horror movie. In the end, Orange feels delighted to share true emotions with friends and family.
 
 ### Device #5: GlowBoard
-![IMG_1642](https://hackmd.io/_uploads/Hy7mR9k5gl.jpg)
+![image](Images/GlowBoard.JPG)
 The shop owner updates the GlowBoard to indicate when cinnamon rolls are ready, sold out (being baked), so customers know their status until the shop closes for the day.
 
 ---
