@@ -96,9 +96,10 @@ Present your ideas to the other people in your breakout room (or in small groups
 
 
 
-
 \*\***Describe your setting, players, activity and goals here.**\*\*
->>Don’t forget to check out the <ins>link</ins> for the storyboards—we’ve created **20** exciting scenarios in total!
+
+
+ 
 ### Devive #1: RhythmDiscoball
 **Setting:**
 A dance party or social gathering where lighting plays a key role in boosting the mood.
@@ -170,41 +171,51 @@ Shop owner, customers (inside or outside the shop), pedestrians (passersby), del
 
 
 ---
-
+### Storyboards
 \*\***Include pictures of your storyboards here**\*\*
-### Devive #1: RhythmDiscoball
+
+
+ <span style="color: #25960C;">Don’t forget to check out the **storyboards** from other members in our team —we’ve created **20** exciting scenarios in total!</span>
+
+ 
+ 
+#### Device #1: RhythmDiscoball
 ![image](Images/RhythmDiscoball.JPG)
 Aurora is attending the ball, but the fairies can’t decide on a color for her dress. One fairy suggests using music, so with the RhythmDiscoball, her white dress reflects changing lights that match the rhythm, creating a lively atmosphere.
 
-### Devive #2: CatCommunicationButton
+#### Device #2: CatCommunicationButton
 ![image](Images/CatCommunicationButton.JPG)
 Orange is a clever 10/10 cat who understands color signals—blue means “pet me,” yellow means “food.” But when the human introduced red and pink, Orange ignored the button, since cats can’t tell colors in the orange-red range.
-### Device #3: AdaptFlashlight
+#### Device #3: AdaptFlashlight
 ![image](Images/AdaptFlashlight.JPG)
 With AdaptFlashlight, the hero creates a cape that changes color to unlock new powers—blue for waterproof, orange for fireproof—turning it into the ultimate superhero outfit.
 
-### Device #4: EmotionCard
+#### Device #4: EmotionCard
 ![image](Images/EmotionCard.JPG)
 Orange is a poker-faced person who struggles to show feelings. With the EmotionCard, Orange can finally express emotions—showing happiness after a meal, or fear during a horror movie. In the end, Orange feels delighted to share true emotions with friends and family.
 
-### Device #5: GlowBoard
+#### Device #5: GlowBoard
 ![image](Images/GlowBoard.JPG)
 The shop owner updates the GlowBoard to indicate when cinnamon rolls are ready, sold out (being baked), so customers know their status until the shop closes for the day.
 
 ---
+### Feedback
 \*\***Summarize feedback you got here.**\*\*
 
 
-### Devive #2: CatCommunicationButton
+#### Devive #2: CatCommunicationButton
 1. Consider limiting the light signals to colors that are cat-friendly and easy for them to distinguish.
 2. Cats might not always respond—how can you ensure they actually understand the signals?
 3. Since cats often ignore commands, how would this device be different from normal interactions?
 
 
-### Device #3: AdaptFlashlight
+#### Device #3: AdaptFlashlight
 1. Clarify how exactly the flashlight works to change clothing properties.
 2. Would it be an issue (or even a violation) to alter someone else’s clothing without permission?
-### Device #5: GlowBoard
+
+#### Device #4: EmotionCard
+
+#### Device #5: GlowBoard
 1. Maybe the GlowBoard could use gradient colors to show the estimated waiting time, making it more informative.
 2. It doesn’t seem very different from a normal screen—how is it unique?
 
@@ -212,9 +223,20 @@ The shop owner updates the GlowBoard to indicate when cinnamon rolls are ready, 
 
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
+
 \*\***Are there things that seemed better on paper than acted out?**\*\*
 
+<span style="color: #25960C;">We only chose the following three scenarios we liked to act out.</span>
+* **RhythmDiscoball:** We only considered the main performer on paper, but in reality, there could be many people on the dance floor with different movements. Whose movements should the device take as the reference?
+* **CatCommunicationButton:** It is difficult to get the cats’ attention. (Some of our team members have experience with cats.)
+* **EmotionCard:** If emotions change too quickly, it feels a bit awkward, because the screen may keep flashing as the emotions switch.
+
+
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+
+* **RhythmDiscoball:** Maybe the device could detect the “average rhythm” of the dance floor instead of focusing on a single performer.
+* **CatCommunicationButton:** It might help to combine sound or light cues to attract the cat’s attention.
+* **EmotionCard:** We can add a gradual color transition, so that emotional changes appear smoother.
 
 
 ## Part C. Prototype the device
@@ -228,12 +250,17 @@ We invented this tool for this lab!
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
+1. **The setup process was straightforward and well-documented.** I cloned the repository, installed the requirements with conda, and was able to run the program without errors.
+2. **The port 5000 part confused me a little.** In the README, it says to navigate to port 5000, but nothing showed up, and I couldn’t find anything related to port 5000 in the Python file. So, I ended up using port 5001 for my setup.
+3. **The audio function is really cool!** I tested several languages; some worked successfully (e.g., hola, konnichiwa), while others did not (e.g., こんにちは in Japanese, 你好 in Chinese). Additionally, a few audio outputs sounded unnatural—for example, the English greeting hello did not produce a very natural-sounding result. (FreeSound.org)
 
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
+<span style="color: #25960C;">Click the image to watch the video.</span>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/NcSGCuUPavk/0.jpg)](https://youtube.com/shorts/NcSGCuUPavk)
 
 Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
 
@@ -254,10 +281,17 @@ Think about the setting of the device: is the environment a place where the devi
 
 ## Part F. Record
 
-\*\***Take a video of your prototyped interaction.**\*\*
+\*\***Take a video of your prototyped interaction.**\*\* <span style="color: #25960C;">Click the image to watch the video.</span>
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
-Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
+
+Collaboratig with **Amanda Lu, Miriam Alex, Shreya Kethi Reddy**. (Thank you for shooting  the video with me Amanda! 🥳)
+
+
+**Reference:**
+* Inside Out from Pixar https://youtu.be/yRUAzGQ3nSY?si=St1nhFPVe1W5lKVL
+* Sleeping Beauty from Disney https://en.wikipedia.org/wiki/Sleeping_Beauty_(1959_film)
+* Video played in the EmotionCard prototype: Race Highlights | 2025 Dutch Grand Prix from Formula 1  https://youtu.be/JIRqdeNl2cU?si=ddGKKBNaZbe-qGr0
 
 
 
