@@ -87,8 +87,8 @@ B: The people who want to visit the household
 **Activity:**
 
 - Whenever A wants to chat with others, they can change the color of the light to 'green', and if B sees the green signal, they can visit A
-- Whenever A wants to study with others, they can change the color of the light to 'blue', and if B sees the blue signal, they can come and study with A and discuss together.
 - Whenever A wants to have lunch or dinner with others, they can change the color of the light to 'orange', and if B sees the orange signal, they can bring their own dishes to A's home and have a great time.
+- Whenever A wants to study with others, they can change the color of the light to 'blue', and if B sees the blue signal, they can come and study with A and discuss together.
 - If A is not available(e.g., not at home, busy at other tasks, or doesn't want to be bothered), change the color to 'red', so when B passes by the door, they will not try to disturb A.
 
 **Goals:**
@@ -101,9 +101,14 @@ Storyboards are a tool for visually exploring a users interaction with a device.
 ![Storyboards](https://github.com/user-attachments/assets/40af28aa-16a5-4892-b722-c215066012d4)
 
 
-Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
+Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another, or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
+
+A team described the design as creative and innovative, yet they highlighted a lack of clarity regarding the purpose of the colored lights. They were unable to distinguish the different functions between the green and orange lights. The storyboards seem to be similar, and maybe we could change the composition of the cells of each storyboard to make it look more distinct.
+
+
+Additionally, it was also noted that people tend to prioritize preparing meals for themselves or organizing gatherings with people they know. The interest in seeking out or joining other households for shared meals is rare.
 
 
 ## Part B. Act out the Interaction
@@ -144,9 +149,25 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
+
+
+https://github.com/user-attachments/assets/f3ea1b39-12ea-448c-a601-e56b25c8bb97
+
+
+
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
+
+This light now serves as a **routine indicator**.
+
+For instance, a green light in the morning shows that you’re awake, while a red light at night means you’ve gone to bed. By sharing these signals with friends, you can build a sense of accountability and encouragement as everyone observes each other’s rhythms. In order to light up the same light every day at a certain time, users will naturally develop a regular routine, making a healthy lifestyle easy to achieve.
+
+Here is one of the examples for changing the goal of our device:
+
+
+https://github.com/user-attachments/assets/92909201-ed57-4a13-bbbf-6bdd9951fbb4
+
 
 
 ## Part E. Costume the device
@@ -177,6 +198,31 @@ For the opportunities, we consider personalizing the costumes to fit with differ
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
+
+Since we came up with four different modes for our device, we shot all four scenarios to demonstrate the actual usage of our device under certain situations. Here are the short clips of our prototype:
+
+**1. Green Light: Welcoming Conversations** - The green light signals that the user is open to spontaneous conversation, creating an approachable atmosphere for new acquaintances or social interactions.
+
+
+https://github.com/user-attachments/assets/1f89654f-145e-44a8-b339-b2d448309aed
+
+
+**2. Orange Light: Open for Shared Meals** - When the orange light is active, it indicates that the user is willing to share a meal, encouraging communal dining and helping people connect over food.
+
+https://github.com/user-attachments/assets/0a054bef-1b8e-4814-9bfd-d79ee28508d6
+
+
+**3. Blue Light: Collaborative Discussions** - The blue light is for collaboration. The user is available for discussions on assignments or is looking to form a study group.
+
+
+https://github.com/user-attachments/assets/cfc09391-11fe-4506-8415-df3707304686
+
+
+**4. Red Light: Do Not Disturb** - A red light serves as a clear "do not disturb" signal, letting others know that the user is busy or unavailable and wishes to be left alone.
+
+https://github.com/user-attachments/assets/4b618dd0-8de5-406c-bb43-f60bcd60f5d1
+
+
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
