@@ -105,13 +105,7 @@ We realized that by adjusting the intensity of the lighting, we could highlight 
 
 ## Part C. Prototype the device
 
-You will be using your smartphone as a stand-in for the device you are prototyping. You will use the browser of your smart phone to act as a “light” and use a remote control interface to remotely change the light on that device. 
-
 Code for the "Tinkerbelle" tool, and instructions for setting up the server and your phone are [here](https://github.com/IRL-CT/tinkerbelle).
-
-We invented this tool for this lab! 
-
-If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
 This tool was quite easy to set up. Once we learned how to control the lighting, we use it flexibly. It was also very convenient, since it worked well with the phone and could be controlled from the computer. The phone screen changed colors instantly, which enhanced the performance effect.
