@@ -209,8 +209,6 @@ Instead of checking whether the phone is fully charged, the user now needs to kn
 
 
 
-https://github.com/user-attachments/assets/60e47bb4-face-4261-b027-e30ad2da0552
-
 
 
 https://github.com/user-attachments/assets/8f74b6bc-adff-4e45-b62c-a2bde9957c3b
