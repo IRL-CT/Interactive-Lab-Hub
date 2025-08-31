@@ -203,4 +203,9 @@ Do last week’s assignment again, but this time:
 
 [Watch the  Scene 3 - The Rebel’s Drawn Blade video here](https://www.youtube.com/watch?v=w_AuT5ix660)
 
-### Reflection
+### Reflection  
+I have always been curious about directing and filmmaking, imagining one day creating short films, documentaries, or even running a personal media channel, but I had never truly tried it before. This project was the first real opportunity for me to step into that role. I worked on writing the script, designing the storyboard, and planning how each scene should be filmed. Through this process, I discovered how much I enjoy shaping a narrative and expressing ideas through both dialogue and visual structure.
+
+During the filming, I naturally took on the role of a director, planning how scenes should be staged, guiding the timing of actions, and later editing the footage into a silent-drama style piece. I found the editing especially rewarding, as it brought together all of our efforts into a coherent performance. Through this, I also began to understand more about cinematic techniques, such as how camera distance or angle can affect the tension of a scene, and how these choices influence the audience’s perception of the story.
+
+Finally, I feel that choosing to present our project in the form of a silent drama matched perfectly with the use of lighting as the central interactive element. The stark contrasts of light and shadow emphasized both the atmosphere of danger and the inner emotions of the characters. This lab not only helped me explore my long-standing interest in directing and editing, but also showed me how much I enjoy and am capable of this kind of creative work.
