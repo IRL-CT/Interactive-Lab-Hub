@@ -260,6 +260,18 @@ Two designs were sketched: one resembling a hanging bulb to act as a ceiling-mou
 **Charging Status Indicator (Storyboard/Idea 1)**
 
 
+https://github.com/user-attachments/assets/00925fbf-f1ee-49ee-a3be-b61e032543b3
+
+
+
+https://github.com/user-attachments/assets/6603160b-6159-4c08-92ac-ba353cd59f17
+
+
+
+https://github.com/user-attachments/assets/590bc799-e69b-472e-8709-cc219ce1df93
+
+
+
 **Remote Locator (Storyboard/ Idea 3)**
 
 **Sunrise Light (Storyboard/ Idea 6)**
