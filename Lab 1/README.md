@@ -167,11 +167,11 @@ I made the captions shorter and more direct so they fit neatly under each frame.
 
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
-\*\***Are there things that seemed better on paper than acted out?**\*\*
-Yes, some transitions (like charging light going from red to green) needed to be slower and smoother to feel natural. On paper/storyboards it seemed fine to just “switch” colours due to the 'scene' changing, but a gradual transition is more intuitive in reality.
+\*\***Are there things that seemed better on paper than acted out?**\*\*  
+Yes, some transitions (like charging light going from red to green) needed to be slower and smoother to feel natural. On paper/storyboards it seemed fine to just “switch” colours due to the 'scene' changing, but a gradual transition is more intuitive in reality.  
 
-\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
-Yes — I thought it would be helpful if the brightness or flash rate could indicate urgency (e.g. flashing faster/higher frequency when the user is very close to the lost remote). 
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*  
+Yes, I thought it would be helpful if the brightness or flash rate could indicate urgency (e.g. flashing faster/higher frequency when the user is very close to the lost remote).  
 
 
 ## Part C. Prototype the device
@@ -184,17 +184,17 @@ We invented this tool for this lab!
 
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
-\*\***Give us feedback on Tinkerbelle.**\*\*
+\*\***Give us feedback on Tinkerbelle.**\*\*  
 Tinkerbelle was successful in supporting colour changes during prototyping. An additional feature to allow users to input hex codes or directly manipulate RGB values would improve the precision when selecting specific colours and transitions. A feature to save frequently used colours as presets could also make switching between states more efficient during testing.  
 
-## Part D. Wizard the device
+## Part D. Wizard the device  
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
 
 
-Now, change the goal within the same setting, and update the interaction with the paper prototype. 
+Now, change the goal within the same setting, and update the interaction with the paper prototype.  
 
 \*\***Show the follow-up work here.**\*\*
 
@@ -202,8 +202,8 @@ Now, change the goal within the same setting, and update the interaction with th
 https://github.com/user-attachments/assets/57b08363-a2df-45cc-8f6b-99578a857abc
 
 
-**Charging Status Indicator: Goal change → ** 
-Instead of checking whether the phone is fully charged, the user now needs to know if the device is charging at all (e.g. cable is loose, battery is faulty). Yellow previously indicated the device was charging and green indicated that charging was complete. Now, red indicates that no charge is taking place. 
+**Charging Status Indicator: Goal change → **   
+Instead of checking whether the phone is fully charged, the user now needs to know if the device is charging at all (e.g. cable is loose, battery is faulty). Yellow previously indicated the device was charging and green indicated that charging was complete. Now, red indicates that no charge is taking place.  
 
 
 
