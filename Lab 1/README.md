@@ -131,6 +131,21 @@ In the first try-out scene, where the Maid offers the poisoned fruit bowl to the
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
+**Picture 1: The Stage**  
+![4-1](https://github.com/user-attachments/assets/c988ea02-dc2c-477b-8bf4-8d68036a6275)
+
+**Picture 2: The Maid and Fruit Bowl**
+![4-5](https://github.com/user-attachments/assets/590866f4-b321-4a17-ae38-73020d300364)
+
+**Picture 3: The Maid and Fruit Bowl on her Head**
+![4-4](https://github.com/user-attachments/assets/a33d281c-b001-495a-9c2c-2a5009926805)
+
+**Picture 4: The Queen and Wine Cup**
+![4-3](https://github.com/user-attachments/assets/af8c0777-68bc-47a2-8443-d795f4e8f467)
+
+**Picture 5: The General and Sword**
+![4-2](https://github.com/user-attachments/assets/f51d36a3-19c1-4dac-b4ac-08eec516b83d)
+
 
 
 ## Part E. Costume the device
@@ -146,7 +161,7 @@ Think about the setting of the device: is the environment a place where the devi
 **Costume 2: Wine Cup**  
 <img src="./Wine%20Costume.jpg" width="300"/>  
 
-**Costume 3: Knife**  
+**Costume 3: Sword**  
 <img src="./Knife%20Costume.JPG" width="300"/> 
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
@@ -156,7 +171,8 @@ Our design comes from the storyline. We wanted to disguise the device as differe
 
 \*\***Take a video of your prototyped interaction.**\*\*
 
-\*\***Please indicate who you collaborated with on this Lab.**\*\*  
+\*\***Please indicate who you collaborated with on this Lab.**\*\*
+Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 I (Huiying Zhan) collaborated with Qinrui Li and Jiayi Sun. I first proposed the storyline, while Jiayi took the lead in refining and writing the script. Qinrui and I mainly worked on drawing the storyboards. All three of us contributed to making the props. During filming, Jiayi served as the main videographer and editor, Qinrui controlled the lighting, and I arranged the actors’ movements and blocking. We worked together smoothly, and each of us made essential contributions to the group. The project would not have been complete without any one of us. We were very satisfied with the final outcome. We would also like to thank GitHub resources, the Tinkerbelle tool, and the iPhone recording software for their support.
 
 
