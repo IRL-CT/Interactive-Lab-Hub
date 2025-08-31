@@ -155,7 +155,7 @@ I presented my seven storyboard ideas to a small group. I explained the plan (se
 
 **Feedback I received:**
 They liked that the interactions were very clear and easy to understand - like a storybook.
-They suggested keeping the light colour consistent across frames to avoid confusion (e.g., yellow = warming, green = good, red = bad).  
+They suggested keeping the light colour consistent across frames to avoid confusion (yellow = warming/ neutral, green = good, red = bad).  
 They mentioned that for the sunrise alarm, the gradual brightness idea was intuitive and could work well in real life e.g. at hotels or luxury apartments.  
 
 **What I improved:**
