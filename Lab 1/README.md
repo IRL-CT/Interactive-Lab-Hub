@@ -3,7 +3,7 @@
 # Staging Interaction
 
 \*\***NAME OF COLLABORATOR HERE**\*\*
-Alexandre Gravereaux, Angela Bi, Kyle Li, Le-en Huang
+Alexandre Gravereaux, Angela Bi, Kyle Li
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -120,7 +120,7 @@ We invented this tool for this lab!
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
-
+The switching between different colors takes some effort. Maybe can add some keyboard functions.
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene that you want to record. 
@@ -130,11 +130,10 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 https://github.com/user-attachments/assets/6bfa850c-7433-4ced-8b88-3ad411af2953
 
 
-
 Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
-Decorating the device with costumes and show the 
+Decorating the device with costumes and showing the scoreboard to indicate the color changing under different scenarios.
 
 ## Part E. Costume the device
 
@@ -145,6 +144,9 @@ Think about the setting of the device: is the environment a place where the devi
 \*\***Include sketches of what your devices might look like here.**\*\*
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+1. Considering the existing common use cases in arena or concert, where wristbands, glow sticks, and flags are already recognized as part of the cheering and the symbol for supporting a team, the users can easily adapt to the devices with familiarity.
+2. The devices are designed to be portable and space-saving, allowing users to cheer for the teams effortlessly and carry them into crowded venues without burden.
+3. The devices are good souvenirs as well, carrying the emotional value even after the event.
 
 
 ## Part F. Record
@@ -152,7 +154,6 @@ Think about the setting of the device: is the environment a place where the devi
 \*\***Take a video of your prototyped interaction.**\*\*
 
 https://github.com/user-attachments/assets/b436392b-f14a-463c-b665-1f213c95a83d
-
 
 
 https://github.com/user-attachments/assets/f9e0f9e9-b917-483d-ab86-82944582336f
@@ -163,7 +164,7 @@ https://github.com/user-attachments/assets/24363c94-b32e-4b0e-9661-de36c6571f1d
 
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
-Alexandre Gravereaux, Angela Bi, Kyle Li, Le-en Huang
+Alexandre Gravereaux, Angela Bi, Kyle Li
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
 
