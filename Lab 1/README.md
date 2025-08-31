@@ -164,18 +164,21 @@ We invented this tool for this lab!
 
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
-\*\***Give us feedback on Tinkerbelle.**\*\*
+\*\***Give us feedback on Tinkerbelle.**\*\*  
+It seems to work great as intended! The color changer is pretty intuitive and easy to use and the display reacts quickly. A suggestion may be to allow for programming different color sequences or patterns, such as flashing or cycling through ambient colors. 
 
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
-\*\***Include your first attempts at recording the set-up video here.**\*\*
+\*\***Include your first attempts at recording the set-up video here.**\*\*  
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/NcSGCuUPavk/0.jpg)](https://youtube.com/shorts/NcSGCuUPavk)
 
 Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
 
-\*\***Show the follow-up work here.**\*\*
-
+\*\***Show the follow-up work here.**\*\*  
+- QuickTicket: New goal is to link the ticket from a mobile phone to the device. I added a button to the prototype to allow for connecting to other devices via bluetooth.
+- CookingHelper: New goal is to cook safely. I added a smoke detector so that this device can raise alarm if the food is burning or producing too much smoke. 
 
 ## Part E. Costume the device
 
@@ -197,7 +200,7 @@ Physical Prototype:
 <img src="https://github.com/user-attachments/assets/6a9c89ae-3a35-4d78-8cb8-4106e20dfc64" width="480">
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
-**Cooking Helper**: will be used in a hot environment, so it needs to be able to withstand heat. It also shouldn't be too big so it is easy to store with all of the other kitchen supplies. The accessories are also interchangeable to make it easier for each user to buy/use the required parts for whatever they are cooking.
+**Cooking Helper**: will be used in a hot environment, so it needs to be able to withstand heat. It also shouldn't be too big so it is easy to store with all of the other kitchen supplies. The accessories are also interchangeable to make it easier for each user to buy/use the required parts for whatever they are cooking. 
 
 ## Part F. Record
 
