@@ -61,13 +61,13 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
-**Setting:** The setting can be anywhere a person needs to charge their device: desk, bedside table, classroom, library, public charging station, etc. In all of these scenarios, people want a quick and simple way to know if their device is charging properly and when it has reached full battery. Instead of having to unlock the device or check the screen, the charger itself provides the an indication which makes the charging process more convenient.
+Setting: The setting can be anywhere a person needs to charge their device: desk, bedside table, classroom, library, public charging station, etc. In all of these scenarios, people want a quick and simple way to know if their device is charging properly and when it has reached full battery. Instead of having to unlock the device or check the screen, the charger itself provides the an indication which makes the charging process more convenient.
 
-**Players:** The players are everyday users who own electronic devices such as smartphones, tablets, laptops, or headphones. These players are people who rely heavily on their devices. Because they charge their devices daily, they benefit directly from a feature that saves them time and reduces uncertainty. The players might include people like students charging their laptops in class, professionals working in an office, or travelers at an airport who want to quickly see when their device is ready without having to hover over it.
+Players: The players are everyday users who own electronic devices such as smartphones, tablets, laptops, or headphones. These players are people who rely heavily on their devices. Because they charge their devices daily, they benefit directly from a feature that saves them time and reduces uncertainty. The players might include people like students charging their laptops in class, professionals working in an office, or travelers at an airport who want to quickly see when their device is ready without having to hover over it.
 
-**Activity:** The activity is plugging a device into the charger and observing the charging status through the indicator light. When the device is connected, the light immediately signals that charging has started by showing one color (red). Once the battery is full, the charger switches to another color (green) to indicate completion. The user does not need to unlock the device or wait for it to display the charging symbol on the screer as the charger will communicates that information directly. 
+Activity: The activity is plugging a device into the charger and observing the charging status through the indicator light. When the device is connected, the light immediately signals that charging has started by showing one color (red). Once the battery is full, the charger switches to another color (green) to indicate completion. The user does not need to unlock the device or wait for it to display the charging symbol on the screer as the charger will communicates that information directly. 
 
-**Goals:** The overall goal of this product is to improve the user experience of charging devices by providing clear feedback. Many users experience frustration when they cannot easily tell if their device is charging, or they leave their devices plugged in for longer than necessary because they are unsure if it is ready to use. The colored indicator light not only reassures users that their device is charging but also prevents overcharging and wasted energy. 
+Goals: The overall goal of this product is to improve the user experience of charging devices by providing clear feedback. Many users experience frustration when they cannot easily tell if their device is charging, or they leave their devices plugged in for longer than necessary because they are unsure if it is ready to use. The colored indicator light not only reassures users that their device is charging but also prevents overcharging and wasted energy. 
 
 \*\***Include pictures of your storyboards here**\*\*
 
@@ -79,16 +79,7 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 <img width="1024" height="1024" alt="1a4c2dbf-a782-4c4f-8f69-5e25fe363d41" src="https://github.com/user-attachments/assets/7f4d19b6-0f84-4482-bfb8-404e7ee50c58" />
 <img width="1024" height="1024" alt="016229fa-1d8c-4856-b731-be8292b8dc29" src="https://github.com/user-attachments/assets/976888db-8d88-43eb-8f1f-ab2bd7f0f39f" />
 
-
-
-
-
-
-
-Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
-
-\*\***Summarize feedback you got here.**\*\*
-
+Feedback: Another group told us that our idea is pretty simple, and we can add more to it to make it more unique. They also said that we can add another color or some other indication showing if a certain power brick is compatible or if the device is overcharging.
 
 ## Part B. Act out the Interaction
 
