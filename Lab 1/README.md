@@ -287,11 +287,11 @@ Sketch and Craft Photo for **CatCommunicationButton**
   <img src="Images/CatCommunicationButton_photo.jpeg" width="45%" />
 </p>
 
-![image](Images/CatCommunicationButton_sketch.jpeg) ![image](Images/CatCommunicationButton_photo.jpeg)
-
 Sketch and Craft Photo for **EmotionCard**
-![image](Images/EmotionCard_sketch.jpeg) ![image](Images/EmotionCard_photo.jpeg)
-
+<p align="center">
+  <img src="Images/EmotionCard_sketch.jpeg" width="45%" />
+  <img src="Images/EmotionCard_photo.jpeg" width="45%" />
+</p>
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 
