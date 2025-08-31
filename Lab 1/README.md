@@ -174,10 +174,9 @@ Shop owner, customers (inside or outside the shop), pedestrians (passersby), del
 ### Storyboards
 \*\***Include pictures of your storyboards here**\*\*
 
-
- <span style="color: #25960C;">Don’t forget to check out the **storyboards** from other members in our team —we’ve created **20** exciting scenarios in total!</span>
-
- 
+```diff!
++ Don’t forget to check out the storyboards from other members in our team —we’ve created 20 exciting scenarios in total!
+```
  
 #### Device #1: RhythmDiscoball
 ![image](Images/RhythmDiscoball.JPG)
@@ -201,6 +200,7 @@ The shop owner updates the GlowBoard to indicate when cinnamon rolls are ready, 
 ---
 ### Feedback
 \*\***Summarize feedback you got here.**\*\*
+#### Devive #1: RhythmDiscoball
 
 
 #### Devive #2: CatCommunicationButton
@@ -226,7 +226,9 @@ Try physically acting out the interaction you planned. For now, you can just pre
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
 
-<span style="color: #25960C;">We only chose the following three scenarios we liked to act out.</span>
+```diff!
++ We only chose the following three scenarios we liked to act out.
+```
 * **RhythmDiscoball:** We only considered the main performer on paper, but in reality, there could be many people on the dance floor with different movements. Whose movements should the device take as the reference?
 * **CatCommunicationButton:** It is difficult to get the cats’ attention. (Some of our team members have experience with cats.)
 * **EmotionCard:** If emotions change too quickly, it feels a bit awkward, because the screen may keep flashing as the emotions switch.
@@ -259,7 +261,8 @@ If you run into technical issues with this tool, you can also use a light switch
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
-<span style="color: #25960C;">Click the image to watch the video.</span>
+
+Click the image to watch the video.
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/NcSGCuUPavk/0.jpg)](https://youtube.com/shorts/NcSGCuUPavk)
 
 Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
@@ -276,17 +279,35 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 
+```diff!
++ We prototyped two device (CatCommunicationButton and EmotionCard) for Part E (Costume) and Part F (Video).
+```
+
+Sketch and Craft Photo for **CatCommunicationButton**
+
+Sketch and Craft Photo for **EmotionCard**
+
+
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 
 
 ## Part F. Record
 
-\*\***Take a video of your prototyped interaction.**\*\* <span style="color: #25960C;">Click the image to watch the video.</span>
+\*\***Take a video of your prototyped interaction.**\*\* 
+
+**CatCommunicationButton**. Click the image to watch the video. 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Yz6D_rGv1BY/0.jpg)](https://youtu.be/Yz6D_rGv1BY)
+
+**EmotionCard**. Click the image to watch the video. 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/sItv0txJx-8/0.jpg)](https://youtube.com/shorts/sItv0txJx-8)
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 
 Collaboratig with **Amanda Lu, Miriam Alex, Shreya Kethi Reddy**. (Thank you for shooting  the video with me Amanda! 🥳)
 
+```diff!
++ Don't forget to check out other members' videos and sketches on their GitHub.
+```
 
 **Reference:**
 * Inside Out from Pixar https://youtu.be/yRUAzGQ3nSY?si=St1nhFPVe1W5lKVL
