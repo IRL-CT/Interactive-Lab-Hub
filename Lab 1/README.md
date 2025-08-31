@@ -2,7 +2,7 @@
 
 # Staging Interaction
 
-\*\***NAME OF COLLABORATOR HERE**\*\*
+\*\***Akashu Batu, Benthan Vu, Carrie Wang, Evan Fang, Sean Lewis, Xuesi Chen**\*\*
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -74,13 +74,34 @@ The interactive device can be anything *except* a computer, a tablet computer or
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
+\*\***This interaction is happening at the entrance to a club. It is happening at night-time since this is when clubs are generally active and lights are more conspicious.**\*\*
+
+\*\***Those who are involved in the interaction are the visitors of the club. Other people may include the security guard and staff of the club. However, the intention for the device is to be used by the visitors. Here is a list of the potential players in the setting:**\*\*
+
+\*\***1.) The visitors/general audience (intended audience for interactive device)**\*\*
+
+\*\***2.) The staff/security of the club who keep the club's operations running**\*\*
+
+\*\***3.) Any third party (first responders, delivery workers, etc.)**\*\*
+
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
 
+<img width="1714" height="704" alt="image" src="https://github.com/user-attachments/assets/b2fcddae-702f-472b-8558-106215ff28e1" />
+<img width="1805" height="636" alt="image" src="https://github.com/user-attachments/assets/85860e62-f682-4aeb-b9e0-24ed4c87cef8" />
+<img width="573" height="624" alt="image" src="https://github.com/user-attachments/assets/22b364ca-e9b9-4008-91db-697dcf8ae0e6" />
+<img width="1702" height="639" alt="image" src="https://github.com/user-attachments/assets/740e4637-4564-4f8c-9bc3-3eec49e66fd8" />
+<img width="1695" height="661" alt="image" src="https://github.com/user-attachments/assets/0b1bd720-431d-4646-bee3-e2c5fbfc8e8c" />
+<img width="907" height="443" alt="image" src="https://github.com/user-attachments/assets/41881384-79f8-405c-b0d7-a330b3f69d99" />
+<img width="907" height="448" alt="image" src="https://github.com/user-attachments/assets/d5f715b2-225b-4dd1-be4f-7a24b9303ed1" />
+<img width="2360" height="1640" alt="sb8" src="https://github.com/user-attachments/assets/cd54290b-7383-450c-89a5-eabdcb64a4d7" />
+
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
+
+\*\***One feedback question was how the device worked or was activated. We illustrate some kind of "laser tripwire" from spy movies / kid's toy sections as the trigger for how the light knows when to activate. Another feedback question was**\*\*
 
 
 ## Part B. Act out the Interaction
@@ -89,7 +110,11 @@ Try physically acting out the interaction you planned. For now, you can just pre
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
 
+\*\***Yes, we realized quickly that**\*\*
+
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+
+\*\***Yes, we decided that we needed either more creative interactions or more creative responses. We decided to take this both ways. For a more creative interaction, we decided that we should keep the base interactions but add that if visitors to the club raise their arms inside of the club, the vibrancy of the colors being displayed at the moment should adjust. For a more creative response, we added that if there are 20 or more people in the club, then the light should start a "strobe" effect that changes between red green and blue every second.**\*\*
 
 
 ## Part C. Prototype the device
@@ -103,6 +128,8 @@ We invented this tool for this lab!
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
+
+\*\***Tinkerbelle is great, and congratulations to whoever developed it, but coming at this from a developer who used to love building things in Flask, I would recommend that you just shift it to a Github or CFPages webapp since 90% of the students probably aren't changing the source code of it. You can still keep the source code available and encourage students to play with it, however, you shouldn't need to make them setup any sort of Python venvs etc. (even if the reqs are minimal) to run your app. For our group, we ended up poking a hole thru the firewall with a temporary CF tunnel to have it be accessible to everyone else (since the school WiFi is pretty restrictive to what local webapps you can run).**\*\*
 
 
 ## Part D. Wizard the device
@@ -123,17 +150,47 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 
+<img width="1551" height="1201" alt="image (37)" src="https://github.com/user-attachments/assets/dee812fb-445b-4d1b-abc3-ce9eb3ef025b" />
+
+![IMG_20250828_212524007](https://github.com/user-attachments/assets/e64f7ed3-08d0-483a-95ad-54278cf13744)
+
+<img width="2360" height="1640" alt="sketch_2" src="https://github.com/user-attachments/assets/f7fbf28c-ce7a-405e-8462-122a1eb9da04" />
+
+![IMG_0119](https://github.com/user-attachments/assets/f0cb90a9-5420-42c4-a5f4-39ce5c470666)
+
+![IMG_0120 (1)](https://github.com/user-attachments/assets/92946a66-4e85-4f0c-9814-bbf8113b9b92)
+
+<img width="1007" height="730" alt="image" src="https://github.com/user-attachments/assets/120beb67-9c36-4841-b505-c11693c0ba40" />
+
+![IMG_6649](https://github.com/user-attachments/assets/d4c68b1a-939e-47ac-8d1e-53b62bbcf5be)
+
+![IMG_6659](https://github.com/user-attachments/assets/dd83f6b0-fd44-4647-9959-54e2dd3740c5)
+
+
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+
+\*\***Some concerns we had when making the look of the device were how much of the light we wanted to show. We did some research into how lighting works at clubs and how these lights are setup.**\*\*
 
 
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
 
+https://github.com/user-attachments/assets/e651a4b7-4b95-41df-b12a-889222807931
+
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
+\*\***The collaborators for this lab and their contributions are listed below**\*\*
 
+\*\***Akash Batu: Storyboards #1, #2, #3, #4, #5, Wizarding Tinkerbelle
+\*\***Benthan Vu: Costume #1, Paper Prototype #1, Research & Feedback
+\*\***Carrie Wang: Wizarding the Device, Research & Feedback
+\*\***Evan Fang: Costume #2, Paper Prototype #2, Storyboard #8
+\*\***Sean Lewis: Storyboards #6, #7, Setting up Tinkerbelle
+\*\***Xuesi Chen: Costume #3, Paper Prototype #3, Demo Video Recording and Editing
+
+\*\***All: Ideating, Research, Video Enactment, Communication
 
 # Staging Interaction, Part 2 
 
