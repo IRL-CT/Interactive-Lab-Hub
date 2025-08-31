@@ -77,7 +77,7 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 <img width="586" height="435" alt="Screen Shot 2025-08-31 at 11 13 25 AM" src="https://github.com/user-attachments/assets/db874c82-01bd-4788-b029-23e772372bc8" />
 <img width="1024" height="1024" alt="12a4087b-b21a-45a4-8fcb-ae6b61ecf63e" src="https://github.com/user-attachments/assets/37cb6b4b-cbf5-46ff-bea0-a5d6dfc28287" />
 <img width="1024" height="1024" alt="1a4c2dbf-a782-4c4f-8f69-5e25fe363d41" src="https://github.com/user-attachments/assets/7f4d19b6-0f84-4482-bfb8-404e7ee50c58" />
-<img width="1024" height="1536" alt="75ed2fc9-444b-44ae-91c4-d8858406ba7e" src="https://github.com/user-attachments/assets/63ffb698-7565-4df4-aa36-4044fd1a8774" />
+
 
 
 
