@@ -1,5 +1,4 @@
 
-
 # Staging Interaction
 
 Viha Srinivas, Tiffany Yu, Tran My Kim Dang, Nicole Liao, Viola Chyu
@@ -60,27 +59,25 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 
 ## Part A. Plan 
 
-To stage an interaction with your interactive device, think about:
-
-_Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
-
-_Players:_ Who is involved in the interaction? Who else is there? If you reflect on the design of current day interactive devices like the Amazon Alexa, it’s clear they didn’t take into account people who had roommates, or the presence of children. Think through all the people who are in the setting.
-
-_Activity:_ What is happening between the actors?
-
-_Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
-
-The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
-
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
 An example setting can be your workspace/anywhere a device can be charged, while the player is anyone who has a device to charge. Our products goal is to have a light on the charger that indicates that your device is charging, and then changes color when it is done charging. This is our goal because it was a feature that was once incorporated into Apples devices, but then stopped, and it helps users understand that their device is ready to use. 
 
-Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
-
 \*\***Include pictures of your storyboards here**\*\*
 
+Storyboard 1)
 ![lab1-storyboard](https://github.com/user-attachments/assets/505b3402-52ee-493a-aa10-9fc5bcb1e5f1)
+Storyboard 2)
+<img width="1022" height="677" alt="Screen Shot 2025-08-31 at 11 12 33 AM" src="https://github.com/user-attachments/assets/bd68ccef-19bc-47a4-82a8-be590b6168be" />
+Storyboard 3)
+<img width="645" height="426" alt="Screen Shot 2025-08-31 at 11 12 53 AM" src="https://github.com/user-attachments/assets/c42f410f-f054-43c9-8d47-d8a81645cd77" />
+Storyboard 4)
+<img width="586" height="435" alt="Screen Shot 2025-08-31 at 11 13 25 AM" src="https://github.com/user-attachments/assets/db874c82-01bd-4788-b029-23e772372bc8" />
+Storyboard 5)
+Storyboard 6)
+Storyboard 7)
+
+
 
 
 
