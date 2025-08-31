@@ -2,10 +2,12 @@
 
 # Staging Interaction
 
-\*\***COLLABORATOR: Amanda Lu, Miriam Alex, Shreya Kethi Reddy, Ying Yu Chen (Me)**\*\*
+\*\***COLLABORATOR: [Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), Miriam Alex, Shreya Kethi Reddy, Ying Yu Chen (Me)**\*\*
 
 
-
+```!
+We spread our ideas across everyone’s repositories, so don't forget to check them out :)
+```
 <details>
 <summary>Click to toggle contents of Lab1 Description</summary>
     
@@ -173,8 +175,10 @@ Shop owner, customers (inside or outside the shop), pedestrians (passersby), del
 \*\***Include pictures of your storyboards here**\*\*
 
 ```diff!
-+ Don’t forget to check out the storyboards from other members in our team —we’ve created 20 exciting scenarios in total!
+Check out the storyboards from other members in our team —we’ve created 20 exciting scenarios in total!
 ```
+ 
+ 
  
 #### Device #1: RhythmDiscoball
 ![image](Images/RhythmDiscoball.JPG)
@@ -198,8 +202,6 @@ The shop owner updates the GlowBoard to indicate when cinnamon rolls are ready, 
 ---
 ### Feedback
 \*\***Summarize feedback you got here.**\*\*
-#### Devive #1: RhythmDiscoball
-
 
 #### Devive #2: CatCommunicationButton
 1. Consider limiting the light signals to colors that are cat-friendly and easy for them to distinguish.
@@ -210,8 +212,6 @@ The shop owner updates the GlowBoard to indicate when cinnamon rolls are ready, 
 #### Device #3: AdaptFlashlight
 1. Clarify how exactly the flashlight works to change clothing properties.
 2. Would it be an issue (or even a violation) to alter someone else’s clothing without permission?
-
-#### Device #4: EmotionCard
 
 #### Device #5: GlowBoard
 1. Maybe the GlowBoard could use gradient colors to show the estimated waiting time, making it more informative.
@@ -225,7 +225,7 @@ Try physically acting out the interaction you planned. For now, you can just pre
 \*\***Are there things that seemed better on paper than acted out?**\*\*
 
 ```diff!
-+ We only chose the following three scenarios we liked to act out.
+We only chose the following three scenarios we liked for this part.
 ```
 * **RhythmDiscoball:** We only considered the main performer on paper, but in reality, there could be many people on the dance floor with different movements. Whose movements should the device take as the reference?
 * **CatCommunicationButton:** It is difficult to get the cats’ attention. (Some of our team members have experience with cats.)
@@ -252,7 +252,7 @@ If you run into technical issues with this tool, you can also use a light switch
 \*\***Give us feedback on Tinkerbelle.**\*\*
 1. **The setup process was straightforward and well-documented.** I cloned the repository, installed the requirements with conda, and was able to run the program without errors.
 2. **The port 5000 part confused me a little.** In the README, it says to navigate to port 5000, but nothing showed up, and I couldn’t find anything related to port 5000 in the Python file. So, I ended up using port 5001 for my setup.
-3. **The audio function is really cool!** I tested several languages; some worked successfully (e.g., hola, konnichiwa), while others did not (e.g., こんにちは in Japanese, 你好 in Chinese). Additionally, a few audio outputs sounded unnatural—for example, the English greeting hello did not produce a very natural-sounding result. (FreeSound.org)
+3. **The audio function is really cool!** I tested several languages; some worked successfully (e.g., hola, konnichiwa), while others did not (e.g., こんにちは in Japanese, 你好 in Chinese). Additionally, a few audio outputs sounded unnatural—for example, the English greeting hello did not produce a very natural-sounding result. 
 
 
 ## Part D. Wizard the device
@@ -266,8 +266,8 @@ Click the image to watch the video.
 Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
-
-
+* **CatCommunicationButton:** The new goal is to attract the cat to use it. We added ideas such as flashing lights and a speaker that plays sounds to draw the cat’s attention.
+* **EmotionCard:** The new goal is to make it more portable. One idea is to design it so the card can be folded, making it easier to carry around.
 
 ## Part E. Costume the device
 
@@ -278,7 +278,7 @@ Think about the setting of the device: is the environment a place where the devi
 \*\***Include sketches of what your devices might look like here.**\*\*
 
 ```diff!
-+ We prototyped two device (CatCommunicationButton and EmotionCard) for Part E (Costume) and Part F (Video).
+We prototyped two device (CatCommunicationButton and EmotionCard) for Part E (Costume) and Part F (Video).
 ```
 
 Sketch and Craft Photo for **CatCommunicationButton**
@@ -294,16 +294,19 @@ Sketch and Craft Photo for **EmotionCard**
 </p>
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
-
+* **CatCommunicationButton:** Since it is designed for cats, I want to make sure the button is not too heavy and has no sharp edges, to avoid the risk of injury.
+* **EmotionCard:** The device should be lightweight and easy to hold. I also added icons to clarify meanings, since people may interpret colors differently.
 
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\* 
 
 **CatCommunicationButton**. Click the image to watch the video. 
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Yz6D_rGv1BY/0.jpg)](https://youtu.be/Yz6D_rGv1BY)
 
 **EmotionCard**. Click the image to watch the video. 
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/sItv0txJx-8/0.jpg)](https://youtube.com/shorts/sItv0txJx-8)
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
