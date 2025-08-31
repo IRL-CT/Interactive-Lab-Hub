@@ -129,7 +129,7 @@ If you run into technical issues with this tool, you can also use a light switch
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
 
-\*\***Tinkerbelle is great, and congratulations to whoever developed it, but coming at this from a developer who used to love building things in Flask, I would recommend that you just shift it to a Github or CFPages webapp since 90% of the students probably aren't changing the source code of it. You can still keep the source code available and encourage students to play with it, however, you shouldn't need to make them setup any sort of Python venvs etc. (even if the reqs are minimal) to run your app. For our group, we ended up poking a hole thru the firewall with a temporary CF tunnel to have it be accessible to everyone else (since the school WiFi is pretty restrictive to what local webapps you can run).**\*\*
+\*\***Tinkerbelle is great, and congratulations to whoever developed it, but coming at this from a developer who used to love building things in Flask, I would recommend that you just shift it to a Github or CFPages webapp since 90% of the students probably aren't changing the source code of it. You can still keep the source code available and encourage students to play with it, however, you shouldn't need to make them setup any sort of Python venvs etc. (even if the reqs are minimal) to run your app. For our group, we ended up poking a hole thru the firewall with a temporary CF tunnel to have it be accessible to everyone else (since the school WiFi is pretty restrictive to what local webapps you can run). Can easily extend it to have some kind "rooms" functionality so that multiple different groups can use the app at same time.**\*\*
 
 
 ## Part D. Wizard the device
