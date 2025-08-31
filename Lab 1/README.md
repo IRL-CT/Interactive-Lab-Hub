@@ -183,12 +183,17 @@ Be generous in acknowledging their contributions! And also recognizing any other
 
 \*\***The collaborators for this lab and their contributions are listed below**\*\*
 
-\*\***Akash Batu: Storyboards #1, #2, #3, #4, #5, Wizarding Tinkerbelle
-\*\***Benthan Vu: Costume #1, Paper Prototype #1, Research & Feedback
-\*\***Carrie Wang: Wizarding the Device, Research & Feedback
-\*\***Evan Fang: Costume #2, Paper Prototype #2, Storyboard #8
-\*\***Sean Lewis: Storyboards #6, #7, Setting up Tinkerbelle
-\*\***Xuesi Chen: Costume #3, Paper Prototype #3, Demo Video Recording and Editing
+\*\***Akash Batu: Storyboards #1, #2, #3, #4, #5, Wizarding Tinkerbelle**\*\*
+
+\*\***Benthan Vu: Costume #1, Paper Prototype #1, Research & Feedback**\*\*
+
+\*\***Carrie Wang: Wizarding the Device, Research & Feedback**\*\*
+
+\*\***Evan Fang: Costume #2, Paper Prototype #2, Storyboard #8**\*\*
+
+\*\***Sean Lewis: Storyboards #6, #7, Setting up Tinkerbelle**\*\*
+
+\*\***Xuesi Chen: Costume #3, Paper Prototype #3, Demo Video Recording and Editing**\*\*
 
 \*\***All: Ideating, Research, Video Enactment, Communication
 
