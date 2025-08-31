@@ -265,7 +265,6 @@ https://github.com/user-attachments/assets/00925fbf-f1ee-49ee-a3be-b61e032543b3
 
 
 **Remote Locator (Storyboard/ Idea 3)**  
-https://github.com/user-attachments/assets/590bc799-e69b-472e-8709-cc219ce1df93
 
 
 
@@ -275,7 +274,6 @@ https://github.com/user-attachments/assets/c1ff88bb-b948-4bd6-9daf-79846a9a05e3
 
 
 **Sunrise Light (Storyboard/ Idea 6)**  
-https://github.com/user-attachments/assets/6603160b-6159-4c08-92ac-ba353cd59f17
 
 
 
