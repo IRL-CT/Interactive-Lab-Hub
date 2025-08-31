@@ -140,6 +140,14 @@ Only now should you start worrying about what the device should look like. Devel
 Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
 
 \*\***Include sketches of what your devices might look like here.**\*\*
+**Costume 1: Fruit Bowl**  
+<img src="./Fruit%20Costume.JPG" width="300"/>  
+
+**Costume 2: Wine Cup**  
+<img src="./Wine%20Costume.jpg" width="300"/>  
+
+**Costume 3: Knife**  
+<img src="./Knife%20Costume.JPG" width="300"/> 
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
 Our design comes from the storyline. We wanted to disguise the device as different weapons: a fruit bowl, a knife, and a cup of wine. We drew these objects, cut them out, and placed them over the phone screen. With Tinkerbelle’s lighting, the phone could show different effects—for example, green light for the fruit bowl, purple light for the wine, and white light for the knife. When each object turned into a weapon to kill the King, the light changed to red.
