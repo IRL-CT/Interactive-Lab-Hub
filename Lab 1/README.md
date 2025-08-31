@@ -191,16 +191,25 @@ Tinkerbelle was successful in supporting colour changes during prototyping. An a
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
-https://github.com/user-attachments/assets/ea252c3c-4d77-400c-bc05-3899b0780043
+
+
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
 
+
+https://github.com/user-attachments/assets/57b08363-a2df-45cc-8f6b-99578a857abc
+
+
 **Charging Status Indicator: Goal change → ** 
 Instead of checking whether the phone is fully charged, the user now needs to know if the device is charging at all (e.g. cable is loose, battery is faulty). Yellow previously indicated the device was charging and green indicated that charging was complete. Now, red indicates that no charge is taking place. 
 
-https://github.com/user-attachments/assets/2d58d0ad-c687-44d3-ba7a-3de8f8c4ce39
+
+
+https://github.com/user-attachments/assets/38e55b9e-a206-4043-8d56-76bfb3ca9aa9
+
+
 
 ## Part E. Costume the device
 
