@@ -161,9 +161,9 @@ Our design comes from the storyline. We wanted to disguise the device as differe
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
+[Watch the Prototyped Interaction video here](https://youtu.be/DuThEwBd8EE)   
 
-\*\***Please indicate who you collaborated with on this Lab.**\*\*
-Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
+\*\***Please indicate who you collaborated with on this Lab.**\*\*  
 I (Huiying Zhan) collaborated with Qinrui Li and Jiayi Sun. I first proposed the storyline, while Jiayi took the lead in refining and writing the script. Qinrui and I mainly worked on drawing the storyboards. All three of us contributed to making the props. During filming, Jiayi served as the main videographer and editor, Qinrui controlled the lighting, and I arranged the actors’ movements and blocking. We worked together smoothly, and each of us made essential contributions to the group. The project would not have been complete without any one of us. We were very satisfied with the final outcome. We would also like to thank GitHub resources, the Tinkerbelle tool, and the iPhone recording software for their support.
 
 
