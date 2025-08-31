@@ -282,12 +282,10 @@ Think about the setting of the device: is the environment a place where the devi
 ```
 
 Sketch and Craft Photo for **CatCommunicationButton**
-![image](Images/CatCommunicationButton_sketch.jpeg)
-![image](Images/CatCommunicationButton_photo.jpeg)
+![image](Images/CatCommunicationButton_sketch.jpeg) ![image](Images/CatCommunicationButton_photo.jpeg)
 
 Sketch and Craft Photo for **EmotionCard**
-![image](Images/EmotionCard_sketch.jpeg)
-![image](Images/EmotionCard_photo.jpeg)
+![image](Images/EmotionCard_sketch.jpeg) ![image](Images/EmotionCard_photo.jpeg)
 
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
