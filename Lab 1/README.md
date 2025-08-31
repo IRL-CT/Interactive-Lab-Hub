@@ -61,7 +61,13 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
-An example setting can be your workspace/anywhere a device can be charged, while the player is anyone who has a device to charge. Our products goal is to have a light on the charger that indicates that your device is charging, and then changes color when it is done charging. This is our goal because it was a feature that was once incorporated into Apples devices, but then stopped, and it helps users understand that their device is ready to use. 
+**Setting:** The setting can be anywhere a person needs to charge their device: desk, bedside table, classroom, library, public charging station tec. In all of these scenarios, people often want a quick and simple way to know whether their device is charging properly and when it has reached full battery. Instead of having to unlock the device or check the screen, the charger itself provides the an indication which makes the charging process more convenient and effortless.
+
+**Players:** The players are everyday users who own electronic devices such as smartphones, tablets, laptops, or headphones. These players are people who rely heavily on their devices. Because they charge their devices daily, they benefit directly from a feature that saves them time and reduces uncertainty. The players might include students charging their laptops in class, professionals working in an office, or travelers at an airport who want to quickly see when their device is ready without having to hover over it.
+
+**Activity:** The activity is plugging a device into the charger and observing the charging status through the indicator light. When the device is connected, the light immediately signals that charging has started by showing one color (for example, red or orange). Once the battery is full, the charger switches to another color (such as green) to indicate completion. The user does not need to unlock the device or wait for it to display the charging symbol on the screen; the charger communicates that information directly. 
+
+**Goals:** The overall goal of this product is to improve the user experience of charging devices by providing clear feedback. Many users experience frustration when they cannot easily tell if their device is charging, or they leave their devices plugged in for longer than necessary because they are unsure if it is ready to use. By reintroducing a feature that was once part of Apple’s design but later removed, the product saves time. The colored indicator light not only reassures users that their device is charging but also prevents overcharging and wasted energy. Ultimately, this feature helps users increase confidence in their charging routine. 
 
 \*\***Include pictures of your storyboards here**\*\*
 
