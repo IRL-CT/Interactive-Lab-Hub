@@ -205,13 +205,14 @@ Physical Prototype:
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*  
-[Cooking Helper](https://drive.google.com/file/d/1RdkajOA6uyp1OThFQ7FziLMn45hgsoyX/view?usp=sharing)  
-[Pet Diagnostic](https://drive.google.com/file/d/1kpfjlqszphcwYdWIBRx5RbDH00K5xzN7/view?usp=drive_link)  
+- [Cooking Helper](https://drive.google.com/file/d/1RdkajOA6uyp1OThFQ7FziLMn45hgsoyX/view?usp=sharing)  
+- [Pet Diagnostic](https://drive.google.com/file/d/1kpfjlqszphcwYdWIBRx5RbDH00K5xzN7/view?usp=drive_link)  
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
-Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
-
-
+Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design.  
+- I collaborated with all my group members to help with brainstorming ideas and getting feedback for improvements.  
+- I additionally collaborated with Ying Yu Chen to record the setup and prototype videos. (Many thanks to her for acting in my video!!)  
+- I also looked to past students' assignments on github for guidance on what type of devices we can design and discovered it to be very open-ended. 
 
 # Staging Interaction, Part 2 
 
