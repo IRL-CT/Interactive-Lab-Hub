@@ -107,7 +107,7 @@ We realized that by adjusting the intensity of the lighting, we could highlight 
 
 Code for the "Tinkerbelle" tool, and instructions for setting up the server and your phone are [here](https://github.com/IRL-CT/tinkerbelle).
 
-\*\***Give us feedback on Tinkerbelle.**\*\*
+\*\***Give us feedback on Tinkerbelle.**\*\*  
 This tool was quite easy to set up. Once we learned how to control the lighting, we use it flexibly. It was also very convenient, since it worked well with the phone and could be controlled from the computer. The phone screen changed colors instantly, which enhanced the performance effect.
 
 ## Part D. Wizard the device
