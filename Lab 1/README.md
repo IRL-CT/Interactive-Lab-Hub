@@ -74,7 +74,7 @@ The interactive device can be anything *except* a computer, a tablet computer or
 
 <!-- \*\***Describe your setting, players, activity and goals here.**\*\* -->
 
-1 - Temp Raise Detector 
+\*\*1 - Temp Raise Detector\*\*
 
 _Setting:_ Inside a home where an elderly person lives.
 
@@ -86,7 +86,7 @@ _Activity:_ When the device detects that the room temperature is becoming danger
 
 _Goals:_ Elderly people sometimes do not realize when the environment has become uncomfortably hot, which can lead to heat stroke indoors. The goal of the device is to use lighting as a clear alert to prompt someone—either the resident or others—to take action and cool the room.
 
-2 - Loudness Detector
+\*\*2 - Loudness Detector\*\*
 _Setting:_ A library or any room where people are expected to remain quiet. A loudness detector device is placed on each table.
 
 _Players:_ 
@@ -101,7 +101,7 @@ _Activity:_ The device monitors sound levels at each table.
 _Goals:_ To gently remind people to keep their voices down, helping maintain a quiet environment for everyone in the space.
 
 
-3 - Cry Analyzer 
+\*\*3 - Cry Analyzer\*\*
 
 _Setting:_ At home, or in public places such as a subway station or restaurant, essentially anywhere babies may be present.
 
@@ -119,13 +119,21 @@ _Goals:_ Babies cry for different reasons, and it is not always easy for caregiv
 
 <!-- Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene.  -->
 
-![alt Temp Raise Detector](Lab 1/Storyboards/temp1.png)
+<img src="Lab 1/Storyboards/temp1.png">
+<img src="Lab 1/Storyboards/temp2.png">
+<img src="Lab 1/Storyboards/loudness1.png">
+<img src="Lab 1/Storyboards/loudness2.png">
+<img src="Lab 1/Storyboards/cry_analyzer1.png">
+<img src="Lab 1/Storyboards/cry_analyzer2.png">
+<img src="Lab 1/Storyboards/cry_analyzer3.png">
+<!-- 
+! [Alt Temp Raise Detector] (Lab 1/Storyboards/temp1.png)
 ![alt Temp Raise Detector](Lab 1/Storyboards/temp2.png)
 ![alt Loudness Detector](Lab 1/Storyboards/loudness1.png)
 ![alt Loudness Detector](Lab 1/Storyboards/loudness2.png)
-![alt Cry Analyzer](Lab 1/Storyboards/cry analyzer1.png)
+![alt Cry Analyzer](Lab 1/Storyboards/cry_analyzer1.png)
 ![alt Cry Analyzer](Lab 1/Storyboards/cry analyzer2.png)
-![alt Cry Analyzer](Lab 1/Storyboards/cry analyzer3.png)
+![alt Cry Analyzer](Lab 1/Storyboards/cry analyzer3.png) -->
 
 <!-- Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab. -->
 
