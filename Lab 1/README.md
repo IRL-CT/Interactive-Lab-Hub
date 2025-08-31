@@ -150,7 +150,7 @@ Storyboards are a tool for visually exploring a users interaction with a device.
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
-[Feedback.pdf](https://github.com/user-attachments/files/22061634/Feedback.pdf)
+![Feedback](https://github.com/user-attachments/assets/efaabc33-f845-48c0-b11e-764ec8f9a1d3)
 
 I presented my seven storyboard ideas to my breakout room group. I explained the plan (setting, players, activity, and goals)for each storyboard and showed my 4–frame sketches.  
 
@@ -169,8 +169,10 @@ I made the captions shorter and more direct so they fit neatly under each frame.
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
+Yes, some transitions (like charging light going from red to green) needed to be slower and smoother to feel natural. On paper/storyboards it seemed fine to just “switch” colours due to the 'scene' changing, but a gradual transition is more intuitive in reality.
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+Yes — I thought it would be helpful if the brightness or flash rate could indicate urgency (e.g. flashing faster/higher frequency when the user is very close to the lost remote). 
 
 
 ## Part C. Prototype the device
@@ -184,14 +186,14 @@ We invented this tool for this lab!
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
-
+Tinkerbelle was successful in supporting colour changes during prototyping. An additional feature to allow users to input hex codes or directly manipulate RGB values would improve the precision when selecting specific colours and transitions. A feature to save frequently used colours as presets could also make switching between states more efficient during testing.  
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
-Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
+Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
 
@@ -203,8 +205,29 @@ Only now should you start worrying about what the device should look like. Devel
 Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
 
 \*\***Include sketches of what your devices might look like here.**\*\*
+**Idea/ Storyboard 1: Charging Status Indicator**
+The Phone and its Charger:  
+![Idea: Storyboard 1 - The Phone](https://github.com/user-attachments/assets/ac75540b-2053-46ba-bd3c-11218033fe85)
+![Idea: Storyboard 1 - The Charger](https://github.com/user-attachments/assets/eba809ce-b1c7-41b5-97d2-c49f2342208f)
+
+**Idea / Storyboard 3: Remote Locator**
+The Remote:  
+![Idea: Storyboard 3 - The Remote](https://github.com/user-attachments/assets/b6795614-13cd-494d-96e5-5767c0054016)
+
+**Idea / Storyboard 6: Sunrise Light**
+The Sunrise Light:
+![Idea: Storyboard 6 - The Sunrise Light](https://github.com/user-attachments/assets/6063264c-dfea-46c5-b328-622d8a5fa53a)
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+
+**Charging Status Indicator (Storyboard/Idea 1)**
+The phone costume was created by cutting a rectangle from paper to represent the phone and a battery-shaped cut-out in its centre to show charging status. A charger costume was built from cardboard as an open-roof box that the phone can sit inside. The front of the box has a circular cut-out where the Tinkerbelle phone’s light can shine through, displaying yellow for “charging” and green for “fully charged.” This design choise emphasises visibility of status and allows quick recognition of the current charging state.  
+
+**Remote Locator (Storyboard/ Idea 3)**
+The remote was drawn on paper, then reinforced with cardboard so that it would feel more solid and resist bending over when placed in couch cushions. A circular cut-out was added to indicate where the light cue would appear. The decision to use a rectangular remote shape reflects popular remote designs, while the bright paper surface helps it remain noticeable. 
+
+**Sunrise Light (Storyboard/ Idea 6)**
+The sunrise light costume was made by folding an A4 sheet of paper into a cone shape, resembling a lamp shade. The Tinkerbelle light sits at the narrow end of the cone to create a soft, directional glow similar to a sunrise lamp. This design was chosen because it is easy to assemble and diffuses the light evenly without glare. The cone shape also helps communicate the purpose of the device as a light source.
 
 
 ## Part F. Record
@@ -214,6 +237,7 @@ Think about the setting of the device: is the environment a place where the devi
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
+All other group members dropped the course.
 
 
 # Staging Interaction, Part 2 
