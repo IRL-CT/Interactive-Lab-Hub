@@ -145,8 +145,6 @@ Now, change the goal within the same setting, and update the interaction with th
 
 Only now should you start worrying about what the device should look like. Develop three costumes so that you can use your phone as this device.
 
-Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
-
 \*\***Include sketches of what your devices might look like here.**\*\*  
 **Costume 1: Fruit Bowl**  
 <img src="./Fruit%20Costume.JPG" width="300"/>  
