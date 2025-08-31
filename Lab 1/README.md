@@ -2,7 +2,7 @@
 
 # Staging Interaction
 
-\*\*Lianne Bisch(lb854)\*\*
+**Lianne Bisch(lb854)**
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -60,7 +60,7 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 
 ## Part A. Plan 
 
-To stage an interaction with your interactive device, think about:
+<!-- To stage an interaction with your interactive device, think about:
 
 _Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
 
@@ -70,11 +70,11 @@ _Activity:_ What is happening between the actors?
 
 _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
 
-The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
+The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light. -->
 
 <!-- \*\***Describe your setting, players, activity and goals here.**\*\* -->
 
-\*\*1 - Temp Raise Detector\*\*
+**1 - Temp Raise Detector**
 
 _Setting:_ Inside a home where an elderly person lives.
 
@@ -86,7 +86,7 @@ _Activity:_ When the device detects that the room temperature is becoming danger
 
 _Goals:_ Elderly people sometimes do not realize when the environment has become uncomfortably hot, which can lead to heat stroke indoors. The goal of the device is to use lighting as a clear alert to prompt someone—either the resident or others—to take action and cool the room.
 
-\*\*2 - Loudness Detector\*\*
+**2 - Loudness Detector**
 _Setting:_ A library or any room where people are expected to remain quiet. A loudness detector device is placed on each table.
 
 _Players:_ 
@@ -101,7 +101,7 @@ _Activity:_ The device monitors sound levels at each table.
 _Goals:_ To gently remind people to keep their voices down, helping maintain a quiet environment for everyone in the space.
 
 
-\*\*3 - Cry Analyzer\*\*
+**3 - Cry Analyzer**
 
 _Setting:_ At home, or in public places such as a subway station or restaurant, essentially anywhere babies may be present.
 
@@ -119,32 +119,33 @@ _Goals:_ Babies cry for different reasons, and it is not always easy for caregiv
 
 <!-- Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene.  -->
 
-<img src="Lab 1/Storyboards/temp1.png">
+<!-- <img src="Lab 1/Storyboards/temp1.png">
 <img src="Lab 1/Storyboards/temp2.png">
 <img src="Lab 1/Storyboards/loudness1.png">
 <img src="Lab 1/Storyboards/loudness2.png">
 <img src="Lab 1/Storyboards/cry_analyzer1.png">
 <img src="Lab 1/Storyboards/cry_analyzer2.png">
-<img src="Lab 1/Storyboards/cry_analyzer3.png">
-<!-- 
-! [Alt Temp Raise Detector] (Lab 1/Storyboards/temp1.png)
-![alt Temp Raise Detector](Lab 1/Storyboards/temp2.png)
-![alt Loudness Detector](Lab 1/Storyboards/loudness1.png)
-![alt Loudness Detector](Lab 1/Storyboards/loudness2.png)
-![alt Cry Analyzer](Lab 1/Storyboards/cry_analyzer1.png)
-![alt Cry Analyzer](Lab 1/Storyboards/cry analyzer2.png)
-![alt Cry Analyzer](Lab 1/Storyboards/cry analyzer3.png) -->
+<img src="Lab 1/Storyboards/cry_analyzer3.png"> -->
+
+![Temp Raise Detector](Storyboards/temp1.png)
+![alt Temp Raise Detector](Storyboards/temp2.png)
+![alt Loudness Detector](Storyboards/loudness1.png)
+![alt Loudness Detector](Storyboards/loudness2.png)
+![alt Cry Analyzer](Storyboards/cry_analyzer1.png)
+![alt Cry Analyzer](Storyboards/cry_analyzer2.png)
+![alt Cry Analyzer](Storyboards/cry_analyzer3.png)
 
 <!-- Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab. -->
 
 Temperature Rise Detector: 
+
 The goals and the activity of the temp rise detector was clear. They think it's good idea especially after the grandma not noticing the temp raise. However, they are a bit worried about what if the gradma is not noticing when the light is turning. Also, they are worried whether the detector can tell if any action is taken or not. 
 
-Loudness Detector
+Loudness Detector:
 
 They think the scenarios are relatable. It’s easy to imagine this at a library or café. They like how it's in the every table so that the users can notice the loudness very easily. Also, they like the idea that the sers can customize the setting. They ae concerned about how to prevent people from ignoring the light. 
 
-Cry Analyzer
+Cry Analyzer:
 
 They like that you showed multiple contexts, and they think the color-coded signals make it easy to know why the baby is crying.
 They wonder how does it behave when the two babies are crying at once. Are there going to show the same color for the same reason. Also, they were worried about depending on the number of reasons, it requires a lot of memorization for caregivers. 
