@@ -92,7 +92,7 @@ Here is the storyboard for our interaction design:
 
 
 \*\***Summarize feedback you got here.**\*\*
-
+Our peers thought the three-scene story was clear and engaging, with a strong progression from the maid to the queen to the general. They liked how each character’s motive for killing the King was distinct, and how the repeated moment of hesitation built suspense. A suggestion was to make the King’s role more expressive, showing more of his inner conflict, so that the audience can feel his tension as the threats escalate.
 
 ## Part B. Act out the Interaction
 
