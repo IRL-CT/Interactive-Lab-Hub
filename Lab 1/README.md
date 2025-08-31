@@ -127,15 +127,25 @@ _Goals:_ Babies cry for different reasons, and it is not always easy for caregiv
 <img src="Lab 1/Storyboards/cry_analyzer2.png">
 <img src="Lab 1/Storyboards/cry_analyzer3.png"> -->
 
+**Storyboards**
+
+**Temperature Raise Detector**
+
 ![Temp Raise Detector](Storyboards/temp1.png)
 ![alt Temp Raise Detector](Storyboards/temp2.png)
+
+**Loudness Detector**
 ![alt Loudness Detector](Storyboards/loudness1.png)
 ![alt Loudness Detector](Storyboards/loudness2.png)
+
+**Cry Analyzer**
 ![alt Cry Analyzer](Storyboards/cry_analyzer1.png)
 ![alt Cry Analyzer](Storyboards/cry_analyzer2.png)
 ![alt Cry Analyzer](Storyboards/cry_analyzer3.png)
 
 <!-- Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab. -->
+
+**Feedback**
 
 Temperature Rise Detector: 
 
