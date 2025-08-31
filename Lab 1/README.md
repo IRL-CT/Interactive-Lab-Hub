@@ -156,7 +156,7 @@ Our design comes from the storyline. We wanted to disguise the device as differe
 [Watch the Prototyped Interaction video here](https://youtu.be/DuThEwBd8EE)   
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*  
-I (Jiayi Sun) collaborated with Qinrui Li and Huiying Zhan. Huiying Zhan first proposed the storyline, while I took the lead in refining and writing the script. Qinrui and I mainly worked on drawing the storyboards. All three of us contributed to making the props. During filming, I served as the main videographer and editor, Qinrui controlled the lighting, and Huiying arranged the actors’ movements and blocking. We worked together smoothly, and each of us made essential contributions to the group. The project would not have been complete without any one of us. We were very satisfied with the final outcome. We would also like to thank GitHub resources, the Tinkerbelle tool, and the iPhone recording software for their support.
+I (Jiayi Sun) collaborated with Qinrui Li and Huiying Zhan. Huiying Zhan first proposed the storyline, while I took the lead in refining and writing the script. Qinrui and Huiying mainly worked on drawing the storyboards. All three of us contributed to making the props. During filming, I served as the main videographer and editor, Qinrui controlled the lighting, and Huiying arranged the actors’ movements and blocking. We worked together smoothly, and each of us made essential contributions to the group. The project would not have been complete without any one of us. We were very satisfied with the final outcome. We would also like to thank GitHub resources, the Tinkerbelle tool, and the iPhone recording software for their support.
 
 
 # Staging Interaction, Part 2 
@@ -204,4 +204,3 @@ Do last week’s assignment again, but this time:
 [Watch the  Scene 3 - The Rebel’s Drawn Blade video here](https://www.youtube.com/watch?v=w_AuT5ix660)
 
 ### Reflection
-
