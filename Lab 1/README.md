@@ -194,11 +194,22 @@ Do last week’s assignment again, but this time:
 ### Storyboard
 ![Storyboard](./storyboards.png)
 
-### Prototype Photos
-![Prototype](./prototype.jpg)
+### Photos of costumed devices  
+**Fruit Bowl**  
+<img src="./The_Maid_and_Fruit_Bowl.jpg" width="300px"/>
 
-### Demo Video
-[Watch the demo video here](https://youtu.be/xxxxxxx)
+**Wine**  
+<img src="./The_Queen_and_Wine.jpg" width="300px"/>
+
+**Sword**  
+<img src="./The_General_and_Sword.jpg" width="300px"/>
+
+### Video of 3 prototyped interactions  
+[Watch the  Scene 1 - The Maid’s Poisoned Fruit video here](https://youtu.be/yKgqXZjnT2M)  
+
+[Watch the  Scene 2 - The Queen’s Poisoned Wine video here](https://www.youtube.com/watch?v=wbVWJKHsGkw)  
+
+[Watch the  Scene 3 - The Rebel’s Drawn Blade video here](https://www.youtube.com/watch?v=wbVWJKHsGkw)
 
 ### Reflection
 Through this lab, I learned how to turn a simple idea on paper into an interactive prototype using Tinkerbelle. At first, it was challenging to coordinate the timing of the lighting with the actors’ movements, but after several trials we managed to control it more smoothly. Working with my collaborators also taught me how important teamwork is. Each of us focused on different parts such as story writing, storyboard drawing, prop making, and video editing, and the project would not have been complete without everyone’s contribution.
