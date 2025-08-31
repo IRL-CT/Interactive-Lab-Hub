@@ -150,9 +150,8 @@ Storyboards are a tool for visually exploring a users interaction with a device.
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
-![Feedback](https://github.com/user-attachments/assets/efaabc33-f845-48c0-b11e-764ec8f9a1d3)
 
-I presented my seven storyboard ideas to my breakout room group. I explained the plan (setting, players, activity, and goals)for each storyboard and showed my 4–frame sketches.  
+I presented my seven storyboard ideas to a small group. I explained the plan (setting, players, activity, and goals)for each storyboard and showed my 4–frame sketches.  
 
 **Feedback I received:**
 They liked that the interactions were very clear and easy to understand - like a storybook.
@@ -192,11 +191,16 @@ Tinkerbelle was successful in supporting colour changes during prototyping. An a
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
+https://github.com/user-attachments/assets/ea252c3c-4d77-400c-bc05-3899b0780043
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
 
+**Charging Status Indicator: Goal change → ** 
+Instead of checking whether the phone is fully charged, the user now needs to know if the device is charging at all (e.g. cable is loose, battery is faulty). Yellow previously indicated the device was charging and green indicated that charging was complete. Now, red indicates that no charge is taking place. 
+
+https://github.com/user-attachments/assets/2d58d0ad-c687-44d3-ba7a-3de8f8c4ce39
 
 ## Part E. Costume the device
 
@@ -206,6 +210,9 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 **Idea/ Storyboard 1: Charging Status Indicator**
+
+![Sketches](https://github.com/user-attachments/assets/69d3baec-2776-4484-b23a-71481cdd990f)
+
 The Phone and its Charger:  
 ![Idea: Storyboard 1 - The Phone](https://github.com/user-attachments/assets/ac75540b-2053-46ba-bd3c-11218033fe85)
 ![Idea: Storyboard 1 - The Charger](https://github.com/user-attachments/assets/eba809ce-b1c7-41b5-97d2-c49f2342208f)
@@ -221,18 +228,27 @@ The Sunrise Light:
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 
 **Charging Status Indicator (Storyboard/Idea 1)**
+The charger was sketched to resemble popular upright phone chargers, such as MagSafe or Anker stands, with a visible status light at the front. This familiar design makes it intuitive to use and easy to integrate into existing routines.  
 The phone costume was created by cutting a rectangle from paper to represent the phone and a battery-shaped cut-out in its centre to show charging status. A charger costume was built from cardboard as an open-roof box that the phone can sit inside. The front of the box has a circular cut-out where the Tinkerbelle phone’s light can shine through, displaying yellow for “charging” and green for “fully charged.” This design choise emphasises visibility of status and allows quick recognition of the current charging state.  
 
 **Remote Locator (Storyboard/ Idea 3)**
-The remote was drawn on paper, then reinforced with cardboard so that it would feel more solid and resist bending over when placed in couch cushions. A circular cut-out was added to indicate where the light cue would appear. The decision to use a rectangular remote shape reflects popular remote designs, while the bright paper surface helps it remain noticeable. 
+The remote was kept close to a natural, familiar remote shape, since users are already accustomed to rectangular remotes. For the costume, the remote was first drawn on paper, then reinforced with cardboard so that it would feel more solid and resist bending over when placed in couch cushions. A circular cut-out was added to indicate where the light would appear. The decision to keep the shape and layout simple ensures that users immediately recognise it as a remote, while the white paper surface improves visibility.  
 
 **Sunrise Light (Storyboard/ Idea 6)**
-The sunrise light costume was made by folding an A4 sheet of paper into a cone shape, resembling a lamp shade. The Tinkerbelle light sits at the narrow end of the cone to create a soft, directional glow similar to a sunrise lamp. This design was chosen because it is easy to assemble and diffuses the light evenly without glare. The cone shape also helps communicate the purpose of the device as a light source.
+Two designs were sketched: one resembling a hanging bulb to act as a ceiling-mounted light, and another shaped like a cone that could sit on a bedside table. The cone design was chosen for the prototype because it can take on different colours and patterns (similar to star or galaxy projectors ) which creates an opportunity to make waking up a more enjoyable experience. The costume was made by folding an A4 sheet of paper into a cone to resemble a lamp shade. This setup diffuses light evenly, reduces glare, and clearly communicates its function as a sunrise or ambient light.  
 
 
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
+
+**Charging Status Indicator (Storyboard/Idea 1)**
+
+
+**Remote Locator (Storyboard/ Idea 3)**
+
+**Sunrise Light (Storyboard/ Idea 6)**
+
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
