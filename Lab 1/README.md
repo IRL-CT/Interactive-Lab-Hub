@@ -2,7 +2,7 @@
 
 # Staging Interaction
 
-**Huiying Zhan, Qinrui Li, Jiayi Sun**
+**Jiayi Sun, Huiying Zhan, Qinrui Li**
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -90,7 +90,6 @@ Here is the storyboard for our interaction design:
 
 &nbsp;
 
-Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
 
@@ -105,13 +104,10 @@ We realized that by adjusting the intensity of the lighting, we could highlight 
 
 ## Part C. Prototype the device
 
-Code for the "Tinkerbelle" tool, and instructions for setting up the server and your phone are [here](https://github.com/IRL-CT/tinkerbelle).
-
 \*\***Give us feedback on Tinkerbelle.**\*\*  
 This tool was quite easy to set up. Once we learned how to control the lighting, we use it flexibly. It was also very convenient, since it worked well with the phone and could be controlled from the computer. The phone screen changed colors instantly, which enhanced the performance effect.
 
 ## Part D. Wizard the device
-Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*  
 In our first recording attempt, we prepared to manually control the lighting transitions. In the first two assassination scenes, where the King survives, we used a slow color shift in the lights to suggest rising tension before fading back to normal. In the final scene, to emphasize the success of the assassination, we highlighted the sword with a bright white glow followed by a rapid shift to red flashing light, underscoring the dramatic climax of the King’s death.
@@ -121,8 +117,6 @@ In the first try-out scene, where the Maid offers the poisoned fruit bowl to the
 [Watch the set-up video on Youtube](https://www.youtube.com/watch?v=f_kJ1HM1AX8)
 
 
-
-Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*  
 **Picture 1: The Stage**  
@@ -143,8 +137,6 @@ Now, change the goal within the same setting, and update the interaction with th
 
 ## Part E. Costume the device
 
-Only now should you start worrying about what the device should look like. Develop three costumes so that you can use your phone as this device.
-
 \*\***Include sketches of what your devices might look like here.**\*\*  
 **Costume 1: Fruit Bowl**  
 <img src="./Fruit%20Costume.JPG" width="300"/>  
@@ -164,7 +156,7 @@ Our design comes from the storyline. We wanted to disguise the device as differe
 [Watch the Prototyped Interaction video here](https://youtu.be/DuThEwBd8EE)   
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*  
-I (Huiying Zhan) collaborated with Qinrui Li and Jiayi Sun. I first proposed the storyline, while Jiayi took the lead in refining and writing the script. Qinrui and I mainly worked on drawing the storyboards. All three of us contributed to making the props. During filming, Jiayi served as the main videographer and editor, Qinrui controlled the lighting, and I arranged the actors’ movements and blocking. We worked together smoothly, and each of us made essential contributions to the group. The project would not have been complete without any one of us. We were very satisfied with the final outcome. We would also like to thank GitHub resources, the Tinkerbelle tool, and the iPhone recording software for their support.
+I (Jiayi Sun) collaborated with Qinrui Li and Huiying Zhan. Huiying Zhan first proposed the storyline, while I took the lead in refining and writing the script. Qinrui and I mainly worked on drawing the storyboards. All three of us contributed to making the props. During filming, I served as the main videographer and editor, Qinrui controlled the lighting, and Huiying arranged the actors’ movements and blocking. We worked together smoothly, and each of us made essential contributions to the group. The project would not have been complete without any one of us. We were very satisfied with the final outcome. We would also like to thank GitHub resources, the Tinkerbelle tool, and the iPhone recording software for their support.
 
 
 # Staging Interaction, Part 2 
@@ -212,4 +204,4 @@ Do last week’s assignment again, but this time:
 [Watch the  Scene 3 - The Rebel’s Drawn Blade video here](https://www.youtube.com/watch?v=w_AuT5ix660)
 
 ### Reflection
-Through this lab, I learned how to turn a simple idea on paper into an interactive prototype using Tinkerbelle. At first, it was challenging to coordinate the timing of the lighting with the actors’ movements, but after several trials we managed to control it more smoothly. Working with my collaborators also taught me how important teamwork is. Each of us focused on different parts such as story writing, storyboard drawing, prop making, and video editing, and the p
+
