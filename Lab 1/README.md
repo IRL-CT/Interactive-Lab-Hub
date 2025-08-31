@@ -160,7 +160,7 @@ Our design comes from the storyline. We wanted to disguise the device as differe
 
 ## Part F. Record
 
-\*\***Take a video of your prototyped interaction.**\*\*
+\*\***Take a video of your prototyped interaction.**\*\*  
 [Watch the Prototyped Interaction video here](https://youtu.be/DuThEwBd8EE)   
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*  
