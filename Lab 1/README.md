@@ -65,17 +65,10 @@ An example setting can be your workspace/anywhere a device can be charged, while
 
 \*\***Include pictures of your storyboards here**\*\*
 
-Storyboard 1)
 ![lab1-storyboard](https://github.com/user-attachments/assets/505b3402-52ee-493a-aa10-9fc5bcb1e5f1)
-Storyboard 2)
 <img width="1022" height="677" alt="Screen Shot 2025-08-31 at 11 12 33 AM" src="https://github.com/user-attachments/assets/bd68ccef-19bc-47a4-82a8-be590b6168be" />
-Storyboard 3)
 <img width="645" height="426" alt="Screen Shot 2025-08-31 at 11 12 53 AM" src="https://github.com/user-attachments/assets/c42f410f-f054-43c9-8d47-d8a81645cd77" />
-Storyboard 4)
 <img width="586" height="435" alt="Screen Shot 2025-08-31 at 11 13 25 AM" src="https://github.com/user-attachments/assets/db874c82-01bd-4788-b029-23e772372bc8" />
-Storyboard 5)
-Storyboard 6)
-Storyboard 7)
 
 
 
