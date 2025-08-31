@@ -282,6 +282,11 @@ Think about the setting of the device: is the environment a place where the devi
 ```
 
 Sketch and Craft Photo for **CatCommunicationButton**
+<p align="center">
+  <img src="Images/CatCommunicationButton_sketch.jpeg" width="45%" />
+  <img src="Images/CatCommunicationButton_photo.jpeg" width="45%" />
+</p>
+
 ![image](Images/CatCommunicationButton_sketch.jpeg) ![image](Images/CatCommunicationButton_photo.jpeg)
 
 Sketch and Craft Photo for **EmotionCard**
