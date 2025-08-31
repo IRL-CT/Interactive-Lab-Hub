@@ -183,21 +183,21 @@ Only now should you start worrying about what the device should look like. Devel
 
 Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
 
-\*\***Include sketches of what your devices might look like here.**\*\*
+\*\***Include sketches of what your devices might look like here.**\*\*  
 ![IMG_0659](https://github.com/user-attachments/assets/0d8ff45e-b9bf-476a-adf7-e2d143859ea7)
-![IMG_9724](https://github.com/user-attachments/assets/d35dd676-e36c-42a8-adff-52aa8a1d0474)
-
+Physical Prototype:  
+<img src="https://github.com/user-attachments/assets/a126476b-7f3e-48aa-bad0-ffce9f971a18" width="480">
 
 ![IMG_0658](https://github.com/user-attachments/assets/85272b84-17f3-40e6-82a1-f2952329b3af)
-![IMG_9719](https://github.com/user-attachments/assets/c2221bba-7a12-4e3e-9a5d-a8c6211b5cad)
-
+Physical Prototype:  
+<img src="https://github.com/user-attachments/assets/37e4fed0-6b07-4e8a-b8d7-0ba3c6f3a5cf" width="480">
 
 ![IMG_0656](https://github.com/user-attachments/assets/ad2fa6a7-d0fa-4be5-a4d4-809b3da5ead7)
-![IMG_9725](https://github.com/user-attachments/assets/4c49f8dd-ee11-40db-acb5-a7152df77fa8)
+Physical Prototype:  
+<img src="https://github.com/user-attachments/assets/6a9c89ae-3a35-4d78-8cb8-4106e20dfc64" width="480">
 
-
-\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
-
+\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
+**Cooking Helper**: will be used in a hot environment, so it needs to be able to withstand heat. It also shouldn't be too big so it is easy to store with all of the other kitchen supplies. The accessories are also interchangeable to make it easier for each user to buy/use the required parts for whatever they are cooking.
 
 ## Part F. Record
 
