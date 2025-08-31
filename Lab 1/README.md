@@ -112,10 +112,15 @@ Try physically acting out the interaction you planned. For now, you can just pre
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
 
-
+It was easy to draw the device box outside the door as a signal, but when we acted out, we found it difficult to hang the device on the wall. We didn't think thoroughly about how we could manage to stick/hang/mount the devices on the wall until we tried to act out.
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
 
+We considered how to improve our devices, and here are two conclusions:
+
+1. The device's installation methods need to be practical for real-world use. We should offer various options, like a stand pole or hooks, to make it easy for users to set it up in different locations.
+
+2. The interior of the device requires a more secure way to hold the smartphone. A stationary holder could be installed to prevent the phone from shifting out of position or falling and getting damaged.
 
 
 
@@ -131,13 +136,15 @@ If you run into technical issues with this tool, you can also use a light switch
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
 
+The pre-defined color palette in Tinkerbelle's color picker menu is my favorite feature. It is very user-friendly—you can find a range of the most common colors right at the bottom, and you can also easily modify the palette to create a custom selection that perfectly fits our project.
+
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
-Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
+Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
 
@@ -150,7 +157,21 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 
-\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+1. The first costume is to make the device look like a sleek modern hallway light that will light up when someone passes by the front door.
+<img src="https://github.com/user-attachments/assets/c930fa8e-eac3-4dec-8bbf-1bac7bc44c7d" width="200" height="400" />
+
+2. The second costume is a wall decoration to personalize each front door! It's a distinctive, customizable piece of art that can be hung right next to the door lever.
+<img src="https://github.com/user-attachments/assets/e097df2f-65d0-45df-8257-851a984762f6"  width="200" height="400" />
+
+3. The third costume is a wall-mounted mail box that has a metal hinge at the bottom to show the light. Not only does it serve as a normal postbox, but it also indicates a different color of light.
+<img src="https://github.com/user-attachments/assets/69c04817-58b0-447b-bb5e-c6662e9ef528"  width="200" height="400" />
+
+
+\*\***What concerns or opportunities are influencing the way you've designed the device to look?**\*\*
+
+When we came up with the costumes for our smartphones, one of the most important concerns was how to disguise the phone in a way that does not look too discordant, and so that the items can often be found around people's front doors.
+
+For the opportunities, we consider personalizing the costumes to fit with different characteristics. For example, creative users might want a decoration that is unique to everyone else, while low-key users would like a costume that is not out of place. 
 
 
 ## Part F. Record
@@ -160,6 +181,9 @@ Think about the setting of the device: is the environment a place where the devi
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
+Dingran Dai - Part A(storyboards), Part BCDE(together), Part F(record the clips & actor)
+
+Yun-Jou, Huang - Part A(come up with settings), Part BCDE(together), Part F(actor & editing)
 
 
 # Staging Interaction, Part 2 
