@@ -206,8 +206,10 @@ https://github.com/user-attachments/assets/57b08363-a2df-45cc-8f6b-99578a857abc
 Instead of checking whether the phone is fully charged, the user now needs to know if the device is charging at all (e.g. cable is loose, battery is faulty). Yellow previously indicated the device was charging and green indicated that charging was complete. Now, red indicates that no charge is taking place.  
 
 
+https://github.com/user-attachments/assets/c70f66af-a479-483f-a441-c7fabb586739
 
-https://github.com/user-attachments/assets/38e55b9e-a206-4043-8d56-76bfb3ca9aa9
+
+
 
 
 
