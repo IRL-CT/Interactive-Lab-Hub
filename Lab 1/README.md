@@ -86,6 +86,7 @@ We developed three conceptual costumes to use the phone as the device, consideri
 
 ### Sketches
 <img src="./Costume1.jpg" alt="Costume1" width="300"/>
+
 ![Costume2](./Costume2.jpg)
 
 
