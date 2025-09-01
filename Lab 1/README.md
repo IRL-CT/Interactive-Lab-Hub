@@ -86,6 +86,8 @@ We developed three conceptual costumes to use the phone as the device, consideri
 
 ### Sketches
 <img src="./Costume1.jpg" alt="Costume1" width="300"/>
+<img src="./Costume2.png" alt="Costume1" width="300"/>
+<img src="./Costume3.png" alt="Costume1" width="300"/>
 
 ### Design Considerations
 - **Dog’s comfort**: Lights should be soft, not harsh or strobing, to avoid frightening or stressing the dog.
