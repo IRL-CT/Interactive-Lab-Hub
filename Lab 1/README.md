@@ -2,8 +2,8 @@
 
 # Staging Interaction
 
-\*\***COLLABORATOR: [Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), Miriam Alex, Shreya Kethi Reddy, Ying Yu Chen (Me)**\*\*
-
+\*\***COLLABORATOR: [Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), Miriam Alex, [Shreya Kethi Reddy](https://github.com/littleredpolkadot/Interactive-Lab-Hub/tree/Fall2025/Lab%201
+), Ying Yu Chen (Me)**\*\*
 
 ```!
 We spread our ideas across everyone’s repositories, so don't forget to check them out :)
