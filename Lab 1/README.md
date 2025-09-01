@@ -85,8 +85,8 @@ After refining the storyboard, we applied the interaction to a dog with 4 colors
 We developed three conceptual costumes to use the phone as the device, considering the environment and usability.
 
 ### Sketches
-![Costume1](./Costume1.1.png)
-![Costume](./Costume.png)
+![Costume1](./Costume1.jpg)
+![Costume](./Costume2.png)
 
 
 ### Design Considerations
