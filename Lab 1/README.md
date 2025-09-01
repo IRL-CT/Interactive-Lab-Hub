@@ -100,26 +100,19 @@ If you run into technical issues with this tool, you can also use a light switch
 \*\***Give us feedback on Tinkerbelle.**\*\*
 
 ## Part D. Wizard the device
-Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
-
-Now, change the goal within the same setting, and update the interaction with the paper prototype. 
-
 \*\***Show the follow-up work here.**\*\*
+
 I used a Figma board to simulate user interactions on the wall.
 [Interactive device lab 1.pdf](Interactive%20device%20lab%201.pdf)
 
 ## Part E. Costume the device
 
-Only now should you start worrying about what the device should look like. Develop three costumes so that you can use your phone as this device.
-
-Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
-
 \*\***Include sketches of what your devices might look like here.**\*\*
 
-The projector is not the main focus (the user interacts directly with the questions and answers on the wall). 
-The primary “actor” of the device is the only "light" of the questions and answers.
+The primary “actor” of the device is only the "light" of the questions and answers.
+The projector is not the main focus (the user interacts directly with the questions and answers on the wall) so I did not show them in my prototype.
 
 \*\***What concerns or opportunities are influencing the way you've designed the device to look?**\*\*
 
