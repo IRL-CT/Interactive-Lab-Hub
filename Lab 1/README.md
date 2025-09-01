@@ -313,7 +313,7 @@ Sketch and Craft Photo for **EmotionCard**
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 
 Collaboratig with **Amanda Lu, Miriam Alex, Shreya Kethi Reddy**. (Thank you for shooting  the video with me Amanda! 🥳)
-See collaborators' video: [Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), [Miriam Alex](https://github.com/miriam-alex/Interactive-Lab-Hub/tree/Fall2025/Lab%201), [Shreya Kethi Reddy](https://github.com/littleredpolkadot/Interactive-Lab-Hub/tree/Fall2025/Lab%201
+See collaborators' video here: [Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), [Miriam Alex](https://github.com/miriam-alex/Interactive-Lab-Hub/tree/Fall2025/Lab%201), [Shreya Kethi Reddy](https://github.com/littleredpolkadot/Interactive-Lab-Hub/tree/Fall2025/Lab%201)
 
 ```diff!
 + Don't forget to check out other members' videos and sketches on their GitHub.
