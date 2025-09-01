@@ -60,43 +60,32 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 
 ## Part A. Plan 
 
-To stage an interaction with your interactive device, think about:
-
-_Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
-
-_Players:_ Who is involved in the interaction? Who else is there? If you reflect on the design of current day interactive devices like the Amazon Alexa, it’s clear they didn’t take into account people who had roommates, or the presence of children. Think through all the people who are in the setting.
-
-_Activity:_ What is happening between the actors?
-
-_Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
-
-The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
-
-\*\***Describe your setting, players, activity and goals here.**\*\*
 * Setting: In a study room or any room that is dark enough to see the light projection on the wall
 * Players: A study group/ one single person that want to review learning questions together.
 * Activity: Questions appear on the wall. People touch the question with their hands to find out answer. Touch the answer to move on to the next question. There may be multiple questions on the wall at the same time. All the answers need to be revealed to move on to new questions.
 * Goals: A interactive Anki that is projected on the wall. Review subjects with questions and answers to them. 
 
-Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
-
-\*\***Include pictures of your storyboards here**\*\*
+\*\***storyboards:**\*\*
 
 [storyboard_interactive_Anki.pdf](storyboard_interactive_Anki.pdf)
 
-Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
-\*\***Summarize feedback you got here.**\*\*
-
+\*\***feedbacks from peer:**\*\*
+The current interaction does not feel particularly engaging. 
+To make it more compelling, it may help to emphasize the physicality of interacting with questions and answers.
+One idea is to project a dynamic mind map that expands as the user answers questions.
+This could leverage the benefits of physical interaction and make the experience more fun and interactive.
 
 ## Part B. Act out the Interaction
 
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
+Currently, the interaction is linear: users can only answer a question and move on, without going back. 
+Also, to prevent overcrowding, responses should be limited in word count or space.
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
-
+Since the device occupies physical space, it could be fun to use it for spatially oriented learning, such as exploring world climates, geography, or current events.
 
 ## Part C. Prototype the device
 
@@ -110,7 +99,6 @@ If you run into technical issues with this tool, you can also use a light switch
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
 
-
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
@@ -119,7 +107,8 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
-
+I used a Figma board to simulate user interactions on the wall.
+[Interactive device lab 1.pdf](Interactive%20device%20lab%201.pdf)
 
 ## Part E. Costume the device
 
@@ -129,7 +118,14 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 
-\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+The projector is not the main focus (the user interacts directly with the questions and answers on the wall). 
+The primary “actor” of the device is the only "light" of the questions and answers.
+
+\*\***What concerns or opportunities are influencing the way you've designed the device to look?**\*\*
+
+The main opportunities for this interactive device are:
+1.	It encourages collaborative learning, making rote learning more engaging. You can learn with others.
+2.	Rote learning is usually less effective, so using spatial interaction can help users connect related questions and leverage the wall’s physical space to reinforce learning.
 
 ## Part F. Record
 
@@ -141,7 +137,7 @@ Think about the setting of the device: is the environment a place where the devi
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
-My roommate Xu Yanqi <3
+My roommate Xu Yanqi <3. She gave me feedback (though she mentioned my design “wasn’t very fun”), helped me record the video, and lent me scissors.
 
 
 # Staging Interaction, Part 2 
