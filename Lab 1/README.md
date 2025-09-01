@@ -142,6 +142,8 @@ Only now should you start worrying about what the device should look like. Devel
 Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
 
 \*\***Include sketches of what your devices might look like here.**\*\*
+![sketch](https://github.com/user-attachments/assets/379f49b6-79d7-49c3-bf7f-9d2963df3cf5)
+
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 1. Considering the existing common use cases in arena or concert, where wristbands, glow sticks, and flags are already recognized as part of the cheering and the symbol for supporting a team, the users can easily adapt to the devices with familiarity.
