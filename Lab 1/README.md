@@ -141,7 +141,7 @@ Think about the setting of the device: is the environment a place where the devi
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
-My roommate <3
+My roommate Xu Yanqi <3
 
 
 # Staging Interaction, Part 2 
