@@ -116,9 +116,9 @@ Present your ideas to the other people in your breakout room (or in small groups
 
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
-\*\***Are there things that seemed better on paper than acted out?**\*\*
+\*\***On paper the user’s state is obvious; in acting it’s hard to tell if the user is truly asleep. Small sleep movements easily false-trigger the light.**\*\*
 
-\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+\*\****We define light by mode, not fixed numbers: Reading = brighter neutral; Wind-down = gradually dimmer and warmer; Asleep = off/very low; Night path = low warm path light (bedside → door); Morning = gradually brighter and cooler (sunrise-like). Activities are detected primarily by explicit commands (voice or tap). For automation, we add low-privacy sensing (mmWave/PIR or a bed pressure strip) to tell turning over from getting out of bed—no cameras. Optional phone alarm/quiet hours can trigger Morning Mode and suppress late-night flashes.**\*\*
 
 
 ## Part C. Prototype the device
