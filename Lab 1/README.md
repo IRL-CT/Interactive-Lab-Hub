@@ -72,7 +72,34 @@ _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening th
 
 The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
-\*\***Describe your setting, players, activity and goals here.**\*\*
+\*\***
+Setting
+A bedroom at night, as the user winds down for sleep.
+
+Players
+
+Main user: an adult preparing to sleep.
+
+Activity
+
+The user begins reading before bed under the smart bedside lamp’s Reading Mode (comfortable brightness, neutral/cooler white for legibility).
+
+When the user says “Good night” or after a set wind-down timer starts while reading, the lamp transitions into Sleep Mode:
+
+Brightness gradually dims over the wind-down period.
+
+Color temperature gradually warms (cool → warm amber) to reduce blue light and promote drowsiness.
+
+If the user gets out of bed during the night, a low, warm guiding light gently turns on for safe movement.
+
+When the user is fully asleep, the lamp fades out completely (e.g., after the wind-down completes and there is no interaction/motion for a set interval).
+
+Goals
+
+Main user: read comfortably, ease into drowsiness, move safely at night, and receive subtle notifications without disturbance.
+
+Device: use light (dimming + warming) to support relaxation, provide unobtrusive feedback, and automatically power off once the user is asleep.**
+**\*\*
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
