@@ -4,6 +4,8 @@
 
 \*\***NAME OF COLLABORATOR HERE**\*\*
 
+Jessica Hsiao (dh779), Charlotte Lin (hl2575), Zoe Tseng (yzt2), Irene Wu (yw2785)
+
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
 There is no actor that plays Tinkerbell--her existence in the play comes from the interactions that the other characters have with her.
@@ -11,7 +13,6 @@ There is no actor that plays Tinkerbell--her existence in the play comes from th
 For lab this week, we draw on this and other inspirations from theatre to stage interactions with a device where the main mode of display/output for the interactive device you are designing is lighting. You will plot the interaction with a storyboard, and use your computer and a smartphone to experiment with what the interactions will look and feel like. 
 
 _Make sure you read all the instructions and understand the whole of the laboratory activity before starting!_
-
 
 
 ## Prep
@@ -74,9 +75,34 @@ The interactive device can be anything *except* a computer, a tablet computer or
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
-The interactive device will be a heart rate indicator that displays different colors of light according to the player's heart rate. The device will calculate the heart rate zone using the player's age and current heart rate according to the table in this [webpage](https://blog.maximumperform.com/2021/02/08/heart-health-month-heart-rate-heart-rate-zones/).
+Imagine you are working out at some places, such as the gym, riverside, and so on. You may want to know the stage of your heart rate to guide your next move. For example, when your heart rate reaches its peak level, it’s time to take a break to avoid potential harm. This is where the device comes in. It allows people to monitor their heart rate while exercising and stay informed about their physical condition.
 
-Specifically, for zone 1, which indicates a very light exercise like warm-up or cool-down, the device emits white light. For zone 2, which represents a light exercise, the device emits blue light. For zone 3, which suggests a moderate level of exercise, the device emits green light. For zone 4, which is the threshold zone, the device emits yellow light. As for zone 5, which implies the most intense level of exercise, the device emits red light.
+The device would have 5 different light colors based on stages of heart rate, as in the following table.
+
+The following table is the 5 stages provided by the American College of Sports Medicine. 
+
+| Intensity Zone | %HRMax | %HRR |
+|----------|----------|----------|
+| Very Light | <57% | <30% |
+| Light | 57-63% | 30-39% |
+| Moderate | 64-76% | 40-59% |
+| Vigorous | 77-95% | 60-89% |
+| Maximal | 96-100% | 90-100% |
+
+- **HRmax**: Maximum heart rate, which is the number of heartbeats per minute that your heart can reach during exercise. In most cases, people use 220 minus their age to calculate the number. 
+- **HRR**: Heart rate reserve, which is the difference between maximum heart rate and resting heart rate. Resting heart rate is the number of heartbeats per minute when the person is not exercising.
+
+In this scenario, we use %HRmax to categorize each stage of working out. As the following table indicates, different colors are assigned to different Intensity Zones. These colors can easily notify people on their interactive devices. We align the color schema with the intuitive perception of intensity, where white denotes a neutral baseline, blue represents a sense of calm, green conveys a balanced state, yellow suggests higher activity, and red signifies maximum intensity.
+
+| Intensity Zone | %HRMax | Color |
+|----------|----------|----------|
+| Very Light | <57% | white |
+| Light | 57-63% | blue |
+| Moderate | 64-76% | green |
+| Vigorous | 77-95% | yellow |
+| Maximal | 96-100% | red |
+
+The goal of the device is to help users monitor their heart rate during physical activity, so they can exercise safely, optimize performance, and prevent potential health risks.
 
 ---
 
@@ -84,10 +110,13 @@ Storyboards are a tool for visually exploring a users interaction with a device.
 
 \*\***Include pictures of your storyboards here**\*\*
 
+![storyboard](./resource/IDD_Lab1_partB.png)
+
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
 
+A classmate mentioned that the device is practical and particularly useful given that people value their health management nowadays. Another classmate suggests that we could also detect the blood oxygen level, which is another important indicator in exercise, to provide more information, allowing the device to analyze the exercise level of the user more accurately.
 
 ## Part B. Act out the Interaction
 
@@ -95,7 +124,16 @@ Try physically acting out the interaction you planned. For now, you can just pre
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
 
+In the planning stage, we expected users to raise their hands to check the light while running, which seems to be intuitive and easy to perform because it is similar to the act of checking the time on a watch.
+
+In practice, we found two problems with using a device that emits light. The first one is that the runner would not know when to check the device; as a result, they have to check it regularly. The other problem is that when the user is running, raising their hands to check the light requires extra effort, which distracts them from focusing on running.
+
+
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+
+One solution we came up with is that we could use vibration instead of light, making it effortless for the user to receive feedback from the device. With this type of notification, users can receive information passively rather than actively checking their status.
+
+We noticed that placement really matters. Wearing the device on the wrist works fine when you’re not moving much, but during more intense activities like running or cycling, it’s harder to check quickly. An armband or chest strap with a front-facing light could work better for runners since the light would stay in their line of sight and be easier to notice without extra effort.
 
 
 ## Part C. Prototype the device
@@ -110,16 +148,23 @@ If you run into technical issues with this tool, you can also use a light switch
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
 
+The installation process was quite smooth overall, and the instructions were very clear to follow. Although we did run into some version compatibility issues during setup, the documentation provided helpful solutions, so we were able to resolve them quickly.
+
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
+Click on the image below to watch the video.
+
+[![partD](./resource/IDD_Lab1_partD_photo.png)](resource/IDD_Lab1_partD.mov)
+
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
 
+Another goal is to use the device as a customizable training timer. The athlete wearing the device can program how long each training session or segment should take. Each color corresponds to a specific session, for example, warm-up, high intensity intervals or rest periods. Based on these settings, the device will use the lights to inform the transitions of sessions in real time. By allowing the user to stay focused on the performance without needing to check an external timer, the device can ensure a more immersive and efficient experience for the user. 
 
 ## Part E. Costume the device
 
@@ -128,13 +173,38 @@ Only now should you start worrying about what the device should look like. Devel
 Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
 
 \*\***Include sketches of what your devices might look like here.**\*\*
+For each design, three images are presented: the left image illustrates the prototype being worn by a user, the middle image displays the physical prototype itself, and the right image depicts the envisioned ideal appearance of the device, which is generated by ChatGPT.
+
+**Design 1**: put on the wrist as a bracelet
+
+| ![design1_1](resource/IDD_Lab1_partE_design1_photo1.jpg) | ![design1_2](resource/IDD_Lab1_partE_design1_photo2.jpg) | ![design1_3](resource/IDD_Lab1_partE_design1_photo3.jpg) |
+|---------------|---------------|---------------|
+
+**Design 2**: put on the waist as a belt
+
+| ![design2_1](resource/IDD_Lab1_partE_design2_photo1.jpg) | ![design2_2](resource/IDD_Lab1_partE_design2_photo2.jpg) | ![design2_3](resource/IDD_Lab1_partE_design2_photo3.jpg) |
+|---------------|---------------|---------------|
+
+**Design 3**: put on an index finger as a ring
+
+| ![design3_1](resource/IDD_Lab1_partE_design3_photo1.jpg) | ![design3_2](resource/IDD_Lab1_partE_design3_photo2.jpg) | ![design3_3](resource/IDD_Lab1_partE_design3_photo3.jpg) |
+|---------------|---------------|---------------|
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 
+The design is primarily shaped by several key concerns, including visibility, stability, comfort, device size, potential interference with the athlete's motion, sweat resistance, and the accuracy of data collected. Addressing these challenges is essential to ensure the device performs reliably during intense physical activity. 
+
+At the same time, the device also presents valuable opportunities including providing real time feedback, offering customizable user experience, enhancing motion through visual cues, and enabling integration with other devices to support broader training goals. 
 
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
+
+Click on each image to view its interaction video.
+
+| [![device 1](resource/IDD_Lab1_partF_design1_photo.png)](resource/IDD_Lab1_partF_design1.mp4) | [![device 2](resource/IDD_Lab1_partF_design2_photo.png)](resource/IDD_Lab1_partF_design2.mp4) | [![device 3](resource/IDD_Lab1_partF_design3_photo.png)](resource/IDD_Lab1_partF_design3.mp4) |
+|-|-|-|
+
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
