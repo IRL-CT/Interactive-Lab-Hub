@@ -202,9 +202,9 @@ At the same time, the device also presents valuable opportunities including prov
 \*\***Take a video of your prototyped interaction.**\*\*
 
 Click on each image to view its interaction video.
-
-| [![device 1](resource/IDD_Lab1_partF_design1_photo.png)](https://drive.google.com/file/d/1k19Eb_AzwOkdqGib6ngVkBXroh1oAK1X/view?usp=drive_link) | [![device 2](resource/IDD_Lab1_partF_design2_photo.png)](https://drive.google.com/file/d/1P2uAy3tRcriqTgwgDtHuwHF4V8N8J670/view?usp=drive_link) | [![device 3](resource/IDD_Lab1_partF_design3_photo.png)](https://drive.google.com/file/d/1POT05AWawgyuvhMXoj9c_wg2OGeC4meL/view?usp=drive_link) |
+| Design 1 | Design 2 | Design 3 |
 |-|-|-|
+| [![device 1](resource/IDD_Lab1_partF_design1_photo.png)](https://drive.google.com/file/d/1k19Eb_AzwOkdqGib6ngVkBXroh1oAK1X/view?usp=drive_link) | [![device 2](resource/IDD_Lab1_partF_design2_photo.png)](https://drive.google.com/file/d/1P2uAy3tRcriqTgwgDtHuwHF4V8N8J670/view?usp=drive_link) | [![device 3](resource/IDD_Lab1_partF_design3_photo.png)](https://drive.google.com/file/d/1POT05AWawgyuvhMXoj9c_wg2OGeC4meL/view?usp=drive_link) |
 
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
