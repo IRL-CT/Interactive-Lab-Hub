@@ -207,9 +207,9 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**
 
-[Sketch1](/Sketch1.png)
-[Sketch2](/Sketch2.png)
-[Sketch3](/Sketch3.jpeg) \*\*
+[Sketch1](./Sketch1.png)
+[Sketch2](./Sketch2.png)
+[Sketch3](./Sketch3.jpeg) \*\*
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**
 
