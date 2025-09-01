@@ -131,7 +131,7 @@ A bedroom at night, as the user winds down for sleep.
 - **Device**: use light (dimming + warming) to support relaxation, provide unobtrusive feedback, and automatically power off once the user is asleep.  
 
 **Storyboard**  
-*[Storyboard](./Lamp%20Storyboard.jpg)*  
+*![Storyboard](./Lamp%20Storyboard.jpg)*  
 
 **Feedback**  
 I like how the brightness changes along with the user's activity. But how would you define the brightness for different settings? How does the light detect the user's activities — through motion capture or voice control?\*\*
@@ -179,14 +179,16 @@ If you run into technical issues with this tool, you can also use a light switch
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**
-[Setup Video](./initialsetup.mp4)
+<video src="./initialsetup.mp4" controls playsinline muted width="640"></video>
+
 \*\*
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.** 
 
-[Storyboard Updated](./Storyboard%20after%20update.jpeg)
+![Storyboard Updated](./Storyboard%20after%20update.jpeg)
+
 
 **Update to the paper prototype**  
 I added colors to the storyboard to show each state:  
