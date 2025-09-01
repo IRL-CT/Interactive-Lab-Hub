@@ -1,4 +1,4 @@
-
+We decided to have our light interaction be part of a club. When someone enters, the light will flash white. When someone exits, the light with flash black. We have different conditions. If there are 0-5 people in the club, the light falls back to a certain color, same thing with 5-10, 10-15, and 15-20. We also have special conditions. Once the amount of people reaches 20 inside the club, the light's default will be a strobe between red, green, and blue. Additionally, if people inside the club are raising their hands, the vibrancy of the light will adjust.
 
 # Staging Interaction
 
@@ -101,7 +101,7 @@ Present your ideas to the other people in your breakout room (or in small groups
 
 \*\***Summarize feedback you got here.**\*\*
 
-\*\***One feedback question was how the device worked or was activated. We illustrate some kind of "laser tripwire" from spy movies / kid's toy sections as the trigger for how the light knows when to activate. Another feedback question was**\*\*
+\*\***One feedback question was how the device worked or was activated. We illustrate some kind of "laser tripwire" from spy movies / kid's toy sections as the trigger for how the light knows when to activate. Another feedback question was what colors to use and when. **\*\*
 
 
 ## Part B. Act out the Interaction
@@ -137,10 +137,13 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
+https://github.com/user-attachments/assets/0a4e45ad-4c9e-4194-9104-17312157bcc3
+
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
 
+https://github.com/user-attachments/assets/aa5b5205-edee-4be1-b460-c9f10be24fb1
 
 ## Part E. Costume the device
 
