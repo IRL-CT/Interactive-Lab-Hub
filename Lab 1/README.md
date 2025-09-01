@@ -29,6 +29,9 @@ The interaction takes place in the living room in the evening, with the owner pr
 - The owner wants to understand the pet without guesswork.
 - The lamp acts as a “translator” between them using only light.
 
+###Storyboard
+![Storyboard](./Storyboards.png)
+
 ### Feedback Summary
 We received feedback from another group suggesting we clarify how the pet's mood is monitored. After research, we found that similar to how an Apple Watch monitors blood pressure and heart rate, we can implement a collar for the pet to wear to track these metrics.
 
