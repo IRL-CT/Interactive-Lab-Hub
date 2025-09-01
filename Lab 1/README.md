@@ -131,7 +131,16 @@ We invented this tool for this lab!
 
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
-\*\***Give us feedback on Tinkerbelle.**\*\*
+\*\***
+Pros：
+
+Using a smartphone browser as a “light” prototype is quick to set up, easy to demo remotely, and clearly shows color/brightness transitions.
+
+Cons：
+
+Color gamut mismatch: The phone’s display gamut differs from the computer/preview display, so colors on the phone may not match the design intent.
+
+No remote brightness control: The computer cannot control the phone’s system screen brightness; only on-page (CSS) brightness can be altered.**\*\*
 
 
 ## Part D. Wizard the device
