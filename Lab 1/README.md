@@ -2,7 +2,7 @@
 
 # Staging Interaction
 
-\*\***NAME OF COLLABORATOR HERE**\*\*
+\*\***Chiahsuan (Jade) Chang OF COLLABORATOR HERE**\*\*
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -73,10 +73,16 @@ _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening th
 The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
+* Setting: In a study room or any room that is dark enough to see the light projection on the wall
+* Players: A study group/ one single person that want to review learning questions together.
+* Activity: Questions appear on the wall. People touch the question with their hands to find out answer. Touch the answer to move on to the next question. There may be multiple questions on the wall at the same time. All the answers need to be revealed to move on to new questions.
+* Goals: A interactive Anki that is projected on the wall. Review subjects with questions and answers to them. 
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
+
+[storyboard_interactive_Anki.pdf](storyboard_interactive_Anki.pdf)
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
@@ -125,14 +131,17 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 
-
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
 
+[prototype_interaction.mp4](prototype_interaction.mp4)
+
+
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
+My roommate <3
 
 
 # Staging Interaction, Part 2 
