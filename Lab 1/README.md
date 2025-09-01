@@ -29,7 +29,7 @@ The interaction takes place in the living room in the evening, with the owner pr
 - The owner wants to understand the pet without guesswork.
 - The lamp acts as a “translator” between them using only light.
 
-###Storyboard
+### Storyboard
 ![Storyboard](./Storyboards.png)
 
 ### Feedback Summary
