@@ -158,7 +158,7 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 
 Click on the image below to watch the video.
 
-[![partD](./resource/IDD_Lab1_partD_photo.png)](resource/IDD_Lab1_partD.mov)
+[![partD](./resource/IDD_Lab1_partD_photo.png)](https://drive.google.com/file/d/1lBuOQgfDV5vhn_OHFBliLLEAPfHmSMHr/view?usp=drive_link)
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
@@ -202,7 +202,7 @@ At the same time, the device also presents valuable opportunities including prov
 
 Click on each image to view its interaction video.
 
-| [![device 1](resource/IDD_Lab1_partF_design1_photo.png)](resource/IDD_Lab1_partF_design1.mp4) | [![device 2](resource/IDD_Lab1_partF_design2_photo.png)](resource/IDD_Lab1_partF_design2.mp4) | [![device 3](resource/IDD_Lab1_partF_design3_photo.png)](resource/IDD_Lab1_partF_design3.mp4) |
+| [![device 1](resource/IDD_Lab1_partF_design1_photo.png)](https://drive.google.com/file/d/1k19Eb_AzwOkdqGib6ngVkBXroh1oAK1X/view?usp=drive_link) | [![device 2](resource/IDD_Lab1_partF_design2_photo.png)](https://drive.google.com/file/d/1P2uAy3tRcriqTgwgDtHuwHF4V8N8J670/view?usp=drive_link) | [![device 3](resource/IDD_Lab1_partF_design3_photo.png)](https://drive.google.com/file/d/1POT05AWawgyuvhMXoj9c_wg2OGeC4meL/view?usp=drive_link) |
 |-|-|-|
 
 
