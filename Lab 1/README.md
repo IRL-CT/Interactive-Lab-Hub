@@ -108,7 +108,8 @@ Storyboards are a tool for visually exploring a users interaction with a device.
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
-\*\***Summarize feedback you got here.**\*\*
+\*\***Feedback: I like how the brightness changes along with the user's activity. But how would you define the brightness for different settings? How’s the light detect the user's activities? Through motion capture or voice control?
+**\*\*
 
 
 ## Part B. Act out the Interaction
