@@ -230,11 +230,11 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Take a video of your prototyped interaction.**
 
-[Prototype interaction1](/prototypeinteraction1.mp4)
+[Prototype interaction1](./prototypeinteraction1.mp4)
 
-[Prototype interaction2](/prototypeinteraction2.mp4)
+[Prototype interaction2](./prototypeinteraction2.mp4)
 
-[Prototype interaction3](/prototypeinteraction3.mp4)\*\*
+[Prototype interaction3](./prototypeinteraction3.mp4)\*\*
 
 \*\***Please indicate who you collaborated with on this Lab.**
 
