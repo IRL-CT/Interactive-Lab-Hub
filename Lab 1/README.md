@@ -179,7 +179,18 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Take a video of your prototyped interaction.**\*\*
 
+(Full video)
+
 https://github.com/user-attachments/assets/e651a4b7-4b95-41df-b12a-889222807931
+
+**Click on the below image to play the video on YouTube**
+**Interaction 1**
+[![Interaction 1](https://img.youtube.com/vi/8-qJKf9TseE/maxresdefault.jpg)](https://youtu.be/8-qJKf9TseE)
+**Interaction 2**
+[![Interaction 2](https://img.youtube.com/vi/hpOWgV1T7n8/maxresdefault.jpg)](https://youtu.be/hpOWgV1T7n8)
+**Interaction 8**
+[![Interaction 8](https://img.youtube.com/vi/70Q2abh3BmU/maxresdefault.jpg)](https://youtu.be/70Q2abh3BmU)
+**Music Credit: Seize the Day by Andrey Rossi**
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
