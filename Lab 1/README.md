@@ -167,28 +167,6 @@ Our design comes from the storyline. We wanted to disguise the device as differe
 I (Huiying Zhan) collaborated with Qinrui Li and Jiayi Sun. I first proposed the storyline, while Jiayi took the lead in refining and writing the script. Qinrui and I mainly worked on drawing the storyboards. All three of us contributed to making the props. During filming, Jiayi served as the main videographer and editor, Qinrui controlled the lighting, and I arranged the actors’ movements and blocking. We worked together smoothly, and each of us made essential contributions to the group. The project would not have been complete without any one of us. We were very satisfied with the final outcome. We would also like to thank GitHub resources, the Tinkerbelle tool, and the iPhone recording software for their support.
 
 
-# Staging Interaction, Part 2 
-
-This describes the second week's work for this lab activity.
-
-
-## Prep (to be done before Lab on Wednesday)
-
-You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
-
-\*\***Summarize feedback from your partners here.**\*\*
-
-## Make it your own
-
-Do last week’s assignment again, but this time: 
-1) It doesn’t have to (just) use light, 
-2) You can use any modality (e.g., vibration, sound) to prototype the behaviors! Again, be creative! Feel free to fork and modify the tinkerbell code! 
-3) We will be grading with an emphasis on creativity. 
-
-\*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
-
----
-
 ## My Lab 1 Work
 
 ### Storyboard
@@ -216,3 +194,25 @@ Through this lab, I learned how to turn a simple idea on paper into an interacti
 
 One of the biggest insights was realizing how much stronger the performance became when we acted it out on video compared to the storyboard. The lights, sound, and movement combined to create a more dramatic and engaging effect. If we had more time, I would like to experiment more lighting transitions to make the scenes even more immersive. Overall, I feel satisfied with the final outcome and proud of what our group accomplished.
 
+
+# Staging Interaction, Part 2 
+
+This describes the second week's work for this lab activity.
+
+
+## Prep (to be done before Lab on Wednesday)
+
+You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
+
+\*\***Summarize feedback from your partners here.**\*\*
+
+## Make it your own
+
+Do last week’s assignment again, but this time: 
+1) It doesn’t have to (just) use light, 
+2) You can use any modality (e.g., vibration, sound) to prototype the behaviors! Again, be creative! Feel free to fork and modify the tinkerbell code! 
+3) We will be grading with an emphasis on creativity. 
+
+\*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+---
