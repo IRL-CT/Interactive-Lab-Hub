@@ -93,36 +93,87 @@ _Goals:_ People sometimes do not realize when the environment's air quality has 
 
 \*\***Include a picture of your storyboard here**\*\*
 
-**Temperature Raise Detector**
+<details>
+<summary>Temperature Raise Detector Storyboards 1 - 2</summary>
+Storyboard 1
 
 ![Temp Raise Detector](Storyboards/temp1.png)
+
+Storyboard 2
+
 ![alt Temp Raise Detector](Storyboards/temp2.png)
+</details>
 
-**Loudness Detector**
+<details>
+<summary>Loudness Detector Storyboards 3</summary>
+Storyboard 3
+
 ![alt Loudness Detector](Storyboards/loudness1.png)
-![alt Loudness Detector](Storyboards/loudness2.png)
+</details>
 
-**Cry Analyzer**
+<details>
+<summary>Cry Analyzer Storyboards 4 - 6</summary>
+Storyboard 4
+
 ![alt Cry Analyzer](Storyboards/cry_analyzer1.png)
-![alt Cry Analyzer](Storyboards/cry_analyzer2.png)
-![alt Cry Analyzer](Storyboards/cry_analyzer3.png)
 
-**Moodlight**
+Storyboard 5
+
+![alt Cry Analyzer](Storyboards/cry_analyzer2.png)
+
+Storyboard 6
+
+![alt Cry Analyzer](Storyboards/cry_analyzer3.png)
+</details>
+
+<details>
+<summary>Moodlight Storyboards 7 - 10</summary>
+
+Storyboard 7
 
 ![alt Moodlight](Storyboards/Moodie(1).jpg)
 ![alt Moodlight](Storyboards/Moodie(2).jpg)
-![alt Moodlight](Storyboards/Moodie(5).jpg)
-![alt Moodlight](Storyboards/Moodie(8).jpg)
-![alt Moodlight](Storyboards/Moodie(9).jpg)
 
-**AirQuality Detector**
+Storyboard 8
+
+![alt Moodlight](Storyboards/Moodie(5).jpg)
+
+Storyboard 9
+
+![alt Moodlight](Storyboards/Moodie(8).jpg)
+
+Storyboard 10
+
+![alt Moodlight](Storyboards/Moodie(9).jpg)
+</details>
+
+<details>
+<summary>AirQuality Detector Storyboards 11 - 15</summary>
+
+Storyboard 11
+
 ![alt AirQuality Detector](Storyboards/AirQ1(1).jpg)
 ![alt AirQuality Detector](Storyboards/AirQ1(2).jpg)
+
+Storyboard 12
+
 ![alt AirQuality Detector](Storyboards/AirQ1(3).jpg)
 ![alt AirQuality Detector](Storyboards/AirQ1(4).jpg)
+
+Storyboard 13
+
 ![alt AirQuality Detector](Storyboards/AirQ1(5).jpg)
+
+Storyboard 14
+
 ![alt AirQuality Detector](Storyboards/AirQ1(6).jpg)
+
+Storyboard 15
+
 ![alt AirQuality Detector](Storyboards/AirQ1(7).jpg)
+
+</details>
+
 
 \*\***Summarize feedback you got here.**\*\*
 
