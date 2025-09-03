@@ -123,6 +123,7 @@ Morning
 **QuickTicket:**  
 ![IMG_0652](https://github.com/user-attachments/assets/19fb67d2-a0f8-48b5-a07b-28d454b1c806)  
 
+**See the rest of the storyboards** [here](https://github.com/chenyingyu-main/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md#part-a-plan)
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
@@ -201,6 +202,8 @@ Physical Prototype:
 Physical Prototype:  
 <img src="https://github.com/user-attachments/assets/6a9c89ae-3a35-4d78-8cb8-4106e20dfc64" width="480">
 
+**See the rest of the costumes** [here](https://github.com/chenyingyu-main/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md#part-e-costume-the-device)
+
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
 **Cooking Helper**: will be used in a hot environment, so it needs to be able to withstand heat. It also shouldn't be too big so it is easy to store with all of the other kitchen supplies. The accessories are also interchangeable to make it easier for each user to buy/use the required parts for whatever they are cooking. 
 
@@ -208,7 +211,9 @@ Physical Prototype:
 
 \*\***Take a video of your prototyped interaction.**\*\*  
 - [Cooking Helper](https://drive.google.com/file/d/1RdkajOA6uyp1OThFQ7FziLMn45hgsoyX/view?usp=sharing)  
-- [Pet Diagnostic](https://drive.google.com/file/d/1kpfjlqszphcwYdWIBRx5RbDH00K5xzN7/view?usp=drive_link)  
+- [Pet Diagnostic](https://drive.google.com/file/d/1kpfjlqszphcwYdWIBRx5RbDH00K5xzN7/view?usp=drive_link)
+- [CatCommunicationButton](https://www.youtube.com/watch?v=Yz6D_rGv1BY)
+- [EmotionCard](https://www.youtube.com/shorts/sItv0txJx-8)
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design.  
