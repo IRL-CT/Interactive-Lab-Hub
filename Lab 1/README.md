@@ -112,8 +112,9 @@ This describes the second week's work for this lab activity.
 
 You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
 
-\*\***Summarize feedback from your partners here.**\*\*
+\*\***Feedback from your partners.**\*\*
 
+Our system has received widespread acclaim from our colleagues, especially those who don't cook, who find it extremely useful. However, it's less appealing to those who know how to cook. Of course, we have many suggestions for improvement. The first is to add sound. Our second part allows for methods other than lighting. Our colleagues think that sound would be a good way to alert them when a bottle is not put back or when the wrong bottle is taken. Secondly, we need to consider scalability. We need to think about how to add more spice boxes. The idea we've come up with is to use magnetic boxes that can be connected one after another, making it scalable and sustainable. Thirdly, we need to consider the amount of seasoning. Our colleagues think that seasoning is also very important when cooking. A small digital display below each light showing the amount is also very important. This would effectively solve all the problems associated with using seasonings. It would fully meet their needs. We will also incorporate all of these ideas in the second part, making our product a practical, easy-to-use, and truly excellent product that addresses all the pain points of novice cooks.
 ## Make it your own
 
 Do last week’s assignment again, but this time: 
