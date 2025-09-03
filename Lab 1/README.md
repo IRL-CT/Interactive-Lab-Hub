@@ -1,7 +1,7 @@
 
 
 # Staging Interaction
-NAME OF COLLABORATORS: Arya Prasad, Saksham Saraswat, Grace Myers **\*\*
+NAME OF COLLABORATORS: Arya Prasad (ap2535) **\*\*
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -86,6 +86,10 @@ Present your ideas to the other people in your breakout room (or in small groups
 ![IMG_3086](https://github.com/user-attachments/assets/58022035-f110-437c-804a-293b1c8ea845)
 ![IMG_3087](https://github.com/user-attachments/assets/93a20b08-2b52-4313-b280-994311b2ec39)
 ![IMG_3088](https://github.com/user-attachments/assets/bf1e45fc-9f25-4de7-af9a-cfde85f4db5a)
+<img width="282" height="638" alt="Screenshot 2025-09-02 at 10 29 36 PM" src="https://github.com/user-attachments/assets/1e1fd6b9-27ae-47e7-b969-069d73de7335" />
+<img width="250" height="607" alt="Screenshot 2025-09-02 at 10 29 55 PM" src="https://github.com/user-attachments/assets/02609ad1-dbaa-4145-9ddb-69ab0b6bb757" />
+<img width="296" height="615" alt="Screenshot 2025-09-02 at 10 30 07 PM" src="https://github.com/user-attachments/assets/8a385756-d6b6-4523-b372-ecbd41863ac4" />
+<img width="368" height="447" alt="Screenshot 2025-09-02 at 10 30 18 PM" src="https://github.com/user-attachments/assets/eb99b8cc-c31e-4fda-94ad-04e39d3d008b" />
 
 
 \*\***Summarize feedback you got here.**\*\*
@@ -96,9 +100,10 @@ Present your ideas to the other people in your breakout room (or in small groups
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
+For the most part, using the light to indicate study room status worked well. However, the idea of having a blue and yellow light to indicate separate meanings for the room became confusing. The blue light indicates a student that is willing to share the room with another person. We acted this scenario out and realized that one could simply work at one of the other tables in the masters studio instead. The blue light is not necessary and does not add significant value to the status of the study room. 
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
-
+One new idea that came up as we were acting was a manual change of color in case someone had to temporarily leave the study room (ie. bathroom break). In this case, the student would leave the status light as red to indicate the occupied room. We also thought of using the door closing as a sensor where the status only changed when the door was closed. 
 
 ## Part C. Prototype the device
 
@@ -131,15 +136,16 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 
-\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 
+\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+Some concerns include that the device should be easy to control and use. There should not be too many features and should be straightforward. 
 
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
-
+https://drive.google.com/file/d/1cBeAqXiasgHr7Iz0Fk_OpIUnRj7PdKr-/view?usp=sharing 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
-Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
+Arya Prasad (ap2535)
 
 
 
