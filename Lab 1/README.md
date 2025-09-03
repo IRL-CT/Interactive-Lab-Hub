@@ -2,7 +2,9 @@
 
 # Staging Interaction
 
-**COLLABORATORS**: Amanda Lu (me), Shreya Reddy, [Ying Yu Chen](https://github.com/chenyingyu-main/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), Miriam Alex
+**COLLABORATORS**: Amanda Lu (me), [Ying Yu Chen](https://github.com/chenyingyu-main/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md)  
+
+**Feedback Givers**: Miriam Alex, Shreya Reddy
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -210,8 +212,8 @@ Physical Prototype:
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design.  
-- I collaborated with all my group members to help with brainstorming ideas and getting feedback for improvements.  
-- I additionally collaborated with Ying Yu Chen to record the setup and prototype videos. (Many thanks to her for acting in my video!!)  
+- I collaborated with my group member to help with brainstorming ideas and getting feedback for improvements.  
+- I additionally collaborated people at my table (feedback givers) to get more additional feedback
 - I also looked to past students' assignments on github for guidance on what type of devices we can design and discovered it to be very open-ended. 
 
 # Staging Interaction, Part 2 
