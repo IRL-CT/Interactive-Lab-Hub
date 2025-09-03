@@ -108,16 +108,74 @@ Yoyo Wang
 This describes the second week's work for this lab activity.
 
 
-## Prep
+## Prep (to be done before Lab on Wednesday)
 
-\*\***Feedback from your partners.**\*\*
+\*\***Summarize feedback from your partners here.**\*\*
 
 Our system has received widespread acclaim from our colleagues, especially those who don't cook, who find it extremely useful. However, it's less appealing to those who know how to cook. Of course, we have many suggestions for improvement. The first is to add sound. Our second part allows for methods other than lighting. Our colleagues think that sound would be a good way to alert them when a bottle is not put back or when the wrong bottle is taken. Secondly, we need to consider scalability. We need to think about how to add more spice boxes. The idea we've come up with is to use magnetic boxes that can be connected one after another, making it scalable and sustainable. Thirdly, we need to consider the amount of seasoning. Our colleagues think that seasoning is also very important when cooking. A small digital display below each light showing the amount is also very important. This would effectively solve all the problems associated with using seasonings. It would fully meet their needs. We will also incorporate all of these ideas in the second part, making our product a practical, easy-to-use, and truly excellent product that addresses all the pain points of novice cooks.
-## Make it your own
-
-Do last week’s assignment again, but this time: 
-1) It doesn’t have to (just) use light, 
-2) You can use any modality (e.g., vibration, sound) to prototype the behaviors! Again, be creative! Feel free to fork and modify the tinkerbell code! 
-3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+
+A) [Plan](#part-2a-plan) 
+
+B) [Act out the interaction](#part-2b-act-out-the-interaction) 
+
+C) [Costume the device](#part-2c-costume-the-device)
+
+D) [Record the interaction](#part-2d-record)
+
+
+## Part 2A. Plan 
+
+\*\***Describe your setting, players, activity and goals here.**\*\*
+
+_Setting:_ Kitchen
+
+_Players:_ The person who is cooking
+
+_Activity:_ Before cooking, choose the mode you would like to cook on the left side of the box. As the cooking process progresses, the green light illuminate in sequence to indicate the current step. The lights guide the chef through the recipe, with the next step indicated by a green light and required quantity would present on the screen. The bottles represent different condiments (can be in various containers). If a bottle is not returned after use, the yellow light flashes as a warning with a sound effct. Picking the wrong bottle causes the red light to flash and corresponding sound effct. Each time a bottle is correctly picked up and returned, the green light flashes once. Completing all steps triggers all the lights to flash with a colorful lights. In the end, it turned off automatically. Additionally, the boxes are stackable, and the plan is to use magnetic technology to make the boxes sustainable and expandable.
+
+_Goals:_ Help chefs avoid missing or forgetting steps by visualizing cooking progress through interactive lights with more specific instructions. Provide immediate feedback on actions to ensure accuracy and proper sequencing.
+
+\*\***Include pictures of your storyboards here**\*\*
+
+![](storyboard2.jpeg)
+
+\*\***Summarize feedback you got here.**\*\*
+
+This version is a clear improvement over the last one—now with lights, sound, and digital displays, I know exactly how much seasoning to add. It feels more intuitive and removes the uncertainty from before. --Dean Xu
+
+This version is definitely an improvement, especially with the digital display showing how much to add. But there’s still an issue—it tells me the amount, yet I’m not always sure when to add it, and sometimes seasonings aren’t added all at once but later in the process. --Richard Li
+
+## Part 2B. Act out the Interaction
+
+\*\***Are there things that seemed better on paper than acted out?**\*\*
+
+This time, we used a projector along with a cupboard cut to the needed shape. It made the scenes more vivid and interactive when acted out.
+
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+
+It would be better to have a measurement on the quantity we used for the condiments. However, it is would require more advanced techniques to know how much we used during cooking.
+
+
+## Part 2C. Costume the device
+
+
+\*\***Include sketches of what your devices might look like here.**\*\*
+
+![](costume2.jpeg)
+
+\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+
+The new design features changeable condiment containers that are connected with magnets, allowing them to be easily added or removed. This makes the design more sustainable.
+
+## Part 2D. Record
+
+\*\***Take a video of your prototyped interaction.**\*\*
+
+
+Here is the new demo video with the improved prototype!
+
+
+https://drive.google.com/file/d/1aso9p4zn8DSsxiVJ8srne_fkNjhhoKXU/view?usp=sharing
