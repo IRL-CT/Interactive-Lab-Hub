@@ -68,12 +68,13 @@ _Players:_ Who is involved in the interaction? Who else is there? If you reflect
 Those invovled in the interaction include students and other academics looking for a space to study or do work. One scenario is where a person is trying to find a room and sees that room A is booked because the light is red. Another scenario may be where a person is trying to find a room and sees that room A is not booked because the light is green, meaning they can enter the room as they please. There might be a group of people who are using the room or need to use the room, so these would be additional characters/players. 
 
 _Activity:_ What is happening between the actors?
-The actors interact by viewing and interpreting the light. Between ..................
+The actors interact by viewing and interpreting the light. The use the light to understand the status of the study room. One actor might go away upon seeing a red status light because they know the room is occupied. Another might react to a green status light because the room will be available for use. 
 
 _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
-The goal of each player to to ensure an efficient and seamless study room occupation system irregardless of whether or not someone has booked a room. Each player can either book a room for an available time (if the room is not already occupied) or can ..................
+The goal of each player to to ensure an efficient and seamless study room occupation system irregardless of whether or not someone has booked a room. Each player can either book a room for an available time (if the room is not already occupied) or can enter if it's available. If there is an upcoming booking, the person using the room will know 10 minutes before the booking to pack up. The status light can enforce a time limit on people's bookings and study sessiosn to ensure all students who need a study room can obtian one. 
 
-The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
+The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light. 
+-> Our device is a status light. 
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
@@ -116,9 +117,9 @@ Code for the "Tinkerbelle" tool, and instructions for setting up the server and 
 We invented this tool for this lab! 
 
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
-
+ 
 \*\***Give us feedback on Tinkerbelle.**\*\*
-
+-> Great tool! Easy to use and set up! 
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
