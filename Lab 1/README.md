@@ -34,6 +34,7 @@ _Activity:_ When the device detects that the room temperature is becoming danger
 _Goals:_ Elderly people sometimes do not realize when the environment has become uncomfortably hot, which can lead to heat stroke indoors. The goal of the device is to use lighting as a clear alert to prompt someone—either the resident or others—to take action and cool the room.
 
 **2 - Loudness Detector**
+
 _Setting:_ A library or any room where people are expected to remain quiet. A loudness detector device is placed on each table.
 
 _Players:_
