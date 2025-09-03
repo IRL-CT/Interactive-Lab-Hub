@@ -136,15 +136,14 @@ Only now should you start worrying about what the device should look like. Devel
 
 Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
 
-\*\***Include sketches of what your devices might look like here.**\*\*
-
-The three costumes include an emergency light bulb, a screen with the color, and a neon light. 
+The three costumes include an emergency light bulb, a screen with the color, and a neon light. The setting is likely someplace like the masters studio where there is no rain or environmental concerns. It can be a simple light fixture near the door of the study rooms in the masters studio. 
 <img width="574" height="138" alt="Screenshot 2025-09-03 at 4 51 20 PM" src="https://github.com/user-attachments/assets/1c9e6c71-28dd-4b85-b8ed-87b9f285e4d8" />
 
 
 
-\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
-Some concerns include that the device should be easy to control and use. There should not be too many features and should be straightforward. 
+\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\* 
+
+Some concerns include that the device should be easy to control and use. There should not be too many features and should be straightforward to understand and use. 
 
 ## Part F. Record
 
