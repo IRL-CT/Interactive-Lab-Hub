@@ -158,20 +158,6 @@ Only now should you start worrying about what the device should look like. Devel
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
 Our design comes from the storyline. We wanted to disguise the device as different weapons: a fruit bowl, a knife, and a cup of wine. We drew these objects, cut them out, and placed them over the phone screen. With Tinkerbelle’s lighting, the phone could show different effects—for example, green light for the fruit bowl, purple light for the wine, and white light for the knife. When each object turned into a weapon to kill the King, the light changed to red.
 
-## Part F. Record
-
-\*\***Take a video of your prototyped interaction.**\*\*  
-[Watch the Prototyped Interaction video here](https://youtu.be/DuThEwBd8EE)   
-
-\*\***Please indicate who you collaborated with on this Lab.**\*\*  
-I (Huiying Zhan) collaborated with Qinrui Li and Jiayi Sun. I first proposed the storyline, while Jiayi took the lead in refining and writing the script. Qinrui and I mainly worked on drawing the storyboards. All three of us contributed to making the props. During filming, Jiayi served as the main videographer and editor, Qinrui controlled the lighting, and I arranged the actors’ movements and blocking. We worked together smoothly, and each of us made essential contributions to the group. The project would not have been complete without any one of us. We were very satisfied with the final outcome. We would also like to thank GitHub resources, the Tinkerbelle tool, and the iPhone recording software for their support.
-
-
-## My Lab 1 Work
-
-### Storyboard
-![Storyboard](./storyboards.png)
-
 ### Photos of costumed devices  
 **Fruit Bowl**  
 <img src="./The_Maid_and_Fruit_Bowl.jpg" width="300px"/>
@@ -182,6 +168,15 @@ I (Huiying Zhan) collaborated with Qinrui Li and Jiayi Sun. I first proposed the
 **Sword**  
 <img src="./The_General_and_Sword.jpg" width="300px"/>
 
+
+## Part F. Record
+
+\*\***Take a video of your prototyped interaction.**\*\*  
+[Watch the Prototyped Interaction video here](https://youtu.be/DuThEwBd8EE)   
+
+\*\***Please indicate who you collaborated with on this Lab.**\*\*  
+I (Huiying Zhan) collaborated with Qinrui Li and Jiayi Sun. I first proposed the storyline, while Jiayi took the lead in refining and writing the script. Qinrui and I mainly worked on drawing the storyboards. All three of us contributed to making the props. During filming, Jiayi served as the main videographer and editor, Qinrui controlled the lighting, and I arranged the actors’ movements and blocking. We worked together smoothly, and each of us made essential contributions to the group. The project would not have been complete without any one of us. We were very satisfied with the final outcome. We would also like to thank GitHub resources, the Tinkerbelle tool, and the iPhone recording software for their support.
+
 ### Video of 3 prototyped interactions  
 [Watch the  Scene 1 - The Maid’s Poisoned Fruit video here](https://youtu.be/yKgqXZjnT2M)  
 
@@ -189,7 +184,7 @@ I (Huiying Zhan) collaborated with Qinrui Li and Jiayi Sun. I first proposed the
 
 [Watch the  Scene 3 - The Rebel’s Drawn Blade video here](https://www.youtube.com/watch?v=w_AuT5ix660)
 
-### Reflection
+## Reflection
 Through this lab, I learned how to turn a simple idea on paper into an interactive prototype using Tinkerbelle. At first, it was challenging to coordinate the timing of the lighting with the actors’ movements, but after several trials we managed to control it more smoothly. Working with my collaborators also taught me how important teamwork is. Each of us focused on different parts such as story writing, storyboard drawing, prop making, and video editing, and the project would not have been complete without everyone’s contribution.
 
 One of the biggest insights was realizing how much stronger the performance became when we acted it out on video compared to the storyboard. The lights, sound, and movement combined to create a more dramatic and engaging effect. If we had more time, I would like to experiment more lighting transitions to make the scenes even more immersive. Overall, I feel satisfied with the final outcome and proud of what our group accomplished.
