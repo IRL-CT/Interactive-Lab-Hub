@@ -209,11 +209,11 @@ As we discussed, we realized this would be particularly helpful for individuals 
 In summary: 
 Cry analyzer 
 - Detects only 4 types of cries (hungry, tired, wet diapers, and others), and details of others will be shown in the app
-- Analyzing the baby’s cry: Green 
-- Hungry: Red 
-- Tired/Sleepy: Yellow
-- Wet diapers: Brown
-- Others: Purple
+    - Analyzing the baby’s cry: Green 
+    - Hungry: Red 
+    - Tired/Sleepy: Yellow
+    - Wet diapers: Brown
+    - Others: Purple
 - Users can customize the four types of cries depending on the baby’s reasons for crying
 - Dim when the surroundings are dark 
 - Snooze after x min 
