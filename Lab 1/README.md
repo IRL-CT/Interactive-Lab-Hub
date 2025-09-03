@@ -194,7 +194,7 @@ Through this lab, I learned how to turn a simple idea on paper into an interacti
 
 One of the biggest insights was realizing how much stronger the performance became when we acted it out on video compared to the storyboard. The lights, sound, and movement combined to create a more dramatic and engaging effect. If we had more time, I would like to experiment more lighting transitions to make the scenes even more immersive. Overall, I feel satisfied with the final outcome and proud of what our group accomplished.
 
-
+---
 # Staging Interaction, Part 2 
 
 This describes the second week's work for this lab activity.
@@ -215,4 +215,4 @@ Do last week’s assignment again, but this time:
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
 
----
+
