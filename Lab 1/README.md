@@ -74,15 +74,57 @@ The interactive device can be anything *except* a computer, a tablet computer or
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
-\*\***This interaction is happening at the entrance to a club. It is happening at night-time since this is when clubs are generally active and lights are more conspicious.**\*\*
+Setting: This interaction is happening at the entrance to a club. It is happening at night-time since this is when clubs are generally active and lights are more conspicious. The club entrance/lobby and main floor, at night. Lighting cues must be legible outdoors at the door and indoors under show lighting.
 
-\*\***Those who are involved in the interaction are the visitors of the club. Other people may include the security guard and staff of the club. However, the intention for the device is to be used by the visitors. Here is a list of the potential players in the setting:**\*\*
+Players: Visitors (primary), door staff/security (secondary), floor staff/DJ (secondary), occasional third parties (delivery, first responders).
 
-\*\***1.) The visitors/general audience (intended audience for interactive device)**\*\*
+Those who are involved in the interaction are the visitors of the club. Other people may include the security guard and staff of the club. However, the intention for the device is to be used by the visitors. Here is a list of the potential players in the setting:
 
-\*\***2.) The staff/security of the club who keep the club's operations running**\*\*
+1.) The visitors/general audience (intended audience for interactive device)
 
-\*\***3.) Any third party (first responders, delivery workers, etc.)**\*\*
+2.) The staff/security of the club who keep the club's operations running
+
+3.) Any third party (first responders, delivery workers, etc.)
+
+Activity: Entering/exiting triggers a flash cue at the entrance beacon; once inside, an ambient “default” color communicates occupancy. A “hands-up” gesture in the crowd increases vibrancy (brightness/saturation) of the current look.
+
+Goals:
+
+Visitors: immediate feedback that they’ve entered/exited; a fun ambient light that reflects crowd energy.
+
+Staff: glanceable read on occupancy and hype level; safe, non-blocking signals.
+
+Device: remain legible, avoid rapid flicker, fail safely.
+
+Light logic (spec for prototype + show bible):
+
+Entry: flash white (300 ms on, 200 ms off, 300 ms on), then return to default.
+
+Exit: flash black (turn off 250 ms, on 250 ms, off 250 ms), then return to default.
+
+Default color by occupancy (debounce counter with 1 s cooldown to prevent multiple beams on one person):
+
+0–5: no light — calm/space available.
+
+5–10: green — warming up.
+
+10–15: yellow — party energy.
+
+15–20: red — near capacity.
+
+≥20 (capacity mode): 1 Hz strobe cycling red → green → blue (RGB every 1 s; 50% duty). Post signage or provide a Staff Override (see Safety).
+
+Hands-up vibrancy: Let raised_ratio = (# hands up) / (estimated people inside).
+
+Brightness maps from 35% → 100% as raised_ratio goes 0 → 0.6 (clamp at 100%).
+
+Saturation maps from 70% → 100% over the same range.
+
+Smooth with EMA: vibrancy_t = 0.8 * vibrancy_{t-1} + 0.2 * vibrancy_target.
+
+Safety/overrides:
+Quiet mode: long-press staff button → freeze current hue @ 25% brightness (no strobe).
+Emergency: double-press staff button → solid red @ 100%, no animations, until cleared.
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
@@ -110,11 +152,11 @@ Try physically acting out the interaction you planned. For now, you can just pre
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
 
-\*\***Yes, we realized quickly that**\*\*
+Yes, we realized quickly that the entry/exit flashes were getting swallowed by ambient lobby light and felt too brief to notice in a crowd. We increased the white flash to a two-pulse pattern and added a short 200 ms black gap so it reads as “arrival” vs. “departure.” We also learned the occupancy color shifted too frequently during rushes; adding a 1 s debounce and a 5 s minimum dwell per range made the looks feel intentional rather than twitchy.
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
 
-\*\***Yes, we decided that we needed either more creative interactions or more creative responses. We decided to take this both ways. For a more creative interaction, we decided that we should keep the base interactions but add that if visitors to the club raise their arms inside of the club, the vibrancy of the colors being displayed at the moment should adjust. For a more creative response, we added that if there are 20 or more people in the club, then the light should start a "strobe" effect that changes between red green and blue every second.**\*\*
+Yes, we decided that we needed either more creative interactions or more creative responses. We decided to take this both ways. For a more creative interaction, we decided that we should keep the base interactions but add that if visitors to the club raise their arms inside of the club, the vibrancy of the colors being displayed at the moment should adjust. For a more creative response, we added that if there are 20 or more people in the club, then the light should start a "strobe" effect that changes between red green and blue every second.
 
 
 ## Part C. Prototype the device
@@ -129,7 +171,13 @@ If you run into technical issues with this tool, you can also use a light switch
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
 
-\*\***Tinkerbelle is great, and congratulations to whoever developed it, but coming at this from a developer who used to love building things in Flask, I would recommend that you just shift it to a Github or CFPages webapp since 90% of the students probably aren't changing the source code of it. You can still keep the source code available and encourage students to play with it, however, you shouldn't need to make them setup any sort of Python venvs etc. (even if the reqs are minimal) to run your app. For our group, we ended up poking a hole thru the firewall with a temporary CF tunnel to have it be accessible to everyone else (since the school WiFi is pretty restrictive to what local webapps you can run). Can easily extend it to have some kind "rooms" functionality so that multiple different groups can use the app at same time.**\*\*
+Tinkerbelle is great, and congratulations to whoever developed it, but coming at this from a developer who used to love building things in Flask, I would recommend that you just shift it to a Github or CFPages webapp since 90% of the students probably aren't changing the source code of it. You can still keep the source code available and encourage students to play with it, however, you shouldn't need to make them setup any sort of Python venvs etc. (even if the reqs are minimal) to run your app. For our group, we ended up poking a hole thru the firewall with a temporary CF tunnel to have it be accessible to everyone else (since the school WiFi is pretty restrictive to what local webapps you can run). Can easily extend it to have some kind "rooms" functionality so that multiple different groups can use the app at same time.
+
+TLDR:
+
+Accessibility: Update outdated do-it-yourself Flask implementation to an instantly usable static Cloudflare Pages or Github webapp
+
+Rooms/multi-session: Add a “Create Room” flow with a 6-digit code so multiple groups can test simultaneously.
 
 
 ## Part D. Wizard the device
@@ -172,7 +220,7 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 
-\*\***Some concerns we had when making the look of the device were how much of the light we wanted to show. We did some research into how lighting works at clubs and how these lights are setup.**\*\*
+Some concerns we had when making the look of the device were how much of the light we wanted to show. We did some research into how lighting works at clubs and how these lights are setup. We ended up with different designs for how to block direct view of the LEDs but still keep the light readable (without blinding passerbys). We added a cardboard sleeve to diffuse the light into three bars, and also a aluminum foil wrapper (the light diffusion on the foil had quite the effect). We also created an acrylic glass prototype to really see how the light can influence the scene. We came up with some mounting prototypes as well so that it can mount to an eye-level surface. For aesthetics, we researched into modern clubs and tried to emulate that grunge dark, sleek, yet vibrant aesthetic.
 
 
 ## Part F. Record
