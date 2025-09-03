@@ -143,7 +143,7 @@ Present your ideas to the other people in your breakout room (or in small groups
 
 \*\***Summarize feedback you got here.**\*\*
 
-\*\***One feedback question was how the device worked or was activated. We illustrate some kind of "laser tripwire" from spy movies / kid's toy sections as the trigger for how the light knows when to activate. Another feedback question was what colors to use and when. **\*\*
+One feedback question was how the device worked or was activated. We illustrate some kind of "laser tripwire" from spy movies / kid's toy sections as the trigger for how the light knows when to activate. They then asked how the device knows enter vs. exit, and we suggested using two IR break beams (A then B = enter, B then A = exit) instead of one “laser tripwire,” plus debounce to avoid tailgating double-counts. We had some accessibility feedback comments about some color-only states are hard for some users (color vision deficiencies) and they suggested to pick high-contrast palettes, pair hues with temporal patterns (steady vs. breathing), and keep a legend at the door (we really liked this idea!). There was another comment about strobe safety due to epilepsy concerns. So, we propose both a non-strobing RGB step/rotate alternative and a “No-Strobe” venue mode. The last, but very insightful feedback, was about detection for the hands-up sensing. People liked the idea but flagged privacy if we used cameras. So we came up with some alternatives: manual “Hype” slider for staff/DJ, coarse overhead silhouette count, or letting the crowd tap the rope/rail to register hype.
 
 
 ## Part B. Act out the Interaction
