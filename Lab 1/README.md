@@ -244,13 +244,19 @@ https://drive.google.com/file/d/1WwWBHpumsBCVKSpRs7hg7XYgLydaZ-CJ/view?usp=drive
 \*\***Include sketches of what your devices might look like here.**\*\*
 
 Sketch of the device hanging on the side of the crib.
-![alt cribHang](sketches/hangonthecrib_sketch.jpg)
+<!-- ![alt cribHang](sketches/hangonthecrib_sketch.jpg) -->
+
+<img src="sketches/hangonthecrib_sketch.jpg" alt="cribHang" width="300"/>
 
 Sketch of generic hanging option with fun star feature.
-![alt Star](sketches/hangonthecrib_sketch.jpg)
+<!-- ![alt Star](sketches/hangonthecrib_sketch.jpg) -->
+<img src="sketches/onthewall_sketch.jpg" alt="Star" width="300"/>
+
 
 Sketch of the lantern. 
-![alt cribHang](sketches/standing_sketch.jpg)
+<!-- ![alt cribHang](sketches/standing_sketch.jpg) -->
+<img src="sketches/standing_sketch.jpg" alt="lantern" width="300"/>
+
 
 \*\***What concerns or opportunities are influencing the way you've designed the device to look?**\*\*
 
