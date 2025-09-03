@@ -136,6 +136,10 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 
+The three costumes include an emergency light bulb, a screen with the color, and a neon light. 
+<img width="574" height="138" alt="Screenshot 2025-09-03 at 4 51 20 PM" src="https://github.com/user-attachments/assets/1c9e6c71-28dd-4b85-b8ed-87b9f285e4d8" />
+
+
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 Some concerns include that the device should be easy to control and use. There should not be too many features and should be straightforward. 
@@ -159,6 +163,7 @@ This describes the second week's work for this lab activity.
 You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
 
 \*\***Summarize feedback from your partners here.**\*\*
+
 
 ## Make it your own
 
