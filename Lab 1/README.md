@@ -108,9 +108,7 @@ Yoyo Wang
 This describes the second week's work for this lab activity.
 
 
-## Prep (to be done before Lab on Wednesday)
-
-You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
+## Prep
 
 \*\***Feedback from your partners.**\*\*
 
