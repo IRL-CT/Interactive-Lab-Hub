@@ -2,9 +2,12 @@
 
 # Staging Interaction
 
-\*\***COLLABORATOR: 
-Video and Idea: [Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), Ying Yu Chen (Me)
-Feedback and Storyboard Idea Sharing: [Miriam Alex](https://github.com/miriam-alex/Interactive-Lab-Hub/tree/Fall2025/Lab%201), [Shreya Kethi Reddy](https://github.com/littleredpolkadot/Interactive-Lab-Hub/tree/Fall2025/Lab%201)**\*\*
+\*\***COLLABORATOR:**\*\*
+
+**Video and Idea: [Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), Ying Yu Chen (Me)**
+
+
+**Feedback and Storyboard Idea Sharing: [Miriam Alex](https://github.com/miriam-alex/Interactive-Lab-Hub/tree/Fall2025/Lab%201), [Shreya Kethi Reddy](https://github.com/littleredpolkadot/Interactive-Lab-Hub/tree/Fall2025/Lab%201)**
 ```!
 We spread our ideas across everyone’s repositories, so don't forget to check them out :)
 ```
