@@ -128,6 +128,8 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 
 Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
 
+Remotely, we toggled the colors to test it. We don't have a set up video for this portion, but we wondered how the interaction could change should the student leave the room temporarily. As per out follow-up work, we decided the status would remain red to indicate that the room is occupied. We also thought of using the door closing as a sensor where the status changes when the door closes.
+
 \*\***Show the follow-up work here.**\*\*
 
 
@@ -139,6 +141,8 @@ Think about the setting of the device: is the environment a place where the devi
 
 The three costumes include an emergency light bulb, a screen with the color, and a neon light. The setting is likely someplace like the masters studio where there is no rain or environmental concerns. It can be a simple light fixture near the door of the study rooms in the masters studio. 
 <img width="574" height="138" alt="Screenshot 2025-09-03 at 4 51 20 PM" src="https://github.com/user-attachments/assets/1c9e6c71-28dd-4b85-b8ed-87b9f285e4d8" />
+<img width="361" height="279" alt="Screenshot 2025-09-03 at 10 58 22 PM" src="https://github.com/user-attachments/assets/247e1ffd-62fd-4519-a5d9-bea360407462" />
+<img width="459" height="352" alt="Screenshot 2025-09-03 at 10 58 58 PM" src="https://github.com/user-attachments/assets/5bea6a55-5f49-452d-b4bf-68abeedfd1f7" />
 
 
 
@@ -177,3 +181,4 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
