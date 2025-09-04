@@ -316,7 +316,8 @@ Sketch and Craft Photo for **EmotionCard**
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 
 Collaboratig with **Amanda Lu, Miriam Alex, Shreya Kethi Reddy**. (Thank you for shooting  the video with me Amanda! 🥳)
-See Amamda's videos here:
+
+**See Amamda's videos here:**
 - [Cooking Helper](https://drive.google.com/file/d/1RdkajOA6uyp1OThFQ7FziLMn45hgsoyX/view?usp=sharing)  
 - [Pet Diagnostic](https://drive.google.com/file/d/1kpfjlqszphcwYdWIBRx5RbDH00K5xzN7/view?usp=drive_link)
 
