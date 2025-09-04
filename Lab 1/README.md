@@ -172,7 +172,9 @@ You will be assigned three partners from other groups. Go to their github pages,
 
 \*\***Summarize feedback from your partners here.**\*\*
 <img width="1128" height="343" alt="Screenshot 2025-09-04 at 3 48 55 PM" src="https://github.com/user-attachments/assets/5044627b-2d72-4e2e-ade8-61cc4caf766e" />
-The feedback is minor and mostly involves discussion of the blue/yellow light which is mentioned above. 
+<img width="1125" height="587" alt="Screenshot 2025-09-04 at 3 50 21 PM" src="https://github.com/user-attachments/assets/b4c77784-1dcf-4e3a-932b-bbdb08187c12" />
+
+The feedback mentions using different features to better costume the device. This inspired my partner and I to consider a lamp light that indicates the status of the room.  
 
 
 ## Make it your own
