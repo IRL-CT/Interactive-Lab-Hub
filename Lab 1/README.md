@@ -171,6 +171,8 @@ This describes the second week's work for this lab activity.
 You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
 
 \*\***Summarize feedback from your partners here.**\*\*
+<img width="1128" height="343" alt="Screenshot 2025-09-04 at 3 48 55 PM" src="https://github.com/user-attachments/assets/5044627b-2d72-4e2e-ade8-61cc4caf766e" />
+The feedback is minor and mostly involves discussion of the blue/yellow light which is mentioned above. 
 
 
 ## Make it your own
