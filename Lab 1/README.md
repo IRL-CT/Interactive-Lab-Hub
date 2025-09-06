@@ -130,6 +130,10 @@ A few concerns with these designs are durability and safety, since a phone insid
 
 \*\***Take a video of your prototyped interaction.**\*\*
 
+https://youtube.com/shorts/a93JT1vTiAk?feature=share
+https://youtube.com/shorts/tW5_B8EWR20?feature=share
+https://youtube.com/shorts/r0gbEQ4s7Z8?feature=share
+
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 
 Nikhil and Sachin were both so creative and great to work with for this lab.We each brought different strengths to the table. The original concept for the device came from Nikhil, and together we refined it through storyboarding, prototyping, and testing. My main role was shaping the flow of the interaction, coming up with different prototypes and the storyboards, while Sachin focused more on the costumes and video production. Nikhil split his efforts between building the physical prototypes and helping with the video work. Overall, it was a very collaborative process, and we even drew inspiration from Duolingo’s model.
