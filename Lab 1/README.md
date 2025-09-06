@@ -255,10 +255,15 @@ Beyond this specific play, the same props can be adapted to different stage sett
 - **Goals:** 
 The goal of the prop team is to use these interactive effects to elevate the performance, making it more engaging, expressive, and memorable for the audience.
 
-\*\***Include pictures of your storyboards here**\*\*
+\*\***Include pictures of your storyboards here**\*\*   
+This storyboard demonstrates how the **prop’s lighting effect** can change the mood of a scene.  
+- In Storyboards 1–3, the fruit plate is shown under different lighting: neutral, red, and orange. These variations signal shifting meanings, such as normal, danger, or tension.  
+- In Storyboards 4–6, the pumpkin is lit with neutral, dark, and warm orange light. The changes highlight different atmospheres, from calm to eerie to intense.  
+
+The storyboard illustrates how the prop projects colored lights onto stage objects, enhancing dramatic storytelling through visual emphasis.
 ![Storyboards 2](Storyboards%202.jpg) 
 
-\*\***Summarize feedback you got here.**\*\*
+\*\***Summarize feedback you got here.**\*\*  
 This storyboard clearly illustrates the scene and helps convey the narrative. The drawings are expressive and easy to follow, showing good effort in visual storytelling. However, the sequence could be expanded with more panels to better show transitions between actions, and adding notes on lighting or colors would make the intended atmosphere clearer.
 
 
@@ -329,11 +334,16 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 [Watch the setup video for Auto Flash lighting controller here](https://youtu.be/pGlznBV1fC4)
 
 ## Part E. Costume the device
-\*\***Include sketches of what your devices might look like here.**\*\*
+\*\***Include sketches of what your devices might look like here.**\*\*   
+This prop is designed as a simple stage device that combines **lighting, sound, and vibration** to support theatrical performance.
 
+- **Lighting Effect:** A small spotlight mounted on the top projects light. It can shift colors to match different moods and scenes.  
+- **Sound Effect:** Built-in speakers on the sides of the device produce immersive audio, such as sound effects or ambient cues.  
+- **Detachable Vibration Effect:** The base is equipped with a vibration module that makes the device shake slightly. The unit is detachable and can also be mounted onto different stage props to create vibration effects as needed.
+<img src="./Lab1b_images/prop.png" width="500px"/>
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
-
+The design is shaped by both practical concerns and opportunities for stage use. We needed the prop to clearly show its three functions—lighting, sound, and vibration—so the appearance emphasizes these features with a visible lamp, speaker units, and a detachable vibration module. The opportunity here is to make the device simple and flexible: the vibration module can be removed and attached to other props, giving more creative options for stage effects. The minimal, box-like design ensures that the device looks neutral and can blend into different theater settings while still being easy to operate during performances.
 
 ## Part F. Record
 
