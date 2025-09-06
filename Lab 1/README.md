@@ -197,6 +197,7 @@ _______________________
 Part E. Costume the device
 
 **Include sketches of what your devices might look like here.**
+<img width="539" height="656" alt="Screen Shot 2025-09-06 at 6 50 16 PM" src="https://github.com/user-attachments/assets/0a10d9b1-bac6-4812-9bef-7e7a80371f64" />
 
 ________________________
 
