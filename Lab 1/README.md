@@ -217,7 +217,7 @@ Physical Prototype:
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design.  
-- I collaborated with my group member to help with brainstorming ideas and getting feedback for improvements.  
+- I collaborated with my group member to help with brainstorming ideas, getting feedback for improvements, and recording the video.  
 - I additionally collaborated people at my table (feedback givers) to get more additional feedback
 - I also looked to past students' assignments on github for guidance on what type of devices we can design and discovered it to be very open-ended. 
 
@@ -232,7 +232,8 @@ You will be assigned three partners from other groups. Go to their github pages,
 
 \*\***Summarize feedback from your partners here.**\*\*
 - Very nice prototypes and design
-- video can be more of a demo, show more of the product and how to interact with it
+- video can be more of a demo, show more of the product and how to interact with it intuitively rather than narrating everything
+- Try to focus more on less devices and flesh out their features more
 
 ## Make it your own
 
@@ -242,3 +243,24 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+**Cooking Helper**: uses colors to indicate if something is done cooking/need to adjust temperature etc. Additionally, use sounds to better alert users of when to flip, if something is burning, etc. Also, can display words on screen in addition to color for more information  
+
+Storyboard #1:  
+_Setting_: In a kitchen at dinnertime  
+_Players_: Mom, kids (in another room)  
+_Activity_: Cooking dinner while kids keep distracting her and asking her to play. The device is able to alert her when the food needs attention.   
+_Goals_: Mom is using the device to cook  
+
+Storyboard #2:  
+_Setting_: In a kitchen at dinnertime  
+_Players_: Sarah and Mary, two roommates  
+_Activity_: Sarah is trying to cook steak  
+_Goals_: Sarah really wants to eat great steak  
+
+Storyboard #3:  
+_Setting_: In a kitchen at breakfast  
+_Players_: User  
+_Activity_: user wants to try to cook a new recipe  
+_Goals_: user is uploading a recipe onto the device and then using it to cook  
+
