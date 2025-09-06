@@ -157,7 +157,7 @@ Part A. Plan
 
 This device is designed for use in a home kitchen, mainly around the refrigerator, and works best in private spaces rather than shared kitchens because it gives personalized suggestions. The main users are families who share meals and food preferences, or individuals who cook for themselves. It can also support people with disabilities, such as those who cannot see, by using sound instead of only visuals. The device scans the fridge to identify what ingredients are available and then suggests meals. If items are missing, it can recommend substitutes, give calorie counts for recipes, and even connect to Instacart to place an order. It also checks what equipment is available and can suggest alternate cooking methods if certain tools, like a grill, aren’t there. The overall goal is to make cooking easier and more inclusive by helping users plan meals and track ingredients.
 
-**Include pictures of your storyboards here**
+**Include pictures of your storyboards here.**
 
 <img width="394" height="609" alt="Screen Shot 2025-09-06 at 5 30 06 PM" src="https://github.com/user-attachments/assets/1badec08-6e3d-498e-909b-c20371ad808b" />
 <img width="468" height="694" alt="Screen Shot 2025-09-06 at 5 31 37 PM" src="https://github.com/user-attachments/assets/c41fe52d-c35d-4184-94be-ffe8ddd09b79" />
