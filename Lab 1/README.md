@@ -274,7 +274,7 @@ Try physically acting out the interaction you planned. For now, you can just pre
 \*\***Are there things that seemed better on paper than acted out?**\*\*  
 Yes. On paper the transitions between fruit plate colors and pumpkin lighting effects looked smooth and expressive, but when acted out it was harder to show the changes clearly without additional visual cues or narration. Some subtle differences in tone (red vs. orange light) were less obvious in practice than they appeared in the storyboard.  
 
-\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*   
 Yes. While acting out the scenes, we realized that adding stronger contrasts in lighting or using sound effects could emphasize the changes more effectively. We also thought about combining multiple props (e.g., fruit plate and pumpkin together) in one scene to create a more dynamic narrative and highlight the color changes.  
 
 
