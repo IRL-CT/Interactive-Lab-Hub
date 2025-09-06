@@ -130,8 +130,8 @@ A few concerns with these designs are durability and safety, since a phone insid
 
 \*\***Take a video of your prototyped interaction.**\*\*
 
-https://youtube.com/shorts/a93JT1vTiAk?feature=share
-https://youtube.com/shorts/tW5_B8EWR20?feature=share
+https://youtube.com/shorts/a93JT1vTiAk?feature=share | 
+https://youtube.com/shorts/tW5_B8EWR20?feature=share |
 https://youtube.com/shorts/r0gbEQ4s7Z8?feature=share
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
