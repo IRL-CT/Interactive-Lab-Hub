@@ -152,65 +152,63 @@ You will be assigned three partners from other groups. Go to their github pages,
 ## Make it your own
 
 Part A. Plan
-To stage an interaction with your interactive device, think about:
-
-Setting: Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
-
-Players: Who is involved in the interaction? Who else is there? If you reflect on the design of current day interactive devices like the Amazon Alexa, it’s clear they didn’t take into account people who had roommates, or the presence of children. Think through all the people who are in the setting.
-
-Activity: What is happening between the actors?
-
-Goals: What are the goals of each player? (e.g., jumping to a tree, opening the fridge).
-
-The interactive device can be anything except a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
 **Describe your setting, players, activity and goals here.**
 
-Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of storyboarding in UX design. Sketch seven storyboards of the interactions you are planning. It does not need to be perfect, but must get across the behavior of the interactive device and the other characters in the scene.
+This device is designed for use in a home kitchen, mainly around the refrigerator, and works best in private spaces rather than shared kitchens because it gives personalized suggestions. The main users are families who share meals and food preferences, or individuals who cook for themselves. It can also support people with disabilities, such as those who cannot see, by using sound instead of only visuals. The device scans the fridge to identify what ingredients are available and then suggests meals. If items are missing, it can recommend substitutes, give calorie counts for recipes, and even connect to Instacart to place an order. It also checks what equipment is available and can suggest alternate cooking methods if certain tools, like a grill, aren’t there. The overall goal is to make cooking easier and more inclusive by helping users plan meals and track ingredients.
 
 **Include pictures of your storyboards here**
+<img width="394" height="609" alt="Screen Shot 2025-09-06 at 5 30 06 PM" src="https://github.com/user-attachments/assets/1badec08-6e3d-498e-909b-c20371ad808b" />
+<img width="468" height="694" alt="Screen Shot 2025-09-06 at 5 31 37 PM" src="https://github.com/user-attachments/assets/c41fe52d-c35d-4184-94be-ffe8ddd09b79" />
+<img width="439" height="625" alt="Screen Shot 2025-09-06 at 5 34 29 PM" src="https://github.com/user-attachments/assets/1b89ab16-ea75-44d8-8ea5-1a49d9199ef5" />
+<img width="585" height="386" alt="Screen Shot 2025-09-06 at 5 34 57 PM" src="https://github.com/user-attachments/assets/91035eed-a355-495f-bc3f-7f344aee0240" />
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 **Summarize feedback you got here.**
 
 Part B. Act out the Interaction
-Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it.
 
 **Are there things that seemed better on paper than acted out?**
 
+____________________
+
 **Are there new ideas that occur to you or your collaborator that come up from the acting?**
 
+_____________________
+
 Part C. Prototype the device
-You will be using your smartphone as a stand-in for the device you are prototyping. You will use the browser of your smart phone to act as a “light” and use a remote control interface to remotely change the light on that device.
-
-Code for the "Tinkerbelle" tool, and instructions for setting up the server and your phone are here.
-
-We invented this tool for this lab!
-
-If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
 **Give us feedback on Tinkerbelle.**
+
+Our group was not able to use it together as we were in different locations, but I think the instructions for Tinkerbelle are really detailed, especially the setup for both the computer and phone. I like how it gives troubleshooting tips for different Python versions which makes it easier to navigate if something goes wrong. One thing that could be improved is making the directions a little more clear, since there’s a lot of text and it’s easy to get lost in the steps. Maybe adding a “getting started checklist” at the top would make it easier to follow. I also thought the option to customize swatches and sounds was cool, but it might help if there were a few more examples of fun effects people could try. Overall, it seems like a really useful prototyping tool. 
 
 Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record.
 
 **Include your first attempts at recording the set-up video here.**
 
-Now, change the goal within the same setting, and update the interaction with the paper prototype.
+______________________
 
 **Show the follow-up work here.**
 
-Part E. Costume the device
-Only now should you start worrying about what the device should look like. Develop three costumes so that you can use your phone as this device.
+_______________________
 
-Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
+Part E. Costume the device
 
 **Include sketches of what your devices might look like here.**
 
+________________________
+
 **What concerns or opportunitities are influencing the way you've designed the device to look?**
+
+________________________
 
 Part F. Record
 **Take a video of your prototyped interaction.**
 
+________________________
+
 **Please indicate who you collaborated with on this Lab.** Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design.
+
+_________________________
