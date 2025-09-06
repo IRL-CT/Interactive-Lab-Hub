@@ -1,7 +1,7 @@
 
 
 # Staging Interaction
-NAME OF COLLABORATORS: Arya Prasad (ap2535) **\*\*
+NAME OF COLLABORATORS: Jaspreet Lal (jl4536), Arya Prasad (ap2535)
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -182,7 +182,10 @@ The feedback mentions using different features to better costume the device. Thi
 Do last week’s assignment again, but this time: 
 1) It doesn’t have to (just) use light, 
 2) You can use any modality (e.g., vibration, sound) to prototype the behaviors! Again, be creative! Feel free to fork and modify the tinkerbell code! 
-3) We will be grading with an emphasis on creativity. 
+3) We will be grading with an emphasis on creativity.
+
+Our new prototype uses a lamp light and soft chimes to indicate room changes. 
+
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
 
