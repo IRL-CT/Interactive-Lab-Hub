@@ -347,10 +347,12 @@ The design is shaped by both practical concerns and opportunities for stage use.
 
 ## Part F. Record
 
-\*\***Take a video of your prototyped interaction.**\*\*
+\*\***Take a video of your prototyped interaction.**\*\*   
+This video demonstrates the prototyped interaction for our Lab1b lighting function. The device is used as a stage lighting prop that automatically switches between selected colors at fixed time intervals. In the video, warm tones such as red, orange, and yellow are applied to a fruit plate prop. The gradual color transitions highlight the fruits, making them appear more vivid and easier for the audience to notice during a performance. This showcases how the lighting effect can enhance the visibility and expressiveness of different stage props in theatrical settings.
+
+[Watch the prototyped interaction video for lighting efffect here](https://www.youtube.com/watch?v=gxWBAg7dB6A)
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
-Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
+I collaborated with Qinrui Li and Jiayi Sun on this Lab. I mainly focused on the coding and design of the automatic lighting flash function. Qinrui was responsible for the vibration effect, while Jiayi (Joy) worked on the sound effect. Our collaboration went very smoothly, as each of us contributed a unique feature that complemented the others. Together, the lighting, vibration, and sound effects enriched the overall stage atmosphere and made the theatrical presentation more immersive.   
 
-
-
+We would like to thank the YouTube platform for providing a convenient channel to upload and share our video of the prototyped interaction. We also acknowledge the Tinkerbelle coding prototype as an inspiration and foundation for our different effects' design. In addition, the Jianying app was very helpful for video editing, enabling us to present our prototype clearly and effectively.
