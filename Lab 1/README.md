@@ -164,9 +164,9 @@ This device is designed for use in a home kitchen, mainly around the refrigerato
 <img width="439" height="625" alt="Screen Shot 2025-09-06 at 5 34 29 PM" src="https://github.com/user-attachments/assets/1b89ab16-ea75-44d8-8ea5-1a49d9199ef5" />
 <img width="585" height="386" alt="Screen Shot 2025-09-06 at 5 34 57 PM" src="https://github.com/user-attachments/assets/91035eed-a355-495f-bc3f-7f344aee0240" />
 
-Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
-
 **Summarize feedback you got here.**
+
+____________________
 
 Part B. Act out the Interaction
 
