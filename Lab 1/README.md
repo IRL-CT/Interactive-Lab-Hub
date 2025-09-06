@@ -154,7 +154,8 @@ Some concerns include that the device should be easy to control and use. There s
 
 \*\***Take a video of your prototyped interaction.**\*\*
 https://drive.google.com/file/d/1cBeAqXiasgHr7Iz0Fk_OpIUnRj7PdKr-/view?usp=sharing 
-Note: we used the laptop to test the device since we do not have the resources to recreate the device (ie. neon light or color-changing light bulb). 
+
+Note: we used the laptop to test the device since we do not have the resources to recreate the device (ie. neon light or color-changing light bulb). All three videos are edited into the above video. 
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Arya Prasad (ap2535)
