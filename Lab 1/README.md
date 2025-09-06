@@ -185,7 +185,6 @@ Part C. Prototype the device
 Our group was not able to use it together as we were in different locations, but I think the instructions for Tinkerbelle are really detailed, especially the setup for both the computer and phone. I like how it gives troubleshooting tips for different Python versions which makes it easier to navigate if something goes wrong. One thing that could be improved is making the directions a little more clear, since there’s a lot of text and it’s easy to get lost in the steps. Maybe adding a “getting started checklist” at the top would make it easier to follow. I also thought the option to customize swatches and sounds was cool, but it might help if there were a few more examples of fun effects people could try. Overall, it seems like a really useful prototyping tool. 
 
 Part D. Wizard the device
-Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record.
 
 **Include your first attempts at recording the set-up video here.**
 
