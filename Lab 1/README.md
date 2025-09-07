@@ -166,7 +166,8 @@ This device is designed for use in a home kitchen, mainly around the refrigerato
 
 **Summarize feedback you got here.**
 
-____________________
+After showing other classmates our storyboards and discussing our ideas
+
 
 Part B. Act out the Interaction
 
