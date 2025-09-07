@@ -185,9 +185,13 @@ Do last week’s assignment again, but this time:
 2) You can use any modality (e.g., vibration, sound) to prototype the behaviors! Again, be creative! Feel free to fork and modify the tinkerbell code! 
 3) We will be grading with an emphasis on creativity.
 
-Our new prototype uses a lamp light, vibrations, and soft chimes to indicate room changes. 
+\*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+Our new prototype uses a lamp light, vibrations, and soft chimes to indicate room changes. See costumes here: [costumes Ib.pdf](https://github.com/user-attachments/files/22198508/costumes.Ib.pdf)
+
+Use this link to access storyboards: https://drive.google.com/file/d/1ciAeErSYydt6YHpsM3TdmpUdVhnnLOYU/view?usp=sharing
+
 Here is the video for prototype testing: 
 https://drive.google.com/file/d/1lZOXsLnzuMxw086NuXe7IDtopj7kKWZX/view?usp=sharing
 
-\*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
 
