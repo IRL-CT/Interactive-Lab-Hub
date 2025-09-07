@@ -410,7 +410,7 @@ These effects are applied to dramatize key moments of a theatrical performance: 
 
 - Now please watch this video for fun!!
   
-[Watch the for fun here](https://youtu.be/G2aA-YXLc8Y?si=kg5IEFqaYFNeC0AA)   
+[Watch for fun here](https://youtu.be/G2aA-YXLc8Y?si=kg5IEFqaYFNeC0AA)   
 
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
