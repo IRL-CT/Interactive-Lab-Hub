@@ -203,6 +203,22 @@ Orange is a poker-faced person who struggles to show feelings. With the EmotionC
 ![image](Images/GlowBoard.JPG)
 The shop owner updates the GlowBoard to indicate when cinnamon rolls are ready, sold out (being baked), so customers know their status until the shop closes for the day.
 
+#### Amanda's Storyboards
+**Pet Diagnostics**:  
+![IMG_0651](https://github.com/user-attachments/assets/46692ea1-e08b-4905-9c94-0b1cb8af75f6)  
+
+**Cooking Helper**:  
+![IMG_0650](https://github.com/user-attachments/assets/d7ef74b7-fb96-44bf-8bfb-9ea58718343f)  
+
+**SleepSmartly:**  
+Night  
+![IMG_0653](https://github.com/user-attachments/assets/925c7990-5faa-49a7-ad57-936e1c7c007c)  
+Morning  
+![IMG_0654](https://github.com/user-attachments/assets/dcc43dce-f504-4bdd-a389-338c04fc0776)  
+
+**QuickTicket:**  
+![IMG_0652](https://github.com/user-attachments/assets/19fb67d2-a0f8-48b5-a07b-28d454b1c806)  
+
 ---
 ### Feedback
 \*\***Summarize feedback you got here.**\*\*
@@ -300,6 +316,23 @@ Sketch and Craft Photo for **EmotionCard**
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
 * **CatCommunicationButton:** Since it is designed for cats, I want to make sure the button is not too heavy and has no sharp edges, to avoid the risk of injury.
 * **EmotionCard:** The device should be lightweight and easy to hold. I also added icons to clarify meanings, since people may interpret colors differently.
+---
+### Amanda's Costume for the Device
+![IMG_0659](https://github.com/user-attachments/assets/0d8ff45e-b9bf-476a-adf7-e2d143859ea7)
+Physical Prototype:  
+<img src="https://github.com/user-attachments/assets/a126476b-7f3e-48aa-bad0-ffce9f971a18" width="480">
+
+![IMG_0658](https://github.com/user-attachments/assets/85272b84-17f3-40e6-82a1-f2952329b3af)
+Physical Prototype:  
+<img src="https://github.com/user-attachments/assets/37e4fed0-6b07-4e8a-b8d7-0ba3c6f3a5cf" width="480">
+
+![IMG_0656](https://github.com/user-attachments/assets/ad2fa6a7-d0fa-4be5-a4d4-809b3da5ead7)
+Physical Prototype:  
+<img src="https://github.com/user-attachments/assets/6a9c89ae-3a35-4d78-8cb8-4106e20dfc64" width="480">
+
+
+\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
+**Cooking Helper**: will be used in a hot environment, so it needs to be able to withstand heat. It also shouldn't be too big so it is easy to store with all of the other kitchen supplies. The accessories are also interchangeable to make it easier for each user to buy/use the required parts for whatever they are cooking. 
 
 ## Part F. Record
 
@@ -312,18 +345,21 @@ Sketch and Craft Photo for **EmotionCard**
 **EmotionCard**. Click the image to watch the video. 
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/sItv0txJx-8/0.jpg)](https://youtube.com/shorts/sItv0txJx-8)
+### See Amamda's videos here
+- [Cooking Helper](https://drive.google.com/file/d/1RdkajOA6uyp1OThFQ7FziLMn45hgsoyX/view?usp=sharing)  
+- [Pet Diagnostic](https://drive.google.com/file/d/1kpfjlqszphcwYdWIBRx5RbDH00K5xzN7/view?usp=drive_link)
+
+---
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 
 Collaboratig with **Amanda Lu, Miriam Alex, Shreya Kethi Reddy**. (Thank you for shooting  the video with me Amanda! 🥳)
 
-**See Amamda's videos here:**
-- [Cooking Helper](https://drive.google.com/file/d/1RdkajOA6uyp1OThFQ7FziLMn45hgsoyX/view?usp=sharing)  
-- [Pet Diagnostic](https://drive.google.com/file/d/1kpfjlqszphcwYdWIBRx5RbDH00K5xzN7/view?usp=drive_link)
 
-```diff!
+<!-- ```diff!
 + Don't forget to check out other members' videos and sketches on their GitHub.
-```
+``` -->
+
 
 **Reference:**
 * Inside Out from Pixar https://youtu.be/yRUAzGQ3nSY?si=St1nhFPVe1W5lKVL
@@ -342,6 +378,21 @@ This describes the second week's work for this lab activity.
 You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
 
 \*\***Summarize feedback from your partners here.**\*\*
+### Positive Feedback
+
+* **Storyboards:** Clear, visually appealing, and effective in storytelling. They highlight interesting dynamics, especially between humans and animals.
+* **Recordings:** Easy to understand; the racing car example conveyed the concept clearly.
+* **Resourcefulness:** Good use of available props and visuals at Cornell Tech.
+
+### Areas for Improvement
+
+* **Prototype Design:** Too box-like; encouraged to explore more creative and varied forms.
+* **Storyboards Quantity:** Ensure group work is fully included in your own README with contributions acknowledged.
+* **Videos:**
+    * Could be longer and provide more detailed demonstrations of device use in context.
+    * Current style (instructional for CatCommunicationButton, reaction skit for EmotionCard) could be reframed as planned narratives focusing on interaction details.
+    * More context shots would help clarify meanings of color/emotion cues in EmotionCard and improve flow in CatCommunicationButton.
+* **Costumes and Sketches:** Present but somewhat simple; could benefit from an additional costume and more creativity/detail.
 
 ## Make it your own
 
@@ -351,3 +402,111 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+
+> My collaborator, **[Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md)**, and I decided to select the devices with the most interesting concepts and the greatest potential for improvement—**CatCommunicationButton** and **Cooking Helper**—to further develop for Lab 1 Part B.
+
+### StoryBoards
+#### Setup CatCommunicationButton
+*Setting:*
+A household shared by humans and cats. The cat owner is setting up the communication button using their phone.
+
+*Players:*
+Humans and cats living together in the house.
+
+*Activity:*
+The user downloads the CatCommunicationButton app. They select a color for a specific action, record an audio message for the cat, and the app translates this message into a “cat-friendly” signal. Once setup is complete, the button turns pink to indicate readiness. The user can then try the button: it will display the chosen color and play the translated cat message.
+
+*Goals:*
+* *Humans:* Set up the button and enjoy playful interactions with their cats.
+* *Cats:* Freely move around the space and interact when they choose.
+
+![image](Images_b/Setup.JPG)
+
+#### CatCommunicationButton Detecting/ Sensing
+*Setting:*
+A household shared by humans and cats, where both the cats and their owners can be notified through the button.
+
+*Players:*
+Humans and cats living together in the house.
+
+*Activity:*
+When the cat touches the button, it sends a signal to the owner’s phone. The phone identifies the pre-set color and human message, then displays the color on the button. This way, the cat can see whether the message it is trying to express is correct, while the owner receives a notification with the corresponding audio message.
+
+*Goals:*
+* *Humans:* Receive notifications when their cats want something.
+* *Cats:* Communicate requests to their owners and confirm whether their message was conveyed correctly by observing the color on the button.
+
+![image](Images_b/Sensing.JPG)
+
+
+#### Use CatCommunicationButton (Human Perspective)
+*Setting:*
+A household shared by humans and cats. The button displays both a “cat language” message and a color to communicate with the cat.
+
+*Players:*
+Humans and cats living together in the house.
+
+*Activity:*
+When the human presses the button, it not only shows the selected color but also plays a cat-friendly message through the speaker. This way, even if the cat is not in the same room, it can still hear the message from a distance.
+
+*Goals:*
+* *Humans:* Communicate with their cats in a simple and playful way.
+* *Cats:* Receive clear signals that help them understand their owner’s message.
+
+![image](Images_b/Use_by_human.JPG)
+
+#### Use CatCommunicationButton (Cat Perspective)
+*Setting:*
+A household shared by humans and cats. The button detects the cat’s input and displays the assigned color along with the human message.
+
+*Players:*
+Humans and cats living together in the house.
+
+*Activity:*
+When the cat presses the button, the sensor reads the cat's action and triggers the pre-set response. The button then shows the chosen color and plays the corresponding message through the speaker. This allows the human, even if busy with something else, to quickly understand and respond to the cat’s needs.
+
+*Goals:*
+* *Humans:* Receive and respond to their cat’s requests.
+* *Cats:* Express their needs clearly and know their owner has been notified.
+
+![image](Images_b/Use_by_cat.JPG)
+
+#### Cooking Helper Storyboard #1:  
+_Setting_: In a kitchen at dinnertime  
+_Players_: Sarah and Mary, two roommates  
+_Activity_: Sarah is trying to cook steak  
+_Goals_: Sarah really wants to eat great steak  
+![IMG_0664](https://github.com/user-attachments/assets/c3017ac5-5239-4c45-b09e-ef2cd6fc5223)
+
+#### Cooking Helper Storyboard #2:  
+_Setting_: In a kitchen at dinnertime  
+_Players_: Mom, kids (in another room)  
+_Activity_: Cooking dinner while kids keep distracting her and asking her to play. The device is able to alert her when the food needs attention.  
+_Goals_: Mom is using the device to cook  
+![IMG_0665](https://github.com/user-attachments/assets/e9beab08-0c39-45d2-8519-5526d1e92ab6)
+
+#### Cooking Helper Storyboard #3:  
+_Setting_: In a kitchen at breakfast  
+_Players_: User  
+_Activity_: user wants to try to cook a new recipe  
+_Goals_: user is uploading a recipe onto the device and then using it to cook  
+![IMG_0666](https://github.com/user-attachments/assets/9de33acb-da9a-4880-9d4c-2739bf5eba5a)
+
+### Custome the Device
+#### Prototypes for CatCommunicationButton
+<p align="center">
+  <img src="Images_b/costume1.jpg" width="45%" />
+  <img src="Images_b/costume2.jpg" width="45%" />
+</p>
+
+#### Prototypes for Cooking Helper
+<img src="https://github.com/user-attachments/assets/e94e2585-b009-4bf2-97b5-f68d22d5f025" width="480">
+<img src="https://github.com/user-attachments/assets/968ed85f-6ce6-480e-af67-4ffc53ee7ade" width="480">  
+
+### Videos
+- [Set Up CatCommunicationButton](https://youtu.be/BUALTm3MzSU)
+- [Playing with CatCommunicationButton](https://youtu.be/JcizBqpgvjw)
+- [Cooking Helper #1](https://drive.google.com/file/d/1-axlZyoPFDHCBE8N0AdGrRXNNZz8NM2D/view?usp=sharing)
+- [Cooking Helper #2](https://drive.google.com/file/d/1faD3HyKgD-_G6psMwsp34ya1eSwXWP_q/view?usp=sharing)  
+
