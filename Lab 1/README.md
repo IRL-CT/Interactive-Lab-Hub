@@ -381,7 +381,7 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 
 [Watch the setup video for Viberation controller here](https://youtu.be/OM1hdqViYhQ)   
 
-(sounds setup here)
+[Watch the setup video for Sounds Effect controller here](https://youtu.be/TQONw32uM00) 
 
 ## Part E. Costume the device
 \*\***Include sketches of what your devices might look like here.**\*\*   
@@ -406,7 +406,11 @@ The design is shaped by both practical concerns and opportunities for stage use.
 - This following video demonstrates the prototyped interaction for our Lab1b sound effects function. The device is used as a stage prop controller that triggers different sound effects in real time during a performance. In the video, six distinct sounds — thunder, laughter, eating, drum, explosion, and applause — are assigned to buttons on the controller. When pressed, the corresponding sound is immediately played on the stage prop device (a smartphone).   
 These effects are applied to dramatize key moments of a theatrical performance: thunder emphasizes tension in a storm scene, laughter highlights irony in dialogue, eating underscores the banquet setting, drums enhance dramatic build-ups, explosions mark climactic action, and applause provides closure to a scene. By integrating these sound effects into stage action, the prototype showcases how interactive technology can enrich the audience’s sensory experience and amplify the emotional impact of live theatre.  
 
-[Watch the prototyped interaction video for sounds effect here]()   
+[Watch the prototyped interaction video for sounds effect here](https://youtu.be/xM0MV5j1-60?si=PocSgRw18hESC5kb)   
+
+- Now please watch this video for fun!!
+  
+[Watch the for fun here](https://youtu.be/G2aA-YXLc8Y?si=kg5IEFqaYFNeC0AA)   
 
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
