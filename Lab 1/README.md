@@ -190,6 +190,7 @@ During the filming, I naturally took on the role of a director, planning how sce
 Finally, I feel that choosing to present our project in the form of a silent drama matched perfectly with the use of lighting as the central interactive element. The stark contrasts of light and shadow emphasized both the atmosphere of danger and the inner emotions of the characters. This lab not only helped me explore my long-standing interest in directing and editing, but also showed me how much I enjoy and am capable of this kind of creative work.
 
 
+---
 # Staging Interaction, Part 2 
 
 This describes the second week's work for this lab activity.
@@ -199,7 +200,23 @@ This describes the second week's work for this lab activity.
 
 You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
 
-\*\***Summarize feedback from your partners here.**\*\*
+\*\***Summarize feedback from your partners here.**\*\*   
+**Exploration of Design Space / Novelty of Concept**  
+- 
+
+**Technical Execution**  
+- 
+
+**Communication of Idea / Documentation of Process**  
+- 
+
+**Tested with User**  
+-  
+
+**Overall**  
+- **Strengths:** Creativity, strong execution, artistic presentation, and innovative ideas.  
+- **Weaknesses:** Inconsistent, missing storyboards, ambiguous purpose of device functions, and sometimes insufficient user testing/feedback.  
+
 
 ## Make it your own
 
@@ -210,10 +227,130 @@ Do last week’s assignment again, but this time:
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
 
----
+## Part A. Plan 
+\*\***Describe your setting, players, activity and goals here.**\*\*
+- **Setting:**  
+The interaction takes place during a stage performance. The props are designed to enhance dramatic tension through light, sound, and vibration effects.  
 
-## My Lab 1 Work
+- **Players:**
+The prop master coordinates the devices. For example for the the story involves characters such as the king, maid, queen, and knight. Each character’s actions are emphasized through the props: lighting shifts, sound effects, and subtle vibrations create an immersive atmosphere for both actors and the audience.  
 
+- **Activities:**
+The props play an active role in advancing the dramatic storyline, particularly in the Lab1a scenes of the king’s assassination ((Detailed staging of these scenes can be seen in the lab1a video.)  
+). For example:  
+  - In the first scene, the maid offers a poisoned fruit plate, with flashing lights that shift colors to draw attention and signal danger.  
+  - In the second scene, the queen serves poisoned wine, and subtle vibrations make the glass tremble to reveal hidden menace.  
+  - In the third scene, the knight strikes the king, accompanied by sharp sound effects that heighten the tension and impact of the action.
+
+Beyond this specific play, the same props can be adapted to different stage settings. A lighting designer could, for instance, create a wintry mood with alternating icy blue and white tones, or evoke autumn with dynamic transitions between yellow, orange, and red lights. These effects require close collaboration between different prop masters (lighting crew, sound designers, and stage decorators).  
+
+
+- **Goals:** 
+The goal of the prop team is to use these interactive effects to elevate the performance, making it more engaging, expressive, and memorable for the audience.
+
+\*\***Include pictures of your storyboards here**\*\*   
+This storyboard demonstrates how the **prop’s lighting effect** can change the mood of a scene.  
+- In Storyboards 1–3, the fruit plate is shown under different lighting: neutral, red, and orange. These variations signal shifting meanings, such as normal, danger, or tension.  
+- In Storyboards 4–6, the pumpkin is lit with neutral, dark, and warm orange light. The changes highlight different atmospheres, from calm to eerie to intense.  
+
+The storyboard illustrates how the prop projects colored lights onto stage objects, enhancing dramatic storytelling through visual emphasis.
+![Storyboards 2](Storyboards%202.jpg) 
+
+\*\***Summarize feedback you got here.**\*\*  
+This storyboard clearly illustrates the scene and helps convey the narrative. The drawings are expressive and easy to follow, showing good effort in visual storytelling. However, the sequence could be expanded with more panels to better show transitions between actions, and adding notes on lighting or colors would make the intended atmosphere clearer.
+
+
+## Part B. Act out the Interaction
+
+Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
+
+\*\***Are there things that seemed better on paper than acted out?**\*\*  
+Yes. On paper the transitions between fruit plate colors and pumpkin lighting effects looked smooth and expressive, but when acted out it was harder to show the changes clearly without additional visual cues or narration. Some subtle differences in tone (red vs. orange light) were less obvious in practice than they appeared in the storyboard.  
+
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*   
+Yes. While acting out the scenes, we realized that adding stronger contrasts in lighting or using sound effects could emphasize the changes more effectively. We also thought about combining multiple props (e.g., fruit plate and pumpkin together) in one scene to create a more dynamic narrative and highlight the color changes.  
+
+
+## Part C. Prototype the device
+
+You will be using your smartphone as a stand-in for the device you are prototyping. You will use the browser of your smart phone to act as a “light” and use a remote control interface to remotely change the light on that device. 
+
+\*\***Changes based on Tinkerbelle.**\*\*   
+The original Tinkerbelle only allowed **manual** color switching via a color picker. I extended it with an **Auto Flash** system and several reliability/UX tweaks.
+
+**New features**
+- **Auto Flash (automatic color cycling):** screen color changes automatically without manual clicks.
+- **Two animation modes:** `blink` (instant switch) and `fade` (smooth transition).
+- **Configurable sequence:** comma-separated color list (e.g., `#ff0000,#000000,#ff6f61`).
+- **Adjustable speed:** `Step(ms)` to control the dwell time between colors.
+- **Loop toggle:** repeat the sequence or run once and stop.
+- **Start/Stop controls:** UI buttons to launch or halt the auto sequence at any time.
+- **Broadcast to all screens:** controller actions can propagate to every connected “light” screen.
+
+**Server (Flask + Socket.IO) changes** — *`app.py`*
+- Added new events and broadcast helpers:
+  - `autoFlash` → `broadcast('autoFlash', cfg)`
+  - `stopAuto`  → `broadcast('stopAuto', {})`
+- Kept existing events (`hex`, `audio`, `pauseAudio`) and standardized broadcasting through a single `broadcast()` helper.
+
+**Client JS changes** — *`static/index.js`*
+- Emits `autoFlash` with `{ colors, stepMs, mode, loop, ease }`.
+- Listens for `autoFlash` and runs an interval to step through colors.
+- Supports **fade** by applying `background-color` CSS transitions, or **blink** with no transition.
+- Adds `stopAuto()` to clear timers and reset state when `stopAuto` is received.
+- Minor UX: reveal/hide the controller panel, destroy/recreate Pickr when switching modes, enable audio playback on Safari (mute-unmute trick).
+
+**HTML / UI changes** — *`templates/index.html`*
+- Added an **Auto Flash panel** with:
+  - Colors input
+  - Step (ms) input
+  - Mode selector (`blink`/`fade`)
+  - Loop checkbox
+  - **Start Auto** / **Stop** buttons
+- Kept the original **Jane Wren** (controller) and **Tinkerbelle** (light) roles.
+
+**How to use**
+1. Open the page on the **controller** device, click **Jane Wren** to enter control mode.
+2. In **Auto Flash**, set: colors, step (ms), mode, and loop → click **Start Auto**.
+3. On **light** devices, click **Tinkerbelle** (fullscreen). All connected lights will follow the broadcasted auto colors.
+4. Click **Stop** to halt the sequence or send a new configuration.
+
+**Why this improves the original**
+- Enables **hands-free** lighting cues for stage/testing.
+- Provides **reproducible** timing and transitions (good for demos and user tests).
+- Scales to **multiple displays** via broadcasts, keeping scenes synchronized.
+
+## Part D. Wizard the device
+Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
+
+\*\***Include your first attempts at recording the set-up video here.**\*\*  
+[Watch the setup video for Auto Flash lighting controller here](https://youtu.be/pGlznBV1fC4)
+
+## Part E. Costume the device
+\*\***Include sketches of what your devices might look like here.**\*\*   
+This prop is designed as a simple stage device that combines **lighting, sound, and vibration** to support theatrical performance.
+
+- **Lighting Effect:** A small spotlight mounted on the top projects light. It can shift colors to match different moods and scenes.  
+- **Sound Effect:** Built-in speakers on the sides of the device produce immersive audio, such as sound effects or ambient cues.  
+- **Detachable Vibration Effect:** The base is equipped with a vibration module that makes the device shake slightly. The unit is detachable and can also be mounted onto different stage props to create vibration effects as needed.
+<img src="prop.png" width="500px"/>
+
+\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
+The design is shaped by both practical concerns and opportunities for stage use. We needed the prop to clearly show its three functions—lighting, sound, and vibration—so the appearance emphasizes these features with a visible lamp, speaker units, and a detachable vibration module. The opportunity here is to make the device simple and flexible: the vibration module can be removed and attached to other props, giving more creative options for stage effects. The minimal, box-like design ensures that the device looks neutral and can blend into different theater settings while still being easy to operate during performances.
+
+## Part F. Record
+
+\*\***Take a video of your prototyped interaction.**\*\*   
+This video demonstrates the prototyped interaction for our Lab1b lighting function. The device is used as a stage lighting prop that automatically switches between selected colors at fixed time intervals. In the video, warm tones such as red, orange, and yellow are applied to a fruit plate prop. The gradual color transitions highlight the fruits, making them appear more vivid and easier for the audience to notice during a performance. This showcases how the lighting effect can enhance the visibility and expressiveness of different stage props in theatrical settings.
+
+[Watch the prototyped interaction video for lighting efffect here](https://www.youtube.com/watch?v=gxWBAg7dB6A)
+
+\*\***Please indicate who you collaborated with on this Lab.**\*\*
+I collaborated with Qinrui Li and Jiayi Sun on this Lab. I mainly focused on the coding and design of the automatic lighting flash function. Qinrui was responsible for the vibration effect, while Jiayi (Joy) worked on the sound effect. Our collaboration went very smoothly, as each of us contributed a unique feature that complemented the others. Together, the lighting, vibration, and sound effects enriched the overall stage atmosphere and made the theatrical presentation more immersive.   
+
+We would like to thank the YouTube platform for providing a convenient channel to upload and share our video of the prototyped interaction. We also acknowledge the Tinkerbelle coding prototype as an inspiration and foundation for our different effects' design. In addition, the Jianying app was very helpful for video editing, enabling us to present our prototype clearly and effectively.
+
+## Reflection   
 
 
 
