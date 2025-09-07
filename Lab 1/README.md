@@ -268,7 +268,7 @@ The storyboard illustrates how the prop projects colored lights onto stage objec
 - In Storyboard frames 3–4, an assassination scene is intensified by the sharp metallic sound of a sword, heightening the tension and danger between characters.  
 - In Storyboards 5–6, the classic fairytale moment is dramatized by the crisp crunch of an apple, emphasizing the fateful action and drawing the audience deeper into the story.  
 
-<img src="storyboards 3.png"/>
+<img src="Lab1b_images/storyboard_3.png"/>
 
 \*\***Summarize feedback you got here.**\*\*  
 This storyboard clearly illustrates the scene and helps convey the narrative. The drawings are expressive and easy to follow, showing good effort in visual storytelling. However, the sequence could be expanded with more panels to better show transitions between actions, and adding notes on lighting or colors would make the intended atmosphere clearer.
