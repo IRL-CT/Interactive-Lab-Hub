@@ -149,6 +149,9 @@ You will be assigned three partners from other groups. Go to their github pages,
 
 \*\***Summarize feedback from your partners here.**\*\*
 
+Everyone who saw our video thought it was very easy and clear to understand, the only concerns that some peers had was recognizing the colors and knowing what they meant. They suggested to add in a voice feature, but overall we didn't get too much criticism, only very positive feedback.
+
+
 ## Make it your own
 
 Part A. Plan
@@ -166,8 +169,7 @@ This device is designed for use in a home kitchen, mainly around the refrigerato
 
 **Summarize feedback you got here.**
 
-After showing other classmates our storyboards and discussing our ideas
-
+After showing other classmates our storyboards and discussing our ideas, they really liked how the device could make cooking easier by suggesting meals and tracking ingredients. They thought the allergy alerts and Instacart ordering were especially strong features, and many said the calorie counter and substitute suggestions made it practical. At the same time they questioned how accurate the calorie tracking and allergy detection could really be, and whether the device might become too complicated with so many features. Some also pointed out that voice control might not work well in noisy kitchens and that relying too much on automation like instant ordering could feel overwhelming.
 
 Part B. Act out the Interaction
 
