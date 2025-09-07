@@ -249,6 +249,8 @@ Be generous in acknowledging their contributions! And also recognizing any other
 
 This describes the second week's work for this lab activity.
 
+**Dingran Dai (dd699) & Yun-Jou, Huang (yh2353) & Xiang Chang (xc529)**
+
 
 ## Prep (to be done before Lab on Wednesday)
 
@@ -264,3 +266,86 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+
+
+- **New Idea 1**
+
+  Place a display board at the elevator area on each floor, showing the current status of all residents on that floor. By doing so, residents don't have to pass by individual doors to know who is available. 
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/136aeb43-7f6e-4c14-8f14-1995a4db5a9d" width="1536" height="1024" />
+</p>
+
+
+https://github.com/user-attachments/assets/f66016d4-4b29-4f7d-9cbe-20e185e2bfff
+
+
+
+- **New Idea 2**
+
+  The current color-to-action mapping may not align well with common sense. We could add pixelated emoji-style icons: for example, a rice bowl for dining mode, two people with a speech bubble for chat mode, a book for study mode, and a “zzz” sleep symbol for do-not-disturb mode.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b7fce9e8-11d5-4ae3-a2f3-11c499b9b8c4" width="1536" height="1024" />
+</p>
+
+
+https://github.com/user-attachments/assets/83e13878-8646-4eb6-bad9-9692b4b886e9
+
+
+- **New Idea 3**
+
+  Add a vibration effect as haptic feedback to the device when mode changes.  In this way, users could notice the status switch clearly.
+
+https://github.com/user-attachments/assets/9800a0ae-15b9-4ce6-8946-4b64242ef37b
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/97aeec5f-a311-4f1f-ae06-b903118e9505" width="1536" height="1024" />
+</p>
+
+
+https://github.com/user-attachments/assets/a415e126-5f02-40f1-b114-6dc4c8068b6a
+
+
+**templates/index.html:**
+
+- Added a controller button to trigger vibration:
+```
+<button id="buzz">Buzz phone</button>
+```
+
+**static/index.js:**
+
+- Added a listener to execute vibration on the client (phone):
+```
+socket.on('vibrate', (payload = {}) => {
+  const pattern = payload.pattern ?? 2000; 
+  if (navigator.vibrate) {
+    navigator.vibrate(pattern);
+  } else {
+    console.warn('Vibration API not supported on this device/browser.');
+  }
+});
+```
+
+- Added a global click handler for the controller button to emit the event:
+
+```
+document.getElementById('buzz')?.addEventListener('click', () => {
+    socket.emit('vibrate', { pattern: [1200, 50, 1200] });
+});
+```
+
+
+**tinker.py:**
+
+- Implemented Socket.IO handler to broadcast the vibration payload to all clients:
+
+```
+@socketio.on('vibrate')
+def on_vibrate(payload):
+    emit('vibrate', payload or {}, broadcast=True)
+```
+
+
