@@ -383,6 +383,7 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*  
 [Watch the setup video for Auto Flash lighting controller here](https://youtu.be/pGlznBV1fC4)   
+[Watch the setup video for Sound Effect controller here](https://www.youtube.com/watch?v=TQONw32uM00)   
 [Watch the setup video for Viberation controller here](https://youtu.be/OM1hdqViYhQ)   
 
 ## Part E. Costume the device
