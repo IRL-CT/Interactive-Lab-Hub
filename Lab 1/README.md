@@ -285,7 +285,7 @@ Yes. While acting out the scenes, we realized that adding stronger contrasts in 
 You will be using your smartphone as a stand-in for the device you are prototyping. You will use the browser of your smart phone to act as a “light” and use a remote control interface to remotely change the light on that device. 
 
 \*\***Auto Flash based on Tinkerbelle.**\*\*   
-The original Tinkerbelle only allowed **manual** color switching via a color picker. I extended it with an **Auto Flash** system and several reliability/UX tweaks.
+The original Tinkerbelle only allowed **manual** color switching via a color picker. We extended it with an **Auto Flash** system and several reliability/UX tweaks.
 
 **New features**
 - **Auto Flash (automatic color cycling):** screen color changes automatically without manual clicks.
@@ -330,6 +330,8 @@ The original Tinkerbelle only allowed **manual** color switching via a color pic
 - Scales to **multiple displays** via broadcasts, keeping scenes synchronized.
 
 \*\***Sound Effects based on Tinkerbelle.**\*\*  
+We also added 6 different sounds effect function to the tinkerbelle, enabling the device to better capture and express the emtions of the actors in stage settings.  
+
 **Single Global Audio System**  
   - Uses one shared `Audio` object for all playback, avoiding overlap and conflicts.  
 **Controller ↔ Light Synchronization**  
@@ -346,6 +348,8 @@ The original Tinkerbelle only allowed **manual** color switching via a color pic
   - Easy to extend — just add new `.mp3` files and bind them with `bindSoundButton(id, filename)`.  
 
 \*\***Screen Shake based on Tinkerbelle.**\*\*  
+Finally, we added a screen shake effect to imitate the viberation of the tool, which finally focus on the sound effect of a wine cup due to the restriction of ios system.  
+
 **Generic Shake**  
   - `triggerShake(duration)` applies a brief vibration effect on the screen to add visual impact.  
 **Sound-linked Shake**  
