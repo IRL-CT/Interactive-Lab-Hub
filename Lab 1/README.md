@@ -3,6 +3,7 @@
 # Staging Interaction
 
 **COLLABORATORS**: Amanda Lu (me), [Ying Yu Chen](https://github.com/chenyingyu-main/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md)  
+Check out my collaborator's github ^^ for any additional information 
 
 **Feedback Givers**: Miriam Alex, Shreya Reddy
 
@@ -123,7 +124,20 @@ Morning
 **QuickTicket:**  
 ![IMG_0652](https://github.com/user-attachments/assets/19fb67d2-a0f8-48b5-a07b-28d454b1c806)  
 
-**See the rest of the storyboards** [here](https://github.com/chenyingyu-main/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md#part-a-plan)
+**AdaptFlashlight**  
+![AdaptFlashlight](https://github.com/user-attachments/assets/92559bf8-d8a6-410e-8b1e-6c1fead943df)
+
+**CatCommunicationButton**  
+![CatCommunicationButton](https://github.com/user-attachments/assets/dc263144-98bf-44f7-af46-46907b54dcef)
+
+**EmotionCard**
+![EmotionCard](https://github.com/user-attachments/assets/abe82324-b24f-4820-af00-a9546aacaaed)
+
+**GlowBoard**
+![GlowBoard](https://github.com/user-attachments/assets/adac072e-f484-4d76-acdf-dbd6d8dc39f2)
+
+**Rhythm Discoball**
+![RhythmDiscoball](https://github.com/user-attachments/assets/a77e7e5c-966d-4f7a-a09d-8677dd0a3151)
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
@@ -139,8 +153,20 @@ Present your ideas to the other people in your breakout room (or in small groups
 **QuickTicket:**
 - What's the mechanism for not reusing it
 - Apple Wallet already exists, a little redundant
-- Price, users will need to buy another device 
+- Price, users will need to buy another device
 
+**CatCommunicationButton**
+- Consider limiting the light signals to colors that are cat-friendly and easy for them to distinguish.
+- Cats might not always respond—how can you ensure they actually understand the signals?
+- Since cats often ignore commands, how would this device be different from normal interactions?
+  
+**AdaptFlashlight**
+- Clarify how exactly the flashlight works to change clothing properties.
+- Would it be an issue (or even a violation) to alter someone else’s clothing without permission?
+  
+**GlowBoard**
+- Maybe the GlowBoard could use gradient colors to show the estimated waiting time, making it more informative.
+- It doesn’t seem very different from a normal screen—how is it unique?
 
 ## Part B. Act out the Interaction
 
@@ -149,12 +175,18 @@ Try physically acting out the interaction you planned. For now, you can just pre
 \*\***Are there things that seemed better on paper than acted out?**\*\*  
 - The Cooking Helper device being clipped onto the pan seems a bit inconvenient, depending on what food is being cooked. If it's not meat, the thermometer might be a bit hard to use.
 - The QuickTicket wristband can be hard to see if someone is wearing a jacket covering it. It can take up extra time when going through the lines for security to check.
-- SleepSmartly: if it is mounted on the wall, it seems more difficult to configure.  
+- SleepSmartly: if it is mounted on the wall, it seems more difficult to configure.
+- RhythmDiscoball: We only considered the main performer on paper, but in reality, there could be many people on the dance floor with different movements. Whose movements should the device take as the reference?
+- CatCommunicationButton: It is difficult to get the cats’ attention. (Some of our team members have experience with cats.)
+- EmotionCard: If emotions change too quickly, it feels a bit awkward, because the screen may keep flashing as the emotions switch. 
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*  
-- The Cooking Helper could have different accessories in addition to the thermometer that can be used depending on the situation.
+- CookingHelper: could have different accessories in addition to the thermometer that can be used depending on the situation.
 - CookingHelper: or, instead of clipping the device onto a pan, it can be built into the stovetop or fan for convenience.  
 - SleepSmartly: add a remote to control the device (turn it on/off or set the timer)
+- RhythmDiscoball: Maybe the device could detect the “average rhythm” of the dance floor instead of focusing on a single performer.
+- CatCommunicationButton: It might help to combine sound or light cues to attract the cat’s attention.
+- EmotionCard: We can add a gradual color transition, so that emotional changes appear smoother.
 
 
 ## Part C. Prototype the device
@@ -181,7 +213,9 @@ Now, hange the goal within the same setting, and update the interaction with the
 
 \*\***Show the follow-up work here.**\*\*  
 - QuickTicket: New goal is to link the ticket from a mobile phone to the device. I added a button to the prototype to allow for connecting to other devices via bluetooth.
-- CookingHelper: New goal is to cook safely. I added a smoke detector so that this device can raise alarm if the food is burning or producing too much smoke. 
+- CookingHelper: New goal is to cook safely. I added a smoke detector so that this device can raise alarm if the food is burning or producing too much smoke.
+- CatCommunicationButton: The new goal is to attract the cat to use it. We added ideas such as flashing lights and a speaker that plays sounds to draw the cat’s attention.
+- EmotionCard: The new goal is to make it more portable. One idea is to design it so the card can be folded, making it easier to carry around.
 
 ## Part E. Costume the device
 
@@ -202,10 +236,20 @@ Physical Prototype:
 Physical Prototype:  
 <img src="https://github.com/user-attachments/assets/6a9c89ae-3a35-4d78-8cb8-4106e20dfc64" width="480">
 
+**CatCommunicationButton**  
+<img src="https://github.com/user-attachments/assets/5a92c9d4-3b5a-40e7-a928-57d7d22c7ed5" width="480">
+<img src="https://github.com/user-attachments/assets/13c92aa2-af18-4c51-910b-b8315831a96e" width="480">
+
+**EmotionCard**  
+<img src="https://github.com/user-attachments/assets/f2b27215-04b7-4c1c-8531-d005a5bbac3a" width="480">
+<img src="https://github.com/user-attachments/assets/41019e84-b55f-44b1-a2ab-5fa4ea8af923" width="480">
+
 **See the rest of the costumes** [here](https://github.com/chenyingyu-main/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md#part-e-costume-the-device)
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*  
-**Cooking Helper**: will be used in a hot environment, so it needs to be able to withstand heat. It also shouldn't be too big so it is easy to store with all of the other kitchen supplies. The accessories are also interchangeable to make it easier for each user to buy/use the required parts for whatever they are cooking. 
+- **Cooking Helper**: will be used in a hot environment, so it needs to be able to withstand heat. It also shouldn't be too big so it is easy to store with all of the other kitchen supplies. The accessories are also interchangeable to make it easier for each user to buy/use the required parts for whatever they are cooking. 
+- **CatCommunicationButton**: Since it is designed for cats, I want to make sure the button is not too heavy and has no sharp edges, to avoid the risk of injury.
+- **EmotionCard**: The device should be lightweight and easy to hold. I also added icons to clarify meanings, since people may interpret colors differently.
 
 ## Part F. Record
 
@@ -267,11 +311,27 @@ _Activity_: user wants to try to cook a new recipe
 _Goals_: user is uploading a recipe onto the device and then using it to cook  
 ![IMG_0666](https://github.com/user-attachments/assets/9de33acb-da9a-4880-9d4c-2739bf5eba5a)
 
+**CatCommunicationButton**:  
+Storyboard #1: Setup
+![Setup](https://github.com/user-attachments/assets/a2ca6f3f-566f-4f9f-9956-108fd9bd29c2)
+
+Storyboard #2: Use by human
+![Use_by_human](https://github.com/user-attachments/assets/a6c3b960-e6dc-4879-bf0c-9749fdca1574)
+
+Storyboard #3: Use by cat
+![Use_by_cat](https://github.com/user-attachments/assets/2be81038-b281-4796-a595-06b5cd75c8a4)
+
+Storyboard #4: Sensing
+![Sensing](https://github.com/user-attachments/assets/e2a6b076-46d9-4f7d-ae92-8509c73f284b)
+
 **Prototype Pictures:**  
 
+CookingHelper:  
 <img src="https://github.com/user-attachments/assets/e94e2585-b009-4bf2-97b5-f68d22d5f025" width="480">
 <img src="https://github.com/user-attachments/assets/968ed85f-6ce6-480e-af67-4ffc53ee7ade" width="480">  
 
+CatCommunicationButton:  
+<img src="https://github.com/user-attachments/assets/3889e1db-5f04-47c6-a675-5f929b9106ea" width="480">  
 
 
 **Videos:**
