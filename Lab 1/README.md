@@ -266,7 +266,7 @@ The storyboard illustrates how the prop projects colored lights onto stage objec
 **2. The second storyboard demonstrates how the prop’s sound effects can enhance dramatic expression on stage.**  
 - In Storyboard frames 1–2, a celebration scene is reinforced by the sound of clinking glasses, amplifying the joy and festivity of the moment.  
 - In Storyboard frames 3–4, an assassination scene is intensified by the sharp metallic sound of a sword, heightening the tension and danger between characters.  
-- In Storyboards 5–6, the classic fairytale moment is dramatized by the crisp crunch of an apple, emphasizing the fateful action and drawing the audience deeper into the story.  
+- In Storyboard frames 5–6, the classic fairytale moment is dramatized by the crisp crunch of an apple, emphasizing the fateful action and drawing the audience deeper into the story.  
 
 <img src="Lab1b_images/storyboard_3.png"/>
 
