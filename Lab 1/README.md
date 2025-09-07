@@ -497,7 +497,7 @@ _Goals_: user is uploading a recipe onto the device and then using it to cook
 #### Prototypes for CatCommunicationButton
 <p align="center">
   <img src="Images_b/costume1.jpg" width="45%" />
-  <img src="Images_b/costume2.jpg" width="45%" />
+  <img src="Images_b/costume2.jpeg" width="45%" />
 </p>
 
 #### Prototypes for Cooking Helper
