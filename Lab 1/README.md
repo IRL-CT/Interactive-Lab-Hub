@@ -259,11 +259,11 @@ The goal of the prop team is to use these interactive effects to elevate the per
 ![Storyboards 2](Storyboards%202.jpg) 
 
 **This storyboard demonstrates how the prop’s sound effects can enhance dramatic expression on stage.**  
-In Storyboards 1–2, a celebration scene is reinforced by the sound of clinking glasses, amplifying the joy and festivity of the moment.  
-In Storyboards 3–4, an assassination scene is intensified by the sharp metallic sound of a sword, heightening the tension and danger between characters.  
-In Storyboards 5–6, the classic fairytale moment is dramatized by the crisp crunch of an apple, emphasizing the fateful action and drawing the audience deeper into the story.  
+- In Storyboards 1–2, a celebration scene is reinforced by the sound of clinking glasses, amplifying the joy and festivity of the moment.  
+- In Storyboards 3–4, an assassination scene is intensified by the sharp metallic sound of a sword, heightening the tension and danger between characters.  
+- In Storyboards 5–6, the classic fairytale moment is dramatized by the crisp crunch of an apple, emphasizing the fateful action and drawing the audience deeper into the story.  
 
-![Storyboards 3](storyboards%303.png) 
+![storyboards 3](storyboards%303.png) 
 
 \*\***Summarize feedback you got here.**\*\*  
 This storyboard clearly illustrates the scene and helps convey the narrative. The drawings are expressive and easy to follow, showing good effort in visual storytelling. However, the sequence could be expanded with more panels to better show transitions between actions, and adding notes on lighting or colors would make the intended atmosphere clearer.  
