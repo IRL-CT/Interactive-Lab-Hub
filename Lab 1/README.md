@@ -188,9 +188,13 @@ Part D. Wizard the device
 
 **Include your first attempts at recording the set-up video here.**
 
+https://youtube.com/shorts/eV2Qi6K9Z58?feature=share
+
 ______________________
 
 **Show the follow-up work here.**
+
+https://youtube.com/shorts/NFFIiy9WZf4?feature=share
 
 _______________________
 
@@ -207,6 +211,10 @@ ________________________
 
 Part F. Record
 **Take a video of your prototyped interaction.**
+
+https://youtube.com/shorts/NFFIiy9WZf4?feature=share |
+https://youtube.com/shorts/bb85qWyLwTQ?feature=share |
+https://youtube.com/shorts/UC5cSMIk93s?feature=share 
 
 ________________________
 
