@@ -1,6 +1,6 @@
 # Staging Interaction
 
-**Lianne Bisch(lb854)**
+**Lianne Bisch(lb8-54)**
 
 ## Lab Overview
 For this assignment, you are going to:
@@ -293,23 +293,17 @@ We did not use any other resources.
 
 # Staging Interaction, Part 2
 
-
 This describes the second week's work for this lab activity.
-
-
-
 
 ## Prep (to be done before Lab on Wednesday)
 
-
 You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear.
-
 
 \*\***Summarize feedback from your partners here.**\*\*
 
+- One of the partners raised the conrner the design raises about how we determine the baby’s condition in the first place. She/he said the light feels more like a supporting aid rather than the central feature. We will address this by adding one more story board explaining the cry analyzer will listen to the baby's voice, AI will analyze, then the result will be reflected in the light. 
 
 ## Make it your own
-
 
 Do last week’s assignment again, but this time:
 1) It doesn’t have to (just) use light,
@@ -319,5 +313,227 @@ Do last week’s assignment again, but this time:
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
 
+## Lab Overview
+For this assignment, you are going to:
+
+A) [Plan](#part-a-plan)
+
+B) [Act out the interaction](#part-b-act-out-the-interaction)
+
+C) [Prototype the device](#part-c-prototype-the-device)
+
+D) [Wizard the device](#part-d-wizard-the-device)
+
+E) [Costume the device](#part-e-costume-the-device)
+
+F) [Record the interaction](#part-f-record)
+
+## Part A. Plan
+
+\*\***Describe your setting, players, activity and goals here.**\*\*
+
+**Cry Analyzer**
+_Setting:_ At home or any public space where the baby is present.
+
+Baby is usually...
+- In the crib.
+- In the stroller.
+- In the parent's arms.
+- In carseat
+- In playpen
+
+Caregivers are usually at...
+- Next to the baby 
+- Different room 
+
+_Players:_
+- Baby (or multiple babies)
+- Caregivers
+    - parents
+    - nannies
+    - grandparents
+    - people with hearing impairment. 
+
+_Activity:_ The device continuously listens for baby cries.
+- When a baby starts crying, the device analyzes the sound to infer the likely reason. 
+    - Analyzing the baby’s cry: Green 
+    - Hungry: Red 
+    - Tired/Sleepy: Yellow
+    - Wet diapers: Brown
+    - Others: Purple
+- Different light intensities for serverity of cry or length of cry, so if the signal is ignored the light intensifies.
+- If there are multiple babies, the device differentiates which baby is crying. Each baby is assigned for the different shape. 
+- Caregivers notice the light and respond to the baby’s needs.
+- Feedback as to better tune the system so if cry is incorrectly interpreted, regarding wise or if a babies cry is attributed to the wrong child.
+
+_Goals:_ Babies cry for different reasons, and it is not always easy for caregivers to immediately recognize the cause. The goal of the Cry Analyzer is to provide a clear, light-based signal to caregivers, helping them quickly understand which baby is crying and why, so they can respond appropriately.
+
+**Music Light & Vibration Follower**
+_Setting:_ concert, musical performance, jam session, any setting where one would want to better feel music
+
+_Players:_ those who are hearing impared or want a more immersive musical experience
+
+_Activity:_ The device can listen to music and use colors, light intensity and vibrations to follow different parts of the music.
+    - The vibrations can signify the general rhythm of the music 
+    - The light intensity can signify if there is a crescendo or decrescendo.
+    - The color can reflect the mood of the song
+    - User can customize what they want each feature to follow, for example if one wants to follow the guitarist's notes versus the overall rhythm using the vibrations.
+    
+_Goals:_
+    Deaf and the hearing impaired will still attend musical performances and be able to feel immersed in the music. Provide better music experience to those who have hearing impairment. 
+
+\*\***Include a picture of your storyboard here**\*\*
 
 
+Storyboard 1: 
+- Expalin how this works. 
+
+<img src="storyboard_2/Howitworks.png" alt="cryanalyzer1" width="300"/>
+
+
+Storyboard 2: 
+- wristband adding vibration as crying continues to indicate severity.
+
+<img src="storyboard_2/cryanalyzer1.png" alt="cryanalyzer1" width="300"/>
+
+Storyboard 3:
+- The caregiver has hearing impairement. She can get the vibration first for the baby crying.
+
+<img src="storyboard_2/Hearing.png" alt="cryanalyzer1" width="300"/>
+
+Storyboard 4:
+- Nanny/caretaker is ignoring baby's needs so the alert also goes to the parent's wristband after a certain amount of time or repeated crying of the same issue back to back
+
+<img src="storyboard_2/Caregiver.jpg" alt="cryanalyzer1" width="300"/>
+
+Storyboad 5: 
+- Multiple-babies - now the user can see the different shapes for different baby 
+
+<img src="storyboard_2/Multiple_kids.png" alt="multiple kids" width="300"/>
+
+Storyboard 6:
+- Baby's cry is misinterpreted by the device attributing a cry to the wrong need and the caregiver gives feedback to the device in order to recalibrate it.
+<!-- ![alt cryanalyzer2](storyboard_2/misclassify-cry.png) -->
+
+<img src="storyboard_2/misclassify-cry.png" alt="misclassify-cry" width="300"/>
+
+
+Storyboard 7: 
+- Someone who lives somewhere loud, so the device goes off for other sounds. the user needs to recalibrate the system to only alert to baby crying vs emergency vehicles going by or loud neighbors.
+
+<!-- ![alt recalibrate](storyboard_2/recalibrate-baby.pdf) -->
+
+<img src="storyboard_2/recalibrate-baby-1.png" alt="recalibrate" width="300"/>
+<!-- [View the PDF](storyboard_2/recalibrate-baby.pdf) -->
+
+<!-- [![Preview of PDF](storyboard_2/recalibrate-baby.pdf)](storyboard_2/recalibrate-baby.pdf) -->
+
+Storyboard 8: 
+- Concert goer who is hearing impaired. As the music changes rhythm and tone their wearable changes color, intensity and vibrations. This allows them to dance to the beat and participate more fully in the concert. 
+<!-- ![alt concert-interaction](storyboard_2/concert-alert.png) -->
+
+<img src="storyboard_2/concert-alert.png" alt="concert" width="300"/>
+
+
+Storyboard 9:
+- Person is attending a jazz concert which is known for use of improvisation. The wearbale helps the user understand the added riffs and sections as the players  improvise and change the song.
+    <!-- ![alt jazz-concert-interaction](storyboard_2/jazz-concert-alerts.png) -->
+
+<img src="storyboard_2/jazz-concert-alerts.png" alt="jazz-concert" width="300"/>
+
+
+\*\***Summarize feedback you got here.**\*\*
+
+Feedback:
+
+Cry Analyzer: 
+Most of the feedback are positive. We now incorporate more variety conditions such as multile kids and incoporate accessibiliy. However, we got some questions: 
+
+- How strong should the vibrations be? How often should they intesify if the crying does not stop?
+- **What if multiple babies are crying for different reasons at once? How many babies can it listen for at once?**
+- Would notifying the parents if a child does not get attended to cause conflict amongst caregivers?
+    
+## Part B. Act out the Interaction
+
+\*\***Are there things that seemed better on paper than acted out?**\*\*
+
+In the multiple-kids condition, we encountered many of the issues that others pointed out. For example, when multiple babies cry at the same time for different reasons, this creates challenges for both the lantern form and the wristband form of the cry analyzer.
+
+We also realized that if several babies begin crying at once, caregivers can easily become overwhelmed. In such moments, they may not have the time or mental bandwidth to check the cry analyzer or recall which shape or color corresponds to which meaning.
+
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+
+In the multiple-kids situation, ideally, when several babies cry at once, the cry analyzer would keep listening, differentiate between each baby’s cries, analyze them, and display the reasons in one of two ways:
+- Rotating View: The display cycles through each baby’s cry reason, updating every few seconds (e.g., every three seconds).
+- Split View: The display is divided into sections, with each section dedicated to one child. For example, the top row could show John, the second row Smith, and the third row Bob. 
+
+With the split view, caregivers can see all the information at once without waiting for the rotation, reducing confusion and helping them respond more quickly.
+
+Alternatively, instead of one device for all the babies, each child could be paired with their own cry analyzer. In that case, the baby’s voice would need to be registered during setup. However, the main concern with this approach is that it would significantly increase the cost.
+
+For accessibility we could also sync patterns of vibration to the 4 categories for those who may be color blind or visually impaired.
+
+## Part C. Prototype the device
+
+\*\***Give us feedback on Tinkerbelle.**\*\*
+
+When going onto the computer http, the instructions say to use http://[yourWiFiIPv4address]:5000, however sometimes the computer controller also needs to be on 5001 for it to work. I wish the names of the buttons were clearer, Jane Wren is not obvious as to if it would be the controller or recipient of the colors.
+
+## Part D. Wizard the device
+
+\*\***Include your first attempts at recording the set-up video here.**\*\*
+
+\*\***Show the follow-up work here.**\*\*
+
+
+## Part E. Costume the device
+
+\*\***Include sketches of what your devices might look like here.**\*\*
+Sketch of wall hanging option. 
+<!-- ![alt cribHang](sketches/standing_sketch.jpg) -->
+<img src="sketches/Alarm-Vibration-Display.png" alt="wall-alarm" width="300"/>
+
+Sketch of multiple kids - different shape for each kid. 
+
+<img src="sketches/Multi_Different_Shape.png" alt="wall-alarm" width="300"/>
+
+Sketch of multiple kids - split view
+
+<img src="sketches/Mukti_Split_View.png" alt="wall-alarm" width="300"/>
+
+\*\***What concerns or opportunities are influencing the way you've designed the device to look?**\*\*
+
+- A touch screen can provide feedback, snooze functionality, or recalibration of sound sensitivity.
+- The multiple-kids situation is especially challenging. Our focus is on preventing parents from feeling overwhelmed by ensuring the display is:
+    - Easy to see at a glance
+    - Clear and differentiated between children
+    - cSimple enough to reduce confusion under stress
+
+## Part F. Record
+
+\*\***Take a video of your prototyped interaction.**\*\*
+
+Video of caregiver in another room getting visual and vibration alert
+
+Video of caregiver ignoring baby's cries & parent getting alerted
+
+Interactions-video:
+- https://drive.google.com/file/d/1kNg_qinPC_SFI4WTneqEbf6UDAvUuw8e/view?usp=sharing
+- https://drive.google.com/file/d/1RL4WNPt1M98K0zVZOQuKLDW64TBDG322/view?usp=drive_link
+
+\*\***Please indicate who you collaborated with on this Lab.**\*\*
+
+Collaborators: Nana Takada (nt388) and Lienne Bisch (lb854).
+We met up and discussed the whole process of this homework, and enjoyed how our idea evolved by imagining the situation with babies. 
+
+Utilized ChatGPT for storyboard creation: 
+
+Prompt 1: Can you please draw a storyboard with these parameters in mind: Concert goer who is hearing impaired. As the music changes rhythm and tone their wearable changes color, intensity and vibrations. This allows them to dance to the beat and participate more fully in the concert.
+
+Prompt 2: Can you make another storyboard 6 panels minimum with the same item but this environment: Person is attending a jazz concert which is known for use of improvisation. The wearbale helps the user understand the added riffs and sections as the players improvise and change the song.
+
+Prompt 3: Can you create scenario for "wristband adding vibration as crying continues to indicate severity.", and can you please draw a storyboard with these parameters in mind: 
+
+ChatGPT for prototype sketch
+Prompt 1:
+can you make a prototype image of something similar to a baby monitor with a touch screen that can hang on a wall and with a magnetic back or case for hands free use. The screen can show a shape lit in either yellow or red and have pulse waves shown below that in a pattern. as well as a "snooze" option and settings on a corner.
