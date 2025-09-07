@@ -278,7 +278,7 @@ Yes. While acting out the scenes, we realized that adding stronger contrasts in 
 
 You will be using your smartphone as a stand-in for the device you are prototyping. You will use the browser of your smart phone to act as a “light” and use a remote control interface to remotely change the light on that device. 
 
-\*\***Changes based on Tinkerbelle.**\*\*   
+\*\***Auto Flash based on Tinkerbelle.**\*\*   
 The original Tinkerbelle only allowed **manual** color switching via a color picker. I extended it with an **Auto Flash** system and several reliability/UX tweaks.
 
 **New features**
@@ -323,11 +323,55 @@ The original Tinkerbelle only allowed **manual** color switching via a color pic
 - Provides **reproducible** timing and transitions (good for demos and user tests).
 - Scales to **multiple displays** via broadcasts, keeping scenes synchronized.
 
+\*\***Sound Effects based on Tinkerbelle.**\*\*  
+**Single Global Audio System**  
+  - Uses one shared `Audio` object for all playback, avoiding overlap and conflicts.  
+**Controller ↔ Light Synchronization**  
+  - Controller sends `audio` / `pauseAudio` events via Socket.  
+  - Light devices (e.g., mobile phones) play or stop sounds accordingly.  
+**Custom Input Playback**  
+  - Type a sound name in the input box and press **Play** → Controller emits it, Light plays it.  
+**Quick Sound Buttons**  
+  - Pre-bound to common effects (e.g., `thunder`, `laugh`, `eatfull`, `drum`, `explosion`, `clap`).  
+  - One click = instant sound effect across all Light clients.  
+  - Button highlights briefly (green flash) for feedback.  
+**Local Sound Library**  
+  - Sounds stored under `/static/sounds/` (e.g., `static/sounds/thunder.mp3`).  
+  - Easy to extend — just add new `.mp3` files and bind them with `bindSoundButton(id, filename)`.  
+
+\*\***Screen Shake based on Tinkerbelle.**\*\*  
+**Generic Shake**  
+  - `triggerShake(duration)` applies a brief vibration effect on the screen to add visual impact.  
+**Sound-linked Shake**  
+  - Small shakes are triggered when sounds are played.  
+  - The `wineBtn` not only plays audio but also creates a **5-second continuous shake**.  
+**Gyroscope Integration**  
+  - On mobile devices, orientation sensors enhance interactivity:  
+    - Tilting the device adjusts screen brightness.  
+    - Exceeding a tilt threshold triggers a shake feedback.
+
+
+\*\***Limitations & Decisions**\*\*    
+**Mobile vibration (iOS restriction)**   
+We originally planned to implement continuous vibration on mobile devices. However, due to system restrictions on iOS, true vibration is not possible.   
+
+**Workaround: screen shaking**   
+As a substitute, we implemented on-screen shaking effects. During testing, we found the effect was not very noticeable, especially when phones were wrapped inside stage props.   
+
+**Final decision: focus on sound**   
+Given the limitations, we decided to rely on sound and color effects as the primary enhancements. Sounds and Lights provided clearer feedback and a stronger immersive impact for both actors and the audience.  
+Even though vibration cannot currently be realized through code on iOS devices, we believe it remains a valuable interaction. In our product vision, vibration feedback should be retained as a design feature, to be enabled once technical or hardware conditions allow.   
+
+
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*  
-[Watch the setup video for Auto Flash lighting controller here](https://youtu.be/pGlznBV1fC4)
+[Watch the setup video for Auto Flash lighting controller here](https://youtu.be/pGlznBV1fC4)   
+
+[Watch the setup video for Viberation controller here](https://youtu.be/OM1hdqViYhQ)   
+
+(sounds setup here)
 
 ## Part E. Costume the device
 \*\***Include sketches of what your devices might look like here.**\*\*   
@@ -344,18 +388,26 @@ The design is shaped by both practical concerns and opportunities for stage use.
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*   
-This video demonstrates the prototyped interaction for our Lab1b lighting function. The device is used as a stage lighting prop that automatically switches between selected colors at fixed time intervals. In the video, warm tones such as red, orange, and yellow are applied to a fruit plate prop. The gradual color transitions highlight the fruits, making them appear more vivid and easier for the audience to notice during a performance. This showcases how the lighting effect can enhance the visibility and expressiveness of different stage props in theatrical settings.
+- This following video demonstrates the prototyped interaction for our Lab1b lighting function. The device is used as a stage lighting prop that automatically switches between selected colors at fixed time intervals. In the video, warm tones such as red, orange, and yellow are applied to a fruit plate prop. The gradual color transitions highlight the fruits, making them appear more vivid and easier for the audience to notice during a performance. This showcases how the lighting effect can enhance the visibility and expressiveness of different stage props in theatrical settings.
 
-[Watch the prototyped interaction video for lighting efffect here](https://www.youtube.com/watch?v=gxWBAg7dB6A)
+[Watch the prototyped interaction video for lighting effect here](https://www.youtube.com/watch?v=gxWBAg7dB6A)   
+
+
+- This following video demonstrates the prototyped interaction for our Lab1b sound effects function. The device is used as a stage prop controller that triggers different sound effects in real time during a performance. In the video, six distinct sounds — thunder, laughter, eating, drum, explosion, and applause — are assigned to buttons on the controller. When pressed, the corresponding sound is immediately played on the stage prop device (a smartphone).   
+These effects are applied to dramatize key moments of a theatrical performance: thunder emphasizes tension in a storm scene, laughter highlights irony in dialogue, eating underscores the banquet setting, drums enhance dramatic build-ups, explosions mark climactic action, and applause provides closure to a scene. By integrating these sound effects into stage action, the prototype showcases how interactive technology can enrich the audience’s sensory experience and amplify the emotional impact of live theatre.  
+
+[Watch the prototyped interaction video for sounds effect here]()   
+
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
-I collaborated with Qinrui Li and Jiayi Sun on this Lab. I mainly focused on the coding and design of the automatic lighting flash function. Qinrui was responsible for the vibration effect, while Jiayi (Joy) worked on the sound effect. Our collaboration went very smoothly, as each of us contributed a unique feature that complemented the others. Together, the lighting, vibration, and sound effects enriched the overall stage atmosphere and made the theatrical presentation more immersive.   
+I collaborated with Qinrui Li and Huiying Zhan on this Lab. I mainly focused on the coding and design of the sounds effect  function. Qinrui was responsible for the vibration effect, while Huiying (Sandy) worked on the auto flash lighting function. Our collaboration went very smoothly, as each of us contributed a unique feature that complemented the others. Together, the lighting, vibration, and sound effects enriched the overall stage atmosphere and made the theatrical presentation more immersive.   
 
 We would like to thank the YouTube platform for providing a convenient channel to upload and share our video of the prototyped interaction. We also acknowledge the Tinkerbelle coding prototype as an inspiration and foundation for our different effects' design. In addition, the Jianying app was very helpful for video editing, enabling us to present our prototype clearly and effectively.
 
 ## Reflection   
-
-
+Developing the sound effects function was one of the most challenging parts of our project. I went through many iterations — starting from trying to fetch sounds online, then downloading them locally, arranging them into a foldable button panel, and finally refining the layout into a clean grid. Each step required rethinking the code structure, and the debugging process was not easy.  
+Despite the challenges, the final sound effects function works well and contributes significantly to the theatrical prototype. It effectively captures sudden shifts in mood and adds expressive layers to the stage performance. This showed me how interactive audio can complement lighting to enhance storytelling.  
+Lastly, this work was also a great team effort. While I focused on coding and iteration of the sound effects, my teammates supported with viberation and auto flash lighting. Together, we were able to push the prototype forward and make it both functional and expressive.
 
 
 
