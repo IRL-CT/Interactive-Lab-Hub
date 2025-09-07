@@ -197,6 +197,7 @@ https://youtube.com/shorts/NFFIiy9WZf4?feature=share
 Part E. Costume the device
 
 **Include sketches of what your devices might look like here.**
+
 <img width="539" height="656" alt="Screen Shot 2025-09-06 at 6 50 16 PM" src="https://github.com/user-attachments/assets/0a10d9b1-bac6-4812-9bef-7e7a80371f64" />
 <img width="489" height="621" alt="Screen Shot 2025-09-06 at 9 50 55 PM" src="https://github.com/user-attachments/assets/3fddfc96-bedd-4ca2-8d4e-49025a315217" />
 <img width="357" height="648" alt="Screen Shot 2025-09-06 at 9 51 46 PM" src="https://github.com/user-attachments/assets/f05209ea-6e19-424e-9819-09dbf1b314b8" />
