@@ -267,9 +267,16 @@ _Activity_: user wants to try to cook a new recipe
 _Goals_: user is uploading a recipe onto the device and then using it to cook  
 ![IMG_0666](https://github.com/user-attachments/assets/9de33acb-da9a-4880-9d4c-2739bf5eba5a)
 
-Prototype Pictures:  
+**Prototype Pictures:**  
 
 <img src="https://github.com/user-attachments/assets/e94e2585-b009-4bf2-97b5-f68d22d5f025" width="480">
-<img src="https://github.com/user-attachments/assets/968ed85f-6ce6-480e-af67-4ffc53ee7ade" width="480">
+<img src="https://github.com/user-attachments/assets/968ed85f-6ce6-480e-af67-4ffc53ee7ade" width="480">  
+
+
+
+**Videos:**
+- [Cooking Helper #1](https://drive.google.com/file/d/1-axlZyoPFDHCBE8N0AdGrRXNNZz8NM2D/view?usp=sharing)
+- [Cooking Helper #2](https://drive.google.com/file/d/1faD3HyKgD-_G6psMwsp34ya1eSwXWP_q/view?usp=sharing)  
+
 
 
