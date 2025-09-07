@@ -248,19 +248,28 @@ Do last week’s assignment again, but this time:
 
 Storyboard #1:  
 _Setting_: In a kitchen at dinnertime  
-_Players_: Mom, kids (in another room)  
-_Activity_: Cooking dinner while kids keep distracting her and asking her to play. The device is able to alert her when the food needs attention.   
-_Goals_: Mom is using the device to cook  
-
-Storyboard #2:  
-_Setting_: In a kitchen at dinnertime  
 _Players_: Sarah and Mary, two roommates  
 _Activity_: Sarah is trying to cook steak  
 _Goals_: Sarah really wants to eat great steak  
+![IMG_0664](https://github.com/user-attachments/assets/c3017ac5-5239-4c45-b09e-ef2cd6fc5223)
+
+Storyboard #2:  
+_Setting_: In a kitchen at dinnertime  
+_Players_: Mom, kids (in another room)  
+_Activity_: Cooking dinner while kids keep distracting her and asking her to play. The device is able to alert her when the food needs attention.  
+_Goals_: Mom is using the device to cook  
+![IMG_0665](https://github.com/user-attachments/assets/e9beab08-0c39-45d2-8519-5526d1e92ab6)
 
 Storyboard #3:  
 _Setting_: In a kitchen at breakfast  
 _Players_: User  
 _Activity_: user wants to try to cook a new recipe  
 _Goals_: user is uploading a recipe onto the device and then using it to cook  
+![IMG_0666](https://github.com/user-attachments/assets/9de33acb-da9a-4880-9d4c-2739bf5eba5a)
+
+Prototype Pictures:  
+
+<img src="https://github.com/user-attachments/assets/e94e2585-b009-4bf2-97b5-f68d22d5f025" width="480">
+<img src="https://github.com/user-attachments/assets/968ed85f-6ce6-480e-af67-4ffc53ee7ade" width="480">
+
 
