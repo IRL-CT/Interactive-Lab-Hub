@@ -2,9 +2,12 @@
 
 # Staging Interaction
 
-\*\***COLLABORATOR: [Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), Miriam Alex, [Shreya Kethi Reddy](https://github.com/littleredpolkadot/Interactive-Lab-Hub/tree/Fall2025/Lab%201
-), Ying Yu Chen (Me)**\*\*
+\*\***COLLABORATOR:**\*\*
 
+**Video and Idea: [Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), Ying Yu Chen (Me)**
+
+
+**Feedback and Storyboard Idea Sharing: [Miriam Alex](https://github.com/miriam-alex/Interactive-Lab-Hub/tree/Fall2025/Lab%201), [Shreya Kethi Reddy](https://github.com/littleredpolkadot/Interactive-Lab-Hub/tree/Fall2025/Lab%201)**
 ```!
 We spread our ideas across everyone’s repositories, so don't forget to check them out :)
 ```
@@ -177,6 +180,7 @@ Shop owner, customers (inside or outside the shop), pedestrians (passersby), del
 ```diff!
 Check out the storyboards from other members in our team —we’ve created 20 exciting scenarios in total!
 ```
+Storyboards by [Amanda Lu](https://github.com/amandazlu/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md), [Miriam Alex](https://github.com/miriam-alex/Interactive-Lab-Hub/tree/Fall2025/Lab%201), [Shreya Kethi Reddy](https://github.com/littleredpolkadot/Interactive-Lab-Hub/tree/Fall2025/Lab%201)
  
  
  
@@ -312,6 +316,10 @@ Sketch and Craft Photo for **EmotionCard**
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 
 Collaboratig with **Amanda Lu, Miriam Alex, Shreya Kethi Reddy**. (Thank you for shooting  the video with me Amanda! 🥳)
+
+**See Amamda's videos here:**
+- [Cooking Helper](https://drive.google.com/file/d/1RdkajOA6uyp1OThFQ7FziLMn45hgsoyX/view?usp=sharing)  
+- [Pet Diagnostic](https://drive.google.com/file/d/1kpfjlqszphcwYdWIBRx5RbDH00K5xzN7/view?usp=drive_link)
 
 ```diff!
 + Don't forget to check out other members' videos and sketches on their GitHub.
