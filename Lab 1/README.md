@@ -312,16 +312,32 @@ _Goals_: user is uploading a recipe onto the device and then using it to cook
 ![IMG_0666](https://github.com/user-attachments/assets/9de33acb-da9a-4880-9d4c-2739bf5eba5a)
 
 **CatCommunicationButton**:  
-Storyboard #1: Setup
+Storyboard #1: Setup  
+_Setting_: A household shared by humans and cats. The cat owner is setting up the communication button using their phone.  
+_Players_: Humans and cats living together in the house.  
+_Activity_: The user downloads the CatCommunicationButton app. They select a color for a specific action, record an audio message for the cat, and the app translates this message into a “cat-friendly” signal. Once setup is complete, the button turns pink to indicate readiness. The user can then try the button: it will display the chosen color and play the translated cat message.  
+_Goals_: Humans-Set up the button and enjoy playful interactions with their cats. Cats-Freely move around the space and interact when they choose.  
 ![Setup](https://github.com/user-attachments/assets/a2ca6f3f-566f-4f9f-9956-108fd9bd29c2)
 
-Storyboard #2: Use by human
+Storyboard #2: Use by human  
+_Setting_: A household shared by humans and cats. The button displays both a “cat language” message and a color to communicate with the cat.  
+_Players_: Humans and cats living together in the house.  
+_Activity_: When the human presses the button, it not only shows the selected color but also plays a cat-friendly message through the speaker. This way, even if the cat is not in the same room, it can still hear the message from a distance.  
+_Goals_: Humans - Communicate with their cats in a simple and playful way. Cats - Receive clear signals that help them understand their owner’s message.  
 ![Use_by_human](https://github.com/user-attachments/assets/a6c3b960-e6dc-4879-bf0c-9749fdca1574)
 
-Storyboard #3: Use by cat
+Storyboard #3: Use by cat  
+_Setting_: A household shared by humans and cats. The button detects the cat’s input and displays the assigned color along with the human message.  
+_Players_: Humans and cats living together in the house.  
+_Activity_: When the cat presses the button, the sensor reads the cat's action and triggers the pre-set response. The button then shows the chosen color and plays the corresponding message through the speaker. This allows the human, even if busy with something else, to quickly understand and respond to the cat’s needs.  
+_Goals_: Humans - Receive and respond to their cat’s requests. Cats - Express their needs clearly and know their owner has been notified.  
 ![Use_by_cat](https://github.com/user-attachments/assets/2be81038-b281-4796-a595-06b5cd75c8a4)
 
-Storyboard #4: Sensing
+Storyboard #4: Sensing  
+_Setting_: A household shared by humans and cats, where both the cats and their owners can be notified through the button.  
+_Players_: Humans and cats living together in the house.  
+_Activity_: When the cat touches the button, it sends a signal to the owner’s phone. The phone identifies the pre-set color and human message, then displays the color on the button. This way, the cat can see whether the message it is trying to express is correct, while the owner receives a notification with the corresponding audio message.  
+_Goals_: Humans-Receive notifications when their cats want something. Cats-Communicate requests to their owners and confirm whether their message was conveyed correctly by observing the color on the button.  
 ![Sensing](https://github.com/user-attachments/assets/e2a6b076-46d9-4f7d-ae92-8509c73f284b)
 
 **Prototype Pictures:**  
@@ -336,7 +352,9 @@ CatCommunicationButton:
 
 **Videos:**
 - [Cooking Helper #1](https://drive.google.com/file/d/1-axlZyoPFDHCBE8N0AdGrRXNNZz8NM2D/view?usp=sharing)
-- [Cooking Helper #2](https://drive.google.com/file/d/1faD3HyKgD-_G6psMwsp34ya1eSwXWP_q/view?usp=sharing)  
+- [Cooking Helper #2](https://drive.google.com/file/d/1faD3HyKgD-_G6psMwsp34ya1eSwXWP_q/view?usp=sharing)
+- [Set Up CatCommunicationButton](https://youtu.be/BUALTm3MzSU)
+- [Playing with CatCommunicationButton](https://youtu.be/JcizBqpgvjw)
 
 
 
