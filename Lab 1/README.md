@@ -231,3 +231,100 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+## Part A. Plan
+
+\*\***Describe your setting, players, activity and goals here.**\*\*
+
+Given our previous design, we update the device to have 2 modes.
+
+1. **Individual mode**
+
+    The device is a personalized trainer mode with a guided AI plan (AI builds a plan based on history, goals, and preferences)
+
+- **Setting**: The interaction takes place during a workout session, whether at home, in a gym/fitness studio, or any environment the user chooses.
+- **Players**: The primary player is the exerciser, who is the person actively training with the device. Depending on where the user is at, there could be secondary players; for example, roommates or partners who share the same living space, children who may be present and interact with the device unintentionally, or fellow gym-goers if the workout takes place in a public setting.
+- **Activity**: The user will begin a workout session, and the device will monitor the performance and physiological metrics, including heart rate and skin temperature. The device will also provide a countdown to inform the user about the time remaining for each exercise or rest period, while simultaneously delivering motivational feedback through vibration, sound, or a color progress bar to keep them engaged. 
+- **Goal**: The device’s primary goal is to support the user in completing workouts effectively by leveraging AI to deliver real-time guidance, track progress, improve performance, and sustain motivation through multimodal feedback.
+
+2. **Group mode**
+
+- **Setting**: The interaction will occur in a group workout session, such as a workout class, bootcamp, or small training group, where multiple participants train simultaneously in a shared environment. This could be in a gym studio, outdoor park, or even a virtual group session.
+- **Players**: The players are the exercisers participating in the workout class. In group mode, the instructor can monitor the device signals to track each participant’s state throughout the session.
+- **Activity**: Participants engage in a structured workout routine led by an instructor or guided by shared device cues. The device provides visual and auditory feedback, such as lights indicating progress, heart rate zones, or alerts when intensity drops. Lights may also signal the instructor when individuals struggle (ex: turning red if performance metrics fall below the threshold). Group features include setting shared or paired goals, competing in small teams, or earning collective achievements. Real-time stats such as heart rate, cadence, and calories burned may be displayed or shared within the group to foster motivation and accountability.
+- **Goal**: The device’s primary goal in group mode is to enhance the social and motivational aspects of training. By providing collective progress indicators and encouraging friendly competition, it strengthens team bonding and keeps participants engaged. It also assists instructors by flagging safety or performance issues, ensuring participants stay in safe zones. Ultimately, the device aims to make workouts more interactive, collaborative, and emotionally rewarding, inspiring participants to push further while maintaining a fun, social atmosphere.
+
+
+**Storyboard**
+
+![IDD_Lab1_Part2A](./assets/Lab1_Part2/PartA_storyboard.png)
+
+## Part B. Act out the Interaction
+
+\*\***Are there things that seemed better on paper than acted out?**\*\*
+
+We initially ideated around a “couples” feature within the group mode. While it is an interesting offering, after acting it out, we realized this is not much different from a normal group mode. We then decided to focus solely on a group workout scenario rather than developing more around the couples workout idea
+
+During the brainstorming stage, we discussed the possibility to use this device for groups doing workout sessions to compete with each other. The vision was to use lighting or other haptic feedback to signify the start of a mini-competition, keep score, and give rewards. However that may be deviating from the original purpose of this device and is a bit more complicated than we expected. Thus this idea was dropped.
+
+
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+
+We realized there might be some workout/exercises that require equipment or hand movement that could interfere with a wearable device on the wrist. To deal with this issue, we explore a new idea to costume our device as a necklace or an earring.
+
+Pros and cons of each:
+- Earrings
+    - Pro
+        - Super agile/lightweight
+        - Easier to hear instructions/sound feedback in a group setting or outdoor environment
+    - Con
+        - Not everyone has piercings
+        - Hard to design with comfort
+        - Easy to lose
+        - Screen size is extremely tiny for light feedback
+- Necklace:
+    - Pro
+        - Easy to put on - accessibility
+        - Easy to hear instructions/sound feedback in a group setting or outdoor environment
+        - Easy to spot a vibration/haptic feedback
+        - Easy to see other’s light/feedback in a group setting
+    - Con
+        - Needs to be adjustable for fitting
+        - Screen may be slightly smaller than a watch solution
+
+## Part C. Prototype the device & Part D. Wizard the device
+Refer to Part 1.
+
+## Part E. Costume the device
+
+\*\***Include sketches of what your devices might look like here.**\*\*
+
+After evaluating the tradeoff, we decided to go with a necklace as a wearable device.
+
+
+| ![IDD_Lab1_Part2E](./assets/Lab1_Part2/PartE_sketch1.png) | ![IDD_Lab1_Part2E](./assets/Lab1_Part2/PartE_sketch2.png) |
+|-|-|
+
+Images were generated by ChatGPT
+
+\*\***What concerns or opportunities are influencing the way you've designed the device to look?**\*\*
+
+**Opportunities**
+
+The main opportunity we envisioned when designing the device was to enhance the overall workout experience. By prioritizing simplicity and convenience, the device allows users to set up easily and integrate the device seamlessly into their routines. In group mode, the device can also inform the instructors about each participant's status, enabling them to monitor progress and identify when someone needs additional support. Through combining visual, auditory, and haptic cues, the device can adapt individual user preferences and make the experience more engaging. We were hoping that by using multimodality, the accessibility of the device can also be improved, ensuring users with different abilities or preference can engage effectively. In addition, we took multimodality as an opportunity to motivate the users through reinforcing feedback across multiple channels.
+
+**Concerns**
+
+First, a major concern is data privacy and security issues. Users may raise concern about health and performance data being stored and analyzed by AI. Secondly, as the device is multimodal, some users may find the cues overwhelming or distracting. In a shared or public environment, the cues could be disruptive to others nearby. Last but not least, accessibility barriers may still arise, since not all users respond well to certain feedback modes (e.g. color-blind users with color progress bar, or users with hearing impairment). 
+
+## Part F. Record
+
+We recorded two scenarios, one is in individual mode, while another is in group mode.
+
+| Individual Mode | Group Mode |
+|---|---|
+| https://github.com/user-attachments/assets/71472f33-2220-48b0-991d-89bab03229db | https://github.com/user-attachments/assets/e61da6a5-28b0-49b0-93ad-28487babe234 |
+
+\*\***Please indicate who you collaborated with on this Lab.**\*\*
+
+Charlotte Lin (hl2575), Zoe Tseng (yzt2), Irene Wu (yw2785), and Eva Huang (lh764, for part 2)
