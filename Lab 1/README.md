@@ -252,13 +252,13 @@ Beyond this specific play, the same props can be adapted to different stage sett
 The goal of the prop team is to use these interactive effects to elevate the performance, making it more engaging, expressive, and memorable for the audience.
 
 \*\***Include pictures of your storyboards here**\*\*   
-**This storyboard demonstrates how the prop’s lighting effect can change the mood of a scene.**  
+**1.This storyboard demonstrates how the prop’s lighting effect can change the mood of a scene.**  
 - In Storyboards 1–3, the fruit plate is shown under different lighting: neutral, red, and orange. These variations signal shifting meanings, such as normal, danger, or tension.  
 - In Storyboards 4–6, the pumpkin is lit with neutral, dark, and warm orange light. The changes highlight different atmospheres, from calm to eerie to intense.  
 
 ![Storyboards 2](Storyboards%202.jpg) 
 
-**This storyboard demonstrates how the prop’s sound effects can enhance dramatic expression on stage.**  
+**2.This storyboard demonstrates how the prop’s sound effects can enhance dramatic expression on stage.**  
 - In Storyboards 1–2, a celebration scene is reinforced by the sound of clinking glasses, amplifying the joy and festivity of the moment.  
 - In Storyboards 3–4, an assassination scene is intensified by the sharp metallic sound of a sword, heightening the tension and danger between characters.  
 - In Storyboards 5–6, the classic fairytale moment is dramatized by the crisp crunch of an apple, emphasizing the fateful action and drawing the audience deeper into the story.  
@@ -284,7 +284,7 @@ Yes. While acting out the scenes, we realized that adding stronger contrasts in 
 
 You will be using your smartphone as a stand-in for the device you are prototyping. You will use the browser of your smart phone to act as a “light” and use a remote control interface to remotely change the light on that device. 
 
-\*\***Auto Flash based on Tinkerbelle.**\*\*   
+\*\***1.Auto Flash based on Tinkerbelle.**\*\*   
 The original Tinkerbelle only allowed **manual** color switching via a color picker. We extended it with an **Auto Flash** system and several reliability/UX tweaks.
 
 **New features**
@@ -329,7 +329,7 @@ The original Tinkerbelle only allowed **manual** color switching via a color pic
 - Provides **reproducible** timing and transitions (good for demos and user tests).
 - Scales to **multiple displays** via broadcasts, keeping scenes synchronized.
 
-\*\***Sound Effects based on Tinkerbelle.**\*\*  
+\*\***2.Sound Effects based on Tinkerbelle.**\*\*  
 We also added 6 different sounds effect function to the tinkerbelle, enabling the device to better capture and express the emtions of the actors in stage settings.  
 
 **Single Global Audio System**  
@@ -347,7 +347,7 @@ We also added 6 different sounds effect function to the tinkerbelle, enabling th
   - Sounds stored under `/static/sounds/` (e.g., `static/sounds/thunder.mp3`).  
   - Easy to extend — just add new `.mp3` files and bind them with `bindSoundButton(id, filename)`.  
 
-\*\***Screen Shake based on Tinkerbelle.**\*\*  
+\*\***3.Screen Shake based on Tinkerbelle.**\*\*  
 Finally, we added a screen shake effect to imitate the viberation of the tool, which finally focus on the sound effect of a wine cup due to the restriction of ios system.  
 
 **Generic Shake**  
@@ -361,7 +361,7 @@ Finally, we added a screen shake effect to imitate the viberation of the tool, w
     - Exceeding a tilt threshold triggers a shake feedback.
 
 
-\*\***Limitations & Decisions**\*\*    
+\*\***4.Limitations & Decisions**\*\*    
 **Mobile vibration (iOS restriction)**   
 We originally planned to implement continuous vibration on mobile devices. However, due to system restrictions on iOS, true vibration is not possible.   
 
