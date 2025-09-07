@@ -172,11 +172,11 @@ Part B. Act out the Interaction
 
 **Are there things that seemed better on paper than acted out?**
 
-____________________
+After acting it out with the new features, we noticed some challenges. The calorie counter seemed easy on paper, but it’s hard to measure portions when only part of an ingredient is used. Allergy alerts also raised concerns because they would need to be very accurate to be trusted. Voice control felt less natural in a noisy kitchen and might not always pick up commands. Instacart ordering looked convenient in the storyboard, but acting it out showed it could feel disruptive if it tries to order too quickly without checking with the user first.
 
 **Are there new ideas that occur to you or your collaborator that come up from the acting?**
 
-_____________________
+Yes. Acting it out gave us some new ideas to make the device more useful. One idea was adding a confirmation step before Instacart places an order, so users don’t get unwanted deliveries. Another was to let the allergy feature connect to a user’s profile, so it can adjust alerts. We also thought about having the calorie counter suggest healthier substitutes instead of just showing numbers. Finally, we imagined adding a simple vibration or sound alert to go along with the lights, so users don’t have to rely on colors alone.
 
 Part C. Prototype the device
 
@@ -190,24 +190,20 @@ Part D. Wizard the device
 
 https://youtube.com/shorts/eV2Qi6K9Z58?feature=share
 
-______________________
-
 **Show the follow-up work here.**
 
 https://youtube.com/shorts/NFFIiy9WZf4?feature=share
-
-_______________________
 
 Part E. Costume the device
 
 **Include sketches of what your devices might look like here.**
 <img width="539" height="656" alt="Screen Shot 2025-09-06 at 6 50 16 PM" src="https://github.com/user-attachments/assets/0a10d9b1-bac6-4812-9bef-7e7a80371f64" />
-
-________________________
+<img width="489" height="621" alt="Screen Shot 2025-09-06 at 9 50 55 PM" src="https://github.com/user-attachments/assets/3fddfc96-bedd-4ca2-8d4e-49025a315217" />
+<img width="357" height="648" alt="Screen Shot 2025-09-06 at 9 51 46 PM" src="https://github.com/user-attachments/assets/f05209ea-6e19-424e-9819-09dbf1b314b8" />
 
 **What concerns or opportunitities are influencing the way you've designed the device to look?**
 
-________________________
+Adding features like allergy alerts, calorie tracking, and voice control brings new concerns about accuracy, and the voice may not work well in noisy kitchens, and tracking must be precise to be trusted. At the same time, these features create opportunities to make the device more inclusive and health focused so it can be useful as a true kitchen assistant rather than just a smart light.
 
 Part F. Record
 **Take a video of your prototyped interaction.**
@@ -216,8 +212,6 @@ https://youtube.com/shorts/NFFIiy9WZf4?feature=share |
 https://youtube.com/shorts/bb85qWyLwTQ?feature=share |
 https://youtube.com/shorts/UC5cSMIk93s?feature=share 
 
-________________________
-
 **Please indicate who you collaborated with on this Lab.** Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design.
 
-_________________________
+I collaborated with Nithin and Sachin on this lab and they were both so inclusive and great to work with. Both of them had loveley and amazing ideas about this product. Nikhil, Sachin, and I all worked on very amazing prototypes and we were able to add on to eachother's ideas. We all equally created costumes, while Sachin filmed the videos. We used inspiration from Amazon Alexa when it came to speaking to the device itself. 
