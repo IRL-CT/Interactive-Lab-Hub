@@ -252,15 +252,21 @@ Beyond this specific play, the same props can be adapted to different stage sett
 The goal of the prop team is to use these interactive effects to elevate the performance, making it more engaging, expressive, and memorable for the audience.
 
 \*\***Include pictures of your storyboards here**\*\*   
-This storyboard demonstrates how the **prop’s lighting effect** can change the mood of a scene.  
+**This storyboard demonstrates how the prop’s lighting effect can change the mood of a scene.**  
 - In Storyboards 1–3, the fruit plate is shown under different lighting: neutral, red, and orange. These variations signal shifting meanings, such as normal, danger, or tension.  
 - In Storyboards 4–6, the pumpkin is lit with neutral, dark, and warm orange light. The changes highlight different atmospheres, from calm to eerie to intense.  
 
-The storyboard illustrates how the prop projects colored lights onto stage objects, enhancing dramatic storytelling through visual emphasis.
 ![Storyboards 2](Storyboards%202.jpg) 
 
+**This storyboard demonstrates how the prop’s sound effects can enhance dramatic expression on stage.**  
+In Storyboards 1–2, a celebration scene is reinforced by the sound of clinking glasses, amplifying the joy and festivity of the moment.  
+In Storyboards 3–4, an assassination scene is intensified by the sharp metallic sound of a sword, heightening the tension and danger between characters.  
+In Storyboards 5–6, the classic fairytale moment is dramatized by the crisp crunch of an apple, emphasizing the fateful action and drawing the audience deeper into the story.  
+
+![Storyboards 3](Storyboards%303.png) 
+
 \*\***Summarize feedback you got here.**\*\*  
-This storyboard clearly illustrates the scene and helps convey the narrative. The drawings are expressive and easy to follow, showing good effort in visual storytelling. However, the sequence could be expanded with more panels to better show transitions between actions, and adding notes on lighting or colors would make the intended atmosphere clearer.
+This storyboard clearly illustrates the scene and helps convey the narrative. The drawings are expressive and easy to follow, showing good effort in visual storytelling. However, the sequence could be expanded with more panels to better show transitions between actions, and adding notes on lighting or colors would make the intended atmosphere clearer.  
 
 
 ## Part B. Act out the Interaction
