@@ -321,9 +321,13 @@ First, a major concern is data privacy and security issues. Users may raise conc
 
 We recorded two scenarios, one is in individual mode, while another is in group mode.
 
-| Individual Mode | Group Mode |
-|---|---|
-| https://github.com/user-attachments/assets/71472f33-2220-48b0-991d-89bab03229db | https://github.com/user-attachments/assets/e61da6a5-28b0-49b0-93ad-28487babe234 |
+**Individual Mode**
+
+https://github.com/user-attachments/assets/71472f33-2220-48b0-991d-89bab03229db
+
+**Group Mode**
+
+https://github.com/user-attachments/assets/e61da6a5-28b0-49b0-93ad-28487babe234
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 
