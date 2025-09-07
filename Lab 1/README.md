@@ -202,16 +202,19 @@ You will be assigned three partners from other groups. Go to their github pages,
 
 \*\***Summarize feedback from your partners here.**\*\*   
 **Exploration of Design Space / Novelty of Concept**  
-- 
+- Settings were very creative; Storyboards were really well illustrated as well.
+- I think it's a very interesting approach for this assignment, and it's very unique. However, they could have explored more ideas/settings in the storyboards since they only have one storyboard. I was a bit confused with the one storyboard, and I was not clearly sure if this is play or game.   
 
 **Technical Execution**  
-- 
+- Designs were also really creative and had very nice execution, reflecting the light on paper props is a great idea.
+- The video was very well made. The light transition was very clear!   
 
 **Communication of Idea / Documentation of Process**  
-- 
+- Communication was good, but more explanation would be nice for why you chose medieval roles.
+- I think the documentation was very neat; however, it would be more helpful if you could add a more general idea of what this is supposed to be!   
 
 **Tested with User**  
--  
+-  They tested with acting out very well, and improved very well!   
 
 **Overall**  
 - **Strengths:** Creativity, strong execution, artistic presentation, and innovative ideas.  
