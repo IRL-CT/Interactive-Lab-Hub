@@ -322,3 +322,16 @@ We realized there might be some workout/exercises that require equipment or hand
 **Con**  
 - Needs to be adjustable for fitting  
 - Screen may be slightly smaller than a watch solution
+
+## Part E. Costume the Device
+
+Only now should you start worrying about what the device should look like. Develop three costumes so that you can use your phone as this device.
+
+Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
+
+\*\***Include sketches of what your devices might look like here.**\*\*
+
+After evaluating the tradeoff we decided to go with a necklace as a wearable device.
+
+<img src="assets/new_costume.png" width="400"/>
+<img src="assets/new_costume2.png" width="400"/>
