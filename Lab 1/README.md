@@ -279,7 +279,7 @@ Do last week’s assignment again, but this time:
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
 
-We decided to have our light interaction be part of a park and our creativity is adding computer vision for input. When someone enters, the light will flash white. When someone exits, the light with flash black. We have different conditions. If a fight breaks out inside of the park, the lights will flash red. If an unattended child leaves the park, the lights will flash red.
+We decided to have our light interaction be part of a park and our creativity is adding computer vision for input. When someone enters, the light will flash white. When someone exits, the light with flash black. We have different conditions. If a fight breaks out inside of the park, the lights will flash red. If an unattended child leaves the park, the lights will flash red. We also have an alert sound occurring when there is a red light flashing event, to better notify others.
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
