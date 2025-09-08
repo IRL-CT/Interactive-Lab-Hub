@@ -1,6 +1,6 @@
 # Parts list inventory
 
-## Parts in the kit by Tuesday class Sep. 5th
+## Parts in the kit by Wednesday class Sep. 9th
 
 1 x [Raspberry Pi 4 Model B/8GB](https://www.adafruit.com/product/3775)
 
