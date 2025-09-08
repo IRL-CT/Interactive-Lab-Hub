@@ -299,7 +299,10 @@ This describes the second week's work for this lab activity.
 
 You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
 
-\*\***Summarize feedback from your partners here.**\*\*
+\*\***Summarize feedback from your partners here.**\*\*  
+They found the captions on both the storyboards and videos very helpful for understanding the intended interactions. They thought the remote locator idea was particularly interesting and suggested it could be extended to other objects such as car keys, house keys, or wallets. They recommended adding vibration or sound feedback, as well as increasing the frequency of the light flashes, haptic pulses, or sound as the user gets closer to the object.  
+
+The sunrise light idea received the most positive feedback. Students from other groups commented that both versions were great and that this approach could provide a gentler, more effective way to wake not just adults, but also children and pets. A suggested extension was to add a “disco mode” or allow the light to double as a projector for playful or decorative use when waking.  
 
 ## Make it your own
 
