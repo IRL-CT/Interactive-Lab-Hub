@@ -181,9 +181,11 @@ Present your ideas to the other people in your breakout room (or in small groups
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it.
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
+
 Yes, when we acted out the interaction, the most notable issue was the flipping mechanism. While it sounded fun and motivating in theory, acting it out showed that spilling water could create a huge mess, especially on desks with laptops, papers, or other electronics. It also raised safety concerns if the cup contained hot drinks like tea or coffee, making the feature disruptive rather than helpful.
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+
 New ideas could be that we decided to integrate a magnetic attachment system into the coaster design, along with a compatible accessory for the user’s cup. This way, the cup and coaster could stay securely connected, preventing spills. Instead of completely flipping the cup, the coaster itself would tilt slightly when the timer runs out.
 
 
@@ -198,6 +200,7 @@ We invented this tool for this lab!
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
+
 We smoothly built up the system and set up a remote control. One feedback would be that Tinkerbelle doesn’t support entering color codes, so re-selecting the same color on the palette is a problem unless you use the default color given.
 
 
