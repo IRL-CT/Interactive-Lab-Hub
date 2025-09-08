@@ -366,6 +366,10 @@ Two designs were initially sketched: one resembling a hanging ceiling bulb, and 
 \*\***Take a video of your prototyped interaction.**\*\*
 
 
+https://github.com/user-attachments/assets/9a37bf3d-536c-48ca-8d33-0971aa1814a7
+
+
+
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 All other group members have dropped the course.
