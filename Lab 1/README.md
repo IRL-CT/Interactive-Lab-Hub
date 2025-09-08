@@ -234,3 +234,66 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+## Interactive Fitness Device - Part A: Plan
+
+When staging an interaction with the device, consider:
+
+- **Setting:** Where and when is the interaction happening? (e.g., home, gym, outdoor park)
+- **Players:** Who is involved in the interaction? Consider all people in the setting, including roommates, children, or fellow participants.
+- **Activity:** What is happening between the actors?
+- **Goals:** What are the objectives of each player? (e.g., complete a workout, achieve personal bests)
+
+## Modes
+
+### 1. Individual Mode
+
+**Description:** A personalized trainer mode where AI builds a workout plan based on the user’s history, goals, and preferences.
+
+- **Setting:** Any workout environment chosen by the user (home, gym, studio, or outdoor space).  
+- **Players:** Primarily the exerciser, with potential secondary players (roommates, partners, children, or other nearby people).  
+- **Activity:**  
+  - User begins a workout session.  
+  - Device monitors performance and physiological metrics (heart rate, skin temperature).  
+  - Provides countdowns, motivational feedback via vibration, sound, or color-coded progress bars.  
+- **Goal:** Support the user in completing workouts effectively, track progress, improve performance, and sustain motivation through multimodal feedback.
+
+### 2. Group Mode
+
+**Description:** A collaborative mode designed for multiple participants in shared workouts, enhancing social engagement and motivation.
+
+- **Setting:** Group workout sessions such as classes, bootcamps, or virtual sessions in gyms, parks, or studios.  
+- **Players:** All exercisers participating, with the instructor monitoring device signals for group performance and safety.  
+- **Activity:**  
+  - Participants follow a structured workout routine guided by shared device cues.  
+  - Device provides visual and auditory feedback (lights indicating progress, heart rate zones, intensity alerts).  
+  - Lights notify instructors if participants struggle (e.g., red light for metrics below thresholds).  
+  - Supports shared/paired goals, team competitions, or collective achievements.  
+  - Real-time stats (heart rate, cadence, calories burned) can be displayed or shared.  
+- **Goal:**  
+  - Enhance social and motivational aspects of workouts.  
+  - Encourage friendly competition, team bonding, and engagement.  
+  - Assist instructors in monitoring safety and performance.  
+  - Make workouts interactive, collaborative, and emotionally rewarding.
+
+---
+
+\*\***Include pictures of your storyboards here**\*\*
+
+<img src="https://drive.google.com/file/d/1fsAIkfoHt7Clg4QGc46moc4NAxoWLWB-/view?usp=drive_link" alt="Descriptive Alt Text" width="400"/>
+<img src="https://drive.google.com/file/d/1_ptZVCZha1jlkwsVlvVfb3Uv4GSoHtVD/view?usp=drive_link" alt="Descriptive Alt Text" width="400"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
