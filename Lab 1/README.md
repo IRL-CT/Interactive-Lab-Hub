@@ -220,9 +220,9 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype.
 
-*[Updated Attempt](https://youtube.com/shorts/0_CyzgyUoyM)*
-
 \*\***Show the follow-up work here.**\*\*
+
+*[Updated Attempt](https://youtube.com/shorts/0_CyzgyUoyM)*
 
 ## Part E. Costume the device
 
