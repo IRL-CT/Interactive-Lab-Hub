@@ -33,6 +33,11 @@ WendyTA now works automatically with repository-level GitHub Copilot instruction
 1. **Set Up GitHub Copilot**: Follow [`setup/copilot-setup.md`](setup/copilot-setup.md)
 2. **That's it!** The repository-level instructions in `.github/copilot-instructions.md` automatically configure WendyTA when you use Copilot in this repository.
 
+**Pro Tips for Better Interactions:**
+- **Use Agent Mode**: Try commands like `/explain`, `/fix`, `/generate`, `/optimize` in Copilot Chat
+- **Reference Instructions**: If WendyTA seems generic, try "@.github/copilot-instructions.md" to explicitly engage the course context
+- **Be Specific**: Mention your lab number and creative vision for better help
+
 ### Option 2: Manual Configuration
 
 If you prefer the traditional approach: [`custom-instructions/how-to-apply.md`](custom-instructions/how-to-apply.md)
