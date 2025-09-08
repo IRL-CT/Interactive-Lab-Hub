@@ -2,9 +2,11 @@
 
 ## Parts in the kit by Wednesday class Sep. 9th
 
-1 x [Raspberry Pi 4 Model B/8GB](https://www.adafruit.com/product/3775)
+1 x [Raspberry Pi 5 Model B/8GB](https://www.raspberrypi.com/products/raspberry-pi-5/)
 
-1 x [Rasberry Pi Power Supply](https://www.pishop.us/product/raspberry-pi-15w-power-supply-eu-black/)
+1 x [Rasberry Pi Power Supply](https://www.raspberrypi.com/products/27w-power-supply/)
+
+1 x [Raspberry Pi Active Cooler](https://www.raspberrypi.com/products/active-cooler/)
 
 1 x [32 GB MicroSD Card](https://www.bhphotovideo.com/c/product/1375051-REG/sandisk_sdsqxaf_032g_gn6ma_extreme_microsd_32gb.html)
 
@@ -43,34 +45,6 @@
 1 x [EDUP 1080P 2MP Computer Webcam 1080p microphone CMOS 1/2.9" Sensor USB](https://www.alibaba.com/product-detail/EDUP-1080P-2MP-Computer-Webcam-1080p_1600269604427.html)
 
 
-
-## Parts that will be made available upon request
-
-10 x [Adafruit MCP9808 High Accuracy I2C Temperature Sensor Breakout - STEMMA QT / Qwiic](https://www.adafruit.com/product/5027)
-
-10 x [Adafruit NeoDriver - I2C to NeoPixel Driver Board - Stemma QT](https://www.adafruit.com/product/5766)
-
-10 x [Adafruit VEML7700 Lux Sensor - I2C Light Sensor - STEMMA QT / Qwiic](https://www.adafruit.com/product/4162)
-
-10 x [Adafruit VEML7700 Lux Sensor - I2C Light Sensor - STEMMA QT / Qwiic](https://www.adafruit.com/product/4162)
-
-10 x [Adafruit Mini GPS PA1010D - UART and I2C - STEMMA QT](https://www.adafruit.com/product/4415)
-
-20 x [Adafruit NeoSlider I2C QT Slide Potentiometer with 4 NeoPixels - STEMMA QT / Qwiic](https://www.adafruit.com/product/5295) 
-
-10 x [NeoKey 1x4 QT I2C - Four Mechanical Key Switches with NeoPixels - STEMMA QT / Qwiic](https://www.adafruit.com/product/4980)
-
-10 x [Adafruit 16-Channel 12-bit PWM/Servo Driver - I2C interface - PCA9685](https://www.adafruit.com/product/815)
-
-10 x [SparkFun Qwiic Joystick](https://www.sparkfun.com/products/15168)
-
-10 x [SparkFun I2S Audio Breakout](https://www.sparkfun.com/products/14809)
-
-30 x [SparkFun Qwiic Alphanumeric Display](https://www.sparkfun.com/products/19297)
-
-10 x [SparkFun Capacitive Touch Slider](https://www.sparkfun.com/products/15344)
-
-10 x [SparkFun Qwiic Dynamic NFC/RFID Tag](https://www.sparkfun.com/products/21274)
 
 
 
