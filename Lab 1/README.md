@@ -333,5 +333,26 @@ Think about the setting of the device: is the environment a place where the devi
 
 After evaluating the tradeoff we decided to go with a necklace as a wearable device.
 
-<img src="assets/new_costume.png" width="400"/>
-<img src="assets/new_costume2.png" width="400"/>
+<img src="assets/new_costume.jpg" width="300"/>
+<img src="assets/new_costume2.jpg" width="300"/>
+
+\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+
+**Opportunities:**  
+The main opportunity we envisioned when designing the device was to enhance the overall workout experience. By prioritizing simplicity and convenience, the device allows users to set up easily and integrate the device seamlessly into their routines. In group mode, the device can also inform the instructors about each participant's status, enabling them to monitor progress and identify when someone needs additional support. Through combining visual, auditory, and haptic cues, the device can adapt individual user preferences and make the experience more engaging. We were hoping that by using multimodality, the accessibility of the device can also be improved, ensuring users with different abilities or preference can engage effectively. In addition, we took multimodality as an opportunity to motivate the users through reinforcing feedback across multiple channels.
+
+**Concerns:**  
+First, a major concern is data privacy and security issues. Users may raise concern about health and performance data being stored and analyzed by AI. Secondly, as the device is multimodal, some users may find the cues overwhelming or distracting. In a shared or public environment, the cues could be disruptive to others nearby. Last but not least, accessibility barriers may still arise, since not all users respond well to certain feedback modes (e.g., color-blind users with color progress bar, or users with hearing impairment).
+
+## Part F. Record 
+
+### **Take videos of your prototyped interaction.**
+
+**Scenario:**  
+- Individual mode: [`IDD_Lab1_Part2_Individual.mp4`  ](https://drive.google.com/file/d/1K1aw3PNWgM-OJL79RjlGofNr_xIh1wm5/view?usp=sharing)
+- Group mode: [`IDD_Lab1_Part2_Group.mp4`  ](https://drive.google.com/file/d/1ozwTyPeyrAnQL-ItFWSgo7sV5inEX97l/view?usp=drive_link)
+
+### **Please indicate who you collaborated with on this Lab.**
+Charlotte Lin (hl2575), Jessica Hsiao (dh779), Zoe Tseng (yzt2), Irene Wu (yw2785), Le-En Huang (lh764)
+
+
