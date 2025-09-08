@@ -222,6 +222,7 @@ Think about the setting of the device: is the environment a place where the devi
 ![Costume3](./Costume3.jpg)
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+
 The main concerns in designing the coaster’s look are water safety, heat resistance, and clear lighting. Since it will often be near water, the materials must be waterproof and durable, and it must handle hot drinks without warping. The lights need to be bright enough to show the green–yellow–red cycle, but soft on the eyes.
 
 And we are thinking of adding a customization function: users could select different alert methods, such as lights and sounds for office settings or a playful tilting motion for children. Finally, we imagined that the system could be enhanced with a connected app.
