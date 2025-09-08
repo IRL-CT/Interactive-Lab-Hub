@@ -166,13 +166,11 @@ Now while that's running - what kind of 'magic' are you imagining? Different wea
 - **Syllabus Knowledge**: Understands course objectives and grading criteria
 
 ### Smart Logging and Analytics
-When you opt in, WendyTA can help instructors improve the course by tracking:
+When you use WendyTA, interaction logs are automatically created in `WendyTA/logging/` to help instructors improve the course by tracking:
 - Common technical barriers that slow down iteration
 - Creative breakthrough moments and what triggers them
 - Patterns in successful rapid prototyping approaches
 - Concepts that need better support materials
-
-See [`logging/setup-logging.md`](logging/setup-logging.md) for details.
 
 ## Troubleshooting & Getting Help
 
@@ -235,28 +233,6 @@ WendyTA/
 .github/
 └── copilot-instructions.md           # Repository-level WendyTA configuration
 ```
-
-## Key Changes in This Version
-
-### 🔄 **Repository-Level Instructions**
-- No more manual custom instruction setup needed
-- WendyTA automatically activated when you use Copilot in this repo
-- Consistent experience across all students
-
-### 🚀 **Iteration-Focused Philosophy**  
-- Prioritizes getting you unstuck quickly
-- Balances technical help with creative inspiration
-- Teaches independence rather than dependence
-
-### 💡 **Enhanced Creative Support**
-- Asks generative questions to spark new ideas
-- Connects technical capabilities to interaction possibilities
-- Encourages ambitious thinking with practical pathways
-
-### 📊 **Improved Analytics**
-- Better tracking of what helps students iterate faster
-- Identification of common creative breakthrough patterns
-- Data-driven course improvement based on actual usage
 
 ## Frequently Asked Questions
 
