@@ -242,6 +242,7 @@ The interactive device can be anything *except* a computer, a tablet computer or
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 Given our previous design, we update the device to have 2 modes.
+
 1. Individual mode : the device is a personalized trainer mode with a guided AI plan (AI builds a plan based on history, goals, and preferences)
 Setting : The interaction takes place during a workout session, whether at home, in a gym/fitness studio, or any environment the user chooses.
 Players : The primary player is the exerciser, who is the person actively training with the device. Depending on where the user is at, there could be secondary players; for example, roommates or partners who share the same living space, children who may be present and interact with the device unintentionally, or fellow gym-goers if the workout takes place in a public setting.
@@ -256,18 +257,18 @@ Goal : The device’s primary goal in group mode is to enhance the social and mo
 Storyboards are a tool for visually exploring a user's interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
-charlotte
+![Storyboard](media/1b_storyboard.png)
 
 
 \*\***Summarize feedback you got here.**\*\*
-再說
 
-## Part B. Act out the Interaction (Jessica & Irene)
+## Part B. Act out the Interaction
 
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
-Eva Huang
+
+#### Contributed by Le-En Huang ####
 
 We initially ideated around a “couples” feature within the group mode. While it is an interesting offering, after acting it out, we realized this is not much different from a normal group mode. We then decided to focus solely on a group workout scenario rather than developing more around the couples workout idea
 During the brainstorming stage, we discussed the possibility to use this device for groups doing workout sessions to compete with each other. The vision was to use lighting or other haptic feedback to signify the start of a mini-competition, keep score, and give rewards. However that may be deviating from the original purpose of this device and is a bit more complicated than we expected. Thus this idea was dropped.
