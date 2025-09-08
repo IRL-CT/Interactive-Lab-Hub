@@ -280,20 +280,45 @@ When staging an interaction with the device, consider:
 
 \*\***Include pictures of your storyboards here**\*\*
 
-<img src="https://drive.google.com/file/d/1fsAIkfoHt7Clg4QGc46moc4NAxoWLWB-/view?usp=drive_link" alt="Descriptive Alt Text" width="400"/>
-<img src="https://drive.google.com/file/d/1_ptZVCZha1jlkwsVlvVfb3Uv4GSoHtVD/view?usp=drive_link" alt="Descriptive Alt Text" width="400"/>
+<img src="assets/mode1.png" alt="Individual Mode" width="400"/>
+<img src="assets/mode2.png" alt="Group Mode" width="400"/>
 
+## Part B: Act Out the Interaction 
 
+Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
+---
 
+\*\***Are there things that seemed better on paper than acted out?**\*\*
 
+We initially ideated around a “couples” feature within the group mode. While it is an interesting offering, after acting it out, we realized this is not much different from a normal group mode. We then decided to focus solely on a group workout scenario rather than developing more around the couples workout idea.
 
+During the brainstorming stage, we discussed the possibility to use this device for groups doing workout sessions to compete with each other. The vision was to use lighting or other haptic feedback to signify the start of a mini-competition, keep score, and give rewards. However that may be deviating from the original purpose of this device and is a bit more complicated than we expected. Thus this idea was dropped.
 
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
 
+We realized there might be some workout/exercises that require equipment or hand movement that could interfere with a wearable device on the wrist. To deal with this issue, we explore a new idea to costume our device as a necklace or an earring.
 
+**Pros and cons of each:**
 
+**Earrings**  
+**Pro**  
+- Super agile/lightweight  
+- Easier to hear instructions/sound feedback in a group setting or outdoor environment  
 
+**Con**  
+- Not everyone has piercings  
+- Hard to design with comfort  
+- Easy to lose  
+- Screen size is extremely tiny for light feedback  
 
+**Necklace**  
+**Pro**  
+- Easy to put on - accessibility  
+- Easy to hear instructions/sound feedback in a group setting or outdoor environment  
+- Easy to spot a vibration/haptic feedback  
+- Easy to see other’s light/feedback in a group setting  
 
-
-
+**Con**  
+- Needs to be adjustable for fitting  
+- Screen may be slightly smaller than a watch solution
