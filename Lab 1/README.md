@@ -278,3 +278,40 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+We decided to have our light interaction be part of a park and our creativity is adding computer vision for input. When someone enters, the light will flash white. When someone exits, the light with flash black. We have different conditions. If a fight breaks out inside of the park, the lights will flash red. If an unattended child leaves the park, the lights will flash red.
+
+Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
+
+\*\***Include pictures of your storyboards here**\*\*
+<img width="2480" height="3508" alt="image" src="https://github.com/user-attachments/assets/f11b668f-a6c2-4a75-825e-dd9dadb15843" />
+<img width="2480" height="3508" alt="image (1)" src="https://github.com/user-attachments/assets/94e97eaa-a790-48e2-a38c-1b7751270596" />
+
+**\*\*Product Sketch & Physical Prototype:**\*\*
+
+Pillar Design
+<img width="3259" height="2027" alt="Pillar" src="https://github.com/user-attachments/assets/b18b7897-40bb-4933-a3fa-4f79d764e125" />
+
+Ground Light Design
+<img width="3259" height="1162" alt="Ground Light" src="https://github.com/user-attachments/assets/1751697f-1b58-47ed-8c6a-a851cdf0354f" />
+
+Other Design
+<img width="3259" height="1426" alt="Other Design" src="https://github.com/user-attachments/assets/381432eb-5fdf-40f4-bdee-ec834f774a1e" />
+
+
+
+\*\***Videos:**\*\*
+
+
+https://github.com/user-attachments/assets/e3c67663-537a-460a-9344-a8d08dc73841
+
+
+https://github.com/user-attachments/assets/1bf9b39f-38d7-4608-a86c-87f9ff9026ba
+
+
+https://github.com/user-attachments/assets/d5f1902b-a91f-428e-a49e-90341c0f0cea
+
+
+
+
+
