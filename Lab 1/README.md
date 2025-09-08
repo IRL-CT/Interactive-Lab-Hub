@@ -228,8 +228,10 @@ Storyboard:
 
 
 Final Interaction:
-\*\***[lab1b_interaction_001](./InteractiveDevicesWendyJuLab01Take02part001.mp4)**\*\*
+[lab1b_interaction_001](./InteractiveDevicesWendyJuLab01Take02part001.mp4)
+
 [lab1b_interaction_002](./InteractiveDevicesWendyJuLab01Take02part002.mp4)
+
 [lab1b_interaction_003](./InteractiveDevicesWendyJuLab01Take02part003.mp4)
 
 
