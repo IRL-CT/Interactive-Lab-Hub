@@ -215,9 +215,11 @@ We smoothly built up the system and set up a remote control. One feedback would 
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record.
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
+
 *[Updated Attempt](https://youtube.com/shorts/0_CyzgyUoyM)*
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype.
+
 *[Updated Attempt](https://youtube.com/shorts/0_CyzgyUoyM)*
 
 \*\***Show the follow-up work here.**\*\*
@@ -241,4 +243,5 @@ And we are thinking of adding a customization function: users could select diffe
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
+
 *[Updated Attempt](https://youtube.com/shorts/kmoWNzW3fow)*
