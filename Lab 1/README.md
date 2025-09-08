@@ -222,12 +222,35 @@ Do last week’s assignment again, but this time:
 2) You can use any modality (e.g., vibration, sound) to prototype the behaviors! Again, be creative! Feel free to fork and modify the tinkerbell code! 
 3) We will be grading with an emphasis on creativity.
 
-Storyboard:
+**\*\*Idea Update:**\*\*
+The setting changed into a park with the following interaction:
+
+1) unattended child leaves the park, red lighting flashing, alert police or something, alarm nois
+2) violence detected, flashing red, call the cops, alarm noise
+3) enter from last time
+4) exit from last time
+5) color of light indicates how full the park is
+
+**\*\*Storyboard:**\*\*
 <img width="2480" height="3508" alt="image" src="https://github.com/user-attachments/assets/f11b668f-a6c2-4a75-825e-dd9dadb15843" />
 <img width="2480" height="3508" alt="image (1)" src="https://github.com/user-attachments/assets/94e97eaa-a790-48e2-a38c-1b7751270596" />
 
+**\*\*Product Sketch & Physical Prototype:**\*\*
 
-Final Interaction:
+Pillar Design
+<img width="3259" height="2027" alt="Pillar" src="https://github.com/user-attachments/assets/b18b7897-40bb-4933-a3fa-4f79d764e125" />
+
+Ground Light Design
+<img width="3259" height="1162" alt="Ground Light" src="https://github.com/user-attachments/assets/1751697f-1b58-47ed-8c6a-a851cdf0354f" />
+
+
+Other Design
+<img width="3259" height="1426" alt="Other Design" src="https://github.com/user-attachments/assets/381432eb-5fdf-40f4-bdee-ec834f774a1e" />
+
+
+
+\*\***Final Interaction:**\*\*
+
 [lab1b_interaction_001](./InteractiveDevicesWendyJuLab01Take02part001.mp4)
 
 [lab1b_interaction_002](./InteractiveDevicesWendyJuLab01Take02part002.mp4)
