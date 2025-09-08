@@ -138,8 +138,7 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
 
-https://github.com/user-attachments/assets/d32ab680-9e7b-482a-b819-9502e1cb6785
-
+Lab 1/tinkerbell.mp4
 
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
@@ -221,7 +220,17 @@ Feedback I recevied:
 Do last week’s assignment again, but this time: 
 1) It doesn’t have to (just) use light, 
 2) You can use any modality (e.g., vibration, sound) to prototype the behaviors! Again, be creative! Feel free to fork and modify the tinkerbell code! 
-3) We will be grading with an emphasis on creativity. 
+3) We will be grading with an emphasis on creativity.
+
+Storyboard:
+<img width="2480" height="3508" alt="image" src="https://github.com/user-attachments/assets/f11b668f-a6c2-4a75-825e-dd9dadb15843" />
+<img width="2480" height="3508" alt="image (1)" src="https://github.com/user-attachments/assets/94e97eaa-a790-48e2-a38c-1b7751270596" />
+
+
+Final Interaction:
+Lab 1/InteractiveDevicesWendyJuLab01Take02part001.mp4
+Lab 1/InteractiveDevicesWendyJuLab01Take02part002.mp4
+Lab 1/InteractiveDevicesWendyJuLab01Take02part003.mp4
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
 
