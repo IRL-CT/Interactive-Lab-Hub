@@ -125,6 +125,11 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+# Water Clock Coaster
+
+## Name: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx2185)
+
 ## Part A. Plan
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
