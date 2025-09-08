@@ -312,3 +312,60 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+## Part A. Plan   
+\*\***Describe your setting, players, activity and goals here.**\*\*  
+**Storyboard Plan – Sunrise Alarm**    
+Setting: Bedroom, early morning before wake-up time.  
+Players: User (sleeping person).  
+Activity: Light gradually brightens before wake-up time to simulate sunrise, while a soft chime plays to complement the visual cue.
+Goals:  
+  User: To wake up more naturally and gently.  
+  Device: To gradually prepare the user’s body for waking by increasing light brightness and softly signalling with sound.  
+
+
+\*\***Include pictures of your storyboards here**\*\*
+![Sunrise Alarm - Ceiling](https://github.com/user-attachments/assets/c38ce77f-56d0-4047-954d-2c99546f696a)  
+![Sunrise Alarm - Table](https://github.com/user-attachments/assets/9ab11e53-8d4f-4116-ad47-7589aff1a506)  
+
+
+\*\***Summarize feedback you got here.**\*\*
+- Most people felt it would be gentle way to wake up, potentially useful even for children or pets.  
+- One suggestion was to add extra modes such as a “disco” feature or to have it double as a projector for decorative patterns.  
+
+
+## Part B. Act out the Interaction
+
+Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
+
+\*\***Are there things that seemed better on paper than acted out?**\*\*  
+In addition to the gradual change in light brightness from dim to warm white, the accompanying music or chime should also transition smoothly. While the storyboard could show a simple “on/off” cue, implementing gradual changes in both light and sound creates a more natural and gentle wake-up experience.  
+  
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*  
+The combination of visual and auditory cues was identified as a way to make the interaction more engaging and effective, particularly for users who may be heavy sleepers or for waking children & pets gently. A vibration feature could also be beneficial for the table version.  
+
+## Part C. Prototype the device
+See Part F.  
+
+## Part D. Wizard the device  
+See Part F.  
+
+## Part E. Costume the device
+\*\***Include sketches of what your devices might look like here.**\*\*
+![Sunrise Alarm Sketches](https://github.com/user-attachments/assets/a4a74f88-6a21-422e-9c9f-b3e232502390)  
+![Idea: Storyboard 6 - The Sunrise Light](https://github.com/user-attachments/assets/6063264c-dfea-46c5-b328-622d8a5fa53a)  
+![Sunrise Alarm - Ceiling Prototoype](https://github.com/user-attachments/assets/2cb8dba3-71bc-4cb0-9577-f509aca1cf0d)  
+
+
+\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+Two designs were initially sketched: one resembling a hanging ceiling bulb, and another shaped like a cone that could sit on a bedside table. The hanging bulb design was chosen for the prototype, since the table-top cone was used in Lab 1a. It was constructed by laying strips of paper in a crisscross pattern — one vertical, one horizontal, and two along the diagonals — and then curving them upward to form a spherical shape. A thin strip of paper was attached to the top to resemble a hanging fixture, similar to a ceiling light. This design diffuses light evenly, reduces glare, and clearly communicates its function as a sunrise or ambient light (similar to the initial sketch), while also creating an opportunity to display soft patterns or colours for a pleasant wake-up experience.  
+
+
+## Part F. Record
+
+\*\***Take a video of your prototyped interaction.**\*\*
+
+
+
+\*\***Please indicate who you collaborated with on this Lab.**\*\*
+All other group members have dropped the course.
