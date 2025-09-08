@@ -126,7 +126,7 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
-Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
+Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 Remotely, we toggled the colors to test it. We don't have a set up video for this portion, but we wondered how the interaction could change should the student leave the room temporarily. As per out follow-up work, we decided the status would remain red to indicate that the room is occupied. We also thought of using the door closing as a sensor where the status changes when the door closes.
 
