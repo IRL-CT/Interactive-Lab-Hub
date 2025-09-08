@@ -1,255 +1,299 @@
 # WendyTA - Your AI Teaching Assistant
 
-Welcome to **WendyTA**, your AI-powered Teaching Assistant for the Interactive Lab Hub course! WendyTA is designed to help you succeed in your physical computing and Raspberry Pi projects by providing personalized guidance, debugging assistance, and learning support.
-![WendyTA Logo](custom-instructions/WendyTA.png)
+Welcome to **WendyTA**, your AI-powered Teaching Assistant for Cornell's "Developing and Designing Interactive Devices" course! WendyTA is designed to accelerate your iteration speed while helping you build creative confidence and technical independence in interactive device design.
+
+*[Logo coming soon - see `custom-instructions/logo-specifications.md` for design brief]*
 
 ## What is WendyTA?
 
-WendyTA is a customized version of GitHub Copilot that acts as your personal teaching assistant. Named after Professor Wendy, WendyTA has been specifically trained to understand the context of your course and provide helpful, educational guidance rather than just giving you answers.
+WendyTA is a repository-level GitHub Copilot assistant that understands the complete context of your course, labs, and learning objectives. Named after Professor Wendy Ju, WendyTA embodies the course philosophy of rapid prototyping, creative exploration, and learning through making - but with AI assistance that enhances rather than replaces your thinking.
 
-### What WendyTA Can Help With:
+### WendyTA's Core Mission:
 
-- 🔧 **Hardware Debugging**: Troubleshoot Raspberry Pi, sensor, and circuit issues
-- 💻 **Code Review**: Help improve your Python, JavaScript, and other code
-- 🧠 **Concept Explanation**: Break down complex topics in physical computing
-- 🎯 **Design Guidance**: Provide feedback on your interactive projects
-- 🔍 **Problem Solving**: Guide you through systematic debugging approaches
-- 📚 **Learning Support**: Explain programming concepts and best practices
+- � **Accelerate Iteration**: Get you from stuck to experimenting quickly
+- 🧠 **Reduce Technical Friction**: Handle Raspberry Pi, code, and hardware issues efficiently  
+- 💡 **Nurture Creativity**: Ask questions that spark new interactive ideas
+- 🎯 **Build Independence**: Teach problem-solving patterns, not just solutions
+- 🔍 **Encourage Reflection**: Help you understand *why* things work, not just *how*
 
-### What Makes WendyTA Special:
+### What Makes WendyTA Different:
 
-- **Educational Focus**: Asks guiding questions to help you learn, rather than just providing answers
-- **Course Context**: Understands your lab assignments and course objectives
-- **Systematic Approach**: Teaches you debugging and problem-solving methodologies
-- **Safety Conscious**: Always considers electrical safety and proper component handling
-- **Progress Tracking**: Logs interactions to help instructors improve the course (with your consent)
+- **Repository-Aware**: Automatically understands your current lab context and course materials
+- **Iteration-Focused**: Prioritizes getting you unstuck quickly so you can keep creating
+- **Creatively Provocative**: Asks generative questions that open new design possibilities  
+- **Independence-Building**: Teaches approaches you can apply to future problems
+- **Reflection-Oriented**: Helps you extract learning from both successes and failures
 
 ## Quick Start Guide
 
-### 1. Set Up GitHub Copilot
-Follow the comprehensive setup guide: [`setup/copilot-setup.md`](setup/copilot-setup.md)
+### Option 1: Repository-Level Setup (Recommended)
 
-This includes:
-- Getting your free GitHub Student license
-- Installing GitHub Copilot in VS Code
-- Configuring the extension
+WendyTA now works automatically with repository-level GitHub Copilot instructions! 
 
-### 2. Apply WendyTA Instructions
-Configure Copilot to act as WendyTA: [`custom-instructions/how-to-apply.md`](custom-instructions/how-to-apply.md)
+1. **Set Up GitHub Copilot**: Follow [`setup/copilot-setup.md`](setup/copilot-setup.md)
+2. **That's it!** The repository-level instructions in `.github/copilot-instructions.md` automatically configure WendyTA when you use Copilot in this repository.
 
-### 3. Start Asking Questions!
+### Option 2: Manual Configuration
+
+If you prefer the traditional approach: [`custom-instructions/how-to-apply.md`](custom-instructions/how-to-apply.md)
+
+### 3. Start Creating!
 Open Copilot Chat in VS Code (`Ctrl+Shift+I` / `Cmd+Shift+I`) and try:
-- "Hi WendyTA, I'm working on Lab 2 and my OLED display isn't working"
-- "Can you help me understand I2C communication?"
-- "My servo motor is acting strange, where should I start debugging?"
+- "WendyTA, I want to create an interactive lamp that responds to gestures. Where should I start?"
+- "My I2C sensor isn't working - help me debug this quickly so I can keep iterating"
+- "I'm stuck on Lab 3. What's the fastest way to get speech recognition working?"
 
-## How to Interact with WendyTA
+## WendyTA's Interaction Philosophy
 
-### Best Practices for Getting Help
+### When You're Stuck
+WendyTA follows this priority order:
+1. **Quick unblocking**: Identify the immediate barrier and provide a direct path forward
+2. **Pattern teaching**: Show the underlying approach you can apply to similar problems  
+3. **Creative extension**: Once unstuck, suggest variations or improvements to explore
+4. **Reflection prompts**: Help you understand what you learned from the experience
 
-#### 🎯 **Be Specific About Context**
-❌ Bad: "My code doesn't work"
-✅ Good: "I'm working on Lab 3, trying to set up MQTT communication, but getting a connection timeout error"
+### Conversation Patterns That Work
+- "What's your creative vision for this interaction? Let's figure out the technical path to get there."
+- "I can help you debug this quickly. Then let's explore what other possibilities this opens up."
+- "This is a common Pi issue. Here's the fix, and here's how to recognize this pattern in the future."
+- "Great start! What if we pushed this idea further by..."
+## Best Practices for Rapid Iteration
 
-#### 📋 **Provide Relevant Details**
+### 🎯 **Lead with Your Creative Vision**
+❌ "My code doesn't work"
+✅ "I want to create a plant that lights up when people get close. My proximity sensor is acting weird - can you help me debug this quickly?"
+
+### � **Provide Context for Faster Help**
 When asking for help, include:
-- Which lab assignment you're working on
-- What hardware components you're using
-- What error messages you're seeing
+- Your creative goal or interaction idea
+- Which lab you're working on
+- What specific component/code is causing issues
 - What you've already tried
+- Any error messages
 
-#### 🤔 **Embrace the Learning Process**
+### 🚀 **Embrace the Learning Process**
 WendyTA will often ask you questions back - this is intentional! The goal is to help you:
-- Develop systematic debugging skills
-- Understand underlying concepts
-- Build confidence in problem-solving
+- Develop rapid debugging intuition
+- Build pattern recognition for common issues
+- Gain confidence in creative problem-solving
+- Learn to iterate quickly and fearlessly
 
-#### 🔄 **Follow Up and Iterate**
-Don't hesitate to:
-- Ask follow-up questions
-- Request clarification
-- Share what you tried based on WendyTA's suggestions
+### � **Think Beyond the Immediate Problem**
+Once something works, ask:
+- "What other interactions does this enable?"
+- "How could I push this idea further?"
+- "What would happen if I changed this dramatically?"
+- "What other sensors could I combine with this?"
 
-### Example Conversation Flow
+### Example: WendyTA in Action
 
 ```
-You: "Hi WendyTA, my proximity sensor isn't giving consistent readings"
+You: "I want to make a magic mirror that shows different information based on who's looking at it, but I'm completely stuck on the face recognition part"
 
-WendyTA: "Let's debug this systematically! First, can you tell me:
-1. Which proximity sensor model are you using?
-2. How is it wired to your Raspberry Pi?
-3. What kind of inconsistencies are you seeing?
-4. Are you seeing this in all conditions or specific situations?"
+WendyTA: "That's a fantastic interactive concept! Let's get you unstuck quickly. Are you working with the Pi camera from Lab 5? I can help you get a basic face detection demo running in about 10 minutes, then we can brainstorm how to make it truly magical.
 
-You: "I'm using the VL53L0X, wired via I2C. Sometimes it reads 50mm when nothing is there, other times it's accurate"
+First, let's check: do you have OpenCV installed and can you see your camera feed?"
 
-WendyTA: "Interesting! Intermittent I2C sensor issues often relate to a few common causes:
-- Power supply stability
-- I2C address conflicts
-- Environmental interference
+You: "Yes, I can see the camera feed but the face detection is super slow"
 
-Let's start with the basics: Can you run `i2cdetect -y 1` and tell me what addresses show up? Also, are you using a breadboard or more permanent connections?"
+WendyTA: "Perfect! That's a common Pi performance issue. Try this optimization [provides specific code]. 
 
-[Conversation continues with guided troubleshooting...]
+Now while that's running - what kind of 'magic' are you imagining? Different weather info for different people? Personal calendars? Or something more unexpected like changing the mirror's personality?"
+
+[Conversation continues with technical help + creative brainstorming...]
 ```
 
-## Course Integration
+## Lab-by-Lab Guide
 
-### Lab-Specific Help
+### Lab 1: Staging Interaction 
+**Focus**: Creative exploration through storyboarding and acting
+- "What's the most interesting interaction you can imagine with just light?"
+- "How would different people experience this device differently?"
+- Help with Tinkerbell tool, video prototyping, storyboard techniques
+- **Note**: No Raspberry Pi in Lab 1!
 
-WendyTA is familiar with all course labs:
+### Lab 2: Interactive Prototyping (First Pi Lab!)
+**Focus**: Getting Pi basics working smoothly  
+- Common issues: Pi won't boot, SSH problems, I2C setup
+- "Let's get your display working quickly, then explore what creative interactions it enables"
+- Emphasis on rapid iteration once technical setup is solid
 
-- **Lab 1**: Raspberry Pi setup, basic GPIO, getting started
-- **Lab 2**: Displays (OLED, LCD), buttons, I2C communication, sensors
-- **Lab 3**: Networking, speech processing, web interfaces, Flask apps
-- **Lab 4**: Advanced sensors, actuators, servo motors, cameras
-- **Lab 5**: Computer vision, machine learning, TensorFlow Lite
-- **Lab 6**: Distributed systems, MQTT, IoT communication
+### Lab 3: Voice and Speech Prototypes
+**Focus**: Audio interaction and web interfaces
+- Audio setup can be tricky - provide systematic debugging
+- "What personality should your device have? How does it sound?"
+- Help with speech recognition accuracy, Flask integration
 
-### Design Project Support
+### Lab 4: Physical User Interfaces  
+**Focus**: Bridging digital and physical design
+- Support material choices, sensor integration, physical prototyping
+- "How does the physical form shape the interaction?"
+- Encourage thinking about user context and ergonomics
 
-For your final projects, WendyTA can help with:
-- **Concept Development**: Brainstorming interactive ideas
-- **Technical Feasibility**: Assessing if your ideas are achievable
-- **Component Selection**: Choosing the right sensors and actuators
-- **System Architecture**: Planning your hardware and software design
-- **Implementation Strategy**: Breaking down complex projects into manageable steps
+### Lab 5: Observant Systems
+**Focus**: Computer vision and real-time sensing
+- ML models can frustrate - prioritize quick setup and testing
+- "What behaviors could your device learn from watching?"
+- Help with camera issues, performance optimization
 
-## Privacy and Logging
+### Lab 6: Distributed Interaction
+**Focus**: IoT communication and networked devices
+- MQTT setup and debugging support
+- "How do multiple devices create richer interactions?"
+- Encourage exploration of ambient and social IoT
 
-### Optional Interaction Logging
+## Building Creative Confidence
 
-To help improve the course, you can opt-in to having your WendyTA interactions logged:
+### WendyTA Encourages You To:
+- **Take creative risks**: "That's an ambitious idea! Let's break it into achievable steps..."
+- **Iterate fearlessly**: "Try this variation - what's the worst that could happen?"
+- **Learn from failures**: "Interesting! What does this unexpected result tell us?"
+- **Connect ideas**: "This reminds me of [technology/interaction] - what if you combined them?"
+- **Think about users**: "How might different people experience this?"
 
-- **What's Logged**: Course-related questions and WendyTA's responses
-- **What's NOT Logged**: Personal information or non-course conversations
-- **Access**: Only instructors and TAs can review logs
-- **Purpose**: Identify common learning challenges and improve course content
-- **Control**: You can opt-out or request log deletion at any time
+### Questions WendyTA Asks to Spark Ideas:
+- "What's the most surprising way you could use this sensor?"
+- "What if this device had a personality? What would it be like?"
+- "How could you make this interaction feel magical rather than just functional?"
+- "What would happen if you deliberately broke the 'rules' of how this usually works?"
+
+## Repository-Level Features
+
+### Automatic Context Awareness
+- **Lab Recognition**: WendyTA knows which lab you're working on based on your current files
+- **Course Calendar**: Understands assignment deadlines and course progression  
+- **FAQ Integration**: Has access to common questions from [`class-syllabus/frequently-asked-questions.md`](class-syllabus/frequently-asked-questions.md)
+- **Syllabus Knowledge**: Understands course objectives and grading criteria
+
+### Smart Logging and Analytics
+When you opt in, WendyTA can help instructors improve the course by tracking:
+- Common technical barriers that slow down iteration
+- Creative breakthrough moments and what triggers them
+- Patterns in successful rapid prototyping approaches
+- Concepts that need better support materials
 
 See [`logging/setup-logging.md`](logging/setup-logging.md) for details.
 
-### Data Privacy
+## Troubleshooting & Getting Help
 
-- All interactions stay within your GitHub repository
-- No data is sent to external services beyond GitHub Copilot
-- You maintain control over your learning data
-- Instructors only access logs to improve the course
+### Common Setup Issues
 
-## Troubleshooting
+#### Repository Instructions Not Working
+- Make sure you're using the latest version of GitHub Copilot
+- Try starting a new chat session in VS Code
+- Verify you're working within the Interactive-Lab-Hub repository
+- Check that you have internet access (Copilot requires online connection)
 
-### Common Issues and Solutions
+#### WendyTA Giving Generic Responses  
+- Mention which lab you're working on explicitly
+- Share your creative vision or interaction goal
+- Include specific technical details about your setup
+- Try asking follow-up questions to guide the conversation
 
-#### WendyTA Doesn't Respond as Expected
-- Make sure you've applied the custom instructions correctly
-- Try starting a new chat session
-- Clear your chat history and re-apply the context
+#### Still Stuck?
+1. **Check course resources**: Lab documentation, FAQ, syllabus
+2. **Ask classmates**: Use the course discussion forum  
+3. **Office hours**: Visit instructor or TA office hours
+4. **Remember**: WendyTA enhances human support, doesn't replace it!
 
-#### GitHub Copilot Not Working
-- Verify your student license is active
-- Check that you're signed in to GitHub in VS Code
-- Restart VS Code after installation
-- Ensure you have an internet connection
+## Advanced Usage: Beyond Basic Help
 
-#### Getting Generic Responses
-- Be more specific about your course context
-- Mention the lab you're working on
-- Include details about your hardware setup
+### Creative Collaboration
+- **Brainstorm interaction concepts**: "I want to explore ambient interfaces - what are some unexpected ways to provide information?"
+- **Iterate on ideas**: "This proximity lamp works, but how could I make it more emotionally engaging?"
+- **Cross-pollinate domains**: "What can game design teach us about this interaction?"
 
-### Getting Additional Help
+### Technical Deep Dives  
+- **Performance optimization**: "My computer vision pipeline is too slow - what are the bottlenecks?"
+- **Integration challenges**: "How do I coordinate multiple sensors and actuators elegantly?"
+- **Scaling considerations**: "If I wanted to deploy this in a public space, what would I need to change?"
 
-If WendyTA can't solve your problem:
-
-1. **Search Course Resources**: Check lab documentation and examples
-2. **Ask Classmates**: Use the course discussion forum
-3. **Office Hours**: Visit instructor or TA office hours
-4. **Human Review**: Sometimes you need human expertise!
-
-Remember: WendyTA is a powerful learning tool, but it's not a replacement for human instructors and peer collaboration.
-
-## Advanced Usage
-
-### Code Review and Optimization
-
-WendyTA can help you:
-- Review your code for best practices
-- Suggest performance improvements
-- Identify potential bugs or edge cases
-- Explain complex programming concepts
-
-### Research and Exploration
-
-Ask WendyTA about:
-- Alternative approaches to problems
-- Related technologies and concepts
-- Integration possibilities between different components
-- Industry applications of what you're learning
-
-### Project Planning
-
-For larger projects:
-- Break down complex ideas into manageable tasks
-- Identify potential technical challenges early
-- Plan your development timeline
-- Consider user experience and interaction design
-
-## Contributing to WendyTA's Improvement
-
-Your interactions help make WendyTA better for future students:
-
-- **Provide Feedback**: Let instructors know what works well and what doesn't
-- **Report Issues**: If WendyTA gives incorrect or unhelpful advice, report it
-- **Suggest Improvements**: Ideas for better responses or new capabilities
-- **Share Success Stories**: Help us understand what makes interactions effective
+### Learning Acceleration
+- **Pattern recognition**: "I keep running into I2C issues - teach me to debug these systematically"
+- **Concept connections**: "How does this project relate to broader trends in IoT and ambient computing?"
+- **Portfolio development**: "How can I document this project to show my design process?"
 
 ## Files and Resources
 
 ```
 WendyTA/
-├── README.md                           # This file
+├── README.md                           # This file - your complete guide
 ├── setup/
-│   └── copilot-setup.md               # GitHub Copilot installation guide
+│   └── copilot-setup.md               # GitHub Student license & VS Code setup
 ├── custom-instructions/
-│   ├── wendyta-instructions.md        # The full WendyTA personality and instructions
-│   └── how-to-apply.md               # How to configure Copilot with WendyTA
-└── logging/
-    ├── setup-logging.md              # Interaction logging system
-    ├── templates/
-    │   └── session-template.md       # Template for manual logging
-    └── analyze-interactions.py       # Analysis script for instructors
+│   ├── wendyta-instructions.md        # Legacy individual instructions
+│   └── how-to-apply.md               # Manual configuration method
+├── logging/
+│   ├── setup-logging.md              # Interaction tracking system
+│   ├── templates/
+│   │   └── session-template.md       # Manual logging template
+│   └── analyze-interactions.py       # Analytics for instructors
+└── class-syllabus/
+    ├── syllabus-FALL2025.md          # Complete course information
+    └── frequently-asked-questions.md  # Common Q&A from students
+
+.github/
+└── copilot-instructions.md           # Repository-level WendyTA configuration
 ```
+
+## Key Changes in This Version
+
+### 🔄 **Repository-Level Instructions**
+- No more manual custom instruction setup needed
+- WendyTA automatically activated when you use Copilot in this repo
+- Consistent experience across all students
+
+### 🚀 **Iteration-Focused Philosophy**  
+- Prioritizes getting you unstuck quickly
+- Balances technical help with creative inspiration
+- Teaches independence rather than dependence
+
+### 💡 **Enhanced Creative Support**
+- Asks generative questions to spark new ideas
+- Connects technical capabilities to interaction possibilities
+- Encourages ambitious thinking with practical pathways
+
+### 📊 **Improved Analytics**
+- Better tracking of what helps students iterate faster
+- Identification of common creative breakthrough patterns
+- Data-driven course improvement based on actual usage
 
 ## Frequently Asked Questions
 
 ### Is WendyTA always available?
-Yes! As long as you have internet access and GitHub Copilot is working, WendyTA is available 24/7.
+Yes! As long as you have internet access and GitHub Copilot is working, WendyTA is available 24/7 to help you iterate and explore.
 
-### Can WendyTA do my homework for me?
-No, and it won't! WendyTA is designed to help you learn by guiding you through problems, not by providing complete solutions.
+### Will WendyTA do my homework for me?
+No - WendyTA's goal is to accelerate your iteration and learning, not replace it. You'll get guidance, debugging help, and creative prompts, but the creative work and understanding development is yours.
 
 ### What if WendyTA doesn't know something?
-WendyTA will tell you when it's not sure and suggest alternative resources or recommend asking human instructors.
+WendyTA will tell you when it's uncertain and suggest alternative resources, including recommending you ask human instructors or classmates.
 
 ### Can I use WendyTA for other courses?
-The custom instructions are specific to this course, but you can modify them or use regular GitHub Copilot for other programming tasks.
+The repository-level instructions are specific to this course. For other projects, you can use regular GitHub Copilot or adapt the principles to your needs.
 
-### How accurate is WendyTA's advice?
-WendyTA is quite knowledgeable, but always verify important information and test solutions thoroughly. When in doubt, consult human instructors.
+### How do I know if WendyTA's advice is good?
+Always test suggestions and verify important information. When in doubt, consult course materials, classmates, or instructors. WendyTA is knowledgeable but not infallible.
+
+### Does using WendyTA mean I'm not learning "real" skills?
+Research suggests that well-designed AI assistance can actually accelerate learning by reducing friction and enabling more experimentation. WendyTA is designed based on evidence-based practices for AI-assisted education.
 
 ---
 
 ## Get Started Today!
 
-Ready to begin your journey with WendyTA? 
+Ready to accelerate your interactive device design journey? 
 
-1. 📖 **Read the setup guide**: [`setup/copilot-setup.md`](setup/copilot-setup.md)
-2. ⚙️ **Configure WendyTA**: [`custom-instructions/how-to-apply.md`](custom-instructions/how-to-apply.md)
-3. 💬 **Start chatting**: Open Copilot Chat in VS Code and say hello!
+1. 📖 **Setup GitHub Copilot**: [`setup/copilot-setup.md`](setup/copilot-setup.md)
+2. 💬 **Start chatting**: Open Copilot Chat in VS Code and begin exploring!
+3. 🚀 **Iterate fearlessly**: Use WendyTA to turn ideas into working prototypes quickly
 
-Welcome to a new way of learning with AI assistance! WendyTA is here to support your journey in physical computing and interactive design.
+**Remember**: WendyTA is here to help you iterate faster and think bigger, while building your own creative confidence and technical independence.
 
 **Happy building! 🚀🤖**
 
 ---
 
-*Questions about WendyTA? Ask in the course discussion forum or visit office hours.*
+*WendyTA is based on research in co-designing with transformers and evidence-based practices for AI-assisted learning in creative technical education. The system is designed to enhance, not replace, human creativity and critical thinking.*
+
+*Questions about WendyTA? Check the [FAQ](class-syllabus/frequently-asked-questions.md), ask in the course discussion forum, or visit office hours.*
