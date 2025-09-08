@@ -2,7 +2,7 @@
 
 Welcome to **WendyTA**, your AI-powered Teaching Assistant for Cornell's "Developing and Designing Interactive Devices" course! WendyTA is designed to accelerate your iteration speed while helping you build creative confidence and technical independence in interactive device design.
 
-![WendyTA Logo](WendyTA/WendyTA.png)
+![WendyTA](WendyTA.png)
 
 ## What is WendyTA?
 
@@ -10,7 +10,7 @@ WendyTA is a repository-level GitHub Copilot assistant that understands the comp
 
 ### WendyTA's Core Mission:
 
-- � **Accelerate Iteration**: Get you from stuck to experimenting quickly
+- 🚀 **Accelerate Iteration**: Get you from stuck to experimenting quickly
 - 🧠 **Reduce Technical Friction**: Handle Raspberry Pi, code, and hardware issues efficiently  
 - 💡 **Nurture Creativity**: Ask questions that spark new interactive ideas
 - 🎯 **Build Independence**: Teach problem-solving patterns, not just solutions
@@ -68,7 +68,7 @@ WendyTA follows this priority order:
 ❌ "My code doesn't work"
 ✅ "I want to create a plant that lights up when people get close. My proximity sensor is acting weird - can you help me debug this quickly?"
 
-### � **Provide Context for Faster Help**
+### 🌌 **Provide Context for Faster Help**
 When asking for help, include:
 - Your creative goal or interaction idea
 - Which lab you're working on
@@ -76,14 +76,14 @@ When asking for help, include:
 - What you've already tried
 - Any error messages
 
-### 🚀 **Embrace the Learning Process**
+### 💭 **Embrace the Learning Process**
 WendyTA will often ask you questions back - this is intentional! The goal is to help you:
 - Develop rapid debugging intuition
 - Build pattern recognition for common issues
 - Gain confidence in creative problem-solving
 - Learn to iterate quickly and fearlessly
 
-### � **Think Beyond the Immediate Problem**
+### 🕴 **Think Beyond the Immediate Problem**
 Once something works, ask:
 - "What other interactions does this enable?"
 - "How could I push this idea further?"
