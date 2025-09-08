@@ -2,7 +2,7 @@
 
 Welcome to **WendyTA**, your AI-powered Teaching Assistant for Cornell's "Developing and Designing Interactive Devices" course! WendyTA is designed to accelerate your iteration speed while helping you build creative confidence and technical independence in interactive device design.
 
-*[Logo coming soon - see `custom-instructions/logo-specifications.md` for design brief]*
+![WendyTA Logo](WendyTA/WendyTA.png)
 
 ## What is WendyTA?
 
