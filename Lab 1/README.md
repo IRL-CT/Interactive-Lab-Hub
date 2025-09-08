@@ -222,8 +222,7 @@ Do last week’s assignment again, but this time:
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
 
 ### My lab report: 
-### I have switched teams based on interest and decided to pursue a different project idea with the new group. I have enteretained the idea of enhancing my smart glass project from lab1a but ultimately decided it was impossibile to complete since the lab1a I submitted was largely developed by myself. I have contributed independently to ideation of lab1b of this new project, which I will highlight in my submission below.
-
+**I have switched teams based on interest and decided to pursue a different project idea with the new group. I have enteretained the idea of enhancing my smart glass project from lab1a but ultimately decided it was impossibile to complete since the lab1a I submitted was largely developed by myself. I have contributed independently to ideation of lab1b of this new project, which I will highlight in my submission below.**
 
 
 ## Part A. Plan
@@ -332,8 +331,8 @@ First, a major concern is data privacy and security issues. Users may raise conc
 \*\***Take videos of your prototyped interaction.**\*\*
 
 Scenario:
-Individual mode: [IDD_Lab1_Part2_Individual.mp4](https://drive.google.com/file/d/1K1aw3PNWgM-OJL79RjlGofNr_xIh1wm5/view?usp=sharing)
-Group mode: [IDD_Lab1_Part2_Group.mp4](https://drive.google.com/file/d/1ozwTyPeyrAnQL-ItFWSgo7sV5inEX97l/view?usp=drive_link)
+- Individual mode: [IDD_Lab1_Part2_Individual.mp4](https://drive.google.com/file/d/1K1aw3PNWgM-OJL79RjlGofNr_xIh1wm5/view?usp=sharing)
+- Group mode: [IDD_Lab1_Part2_Group.mp4](https://drive.google.com/file/d/1ozwTyPeyrAnQL-ItFWSgo7sV5inEX97l/view?usp=drive_link)
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Charlotte Lin (hl2575), Jessica Hsiao (dh779), Zoe Tseng (yzt2), Irene Wu(yw2785), Le-En Huang (lh764)
