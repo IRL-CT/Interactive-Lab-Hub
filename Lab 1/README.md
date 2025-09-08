@@ -240,18 +240,31 @@ _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening th
 The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
-Given our previous design, we update the device to have 2 modes.
 
-1. Individual mode : the device is a personalized trainer mode with a guided AI plan (AI builds a plan based on history, goals, and preferences)
-Setting : The interaction takes place during a workout session, whether at home, in a gym/fitness studio, or any environment the user chooses.
-Players : The primary player is the exerciser, who is the person actively training with the device. Depending on where the user is at, there could be secondary players; for example, roommates or partners who share the same living space, children who may be present and interact with the device unintentionally, or fellow gym-goers if the workout takes place in a public setting.
-Activity : The user will begin a workout session, and the device will monitor the performance and physiological metrics, including heart rate and skin temperature. The device will also provide a countdown to inform the user about the time remaining for each exercise or rest period, while simultaneously delivering motivational feedback through vibration, sound, or a color progress bar to keep them engaged. 
-Goal : The device’s primary goal is to support the user in completing workouts effectively by leveraging AI to deliver real-time guidance, track progress, improve performance, and sustain motivation through multimodal feedback.
-2. Group mode: 
-Setting : The interaction will occur in a group workout session, such as a workout class, bootcamp, or small training group, where multiple participants train simultaneously in a shared environment. This could be in a gym studio, outdoor park, or even a virtual group session.
-Players : The players are the exercisers participating in the workout class. In group mode, the instructor can monitor the device signals to track each participant’s state throughout the session.
-Activity : Participants engage in a structured workout routine led by an instructor or guided by shared device cues. The device provides visual and auditory feedback, such as lights indicating progress, heart rate zones, or alerts when intensity drops. Lights may also signal the instructor when individuals struggle (ex: turning red if performance metrics fall below the threshold). Group features include setting shared or paired goals, competing in small teams, or earning collective achievements. Real-time stats such as heart rate, cadence, and calories burned may be displayed or shared within the group to foster motivation and accountability.
-Goal : The device’s primary goal in group mode is to enhance the social and motivational aspects of training. By providing collective progress indicators and encouraging friendly competition, it strengthens team bonding and keeps participants engaged. It also assists instructors by flagging safety or performance issues, ensuring participants stay in safe zones. Ultimately, the device aims to make workouts more interactive, collaborative, and emotionally rewarding, inspiring participants to push further while maintaining a fun, social atmosphere.
+Given our previous design, we update the device to have **2 modes**.
+
+## Mode 1: Individual Mode
+*The device is a personalized trainer mode with a guided AI plan (AI builds a plan based on history, goals, and preferences)*
+
+**Setting:** The interaction takes place during a workout session, whether at home, in a gym/fitness studio, or any environment the user chooses.
+
+**Players:** The primary player is the exerciser, who is the person actively training with the device. Depending on where the user is at, there could be secondary players; for example, roommates or partners who share the same living space, children who may be present and interact with the device unintentionally, or fellow gym-goers if the workout takes place in a public setting.
+
+**Activity:** The user will begin a workout session, and the device will monitor the performance and physiological metrics, including heart rate and skin temperature. The device will also provide a countdown to inform the user about the time remaining for each exercise or rest period, while simultaneously delivering motivational feedback through vibration, sound, or a color progress bar to keep them engaged.
+
+**Goal:** The device's primary goal is to support the user in completing workouts effectively by leveraging AI to deliver real-time guidance, track progress, improve performance, and sustain motivation through multimodal feedback.
+
+## Mode 2: Group Mode
+
+**Setting:** The interaction will occur in a group workout session, such as a workout class, bootcamp, or small training group, where multiple participants train simultaneously in a shared environment. This could be in a gym studio, outdoor park, or even a virtual group session.
+
+**Players:** The players are the exercisers participating in the workout class. In group mode, the instructor can monitor the device signals to track each participant's state throughout the session.
+
+**Activity:** Participants engage in a structured workout routine led by an instructor or guided by shared device cues. The device provides visual and auditory feedback, such as lights indicating progress, heart rate zones, or alerts when intensity drops. Lights may also signal the instructor when individuals struggle (ex: turning red if performance metrics fall below the threshold). Group features include setting shared or paired goals, competing in small teams, or earning collective achievements. Real-time stats such as heart rate, cadence, and calories burned may be displayed or shared within the group to foster motivation and accountability.
+
+**Goal:** The device's primary goal in group mode is to enhance the social and motivational aspects of training. By providing collective progress indicators and encouraging friendly competition, it strengthens team bonding and keeps participants engaged. It also assists instructors by flagging safety or performance issues, ensuring participants stay in safe zones. Ultimately, the device aims to make workouts more interactive, collaborative, and emotionally rewarding, inspiring participants to push further while maintaining a fun, social atmosphere.
+
+---
 
 Storyboards are a tool for visually exploring a user's interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
