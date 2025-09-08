@@ -116,6 +116,7 @@ You will be assigned three partners from other groups. Go to their github pages,
 
 \*\***Summarize feedback from your partners here.**\*\*
 
+The feedback is overall positive, praising the creative concept and appealing costume design of the pet-monitoring collar. One suggestion for improvement is to add sound alerts to complement the visual color changes, making notifications more noticeable and accessible, especially when the owner is busy or in another room. Another point raised is a concern about the collar’s fit, emphasizing the need to balance accurate mood tracking with the pet’s comfort and safety.
 ## Make it your own
 
 Do last week’s assignment again, but this time: 
