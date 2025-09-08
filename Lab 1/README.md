@@ -213,6 +213,9 @@ You will be assigned three partners from other groups. Go to their github pages,
 
 \*\***Summarize feedback from your partners here.**\*\*
 
+Feedback I recevied:
+
+
 ## Make it your own
 
 Do last week’s assignment again, but this time: 
@@ -221,3 +224,4 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
