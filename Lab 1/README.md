@@ -210,6 +210,8 @@ You will be assigned three partners from other groups. Go to their github pages,
 
 \*\***Summarize feedback from your partners here.**\*\*
 
+The feedback from my partners are mostly positive with minor improvements on visual communication and documenting my design process. 
+
 ## Make it your own
 
 Do last week’s assignment again, but this time: 
@@ -218,3 +220,119 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+### My lab report: 
+### I have switched teams based on interest and decided to pursue a different project idea with the new group. I have enteretained the idea of enhancing my smart glass project from lab1a but ultimately decided it was impossibile to complete since the lab1a I submitted was largely developed by myself. I have contributed independently to ideation of lab1b of this new project, which I will highlight in my submission below.
+
+
+
+## Part A. Plan - charlotte
+
+To stage an interaction with your interactive device, think about:
+
+_Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
+
+_Players:_ Who is involved in the interaction? Who else is there? If you reflect on the design of current day interactive devices like the Amazon Alexa, it’s clear they didn’t take into account people who had roommates, or the presence of children. Think through all the people who are in the setting.
+
+_Activity:_ What is happening between the actors?
+
+_Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
+
+The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
+
+\*\***Describe your setting, players, activity and goals here.**\*\*
+Given our previous design, we update the device to have 2 modes.
+1. Individual mode : the device is a personalized trainer mode with a guided AI plan (AI builds a plan based on history, goals, and preferences)
+Setting : The interaction takes place during a workout session, whether at home, in a gym/fitness studio, or any environment the user chooses.
+Players : The primary player is the exerciser, who is the person actively training with the device. Depending on where the user is at, there could be secondary players; for example, roommates or partners who share the same living space, children who may be present and interact with the device unintentionally, or fellow gym-goers if the workout takes place in a public setting.
+Activity : The user will begin a workout session, and the device will monitor the performance and physiological metrics, including heart rate and skin temperature. The device will also provide a countdown to inform the user about the time remaining for each exercise or rest period, while simultaneously delivering motivational feedback through vibration, sound, or a color progress bar to keep them engaged. 
+Goal : The device’s primary goal is to support the user in completing workouts effectively by leveraging AI to deliver real-time guidance, track progress, improve performance, and sustain motivation through multimodal feedback.
+2. Group mode: 
+Setting : The interaction will occur in a group workout session, such as a workout class, bootcamp, or small training group, where multiple participants train simultaneously in a shared environment. This could be in a gym studio, outdoor park, or even a virtual group session.
+Players : The players are the exercisers participating in the workout class. In group mode, the instructor can monitor the device signals to track each participant’s state throughout the session.
+Activity : Participants engage in a structured workout routine led by an instructor or guided by shared device cues. The device provides visual and auditory feedback, such as lights indicating progress, heart rate zones, or alerts when intensity drops. Lights may also signal the instructor when individuals struggle (ex: turning red if performance metrics fall below the threshold). Group features include setting shared or paired goals, competing in small teams, or earning collective achievements. Real-time stats such as heart rate, cadence, and calories burned may be displayed or shared within the group to foster motivation and accountability.
+Goal : The device’s primary goal in group mode is to enhance the social and motivational aspects of training. By providing collective progress indicators and encouraging friendly competition, it strengthens team bonding and keeps participants engaged. It also assists instructors by flagging safety or performance issues, ensuring participants stay in safe zones. Ultimately, the device aims to make workouts more interactive, collaborative, and emotionally rewarding, inspiring participants to push further while maintaining a fun, social atmosphere.
+
+Storyboards are a tool for visually exploring a user's interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
+
+\*\***Include pictures of your storyboards here**\*\*
+charlotte
+
+
+\*\***Summarize feedback you got here.**\*\*
+再說
+
+## Part B. Act out the Interaction (Jessica & Irene)
+
+Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
+
+\*\***Are there things that seemed better on paper than acted out?**\*\*
+Eva Huang
+
+We initially ideated around a “couples” feature within the group mode. While it is an interesting offering, after acting it out, we realized this is not much different from a normal group mode. We then decided to focus solely on a group workout scenario rather than developing more around the couples workout idea
+During the brainstorming stage, we discussed the possibility to use this device for groups doing workout sessions to compete with each other. The vision was to use lighting or other haptic feedback to signify the start of a mini-competition, keep score, and give rewards. However that may be deviating from the original purpose of this device and is a bit more complicated than we expected. Thus this idea was dropped.
+
+
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+#### Contributed by Le-En Huang ####
+
+We realized there might be some workout/exercises that require equipment or hand movement that could interfere with a wearable device on the wrist. To deal with this issue, we explore a new idea to costume our device as a necklace or an earring.
+
+Pros and cons of each:
+#### Earrings
+##### Pro
+- Super agile/lightweight
+- Easier to hear instructions/sound feedback in a group setting or outdoor environment
+##### Con
+- Not everyone has piercings
+- Hard to design with comfort
+- Easy to lose
+- Screen size is extremely tiny for light feedback
+
+#### Necklace
+###### Pro
+- Easy to put on - accessibility
+- Easy to hear instructions/sound feedback in a group setting or outdoor environment
+- Easy to spot a vibration/haptic feedback
+- Easy to see other’s light/feedback in a group setting
+###### Con
+- Needs to be adjustable for fitting
+- Screen may be slightly smaller than a watch solution
+
+
+## Part E. Costume the device
+
+Only now should you start worrying about what the device should look like. Develop three costumes so that you can use your phone as this device.
+
+Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
+
+\*\***Include sketches of what your devices might look like here.**\*\*
+
+#### Contributed by Le-En Huang ####
+
+After evaluating the tradeoff we decided to go with a necklace as a wearable device.
+
+![Prototype Mock](media/prototype_1b_sketch.png)
+![Prototype Mock](media/prototype_mock.png)
+
+(generated by ChatGPT)
+
+\*\***What concerns or opportunities are influencing the way you've designed the device to look?**\*\*
+
+#### Opportunities
+The main opportunity we envisioned when designing the device was to enhance the overall workout experience. By prioritizing simplicity and convenience, the device allows users to set up easily and integrate the device seamlessly into their routines. In group mode, the device can also inform the instructors about each participant's status, enabling them to monitor progress and identify when someone needs additional support. Through combining visual, auditory, and haptic cues, the device can adapt individual user preferences and make the experience more engaging. We were hoping that by using multimodality, the accessibility of the device can also be improved, ensuring users with different abilities or preference can engage effectively. In addition, we took multimodality as an opportunity to motivate the users through reinforcing feedback across multiple channels.
+
+##### Concerns
+First, a major concern is data privacy and security issues. Users may raise concern about health and performance data being stored and analyzed by AI. Secondly, as the device is multimodal, some users may find the cues overwhelming or distracting. In a shared or public environment, the cues could be disruptive to others nearby. Last but not least, accessibility barriers may still arise, since not all users respond well to certain feedback modes (e.g. color-blind users with color progress bar, or users with hearing impairment). 
+
+
+## Part F. Record
+
+\*\***Take videos of your prototyped interaction.**\*\*
+
+Scenario:
+Individual mode: [IDD_Lab1_Part2_Individual.mp4](https://drive.google.com/file/d/1K1aw3PNWgM-OJL79RjlGofNr_xIh1wm5/view?usp=sharing)
+Group mode: [IDD_Lab1_Part2_Group.mp4](https://drive.google.com/file/d/1ozwTyPeyrAnQL-ItFWSgo7sV5inEX97l/view?usp=drive_link)
+
+\*\***Please indicate who you collaborated with on this Lab.**\*\*
+Charlotte Lin (hl2575), Jessica Hsiao (dh779), Zoe Tseng (yzt2), Irene Wu(yw2785), Le-En Huang (lh764)
