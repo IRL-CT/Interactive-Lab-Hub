@@ -226,7 +226,7 @@ Do last week’s assignment again, but this time:
 
 
 
-## Part A. Plan - charlotte
+## Part A. Plan
 
 To stage an interaction with your interactive device, think about:
 
