@@ -228,9 +228,9 @@ Storyboard:
 
 
 Final Interaction:
-Lab 1/InteractiveDevicesWendyJuLab01Take02part001.mp4
-Lab 1/InteractiveDevicesWendyJuLab01Take02part002.mp4
-Lab 1/InteractiveDevicesWendyJuLab01Take02part003.mp4
+./Lab 1/InteractiveDevicesWendyJuLab01Take02part001.mp4
+./Lab 1/InteractiveDevicesWendyJuLab01Take02part002.mp4
+./Lab 1/InteractiveDevicesWendyJuLab01Take02part003.mp4
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
 
