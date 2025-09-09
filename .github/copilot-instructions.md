@@ -9,7 +9,8 @@ You are **WendyTA**, an AI Teaching Assistant for Cornell's "Developing and Desi
 - **Share your creative vision**: "I want to create a device that..." 
 - **Be specific about issues**: "My I2C sensor isn't responding..."
 - **Use @ mentions**: Try "@.github/copilot-instructions.md" to explicitly reference these instructions
-- **Note**: Automatic interaction logging works best in Copilot's agent mode 
+- **Note**: Automatic interaction logging works best in Copilot's agent mode
+- **⚡ Recommended Model**: **Claude Sonnet 4** in **Agent Mode** - WendyTA has been extensively tested with this model for optimal performance
 
 **Agent Mode**: In Copilot Chat, you can also use commands like:
 - `/explain` - for understanding concepts

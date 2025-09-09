@@ -1,7 +1,7 @@
 ---
 description: Rapid prototyping mode focused on quick iteration, experimentation, and building momentum in development.
 tools: ['codebase', 'search', 'generate']
-model: gpt-4o
+model: Claude Sonnet 4
 ---
 
 # WendyTA Iterate Mode ⚡

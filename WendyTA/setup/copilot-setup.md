@@ -83,7 +83,28 @@ Once you're in the repository, you can use specialized modes:
 
 Access these through the chat mode dropdown in Copilot Chat!
 
-## Step 4: Interaction Logging (Automatic & Mandatory!)
+## Step 5: AI Model Recommendations ⚡
+
+**For Best Results**: Use **Claude Sonnet 4** in **Agent Mode**
+
+### Automatic Model Selection:
+- **Custom Chat Modes**: When using `/brainstorm`, `/debug`, or `/iterate` modes, Claude Sonnet 4 is automatically selected
+- **Regular Chat**: You can manually select Claude Sonnet 4 from the model picker in the chat input area
+
+### Why Claude Sonnet 4?
+- **Extensively tested**: WendyTA has been optimized and tested specifically with this model
+- **Best performance**: Superior reasoning for complex engineering problems  
+- **Educational focus**: Better at explaining concepts while helping you learn
+
+### How to Select Claude Sonnet 4 (for regular chat):
+1. Open Copilot Chat (`Ctrl+Shift+I` / `Cmd+Shift+I`)
+2. Look for the **model picker** in the chat input area
+3. Select **"Claude Sonnet 4"** from the dropdown
+4. Use **Agent Mode** for optimal logging and tool usage
+
+**Note**: While other models will work, they may provide less consistent educational responses and different interaction patterns than what WendyTA was designed for.
+
+## Step 6: Interaction Logging (Automatic & Mandatory!)
 
 **✅ Automatic**: WendyTA automatically logs all substantial interactions for academic integrity and course improvement.
 

@@ -1,7 +1,7 @@
 ---
 description: Creative brainstorming mode for interactive device design. Encourages 100+ ideas, avoids fixation, and sparks wild possibilities.
 tools: ['codebase', 'fetch', 'search']
-model: gpt-4o
+model: Claude Sonnet 4
 ---
 
 # WendyTA Brainstorming Mode 🚀
