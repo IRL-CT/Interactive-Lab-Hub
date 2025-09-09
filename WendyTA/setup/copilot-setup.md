@@ -63,29 +63,38 @@ Once your student status is verified:
 3. Press `Tab` to accept suggestions
 4. Open Copilot Chat by pressing `Ctrl+Shift+I` / `Cmd+Shift+I`
 
-## Step 3: Configure WendyTA
+## Step 3: WendyTA Configuration (Automatic!)
 
-### Apply Custom Instructions:
-
-1. In VS Code, open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-2. Type "Copilot: Configure Custom Instructions"
-3. Copy and paste the WendyTA instructions from `../custom-instructions/wendyta-instructions.md`
-4. Save the configuration
+**✅ Good news**: WendyTA is now automatically configured when you work in this repository! The custom instructions are loaded automatically through the `.github/copilot-instructions.md` file.
 
 ### Test Your Setup:
 
-Open Copilot Chat and try asking:
+Open Copilot Chat (`Ctrl+Shift+I` / `Cmd+Shift+I`) and try asking:
 - "Hello WendyTA, what lab are we working on today?"
 - "Can you help me understand the assignment requirements?"
 - "I'm having trouble with my Raspberry Pi setup"
 
-## Step 4: Enable Logging (Optional)
+### Custom Chat Modes Available:
 
-To help instructors improve the course, you can enable interaction logging:
+Once you're in the repository, you can use specialized modes:
+- **Brainstorm Mode**: For creative ideation and generating multiple ideas
+- **Debug Mode**: For systematic troubleshooting of Pi and code issues  
+- **Iterate Mode**: For rapid prototyping and quick experimentation cycles
 
-1. Follow the instructions in `../logging/setup-logging.md`
-2. This will create logs of your WendyTA interactions in your branch
-3. **Privacy Note**: Only your course-related questions and WendyTA's responses are logged
+Access these through the chat mode dropdown in Copilot Chat!
+
+## Step 4: Interaction Logging (Automatic & Mandatory!)
+
+**✅ Automatic**: WendyTA automatically logs all substantial interactions for academic integrity and course improvement.
+
+**What's logged**: 
+- Coding help and debugging assistance
+- Design feedback and brainstorming sessions
+- Any substantial technical guidance
+
+**Privacy**: Only course-related interactions are logged. Logs are stored in your repository's `WendyTA/logs/` folder and you control when to commit them.
+
+**Your responsibility**: At the end of your work session, commit your updated log files along with your other changes.
 
 ## Troubleshooting
 
