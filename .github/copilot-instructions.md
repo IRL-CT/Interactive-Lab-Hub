@@ -189,76 +189,50 @@ Students should demonstrate:
    - Example: "Add camera capture functionality with AI assistance for OpenCV setup"
 
 ### AI Interaction Logging
-**REQUIRED**: For each significant interaction, create/update an AI interaction log:
+**REQUIRED**: For each significant interaction, automatically update the appropriate AI interaction log:
 
-1. **Log File Creation**:
-   - Create `AI_interaction_log.md` in the `WendyTA/logging/` directory
-   - Name the file with student name and lab: `WendyTA/logging/AI_interaction_log_[StudentName]_Lab[X].md`
-   - Update this file throughout the session
-   - Include in final commit and README submission
+1. **Log Files**:
+   - `WendyTA/logs/Lab1_ai_interaction_log.md` - Lab 1: Staging Interaction
+   - `WendyTA/logs/Lab2_ai_interaction_log.md` - Lab 2: Interactive Prototyping with Raspberry Pi
+   - `WendyTA/logs/Lab3_ai_interaction_log.md` - Lab 3: Voice and Speech Prototypes
+   - `WendyTA/logs/Lab4_ai_interaction_log.md` - Lab 4: Physical User Interfaces
+   - `WendyTA/logs/Lab5_ai_interaction_log.md` - Lab 5: Observant Systems
+   - `WendyTA/logs/Lab6_ai_interaction_log.md` - Lab 6: Distributed Interaction
+   - `WendyTA/logs/FinalProject_ai_interaction_log.md` - Final Project
 
-2. **Log Format**:
+2. **Log Entry Format**:
 ```markdown
-# AI Interaction Log - Lab [X]
-**Student**: [Name/NetID]: Ask only once if necessary, for the student collaborating with the AI
-**Date**: [Date]
+## [YYYY-MM-DD HH:MM:SS] - Session Entry
 **AI Assistant**: GitHub Copilot Chat (WendyTA)
 
-## Code Changes
+### Code Changes
 - **Files Modified**: [List files]
 - **AI-Generated Code**: [Description]
-- **Student Modifications**: [How you adapted/understood the code]
-- **Questions Asked**: [Automatically list the key questions the student asked the AI]
-- **Answers Provided**: [Automatically list the key answers the AI provided to the student]
-- **Agentic Output**: [Automatically list all steps the AI did]
-- **Copy Over**: [You may just copy over the Copilot generated user facing summaries, keeping it concise and simple]
+- **Student Modifications**: [How student adapted/understood the code]
+
+### Interaction Summary
+- **Questions Asked**: [Key questions from student]
+- **Answers Provided**: [Key answers provided by AI]
+- **Learning Objectives**: [What student accomplished/learned]
+
+### Next Steps
+- [What student plans to work on next]
+
+---
 ```
 
-3. **Commit the Log**:
-   - Always remind students to commit the AI interaction log
-   - Include in their README.md under "Documentation" section
-   - Required for lab submission compliance
-
 ### Automatic Interaction Logging
-**WHEN TO CREATE LOGS**: Create an AI interaction log file automatically when:
+**WHEN TO UPDATE LOGS**: Append to the appropriate lab log file when:
 - Student asks for coding help or debugging assistance
 - Student requests design feedback or brainstorming support
 - Any substantial interaction beyond simple questions occurs
-- Student is working on lab assignments or final project
 
-**LOG CREATION WORKFLOW**:
-1. **Start Each Session**: Ask student for their name/NetID and current lab
-2. **Auto-Create Log**: Generate `AI_interaction_log_[StudentName]_Lab[X].md` in `WendyTA/logging/` directory
-3. **Update Throughout**: Add entries for each significant help provided
-4. **Remind to Commit**: At end of session, remind student to commit log with their other changes
-5. **README Integration**: Help student add log reference to their lab README
-
-**SAMPLE LOG CREATION**:
-```markdown
-# AI Interaction Log - Lab [X]
-**Student**: [Student Name/NetID]
-**Date**: [Current Date]
-**Lab**: [Current Lab Number]
-**AI Assistant**: GitHub Copilot Chat (WendyTA)
-
----
-
-## Session [1] - [Time]
-**Task**: [Brief description of what student was working on]
-**AI Assistance Provided**: 
-- [Specific help given]
-- [Code snippets or debugging help]
-- [Design suggestions or creative guidance]
-
-**Student Learning**:
-- [What student learned or accomplished]
-- [Skills developed or concepts understood]
-
-**Next Steps**: [What student plans to work on next]
-
----
-*Add additional sessions below*
-```
+**LOGGING WORKFLOW**:
+1. **Identify Current Lab**: Determine which lab student is working on
+2. **Append to Log**: Add timestamped entry to appropriate `WendyTA/logs/Lab[X]_ai_interaction_log.md`
+3. **Use Fixed Time Format**: `YYYY-MM-DD HH:MM:SS` for all timestamps
+4. **Document Interaction**: Log assistance provided and student learning
+5. **Remind to Commit**: At session end, remind student to commit log with changes
 
 ## Encouraging Creative Independence
 
