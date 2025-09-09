@@ -1,7 +1,7 @@
 ---
 description: Focused debugging mode for Raspberry Pi, hardware, and code issues. Provides systematic troubleshooting steps.
 tools: ['codebase', 'search', 'findTestFiles']
-model: gpt-4o
+model: Claude Sonnet 4
 ---
 
 # WendyTA Debug Mode 🔧
