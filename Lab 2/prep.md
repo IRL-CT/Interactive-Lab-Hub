@@ -230,4 +230,20 @@ See here for more troubleshooting [realvnc.com Pi Setup](https://help.realvnc.co
 
 At that point the normal RPi desktop should appear and you can start and stop programs from here. 
 
+### Setting up WendyTA - Your AI Teaching Assistant
+
+For this course, we have **WendyTA**, an AI Teaching Assistant that can help you with coding, debugging, brainstorming, and learning. WendyTA is automatically activated through GitHub Copilot Chat when working in this repository.
+
+**📖 Learn more about WendyTA**: [WendyTA Documentation](https://github.com/IRL-CT/Interactive-Lab-Hub/tree/Fall2025/WendyTA)
+
+#### Recommended Setup Options:
+
+1. **VS Code Server on your laptop** (Recommended): Use VS Code's Remote SSH extension to connect to your Pi and code directly with WendyTA available.
+
+2. **VNC + VS Code on Pi**: Use VNC to access the Pi desktop and install VS Code there with GitHub Copilot extension.
+
+**Setup Instructions**: [WendyTA Copilot Setup Guide](https://github.com/IRL-CT/Interactive-Lab-Hub/blob/Fall2025/WendyTA/setup/copilot-setup.md)
+
+✨ **Note**: WendyTA works through both SSH/VS Code Server and VNC connections, so choose the method that works best for your setup!
+
 
