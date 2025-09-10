@@ -14,9 +14,9 @@
 
 1 x [Adafruit I2C Stemma QT Rotary Encoder Breakout with Encoder - STEMMA QT / Qwiic](https://www.adafruit.com/product/5880)
 
-1 x [Adafruit Proximity, Light, RBG, Gesture Sensor](https://www.adafruit.com/product/3595)
+1 x [Adafruit APDS9960 QT Proximity, Light, RBG, Gesture Sensor](https://www.adafruit.com/product/3595)
 
-1 x [Adafruit 6-DoF Accel + Gyro IMU](https://www.adafruit.com/product/4503)
+1 x [Adafruit 6-DoF Accel + Gyro IMU LSM6DS3TR-C](https://www.adafruit.com/product/4503)
 
 1 x [Adafruit MPR121 Capacitive Touch Sensor QT](https://www.adafruit.com/product/4830)
 
@@ -38,7 +38,7 @@
 
 1 x [SparkFun Qwiic Button - Green LED](https://www.sparkfun.com/products/16842)
 
-1 x [SparkFun Qwiic Cable Kit](https://www.sparkfun.com/sparkfun-qwiic-cable-kit.htm)
+1 x [SparkFun Qwiic Cable Kit](https://www.sparkfun.com/sparkfun-qwiic-cable-kit.html)
 
 1 x Bluetooth wireless speaker w/ microphone
 
