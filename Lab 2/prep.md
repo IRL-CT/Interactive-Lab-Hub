@@ -58,12 +58,11 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 
 	The IP address is what you will need to SSH your Pi later through the same network. The media access control address (MAC address) is a unique identifier assigned to a network interface controller, you will need it later for registering the device if you are using Cornell network (e.g. RedRover). The NET shows which WiFi network your Pi is connected to.
 	
-	For MAC address: If you are planning to use Cornell network (e.g. RedRover and eduroam), you will have to register the device (your Pi) to the Cornell System to get it online. Please follow the instructions [here](https://it.cornell.edu/wifi/register-device-doesnt-have-browser) from Cornell. To get the wifi mac address type `cat /sys/class/net/wlan0/address` in the terminal once looged in to you pi and verify its the same shown on the Pis screen. If you are using the House network, you will need to register the device (your Pi) through [whitesky](https://myaccount.wscmdu.com/myaccount/devices). You might need to wait for a few minutes for your Pi to actually get online after registering it.
+	For MAC address: If you are planning to use Cornell network (e.g. RedRover and eduroam), you will have to register the device (your Pi) to the Cornell System to get it online. Please follow the instructions [here](https://it.cornell.edu/wifi/register-device-doesnt-have-browser) from Cornell. Register using the MAC address from your Pi's screen. If you are using the House network, you will need to register the device (your Pi) through [whitesky](https://myaccount.wscmdu.com/myaccount/devices). You might need to wait for a few minutes for your Pi to actually get online after registering it.
 
-	*Note: Next to the screen are two buttons. We configured the top left button on this screen to shutdown your Pi. Do this before you disconnect the power source. 
-	The bottom left button is configured to reboot the Pi.*
+<img src="demo_pic/cornell_register.png" alt="register for your mac address" height="200" />
 
-2. Verify your Pi is online. In the terminal of your laptop, type `ping <Your Pi's IP Address shown on the MiniPiTFT>` and press enter. If your Pi is online, you should get similar messages as below (with different IP address):
+3. Verify your Pi is online. In the terminal of your laptop, type `ping <Your Pi's IP Address shown on the MiniPiTFT>` and press enter. If your Pi is online, you should get similar messages as below (with different IP address):
     	
 	```shell
 	$ ping 192.168.1.131
@@ -80,7 +79,7 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	
 	You can use `control-C` to interrupt and exit the ping (press the `control` key, and while holding it down, also press the `C` key, then let go of both together--this looks like `^C` in the terminal).
 
-3. Once your Pi is online, you can go ahead and SSH into the Pi. In the terminal of your laptop, type in the command
+4. Once your Pi is online, you can go ahead and SSH into the Pi. In the terminal of your laptop, type in the command
 	
 	```
 	$ ssh pi@<Your Pi's IP Address shown on the MiniPiTFT>
