@@ -182,7 +182,7 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 [Setup Video](./initialsetup.mp4)
 \*\*
 
-Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
+Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.** 
 
