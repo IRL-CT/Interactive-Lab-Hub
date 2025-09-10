@@ -85,7 +85,6 @@ while True:
     draw.text((x, y), WTTR, font=font, fill="#FFFF00")
     y += draw.textbbox((0,0), WTTR, font=font)[3]
     draw.text((x, y), USD, font=font, fill="#0000FF")
-    y += font.getsize(USD)[1]
     y += draw.textbbox((0,0), USD, font=font)[3]
 
     # Display image.
