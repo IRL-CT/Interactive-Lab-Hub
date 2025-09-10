@@ -117,7 +117,7 @@ To learn more about any individual pin and what it is for go to [pinout.xyz](htt
 
 ### Hardware (you have already done this in the prep)
 
-From your kit take out the display and the [Raspberry Pi 4](https://cdn-shop.adafruit.com/970x728/3775-07.jpg)
+From your kit take out the display and the [Raspberry Pi 5]([https://cdn-shop.adafruit.com/970x728/3775-07.jpg](https://assets.raspberrypi.com/static/8f6eca535dbb23a21eb41a748050e3a0/33b96/16gb.webp))
 
 Line up the screen and press it on the headers. The hole in the screen should match up with the hole on the raspberry pi.
 
