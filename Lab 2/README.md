@@ -152,7 +152,7 @@ You can type the name of a color then press either of the buttons on the MiniPiT
 ```
 
 #### Displaying Info with Texts
-You can look in `screen_boot_script.py` and `stats.py` for how to display text on the screen!
+You can look in `screen_boot_script.py` for how to display text on the screen!
 
 #### Displaying an image
 
