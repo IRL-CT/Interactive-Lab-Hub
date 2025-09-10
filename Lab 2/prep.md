@@ -24,7 +24,7 @@ Download and use the ``rpi5-2025-09-08.img.gz`` file directly in the Raspberry P
 
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/wiki/images/pi_imager_os_select.png" alt="choose os" height="200" />
 
-3. Click the gear icon on the bottom right to open Advanced Settings. In here, you need to make two changes:
+3. Click the gear icon on the bottom right to open Advanced Settings. In here, you need to make two changes: (NOT YET until SSH)
 - change the "hostname" to something unique
 - set the password for user "pi" to something unique to you that you can remember
 - do not change any of the other settings (username pi and network should stay as they are)
