@@ -103,7 +103,7 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	If you set your password in the Advanced Settings during imaging, enter that password. If you didn't, the initial setting of your Pi's password is `student@tech`, type it and press enter. Note: the terminal will not show what you type for security so do not worry about it and just make sure you type the correct password. After that, you should see something similar to this:	
 	
 
-	```shell
+	```
 	pi@10.56.129.178's password: 
 	Linux raspberrypi 6.12.25+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.25-1+rpt1 (2025-04-30) aarch64
 	
@@ -138,11 +138,11 @@ Choose '1. System Options' and 'S3 Password', they terminal will then ask you to
 
 The command line/terminal is a powerful way to interact with your computer without using a Graphical User Interface (GUI). When you SSH onto your Pi, you have a prompt you can enter commands. In your terminal there is a shell, there are many shells but for this class we will use one of the most common **bash**
 
-	````
+	```
 	pi@raspberrypi:~ $ echo $SHELL
 	/bin/bash
 	pi@raspberrypi:~ $ 
-	````
+	```
 In the code above we've typed `echo $SHELL`. The `echo` tells it to print something to the screen. You could try typing `echo 'hello'` to see how that works for strings. The `$` at the front of `$SHELL` tells bash we are referring to a variable. In this case it is a variable the OS is using to store the shell program. In a folder `/bin` is a program called bash that we are currently using. The up arrow with show the most recent command.
 
 
@@ -151,7 +151,7 @@ In the code above we've typed `echo $SHELL`. The `echo` tells it to print someth
 
 There are many commands you can use in the command line, they can take a variety of options that change how they are used. You can look these up online to learn more. Many commands have a manual page with documentation that you can see directly in the terminal by typing `man [command]`. For example:
 
-	```shell
+	```
 	pi@raspberrypi:~ $ man echo
 	ECHO(1)                           User Commands                          ECHO(1)
 	
