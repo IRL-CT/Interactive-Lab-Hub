@@ -22,7 +22,7 @@
 
 1 x [Breadboard](https://www.adafruit.com/product/4539)
 
-1 x [AdafruitI2C GPIO Expander Breakout](https://www.adafruit.com/product/5545)
+1 x [Adafruit PCF8574 I2C GPIO Expander Breakout - STEMMA QT / Qwiic](https://www.adafruit.com/product/5545)
 
 1 x [Copper Foil Tape](https://www.amazon.com/Conductive-Shielding-Repellent-Electrical-Grounding/dp/B0741ZRP4W/ref=sr_1_5?dchild=1&keywords=conductive+copper+tape&qid=1628142003&sr=8-5)
 
