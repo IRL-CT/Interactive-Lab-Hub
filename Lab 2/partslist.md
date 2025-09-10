@@ -6,8 +6,6 @@
 
 1 x [Rasberry Pi Power Supply](https://www.raspberrypi.com/products/27w-power-supply/)
 
-1 x [Raspberry Pi Active Cooler](https://www.raspberrypi.com/products/active-cooler/)
-
 1 x [64 GB MicroSD Card](https://www.raspberrypi.com/products/sd-cards/)
 
 1 x [USB Type C microSD Card Reader/Writer](https://www.adafruit.com/product/5212)
@@ -42,8 +40,6 @@
 
 1 x [SparkFun Qwiic Cable Kit](https://www.sparkfun.com/sparkfun-qwiic-cable-kit.htm)
 
-1 x [EDUP 1080P 2MP Computer Webcam 1080p microphone CMOS 1/2.9" Sensor USB](https://www.alibaba.com/product-detail/EDUP-1080P-2MP-Computer-Webcam-1080p_1600269604427.html)
-
 1 x Bluetooth wireless speaker w/ microphone
 
 
@@ -51,5 +47,9 @@
 
 
 
-## Missing Parts here
-\*\*\***List down parts you did not get from the kit here**\*\*\*
+## On hold
+\*\*\***We will distrubute these parts for the future labs**\*\*\*
+
+1 x [Raspberry Pi Active Cooler](https://www.raspberrypi.com/products/active-cooler/)
+
+1 x [C270 HD Webcam](https://www.logitech.com/en-us/shop/p/c270-hd-webcam.960-000694)
