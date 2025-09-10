@@ -83,10 +83,10 @@ while True:
     # y += font.getsize(IP)[1]
     y += draw.textbbox((0,0), IP, font=font)[3]
     draw.text((x, y), WTTR, font=font, fill="#FFFF00")
-    y += font.getsize(WTTR)[1]
+    y += draw.textbbox((0,0), WTTR, font=font)[3]
     draw.text((x, y), USD, font=font, fill="#0000FF")
     y += font.getsize(USD)[1]
-    draw.text((x, y), Temp, font=font, fill="#FF00FF")
+    y += draw.textbbox((0,0), USD, font=font)[3]
 
     # Display image.
     disp.image(image, rotation)
