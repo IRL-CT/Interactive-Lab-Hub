@@ -209,7 +209,7 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 \*\***Include your first attempts at recording the set-up video here.**\*\*  
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/NcSGCuUPavk/0.jpg)](https://youtube.com/shorts/NcSGCuUPavk)
 
-Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
+Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*  
 - QuickTicket: New goal is to link the ticket from a mobile phone to the device. I added a button to the prototype to allow for connecting to other devices via bluetooth.
