@@ -64,7 +64,6 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 
 3. Verify your Pi is online. In the terminal of your laptop, type `ping <Your Pi's IP Address shown on the MiniPiTFT>` and press enter. If your Pi is online, you should get similar messages as below (with different IP address):
     	
-	````
  	```shell
 	PING 10.56.129.178 (10.56.129.178): 56 data bytes
 	64 bytes from 10.56.129.178: icmp_seq=0 tt1=62 time=11.911 ms
@@ -77,7 +76,6 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	• from
 	10.56.129.178: iсmp_seq=3 ttl=62 time=11.932 ms
 	```
- 	````
 	
 	You can use `control-C` to interrupt and exit the ping (press the `control` key, and while holding it down, also press the `C` key, then let go of both together--this looks like `^C` in the terminal).
 
