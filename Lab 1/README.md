@@ -151,5 +151,5 @@ Do last week’s assignment again, but this time:
 2) You can use any modality (e.g., vibration, sound) to prototype the behaviors! Again, be creative! Feel free to fork and modify the tinkerbell code! 
 3) We will be grading with an emphasis on creativity. 
 
-![img.png](img.png)
+![storyboard.png](./storyboard.png)
 [prototype interaction](https://drive.google.com/file/d/1ZCl9g9jvgeJux79vsP0wskYPhOaV4nzz/view?usp=share_link)
