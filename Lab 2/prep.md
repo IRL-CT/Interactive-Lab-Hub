@@ -60,6 +60,9 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	
 	For MAC address: If you are planning to use Cornell network (e.g. RedRover and eduroam), you will have to register the device (your Pi) to the Cornell System to get it online. Please follow the instructions [here](https://it.cornell.edu/wifi/register-device-doesnt-have-browser) from Cornell. Register using the MAC address from your Pi's screen. If you are using the House network, you will need to register the device (your Pi) through [whitesky](https://myaccount.wscmdu.com/myaccount/devices). You might need to wait for a few minutes for your Pi to actually get online after registering it.
 
+
+<img src="demo_pic/pi_wifi.png" alt="MiniPiTFTonPi" height="200" />
+
 <img src="demo_pic/cornell_register.png" alt="register for your mac address" height="400" />
 
 3. Verify your Pi is online. In the terminal of your laptop, type `ping <Your Pi's IP Address shown on the MiniPiTFT>` and press enter. If your Pi is online, you should get similar messages as below (with different IP address):
@@ -87,19 +90,19 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	
 	When you first log in it, the terminal will show you a "fingerprint" and ask you whether you want to continue connecting. Type `yes` and press enter. 
 	
-	````
+
 	```shell
 	The authenticity of host '10.56.129.178 (10.56.129.178) ' can't be established.
 	ED25519 key fingerprint is SHA256:uRnRAlBikqynXuZ8vc/kVSR8ohLFawA0nn+3Er7TXm8.
 	This key is not known by any other names.
 	Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 	```
-    ````
+
 	
 	
 	If you set your password in the Advanced Settings during imaging, enter that password. If you didn't, the initial setting of your Pi's password is `student@tech`, type it and press enter. Note: the terminal will not show what you type for security so do not worry about it and just make sure you type the correct password. After that, you should see something similar to this:	
 	
-	````
+
 	```shell
 	pi@10.56.129.178's password: 
 	Linux raspberrypi 6.12.25+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.25-1+rpt1 (2025-04-30) aarch64
@@ -114,7 +117,7 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	pi@raspberrypi:~ $ 
 
 	```
-	````
+
 	
 	This means you are signed in and your terminal is now connected directly to the 'terminal' on your Pi, via `ssh`. You can tell this by looking at the user and hostname at the beginning of each line, which should now look like:
 
@@ -148,7 +151,6 @@ In the code above we've typed `echo $SHELL`. The `echo` tells it to print someth
 
 There are many commands you can use in the command line, they can take a variety of options that change how they are used. You can look these up online to learn more. Many commands have a manual page with documentation that you can see directly in the terminal by typing `man [command]`. For example:
 
-	````
 	```shell
 	pi@raspberrypi:~ $ man echo
 	ECHO(1)                           User Commands                          ECHO(1)
@@ -167,7 +169,7 @@ There are many commands you can use in the command line, they can take a variety
 	       --version
 	Manual page echo(1) line 1 (press h for help or q to quit)
 	```	
- 	````
+
   
 These are some useful commands. Read the manual pages for advanced usage.
 	
