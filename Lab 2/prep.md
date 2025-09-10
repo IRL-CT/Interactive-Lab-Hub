@@ -3,8 +3,8 @@
 
 ### To prepare your Pi, you will need:
 
-- Raspberry Pi 4
-- Power Supply
+- Raspberry Pi 5
+- Raspberry Pi 5 Power Supply
 - SD card + Reader
 - [Adafruit MiniPiTFT](https://www.adafruit.com/product/4393)
 
