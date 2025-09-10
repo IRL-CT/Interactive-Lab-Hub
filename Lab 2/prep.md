@@ -35,7 +35,7 @@ Download and use the ``rpi5-2025-09-08.img.gz`` file directly in the Raspberry P
 
 5. Take and connect the Adafruit MiniPiTFT to your pi with the configuration shown below, the MiniPiTFT should be on the top left corner of your Pi.
 
-<img src="PlacingMiniPiTFTonPi.jpg" alt="MiniPiTFTonPi" height="200" />
+<img src="demo_pic/piwithscreen.png" alt="MiniPiTFTonPi" height="200" />
 
 6. Boot the Pi by connecting it to a power source with USB-C connector.
 
@@ -60,7 +60,7 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	
 	For MAC address: If you are planning to use Cornell network (e.g. RedRover and eduroam), you will have to register the device (your Pi) to the Cornell System to get it online. Please follow the instructions [here](https://it.cornell.edu/wifi/register-device-doesnt-have-browser) from Cornell. Register using the MAC address from your Pi's screen. If you are using the House network, you will need to register the device (your Pi) through [whitesky](https://myaccount.wscmdu.com/myaccount/devices). You might need to wait for a few minutes for your Pi to actually get online after registering it.
 
-<img src="demo_pic/cornell_register.png" alt="register for your mac address" height="200" />
+<img src="demo_pic/cornell_register.png" alt="register for your mac address" height="400" />
 
 3. Verify your Pi is online. In the terminal of your laptop, type `ping <Your Pi's IP Address shown on the MiniPiTFT>` and press enter. If your Pi is online, you should get similar messages as below (with different IP address):
     	
