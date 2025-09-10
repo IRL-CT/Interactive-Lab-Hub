@@ -90,6 +90,15 @@ Clone your own lab-hub repo for this assignment to your Pi and change the direct
 ```
 Depends on the setting, you might be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you just set up as the password instead of your account one!
 
+Check if the directory has clone sucessfully, you should see the Interactive-Lab-Hub under the home directory listed:
+```
+(venv) pi@raspberrypi:~ $ ls
+Bookshelf      Documents            Music     Public                 venv
+create_img.sh  Downloads            pi-apps   screen_boot_script.py  Videos
+Desktop        Interactive-Lab-Hub  Pictures  Templates
+(venv) pi@raspberrypi:~ $
+```
+
 
 Install the packages from the requirements.txt and run the example script `cli_clock.py`:
 
@@ -130,7 +139,7 @@ Line up the screen and press it on the headers. The hole in the screen should ma
 
 The display uses a communication protocol called [SPI](https://www.circuitbasics.com/basics-of-the-spi-communication-protocol/) to speak with the raspberry pi. We won't go in depth in this course over how SPI works. The port on the bottom of the display connects to the SDA and SCL pins used for the I2C communication protocol which we will cover later. GPIO (General Purpose Input/Output) pins 23 and 24 are connected to the two buttons on the left. GPIO 22 controls the display backlight.
 
-To show you the IP and Mac address of the Pi to allow connecting remotely we created a service that launches a python script that runs on boot. For the following steps stop the service by typing ``` sudo systemctl stop mini-screen.service```. Othwerise two scripts will try to use the screen at once. 
+To show you the IP and Mac address of the Pi to allow connecting remotely we created a service that launches a python script that runs on boot. For the following steps stop the service by typing ``` sudo systemctl stop piscreen.service --now```. Othwerise two scripts will try to use the screen at once. You may start it again by typing ``` sudo systemctl start piscreen.service --now```
 
 We can test it by typing 
 ```
