@@ -8,7 +8,6 @@ import board
 
 from adafruit_rgb_display.rgb import color565
 import adafruit_rgb_display.st7789 as st7789
-import webcolors
 
 # ---------------------------
 # SPI + Display configuration
@@ -50,18 +49,6 @@ buttonB = digitalio.DigitalInOut(board.D24)    # GPIO24 (PIN 18)
 # Use internal pull-ups; buttons then read LOW when pressed.
 buttonA.switch_to_input(pull=digitalio.Pull.UP)
 buttonB.switch_to_input(pull=digitalio.Pull.UP)
-
-# ---------------------------
-# Ask user for a color
-# ---------------------------
-screenColor = None
-while not screenColor:
-    try:
-        name = input('Type the name of a color and hit enter: ')
-        rgb = webcolors.name_to_rgb(name)
-        screenColor = color565(rgb.red, rgb.green, rgb.blue)
-    except ValueError:
-        print("whoops I don't know that one")
 
 # ---------------------------
 # Main loop
