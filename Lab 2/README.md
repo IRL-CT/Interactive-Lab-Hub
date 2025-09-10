@@ -162,6 +162,10 @@ You can look in `image.py` for an example of how to display an image on the scre
 
 ## Part D. 
 ### Set up the Display Clock Demo
+
+Success Demo: https://drive.google.com/file/d/1WM5QmUveavN99GRojvJ6QMCvXsfU6AP8/view?usp=drive_link
+
+
 Work on `screen_clock.py`, try to show the time by filling in the while loop (at the bottom of the script where we noted "TODO" for you). You can use the code in `cli_clock.py` and `stats.py` to figure this out.
 
 ### How to Edit Scripts on Pi
