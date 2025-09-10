@@ -3,8 +3,8 @@
 
 ### To prepare your Pi, you will need:
 
-- Raspberry Pi 4
-- Power Supply
+- Raspberry Pi 5
+- Raspberry Pi 5 Power Supply
 - SD card + Reader
 - [Adafruit MiniPiTFT](https://www.adafruit.com/product/4393)
 
@@ -12,8 +12,8 @@
 ### Burn your Pi image to your SD card
 #### On your computer 
 - Download the [Raspberry Pi Imager](https://www.raspberrypi.org/software/)
-- Download our copy of Raspbian at [this Cornell Box link](https://cornell.box.com/s/60k22dze3h7js9nt2hzse90bxwm9i1cc).
-Download and use the ``pi_image_09-05-23.zip`` file directly in the Raspberry Pi Imager (do not unzip).
+- Download our copy of Raspbian at [this cornell canvas link](https://canvas.cornell.edu/courses/80789/discussion_topics/936162).
+Download and use the ``rpi5-2025-09-08.img.gz`` file directly in the Raspberry Pi Imager (do not unzip).
 
 - If using windows: [Windows 11 SSH Client](https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh), [PuTTY](https://www.putty.org/) or [VS Code SSH](https://code.visualstudio.com/learn/develop-cloud/ssh-lab-machines). 
 
@@ -35,7 +35,7 @@ Download and use the ``pi_image_09-05-23.zip`` file directly in the Raspberry Pi
 
 5. Take and connect the Adafruit MiniPiTFT to your pi with the configuration shown below, the MiniPiTFT should be on the top left corner of your Pi.
 
-<img src="PlacingMiniPiTFTonPi.jpg" alt="MiniPiTFTonPi" height="200" />
+<img src="demo_pic/pi_withscreen.png" alt="MiniPiTFTonPi" height="200" />
 
 6. Boot the Pi by connecting it to a power source with USB-C connector.
 
@@ -58,29 +58,31 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 
 	The IP address is what you will need to SSH your Pi later through the same network. The media access control address (MAC address) is a unique identifier assigned to a network interface controller, you will need it later for registering the device if you are using Cornell network (e.g. RedRover). The NET shows which WiFi network your Pi is connected to.
 	
-	For MAC address: If you are planning to use Cornell network (e.g. RedRover and eduroam), you will have to register the device (your Pi) to the Cornell System to get it online. Please follow the instructions [here](https://it.cornell.edu/wifi-wired/register-device-doesnt-have-browser) from Cornell. To get the wifi mac address type `cat /sys/class/net/wlan0/address` in the terminal once looged in to you pi and verify its the same shown on the Pis screen. If you are using the House network, you will need to register the device (your Pi) through [whitesky](https://myaccount.wscmdu.com/myaccount/devices). You might need to wait for a few minutes for your Pi to actually get online after registering it.
+	For MAC address: If you are planning to use Cornell network (e.g. RedRover and eduroam), you will have to register the device (your Pi) to the Cornell System to get it online. Please follow the instructions [here](https://it.cornell.edu/wifi/register-device-doesnt-have-browser) from Cornell. Register using the MAC address from your Pi's screen. If you are using the House network, you will need to register the device (your Pi) through [whitesky](https://myaccount.wscmdu.com/myaccount/devices). You might need to wait for a few minutes for your Pi to actually get online after registering it.
 
-	*Note: Next to the screen are two buttons. We configured the top left button on this screen to shutdown your Pi. Do this before you disconnect the power source. 
-	The bottom left button is configured to reboot the Pi.*
 
-2. Verify your Pi is online. In the terminal of your laptop, type `ping <Your Pi's IP Address shown on the MiniPiTFT>` and press enter. If your Pi is online, you should get similar messages as below (with different IP address):
+<img src="demo_pic/pi_wifi.png" alt="MiniPiTFTonPi" height="200" />
+
+<img src="demo_pic/cornell_register.png" alt="register for your mac address" height="400" />
+
+3. Verify your Pi is online. In the terminal of your laptop, type `ping <Your Pi's IP Address shown on the MiniPiTFT>` and press enter. If your Pi is online, you should get similar messages as below (with different IP address):
     	
-	```shell
-	$ ping 192.168.1.131
-	PING 192.168.1.131 (192.168.1.131): 56 data bytes
-	64 bytes from 192.168.1.131: icmp_seq=0 ttl=64 time=252.118 ms
-	64 bytes from 192.168.1.131: icmp_seq=1 ttl=64 time=10.331 ms
-	64 bytes from 192.168.1.131: icmp_seq=2 ttl=64 time=10.209 ms
-	64 bytes from 192.168.1.131: icmp_seq=3 ttl=64 time=14.816 ms
-	^C
-	--- 192.168.1.131 ping statistics ---
-	4 packets transmitted, 4 packets received, 0.0% packet loss
-	round-trip min/avg/max/stddev = 10.209/71.868/252.118/104.084 ms
+ 	```shell
+	PING 10.56.129.178 (10.56.129.178): 56 data bytes
+	64 bytes from 10.56.129.178: icmp_seq=0 tt1=62 time=11.911 ms
+	64 bytes from
+	10.56.129.178: icmp_seq=1 ttl=62 time=8.179 ms
+	64 bytes
+	from
+	10.56.129.178: iсmp_seq=2 ttl=62 time=11.489 ms
+	64 bytes
+	• from
+	10.56.129.178: iсmp_seq=3 ttl=62 time=11.932 ms
 	```
 	
 	You can use `control-C` to interrupt and exit the ping (press the `control` key, and while holding it down, also press the `C` key, then let go of both together--this looks like `^C` in the terminal).
 
-3. Once your Pi is online, you can go ahead and SSH into the Pi. In the terminal of your laptop, type in the command
+4. Once your Pi is online, you can go ahead and SSH into the Pi. In the terminal of your laptop, type in the command
 	
 	```
 	$ ssh pi@<Your Pi's IP Address shown on the MiniPiTFT>
@@ -88,26 +90,22 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	
 	When you first log in it, the terminal will show you a "fingerprint" and ask you whether you want to continue connecting. Type `yes` and press enter. 
 	
-	````
+
 	```shell
-	$ ssh pi@192.168.1.131
-	The authenticity of host '192.168.1.131' can't be established.
-	ECDSA key fingerprint is SHA256:Y9S4oMH2H70fz3K/L42Kw39k+zkpyfr0DmGdzBx7SKk.
-	Are you sure you want to continue connecting (yes/no)? yes
+	The authenticity of host '10.56.129.178 (10.56.129.178) ' can't be established.
+	ED25519 key fingerprint is SHA256:uRnRAlBikqynXuZ8vc/kVSR8ohLFawA0nn+3Er7TXm8.
+	This key is not known by any other names.
+	Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 	```
-	After you authorize the SSH, you should get the following message asking you to provide the Pi's password.
-	```
-	Warning: Permanently added '10.58.130.183' (ECDSA) to the list of known hosts.
-	pi@192.168.1.131's password:
-	```
-	````
+
 	
-	If you set your password in the Advanced Settings during imaging, enter that password. If you didn't, the initial setting of your Pi's password is `raspberry`, type it and press enter. Note: the terminal will not show what you type for security so do not worry about it and just make sure you type the correct password. After that, you should see something similar to this:	
 	
-	````
-	```shell
-	pi@192.168.1.131's password:
-	Linux ixe00 4.9.59-v7+ #1047 SMP Sun Oct 29 12:19:23 GMT 2017 armv7l
+	If you set your password in the Advanced Settings during imaging, enter that password. If you didn't, the initial setting of your Pi's password is `student@tech`, type it and press enter. Note: the terminal will not show what you type for security so do not worry about it and just make sure you type the correct password. After that, you should see something similar to this:	
+	
+
+	```
+	pi@10.56.129.178's password: 
+	Linux raspberrypi 6.12.25+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.25-1+rpt1 (2025-04-30) aarch64
 	
 	The programs included with the Debian GNU/Linux system are free software;
 	the exact distribution terms for each program are described in the
@@ -115,66 +113,36 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	
 	Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 	permitted by applicable law.
-	Last login: Wed Jan 17 10:42:03 2018
-	
-	SSH is enabled and the default password for the 'pi' user has not been changed.
-	This is a security risk - please log
-	
-	in as the 'pi' user and type 'passwd' to set a new password.
-	
-	pi@ixe00:~ $ 
+	Last login: Wed Sep 10 13:10:52 2025 from 128.84.84.249
+	pi@raspberrypi:~ $ 
+
 	```
-	````
+
 	
 	This means you are signed in and your terminal is now connected directly to the 'terminal' on your Pi, via `ssh`. You can tell this by looking at the user and hostname at the beginning of each line, which should now look like:
 
 	```shell
-	pi@ixe00 ~ $
+	pi@raspberry ~ $
 	```
 
 
-### If you didn't already set your password, change the password of your Pi
+### If you want to change the password of your Pi
 
-Because the Pi asked you to! Also to keep your Pi from getting hacked. Write it down somewhere because we do not know how to recover lost passwords on the Pi. In the terminal on your Pi, type `sudo raspi-config` and press enter, you should be able to see the manual of your Pi:
+Write it down somewhere because we do not know how to recover lost passwords on the Pi. In the terminal on your Pi, type `sudo raspi-config` and press enter, you should be able to see the manual of your Pi:
+
 <img src="https://www.raspberrypi.org/documentation/computers/images/raspi-config.png" alt="Pi configuration" height="200" />
 
 Choose '1. System Options' and 'S3 Password', they terminal will then ask you to enter your new password. Again, the terminal will not show what you type for security so do not worry about it and just make sure you type the correct new password twice. After you change the password successfully, you will have to use the new password next time you SSH to your Pi.
-
-### (Optional) Add additional WiFi networks
-
-This is for if you are not living in The House and want to connect to a WiFi network that isn't Red Rover or The House. 
-In the terminal on your Pi, type in 
-```$ nano /etc/wpa_supplicant/wpa_supplicant.conf ```
-
-You should see a list of WiFi login details in this file:
-```
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-country=US
-
-network={
-        ssid="RedRover"
-        key_mgmt=NONE
-}
-
-network={
-        ssid="The House"
-        key_mgmt=NONE
-}
-```
-
-Under "The House" and "RedRover", add your home WiFi name and password to the bottom of the file. 
-
-*If the pi and you are at a new location without external screen and mouse you can also [create a new  E:\wpa_supplicant.conf file]((https://www.glennklockwood.com/sysadmin-howtos/rpi-headless-boot.html)) with your desktop computer directly on the SD card root which will overwrite the network configuration.*
 
 ### Refresh your knowledge of command line interfaces: 
 
 The command line/terminal is a powerful way to interact with your computer without using a Graphical User Interface (GUI). When you SSH onto your Pi, you have a prompt you can enter commands. In your terminal there is a shell, there are many shells but for this class we will use one of the most common **bash**
 
-	````
-	pi@ixe00:~ $ echo $SHELL
+	```
+	pi@raspberrypi:~ $ echo $SHELL
 	/bin/bash
-	````
+	pi@raspberrypi:~ $ 
+	```
 In the code above we've typed `echo $SHELL`. The `echo` tells it to print something to the screen. You could try typing `echo 'hello'` to see how that works for strings. The `$` at the front of `$SHELL` tells bash we are referring to a variable. In this case it is a variable the OS is using to store the shell program. In a folder `/bin` is a program called bash that we are currently using. The up arrow with show the most recent command.
 
 
@@ -184,7 +152,7 @@ In the code above we've typed `echo $SHELL`. The `echo` tells it to print someth
 There are many commands you can use in the command line, they can take a variety of options that change how they are used. You can look these up online to learn more. Many commands have a manual page with documentation that you can see directly in the terminal by typing `man [command]`. For example:
 
 	```shell
-	pi@ixe00:~ $ man echo
+	pi@raspberrypi:~ $ man echo
 	ECHO(1)                           User Commands                          ECHO(1)
 	
 	NAME
@@ -200,7 +168,9 @@ There are many commands you can use in the command line, they can take a variety
 	       --help display this help and exit
 	       --version
 	Manual page echo(1) line 1 (press h for help or q to quit)
-	```	
+	```
+
+  
 These are some useful commands. Read the manual pages for advanced usage.
 	
 * `pwd` - print working directory, tells us where on the computer we are
@@ -229,5 +199,21 @@ See here for more troubleshooting [realvnc.com Pi Setup](https://help.realvnc.co
 
 
 At that point the normal RPi desktop should appear and you can start and stop programs from here. 
+
+### Setting up WendyTA - Your AI Teaching Assistant
+
+For this course, we have **WendyTA**, an AI Teaching Assistant that can help you with coding, debugging, brainstorming, and learning. WendyTA is automatically activated through GitHub Copilot Chat when working in this repository.
+
+**📖 Learn more about WendyTA**: [WendyTA Documentation](https://github.com/IRL-CT/Interactive-Lab-Hub/tree/Fall2025/WendyTA)
+
+#### Recommended Setup Options:
+
+1. **VS Code Server on your laptop** (Recommended): Use VS Code's Remote SSH extension to connect to your Pi and code directly with WendyTA available.
+
+2. **VNC + VS Code on Pi**: Use VNC to access the Pi desktop and install VS Code there with GitHub Copilot extension.
+
+**Setup Instructions**: [WendyTA Copilot Setup Guide](https://github.com/IRL-CT/Interactive-Lab-Hub/blob/Fall2025/WendyTA/setup/copilot-setup.md)
+
+✨ **Note**: WendyTA works through both SSH/VS Code Server and VNC connections, so choose the method that works best for your setup!
 
 

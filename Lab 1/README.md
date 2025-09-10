@@ -157,6 +157,8 @@ The video is on Google Drive: [Lab 1](https://drive.google.com/drive/folders/1-U
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 - Change of goals: Timer 
+=======
+Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
 
