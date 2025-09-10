@@ -231,6 +231,8 @@ When going onto the computer http, the instructions say to use http://[yourWiFiI
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
 Setup-video: https://drive.google.com/file/d/1BUSWfqz2VD0qCs84mbK93GCGri7xPBRh/view?usp=sharing
+=======
+Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
 
