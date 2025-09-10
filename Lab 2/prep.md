@@ -151,7 +151,7 @@ In the code above we've typed `echo $SHELL`. The `echo` tells it to print someth
 
 There are many commands you can use in the command line, they can take a variety of options that change how they are used. You can look these up online to learn more. Many commands have a manual page with documentation that you can see directly in the terminal by typing `man [command]`. For example:
 
-	````
+	```shell
 	pi@raspberrypi:~ $ man echo
 	ECHO(1)                           User Commands                          ECHO(1)
 	
@@ -168,7 +168,7 @@ There are many commands you can use in the command line, they can take a variety
 	       --help display this help and exit
 	       --version
 	Manual page echo(1) line 1 (press h for help or q to quit)
-	````
+	```
 
   
 These are some useful commands. Read the manual pages for advanced usage.
