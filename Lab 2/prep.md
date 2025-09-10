@@ -35,7 +35,7 @@ Download and use the ``rpi5-2025-09-08.img.gz`` file directly in the Raspberry P
 
 5. Take and connect the Adafruit MiniPiTFT to your pi with the configuration shown below, the MiniPiTFT should be on the top left corner of your Pi.
 
-<img src="demo_pic/piwithscreen.png" alt="MiniPiTFTonPi" height="200" />
+<img src="demo_pic/pi_withscreen.png" alt="MiniPiTFTonPi" height="200" />
 
 6. Boot the Pi by connecting it to a power source with USB-C connector.
 
