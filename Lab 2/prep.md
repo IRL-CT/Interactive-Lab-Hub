@@ -140,10 +140,16 @@ Because the Pi asked you to! Also to keep your Pi from getting hacked. Write it 
 
 Choose '1. System Options' and 'S3 Password', they terminal will then ask you to enter your new password. Again, the terminal will not show what you type for security so do not worry about it and just make sure you type the correct new password twice. After you change the password successfully, you will have to use the new password next time you SSH to your Pi.
 
-### (Optional) Add additional WiFi networks
+### Change the hostname and the password
+
+````pi@raspberrypi:~ $ sudo raspi-config ````
+
+### Add additional WiFi networks
 
 This is for if you are not living in The House and want to connect to a WiFi network that isn't Red Rover or The House. 
-In the terminal on your Pi, type in 
+By default, Bookworm uses [Network Manager (nm)](https://forums.raspberrypi.com/viewtopic.php?t=357739) for network configuration. We use ```nmcli``` command-line tool for controlling NetworkManager, see the documentation [here](https://manpages.debian.org/bookworm/network-manager/nmcli.1.en.html)
+
+In the terminal on your Pi(you need to be ssh'ed in), type in 
 ```$ nano /etc/wpa_supplicant/wpa_supplicant.conf ```
 
 You should see a list of WiFi login details in this file:
