@@ -115,6 +115,7 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 \*\***Include your first attempts at recording the set-up video here.**\*\*  
 In our first recording attempt, we prepared to manually control the lighting transitions. In the first two assassination scenes, where the King survives, we used a slow color shift in the lights to suggest rising tension before fading back to normal. In the final scene, to emphasize the success of the assassination, we highlighted the sword with a bright white glow followed by a rapid shift to red flashing light, underscoring the dramatic climax of the King’s death.
 
+<<<<<<< HEAD
 In the first try-out scene, where the Maid offers the poisoned fruit bowl to the King, the glow was controlled from the laptop and shifted in real time on the phone screen. At first, the bowl glowed green, but as the King reached out his hand, it turned red—showing that if he ate it, he would be poisoned. However, because of his suspicion, he pulled back, and the red glow faded away.
 
 [Watch the set-up video on Youtube](https://www.youtube.com/watch?v=f_kJ1HM1AX8)   
