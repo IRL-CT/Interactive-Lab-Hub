@@ -1,3 +1,4 @@
+from datetime import datetime
 import time
 import subprocess
 import digitalio
@@ -65,7 +66,21 @@ while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
 
     #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
+    now = datetime.now()
+    line1 = now.strftime("%Y-%m-%d")      # 2025-09-11
+    line2 = now.strftime("%H:%M:%S")      # 14:03:59
+    text = f"{line1}\n{line2}"
 
+    try:
+        bbox = draw.multiline_textbbox((0, 0), text, font=font, spacing=6, align="center")
+        tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    except AttributeError:
+        tw, th = draw.multiline_textsize(text, font=font, spacing=6)
+
+    x = (width  - tw) // 2
+    y = (height - th) // 2
+
+    draw.multiline_text((x, y), text, font=font, fill=255, spacing=6, align="center")
     # Display image.
     disp.image(image, rotation)
     time.sleep(1)
