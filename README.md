@@ -5,7 +5,7 @@ Please place links here to the README.md's for each of your labs here:
 
 [Lab 1. Staging Interaction](Lab%201/)
 
-[Lab 2. Interactive Prototyping: The Clock of Pi]([url](https://github.com/ji227/Jesse-Iriah-s-Lab-Hub/tree/Fall2025/Lab%202/)
+[Lab 2. Interactive Prototyping: The Clock of Pi]([url](https://github.com/ji227/Jesse-Iriah-s-Lab-Hub/tree/Fall2025/Lab%202/)  
 
 Lab 3. Chatterboxes
 
