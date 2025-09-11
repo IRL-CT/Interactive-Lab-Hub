@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+Nophar Shalom - ns2242
 
 Does it feel like time is moving strangely during this semester?
 
