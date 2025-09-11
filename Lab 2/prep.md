@@ -152,6 +152,30 @@ sudo nmcli connection add type wifi con-name "PhoneHotspot" ifname wlan0 ssid "Y
 
 **Do this now while you have SSH access!** Otherwise, you'll need to come back to campus, find a screen, or reconfigure everything using the SD card formatter.
 
+#### WiFi Priority Management - Quick Guide
+
+It's also a good idea to set up your Raspberry Pi to use your phone's hotspot. This way, you can always connect to it, even when you're on the go, allowing you to reconfigure it for new Wi-Fi networks.
+
+You might want to give the hotspot Wi-Fi a higher priority so that it prefers connecting to that network. This way, you can test it even when a different network, like Red Rover, is available:
+
+**Change Priority:**
+```bash
+# Set priority (higher number = higher priority)
+sudo nmcli connection modify "connection-name" connection.autoconnect-priority 10
+```
+
+**Check Status:**
+```bash
+# View all connections with priorities
+nmcli -f NAME,AUTOCONNECT,AUTOCONNECT-PRIORITY connection show
+```
+
+**Test Switching:** (or just reboot the pi)
+```bash
+# Force connection to test
+sudo nmcli connection up "connection-name"
+```
+
 
 ### If you want to change the password of your Pi
 
