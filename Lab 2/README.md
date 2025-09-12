@@ -184,35 +184,9 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
-## Part E.
-### Modify the barebones clock to make it your own
+## Part E. Now moved to Lab2 Part 2.
 
-Does time have to be linear?  How do you measure a year? [In daylights? In midnights? In cups of coffee?](https://www.youtube.com/watch?v=wsj15wPpjLY)
-
-Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
-
-Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
-
-**We strongly discourage and will reject the results of literal digital or analog clock display.**
-
-
-\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
-
-After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
-
-```
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git add .
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git commit -m 'your commit message here'
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git push
-```
-
-After that, Git will ask you to login to your GitHub account to push the updates online, you will be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you set up in Part A as the password instead of your account one! Go on your GitHub repo with your laptop, you should be able to see the updated files from your Pi!
-
-
-## Part F. 
-## Make a short video of your modified barebones PiClock
-
-\*\*\***Take a video of your PiClock.**\*\*\*
+## Part F. Now moved to Lab2 Part 2.
 
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
@@ -226,6 +200,37 @@ After that, Git will ask you to login to your GitHub account to push the updates
 2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
 
 # Lab 2 Part 2
+
+## Assignment that was formerly Lab 2 Part E.
+### Modify the barebones clock to make it your own
+
+Does time have to be linear?  How do you measure a year? [In daylights? In midnights? In cups of coffee?](https://www.youtube.com/watch?v=wsj15wPpjLY)
+
+Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
+
+Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
+
+**We strongly discourage and will reject the results of literal digital or analog clock display.**
+
+
+\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+
+
+## Assignment that was formerly Part F. 
+## Make a short video of your modified barebones PiClock
+
+\*\*\***Take a video of your PiClock.**\*\*\*
+
+After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
+
+```
+(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git add .
+(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git commit -m 'your commit message here'
+(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git push
+```
+
+After that, Git will ask you to login to your GitHub account to push the updates online, you will be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you set up in Part A as the password instead of your account one! Go on your GitHub repo with your laptop, you should be able to see the updated files from your Pi!
+
 
 [Update your Lab Hub](pull_updates/README.md) to get the latest content and requirements for Part 2.
 
