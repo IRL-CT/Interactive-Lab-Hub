@@ -111,6 +111,9 @@ Install the packages from the requirements.txt and run the example script `cli_c
 The terminal should show the time, you can press `ctrl-c` to exit the script.
 If you are unfamiliar with the Python code in `cli_clock.py`, have a look at [this Python refresher](https://hackernoon.com/intermediate-python-refresher-tutorial-project-ideas-and-tips-i28s320p). If you are still concerned, please reach out to the teaching staff!
 
+I successfully ran `cli_clock.py` on my Pi. The terminal printed the current time as expected:
+
+![screenshot of cli_clock.py running](./images/cli_clock_output.png)
 
 ## Part C. 
 ### Set up your RGB Display
