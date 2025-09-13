@@ -150,7 +150,7 @@ You can type the name of a color then press either of the buttons on the MiniPiT
 ```
 (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ cat screen_test.py
 ```
-<img src="color.mp4" height="600" />
+[Watch video for colors interactive here](https://youtu.be/n4wuPcWpbyE)  
 
 #### Displaying Info with Texts
 You can look in `screen_boot_script.py` for how to display text on the screen!  
@@ -159,7 +159,7 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 #### Displaying an image
 
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?  
-<img src="image.mp4" height="600" />
+[Watch video for images interactive here](https://youtu.be/JL0R7H22HcI)  
 
 
 ## Part D. 
