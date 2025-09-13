@@ -217,7 +217,8 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 - **Concept**: A pixel art watch interface that combines current time with reminder notifications.  
 - **Composition**: A horizontal digital watch screen. The current time (HH:MM) is displayed at the top in large pixelated digits, while below it a reminder text appears, such as *“Reminder: Meeting.”*  
 - **Unit of Time**: The reminder is measured with a countdown that always fits within one hour. For example, the display may show *“45 min remaining”*, indicating how much time is left until the event begins.  
-- **How it Works**:  
+- **How it Works**:
+  - Users type in upcoming events on their own.
   - Displays both the present time and the urgency of upcoming tasks.  
   - By pairing the clock with a real-time countdown, the user sees not only the time but also how soon the next activity will start.  
   - The retro pixel art style reinforces a clear, playful, and distinctive identity.  
