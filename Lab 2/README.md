@@ -192,8 +192,37 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 ## Part F. Now moved to Lab2 Part 2.
 
-## Part G. 
-## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+## Part G  
+## Sketch and brainstorm further interactions and features you would like for your clock for Part 2  
+
+---
+
+### Picture 1: Roosevelt Island Cable Clock  
+<img src="cable car clock.png" width="500">
+
+- **Concept**: A creative clock interface that uses the number of Roosevelt Island cable car round trips to represent time.  
+- **Composition**: The interface consists of a single horizontal blue cable with a blue cable car hanging from it. Inside the cable car, a number shows the trip count, representing the passage of time.  
+- **Unit of Time**: Each round trip equals 30 minutes. The current time in a day is calculated by converting hours into minutes, dividing by 30, and rounding down.  
+- **How it Works**:  
+  - At the top, the text reads *“CABLE CAR ROUND TRIPS”*, which is the unit of time in our design.  
+  - The cable car moves gradually from the bottom-left corner to the top-right corner over the course of the day.  
+  - The background shifts from light red to dark red, simulating time passing.  
+  - The entire design uses pixel art style, making it playful and electronic.  
+
+---
+
+### Picture 2: Interactive Reminder Clock  
+<img src="interactive clock.jpg" width="500">  
+
+- **Concept**: A pixel art watch interface that combines current time with reminder notifications.  
+- **Composition**: A horizontal digital watch screen. The current time (HH:MM) is displayed at the top in large pixelated digits, while below it a reminder text appears, such as *“Reminder: Meeting.”*  
+- **Unit of Time**: The reminder is measured with a countdown that always fits within one hour. For example, the display may show *“45 min remaining”*, indicating how much time is left until the event begins.  
+- **How it Works**:  
+  - Displays both the present time and the urgency of upcoming tasks.  
+  - By pairing the clock with a real-time countdown, the user sees not only the time but also how soon the next activity will start.  
+  - The retro pixel art style reinforces a clear, playful, and distinctive identity.  
+
+---
 
 
 # Prep for Part 2
