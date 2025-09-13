@@ -111,7 +111,7 @@ Install the packages from the requirements.txt and run the example script `cli_c
 The terminal should show the time, you can press `ctrl-c` to exit the script.
 If you are unfamiliar with the Python code in `cli_clock.py`, have a look at [this Python refresher](https://hackernoon.com/intermediate-python-refresher-tutorial-project-ideas-and-tips-i28s320p). If you are still concerned, please reach out to the teaching staff!
 
-I successfully ran `cli_clock.py` on my Pi. The terminal printed the current time as expected:
+#### I successfully ran `cli_clock.py` on my Pi. The terminal printed the current time as expected:
 
 ![screenshot of cli_clock.py running](./images/cli_clock_output.png)
 
@@ -161,6 +161,18 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
 
+#### I have successfully set up the Adafruit MiniPiTFT on my Raspberry Pi.
+
+### What I did
+- Installed the screen on the Pi and confirmed the hardware connection.
+- Stopped the default `piscreen.service` to avoid conflicts.
+- Tested the screen with:
+  ```bash
+  python screen_test.py
+- Implemented an additional script image_fixed.py to extend functionality:
+   - Displayed an initial image on the MiniPiTFT.
+   - Switched to another image when one of the buttons was pressed, verifying button interaction with the display.
+   - Verified that the display responds correctly to both text and image rendering.
 
 
 ## Part D. 
