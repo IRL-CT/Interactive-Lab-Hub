@@ -207,8 +207,47 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part F. Now moved to Lab2 Part 2.
 
 ## Part G. 
-## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+### Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+### Idea 1: Cable Car Round-Trip Clock
+#### Overview
+We designed a creative clock interface that uses the number of Roosevelt Island cable car **round trips** to represent time.
 
+#### Composition
+- A single horizontal **blue cable** stretches across the screen.
+- A **blue cable car** hangs from the cable.
+- A **number inside the car** shows the trip count, representing the passage of time.
+
+#### Unit of Time
+- **1 round trip = 30 minutes**.
+- Current “time unit” (trip count) is computed as:  
+  \[
+  \text{trips} = \left\lfloor \frac{\text{current\_hour} \times 60 + \text{current\_minute}}{30} \right\rfloor
+  \]
+
+#### How It Works
+- Top-left label: **“CABLE CAR ROUND TRIPS”** (the unit of time in this design).
+- Over the course of a day, the cable car **moves from bottom-left to top-right** to indicate time’s progression.
+- The **background shifts** from **light red** to **dark red** as the day advances.
+<img src="images/cable_car.jpg" alt="cable car" width="500"/>
+
+
+### Idea 2: Reminder Clock
+#### Overview
+We designed a pixel art watch interface that combines current time with reminder notifications.
+
+#### Composition
+- The interface is a **horizontal digital watch screen**.  
+- The **current time (HH:MM)** is displayed at the top in large pixelated digits.  
+- Below the time, a **reminder text** appears, such as *“Reminder: Meeting.”*  
+
+#### Unit of Time
+- The reminder is measured with a **countdown that always fits within one hour**.  
+- For example, the display may show *“45 min remaining”*, indicating how much time is left until the event begins.  
+
+#### How It Works
+- The design highlights both the **present moment** and the **urgency of upcoming tasks**.  
+- By pairing the clock with a real-time countdown, the user immediately sees not only what time it is but also **how soon their next activity will start**.  
+<img src="images/time_reminder.pic.jpg" alt="cable car" width="500"/>
 
 # Prep for Part 2
 
