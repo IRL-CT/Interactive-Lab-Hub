@@ -111,8 +111,7 @@ Install the packages from the requirements.txt and run the example script `cli_c
 The terminal should show the time, you can press `ctrl-c` to exit the script.
 If you are unfamiliar with the Python code in `cli_clock.py`, have a look at [this Python refresher](https://hackernoon.com/intermediate-python-refresher-tutorial-project-ideas-and-tips-i28s320p). If you are still concerned, please reach out to the teaching staff!
 
-### I successfully ran `cli_clock.py` on my Pi. The terminal printed the current time as expected:
-
+### <mark>I successfully ran `cli_clock.py` on my Pi. The terminal printed the current time as expected:</mark>
 ![screenshot of cli_clock.py running](./images/cli_clock_output.png)
 
 ## Part C. 
@@ -161,9 +160,9 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
 
-### I have successfully set up the Adafruit MiniPiTFT on my Raspberry Pi.
+### <mark>I have successfully set up the Adafruit MiniPiTFT on my Raspberry Pi.</mark>
 
-### What I did
+### <mark>What I did</mark>
 - Installed the screen on the Pi and confirmed the hardware connection.
 - Stopped the default `piscreen.service` to avoid conflicts.
 - Tested the screen with:
@@ -200,6 +199,7 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
+### <mark>Clock Demo</mark>  
 <img src="images/lab2_partD.jpg" alt="Clock Demo" width="500"/>
 
 ## Part E. Now moved to Lab2 Part 2.
@@ -208,7 +208,7 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 ## Part G. 
 ### Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
-### Idea 1: Cable Car Round-Trip Clock
+### <mark>Idea 1: Cable Car Round-Trip Clock</mark>
 #### Overview
 We designed a creative clock interface that uses the number of Roosevelt Island cable car **round trips** to represent time.
 
@@ -231,7 +231,7 @@ We designed a creative clock interface that uses the number of Roosevelt Island 
 <img src="images/cable_car.jpg" alt="cable car" width="500"/>
 
 
-### Idea 2: Reminder Clock
+### <mark>Idea 2: Reminder Clock</mark>
 #### Overview
 We designed a pixel art watch interface that combines current time with reminder notifications.
 
