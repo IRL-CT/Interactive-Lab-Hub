@@ -150,16 +150,22 @@ You can type the name of a color then press either of the buttons on the MiniPiT
 ```
 (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ cat screen_test.py
 ```
-[Watch video for colors interaction here](https://youtu.be/n4wuPcWpbyE)  
 
 #### Displaying Info with Texts
 You can look in `screen_boot_script.py` for how to display text on the screen!  
-<img src="text.jpg" height="600" />
+
 
 #### Displaying an image
 
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?  
-[Watch video for images interaction here](https://youtu.be/JL0R7H22HcI)  
+
+<mark><strong>See Interactions Here</strong></mark>  
+
+<img src="text.jpg" height="600" />  
+
+- [▶️ Watch video for colors interaction here](https://youtu.be/n4wuPcWpbyE)  
+- [▶️ Watch video for images interaction here](https://youtu.be/JL0R7H22HcI)  
+
 
 
 ## Part D. 
@@ -185,6 +191,7 @@ Now you should be able to edit python scripts with Thonny on your Pi.
 Option 3. A nowadays often preferred method is to use Microsoft [VS code to remote connect to the Pi](https://www.raspberrypi.com/news/coding-on-raspberry-pi-remotely-with-visual-studio-code/). This gives you access to a fullly equipped and responsive code editor with terminal and file browser.  
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone!   
+<mark><strong>See Clock Here</strong></mark>  
 <img src="clock.jpg" height="600" />
 
 
