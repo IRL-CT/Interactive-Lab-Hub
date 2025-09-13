@@ -191,8 +191,8 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
-![Diagram](Lab_2/demo_pic/PXL_20250912_024137487.MP.jpg)
-![Key](Lab_2/demo_pic/PXL_20250912_024126481.MP.jpg)
+![Diagram](demo_pic/PXL_20250912_024137487.MP.jpg)
+![Key](demo_pic/PXL_20250912_024126481.MP.jpg)
 # Prep for Part 2
 
 1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
