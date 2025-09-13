@@ -174,7 +174,7 @@ You can look in `image.py` for an example of how to display an image on the scre
    - Switched to another image when one of the buttons was pressed, verifying button interaction with the display.
    - Verified that the display responds correctly to both text and image rendering.
 - Added a demo video showing the button-controlled image switching:  
-  [video_change_image.mp4](./Lab%202/images/video_change_image.mp4)
+  [Watch on YouTube](https://www.youtube.com/watch?v=V0SvURDCLb8)
 
 ## Part D. 
 ### Set up the Display Clock Demo
