@@ -200,6 +200,8 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
+<img src="images/lab2_partD.jpg" alt="Clock Demo" width="500"/>
+
 ## Part E. Now moved to Lab2 Part 2.
 
 ## Part F. Now moved to Lab2 Part 2.
