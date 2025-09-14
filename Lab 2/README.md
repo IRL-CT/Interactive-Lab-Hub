@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-Huiying Zhan
+Huiying Zhan, Jiayi Sun
 
 Does it feel like time is moving strangely during this semester?
 
