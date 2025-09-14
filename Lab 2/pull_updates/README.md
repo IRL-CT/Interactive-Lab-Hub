@@ -130,11 +130,7 @@ git status
 ### 2. **Open Conflicted Files**
 Look for conflict markers:
 ```
-<<<<<<< HEAD
-Your changes
-=======
 Upstream changes
->>>>>>> upstream/Fall2025
 ```
 
 ### 3. **Resolve Conflicts**

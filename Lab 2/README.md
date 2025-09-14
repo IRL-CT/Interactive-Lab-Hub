@@ -184,12 +184,21 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
+![Demo pic](<media/partD.JPG>)
+
+
 ## Part E. Now moved to Lab2 Part 2.
 
 ## Part F. Now moved to Lab2 Part 2.
 
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+
+I've explored several different ideas along quite different tracks:
+![Sketch 2](<media/Sketch-2.jpg>)
+
+Here's the storyboard for one of the more promising ideas - coding clock! This is entirely for developers like me who push commits on the daily (for the job!) and we experience time in terms of pull requests and github commits.
+![Sketch 1](<media/Sketch-1.jpg>)
 
 
 # Prep for Part 2
