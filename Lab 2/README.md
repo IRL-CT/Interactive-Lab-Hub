@@ -215,7 +215,6 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
-\*\*\***Pasted codes seems unreadable, here's the .py file.**\*\*\*
 
 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓CODE↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 ```
