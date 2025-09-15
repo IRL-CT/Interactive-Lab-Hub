@@ -113,7 +113,6 @@ while True:
     elif b_pressed and not a_pressed:
         disp.image(image2)
 
-    time.sleep(0.05)  # debounce
 
 # # Get drawing object to draw on image.
 # draw = ImageDraw.Draw(image)
