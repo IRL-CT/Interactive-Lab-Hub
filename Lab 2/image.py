@@ -69,17 +69,21 @@ buttonB.switch_to_input(pull=digitalio.Pull.UP)
 
 def prep_image(path, width, height, scale=1.0, rotate=0):
     image = Image.open(path)
-
+    # consulted chatgpt for this function
+    # Rotate first
     if rotate != 0:
         image = image.rotate(rotate, expand=True)
 
+    # Apply manual zoom-out by scaling down first
     if scale != 1.0:
         new_w = int(image.width * scale)
         new_h = int(image.height * scale)
-        image = image.resize((new_w, new_h), Image.BICUBIC)
+        image = image.resize((new_w, new_h))
 
-    image.thumbnail((width, height), Image.ANTIALIAS)
+    # Fit it onto the screen (auto picks best filter)
+    image.thumbnail((width, height))
 
+    # Create a blank black background
     background = Image.new("RGB", (width, height), (0, 0, 0))
     x = (width - image.width) // 2
     y = (height - image.height) // 2
