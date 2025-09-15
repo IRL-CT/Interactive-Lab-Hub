@@ -222,14 +222,17 @@ After that, Git will ask you to login to your GitHub account to push the updates
 - days you've worked out this year (maybe makes more sense per week?)
 
 VERPLANK DIAGRAM: 
+  
  [LOOK & FEEL]   
   - Pages as time 
   - Turning pages = passing time
   - Book is the clock
+  
  [METAPHOR / MODEL]   
   - A day is like a story
   - Pages = minutes
   - Reading = moving through time
+   
  [IMPLEMENTATION]   
   - Page sensor / counter
   - Display current page
