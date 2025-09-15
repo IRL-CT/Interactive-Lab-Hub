@@ -193,7 +193,7 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part F. Now moved to Lab2 Part 2.
 
 ## Part G. 
-## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+![Sketch](sketch.jpg)
 
 
 # Prep for Part 2
