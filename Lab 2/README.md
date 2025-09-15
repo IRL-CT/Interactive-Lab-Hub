@@ -198,7 +198,7 @@ Two Modes:
 Clock Mode (Idle): When not used as a timer, the yolk displays a clean, minimalist digital or analog clock face. The egg white remains a clean, uniform white.
 
 Timer Mode (Active): When a timer is set, the clock face disappears, and the entire egg begins its "cooking" transformation.
-[EggCloock](Lab 2/Egg Clock.png)
+![Egg Clock](egg_clock.png)
 
 2. City View Clock
 Turn the view of city into colorful lighting and project  on the wall
