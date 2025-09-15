@@ -77,7 +77,10 @@ git config --global user.email "yourNetID@cornell.edu"
 
 The support for password authentication of GitHub was removed on August 13, 2021. That is, in order to link and sync your own lab-hub repo with your Pi, you will have to set up a "Personal Access Tokens" to act as the password for your GitHub account on your Pi when using git command, such as `git clone` and `git push`.
 
-Following the steps listed [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) from GitHub to set up a token. Depends on your preference, you can set up and select the scopes, or permissions, you would like to grant the token. This token will act as your GitHub password later when you use the terminal on your Pi to sync files with your lab-hub repo.
+Following the steps listed [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) from GitHub to set up a token. Depends on your preference, you can set up and select the scopes, or permissions, you would like to grant the token. This token will act as your GitHub password later when you use the terminal on your Pi to sync files with your lab-hub repo.  
+![IMG_2161 2](https://github.com/user-attachments/assets/3a6a68f2-b9df-47df-a297-efc6b8bf0133)
+
+
 <img width="262" height="67" alt="Screenshot 2025-09-15 at 10 56 14" src="https://github.com/user-attachments/assets/e11749f7-a561-4fe8-94e1-f63af92c8d77" />
 
 
@@ -196,8 +199,11 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part F. Now moved to Lab2 Part 2.
 
 ## Part G. 
-## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
-
+## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.  
+1. Say Hello
+2. Display the date (day/month/year)
+3. Display the weather (temperature)
+4. Display the location (city and country)
 
 # Prep for Part 2
 
