@@ -191,6 +191,77 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
+## 🍅⏳ Pomodoro Clock  
+
+### Core Concept  
+The **Pomodoro Clock** is more than just a timepiece — it is a personal productivity companion that supports focus, breaks, and balance. Inspired by the Pomodoro technique, the clock guides users through focused work and restorative breaks while adapting to the environment with gesture controls, proximity peek, auto-dimming, and customizable themes. The result is a calm, supportive, and enjoyable experience.  
+
+---
+
+### 🔧 Feature Specification  
+
+#### 1. Pomodoro Mode  
+- **Purpose**: Support productivity through focus/break cycles.  
+- **Details**:  
+  - Focus session: **25 minutes**  
+  - Break session: **5 minutes**  
+  - Progress ring fills the clock face  
+    - **Red** during focus  
+    - **Green** during break  
+  - **Micro-celebration** at session end (flash, pulse, confetti animation)  
+- **Controls**:  
+  - **Short press** → Start/stop session  
+  - **Long press** → Reset session  
+  - *(Other modes)* Long press may open settings or clear timer  
+
+#### 2. Proximity Peek (APDS9960 Sensor)  
+- **Purpose**: Provide quick glance information while saving energy  
+- **Details**:  
+  - Trigger: **Wave hand** near the device  
+  - Peek view shows:  
+    - Current time (large, minimal), or  
+    - Remaining Pomodoro time  
+    - Optional quick icons (battery, connection, IP)  
+- **Benefit**: Reduces distraction and gives the sense the device “notices” the user  
+
+#### 3. Auto-Dimming (APDS9960 Light Sensor)  
+- **Purpose**: Adjust display brightness to match environment  
+- **Details**:  
+  - Bright room → **High brightness**  
+  - Dark room → **Soft dim** or night mode colors  
+- **Benefit**: Improves comfort and reduces glare  
+
+#### 4. Quiet Hours  
+- **Purpose**: Respect nighttime environment  
+- **Details**:  
+  - Default schedule: **11 pm – 7 am**  
+  - Behavior:  
+    - Auto-dim screen  
+    - Disable chimes/alerts  
+    - Display 🌙 icon  
+  - Configurable later through settings  
+
+#### 5. Mode Toggling  
+- **Purpose**: Navigate different functions easily  
+- **Modes**:  
+  - **Clock → Pomodoro → Timer → World Clock**  
+- **Interactions**:  
+  - **Single button press** cycles through modes  
+  - **Swipe left/right** gesture also toggles between modes  
+- **Feedback**: Small mode label displayed at the top (e.g., “CLOCK,” “POMODORO”)  
+
+#### 6. Color Themes  
+- **Purpose**: Personalization and accessibility  
+- **Options**: Pastel, high-contrast, dark mode  
+- **Interactions**:  
+  - **Long-press menu** opens theme settings  
+  - **Swipe up/down** gesture cycles through themes  
+- **Benefit**: Matches user preference and environment  
+
+<p align="center">
+  <img src="red_pomodoro.png" alt="Pomodoro Time" width="300"/>
+  <img src="green_break.png" alt="Break Time" width="300"/>
+</p>
 
 # Prep for Part 2
 
