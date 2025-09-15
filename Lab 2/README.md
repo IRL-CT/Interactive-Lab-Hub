@@ -190,6 +190,11 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+<img width="440" height="632" alt="Screen Shot 2025-09-15 at 12 16 15 AM" src="https://github.com/user-attachments/assets/0bf09713-361f-4e6d-978b-7be546633423" />
+<img width="422" height="670" alt="Screen Shot 2025-09-15 at 12 15 08 AM" src="https://github.com/user-attachments/assets/6dd57f0d-e5e0-4428-b6b4-1fd15b4d847c" />
+<img width="402" height="636" alt="Screen Shot 2025-09-15 at 12 14 43 AM" src="https://github.com/user-attachments/assets/496f4b63-4752-4d95-aa4f-e1a6dba8e256" />
+<img width="446" height="251" alt="Screen Shot 2025-09-15 at 12 15 14 AM" src="https://github.com/user-attachments/assets/9d0d7b87-02c5-49b0-b11e-86acfc3e34cf" />
+
 
 
 # Prep for Part 2
