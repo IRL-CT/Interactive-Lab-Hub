@@ -149,11 +149,7 @@ Take a little time to set up the wizarding set-up that allows for someone to rem
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
-
-
 https://github.com/user-attachments/assets/f3ea1b39-12ea-448c-a601-e56b25c8bb97
-
-
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
