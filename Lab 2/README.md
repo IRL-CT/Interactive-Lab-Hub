@@ -217,6 +217,23 @@ After that, Git will ask you to login to your GitHub account to push the updates
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
+- books read this year clock
+- pages read this year
+- days you've worked out this year (maybe makes more sense per week?)
+
+VERPLANK DIAGRAM: 
+ [LOOK & FEEL] 
+  - Pages as time 
+  - Turning pages = passing time
+  - Book is the clock
+ [METAPHOR / MODEL] 
+  - A day is like a story
+  - Pages = minutes
+  - Reading = moving through time
+ [IMPLEMENTATION]
+  - Page sensor / counter
+  - Display current page
+  - Reset each day
 
 # Prep for Part 2
 
