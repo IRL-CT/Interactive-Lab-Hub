@@ -61,7 +61,7 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 Just like you did in the lab prep, ssh on to your pi. Once you get there, create a Python environment (named venv) by typing the following commands.
 
 ```
-ssh pi@<your Pi's IP address>
+ssh pi@<10.56.252.79>
 ...
 pi@raspberrypi:~ $ python -m venv venv
 pi@raspberrypi:~ $ source venv/bin/activate
