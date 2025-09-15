@@ -1,6 +1,9 @@
 # Interactive Prototyping: The Clock of Pi
 **NAMES OF COLLABORATORS HERE**
 
+Jessica Hsiao (dh779), Irene Wu (yw2785)
+
+---
 Does it feel like time is moving strangely during this semester?
 
 For our first Pi project, we will pay homage to the [timekeeping devices of old](https://en.wikipedia.org/wiki/History_of_timekeeping_devices) by making simple clocks.
@@ -190,7 +193,15 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+A shared social dining tool that helps hotpot eaters time their food (like meat or veggies) without pulling out phones. → The goal is convenience, fun, and better-timed food.
 
+Features
+- The device would show a countdown of minutes/seconds.
+- When the remaining time is less than 30 seconds, the device's screen would turn yellow to red to notify users.
+- Users could push a button to reset the timer.
+- Users could also change the countdown time by clicking the button several times.
+
+![IDD_Lab2a_interaction](./demo_pic/interaction.png)
 
 # Prep for Part 2
 
