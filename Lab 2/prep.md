@@ -124,6 +124,27 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	```shell
 	pi@raspberry ~ $
 	```
+### Change the hostname and the password
+
+Write it down somewhere because we do not know how to recover lost passwords on the Pi. In the terminal on your Pi, type `sudo raspi-config` and press enter, you should be able to see the manual of your Pi:
+
+````pi@raspberrypi:~ $ sudo raspi-config ````
+
+<img src="https://www.raspberrypi.org/documentation/computers/images/raspi-config.png" alt="Pi configuration" height="200" />
+
+Choose ```1. System Options``` and then ```S4 Hostname      Set name for this computer on a network ```, they terminal will then ask you to enter your new hostname. 
+
+The terminal will ask you to reboot it, and you are going to ssh back. After ssh'ed in, you will notice instead of the original 
+
+````pi@raspberrypi:~ $ ````
+
+the terminal will look like this:
+
+````pi@<YOURNEWHOSTNAME>:~ $ ````
+
+Choose ```1. System Options``` and then ```S3 Password      Change password for the 'pi' user```, they terminal will then ask you to enter your new hostname. 
+
+Again, the terminal will not show what you type for security so do not worry about it and just make sure you type the correct new password twice. After you change the password successfully, you will have to use the new password next time you SSH to your Pi.
 
 ### IMPORTANT: Configure Your Home WiFi NOW! 🚨
 
