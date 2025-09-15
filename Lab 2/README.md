@@ -78,6 +78,7 @@ git config --global user.email "yourNetID@cornell.edu"
 The support for password authentication of GitHub was removed on August 13, 2021. That is, in order to link and sync your own lab-hub repo with your Pi, you will have to set up a "Personal Access Tokens" to act as the password for your GitHub account on your Pi when using git command, such as `git clone` and `git push`.
 
 Following the steps listed [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) from GitHub to set up a token. Depends on your preference, you can set up and select the scopes, or permissions, you would like to grant the token. This token will act as your GitHub password later when you use the terminal on your Pi to sync files with your lab-hub repo.
+<img width="262" height="67" alt="Screenshot 2025-09-15 at 10 56 14" src="https://github.com/user-attachments/assets/e11749f7-a561-4fe8-94e1-f63af92c8d77" />
 
 
 ## Part B. 
@@ -151,6 +152,8 @@ You can type the name of a color then press either of the buttons on the MiniPiT
 ```
 (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ cat screen_test.py
 ```
+![IMG_2221](https://github.com/user-attachments/assets/23465f80-3e5c-4b91-9568-6c9729cf27a5)
+
 
 #### Displaying Info with Texts
 You can look in `screen_boot_script.py` for how to display text on the screen!
@@ -184,6 +187,9 @@ Now you should be able to edit python scripts with Thonny on your Pi.
 Option 3. A nowadays often preferred method is to use Microsoft [VS code to remote connect to the Pi](https://www.raspberrypi.com/news/coding-on-raspberry-pi-remotely-with-visual-studio-code/). This gives you access to a fullly equipped and responsive code editor with terminal and file browser.  
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
+
+![IMG_2218](https://github.com/user-attachments/assets/091d776a-2c09-4ee7-b8d9-57fd50aa8619)
+
 
 ## Part E. Now moved to Lab2 Part 2.
 
