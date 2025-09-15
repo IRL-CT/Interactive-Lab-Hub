@@ -96,9 +96,9 @@ else:
     height = disp.height
 
 image1 = prep_image("red.jpg", width, height)
-image2 = prep_image("quote.jpg", width, height)
+image2 = prep_image("quote.png", width, height)
 
-print("Press A for red.jpg, B for blue.jpg, both for backlight OFF")
+print("Press A for red.jpg, B for quote.png, both for backlight OFF")
 while True:
     a_pressed = (buttonA.value == False)
     b_pressed = (buttonB.value == False)
