@@ -67,38 +67,36 @@ buttonA.switch_to_input(pull=digitalio.Pull.UP)
 buttonB.switch_to_input(pull=digitalio.Pull.UP)
 
 
-def prep_image(path, width, height):
+def prep_image(path, width, height, scale=1.0, rotate=0):
     image = Image.open(path)
 
-    image_ratio = image.width / image.height
-    screen_ratio = width / height
-    if screen_ratio < image_ratio:
-        scaled_width = image.width * height // image.height
-        scaled_height = height
-    else:
-        scaled_width = width
-        scaled_height = image.height * width // image.width
-    image = image.resize((scaled_width, scaled_height), Image.BICUBIC)
+    if rotate != 0:
+        image = image.rotate(rotate, expand=True)
 
-    # Crop and center
-    x = scaled_width // 2 - width // 2
-    y = scaled_height // 2 - height // 2
-    return image.crop((x, y, x + width, y + height))
+    if scale != 1.0:
+        new_w = int(image.width * scale)
+        new_h = int(image.height * scale)
+        image = image.resize((new_w, new_h), Image.BICUBIC)
 
+    image.thumbnail((width, height), Image.ANTIALIAS)
 
-# Create blank image for drawing.
-# Make sure to create image with mode 'RGB' for full color.
+    background = Image.new("RGB", (width, height), (0, 0, 0))
+    x = (width - image.width) // 2
+    y = (height - image.height) // 2
+    background.paste(image, (x, y))
+    return background
+
 if disp.rotation % 180 == 90:
-    height = disp.width  # we swap height/width to rotate it to landscape!
+    height = disp.width  
     width = disp.height
 else:
-    width = disp.width  # we swap height/width to rotate it to landscape!
+    width = disp.width  
     height = disp.height
 
 image1 = prep_image("red.jpg", width, height)
-image2 = prep_image("quote.png", width, height)
+image2 = prep_image("quote.png", width, height, scale=0.5, rotate=90)
 
-print("Press A for red.jpg, B for quote.png, both for backlight OFF")
+print("Upper button for red.jpg, lower button for quote.png, both for backlight OFF")
 while True:
     a_pressed = (buttonA.value == False)
     b_pressed = (buttonB.value == False)
