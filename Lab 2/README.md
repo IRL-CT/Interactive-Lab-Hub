@@ -258,9 +258,9 @@ The **Pomodoro Clock** is more than just a timepiece — it is a personal produc
   - **Swipe up/down** gesture cycles through themes  
 - **Benefit**: Matches user preference and environment  
 
-<p align="center">
-  <img src="pomo_red.png" alt="Pomodoro Time" width="300"/>
-  <img src="pomo_green.png" alt="Break Time" width="300"/>
+<p align="left">
+  <img src="images/pomo_red.png" alt="Pomodoro Time" width="180" />
+  <img src="images/pomo_green.png" alt="Break Time" width="180" />
 </p>
 
 # Prep for Part 2
