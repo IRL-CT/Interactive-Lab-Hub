@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+**Carrie Wang, Xiaocheng Li, Dean Xu, Julia Chen, Thomas Knoepffler**
 
 Does it feel like time is moving strangely during this semester?
 
@@ -191,6 +191,17 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
+1. The Sunny-Side Timer
+
+Two Modes:
+
+Clock Mode (Idle): When not used as a timer, the yolk displays a clean, minimalist digital or analog clock face. The egg white remains a clean, uniform white.
+
+Timer Mode (Active): When a timer is set, the clock face disappears, and the entire egg begins its "cooking" transformation.
+[EggCloock](Lab 2/Egg Clock.png)
+
+2. City View Clock
+Turn the view of city into colorful lighting and project  on the wall
 
 # Prep for Part 2
 
