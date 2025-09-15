@@ -1,4 +1,5 @@
 import time
+from time import strftime
 import subprocess
 import digitalio
 import board
@@ -65,6 +66,41 @@ while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
 
     #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
+    draw.rectangle((0, 0, width, height), outline=0, fill=0)
+    clock_text = strftime("%m/%d/%Y %H:%M:%S")
+    
+    try:
+        cmd = "hostname -I | cut -d' ' -f1"
+        IP = "IP: " + subprocess.check_output(cmd, shell=True).decode("utf-8").strip()
+
+        cmd = "curl -s wttr.in/?format=2"
+        WTTR = subprocess.check_output(cmd, shell=True).decode("utf-8").strip()
+
+        cmd = 'curl -s ils.rate.sx/1USD | cut -c1-6'
+        USD = "$1USD = ₪" + subprocess.check_output(cmd, shell=True).decode("utf-8").strip() + "ILS"
+
+        cmd = "cat /sys/class/thermal/thermal_zone0/temp | awk '{printf \"CPU Temp: %.1f C\", $(NF-0) / 1000}'"
+        Temp = subprocess.check_output(cmd, shell=True).decode("utf-8").strip()
+    
+    except Exception as e:
+        IP, WTTR, USD, Temp = "ERR", "ERR", "ERR", "ERR"
+
+    # image drawing code
+    y = top
+    draw.text((x, y), clock_text, font=font, fill="#00FF00")
+    y += draw.textbbox((0, 0), clock_text, font=font)[3]
+
+    draw.text((x, y), IP, font=font, fill="#FFFFFF")
+    y += draw.textbbox((0, 0), IP, font=font)[3]
+
+    draw.text((x, y), WTTR, font=font, fill="#FFFF00")
+    y += draw.textbbox((0, 0), WTTR, font=font)[3]
+
+    draw.text((x, y), USD, font=font, fill="#0000FF")
+    y += draw.textbbox((0, 0), USD, font=font)[3]
+
+    draw.text((x, y), Temp, font=font, fill="#FF0000")
+
 
     # Display image.
     disp.image(image, rotation)

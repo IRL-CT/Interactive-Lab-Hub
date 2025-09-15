@@ -69,7 +69,9 @@ buttonB.switch_to_input(pull=digitalio.Pull.UP)
 
 def prep_image(path, width, height, scale=1.0, rotate=0):
     image = Image.open(path)
-    # consulted chatgpt for this function
+
+    # Consulted chatgpt to edit my function to properly add rotation and scaling
+
     # Rotate first
     if rotate != 0:
         image = image.rotate(rotate, expand=True)
