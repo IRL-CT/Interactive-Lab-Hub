@@ -191,32 +191,17 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
+**Intention:**
+
+The design aims to visualize the rhythm of daily life through words, linking time to everyday activities. It functions not just as a clock but as an artistic representation of daily routines and moods.
+
 **Concept:**
-We want to turn the clock into a **Pokémon-style hatching** egg. Instead of showing the time in numbers, the egg “incubates” and eventually “hatches” as time goes by. The idea is to make the passage of time feel alive
 
-**Planned Interactions:**
-- **Gesture sensor (APDS9960)**: Wave a hand over the top to check the egg’s status. Different gestures can switch between views—like showing the hatching progress or a π-based time display.
-- **Rotary encoder at the base**: The egg’s cap is physically connected to the encoder, letting users rotate it like a control dial. This input changes modes (e.g., speed up time, adjust color scheme) and can also serve as a push button for hidden interactions.
-- **Ambient light sensor**: The hatching rate changes with day and night, so the effect feels more natural.
-- **Side gear driven by servo**: The external gear slowly rotates to represent the flow of time. Each minute corresponds to a small step, and on the hour, the gear spins more dramatically, simulating a “burst” of time.
-- **Bluetooth speaker**: Provides ambient heartbeat rhythms, cracking sounds, or creature noises that intensify over time.
-- **PiTFT screen** next to the egg: Shows a stream of π digits and highlights where the current time appears.
+- Time is expressed through daily vocabulary (e.g., “wake,” “coffee,” “work,” “rest”) alongside actual clock times (e.g., TEN THIRTY), forming a dynamic “word cloud.”
 
-**Next Steps:**
-- Adapt the Steampunk Easter Egg Container 3D model (MakerWorld #394578) for hardware mounting.
-- Mechanically link the rotary encoder to the egg’s top cap.
-- Place the servo motor inside so it engages with the side gear and rotates it smoothly.
-- Integrate sensors (gesture, touch, IMU, ambient light) through discreet openings without breaking the visual aesthetic.
-- Prototype synchronized feedback: gear turning, LED lighting, sound playback, and servo vibration.
+- Words associated with different times of day appear according to morning, afternoon, and evening routines.
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/3c4c0727-4833-4e44-a587-58db66d0d342" width="300" height="450" />
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/ce81febf-dbd9-4fd5-94da-f4e28bce055c" width="300" height="300" />
-</p>
-
+- The random floating letters convey a sense of chaos, yet embedded within is an orderly reflection of daily life, symbolizing the coexistence of structure and randomness
 
 
 # Prep for Part 2
