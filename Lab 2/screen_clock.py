@@ -71,12 +71,23 @@ buttonB.switch_to_input(pull=digitalio.Pull.UP)
 lk_background_waiting = Image.open("image/lionkingOpening.jpg").resize((width, height))
 lk_background_lottery = Image.open("image/lionking-blue.jpg").resize((width, height))
 lk_background_win_lottery = Image.open("image/lion-king-winner.webp").resize((width, height))
+wk_background_waiting = Image.open("image/wicked-waiting.jpg").resize((width, height))
+wk_background_lottery = Image.open("image/wicked-lottery.jpg").resize((width, height))
+wk_background_win_lottery = Image.open("image/wicked-winner.jpg").resize((width, height))
+
+background_waiting = [lk_background_waiting, wk_background_waiting]
+background_lottery = [lk_background_lottery, wk_background_lottery]
+background_win_lottery = [lk_background_win_lottery, wk_background_win_lottery]
 
 lottery_is_open = False
-lottery_opens = 9
-lottery_closes = 15
-performance_time = 19
+lottery_opens = [9, 20]
+lottery_closes = [15, 11]
+performance_date_delta = [1,0]
+performance_time_list = [19, 19]
 win_lottery = False
+
+selected_musical = 0
+musicals = ["Lion King", "Wicked"]
 
 while True:
     # Draw a black filled box to clear the image.
@@ -88,16 +99,13 @@ while True:
 
     if a_pressed and b_pressed:
         win_lottery = True
-        image.paste(background_win_lottery, (0,0))
-        # target = datetime.now() + timedelta(seconds=10)
-        target = datetime.now() + timedelta(hours=10)
-    
-    if a_pressed and not b_pressed:
-
+        image.paste(background_waiting[selected_musical], (0,0))
+        target = datetime.now() + timedelta(seconds=10)
+        # target = datetime.now() + timedelta(hours=10)    
 
     if win_lottery is True: 
         remaining = target - now
-        image.paste(background_win_lottery, (0,0))
+        image.paste(background_win_lottery[selected_musical], (0,0))
 
         if remaining.total_seconds() <= 0:
             # hours, minutes, seconds = 0, 0, 0
@@ -111,22 +119,25 @@ while True:
 
         
     if win_lottery is False:
-        image.paste(background_waiting, (0,0))
-        day_name = now.strftime("%A") 
+        if a_pressed and not b_pressed:
+            selected_musical = (selected_musical + 1) % len(musicals)
+        if b_pressed and not a_pressed:
+            selected_musical = (selected_musical - 1) % len(musicals)
 
+        image.paste(background_waiting[selected_musical], (0,0))
         # Target time (9:00 AM today) for the lottery to be opened next
-        target = now.replace(hour=lottery_opens, minute=0, second=0, microsecond=0)
+        target = now.replace(hour=lottery_opens[selected_musical], minute=0, second=0, microsecond=0)
         # if it's past 9 AM but before 3pm, set target to 3 PM today
-        if now.hour < lottery_closes: 
-            target = now.replace(hour=lottery_closes, minute=0, second=0, microsecond=0)
-            image.paste(background_lottery, (0,0))
+        if now.hour < lottery_closes[selected_musical]: 
+            target = now.replace(hour=lottery_closes[selected_musical], minute=0, second=0, microsecond=0)
+            image.paste(background_lottery[selected_musical], (0,0))
             lottery_is_open = True
         # if it's past 3pm, set target to 9 AM tomorrow
-        if now.hour >= lottery_closes: 
+        if now.hour >= lottery_closes[selected_musical]: 
             lottery_is_open = False
             target += timedelta(days=1)
         # Performance = next day at 7:00 PM
-        performance_time = (now + timedelta(days=1)).replace(hour=19, minute=0, second=0, microsecond=0)
+        performance_time = (now + timedelta(days=performance_date_delta[selected_musical])).replace(hour=performance_time_list[selected_musical], minute=0, second=0, microsecond=0)
         
         # Calculate remaining time
         remaining = target - now
@@ -146,6 +157,7 @@ while True:
         else: 
             draw.text((10, top+5), "Lottery Opens Until:", font=font, fill=(255, 255, 255))
             draw.text((10,  top + 30), waiting_time, font=font, fill=(255, 255, 255))
+       
         draw.text((10, height //2 +10), "Next Performance:", font=font, fill=(255, 255, 255))
         draw.text((19, height //2 + 30), performance_time.strftime("%Y-%m-%d %H:%M"), font=font, fill=(255, 255, 255))
 
