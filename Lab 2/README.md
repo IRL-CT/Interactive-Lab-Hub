@@ -204,9 +204,11 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.  
 1. Say Hello
-2. Display the date (day/month/year)
-3. Display the weather (temperature)
-4. Display the location (city and country)
+2. Display the time 
+3. Display the date
+4. Display the weather (temperature)
+5. Display the location (city and country)
+6. Have a key/manual/ way to describe how it works
 
 # Prep for Part 2
 
@@ -214,6 +216,11 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
   
 
 2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
+  The feedback I received on Part G was very helpful. I was advised that while adding features like date and location was a good idea, it was more important to ensure the time was clearly visible, possibly with a key. It was also suggested that I consider the image size for all designs since the screen is so small (it may not be able to include all features).  
+
+After observing my sketch, my classmate suggested an additional feature: adding dotted lines from the 'X' to both the x and y axes to make it easier to read. B
+
+The feedback I received was from Iqra and Kyle.
 
 # Lab 2 Part 2
 
@@ -223,6 +230,7 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 Does time have to be linear?  How do you measure a year? [In daylights? In midnights? In cups of coffee?](https://www.youtube.com/watch?v=wsj15wPpjLY)
 
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
+Yes, I used the buttons to display a screen with the graph key (including the title, the axis and the 'X' marker)
 
 Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
 
