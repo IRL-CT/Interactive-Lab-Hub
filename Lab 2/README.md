@@ -227,15 +227,25 @@ Can you make time interactive? You can look in `screen_test.py` for examples for
 Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
+![GraphClockSketch](https://github.com/user-attachments/assets/7e448d70-1f03-4f24-806c-cbedb909ee2b)
 
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+
+See screen_clock.py or pdf below:
+[Graph Clock Code.pdf](https://github.com/user-attachments/files/22375729/Graph.Clock.Code.pdf)
 
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+
+https://github.com/user-attachments/assets/440c2191-61bc-42a8-a7d8-fcccd3ebba89
+
+
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
