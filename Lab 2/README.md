@@ -159,12 +159,15 @@ You can type the name of a color then press either of the buttons on the MiniPiT
 
 
 #### Displaying Info with Texts
-You can look in `screen_boot_script.py` for how to display text on the screen!
+You can look in `screen_boot_script.py` for how to display text on the screen!  
+![IMG_2229](https://github.com/user-attachments/assets/9ff7c16c-5ab2-48c3-8eca-67d24da58381)
+
 
 #### Displaying an image
 
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
 
+![IMG_2230](https://github.com/user-attachments/assets/91fe7341-223f-49fb-9eff-d7c3a7fd9ede)
 
 
 ## Part D. 
