@@ -264,6 +264,19 @@ See here for more troubleshooting [realvnc.com Pi Setup](https://help.realvnc.co
 
 At that point the normal RPi desktop should appear and you can start and stop programs from here. 
 
+### Raspberry Pi Connect - Alternative Remote Access
+
+**Quick addendum**: Raspberry Pi now has its own in-house solution for screen sharing via [Raspberry Pi Connect](https://www.raspberrypi.com/documentation/services/connect.html). This requires linking your Pi to a Raspberry Pi account, but then allows remote SSH and screen sharing through just a browser window, even when on different networks.
+
+**Setup** (SSH into your Pi first):
+```bash
+rpi-connect on
+loginctl enable-linger  # Set rpi connect to autostart even when no user is logged in
+rpi-connect signin 
+```
+
+After setup, your Pi will appear on: https://connect.raspberrypi.com/devices and you can connect from anywhere.
+
 ### Setting up WendyTA - Your AI Teaching Assistant
 
 For this course, we have **WendyTA**, an AI Teaching Assistant that can help you with coding, debugging, brainstorming, and learning. WendyTA is automatically activated through GitHub Copilot Chat when working in this repository.
