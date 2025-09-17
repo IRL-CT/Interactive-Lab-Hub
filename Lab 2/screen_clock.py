@@ -55,7 +55,7 @@ x = 0
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the
 # same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
-font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
+font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 20)
 
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
@@ -152,14 +152,14 @@ while True:
         # Draw it on your canvas
         # draw.text((15, top), day_name, font=font, fill=(255, 255, 255))
         if lottery_is_open is False:
-            draw.text((10, top+5), "Next Lottery Time:", font=font, fill=(255, 255, 255))
-            draw.text((10, top + 30), waiting_time, font=font, fill=(255, 255, 255))
+            draw.text((10, top+5), "Countdown to Lottery:", font=font, fill=(255, 255, 255))
+            draw.text((20, top + 30), waiting_time, font=font, fill=(255, 255, 255))
         else: 
             draw.text((10, top+5), "Lottery Opens Until:", font=font, fill=(255, 255, 255))
-            draw.text((10,  top + 30), waiting_time, font=font, fill=(255, 255, 255))
+            draw.text((20,  top + 30), waiting_time, font=font, fill=(255, 255, 255))
        
         draw.text((10, height //2 +10), "Next Performance:", font=font, fill=(255, 255, 255))
-        draw.text((19, height //2 + 30), performance_time.strftime("%Y-%m-%d %H:%M"), font=font, fill=(255, 255, 255))
+        draw.text((20, height //2 + 30), performance_time.strftime("%Y-%m-%d %H:%M"), font=font, fill=(255, 255, 255))
 
     # Display image.
     disp.image(image, rotation)
