@@ -132,5 +132,3 @@ while True:
     # Display image.
     disp.image(image, rotation)
     time.sleep(0.2)  # Adjust the speed of the scrolling text
-
-
