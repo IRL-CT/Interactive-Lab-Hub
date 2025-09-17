@@ -215,7 +215,7 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
   
 
-2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
+2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)  
   The feedback I received on Part G was very helpful. I was advised that while adding features like date and location was a good idea, it was more important to ensure the time was clearly visible, possibly with a key. It was also suggested that I consider the image size for all designs since the screen is so small (it may not be able to include all features).  
 
 After observing my sketch, my classmate suggested an additional feature: adding dotted lines from the 'X' to both the x and y axes to make it easier to read. B
