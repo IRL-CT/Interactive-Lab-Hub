@@ -376,7 +376,7 @@ while True:
 
 
 https://github.com/user-attachments/assets/cef7d98a-c059-4e17-a64e-a1015bab4c73
-
+[If the video cannot broadcast normally, please use the .mp4 file from this link](https://github.com/Junxiong-Chen/Interactive-Lab-Hub/blob/Fall2025/Lab%202/pull_updates/1.1.mp4)
 
 
 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑VIDEO↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
