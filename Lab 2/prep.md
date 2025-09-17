@@ -251,7 +251,7 @@ There is plenty more to learn about using the terminal to navigate a computer bu
 
 
 ### Using VNC to see your Pi desktop
-Another convenient way to remotely connect to your Pi is using VNC (Virtual Network Computing), it essentially is remote login. The easiest client to use is [VNC Connect](https://www.realvnc.com/en/connect/download/viewer/). Download and install it. Once that's done type the IP address of your Pi in the text-box at the top. 
+Another convenient way to remotely connect to your Pi is using VNC (Virtual Network Computing), it essentially is remote login. The easiest client to use is [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/). Download and install it. Once that's done type the IP address of your Pi in the text-box at the top. 
 ![](images/VNC1.png)
 
 After that a login window should appear, use your normal logins (originally: Account=pi, Password=raspberry).
