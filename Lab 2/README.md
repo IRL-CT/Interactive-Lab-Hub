@@ -232,7 +232,7 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
-See screen_clock.py or pdf below:
+See screen_clock.py or pdf below:  
 [Graph Clock Code.pdf](https://github.com/user-attachments/files/22375729/Graph.Clock.Code.pdf)
 
 
