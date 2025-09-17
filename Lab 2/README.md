@@ -71,8 +71,8 @@ pi@raspberrypi:~ $ source venv/bin/activate
 ### Setup Personal Access Tokens on GitHub
 Set your git name and email so that commits appear under your name.
 ```
-git config --global user.name "Your Name"
-git config --global user.email "yourNetID@cornell.edu"
+git config --global user.name "Carrie Wang"
+git config --global user.email "jw2796@cornell.edu"
 ```
 
 The support for password authentication of GitHub was removed on August 13, 2021. That is, in order to link and sync your own lab-hub repo with your Pi, you will have to set up a "Personal Access Tokens" to act as the password for your GitHub account on your Pi when using git command, such as `git clone` and `git push`.
@@ -85,7 +85,7 @@ Following the steps listed [here](https://docs.github.com/en/authentication/keep
 Clone your own lab-hub repo for this assignment to your Pi and change the directory to Lab 2 folder (remember to replace the following command line with your own GitHub ID):
 
 ```
-(venv) pi@raspberrypi:~$ git clone https://github.com/<YOURGITID>/Interactive-Lab-Hub.git
+(venv) pi@raspberrypi:~$ git clone https://github.com/cakkrie/Interactive-Lab-Hub.git
 (venv) pi@raspberrypi:~$ cd Interactive-Lab-Hub/Lab\ 2/
 ```
 Depends on the setting, you might be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you just set up as the password instead of your account one!
