@@ -4,6 +4,8 @@ import digitalio
 import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
+from time import strftime, localtime, sleep
+from datetime import datetime, timedelta
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.D5) 
@@ -60,11 +62,92 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+buttonA = digitalio.DigitalInOut(board.D23)    # GPIO23 (PIN 16)
+buttonB = digitalio.DigitalInOut(board.D24)    # GPIO24 (PIN 18)
+# Use internal pull-ups; buttons then read LOW when pressed.
+buttonA.switch_to_input(pull=digitalio.Pull.UP)
+buttonB.switch_to_input(pull=digitalio.Pull.UP)
+
+lk_background_waiting = Image.open("image/lionkingOpening.jpg").resize((width, height))
+lk_background_lottery = Image.open("image/lionking-blue.jpg").resize((width, height))
+lk_background_win_lottery = Image.open("image/lion-king-winner.webp").resize((width, height))
+
+lottery_is_open = False
+lottery_opens = 9
+lottery_closes = 15
+performance_time = 19
+win_lottery = False
+
 while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
-
     #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
+    a_pressed = (buttonA.value == False)
+    b_pressed = (buttonB.value == False)
+    now = datetime.now()
+
+    if a_pressed and b_pressed:
+        win_lottery = True
+        image.paste(background_win_lottery, (0,0))
+        # target = datetime.now() + timedelta(seconds=10)
+        target = datetime.now() + timedelta(hours=10)
+    
+    if a_pressed and not b_pressed:
+
+
+    if win_lottery is True: 
+        remaining = target - now
+        image.paste(background_win_lottery, (0,0))
+
+        if remaining.total_seconds() <= 0:
+            # hours, minutes, seconds = 0, 0, 0
+            win_lottery = False
+        else:
+            hours, remainder = divmod(int(remaining.total_seconds()), 3600)
+            minutes, seconds = divmod(remainder, 60)
+            countdown = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+            draw.text((10, top+5), "Countdown (1hr):", font=font, fill=(255, 255, 255))
+            draw.text((10, top + 30), countdown, font=font, fill=(255, 255, 255))
+
+        
+    if win_lottery is False:
+        image.paste(background_waiting, (0,0))
+        day_name = now.strftime("%A") 
+
+        # Target time (9:00 AM today) for the lottery to be opened next
+        target = now.replace(hour=lottery_opens, minute=0, second=0, microsecond=0)
+        # if it's past 9 AM but before 3pm, set target to 3 PM today
+        if now.hour < lottery_closes: 
+            target = now.replace(hour=lottery_closes, minute=0, second=0, microsecond=0)
+            image.paste(background_lottery, (0,0))
+            lottery_is_open = True
+        # if it's past 3pm, set target to 9 AM tomorrow
+        if now.hour >= lottery_closes: 
+            lottery_is_open = False
+            target += timedelta(days=1)
+        # Performance = next day at 7:00 PM
+        performance_time = (now + timedelta(days=1)).replace(hour=19, minute=0, second=0, microsecond=0)
+        
+        # Calculate remaining time
+        remaining = target - now
+
+        # Break it into hours/minutes/seconds
+        hours, remainder = divmod(remaining.seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+
+        # Format nicely
+        waiting_time = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+        # Draw it on your canvas
+        # draw.text((15, top), day_name, font=font, fill=(255, 255, 255))
+        if lottery_is_open is False:
+            draw.text((10, top+5), "Next Lottery Time:", font=font, fill=(255, 255, 255))
+            draw.text((10, top + 30), waiting_time, font=font, fill=(255, 255, 255))
+        else: 
+            draw.text((10, top+5), "Lottery Opens Until:", font=font, fill=(255, 255, 255))
+            draw.text((10,  top + 30), waiting_time, font=font, fill=(255, 255, 255))
+        draw.text((10, height //2 +10), "Next Performance:", font=font, fill=(255, 255, 255))
+        draw.text((19, height //2 + 30), performance_time.strftime("%Y-%m-%d %H:%M"), font=font, fill=(255, 255, 255))
 
     # Display image.
     disp.image(image, rotation)
