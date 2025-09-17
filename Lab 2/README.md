@@ -199,6 +199,8 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
 
+   Karl: I used to do this before important appointments.
+   Jade: I will definitely buy this clock.
 # Lab 2 Part 2
 
 ## Assignment that was formerly Lab 2 Part E.
