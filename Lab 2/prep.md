@@ -124,6 +124,27 @@ Unlike your laptop, the Pi doesn't come with its own keyboard or mouse. While yo
 	```shell
 	pi@raspberry ~ $
 	```
+### Change the hostname and the password
+
+Write it down somewhere because we do not know how to recover lost passwords on the Pi. In the terminal on your Pi, type `sudo raspi-config` and press enter, you should be able to see the manual of your Pi:
+
+````pi@raspberrypi:~ $ sudo raspi-config ````
+
+<img src="https://www.raspberrypi.org/documentation/computers/images/raspi-config.png" alt="Pi configuration" height="200" />
+
+Choose ```1. System Options``` and then ```S4 Hostname      Set name for this computer on a network ```, they terminal will then ask you to enter your new hostname. 
+
+The terminal will ask you to reboot it, and you are going to ssh back. After ssh'ed in, you will notice instead of the original 
+
+````pi@raspberrypi:~ $ ````
+
+the terminal will look like this:
+
+````pi@<YOURNEWHOSTNAME>:~ $ ````
+
+Choose ```1. System Options``` and then ```S3 Password      Change password for the 'pi' user```, they terminal will then ask you to enter your new hostname. 
+
+Again, the terminal will not show what you type for security so do not worry about it and just make sure you type the correct new password twice. After you change the password successfully, you will have to use the new password next time you SSH to your Pi.
 
 ### IMPORTANT: Configure Your Home WiFi NOW! 🚨
 
@@ -176,14 +197,6 @@ nmcli -f NAME,AUTOCONNECT,AUTOCONNECT-PRIORITY connection show
 sudo nmcli connection up "connection-name"
 ```
 
-
-### If you want to change the password of your Pi
-
-Write it down somewhere because we do not know how to recover lost passwords on the Pi. In the terminal on your Pi, type `sudo raspi-config` and press enter, you should be able to see the manual of your Pi:
-
-<img src="https://www.raspberrypi.org/documentation/computers/images/raspi-config.png" alt="Pi configuration" height="200" />
-
-Choose '1. System Options' and 'S3 Password', they terminal will then ask you to enter your new password. Again, the terminal will not show what you type for security so do not worry about it and just make sure you type the correct new password twice. After you change the password successfully, you will have to use the new password next time you SSH to your Pi.
 
 ### Refresh your knowledge of command line interfaces: 
 
@@ -267,4 +280,27 @@ For this course, we have **WendyTA**, an AI Teaching Assistant that can help you
 
 ✨ **Note**: WendyTA works through both SSH/VS Code Server and VNC connections, so choose the method that works best for your setup!
 
+### Using VNC
 
+1. Download the RealVNC [here](https://www.realvnc.com/en) 
+
+2. Sign up an account
+
+3. SSH into your pi
+
+4. You should see the GUI something like this: <img src="demo_pic/pi-app.png" alt="register for your mac address" height="400" />
+5. On the virtual desktop, click the right most icon(the raspberryPi logo), and go to **Accessories**, in there, you can see **Pi-Apps**, which should be downloaded already there. Click that to enter the program.
+6. In Pi-Apps, go to the programming subsection.
+7. Download Github-CLI and Github Desktop. If the Github Desktop is already downloaded, delete that and download that again for the first time, (keep it there for the rest of the semester). 
+8. Go back to the desktop click the right most icon(the raspberryPi logo) and click **Accessories** again. Enter Github Desktop
+9. In Github Desktop, go to File -> Options
+10. Go to Account, and sign in you github account: <img src="demo_pic/github-desktop-signin.png" alt="" height="400" />
+11. If there is a current repository, delete that. It is the history version when TA set up the raspberry Pi5.
+12. In Github Desktop, go to File -> Options, open the Git, enter correct information about your github account <img src="demo_pic/github-desktop-username.png" alt="" height="400" />
+13. Go to File, and clone repository
+   
+### Using GitHub CLI
+Stay in the VNC virtual Desktop. Once you download the GitHub CLI, open your terminal, and enter ```gh auth login```, and choose ```GitHub.com```. Next question, choose ```HTTPS```, followed by ```Login with a web browser```
+
+### Programming the button
+Go to the **Lab 2/screen_boot_script.py**, and modify from there
