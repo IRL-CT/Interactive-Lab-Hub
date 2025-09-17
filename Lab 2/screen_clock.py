@@ -60,6 +60,9 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+# Button Setup
+button = digitalio.DigitalInOut(board.D23)   # <--- wire button to D23
+button.switch_to_input(pull=digitalio.Pull.UP)
 # Note Setup
 note_freqs = {
     1: 440.00,   # A
@@ -77,7 +80,6 @@ note_freqs = {
 }
 
 def number_to_notes(n):
-    """Convert a number into notes by its digits (0 skipped)."""
     digits = [int(d) for d in str(n)]
     notes = []
     for d in digits:
@@ -88,26 +90,26 @@ def number_to_notes(n):
     return notes
 
 def play_tone(frequency, duration=0.4, fs=44100):
-    """Generate and play a sine wave for the given frequency."""
     t = np.linspace(0, duration, int(fs * duration), endpoint=False)
     wave = 0.5 * np.sin(2 * np.pi * frequency * t)
     sd.play(wave, samplerate=fs)
     sd.wait()
 
 # Main Loop
-last_minute = None
 while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
 
     #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
-now = datetime.datetime.now()
+    now = datetime.datetime.now()
     hour = now.hour
     minute = now.minute
 
     # Only update & play when the minute changes
-    if minute != last_minute:
-        last_minute = minute
+    if not button.value:  # button pressed (active low)
+        now = datetime.datetime.now()
+        hour = now.hour
+        minute = now.minute
 
         # Clear display
         draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
@@ -115,17 +117,20 @@ now = datetime.datetime.now()
         # Draw current time
         time_text = now.strftime("%H:%M")
         draw.text((10, 50), time_text, font=font, fill="#FFFFFF")
-
-        # Show on screen
         disp.image(image, rotation)
 
-        # Get notes for hour + minute
+        # Get notes
         notes = number_to_notes(hour) + number_to_notes(minute)
         print(f"{time_text} → Notes {notes}")
 
-        # Play notes
+        # Play them
         for freq in notes:
             play_tone(freq)
+
+        # Simple debounce
+        time.sleep(0.5)
+
+    time.sleep(0.05)
     # Display image.
     disp.image(image, rotation)
     time.sleep(1)
