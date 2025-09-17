@@ -1,23 +1,22 @@
 import time
-import subprocess
 import digitalio
 import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
-from time import strftime
+from time import localtime
 
-# Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
+# Configuration for CS and DC pins
 cs_pin = digitalio.DigitalInOut(board.D5) 
 dc_pin = digitalio.DigitalInOut(board.D25)
 reset_pin = None
 
-# Config for display baudrate (default max is 24mhz):
+# Config for display baudrate
 BAUDRATE = 64000000
 
-# Setup SPI bus using hardware SPI:
+# Setup SPI bus
 spi = board.SPI()
 
-# Create the ST7789 display:
+# Create the ST7789 display
 disp = st7789.ST7789(
     spi,
     cs=cs_pin,
@@ -30,47 +29,59 @@ disp = st7789.ST7789(
     y_offset=40,
 )
 
-# Create blank image for drawing.
-# Make sure to create image with mode 'RGB' for full color.
-height = disp.width  # we swap height/width to rotate it to landscape!
+# Create blank image
+height = disp.width   # swap to rotate to landscape
 width = disp.height
 image = Image.new("RGB", (width, height))
 rotation = 90
 
-# Get drawing object to draw on image.
+# Drawing object
 draw = ImageDraw.Draw(image)
 
-# Draw a black filled box to clear the image.
-draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
-disp.image(image, rotation)
-# Draw some shapes.
-# First define some constants to allow easy resizing of shapes.
-padding = -2
-top = padding
-bottom = height - padding
-# Move left to right keeping track of the current x position for drawing shapes.
-x = 0
-
-# Alternatively load a TTF font.  Make sure the .ttf font file is in the
-# same directory as the python script!
-# Some other nice fonts to try: http://www.dafont.com/bitmap.php
-font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
+# Load fonts
+font_small = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 16)
+font_large = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 20)
 
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
-
 while True:
-    # Draw a black filled box to clear the image.
+    # Clear screen
     draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
 
-    #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
-    current_time = strftime("%m/%d/%Y %H:%M:%S")
-    draw.text((10, height//2 - 10), current_time, font=font, fill=(255, 255, 255))
+    # Time info
+    minutes_today = localtime().tm_hour * 60 + localtime().tm_min
+    seconds_today = minutes_today * 60 + localtime().tm_sec
 
-    # Display image.
+    # Trips
+    trips_float = seconds_today / 1800   # 30min = 1800s
+    trips_int = int(trips_float)
+    seconds_in_cycle = seconds_today % 1800
+
+    # Display trip counts
+    draw.text((10, 10), f"Cable round trips: {trips_int}", font=font_small, fill=(255, 255, 0))
+    draw.text((10, height - 30), f"Trips = {trips_float:.2f}", font=font_large, fill=(0, 255, 0))
+
+    # Draw cable line
+    cable_y = height // 2
+    draw.line((0, cable_y, width, cable_y), fill=(200, 200, 200), width=3)
+
+    # Cable car position (smooth by seconds)
+    if seconds_in_cycle < 900:
+        # Moving right
+        progress = seconds_in_cycle / 900
+        car_x = int(progress * (width - 30))
+    else:
+        # Moving left
+        progress = (seconds_in_cycle - 900) / 900
+        car_x = int((1 - progress) * (width - 30))
+
+    car_y = cable_y - 15
+    draw.rectangle((car_x, car_y, car_x + 30, car_y + 20), fill=(0, 128, 255))  # cable car
+    draw.line((car_x + 15, car_y, car_x + 15, cable_y), fill=(255, 255, 255), width=2)  # hanging line
+
+    # Update display
     disp.image(image, rotation)
     time.sleep(1)
-
