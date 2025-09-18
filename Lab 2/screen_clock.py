@@ -5,9 +5,7 @@ import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
 
-# ---------------------------
 # Display setup (MiniPiTFT 240x135)
-# ---------------------------
 cs_pin = digitalio.DigitalInOut(board.D5)      # GPIO5 for CS
 dc_pin = digitalio.DigitalInOut(board.D25)     # GPIO25 for DC
 reset_pin = None                               # optional
@@ -20,7 +18,6 @@ backlight.value = True
 # SPI bus
 spi = board.SPI()
 
-# Create ST7789 display
 disp = st7789.ST7789(
     spi,
     cs=cs_pin,
@@ -36,43 +33,31 @@ disp = st7789.ST7789(
 # Rotation
 rotation = 90
 
+# Note: I used ChatGPT to solve the error:
+#       raise ValueError(f"Image must not exceed dimensions of display ({self.width}x{self.height}).")
+
 # Physical image size for PIL (rotated)
 WIDTH = 240   # physical width after rotation
 HEIGHT = 135  # physical height after rotation
 
-# ---------------------------
-# Buttons
-# ---------------------------
 btn_top = digitalio.DigitalInOut(board.D23)   # Button A
 btn_top.switch_to_input(pull=digitalio.Pull.UP)
 
 btn_bottom = digitalio.DigitalInOut(board.D24)  # Button B
 btn_bottom.switch_to_input(pull=digitalio.Pull.UP)
 
-# ---------------------------
-# Drawing setup
-# ---------------------------
 image = Image.new("RGB", (WIDTH, HEIGHT))
 draw = ImageDraw.Draw(image)
 font = ImageFont.load_default()
 
-# ---------------------------
-# Helper functions
-# ---------------------------
 def pages_today(total_pages=24):
     t = localtime()
     seconds_today = t.tm_hour * 3600 + t.tm_min * 60 + t.tm_sec
     return int((seconds_today / 86400.0) * total_pages)
 
-# ---------------------------
-# State
-# ---------------------------
 page_counter = 0
 show_counter = False
 
-# ---------------------------
-# Page turn animation
-# ---------------------------
 def page_turn():
     for offset in range(0, WIDTH // 2, 20):
         draw.rectangle((0, 0, WIDTH, HEIGHT), fill=(0, 0, 0))
@@ -86,9 +71,6 @@ def page_turn():
         disp.image(image, rotation)
         time.sleep(0.05)
 
-# ---------------------------
-# Main loop
-# ---------------------------
 while True:
     if not btn_top.value:  # pressed (LOW)
         page_counter += 1
