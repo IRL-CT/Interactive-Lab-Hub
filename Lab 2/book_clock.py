@@ -1,26 +1,24 @@
 import board
+import digitalio
 import adafruit_rgb_display.st7789 as st7789
+import time
 
-# --- Display setup ---
-# Use GPIO numbers directly instead of digitalio.DigitalInOut
-dc_pin = 25   # or whichever your screen’s DC is wired to
-reset_pin = 24  # or whichever your screen’s RST is wired to
+# Set up pins correctly
+cs_pin = digitalio.DigitalInOut(board.CE0)   # Chip select
+dc_pin = digitalio.DigitalInOut(board.D22)   # Data/command
+reset_pin = None                             # Or digitalio.DigitalInOut(board.D27) if wired
 
-BAUDRATE = 64000000
+# Initialize SPI bus
+spi = board.SPI()
 
+# Create the display object
 disp = st7789.ST7789(
-    board.SPI(),
-    cs=None,             # CE0 handled by SPI kernel driver
-    dc=dc_pin,           # pass as int, not DigitalInOut
-    rst=reset_pin,       # pass as int, not DigitalInOut
-    baudrate=BAUDRATE,
-    width=240,
-    height=240,
-    x_offset=0,
-    y_offset=80,
+    spi,
+    cs=cs_pin,
+    dc=dc_pin,
+    rst=reset_pin,
+    baudrate=64000000
 )
-
-
 
 rotation = 90
 width = disp.width
