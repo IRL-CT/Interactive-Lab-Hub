@@ -213,6 +213,7 @@ After that, Git will ask you to login to your GitHub account to push the updates
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+https://drive.google.com/file/d/1pPrPszAhtqEDM3orcBDdwoxu8vztqAw4/view?usp=sharing 
 
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
@@ -237,6 +238,9 @@ VERPLANK DIAGRAM:
   - Page sensor / counter
   - Display current page
   - Reset each day
+
+<img width="549" height="790" alt="Screenshot 2025-09-18 at 5 10 54 PM" src="https://github.com/user-attachments/assets/6c1cee96-d68b-4dd9-adba-3e8d1423e136" />
+
 
 # Prep for Part 2
 
