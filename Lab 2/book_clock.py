@@ -6,7 +6,7 @@ import time
 from time import localtime
 
 # --- Display pins ---
-cs_pin = digitalio.DigitalInOut(board.CE0)     # Chip select
+cs_pin = digitalio.DigitalInOut(board.CE1)     # Chip select
 dc_pin = digitalio.DigitalInOut(board.D25)     # Data/command
 reset_pin = digitalio.DigitalInOut(board.D24)  # Or None if not wired
 
