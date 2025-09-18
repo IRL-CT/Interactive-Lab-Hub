@@ -6,10 +6,10 @@ from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
 
 # --- Display setup ---
-# MiniPiTFT pins (hardwired)
-cs_pin = digitalio.DigitalInOut(board.CE0)
-dc_pin = digitalio.DigitalInOut(board.D25)
-reset_pin = digitalio.DigitalInOut(board.D24)
+# MiniPiTFT pins (safe GPIO for CS on Pi5)
+cs_pin = digitalio.DigitalInOut(board.D5)      # GPIO5, free pin
+dc_pin = digitalio.DigitalInOut(board.D25)     # GPIO25
+reset_pin = None                               # optional
 
 # Turn on backlight
 backlight = digitalio.DigitalInOut(board.D22)
@@ -26,10 +26,10 @@ disp = st7789.ST7789(
     dc=dc_pin,
     rst=reset_pin,
     baudrate=64000000,
-    width=240,
+    width=135,      # matches MiniPiTFT 240x135 panel
     height=240,
-    x_offset=0,
-    y_offset=80,
+    x_offset=53,    # offset for the 135x240 screen
+    y_offset=40,
 )
 rotation = 90
 width = disp.width
