@@ -158,6 +158,10 @@ sudo nmcli connection add type wifi con-name "HomeWiFi" ifname wlan0 ssid "YourN
 
 **Replace `YourNetworkName` and `YourPassword` with your actual home WiFi details.**
 
+E.g. when setting up the Wifi for the house:
+```bash
+sudo nmcli connection add type wifi con-name "WhiteSky-Cornell" ifname wlan0 ssid "WhiteSky-Cornell" wifi-sec.key-mgmt wpa-psk wifi-sec.psk “THEPASSWORDHERE" connection.autoconnect yes
+```
 **Why this matters:** If you only have school WiFi configured and take your Pi home, you'll lose SSH access and won't be able to connect remotely to fix it! Having home WiFi pre-configured means your Pi will automatically connect when you get home.
 
 **Verify it worked:**
