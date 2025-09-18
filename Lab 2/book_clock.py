@@ -1,10 +1,11 @@
 import board
 import digitalio
 import adafruit_rgb_display.st7789 as st7789
+from PIL import Image, ImageDraw, ImageFont
 import time
+from time import localtime
 
-# Set up pins correctly
-cs_pin = digitalio.DigitalInOut(board.CE0)   # Chip select
+# Only DC needs to be manually set
 dc_pin = digitalio.DigitalInOut(board.D22)   # Data/command
 reset_pin = None                             # Or digitalio.DigitalInOut(board.D27) if wired
 
@@ -14,7 +15,7 @@ spi = board.SPI()
 # Create the display object
 disp = st7789.ST7789(
     spi,
-    cs=cs_pin,
+    cs=None,        # Let hardware CE0 handle chip select
     dc=dc_pin,
     rst=reset_pin,
     baudrate=64000000
@@ -23,6 +24,7 @@ disp = st7789.ST7789(
 rotation = 90
 width = disp.width
 height = disp.height
+
 
 # --- Buttons ---
 btn_top = digitalio.DigitalInOut(board.D5)   # Button A
