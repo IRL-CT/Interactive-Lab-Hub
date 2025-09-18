@@ -6,14 +6,14 @@ from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
 
 # --- Display setup ---
-dc_pin = digitalio.DigitalInOut(board.D25)
-reset_pin = digitalio.DigitalInOut(board.D24)
+dc_pin = digitalio.DigitalInOut(board.D22)   # was D25, now D22
+reset_pin = digitalio.DigitalInOut(board.D27)  # was D24, now D27
 
 BAUDRATE = 64000000
 
 disp = st7789.ST7789(
     board.SPI(),
-    cs=None, 
+    cs=None,                 # let SPI driver manage CE0
     dc=dc_pin,
     rst=reset_pin,
     baudrate=BAUDRATE,
@@ -22,6 +22,7 @@ disp = st7789.ST7789(
     x_offset=0,
     y_offset=80,
 )
+
 
 rotation = 90
 width = disp.width
