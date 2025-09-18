@@ -5,26 +5,31 @@ from PIL import Image, ImageDraw, ImageFont
 import time
 from time import localtime
 
-# Only DC needs to be manually set
-dc_pin = digitalio.DigitalInOut(board.D22)   # Data/command
-reset_pin = None                             # Or digitalio.DigitalInOut(board.D27) if wired
+# --- Display pins ---
+cs_pin = digitalio.DigitalInOut(board.CE0)     # Chip select
+dc_pin = digitalio.DigitalInOut(board.D25)     # Data/command
+reset_pin = digitalio.DigitalInOut(board.D24)  # Or None if not wired
 
-# Initialize SPI bus
+# Initialize SPI
 spi = board.SPI()
 
-# Create the display object
+# Create display
 disp = st7789.ST7789(
     spi,
-    cs=None,        # Let hardware CE0 handle chip select
+    cs=cs_pin,
     dc=dc_pin,
     rst=reset_pin,
-    baudrate=64000000
+    baudrate=64000000,
+    width=240,
+    height=240,
+    x_offset=0,
+    y_offset=80,
 )
 
+# Rotation + size
 rotation = 90
 width = disp.width
 height = disp.height
-
 
 # --- Buttons ---
 btn_top = digitalio.DigitalInOut(board.D5)   # Button A
