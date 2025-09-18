@@ -1,27 +1,25 @@
-import time
-from time import localtime
-import digitalio
 import board
-from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
 
 # --- Display setup ---
-dc_pin = digitalio.DigitalInOut(board.D22)   # was D25, now D22
-reset_pin = digitalio.DigitalInOut(board.D27)  # was D24, now D27
+# Use GPIO numbers directly instead of digitalio.DigitalInOut
+dc_pin = 25   # or whichever your screen’s DC is wired to
+reset_pin = 24  # or whichever your screen’s RST is wired to
 
 BAUDRATE = 64000000
 
 disp = st7789.ST7789(
     board.SPI(),
-    cs=None,                 # let SPI driver manage CE0
-    dc=dc_pin,
-    rst=reset_pin,
+    cs=None,             # CE0 handled by SPI kernel driver
+    dc=dc_pin,           # pass as int, not DigitalInOut
+    rst=reset_pin,       # pass as int, not DigitalInOut
     baudrate=BAUDRATE,
     width=240,
     height=240,
     x_offset=0,
     y_offset=80,
 )
+
 
 
 rotation = 90
