@@ -5,13 +5,14 @@ import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
 
-# --- Display setup ---
-# MiniPiTFT pins (safe GPIO for CS on Pi5)
-cs_pin = digitalio.DigitalInOut(board.D5)      # GPIO5, free pin
-dc_pin = digitalio.DigitalInOut(board.D25)     # GPIO25
+# ---------------------------
+# Display setup (MiniPiTFT 240x135)
+# ---------------------------
+cs_pin = digitalio.DigitalInOut(board.D5)      # GPIO5 for CS
+dc_pin = digitalio.DigitalInOut(board.D25)     # GPIO25 for DC
 reset_pin = None                               # optional
 
-# Turn on backlight
+# Backlight
 backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
@@ -26,53 +27,68 @@ disp = st7789.ST7789(
     dc=dc_pin,
     rst=reset_pin,
     baudrate=64000000,
-    width=135,      # matches MiniPiTFT 240x135 panel
-    height=240,
-    x_offset=53,    # offset for the 135x240 screen
+    width=135,    # logical width of driver
+    height=240,   # logical height of driver
+    x_offset=53,
     y_offset=40,
 )
-rotation = 90
-width = disp.width
-height = disp.height
 
-# --- Buttons ---
+# Rotation
+rotation = 90
+
+# Physical image size for PIL (rotated)
+WIDTH = 240   # physical width after rotation
+HEIGHT = 135  # physical height after rotation
+
+# ---------------------------
+# Buttons
+# ---------------------------
 btn_top = digitalio.DigitalInOut(board.D23)   # Button A
 btn_top.switch_to_input(pull=digitalio.Pull.UP)
 
 btn_bottom = digitalio.DigitalInOut(board.D24)  # Button B
 btn_bottom.switch_to_input(pull=digitalio.Pull.UP)
 
-
-# --- Drawing setup ---
-image = Image.new("RGB", (disp.width, disp.height)) 
+# ---------------------------
+# Drawing setup
+# ---------------------------
+image = Image.new("RGB", (WIDTH, HEIGHT))
 draw = ImageDraw.Draw(image)
 font = ImageFont.load_default()
 
-# --- Helper ---
+# ---------------------------
+# Helper functions
+# ---------------------------
 def pages_today(total_pages=24):
     t = localtime()
     seconds_today = t.tm_hour * 3600 + t.tm_min * 60 + t.tm_sec
     return int((seconds_today / 86400.0) * total_pages)
 
-# --- State ---
+# ---------------------------
+# State
+# ---------------------------
 page_counter = 0
 show_counter = False
 
-# --- Page turn animation ---
+# ---------------------------
+# Page turn animation
+# ---------------------------
 def page_turn():
-    for offset in range(0, width // 2, 20):
-        draw.rectangle((0, 0, width, height), fill=(0, 0, 0))
-        mid = width // 2
+    for offset in range(0, WIDTH // 2, 20):
+        draw.rectangle((0, 0, WIDTH, HEIGHT), fill=(0, 0, 0))
+        mid = WIDTH // 2
 
         # static right page
-        draw.rectangle((mid + 5, 40, width - 10, 200), outline=(255, 255, 255))
+        draw.rectangle((mid + 5, 20, WIDTH - 10, 100), outline=(255, 255, 255))
         # animated left page sliding away
-        draw.rectangle((10 + offset, 40, mid - 5 + offset, 200), outline=(255, 255, 255))
+        draw.rectangle((10 + offset, 20, mid - 5 + offset, 100), outline=(255, 255, 255))
 
         disp.image(image, rotation)
         time.sleep(0.05)
 
-# --- Main loop ---
+# ---------------------------
+# Main loop
+# ---------------------------
 while True:
     if not btn_top.value:  # pressed (LOW)
         page_counter += 1
@@ -82,27 +98,27 @@ while True:
         show_counter = not show_counter
 
     # Clear screen
-    draw.rectangle((0, 0, width, height), fill=(0, 0, 0))
+    draw.rectangle((0, 0, WIDTH, HEIGHT), fill=(0, 0, 0))
 
     if show_counter:
-        draw.text((50, 120), f"Counter: {page_counter}", font=font, fill=(0, 255, 0))
+        draw.text((50, 60), f"Counter: {page_counter}", font=font, fill=(0, 255, 0))
     else:
         total_pages = 24
         current_page = pages_today(total_pages)
-        mid = width // 2
+        mid = WIDTH // 2
 
         # Draw book outline
-        draw.rectangle((10, 40, mid - 5, 200), outline=(255, 255, 255))
-        draw.rectangle((mid + 5, 40, width - 10, 200), outline=(255, 255, 255))
+        draw.rectangle((10, 20, mid - 5, 100), outline=(255, 255, 255))
+        draw.rectangle((mid + 5, 20, WIDTH - 10, 100), outline=(255, 255, 255))
 
         # Show page numbers
-        draw.text((30, 100), f"Page {current_page}", font=font, fill=(255, 255, 0))
-        draw.text((mid + 20, 100), f"of {total_pages}", font=font, fill=(0, 255, 255))
+        draw.text((30, 50), f"Page {current_page}", font=font, fill=(255, 255, 0))
+        draw.text((mid + 20, 50), f"of {total_pages}", font=font, fill=(0, 255, 255))
 
         # Progress bar
         progress = current_page / total_pages
-        bar_width = int((width - 20) * progress)
-        draw.rectangle((10, 210, 10 + bar_width, 230), fill=(150, 75, 0))
+        bar_width = int((WIDTH - 20) * progress)
+        draw.rectangle((10, 110, 10 + bar_width, 120), fill=(150, 75, 0))
 
     # Push to display
     disp.image(image, rotation)
