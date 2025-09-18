@@ -42,8 +42,9 @@ btn_top.switch_to_input(pull=digitalio.Pull.UP)
 btn_bottom = digitalio.DigitalInOut(board.D24)  # Button B
 btn_bottom.switch_to_input(pull=digitalio.Pull.UP)
 
+
 # --- Drawing setup ---
-image = Image.new("RGB", (width, height))
+image = Image.new("RGB", (disp.width, disp.height)) 
 draw = ImageDraw.Draw(image)
 font = ImageFont.load_default()
 
