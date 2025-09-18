@@ -16,7 +16,7 @@ Lab Prep is extra long this week. Make sure to start this early for lab on Thurs
 
 1. ### Set up your Lab 2 Github
 
-Before the start of lab Thursday, ensure you have the latest lab content by updating your forked repository. 
+Before the start of lab Thursday, ensure you have the latest lab content by updating your forked repository. ✅
 
 **📖 [Follow the step-by-step guide for safely updating your fork](pull_updates/README.md)**
 
@@ -30,7 +30,7 @@ Prior to the lab session on Thursday, taken inventory of the kit parts that you 
 
 3. ### Prepare your Pi for lab this week
 [Follow these instructions](prep.md) to download and burn the image for your Raspberry Pi before lab Thursday.
-
+✅
 
 
 
@@ -156,13 +156,13 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 
 #### Displaying an image
 
-You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
+You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons? Now shows the Cornell Tech image and a motivational quote. ✅
 
 
 
 ## Part D. 
 ### Set up the Display Clock Demo
-Work on `screen_clock.py`, try to show the time by filling in the while loop (at the bottom of the script where we noted "TODO" for you). You can use the code in `cli_clock.py` and `stats.py` to figure this out.
+Work on `screen_clock.py`, try to show the time by filling in the while loop (at the bottom of the script where we noted "TODO" for you). You can use the code in `cli_clock.py` and `stats.py` to figure this out. ✅
 
 ### How to Edit Scripts on Pi
 Option 1. One of the ways for you to edit scripts on Pi through terminal is using [`nano`](https://linuxize.com/post/how-to-use-nano-text-editor/) command. You can go into the `screen_clock.py` by typing the follow command line:
@@ -212,11 +212,11 @@ After that, Git will ask you to login to your GitHub account to push the updates
 ## Part F. 
 ## Make a short video of your modified barebones PiClock
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+\*\*\***Take a video of your PiClock.**\*\*\* ✅
 https://drive.google.com/file/d/1pPrPszAhtqEDM3orcBDdwoxu8vztqAw4/view?usp=sharing 
 
 ## Part G. 
-## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+## Sketch and brainstorm further interactions and features you would like for your clock for Part 2. ✅
 
 - books read this year clock
 - pages read this year
@@ -244,18 +244,19 @@ VERPLANK DIAGRAM:
 
 # Prep for Part 2
 
-1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
+1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing. ✅
   
 
-2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
+2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!) ✅
 
 # Lab 2 Part 2
 
 [Update your Lab Hub](pull_updates/README.md) to get the latest content and requirements for Part 2.
 
-Modify the code from last week's lab to make a new visual interface for your new clock. You may [extend the Pi](Extending%20the%20Pi.md) by adding sensors or buttons, but this is not required.
+Modify the code from last week's lab to make a new visual interface for your new clock. You may [extend the Pi](Extending%20the%20Pi.md) by adding sensors or buttons, but this is not required. ✅
 
 As always, make sure you document contributions and ideas from others explicitly in your writeup.
+I did not work with anyone for this lab - I did use chatgpt to debug the a display size error, which is documented in my code. 
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
 
