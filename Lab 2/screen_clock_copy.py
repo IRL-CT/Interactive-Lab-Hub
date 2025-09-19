@@ -61,66 +61,26 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
-
-def draw_hourglass(x, y_top, w, h, ratio, color=(200,200,0)):
-    """
-    Draw hourglass.
-    x, y_top: top-left corner point and top boundary
-    w, h: Width and height
-    ratio: fallen sand (0–1)
-    """
-   
-    # Draw an hourglass
-    top_triangle = [(x, y_top), (x+w, y_top), (x+w//2, y_top+h//2)]
-    bottom_triangle = [(x, y_top+h), (x+w, y_top+h), (x+w//2, y_top+h//2)]
-    draw.polygon(top_triangle, outline=(255,255,255))
-    draw.polygon(bottom_triangle, outline=(255,255,255))
-
-    # Top sand
-    remain = 1 - ratio
-    Ax, Ay = x, y_top
-    Bx, By = x+w, y_top
-    Cx, Cy = x+w//2, y_top+h//2
-
-    pA = (int(Cx + (Ax - Cx) * remain), int(Cy + (Ay - Cy) * remain))
-    pB = (int(Cx + (Bx - Cx) * remain), int(Cy + (By - Cy) * remain))
-
-    if remain > 0:
-        draw.polygon([pA, pB, (Cx, Cy)], fill=color)
-
-    # Bottom sand
-    bottom_fill = int(ratio * (h//2))
-    bottom_sand = [(x, y_top+h), (x+w, y_top+h), (x+w//2, y_top+h-bottom_fill)]
-    draw.polygon(bottom_sand, fill=color)
-
-    # Middle sand
-    mid_x = x + w//2
-    mid_y = y_top + h//2
-    bottom_y = y_top + h
-    draw.line((mid_x, mid_y, mid_x, bottom_y), fill=color)
-
 while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
 
     #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
     now = datetime.now()
-    hour = now.hour % 12
-    minute = now.minute
-    second = now.second
+    line1 = now.strftime("%Y-%m-%d")      # 2025-09-11
+    line2 = now.strftime("%H:%M:%S")      # 14:03:59
+    text = f"{line1}\n{line2}"
 
-    margin = 10
-    hour_x = margin
-    min_x  = width//3 + margin
-    sec_x  = 2*width//3 - margin
-    sand_width = width//3 - 2*margin
-    sand_height = height - 2*margin
+    try:
+        bbox = draw.multiline_textbbox((0, 0), text, font=font, spacing=6, align="center")
+        tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    except AttributeError:
+        tw, th = draw.multiline_textsize(text, font=font, spacing=6)
 
-    # Draw hourglass for hour, min, and sec
-    draw_hourglass(hour_x, margin, sand_width, sand_height, hour/12,   (200,200,0))
-    draw_hourglass(min_x,  margin, sand_width, sand_height, minute/60, (200,180,0))
-    draw_hourglass(sec_x,  margin, sand_width, sand_height, second/60, (220,160,0))
+    x = (width  - tw) // 2
+    y = (height - th) // 2
 
+    draw.multiline_text((x, y), text, font=font, fill=255, spacing=6, align="center")
     # Display image.
     disp.image(image, rotation)
     time.sleep(1)
