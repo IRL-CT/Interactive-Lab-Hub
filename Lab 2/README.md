@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-Yoyo Wang
+Yoyo Wang - hw867
 
 Does it feel like time is moving strangely during this semester?
 
