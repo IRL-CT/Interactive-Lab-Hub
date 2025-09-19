@@ -177,9 +177,11 @@ Success Demo: https://drive.google.com/file/d/1WM5QmUveavN99GRojvJ6QMCvXsfU6AP8/
 
 **Comments from Peers**:
 
-"Your design demonstrates a fresh and creative approach, showing that you were able to expand ideas thoughtfully and explore the design space with originality. The technical execution is solid and well-developed, with the demonstration clearly illustrating the concept’s functionality and value. In addition, your documentation is very clear and well-structured, making the process and outcomes easy to follow and understand. The only area for further improvement is the user testing, where adding more detailed feedback and your own reflections would make the overall work even stronger and more convincing."          ———Sirui Wang
+"Your design demonstrates a fresh and creative approach, showing that you were able to expand ideas thoughtfully and explore the design space with originality. The technical execution is solid and well-developed, with the demonstration clearly illustrating the concept’s functionality and value. In addition, your documentation is very clear and well-structured, making the process and outcomes easy to follow and understand. The only area for further improvement is the user testing, where adding more detailed feedback and your own reflections would make the overall work even stronger and more convincing."          
+———Sirui Wang
 
-"Your design is impressive because it doesn’t just show the time—it also lets users record their moods throughout the entire day. This combination makes the system both practical and personally meaningful, offering users a clear timeline of their emotional journey alongside daily activities."      ———Dean Xu
+"I recently came across a psychology idea that struck me: instead of the common belief that emotions shape our state, it’s actually the other way around—our state comes first, and emotions follow. The challenge is that when we look back on our recent states, it’s often hard to recall the details, which makes it difficult to understand what caused the fluctuations or how to adjust. With this mood clock, I can build the habit of recording my emotional state in the moment. That way, it becomes much easier to diagnose and fine-tune my state whenever I need to."     
+———Dean Xu
 
 
 # Lab 2 Part 2
