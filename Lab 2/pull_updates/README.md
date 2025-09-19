@@ -45,7 +45,37 @@ If you see merge conflicts:
 2. Click **"Resolve conflicts"** on GitHub's web interface
 3. Or pull the changes locally and resolve conflicts in your editor
 
-## Method 2: Command Line Approach
+## Method 2: Using Pull Requests Within Your Fork
+
+**Alternative approach**: Create a pull request **within your own repository** to pull updates from the course repo.
+
+### Step-by-Step Process:
+1. **Go to your forked repository** on GitHub (`your-username/Interactive-Lab-Hub`)
+2. **Click on "Pull requests"** tab
+3. **Click "New pull request"** button
+4. **Set the repositories correctly**:
+   - **Base repository**: `your-username/Interactive-Lab-Hub` (your fork)
+   - **Head repository**: `IRL-CT/Interactive-Lab-Hub` (the course repo)
+5. **If needed**: Click the blue **"compare across forks"** link to see cross-fork options
+
+![Compare Across Forks](pull_into_own_repo_request.png)
+
+1. **Make sure branches match**: Usually both should be `Fall2025` (the current semester)
+2. **Click "Create pull request"**
+3. **Add a title**: e.g., "Pull course updates - Lab 2"
+4. **Click "Create pull request"** again
+5.  **Click "Merge pull request"** to complete the update
+6.  **Click "Confirm merge"**
+
+### When to Use This Method:
+- When the "Sync fork" button isn't available
+- When you prefer more control over the merge process
+- When you want to review changes before merging
+- When working with the traditional GitHub workflow
+
+**Reference**: This follows the process described in [the original course documentation](https://github.com/IRL-CT/Developing-and-Designing-Interactive-Devices/blob/2023Fall/readings/Submitting%20Labs.md)
+
+## Method 3: Command Line Approach
 
 ### Step 1: Add Upstream Remote (One-time setup)
 ```bash

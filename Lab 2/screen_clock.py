@@ -36,7 +36,11 @@ disp = st7789.ST7789(
 # Make sure to create image with mode 'RGB' for full color.
 height = disp.width  # we swap height/width to rotate it to landscape!
 width = disp.height
+<<<<<<< HEAD
 image = Image.open("pianohands.jpg")
+=======
+image = Image.open(pianohands.jpg)
+>>>>>>> e872a5b641b406b9e16b161f2eeb120e6e1e5f22
 rotation = 90
 
 # Get drawing object to draw on image.
@@ -56,13 +60,18 @@ x = 0
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the
 # same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
+<<<<<<< HEAD
 font = ImageFont.truetype("Musicografi.ttf", 18)
+=======
+font = ImageFont.truetype("Lab 2/Musicografi.ttf", 18)
+>>>>>>> e872a5b641b406b9e16b161f2eeb120e6e1e5f22
 
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+<<<<<<< HEAD
 #Note Setup
 note_freqs = {
     1: 440.00,  # A
@@ -77,6 +86,25 @@ note_freqs = {
     10: 739.99, # F#
     11: 783.99, # G
     12: 830.61  # Ab
+=======
+# Button Setup
+button = digitalio.DigitalInOut(board.D23)   # <--- wire button to D23
+button.switch_to_input(pull=digitalio.Pull.UP)
+# Note Setup
+note_freqs = {
+    1: 440.00,   # A
+    2: 466.16,   # Bb
+    3: 493.88,   # B
+    4: 523.25,   # C
+    5: 554.37,   # C#
+    6: 587.33,   # D
+    7: 622.25,   # Eb
+    8: 659.25,   # E
+    9: 698.46,   # F
+    10: 739.99,  # F#
+    11: 783.99,  # G
+    12: 830.61   # Ab
+>>>>>>> e872a5b641b406b9e16b161f2eeb120e6e1e5f22
 }
 
 def number_to_notes(n):
@@ -95,6 +123,10 @@ def play_tone(frequency, duration=0.4, fs=44100):
     sd.play(wave, samplerate=fs)
     sd.wait()
 
+<<<<<<< HEAD
+=======
+# Main Loop
+>>>>>>> e872a5b641b406b9e16b161f2eeb120e6e1e5f22
 while True:
     # Get Current time
     now = datetime.datetime.now()
@@ -105,10 +137,42 @@ while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
 
     #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
+<<<<<<< HEAD
     # Draw current time
     time_text = now.strftime("%H:%M")
     draw.text((10, 50), time_text, font=font, fill="#FFFFFF")
+=======
+    now = datetime.datetime.now()
+    hour = now.hour
+    minute = now.minute
+>>>>>>> e872a5b641b406b9e16b161f2eeb120e6e1e5f22
 
+    # Only update & play when the minute changes
+    if not button.value:  # button pressed (active low)
+        now = datetime.datetime.now()
+        hour = now.hour
+        minute = now.minute
+
+        # Clear display
+        draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
+
+        # Draw current time
+        time_text = now.strftime("%H:%M")
+        draw.text((10, 50), time_text, font=font, fill="#FFFFFF")
+        disp.image(image, rotation)
+
+        # Get notes
+        notes = number_to_notes(hour) + number_to_notes(minute)
+        print(f"{time_text} → Notes {notes}")
+
+        # Play them
+        for freq in notes:
+            play_tone(freq)
+
+        # Simple debounce
+        time.sleep(0.5)
+
+    time.sleep(0.05)
     # Display image.
     disp.image(image, rotation)
     
