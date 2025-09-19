@@ -165,29 +165,6 @@ You can look in `image.py` for an example of how to display an image on the scre
 
 Success Demo: https://drive.google.com/file/d/1WM5QmUveavN99GRojvJ6QMCvXsfU6AP8/view?usp=drive_link
 
-
-Work on `screen_clock.py`, try to show the time by filling in the while loop (at the bottom of the script where we noted "TODO" for you). You can use the code in `cli_clock.py` and `stats.py` to figure this out.
-
-### How to Edit Scripts on Pi
-Option 1. One of the ways for you to edit scripts on Pi through terminal is using [`nano`](https://linuxize.com/post/how-to-use-nano-text-editor/) command. You can go into the `screen_clock.py` by typing the follow command line:
-```
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ nano screen_clock.py
-```
-You can make changes to the script this way, remember to save the changes by pressing `ctrl-o` and press enter again. You can press `ctrl-x` to exit the nano mode. There are more options listed down in the terminal you can use in nano.
-
-Option 2. Another way for you to edit scripts is to use VNC on your laptop to remotely connect your Pi. Try to open the files directly like what you will do with your laptop and edit them. Since the default OS we have for you does not come up a python programmer, you will have to install one yourself otherwise you will have to edit the codes with text editor. [Thonny IDE](https://thonny.org/) is a good option for you to install, try run the following command lines in your Pi's ternimal:
-
-  ```
-  pi@raspberrypi:~ $ sudo apt install thonny
-  pi@raspberrypi:~ $ sudo apt update && sudo apt upgrade -y
-  ```
-
-Now you should be able to edit python scripts with Thonny on your Pi.
-
-Option 3. A nowadays often preferred method is to use Microsoft [VS code to remote connect to the Pi](https://www.raspberrypi.com/news/coding-on-raspberry-pi-remotely-with-visual-studio-code/). This gives you access to a fullly equipped and responsive code editor with terminal and file browser.  
-
-Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
-
 ## Part E. Now moved to Lab2 Part 2.
 
 ## Part F. Now moved to Lab2 Part 2.
