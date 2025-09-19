@@ -113,7 +113,7 @@ while True:
     disp.image(image, rotation)
     
     if not button.value:  # button pressed (active low)
-        print(f"{time_text}o Playing notes...")
+        print(f"{time_text} Playing notes...")
         notes = number_to_notes(hour) + number_to_notes(minute)
 
         # Play them
