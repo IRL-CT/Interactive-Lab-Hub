@@ -1,5 +1,6 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+Viha Srinivas, Sachin Jojode, Nikhil Gangaram
+
 
 Does it feel like time is moving strangely during this semester?
 
