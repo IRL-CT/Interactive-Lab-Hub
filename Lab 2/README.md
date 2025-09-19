@@ -220,6 +220,7 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+![PiClock](./PiClock_Hourglass.mp4)
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
