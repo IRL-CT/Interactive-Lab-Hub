@@ -158,6 +158,10 @@ sudo nmcli connection add type wifi con-name "HomeWiFi" ifname wlan0 ssid "YourN
 
 **Replace `YourNetworkName` and `YourPassword` with your actual home WiFi details.**
 
+E.g. when setting up the Wifi for the house:
+```bash
+sudo nmcli connection add type wifi con-name "WhiteSky-Cornell" ifname wlan0 ssid "WhiteSky-Cornell" wifi-sec.key-mgmt wpa-psk wifi-sec.psk “THEPASSWORDHERE" connection.autoconnect yes
+```
 **Why this matters:** If you only have school WiFi configured and take your Pi home, you'll lose SSH access and won't be able to connect remotely to fix it! Having home WiFi pre-configured means your Pi will automatically connect when you get home.
 
 **Verify it worked:**
@@ -251,7 +255,7 @@ There is plenty more to learn about using the terminal to navigate a computer bu
 
 
 ### Using VNC to see your Pi desktop
-Another convenient way to remotely connect to your Pi is using VNC (Virtual Network Computing), it essentially is remote login. The easiest client to use is [VNC Connect](https://www.realvnc.com/en/connect/download/viewer/). Download and install it. Once that's done type the IP address of your Pi in the text-box at the top. 
+Another convenient way to remotely connect to your Pi is using VNC (Virtual Network Computing), it essentially is remote login. The easiest client to use is [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/). Download and install it. Once that's done type the IP address of your Pi in the text-box at the top. 
 ![](images/VNC1.png)
 
 After that a login window should appear, use your normal logins (originally: Account=pi, Password=raspberry).
@@ -263,6 +267,19 @@ See here for more troubleshooting [realvnc.com Pi Setup](https://help.realvnc.co
 
 
 At that point the normal RPi desktop should appear and you can start and stop programs from here. 
+
+### Raspberry Pi Connect - Alternative Remote Access
+
+**Quick addendum**: Raspberry Pi now has its own in-house solution for screen sharing via [Raspberry Pi Connect](https://www.raspberrypi.com/documentation/services/connect.html). This requires linking your Pi to a Raspberry Pi account, but then allows remote SSH and screen sharing through just a browser window, even when on different networks.
+
+**Setup** (SSH into your Pi first):
+```bash
+rpi-connect on
+loginctl enable-linger  # Set rpi connect to autostart even when no user is logged in
+rpi-connect signin 
+```
+
+After setup, your Pi will appear on: https://connect.raspberrypi.com/devices and you can connect from anywhere.
 
 ### Setting up WendyTA - Your AI Teaching Assistant
 
@@ -280,4 +297,27 @@ For this course, we have **WendyTA**, an AI Teaching Assistant that can help you
 
 ✨ **Note**: WendyTA works through both SSH/VS Code Server and VNC connections, so choose the method that works best for your setup!
 
+### Using VNC
 
+1. Download the RealVNC [here](https://www.realvnc.com/en) 
+
+2. Sign up an account
+
+3. SSH into your pi
+
+4. You should see the GUI something like this: <img src="demo_pic/pi-app.png" alt="register for your mac address" height="400" />
+5. On the virtual desktop, click the right most icon(the raspberryPi logo), and go to **Accessories**, in there, you can see **Pi-Apps**, which should be downloaded already there. Click that to enter the program.
+6. In Pi-Apps, go to the programming subsection.
+7. Download Github-CLI and Github Desktop. If the Github Desktop is already downloaded, delete that and download that again for the first time, (keep it there for the rest of the semester). 
+8. Go back to the desktop click the right most icon(the raspberryPi logo) and click **Accessories** again. Enter Github Desktop
+9. In Github Desktop, go to File -> Options
+10. Go to Account, and sign in you github account: <img src="demo_pic/github-desktop-signin.png" alt="" height="400" />
+11. If there is a current repository, delete that. It is the history version when TA set up the raspberry Pi5.
+12. In Github Desktop, go to File -> Options, open the Git, enter correct information about your github account <img src="demo_pic/github-desktop-username.png" alt="" height="400" />
+13. Go to File, and clone repository
+   
+### Using GitHub CLI
+Stay in the VNC virtual Desktop. Once you download the GitHub CLI, open your terminal, and enter ```gh auth login```, and choose ```GitHub.com```. Next question, choose ```HTTPS```, followed by ```Login with a web browser```
+
+### Programming the button
+Go to the **Lab 2/screen_boot_script.py**, and modify from there
