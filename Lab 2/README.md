@@ -203,6 +203,13 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
 
+**Comments from Peers**:
+
+"Your design demonstrates a fresh and creative approach, showing that you were able to expand ideas thoughtfully and explore the design space with originality. The technical execution is solid and well-developed, with the demonstration clearly illustrating the concept’s functionality and value. In addition, your documentation is very clear and well-structured, making the process and outcomes easy to follow and understand. The only area for further improvement is the user testing, where adding more detailed feedback and your own reflections would make the overall work even stronger and more convincing."          ———Sirui Wang
+
+"Your design is impressive because it doesn’t just show the time—it also lets users record their moods throughout the entire day. This combination makes the system both practical and personally meaningful, offering users a clear timeline of their emotional journey alongside daily activities."      ———Dean Xu
+
+
 # Lab 2 Part 2
 
 ## Assignment that was formerly Lab 2 Part E.
