@@ -193,12 +193,14 @@ Can you make time interactive? You can look in `screen_test.py` for examples for
 
 Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
 
-![Verplank diagram](image/diagram.jpg)
+<img src="image/diagram.jpg" height="300" />
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+
+The part1 code is in screen_clock_part1.py.
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -215,6 +217,8 @@ After that, Git will ask you to login to your GitHub account to push the updates
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+[video link](https://drive.google.com/file/d/1czePDeVOzNTZ2pZRB3JytRmQpM2qhg5j/view?usp=drive_link)
 
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
@@ -237,4 +241,39 @@ As always, make sure you document contributions and ideas from others explicitly
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
 
+## Make a short video of your modified barebones PiClock
 
+\*\*\***Take a video of your PiClock.**\*\*\*
+
+[video link](https://drive.google.com/file/d/1czePDeVOzNTZ2pZRB3JytRmQpM2qhg5j/view?usp=drive_link)
+
+\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+
+### What’s in here
+- `screen_clock_part2.py`
+- `screen_curtain.py`
+
+### What `screen_curtain.py` does
+We created four “scenes,” like acts in a show:
+1. **Waiting for lottery to open**  
+2. **Lottery is open**   
+3. **Waiting for show to start**   
+4. **Show time**
+
+#### How it plays out
+- While waiting, you just see the **curtain closed**.  
+- As showtime gets closer, the **curtain slowly opens**. The amount of curtain opens depends on the number of seconds left until the performance starts after the lottery closed. 
+- Once the show starts, the **curtain is fully open** and the stage is revealed.  
+
+<img src="image/part2.jpg" height="400" />
+
+### Why a Curtain?
+Curtains are the perfect metaphor for Broadway Musical!
+- They **build suspense** (everyone knows something magical is about to happen).  
+- They **tell a story** visually (closed = waiting, opening = excitement, open = showtime).   
+
+## Who did what
+- **Nana**: Took charge of the core Lab 1 code + added the curtain magic (`screen_curtain.py`).  
+- **Lianne**: Worked on `screen_clock_part2.py`, hooked up the **speaker**, and gave us sound effects (because what’s Broadway without music?).  
+- **Diagram**: We brainstormed together, and **Lianne** sketched it out.  
+- **README**: Co-written, with equal parts code and comedy.  
