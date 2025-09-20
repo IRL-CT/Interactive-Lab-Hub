@@ -1,4 +1,5 @@
 import time
+import os
 import subprocess
 import digitalio
 import board
@@ -41,15 +42,18 @@ draw = ImageDraw.Draw(image)
 
 # Draw a black filled box to clear the image.
 draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
-disp.image(image, rotation)
-
 image = Image.open("pianohands.jpg")
 
 
-# Alternatively load a TTF font.  Make sure the .ttf font file is in the
-# same directory as the python script!
-# Some other nice fonts to try: http://www.dafont.com/bitmap.php
-font = ImageFont.truetype("Musicografi.ttf", 18)
+# Alternatively load a TTF font.
+script_dir = os.path.dirname(os.path.abspath(__file__))
+font_path = os.path.join(script_dir, "Musicografi.ttf")
+try:
+    font = ImageFont.truetype(font_path, 48)  # try a bigger size so you can clearly see it
+    print("Custom font loaded successfully!")
+except Exception as e:
+    print("Error loading font:", e)
+    font = ImageFont.load_default()
 
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
@@ -60,7 +64,6 @@ backlight.value = True
 image_ratio = image.width / image.height
 screen_ratio = width / height
 if screen_ratio < image_ratio:
-    scaled_width = image.width * height // image.height
     scaled_height = height
 else:
     scaled_width = width
@@ -71,13 +74,19 @@ image = image.resize((scaled_width, scaled_height), Image.BICUBIC)
 x = scaled_width // 2 - width // 2
 y = scaled_height // 2 - height // 2
 image = image.crop((x, y, x + width, y + height))
+
+
 while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
 
-    #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
+    #TODO: Lab 2 part D work should be filled in here. You shou>
+    
 
+    # Get time and display it
+    current_time = time.strftime("%m/%d/%Y %H:%M:%S")
+    # Draw time 
+    draw.text((x, y), current_time, font=font, fill="#FFFFFF")
     # Display image.
     disp.image(image, rotation)
     time.sleep(1)
-
