@@ -31,13 +31,12 @@ disp = st7789.ST7789(
     y_offset=40,
 )
 
-state = {
+song_state = {
     "instance": vlc.Instance('--aout=alsa'),
-    # "is_playing": False,
     "media_player": None
 }
 
-def play_song(song, state=state):
+def play_song(song, state=song_state):
     print(state["media_player"])
     if not state["media_player"]:
         media_player = state["instance"].media_player_new()
@@ -48,20 +47,30 @@ def play_song(song, state=state):
         state["media_player"] = media_player
         state["is_playing"] = True
         
-def stop_song(p, state=state):
-     if state["media_player"]:
-        p.pause()
+def stop_song(state=song_state):
+    if state["media_player"]:
+        state["media_player"].pause()
         state["is_playing"] = False
-        state["media_player"] = null
+        state["media_player"] = None
 
-def volume_up(p, state=state):
-     if state["media_player"]:
-        current_volume = p.audio_get_volume()
-        vlc.libvlc_audio_set_volume(p, current_volume+10)
-def volume_down(p, state=state):
-     if state["media_player"]:
-        current_volume = p.audio_get_volume()
-        vlc.libvlc_audio_set_volume(p, current_volume-10)
+def volume_up(state=song_state):
+    print("Volume")
+    if state["media_player"]:
+        print("Volume up")
+        current_volume = state["media_player"].audio_get_volume()
+        print(current_volume)
+        new_volume = min(current_volume + 10, 100)  # Clamp max 100
+        state["media_player"].audio_set_volume(new_volume)        
+        print(state["media_player"].audio_get_volume())
+def volume_down(state=song_state):
+    print("Volume")
+    if state["media_player"]:
+        print("Volume down")
+        current_volume = state["media_player"].audio_get_volume()
+        print(current_volume)
+        new_volume = max(current_volume - 10, 0)  # Clamp min 0
+        state["media_player"].audio_set_volume(new_volume)  # Use method, not libvlc call
+        print("New volume:", state["media_player"].audio_get_volume())
 
 # Create blank image for drawing.
 # Make sure to create image with mode 'RGB' for full color.
@@ -106,9 +115,9 @@ lk_background_win_lottery = Image.open("image/lion-king-winner.webp").resize((wi
 wk_background_waiting = Image.open("image/wicked-waiting.jpg").resize((width, height))
 wk_background_lottery = Image.open("image/wicked-lottery.jpg").resize((width, height))
 wk_background_win_lottery = Image.open("image/wicked-winner.jpg").resize((width, height))
-lk_audio_waiting = "audios/LKCircle.mp3"
+lk_audio_waiting = "audios/LKHakuna.mp3"
 lk_audio_lottery = "audios/LKWait.mp3"
-lk_audio_win_lottery = "audios/LKHakuna.mp3"
+lk_audio_win_lottery = "audios/lionkingOpening.mp3"
 wk_audio_waiting = "audios/WickedGood.mp3"
 wk_audio_lottery= "audios/WickedDancing.mp3"
 wk_audio_win_lottery = "audios/WickedDefy.mp3"
@@ -178,11 +187,28 @@ while True:
     now = datetime.now()
     clickA = check_button(buttonA, buttonA_state, "Button A")
     clickB = check_button(buttonB, buttonB_state, "Button B")
+    both_pressed = a_pressed and b_pressed
     
     if a_pressed and b_pressed:
         win_lottery = True
         image.paste(background_waiting[selected_musical], (0,0))
-
+    else:
+        if clickA == "single":
+            print("Single click detected on Button A")
+            selected_musical = (selected_musical + 1) % len(musicals)
+        elif clickA == "double":
+            print("Double click detected on Button A")
+            volume_up(song_state)
+        
+        if clickB == "single":
+            print("Single click detected on Button B")
+            selected_musical = (selected_musical - 1) % len(musicals)
+        elif clickB == "double":
+            print("Double click detected on Button B")
+            volume_down(song_state)
+        image.paste(background_waiting[selected_musical], (0, 0))
+        play_song(audio_waiting[selected_musical])
+        
     if win_lottery is True: 
         remaining = target - now
         image.paste(background_win_lottery[selected_musical], (0,0))
@@ -198,18 +224,6 @@ while True:
             draw.text((10, top + 30), countdown, font=font, fill=(255, 255, 255))
 
     if win_lottery is False:
-        if a_pressed and not b_pressed:
-            if clickA == "single":
-                print("Single click detected on Button A")
-                selected_musical = (selected_musical + 1) % len(musicals)
-            elif clickB == "double":
-                print("Double click detected on Button A")
-                volume_up(state["media_player"])
-        if b_pressed and not a_pressed:
-            selected_musical = (selected_musical - 1) % len(musicals)
-
-        image.paste(background_waiting[selected_musical], (0,0))
-        play_song(audio_waiting[selected_musical])
         # Target time (9:00 AM today) for the lottery to be opened next
         target = now.replace(hour=lottery_opens[selected_musical], minute=0, second=0, microsecond=0)
         # if it's past 9 AM but before 3pm, set target to 3 PM today
@@ -240,6 +254,8 @@ while True:
             draw.text((10, top+5), "Countdown to Lottery:", font=font, fill=(255, 255, 255))
             draw.text((20, top + 30), waiting_time, font=font, fill=(255, 255, 255))
         else: 
+            play_song(audio_lottery[selected_musical])
+
             draw.text((10, top+5), "Lottery Opens Until:", font=font, fill=(255, 255, 255))
             draw.text((20,  top + 30), waiting_time, font=font, fill=(255, 255, 255))
        
@@ -248,4 +264,4 @@ while True:
 
     # Display image.
     disp.image(image, rotation)
-    time.sleep(.01)
+    time.sleep(.03)
