@@ -19,155 +19,150 @@ BAUDRATE = 64000000
 # Setup SPI bus using hardware SPI:
 spi = board.SPI()
 
-# Create the ST7789 display:
-disp = st7789.ST7789(
-    spi,
-    cs=cs_pin,
-    dc=dc_pin,
-    rst=reset_pin,
-    baudrate=BAUDRATE,
-    width=135,
-    height=240,
-    x_offset=53,
-    y_offset=40,
-)
-
-# Create blank image for drawing.
-# Make sure to create image with mode 'RGB' for full color.
-height = disp.width  # we swap height/width to rotate it to landscape!
-width = disp.height
-image = Image.open("pianohands.jpg")
-rotation = 90
-
+try:
+    print("Attempting to initialize the ST7789 display...")
+    # Create the ST7789 display object:
+    disp = st7789.ST7789(
+        spi,
+        cs=cs_pin,
+        dc=dc_pin,
+        rst=reset_pin,
+        baudrate=BAUDRATE,
+        width=135,
+        height=240,
+        x_offset=53,
+        y_offset=40,
+    )
+    print("Display initialized successfully!")
+# Displaying Image
+    image = Image.new("RGB", (width, height))
 # Get drawing object to draw on image.
-draw = ImageDraw.Draw(image)
+    draw = ImageDraw.Draw(image)
+    draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
+    disp.image(image)
+    image = Image.open("pianohands.jpg")
 
-# Draw a black filled box to clear the image.
-draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
-disp.image(image, rotation)
-# Draw some shapes.
-# First define some constants to allow easy resizing of shapes.
-padding = -2
-top = padding
-bottom = height - padding
-# Move left to right keeping track of the current x position for drawing shapes.
-x = 0
+# Alternatively load a TTF font. 
+    font = ImageFont.truetype("Musicografi.ttf", 18)
 
-# Alternatively load a TTF font.  Make sure the .ttf font file is in the
-# same directory as the python script!
-# Some other nice fonts to try: http://www.dafont.com/bitmap.php
-font = ImageFont.truetype("Musicografi.ttf", 18)
+except Exception as e:
+    print(f"An error occurred: {e}")
 
-# Turn on the backlight
-backlight = digitalio.DigitalInOut(board.D22)
-backlight.switch_to_output()
-backlight.value = True
-
+finally:
+    # This block will run no matter what, ensuring pins are released.
+    print("Deinitializing GPIO pins...")
+    if cs_pin:
+        cs_pin.deinit()
+    if dc_pin:
+        dc_pin.deinit()
+    if reset_pin:
+        reset_pin.deinit()
+    print("Cleanup complete.") 
 #Note Setup
 note_freqs = {
-    1: 440.00,  # A
-    2: 466.16,  # Bb
-    3: 493.88,  # B
-    4: 523.25,  # C
-    5: 554.37,  # C#
-    6: 587.33,  # D
-    7: 622.25,  # Eb
-    8: 659.25,  # E
-    9: 698.46,  # F
-    10: 739.99, # F#
-    11: 783.99, # G
-    12: 830.61  # Ab
-# Button Setup
-button = digitalio.DigitalInOut(board.D23)   # <--- wire button to D23
-button.switch_to_input(pull=digitalio.Pull.UP)
-# Note Setup
-note_freqs = {
-    1: 440.00,   # A
-    2: 466.16,   # Bb
-    3: 493.88,   # B
-    4: 523.25,   # C
-    5: 554.37,   # C#
-    6: 587.33,   # D
-    7: 622.25,   # Eb
-    8: 659.25,   # E
-    9: 698.46,   # F
-    10: 739.99,  # F#
-    11: 783.99,  # G
-    12: 830.61   # Ab
+    '1': 440.00,  # A
+    '2': 466.16,  # Bb
+    '3': 493.88,  # B
+    '4': 523.25,  # C
+    '5': 554.37,  # C#
+    '6': 587.33,  # D
+    '7': 622.25,  # Eb
+    '8': 659.25,  # E
+    '9': 698.46,  # F
+    '10': 739.99, # F#
+    '11': 783.99, # G
+    '12': 830.61  # Ab
 }
-
-def number_to_notes(n):
-    digits = [int(d) for d in str(n)]
-    notes = []
-    for d in digits:
-        if d == 0:
-            continue
-        pitch = ((d - 1) % 12) + 1
-        notes.append(note_freqs[pitch])
-    return notes
-
 def play_tone(frequency, duration=0.4, fs=44100):
     t = np.linspace(0, duration, int(fs * duration), endpoint=False)
     wave = 0.5 * np.sin(2 * np.pi * frequency * t)
     sd.play(wave, samplerate=fs)
     sd.wait()
 
+def get_time_digits(hour, minute):
+    """
+    Converts the current hour and minute into a list of digit strings.
+    For example, 1:05 PM becomes ['1', '0', '5']. 12:30 PM becomes ['1', '2', '3', '0'].
+    """
+    # Convert 24-hour time to 12-hour format for the audible part
+    if hour == 0:
+        hour_12 = 12  # Midnight is 12 AM
+    elif hour > 12:
+        hour_12 = hour - 12
+    else:
+        hour_12 = hour
+
+    # Format into a single string, e.g., 7:05 -> "705", 12:34 -> "1234"
+    # The minute is zero-padded to always have two digits.
+    time_str = f"{hour_12}{minute:02d}"
+    
+    # Return a list of the individual characters (digits)
+    return list(time_str)
+
+print("Starting Audio Clock. Press Ctrl+C to exit.")
 # Main Loop
 while True:
-    # Get Current time
-    now = datetime.datetime.now()
-    hour = now.hour
-    minute = now.minute
-
-    # Draw a black filled box to clear the image.
-    draw.rectangle((0, 0, width, height), outline=0, fill=400)
-
-    #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
-    # Draw current time
-    time_text = now.strftime("%H:%M")
-    draw.text((10, 50), time_text, font=font, fill="#FFFFFF")
-    now = datetime.datetime.now()
-    hour = now.hour
-    minute = now.minute
-
-    # Only update & play when the minute changes
-    if not button.value:  # button pressed (active low)
+    try:
+        # Get Current time
         now = datetime.datetime.now()
         hour = now.hour
         minute = now.minute
 
-        # Clear display
-        draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
+        # --- Display Logic ---
+        # Draw a black filled box to clear the image.
+        draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-        # Draw current time
-        time_text = now.strftime("%H:%M")
-        draw.text((10, 50), time_text, font=font, fill="#FFFFFF")
-        disp.image(image, rotation)
+        # Format time for display (e.g., "01:05 PM")
+        time_display_str = now.strftime("%I:%M %p")
+        
+        # Get bounding box of the text
+        (font_width, font_height) = large_font.getsize(time_display_str)
+        
+        # Draw the time centered on the screen
+        draw.text(
+            (width // 2 - font_width // 2, height // 2 - font_height // 2),
+            time_display_str,
+            font=large_font,
+            fill=255,
+        )
 
-        # Get notes
-        notes = number_to_notes(hour) + number_to_notes(minute)
-        print(f"{time_text} → Notes {notes}")
+        # Display image.
+        if disp:
+            disp.image(image)
+            disp.show()
+        
+        # Also print to console for debugging
+        print(f"Current Time: {time_display_str}")
+        
+        # --- Audio Logic ---
+        # Get the sequence of digits for the current time
+        time_digits = get_time_digits(hour, minute)
+        
+        print(f"Playing tones for digits: {time_digits}")
 
-        # Play them
-        for freq in notes:
-            play_tone(freq)
-
-        # Simple debounce
+        # A slightly longer pause before starting the sequence
         time.sleep(0.5)
 
-    time.sleep(0.05)
-    # Display image.
-    disp.image(image, rotation)
-    
-    if not button.value:  # button pressed (active low)
-        print(f"{time_text}o Playing notes...")
-        notes = number_to_notes(hour) + number_to_notes(minute)
+        # Loop through each digit and play its corresponding note
+        for digit in time_digits:
+            frequency = NOTE_FREQS[digit]
+            play_tone(frequency, duration=0.3)
+            time.sleep(0.1) # A short pause between notes
 
-        # Play them
-        for freq in notes:
-            play_tone(freq)
+        # Wait until the start of the next minute
+        # This makes the clock announce the time once every minute
+        seconds_to_wait = 60 - now.second
+        print(f"Waiting for {seconds_to_wait} seconds until the next minute...\n")
+        time.sleep(seconds_to_wait)
 
-        # Simple debounce
-        time.sleep(0.5)
-    
-    time.sleep(1)
+    except KeyboardInterrupt:
+        print("\nExiting clock.")
+        # Clear the display on exit
+        if disp:
+            disp.fill(0)
+            disp.show()
+        break
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        time.sleep(10) # Wait before retrying
+
