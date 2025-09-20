@@ -87,9 +87,9 @@ image.paste(puddle, (35, 95), puddle)
 draw = ImageDraw.Draw(image)
 
 # initialize variables
-drop_h_x = 55
-drop_m_x = 95
-drop_s_x = 125
+drop_h_x = 60
+drop_m_x = 100
+drop_s_x = 130
 
 drop_h_y = 20
 drop_m_y = 55
@@ -108,7 +108,7 @@ RATE = 0.02
 SECOND = 1
 MINUTE = SECOND * 60
 HOUR = MINUTE * 60
-MAX_SIZE = 50
+MAX_SIZE = 40
 DROP_H_Y = 20
 DROP_M_Y = 60
 DROP_S_Y = 35
@@ -131,7 +131,7 @@ while True:
     if curr_time % MINUTE <= 0.5:
         drop_m_fall = True
     
-    if curr_time % SECOND <= 0.1:
+    if curr_time % SECOND <= 0.2:
         drop_s_fall = True
 
     # set droplet size
