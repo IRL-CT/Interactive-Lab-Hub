@@ -202,7 +202,7 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
-The part1 code is in screen_clock_part1.py.
+The part1 code is in [screen_clock_part1.py](screen_clock_part1.py).
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -252,8 +252,8 @@ You are permitted (but not required) to work in groups and share a turn in; you 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
 ### What’s in here
-- `screen_clock_part2.py`
-- `screen_curtain.py`
+- [screen_clock_part2.py]
+- [screen_curtain.py](screen_curtain.py)
 
 ### What `screen_curtain.py` does
 We created four “scenes,” like acts in a show:
