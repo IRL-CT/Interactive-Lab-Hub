@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
 from time import strftime, localtime, sleep
 from datetime import datetime, timedelta
-
+import vlc
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.D5) 
 dc_pin = digitalio.DigitalInOut(board.D25)
@@ -30,6 +30,25 @@ disp = st7789.ST7789(
     x_offset=53,
     y_offset=40,
 )
+is_playing = False
+instance = vlc.Instance('--aout=alsa')
+
+def play_song(song):
+    m = instance.media_new(song)
+    media_player.set_media(m)
+    media_player.audio_set_volume(70)
+    media_player.play()
+    is_playing = True
+
+def stop_song(p):
+    if is_playing:
+        p.pause()
+def volume_up(p):
+    current_volume = p.audio_get_volume()
+    vlc.libvlc_audio_set_volume(p, current_volume+10)
+def volume_down(p):
+    current_volume = p.audio_get_volume()
+    vlc.libvlc_audio_set_volume(p, current_volume-10)
 
 # Create blank image for drawing.
 # Make sure to create image with mode 'RGB' for full color.
@@ -74,10 +93,19 @@ lk_background_win_lottery = Image.open("image/lion-king-winner.webp").resize((wi
 wk_background_waiting = Image.open("image/wicked-waiting.jpg").resize((width, height))
 wk_background_lottery = Image.open("image/wicked-lottery.jpg").resize((width, height))
 wk_background_win_lottery = Image.open("image/wicked-winner.jpg").resize((width, height))
+lk_audio_waiting = "audios/LKCircle.mp3"
+lk_audio_lottery = "audios/LKWait.mp3"
+lk_audio_win_lottery = "audios/LKHakuna.mp3"
+wk_audio_waiting = "audios/WickedGood.mp3"
+wk_audio_lottery= "audios/WickedDancing.mp3"
+wk_audio_win_lottery = "audios/WickedDefy.mp3"
 
 background_waiting = [lk_background_waiting, wk_background_waiting]
 background_lottery = [lk_background_lottery, wk_background_lottery]
 background_win_lottery = [lk_background_win_lottery, wk_background_win_lottery]
+audio_waiting=[lk_audio_waiting, lk_audio_lottery]
+audio_lottery=[lk_audio_lottery, wk_audio_lottery]
+audio_win=[lk_audio_win_lottery, wk_audio_win_lottery]
 
 lottery_is_open = False
 lottery_opens = [9, 20]
@@ -102,12 +130,12 @@ while True:
         win_lottery = True
         image.paste(background_waiting[selected_musical], (0,0))
         # target = datetime.now() + timedelta(seconds=10)
-        target = datetime.now() + timedelta(hours=10)    
+        target = datetime.now() + timedelta(hours=1)    
 
     if win_lottery is True: 
         remaining = target - now
         image.paste(background_win_lottery[selected_musical], (0,0))
-
+        play_song(lk_audio_win_lottery[selected_musical])
         if remaining.total_seconds() <= 0:
             # hours, minutes, seconds = 0, 0, 0
             win_lottery = False
@@ -118,7 +146,6 @@ while True:
             draw.text((10, top+5), "Countdown (1hr):", font=font, fill=(255, 255, 255))
             draw.text((10, top + 30), countdown, font=font, fill=(255, 255, 255))
 
-        
     if win_lottery is False:
         if a_pressed and not b_pressed:
             selected_musical = (selected_musical + 1) % len(musicals)
