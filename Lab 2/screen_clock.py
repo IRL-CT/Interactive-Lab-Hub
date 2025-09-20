@@ -82,13 +82,14 @@ background_win_lottery = [lk_background_win_lottery, wk_background_win_lottery]
 lottery_is_open = False
 lottery_opens = [9, 20]
 lottery_closes = [15, 11]
-performance_date_delta = [1,0]
+performance_date_delta = [1,1]
 performance_time_list = [19, 19]
 win_lottery = False
 
 selected_musical = 0
 musicals = ["Lion King", "Wicked"]
 
+flash  = True
 while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
@@ -100,8 +101,8 @@ while True:
     if a_pressed and b_pressed:
         win_lottery = True
         image.paste(background_waiting[selected_musical], (0,0))
-        target = datetime.now() + timedelta(seconds=10)
-        # target = datetime.now() + timedelta(hours=10)    
+        # target = datetime.now() + timedelta(seconds=10)
+        target = datetime.now() + timedelta(hours=10)    
 
     if win_lottery is True: 
         remaining = target - now
@@ -155,8 +156,11 @@ while True:
             draw.text((10, top+5), "Countdown to Lottery:", font=font, fill=(255, 255, 255))
             draw.text((20, top + 30), waiting_time, font=font, fill=(255, 255, 255))
         else: 
+            flash = not flash
             draw.text((10, top+5), "Lottery Opens Until:", font=font, fill=(255, 255, 255))
-            draw.text((20,  top + 30), waiting_time, font=font, fill=(255, 255, 255))
+
+            if flash:
+                draw.text((20,  top + 30), waiting_time, font=font, fill=(255, 255, 255))
        
         draw.text((10, height //2 +10), "Next Performance:", font=font, fill=(255, 255, 255))
         draw.text((20, height //2 + 30), performance_time.strftime("%Y-%m-%d %H:%M"), font=font, fill=(255, 255, 255))
