@@ -11,6 +11,8 @@ It is worth spending a little time thinking about how you mark time, and what wo
 **Please indicate anyone you collaborated with on this Lab here.**
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
+I had the honor of working with Sachin and Nikhil on this lab. We are all able to bounce off of eachothers ideas. We all collaboratively brainstormed ideas, while i was able to draw out specific ideas and diagrams. We also all collaboratively worked on the code and the creation of both the bar clock as well as the season clock.
+
 ## Prep
 
 Lab Prep is extra long this week. Make sure to start this early for lab on Thursday.
@@ -214,18 +216,28 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
+- Our team decided to make a device that can track the passage of seasons. The user of this device can  control how fast time passes by pressing the buttons on the pi. We also made a bar loading seasons changing device.
+
 Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
+
+We began shaping our concept using a Verplank diagram and shared it with Gemini to help refine the details. The original link doesn’t seem to work, so I used this alternative one instead: http://hci.sapp.org/lectures/verplank/interaction/
+<img width="711" height="672" alt="Screen Shot 2025-09-21 at 12 25 29 PM" src="https://github.com/user-attachments/assets/14d62fb5-54c3-4d81-980d-3cb31bdaf79a" />
+<img width="757" height="492" alt="Screen Shot 2025-09-21 at 12 25 42 PM" src="https://github.com/user-attachments/assets/a8457190-6e1f-4fc5-aae9-377d8e263236" />
+
+*the concept itself was created entirely without AI. However, we did rely on AI tools to polish and produce the sketches shown above. In addition, AI assisted us in refining the code and troubleshooting errors during development.*
+
+Tree art images:  https://karboosx.itch.io/seazon-tree
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
-
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
-
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+Video: https://youtu.be/y9H2mT9Jgcs
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
