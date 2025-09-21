@@ -2,6 +2,7 @@ import time
 import datetime
 import digitalio
 import board
+import math
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import adafruit_rgb_display.st7789 as st7789
 
@@ -32,7 +33,7 @@ image = Image.new("RGB", (width, height))
 draw = ImageDraw.Draw(image)
 
 font_title = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
-font_car = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 14)
+font_car = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)  # bigger font for car
 font_small = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 12)
 
 backlight = digitalio.DigitalInOut(board.D22)
@@ -40,16 +41,18 @@ backlight.switch_to_output()
 backlight.value = True
 
 # ================= Helper Functions =================
-def gradient_colors(trips, max_trips=48):
-    """Compute top and bottom colors for gradient background"""
+def gradient_colors(trips, t, max_trips=48):
+    """Compute top and bottom colors for gradient background, with dynamic wave"""
     intensity = min(trips / max_trips, 1.0)
-    r_top = int(220 + 30 * intensity)
-    g_top = int(100 * (1 - intensity))
-    b_top = int(100 * (1 - intensity))
+    wave = (math.sin(t / 5) + 1) / 2  # oscillates between 0 and 1 every ~10s
 
-    r_bottom = int(150 + 105 * intensity)
-    g_bottom = int(20 * (1 - intensity))
-    b_bottom = int(20 * (1 - intensity))
+    r_top = int(180 + 50 * intensity + 30 * wave)
+    g_top = int(50 * (1 - intensity) + 40 * wave)
+    b_top = int(120 + 40 * wave)
+
+    r_bottom = int(120 + 100 * intensity + 40 * wave)
+    g_bottom = int(30 * (1 - intensity) + 20 * wave)
+    b_bottom = int(60 + 50 * wave)
     return (r_top, g_top, b_top), (r_bottom, g_bottom, b_bottom)
 
 
@@ -68,7 +71,6 @@ def draw_shadow(base_img, car_x, car_y, car_w, car_h, roof_height, blur_radius=6
     shadow = Image.new("RGBA", base_img.size, (0, 0, 0, 0))
     shadow_draw = ImageDraw.Draw(shadow)
 
-    # Roof shadow
     shadow_draw.polygon(
         [(car_x+offset, car_y+offset),
          (car_x+car_w+offset, car_y+offset),
@@ -77,14 +79,12 @@ def draw_shadow(base_img, car_x, car_y, car_w, car_h, roof_height, blur_radius=6
         fill=(0, 0, 0, 120)
     )
 
-    # Body shadow
     shadow_draw.rounded_rectangle(
         (car_x+offset, car_y+offset, car_x+car_w+offset, car_y+car_h+offset),
         radius=8,
         fill=(0, 0, 0, 120)
     )
 
-    # Blur to soften edges
     shadow = shadow.filter(ImageFilter.GaussianBlur(blur_radius))
     base_img.paste(shadow, (0, 0), shadow)
 
@@ -93,13 +93,13 @@ def draw_shadow(base_img, car_x, car_y, car_w, car_h, roof_height, blur_radius=6
 while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
 
-    # Time and trip calculation
     now = datetime.datetime.now()
+    t = time.time()  # continuous time for animations
     minutes_since_midnight = now.hour * 60 + now.minute + now.second / 60
     trips_float = minutes_since_midnight / 30  
 
     # Dynamic gradient background
-    top_color, bottom_color = gradient_colors(trips_float)
+    top_color, bottom_color = gradient_colors(trips_float, t)
     draw_vertical_gradient(draw, width, height, top_color, bottom_color)
 
     # ================= Draw Cable Car =================
@@ -121,12 +121,16 @@ while True:
         progress = (seconds_in_cycle - 900) / 900
         car_x = int((1 - progress) * (width - car_x_offset))
 
+    # Add sway animation (small oscillation left/right)
+    sway = int(5 * math.sin(t * 2))  # sway amplitude 5px, speed adjustable
+    car_x += sway  
+
     car_color = (135, 206, 250)   # Sky blue
 
     # Rope
     draw.line((car_x + car_w//2, cable_y, car_x + car_w//2, car_y), fill=(0, 100, 255), width=3)
 
-    # Shadow (soft, blurred)
+    # Shadow
     draw_shadow(image, car_x, car_y, car_w, car_h, roof_height=10)
 
     # Roof
@@ -154,7 +158,7 @@ while True:
         )
         draw.line((wx+2, wy+2, wx+win_w-2, wy+6), fill=(255, 255, 255), width=2)
 
-    # Trip count inside car
+    # Trip count inside car (bigger, centered)
     trips_text = f"{trips_float:.2f}"
     text_bbox = draw.textbbox((0, 0), trips_text, font=font_car)
     text_w = text_bbox[2] - text_bbox[0]
@@ -169,4 +173,4 @@ while True:
 
     # Update display
     disp.image(image, rotation)
-    time.sleep(1)
+    time.sleep(0.05)  # smaller step for smoother animation
