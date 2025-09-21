@@ -4,6 +4,7 @@ import digitalio
 import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
+from time import strftime
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.D5) 
@@ -64,7 +65,33 @@ while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
 
+    # Shell scripts for system monitoring from here:
+    # https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-USD-usage-and-WTTR-load
+    cmd = "hostname -I | cut -d' ' -f1"
+    IP = "IP: " + subprocess.check_output(cmd, shell=True).decode("utf-8")
+    cmd = "curl -s wttr.in/?format=2"
+    WTTR = subprocess.check_output(cmd, shell=True).decode("utf-8")
+    cmd = 'curl -s ils.rate.sx/1USD | cut -c1-6'
+    USD = "$1USD = ₪" + subprocess.check_output(cmd, shell=True).decode("utf-8") + "ILS"
+    cmd = "cat /sys/class/thermal/thermal_zone0/temp |  awk '{printf \"CPU Temp: %.1f C\", $(NF-0) / 1000}'" 
+    Temp = subprocess.check_output(cmd, shell=True).decode("utf-8")
+
     #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
+    # Draw the clock
+    current_time = strftime("%m/%d/%Y %H:%M:%S")
+    y = top
+    draw.text((x, y), current_time, font=font, fill="#00FF00")  # green clock
+    y += draw.textbbox((0,0), current_time, font=font)[3]
+
+    # System info below the clock
+    draw.text((x, y), IP, font=font, fill="#FFFFFF")
+    y += draw.textbbox((0,0), IP, font=font)[3]
+    draw.text((x, y), WTTR, font=font, fill="#FFFF00")
+    y += draw.textbbox((0,0), WTTR, font=font)[3]
+    draw.text((x, y), USD, font=font, fill="#0000FF")
+    y += draw.textbbox((0,0), USD, font=font)[3]
+    draw.text((x, y), Temp, font=font, fill="#FF0000")
+    y += draw.textbbox((0,0), Temp, font=font)[3]
 
     # Display image.
     disp.image(image, rotation)
