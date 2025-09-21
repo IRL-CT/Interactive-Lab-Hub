@@ -4,6 +4,7 @@ import digitalio
 import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
+from time import strftime
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.D5) 
@@ -65,6 +66,20 @@ while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
 
     #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
+
+        # Get current time
+    now = strftime("%m/%d/%Y %H:%M:%S")
+
+    # Center text roughly on screen
+    bbox = draw.textbbox((0, 0), now, font=font)
+    text_width = bbox[2] - bbox[0]
+    text_height = bbox[3] - bbox[1]
+    x = (width - text_width) // 2
+    y = (height - text_height) // 2
+
+    # Draw white text
+    draw.text((x, y), now, font=font, fill="#FFFFFF")
+
 
     # Display image.
     disp.image(image, rotation)
