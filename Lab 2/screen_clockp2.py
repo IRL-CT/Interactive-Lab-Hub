@@ -111,14 +111,14 @@ buttonA.switch_to_input(pull=digitalio.Pull.UP)
 buttonB.switch_to_input(pull=digitalio.Pull.UP)
 
 lk_background_waiting = Image.open("image/lionkingOpening.jpg").resize((width, height))
-lk_background_lottery = Image.open("image/lionkingOpening.jpg").resize((width, height))
+lk_background_lottery = Image.open("image/lionking-blue.jpg").resize((width, height))
 lk_background_win_lottery = Image.open("image/lion-king-winner.webp").resize((width, height))
 wk_background_waiting = Image.open("image/wicked-waiting.jpg").resize((width, height))
 wk_background_lottery = Image.open("image/wicked-lottery.jpg").resize((width, height))
 wk_background_win_lottery = Image.open("image/wicked-winner.jpg").resize((width, height))
-lk_audio_waiting = "audios/LKHakuna.mp3"
+lk_audio_waiting = "audios/LKCircle.mp3"
 lk_audio_lottery = "audios/LKWait.mp3"
-lk_audio_win_lottery = "audios/lionkingOpening.mp3"
+lk_audio_win_lottery = "audios/LKHakuna.mp3"
 wk_audio_waiting = "audios/WickedGood.mp3"
 wk_audio_lottery= "audios/WickedDancing.mp3"
 wk_audio_win_lottery = "audios/WickedDefy.mp3"
@@ -141,7 +141,7 @@ selected_musical = 0
 musicals = ["Lion King", "Wicked"]
 buttonA_state = {'pressed': False, 'click_times': []}
 buttonB_state = {'pressed':  False, 'click_times': []}
-DOUBLE_CLICK_THRESHOLD = 0.5
+DOUBLE_CLICK_THRESHOLD = 0.7
 
 
 def check_button(button, button_state, button_name):
@@ -203,13 +203,18 @@ while True:
         print("Double click detected on Button B")
         volume_down(song_state)
         
-    if last_audio_played != audio_waiting[selected_musical]:
+    if last_audio_played != audio_waiting[selected_musical] and not win_lottery:
         stop_song(song_state)
         play_song(audio_waiting[selected_musical])
         last_audio_played = audio_waiting[selected_musical]
         
     if win_lottery:
+        print("Win background")
         background_to_show = background_win_lottery[selected_musical]
+        if last_audio_played != audio_win[selected_musical]:
+            stop_song(song_state)
+            play_song(audio_win[selected_musical])
+            last_audio_played = audio_win[selected_musical]
     elif now.hour < lottery_closes[selected_musical]:
         background_to_show = background_lottery[selected_musical]
     else:
