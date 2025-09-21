@@ -41,6 +41,7 @@ draw = ImageDraw.Draw(image)
 # Load fonts
 font_title = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 16)
 font_car   = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
+font_note  = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 14)
 
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
@@ -54,7 +55,6 @@ while True:
 
     # Trips calculation
     trips_float = seconds_today / 1800   # 30min = 1800s
-    trips_int = int(trips_float)
     seconds_in_cycle = seconds_today % 1800
 
     # Background color: interpolate from light red → dark red
@@ -78,22 +78,42 @@ while True:
     # Cable car movement (smooth left ↔ right)
     if seconds_in_cycle < 900:
         progress = seconds_in_cycle / 900
-        car_x = int(progress * (width - 40))
+        car_x = int(progress * (width - 60))
     else:
         progress = (seconds_in_cycle - 900) / 900
-        car_x = int((1 - progress) * (width - 40))
+        car_x = int((1 - progress) * (width - 60))
 
     # Draw hanging line
-    rope_length = 30
-    draw.line((car_x + 20, cable_y, car_x + 20, cable_y + rope_length), fill=(0, 100, 255), width=3)
+    rope_length = 35
+    draw.line((car_x + 30, cable_y, car_x + 30, cable_y + rope_length), fill=(0, 100, 255), width=3)
 
-    # Draw cable car (bigger rectangle)
-    car_w, car_h = 60, 35
+    # Car body parameters
+    car_w, car_h = 60, 40
     car_y = cable_y + rope_length
-    draw.rectangle((car_x - 10, car_y, car_x - 10 + car_w, car_y + car_h), fill=(0, 128, 255))
+    car_color = (135, 206, 250)  # sky blue
 
-    # Draw trip number inside cable car
-    draw.text((car_x, car_y + 8), f"{trips_float:.2f}", font=font_car, fill=(255, 255, 255))
+    # Draw car roof (triangle/trapezoid)
+    roof_height = 10
+    draw.polygon(
+        [(car_x, car_y), (car_x + car_w, car_y), (car_x + car_w - 10, car_y - roof_height), (car_x + 10, car_y - roof_height)],
+        fill=car_color
+    )
+
+    # Draw car body (rounded rectangle)
+    draw.rounded_rectangle((car_x, car_y, car_x + car_w, car_y + car_h), radius=8, fill=car_color)
+
+    # Write trips inside car (centered)
+    trips_text = f"{trips_float:.2f}"
+    text_bbox = draw.textbbox((0, 0), trips_text, font=font_car)
+    text_w = text_bbox[2] - text_bbox[0]
+    text_h = text_bbox[3] - text_bbox[1]
+    text_x = car_x + (car_w - text_w) // 2
+    text_y = car_y + (car_h - text_h) // 2
+    draw.text((text_x, text_y), trips_text, font=font_car, fill=(255, 255, 255))
+
+    # Note at bottom-left
+    note_text = "1 round trip = 30 min"
+    draw.text((10, height - 20), note_text, font=font_note, fill=(255, 255, 255))
 
     # Update display
     disp.image(image, rotation)
