@@ -5,6 +5,7 @@ import digitalio
 import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
+import busio
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.D5) 
@@ -29,6 +30,25 @@ disp = st7789.ST7789(
     x_offset=53,
     y_offset=40,
 )
+
+# Setup I2C for button - Direct I2C approach
+i2c = busio.I2C(board.SCL, board.SDA)
+button_available = False
+
+# Check if button device is available
+while not i2c.try_lock():
+    pass
+try:
+    devices = i2c.scan()
+    if 0x6f in devices:
+        button_available = True
+        print("Button connected successfully at 0x6f!")
+    else:
+        print("No button found, running without button control")
+except:
+    print("I2C scan failed, running without button control")
+finally:
+    i2c.unlock()
 
 # Create blank image for drawing.
 # Make sure to create image with mode 'RGB' for full color.
@@ -61,6 +81,38 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+# Color and timer control variables
+timer_mode = False
+timer_start_time = None
+timer_duration = 5 * 60  # 5 minutes in seconds
+last_button_state = False
+
+def read_button_state():
+    """Read button state directly from I2C device"""
+    if not button_available:
+        return False
+    
+    try:
+        while not i2c.try_lock():
+            pass
+        
+        # Read from button device
+        result = bytearray(4)
+        i2c.readfrom_into(0x6f, result)
+        
+        # Button state is in the 4th byte, bit 2 (0x04)
+        # 0x03 = not pressed, 0x07 = pressed
+        button_pressed = bool(result[3] & 0x04)
+        return button_pressed
+        
+    except Exception as e:
+        print(f"Button read error: {e}")
+        return False
+    finally:
+        try:
+            i2c.unlock()
+        except:
+            pass
 
 def draw_hourglass(x, y_top, w, h, ratio, color=(200,200,0)):
     """
@@ -100,27 +152,112 @@ def draw_hourglass(x, y_top, w, h, ratio, color=(200,200,0)):
     draw.line((mid_x, mid_y, mid_x, bottom_y), fill=color)
 
 while True:
+    # Check button state if available
+    if button_available:
+        current_button_state = read_button_state()
+        
+        # Detect button press (rising edge)
+        if current_button_state and not last_button_state:
+            if not timer_mode:
+                # Start 5-minute timer
+                timer_mode = True
+                timer_start_time = time.time()
+                print("5-minute timer started!")
+            else:
+                # Stop timer and return to normal clock
+                timer_mode = False
+                timer_start_time = None
+                print("Timer stopped, back to normal clock")
+        
+        last_button_state = current_button_state
+    
     # Draw a black filled box to clear the image.
-    draw.rectangle((0, 0, width, height), outline=0, fill=400)
+    draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
 
-    #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
-    now = datetime.now()
-    hour = now.hour % 12
-    minute = now.minute
-    second = now.second
+    if timer_mode and timer_start_time:
+        # Timer mode - 5 minute countdown
+        elapsed_time = time.time() - timer_start_time
+        remaining_time = max(0, timer_duration - elapsed_time)
+        
+        if remaining_time <= 0:
+            # Timer finished
+            timer_mode = False
+            timer_start_time = None
+            print("Timer finished!")
+        
+        # Calculate timer display
+        minutes_left = int(remaining_time // 60)
+        seconds_left = int(remaining_time % 60)
+        
+        margin = 10
+        
+        # Two hourglass layout for minutes and seconds
+        min_x = margin
+        sec_x = width//2 + margin//2
+        sand_width = width//2 - margin
+        sand_height = height - 2*margin
+        
+        # Red colors for timer mode
+        min_timer_color = (255, 80, 80)    # Bright red for minutes
+        sec_timer_color = (255, 120, 120)  # Slightly lighter red for seconds
+        
+        # Calculate ratios for each hourglass
+        # Minutes: show progress within current minute (0-4 minutes range)
+        if timer_duration >= 60:
+            min_total = timer_duration // 60  # Total minutes (5)
+            min_elapsed = (timer_duration - remaining_time) // 60  # Minutes passed
+            min_ratio = min_elapsed / min_total if min_total > 0 else 0
+        else:
+            min_ratio = 0
+        
+        # Seconds: show progress within current minute (0-59 seconds)
+        sec_ratio = (60 - seconds_left) / 60
+        
+        # Draw two hourglasses for minutes and seconds
+        draw_hourglass(min_x, margin, sand_width, sand_height, min_ratio, min_timer_color)
+        draw_hourglass(sec_x, margin, sand_width, sand_height, sec_ratio, sec_timer_color)
+        
+        # Add labels below each hourglass
+        label_y = height - margin + 5
+        draw.text((min_x + sand_width//4, label_y), "MIN", font=font, fill=(255, 255, 255))
+        draw.text((sec_x + sand_width//4, label_y), "SEC", font=font, fill=(255, 255, 255))
+        
+        # Display remaining time as text in center
+        time_text = f"{minutes_left:02d}:{seconds_left:02d}"
+        try:
+            bbox = draw.textbbox((0, 0), time_text, font=font)
+            text_width = bbox[2] - bbox[0]
+        except AttributeError:
+            text_width, _ = draw.textsize(time_text, font=font)
+        
+        text_x = (width - text_width) // 2
+        text_y = height // 2 + 20
+        draw.text((text_x, text_y), time_text, font=font, fill=(255, 255, 255))
+        
+    else:
+        # Normal clock mode
+        now = datetime.now()
+        hour = now.hour % 12
+        minute = now.minute
+        second = now.second
 
-    margin = 10
-    hour_x = margin
-    min_x  = width//3 + margin
-    sec_x  = 2*width//3 - margin
-    sand_width = width//3 - 2*margin
-    sand_height = height - 2*margin
+        margin = 10
+        hour_x = margin
+        min_x  = width//3 + margin
+        sec_x  = 2*width//3 - margin
+        sand_width = width//3 - 2*margin
+        sand_height = height - 2*margin
 
-    # Draw hourglass for hour, min, and sec
-    draw_hourglass(hour_x, margin, sand_width, sand_height, hour/12,   (200,200,0))
-    draw_hourglass(min_x,  margin, sand_width, sand_height, minute/60, (200,180,0))
-    draw_hourglass(sec_x,  margin, sand_width, sand_height, second/60, (220,160,0))
+        # Normal yellow colors for clock mode
+        hour_color = (200, 200, 0)      # Yellow
+        min_color = (200, 180, 0)       # Yellow-orange
+        sec_color = (220, 160, 0)       # Orange
+
+        # Draw hourglass for hour, min, and sec
+        draw_hourglass(hour_x, margin, sand_width, sand_height, hour/12, hour_color)
+        draw_hourglass(min_x,  margin, sand_width, sand_height, minute/60, min_color)
+        draw_hourglass(sec_x,  margin, sand_width, sand_height, second/60, sec_color)
 
     # Display image.
     disp.image(image, rotation)
-    time.sleep(1)
+    time.sleep(0.1)  # Faster refresh for button responsiveness
