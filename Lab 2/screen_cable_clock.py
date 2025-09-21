@@ -33,7 +33,7 @@ image = Image.new("RGB", (width, height))
 draw = ImageDraw.Draw(image)
 
 font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
-font_car = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 20)  # bigger text
+font_car = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 20)
 font_small = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 12)
 
 backlight = digitalio.DigitalInOut(board.D22)
@@ -43,13 +43,13 @@ backlight.value = True
 
 # ================= Helper Functions =================
 def gradient_color(y, h, trips, max_trips=48):
-    """Return stronger red gradient based on vertical position"""
+    """Return stronger red gradient based on vertical position and trips"""
     intensity = min(trips / max_trips, 1.0)
-    top_red = 180
-    bottom_red = 255
+    top_red = 160  # lighter red
+    bottom_red = 255  # deeper red
     r = int(top_red + (bottom_red - top_red) * (y / h))
-    g = int(50 * (1 - y / h))
-    b = int(50 * (1 - y / h))
+    g = int(80 * (1 - intensity) * (1 - y / h))
+    b = int(80 * (1 - intensity) * (1 - y / h))
     return (r, g, b)
 
 
@@ -70,7 +70,7 @@ while True:
     minutes_since_midnight = now.hour * 60 + now.minute + now.second / 60
     trips_float = minutes_since_midnight / 30
 
-    # Draw gradient background
+    # Dynamic gradient background
     for y in range(height):
         color = gradient_color(y, height, trips_float)
         draw.line((0, y, width, y), fill=color)
@@ -104,27 +104,33 @@ while True:
     # Oscillation angle (±5 degrees)
     angle = math.radians(5) * math.sin(time.time() * 2)
 
-    # Car body (before rotation)
-    car_rect = [
+    # Rope
+    draw.line((pivot_x, pivot_y, pivot_x, car_y), fill=(0, 100, 255), width=3)
+
+    # Car roof (trapezoid, rotated)
+    roof_height = 10
+    roof = [
+        (car_x + 10, car_y - roof_height),
+        (car_x + car_w - 10, car_y - roof_height),
+        (car_x + car_w, car_y),
+        (car_x, car_y),
+    ]
+    roof_rot = [rotate_point(x, y, pivot_x, pivot_y, angle) for x, y in roof]
+    draw.polygon(roof_rot, fill=car_color)
+
+    # Car body (rounded rectangle simulated with polygon)
+    body = [
         (car_x, car_y),
         (car_x + car_w, car_y),
         (car_x + car_w, car_y + car_h),
         (car_x, car_y + car_h),
     ]
+    body_rot = [rotate_point(x, y, pivot_x, pivot_y, angle) for x, y in body]
+    draw.polygon(body_rot, fill=car_color)
 
-    # Rotate car body
-    car_rot = [rotate_point(x, y, pivot_x, pivot_y, angle) for x, y in car_rect]
-
-    # Draw rope
-    draw.line((pivot_x, pivot_y, pivot_x, car_y), fill=(0, 100, 255), width=3)
-
-    # Draw car body (rounded effect by polygon approximation)
-    draw.polygon(car_rot, fill=car_color)
-
-    # Windows (calculate rotated positions)
+    # Windows (two rounded rectangles, rotated)
     win_margin = 6
     win_w, win_h = 12, 14
-    windows = []
     for i in range(2):
         wx = car_x + win_margin + i * (win_w + 14)
         wy = car_y + 10
@@ -135,23 +141,18 @@ while True:
             (wx, wy + win_h),
         ]
         rect_rot = [rotate_point(x, y, pivot_x, pivot_y, angle) for x, y in rect]
-        windows.append(rect_rot)
+        draw.polygon(rect_rot, fill=(200, 230, 250), outline=(255, 255, 255))
 
-    for w in windows:
-        draw.polygon(w, fill=(200, 230, 250), outline=(255, 255, 255))
-
-    # Text inside car (rotated center)
+    # Text inside car (centered, rotates with car)
     trips_text = f"{trips_float:.2f}"
     text_bbox = draw.textbbox((0, 0), trips_text, font=font_car)
     text_w = text_bbox[2] - text_bbox[0]
     text_h = text_bbox[3] - text_bbox[1]
-    text_cx = (car_rect[0][0] + car_rect[1][0]) / 2
-    text_cy = (car_rect[0][1] + car_rect[2][1]) / 2
-    text_x = text_cx - text_w / 2
-    text_y = text_cy - text_h / 2
-    # Rotate text position
-    text_xr, text_yr = rotate_point(text_x, text_y, pivot_x, pivot_y, angle)
-    draw.text((text_xr, text_yr), trips_text, font=font_car, fill=(0, 0, 0))
+    text_cx = car_x + car_w / 2
+    text_cy = car_y + car_h / 2
+    tx, ty = text_cx - text_w / 2, text_cy - text_h / 2
+    txr, tyr = rotate_point(tx, ty, pivot_x, pivot_y, angle)
+    draw.text((txr, tyr), trips_text, font=font_car, fill=(0, 0, 0))
 
     # Labels
     draw.text((5, 5), "Cable round trips", font=font, fill=(255, 255, 255))
