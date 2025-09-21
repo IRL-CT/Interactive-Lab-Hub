@@ -188,6 +188,7 @@ Success Demo: https://drive.google.com/file/d/1WM5QmUveavN99GRojvJ6QMCvXsfU6AP8/
 
 ## Assignment that was formerly Lab 2 Part E.
 ### Modify the barebones clock to make it your own
+clock code: ![game-clock](game-clock.py)
 
 ![Verplank diagram](Verplank_diagram.png)
 
