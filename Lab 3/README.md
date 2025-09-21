@@ -10,9 +10,7 @@ We will focus on **audio** as the main modality for interaction to start; these 
 
 ### Pick up Web Camera If You Don't Have One
 
-Students who have not already received a web camera will receive their [IMISES web cameras](https://www.amazon.com/Microphone-Speaker-Balance-Conference-Streaming/dp/B0B7B7SYSY/ref=sr_1_3?keywords=webcam%2Bwith%2Bmicrophone%2Band%2Bspeaker&qid=1663090960&s=electronics&sprefix=webcam%2Bwith%2Bmicrophone%2Band%2Bsp%2Celectronics%2C123&sr=1-3&th=1) on Thursday at the beginning of lab. If you cannot make it to class on Thursday, please contact the TAs to ensure you get your web camera. 
-
-**Please note:** connect the webcam/speaker/microphone while the pi is *off*. 
+Students who have not already received a web camera will receive their [Logitech C270 Webcam](https://www.amazon.com/Logitech-Desktop-Widescreen-Calling-Recording/dp/B004FHO5Y6/ref=sr_1_3?crid=W5QN79TK8JM7&dib=eyJ2IjoiMSJ9.FB-davgIQ_ciWNvY6RK4yckjgOCrvOWOGAG4IFaH0fczv-OIDHpR7rVTU8xj1iIbn_Aiowl9xMdeQxceQ6AT0Z8Rr5ZP1RocU6X8QSbkeJ4Zs5TYqa4a3C_cnfhZ7_ViooQU20IWibZqkBroF2Hja2xZXoTqZFI8e5YnF_2C0Bn7vtBGpapOYIGCeQoXqnV81r2HypQNUzFQbGPh7VqjqDbzmUoloFA2-QPLa5lOctA.L5ztl0wO7LqzxrIqDku9f96L9QrzYCMftU_YeTEJpGA&dib_tag=se&keywords=webcam%2Bc270&qid=1758416854&sprefix=webcam%2Bc270%2Caps%2C125&sr=8-3&th=1) and bluetooth speaker on Wednesday at the beginning of lab. If you cannot make it to class this week, please contact the TAs to ensure you get these. 
 
 ### Get the Latest Content
 
@@ -22,7 +20,7 @@ As always, pull updates from the class Interactive-Lab-Hub to both your Pi and y
 
 ```
 pi@ixe00:~$ cd Interactive-Lab-Hub
-pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2022
+pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2025
 pi@ixe00:~/Interactive-Lab-Hub $ git add .
 pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab3 updates"
 pi@ixe00:~/Interactive-Lab-Hub $ git push
@@ -33,7 +31,14 @@ Option 2: On your your own GitHub repo, [create pull request](https://github.com
 ## Part 1.
 ### Setup 
 
-*DO NOT* forget to work on your virtual environment! 
+Activate your virtual environment
+
+```
+cd Interactive-Lab-Hub
+cd Lab\ 3
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
 Run the setup script
 ```chmod u+x setup.sh && sudo ./setup.sh  ```
@@ -110,6 +115,64 @@ python test_microphone.py -m en
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
+### 🤖 NEW: AI-Powered Conversations with Ollama
+
+Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
+
+#### Quick Start with Ollama
+
+**Installation** (takes ~5 minutes):
+```bash
+# Install Ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Download recommended model for Pi 5
+ollama pull phi3:mini
+
+# Install Python dependencies
+pip install -r ollama_requirements.txt
+```
+
+#### Ready-to-Use Scripts
+
+We've created three Ollama integration scripts for different use cases:
+
+**1. Basic Demo** - Learn how Ollama works:
+```bash
+python3 ollama_demo.py
+```
+
+**2. Voice Assistant** - Full speech-to-text + AI + text-to-speech:
+```bash
+python3 ollama_voice_assistant.py
+```
+
+**3. Web Interface** - Beautiful web-based chat with voice options:
+```bash
+python3 ollama_web_app.py
+# Then open: http://localhost:5000
+```
+
+#### Integration in Your Projects
+
+Simple example to add AI to any project:
+```python
+import requests
+
+def ask_ai(question):
+    response = requests.post(
+        "http://localhost:11434/api/generate",
+        json={"model": "phi3:mini", "prompt": question, "stream": False}
+    )
+    return response.json().get('response', 'No response')
+
+# Use it anywhere!
+answer = ask_ai("How should I greet users?")
+```
+
+**📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
+
+\*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
 
 ### Serving Pages
 
@@ -191,4 +254,5 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
