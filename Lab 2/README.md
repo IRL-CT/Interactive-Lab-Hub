@@ -266,17 +266,28 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
 Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
+**CABLE CAR ROUND TRIPS**
+<img src="images/cable_car.jpg" alt="cable car" width="500"/>   
+
+ **Reminder Clock**   
+<img src="images/time_reminder.pic.jpg" alt="cable car" width="500"/>
+
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
 
-\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*   
+<mark> A copy of my code is included in my Lab 2 GitHub repo: </mark>
 
+**gesture_daemon.py** – Implements gesture control. When the user waves their hand toward the screen, the detailed reminder view toggles on; waving again hides the reminder so that only the time is shown.
+
+**reminder_clock.py** – Implements button interactions. Button A cycles to the next reminder, Button B cycles to the previous reminder, and pressing A + B together deletes the current reminder.
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+\*\*\***Take a video of your PiClock.**\*\*\*   
+<mark> **Here is the video of my PiClock demo: [https://youtu.be/Pi32cqu7j2A](https://youtu.be/Pi32cqu7j2A)** </mark>
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
