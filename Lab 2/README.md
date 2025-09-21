@@ -45,9 +45,9 @@ C) [Set up your RGB display](#part-c)
 
 D) [Try out clock_display_demo](#part-d) 
 
-E) [Modify the code to make the display your own](#part-e)
+E) [Modify the code to make the display your own](#assignment-that-was-formerly-lab-2-part-e)
 
-F) [Make a short video of your modified barebones PiClock](#part-f)
+F) [Make a short video of your modified barebones PiClock](#assignment-that-was-formerly-part-f)
 
 G) [Sketch and brainstorm further interactions and features you would like for your clock for Part 2.](#part-g)
 
