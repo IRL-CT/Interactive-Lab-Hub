@@ -114,6 +114,20 @@ You can use vosk with the microphone by running
 python test_microphone.py -m en
 ```
 
+---
+Bonus:
+[Whisper](https://openai.com/index/whisper/)a neural network–based STT model developed and open sourced by OpenAI. It has higher accuracy, especially on noisy audio and diverse accents, compared to Vosk. It has different model size and for the edge machine, such as the RaspberryPi5 that we used for this class, tiny-en model work with decent latent without GPU. On the other hand, Vosk is more lightweight — optimized for running on low-power devices like Raspberry Pi. You can choose which STT model to use depending on the scenario.
+
+We provided two Whisper model, one with quantized 8bit faster-whisper input and the regular one, try it
+
+```
+python whisper_try.py
+```
+and
+
+```
+python faster_whisper_try.py
+```
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
 ### 🤖 NEW: AI-Powered Conversations with Ollama
@@ -255,6 +269,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
