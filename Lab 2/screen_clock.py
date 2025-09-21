@@ -30,46 +30,21 @@ disp = st7789.ST7789(
     y_offset=40,
 )
 
-# Create blank image for drawing.
-# Make sure to create image with mode 'RGB' for full color.
 height = disp.width  # we swap height/width to rotate it to landscape!
 width = disp.height
 image = Image.new("RGB", (width, height))
 rotation = 90
 
-# Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
 
-# Draw a black filled box to clear the image.
-draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
-image = Image.open("pianohands.jpg")
-
-
-# Alternatively load a TTF font.
-font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48)
-
-# Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output(value=True)
 
-# Scale the image to the smaller screen dimension
-image_ratio = image.width / image.height
-screen_ratio = width / height
-if screen_ratio < image_ratio:
-    scaled_height = height
-else:
-    scaled_width = width
-    scaled_height = image.height * width // image.width
-image = image.resize((scaled_width, scaled_height), Image.BICUBIC)
+# image cofig
+image = Image.open("pianohands.jpg").resize((width, height))
 
-# Crop and center the image
-x = scaled_width // 2 - width // 2
-y = scaled_height // 2 - height // 2
-image = image.crop((x, y, x + width, y + height))
-
-# Setup button on gpio23
-button = digitalio.DigitalInOut(board.D23)
-button.switch_to_input(pull=digitalio.Pull.UP)
+#load a TTF font.
+font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48)
 
 # Note system
 note_map = {
@@ -93,37 +68,61 @@ def play_time_as_notes():
     minute = now.tm_min
     
     tens = (minute // 10)
-    ones = (minute % 10) or 10
+    ones = (minute % 10)
     print(f"Digits - Hour: {hour}, Tens: {tens}, Ones: {ones}")
 
     # Map all numbers to notes
-    notes_to_play = [note_map[12], note_map[hour], note_map[tens], note_map[ones]]
+    notes_to_play = [note_map[5], note_map[hour], note_map[tens], note_map[ones]]
 
     print("Playing notes:", notes_to_play)
 
     for n in notes_to_play:
+        print("Playing note:", n)
         play_note(n)
-        print("Playing note:",n)
+        time.sleep(0.5)
 
 # display time
 def show_time_on_screen():
-    draw.rectangle((0, 0, width, height), outline=0, fill=0) 
+    # Create a new image for the time display, starting with the background
+    time_image = background_image.copy()
+    draw = ImageDraw.Draw(time_image)
+
+    # Get current time
     now = time.localtime()
-    time_text = f"{now.tm_hour:02d}:{now.tm_min:02d}:{now.tm_sec:02d}"
-    draw.text((x, y), time_text, font=font, fill=(255, 255, 255))
+    time_text = f"{now.tm_hour:02d}:{now.tm_min:02d}"
+
+    # Calculate text position to center it
+    text_width, text_height = draw.textsize(time_text, font=font)
+    text_x = (width - text_width) // 2
+    text_y = (height - text_height) // 2
+
+    # Draw a semi-transparent black box behind the text for better readability
+    draw.rectangle(
+        (text_x - 10, text_y - 10, text_x + text_width + 10, text_y + text_height + 10),
+        fill=(0, 0, 0, 128)
+    )
+    # Draw the time text
+    draw.text((text_x, text_y), time_text, font=font, fill=(255, 255, 255))
     
     # Update display
-    disp.image(image, rotation)
+    disp.image(time_image, rotation)
+
+# --- Main Loop ---
+last_minute = -1
 
 while True:    
+    now = time.localtime()
+    
+    clock_img = image.copy()
+    draw = ImageDraw.Draw(clock_img)
 
-    button_pressed = (button.value == False)    
-    backlight.value = True
-
-    play_time_as_notes()
-    #button press
-    if button_pressed:
-        show_time_on_screen()
-    disp.image(image, rotation)
+    current_time = time.strftime("%I:%M %p")
+    
+    draw.text((0, 0), current_time, font=font, fill="white")
+    disp.image(clock_img, rotation)
+    
+    if now.tm_min != last_minute:
+        play_time_as_notes()
+        last_minute = now.tm_min
 
     time.sleep(30)
