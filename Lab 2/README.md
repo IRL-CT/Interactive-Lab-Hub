@@ -250,9 +250,11 @@ You are permitted (but not required) to work in groups and share a turn in; you 
 
 [video link](https://drive.google.com/file/d/1czePDeVOzNTZ2pZRB3JytRmQpM2qhg5j/view?usp=drive_link)
 
-Music & Volume Change
-[video link](https://drive.google.com/file/d/1qkxTGRjWdE7F0SoBBiX94pVf0yKrqxtB/view?usp=drive_link)
-[video link](https://drive.google.com/file/d/1-S7UC0oqTkPrTbRzU3gmu1pX4ZtCu7Fr/view?usp=drive_link)
+Music & Volume Change:
+[Music Volume link](https://drive.google.com/file/d/1qkxTGRjWdE7F0SoBBiX94pVf0yKrqxtB/view?usp=drive_link)
+
+Changing Musicals and Winning with New Winning Music:
+[Winning Music link](https://drive.google.com/file/d/1-S7UC0oqTkPrTbRzU3gmu1pX4ZtCu7Fr/view?usp=drive_link)
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
