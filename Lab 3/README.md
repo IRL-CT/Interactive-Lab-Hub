@@ -116,9 +116,11 @@ python test_microphone.py -m en
 
 ---
 Bonus:
-[Whisper](https://openai.com/index/whisper/)a neural network–based STT model developed and open sourced by OpenAI. It has higher accuracy, especially on noisy audio and diverse accents, compared to Vosk. It has different model size and for the edge machine, such as the RaspberryPi5 that we used for this class, tiny-en model work with decent latent without GPU. On the other hand, Vosk is more lightweight — optimized for running on low-power devices like Raspberry Pi. You can choose which STT model to use depending on the scenario.
+[Whisper](https://openai.com/index/whisper/)is a neural network–based speech-to-text (STT) model developed and open-sourced by OpenAI. Compared to Vosk, Whisper generally achieves higher accuracy, particularly on noisy audio and diverse accents. It is available in multiple model sizes; for edge devices such as the Raspberry Pi 5 used in this class, the tiny.en model runs with reasonable latency even without a GPU.
 
-We provided two Whisper model, one with quantized 8bit faster-whisper input and the regular one, try it
+By contrast, Vosk is more lightweight and optimized for running efficiently on low-power devices like the Raspberry Pi. The choice between Whisper and Vosk depends on your scenario: if you need higher accuracy and can afford slightly more compute, Whisper is preferable; if your priority is minimal resource usage, Vosk may be a better fit.
+
+In this class, we provide two Whisper options: A quantized 8-bit faster-whisper model for speed, and the standard Whisper model. Try them out and compare the trade-offs.
 
 ```
 python whisper_try.py
@@ -269,6 +271,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
