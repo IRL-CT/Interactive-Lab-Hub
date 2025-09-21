@@ -186,11 +186,16 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 ## Part E. Now moved to Lab2 Part 2.
 
+
 ## Part F. Now moved to Lab2 Part 2.
 
 ## Part G. 
-## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
-
+## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.  
+Potential Ideas:  
+- Plant growing as time passes (screen too small?)
+- Ball bouncing corresponding to time, # of balls = hour
+- Dripping water corresponding to time (seconds, minutes, hour)
+![IMG_1F375F07E635-1](https://github.com/user-attachments/assets/dccbe8e0-debc-4872-a8fc-2fb167f83dee)
 
 # Prep for Part 2
 
@@ -210,6 +215,9 @@ Can you make time interactive? You can look in `screen_test.py` for examples for
 
 Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
 
+![IMG_0696](https://github.com/user-attachments/assets/4373d29c-11a6-4b85-b5f4-09c0345b10a4)
+
+
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
 
@@ -220,6 +228,10 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+
+https://github.com/user-attachments/assets/5fe8a620-bb33-49f7-bb18-17a4b71b8614
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
