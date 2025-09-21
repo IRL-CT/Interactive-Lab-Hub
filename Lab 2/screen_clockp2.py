@@ -126,7 +126,7 @@ wk_audio_win_lottery = "audios/WickedDefy.mp3"
 background_waiting = [lk_background_waiting, wk_background_waiting]
 background_lottery = [lk_background_lottery, wk_background_lottery]
 background_win_lottery = [lk_background_win_lottery, wk_background_win_lottery]
-audio_waiting=[lk_audio_waiting, lk_audio_lottery]
+audio_waiting=[lk_audio_waiting, wk_audio_waiting]
 audio_lottery=[lk_audio_lottery, wk_audio_lottery]
 audio_win=[lk_audio_win_lottery, wk_audio_win_lottery]
 
@@ -238,23 +238,13 @@ while True:
                 draw.text((10, top + 30), countdown, font=font, fill=(255, 255, 255))
 
         
-        
-        # image.paste(background_waiting[selected_musical], (0, 0))
-        
-        # 
             
     if win_lottery is False:
-        # if a_pressed and not b_pressed:
-        #     selected_musical = (selected_musical + 1) % len(musicals)
-        # if b_pressed and not a_pressed:
-        #     selected_musical = (selected_musical - 1) % len(musicals)
        
-        # image.paste(background_waiting[selected_musical], (0,0))
         target = now.replace(hour=lottery_opens[selected_musical], minute=0, second=0, microsecond=0)
         
         if now.hour < lottery_closes[selected_musical]: 
             target = now.replace(hour=lottery_closes[selected_musical], minute=0, second=0, microsecond=0)
-            # image.paste(background_lottery[selected_musical], (0,0))
             lottery_is_open = True
         # if it's past 3pm, set target to 9 AM tomorrow
         if now.hour >= lottery_closes[selected_musical]: 
