@@ -4,6 +4,8 @@ import json
 import glob
 from vosk import Model, KaldiRecognizer
 
+final_text_buffer = []
+
 # Define cache model directory and check if the model is in cache
 cache_model_path = os.path.expanduser("~/.cache/vosk/vosk-model-small-en-us-0.15")
 if not os.path.exists(cache_model_path):
@@ -39,8 +41,16 @@ while True:
     else:
         print(rec.PartialResult())
 
-final_result = rec.FinalResult()
-final_text = json.loads(final_result).get('text', '')
+last = json.loads(rec.FinalResult()).get("text", "").strip()
+if last:
+    print(f"Final: {last}")
+    final_text_buffer.append(last)
+
+final_text = ""
+if final_text_buffer:
+    print("Transcript (joined):")
+    final_text = " ".join(final_text_buffer)
+
 print("Final Recognized Text: ", final_text)
 
 # Check if any of the predefined words are in the recognized text

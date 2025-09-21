@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S /home/pi/Interactive-Lab-Hub/Lab\ 3/.venv/bin/python
+
 
 # prerequisites: as described in https://alphacephei.com/vosk/install and also python module `sounddevice` (simply run command `pip install sounddevice`)
 # Example usage using Dutch (nl) recognition model: `python test_microphone.py -m nl`
