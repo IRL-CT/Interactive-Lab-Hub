@@ -33,16 +33,7 @@ disp = st7789.ST7789(
 # Make sure to create image with mode 'RGB' for full color.
 height = disp.width  # we swap height/width to rotate it to landscape!
 width = disp.height
-image = Image.new("RGB", (width, height))
 
-# Get drawing object to draw on image.
-draw = ImageDraw.Draw(image)
-rotation = 90
-
-# Draw a black filled box to clear the image.
-draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
-disp.image(image, rotation)
-# Draw some shapes.
 # First define some constants to allow easy resizing of shapes.
 padding = -2
 top = padding
@@ -54,11 +45,20 @@ x = 0
 # same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 font = ImageFont.truetype("KeeponTruckin.ttf", 25)
+electric_font = ImageFont.truetype("Chalkboy.ttf", 40)
 
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
+
+# Buttons
+buttonA = digitalio.DigitalInOut(board.D23)    # GPIO23 (PIN 16)
+buttonB = digitalio.DigitalInOut(board.D24)    # GPIO24 (PIN 18)
+# Use internal pull-ups; buttons then read LOW when pressed.
+buttonA.switch_to_input(pull=digitalio.Pull.UP)
+buttonB.switch_to_input(pull=digitalio.Pull.UP)
+
 
 # load images
 image = Image.open("images/forest.jpg").resize([240, 135])
@@ -73,6 +73,8 @@ puddle = Image.open("images/puddle.webp").convert("RGBA").resize([150, 40])
 drop_h = Image.open("images/waterdrop.webp").convert("RGBA").resize([50, 50])
 drop_m = Image.open("images/waterdrop.webp").convert("RGBA").resize([50, 50])
 drop_s = Image.open("images/waterdrop.webp").convert("RGBA").resize([50, 50])
+
+rain = Image.open("images/rain.jpg").convert("RGBA").resize([240, 135])
 
 # adjust puddle transparency
 alpha = puddle.split()[-1]
@@ -103,6 +105,13 @@ drop_h_size = 50
 drop_m_size = 50
 drop_s_size = 50
 
+show_rain = -1
+prev_a_state = False
+prev_b_state = False
+
+start_time = 0
+total_time = 10
+
 # Constants
 RATE = 0.02
 SECOND = 1
@@ -116,7 +125,9 @@ DROP_S_Y = 35
 while True:
     # start with blank background
     clear = image.copy()
+    rain2 = rain.copy()
     draw = ImageDraw.Draw(clear)
+    draw_rain = ImageDraw.Draw(rain2)
 
     # print (time.strftime("%m/%d/%Y %H:%M:%S"), end="", flush=True)
     # print("\r", end="", flush=True)
@@ -172,8 +183,6 @@ while True:
     drop_s_r = drop_s.resize([MAX_SIZE, int(drop_s_size)])
     clear.paste(drop_s_r, (drop_s_x, drop_s_y), drop_s_r)
 
-
-
     # print time
     hour = time.strftime("%H:")
     minute = time.strftime("%M:")
@@ -185,7 +194,34 @@ while True:
     draw.text((100, y), minute, font=font, fill="blue")
     draw.text((140, y), second, font=font, fill="blue")
 
+    # decide whether to show rain or not based on button press
+    a_pressed = (buttonA.value == False)
+    b_pressed = (buttonB.value == False)
+
+    if not prev_a_state and a_pressed:
+        show_rain *= -1 
+        start_time = time.time()
+        total_time = 10
+
+    if not prev_b_state and b_pressed and show_rain == 1:
+        total_time += 10
+
+    prev_a_state = a_pressed
+    prev_b_state = b_pressed
+
+    # print timer
+    time_elapsed = time.time() - start_time
+    if show_rain == 1 and time_elapsed < total_time:
+        draw_rain.text((30, 10), f"Rain for {int(total_time - time_elapsed)}s", font=electric_font, fill="gray")
+    elif show_rain == 1 and time_elapsed >= total_time:
+        show_rain = -1
+        total_time = 10
+
     # Display image.
-    
-    disp.image(clear, rotation)
+
+    if show_rain == 1:
+        disp.image(rain2, rotation)
+    else:
+        disp.image(clear, rotation)
+
     time.sleep(RATE)
