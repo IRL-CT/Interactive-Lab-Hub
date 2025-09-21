@@ -68,6 +68,10 @@ x = scaled_width // 2 - width // 2
 y = scaled_height // 2 - height // 2
 image = image.crop((x, y, x + width, y + height))
 
+# Setup button on gpio23
+button = digitalio.DigitalInOut(board.D23)
+button.switch_to_input(pull=digitalio.Pull.UP)
+
 # Note system
 note_map = {
     1: "a1", 2: "a1s", 3: "b1", 4: "c1", 5: "c1s", 6: "d1",
@@ -97,11 +101,24 @@ def play_time_as_notes():
     for n in notes_to_play:
         play_note(n)
 
+# display time
+def show_time_on_screen():
+    now = time.localtime()
+    time_text = f"{now.tm_hour:02d}:{now.tm_min:02d}:{now.tm_sec:02d}"
 
+    # Clear screen
+    draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
 
-while True:
-    #TODO: Lab 2 part D work should be filled in here. You shou>
-    
+    # Draw time in the center
+    text_width, text_height = draw.textsize(time_text, font=font)
+    x = (width - text_width) // 2
+    y = (height - text_height) // 2
+    draw.text((x, y), time_text, font=font, fill=(255, 255, 255))
+
+    # Update display
+    disp.image(image, rotation)
+
+while True:    
 
     # Get time and display it
     current_time = time.strftime("%H:%M:%S")
@@ -112,5 +129,12 @@ while True:
     # Display image.
     disp.image(image, rotation)
     play_time_as_notes()
+    #button press
+    if not button.value:
+        if not button.value:  # LOW when pressed
+            show_time_on_screen()
+            time.sleep(0.3)  # debounce
+    else:
+        time.sleep(0.05)
 
     time.sleep(30)
