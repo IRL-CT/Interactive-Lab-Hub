@@ -46,14 +46,7 @@ image = Image.open("pianohands.jpg")
 
 
 # Alternatively load a TTF font.
-script_dir = os.path.dirname(os.path.abspath(__file__))
-font_path = os.path.join(script_dir, "Musicografi.ttf")
-try:
-    font = ImageFont.truetype(font_path, 48)  # try a bigger size so you can clearly see it
-    print("Custom font loaded successfully!")
-except Exception as e:
-    print("Error loading font:", e)
-    font = ImageFont.load_default()
+font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48)
 
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
@@ -75,18 +68,49 @@ x = scaled_width // 2 - width // 2
 y = scaled_height // 2 - height // 2
 image = image.crop((x, y, x + width, y + height))
 
+# Note system
+note_map = {
+    1: "a1", 2: "a1s", 3: "b1", 4: "c1", 5: "c1s", 6: "d1",
+    7: "d1s", 8: "e1", 9: "f1", 10: "f1s", 11: "g1", 12: "g1s"
+}
+
+#play note file
+def play_note(note_key):
+    filename = f"{note_key}.wav"
+    try:
+        subprocess.run(["aplay", "-q", filename])
+    except Exception as e:
+        print(f"Error playing {filename}: {e}")
+
+#time to notes
+def play_time_as_notes():
+    now = time.localtime()
+    hour = now.tm_hour % 12 or 12
+    minute = now.tm_min
+    
+    tens = (minute // 10) % 12 or 12
+    ones = (minute % 12) or 12
+    
+    notes_to_play = [note_map[hour], note_map[tens], note_map[ones]]
+    print("Playing notes:", notes_to_play)
+
+    for n in notes_to_play:
+        play_note(n)
+
+
 
 while True:
-    # Draw a black filled box to clear the image.
-    draw.rectangle((0, 0, width, height), outline=0, fill=400)
-
     #TODO: Lab 2 part D work should be filled in here. You shou>
     
 
     # Get time and display it
-    current_time = time.strftime("%m/%d/%Y %H:%M:%S")
+    current_time = time.strftime("%H:%M:%S")
     # Draw time 
+    y = 3
+    x = 1 
     draw.text((x, y), current_time, font=font, fill="#FFFFFF")
     # Display image.
     disp.image(image, rotation)
-    time.sleep(1)
+    play_time_as_notes()
+
+    time.sleep(30)
