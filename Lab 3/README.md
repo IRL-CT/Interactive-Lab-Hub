@@ -34,14 +34,15 @@ Option 2: On your your own GitHub repo, [create pull request](https://github.com
 Activate your virtual environment
 
 ```
-cd Interactive-Lab-Hub
-cd Lab\ 3
-python3 -m venv .venv
-source .venv/bin/activate
+pi@ixe00:~$ cd Interactive-Lab-Hub
+pi@ixe00:~/Interactive-Lab-Hub $ cd Lab\ 3
+pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python3 -m venv .venv
+pi@ixe00:~/Interactive-Lab-Hub $ source .venv/bin/activate
+(.venv)pi@ixe00:~/Interactive-Lab-Hub $ 
 ```
 
 Run the setup script
-```chmod u+x setup.sh && sudo ./setup.sh  ```
+```(.venv)pi@ixe00:~/Interactive-Lab-Hub $ pip install -r requirements.txt  ```
 
 ### Text to Speech 
 
@@ -254,5 +255,6 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
