@@ -249,18 +249,46 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
-Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
+Please sketch/diagram your clock idea. (Try using a [Verplank digram]  
+
+**CABLE CAR ROUND TRIPS**  
+<img src="cable car clock.png" width="500">
+
+## Key Features  
+
+- **Dynamic gradient background** – background colors shift over time, making the passage of time more vivid.  
+- **Cable car animation** – the car moves smoothly along the cable, with a **gentle pendulum swing**, simulating natural motion.  
+- **Stylized design** – car body is a **rounded rectangle with a trapezoid roof**, sky-blue color, and a subtle shadow effect.  
+- **Center-aligned text** – the trip count is displayed clearly in the middle of the car.  
+- **Explanatory text** – note at the bottom reminds users that one round trip = 30 minutes.  
+
+
+ **Reminder Clock**   
+<img src="interactive clock.jpg" width="500">  
+
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
 
-\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*   
+<mark> A copy of my code is included in my Lab 2 GitHub repo: </mark>
 
+**gesture_daemon.py** – Implements gesture control. When the user waves their hand toward the screen, the detailed reminder view toggles on; waving again hides the reminder so that only the time is shown.  
+
+**reminder_clock.py** – Implements button interactions. Button A cycles to the next reminder, Button B cycles to the previous reminder, and pressing A + B together deletes the current reminder.  
+
+**screen_cable_clock.py** – Implements the animated cable car clock with dynamic gradient background and pendulum-style swinging motion.  
+
+---
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+\*\*\***Take a video of your PiClock.**\*\*\*   
+<mark> **Here is the video of my Reminder Clock demo: 👉 [https://youtu.be/Pi32cqu7j2A](https://youtu.be/Pi32cqu7j2A)** </mark>
+
+<mark> **Here is the video of my Cable Clock demo: 👉 [https://youtu.be/d-vsA0yDSq8](https://youtu.be/d-vsA0yDSq8)** </mark>
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -281,4 +309,14 @@ As always, make sure you document contributions and ideas from others explicitly
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
 
+## Reflection  
 
+Throughout this project, I went through multiple **iterations**:  
+
+- Initially, I only had a static black background and a moving car, but no real personality.  
+- Then I experimented with **dynamic gradient backgrounds** to make the time passage more vivid.  
+- I refined the car’s **appearance** (adding rounded corners, a trapezoid roof, windows, and shadow effects) so that it looks more polished.  
+- I also made sure the **text alignment** was centered properly inside the car.  
+- Finally, I added a **pendulum swing** effect to the cable car, which makes the animation feel more natural and alive.  
+
+This iterative process taught me that small design changes — like color, movement, and alignment — can significantly affect how intuitive and enjoyable an interface feels. What started as a plain functional clock gradually became a **playful and interactive visualization of time**, something that feels less like “telling time” and more like “watching time travel.”  
