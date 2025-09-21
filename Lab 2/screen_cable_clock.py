@@ -2,7 +2,7 @@ import time
 import datetime
 import digitalio
 import board
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import adafruit_rgb_display.st7789 as st7789
 
 # ================= Display Setup =================
@@ -43,15 +43,13 @@ backlight.value = True
 def gradient_colors(trips, max_trips=48):
     """Compute top and bottom colors for gradient background"""
     intensity = min(trips / max_trips, 1.0)
+    r_top = int(220 + 30 * intensity)
+    g_top = int(100 * (1 - intensity))
+    b_top = int(100 * (1 - intensity))
 
-    r_top = int(200 + 55 * intensity)
-    g_top = int(80 * (1 - intensity))
-    b_top = int(80 * (1 - intensity))
-
-    r_bottom = int(128 + 127 * intensity)
-    g_bottom = int(40 * (1 - intensity))
-    b_bottom = int(40 * (1 - intensity))
-
+    r_bottom = int(150 + 105 * intensity)
+    g_bottom = int(20 * (1 - intensity))
+    b_bottom = int(20 * (1 - intensity))
     return (r_top, g_top, b_top), (r_bottom, g_bottom, b_bottom)
 
 
@@ -63,6 +61,32 @@ def draw_vertical_gradient(draw, width, height, top_color, bottom_color):
         g = int(top_color[1] * (1 - ratio) + bottom_color[1] * ratio)
         b = int(top_color[2] * (1 - ratio) + bottom_color[2] * ratio)
         draw.line((0, y, width, y), fill=(r, g, b))
+
+
+def draw_shadow(base_img, car_x, car_y, car_w, car_h, roof_height, blur_radius=6, offset=5):
+    """Draw soft shadow under cable car"""
+    shadow = Image.new("RGBA", base_img.size, (0, 0, 0, 0))
+    shadow_draw = ImageDraw.Draw(shadow)
+
+    # Roof shadow
+    shadow_draw.polygon(
+        [(car_x+offset, car_y+offset),
+         (car_x+car_w+offset, car_y+offset),
+         (car_x+car_w-10+offset, car_y-roof_height+offset),
+         (car_x+10+offset, car_y-roof_height+offset)],
+        fill=(0, 0, 0, 120)
+    )
+
+    # Body shadow
+    shadow_draw.rounded_rectangle(
+        (car_x+offset, car_y+offset, car_x+car_w+offset, car_y+car_h+offset),
+        radius=8,
+        fill=(0, 0, 0, 120)
+    )
+
+    # Blur to soften edges
+    shadow = shadow.filter(ImageFilter.GaussianBlur(blur_radius))
+    base_img.paste(shadow, (0, 0), shadow)
 
 
 # ================= Main Loop =================
@@ -97,32 +121,26 @@ while True:
         progress = (seconds_in_cycle - 900) / 900
         car_x = int((1 - progress) * (width - car_x_offset))
 
-    car_color = (135, 206, 250)  # Sky blue
-    shadow_color = (50, 80, 120)  # Dark blue shadow
+    car_color = (135, 206, 250)   # Sky blue
 
     # Rope
     draw.line((car_x + car_w//2, cable_y, car_x + car_w//2, car_y), fill=(0, 100, 255), width=3)
 
-    # Roof shadow
-    roof_height = 10
-    draw.polygon(
-        [(car_x+3, car_y+3), (car_x + car_w+3, car_y+3),
-         (car_x + car_w - 7, car_y - roof_height+3), (car_x + 13, car_y - roof_height+3)],
-        fill=shadow_color
-    )
+    # Shadow (soft, blurred)
+    draw_shadow(image, car_x, car_y, car_w, car_h, roof_height=10)
+
     # Roof
+    roof_height = 10
     draw.polygon(
         [(car_x, car_y), (car_x + car_w, car_y),
          (car_x + car_w - 10, car_y - roof_height), (car_x + 10, car_y - roof_height)],
         fill=car_color
     )
 
-    # Car shadow
-    draw.rounded_rectangle((car_x+3, car_y+3, car_x + car_w+3, car_y + car_h+3), radius=8, fill=shadow_color)
     # Car body
     draw.rounded_rectangle((car_x, car_y, car_x + car_w, car_y + car_h), radius=8, fill=car_color)
 
-    # Windows with highlight
+    # Windows
     win_margin = 6
     win_w, win_h = 12, 14
     for i in range(2):
@@ -143,9 +161,7 @@ while True:
     text_h = text_bbox[3] - text_bbox[1]
     text_x = car_x + (car_w - text_w) // 2
     text_y = car_y + (car_h - text_h) // 2
-
-    draw.rectangle((text_x-2, text_y-2, text_x+text_w+2, text_y+text_h+2), fill=(0, 0, 0))
-    draw.text((text_x, text_y), trips_text, font=font_car, fill=(255, 255, 255))
+    draw.text((text_x, text_y), trips_text, font=font_car, fill=(0, 0, 0))
 
     # ================= Labels =================
     draw.text((5, 5), "Cable round trips", font=font_title, fill=(255, 255, 255))
