@@ -46,12 +46,13 @@ def play_song(song, state=song_state):
         media_player.play()
         state["media_player"] = media_player
         state["is_playing"] = True
-        
+    
 def stop_song(state=song_state):
     if state["media_player"]:
         state["media_player"].pause()
         state["is_playing"] = False
         state["media_player"] = None
+        
 
 def volume_up(state=song_state):
     print("Volume")
@@ -110,7 +111,7 @@ buttonA.switch_to_input(pull=digitalio.Pull.UP)
 buttonB.switch_to_input(pull=digitalio.Pull.UP)
 
 lk_background_waiting = Image.open("image/lionkingOpening.jpg").resize((width, height))
-lk_background_lottery = Image.open("image/lionking-blue.jpg").resize((width, height))
+lk_background_lottery = Image.open("image/lionkingOpening.jpg").resize((width, height))
 lk_background_win_lottery = Image.open("image/lion-king-winner.webp").resize((width, height))
 wk_background_waiting = Image.open("image/wicked-waiting.jpg").resize((width, height))
 wk_background_lottery = Image.open("image/wicked-lottery.jpg").resize((width, height))
@@ -156,17 +157,14 @@ def check_button(button, button_state, button_name):
     if button.value and button_state['pressed']:
         button_state['pressed'] = False
 
-    # Remove clicks older than threshold
-    button_state['click_times'] = [
-        t for t in button_state['click_times']
-        if (now - t).total_seconds() <= DOUBLE_CLICK_THRESHOLD
-    ]
-
     # Detect double click
     if len(button_state['click_times']) == 2:
-        button_state['click_times'] = []  # Reset after double click
-        print(f"{button_name} DOUBLE click detected")
-        return "double"
+        if (button_state['click_times'][1] - button_state['click_times'][0]).total_seconds() <= DOUBLE_CLICK_THRESHOLD:
+            button_state['click_times'] = []  # Reset after double click
+            print(f"{button_name} DOUBLE click detected")
+            return "double"
+        else:
+            button_state['click_times'].pop(0)
 
     # Detect single click only if enough time has passed without second click
     if len(button_state['click_times']) == 1:
@@ -178,6 +176,7 @@ def check_button(button, button_state, button_name):
 
     return None
 
+last_audio_played = None
 while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
@@ -188,48 +187,74 @@ while True:
     clickA = check_button(buttonA, buttonA_state, "Button A")
     clickB = check_button(buttonB, buttonB_state, "Button B")
     both_pressed = a_pressed and b_pressed
-    
-    if a_pressed and b_pressed:
-        win_lottery = True
-        image.paste(background_waiting[selected_musical], (0,0))
-    else:
-        if clickA == "single":
-            print("Single click detected on Button A")
-            selected_musical = (selected_musical + 1) % len(musicals)
-        elif clickA == "double":
-            print("Double click detected on Button A")
-            volume_up(song_state)
-        
-        if clickB == "single":
-            print("Single click detected on Button B")
-            selected_musical = (selected_musical - 1) % len(musicals)
-        elif clickB == "double":
-            print("Double click detected on Button B")
-            volume_down(song_state)
-        image.paste(background_waiting[selected_musical], (0, 0))
-        play_song(audio_waiting[selected_musical])
-        
-    if win_lottery is True: 
-        remaining = target - now
-        image.paste(background_win_lottery[selected_musical], (0,0))
-        play_song(lk_audio_win_lottery[selected_musical])
-        if remaining.total_seconds() <= 0:
-            # hours, minutes, seconds = 0, 0, 0
-            win_lottery = False
-        else:
-            hours, remainder = divmod(int(remaining.total_seconds()), 3600)
-            minutes, seconds = divmod(remainder, 60)
-            countdown = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
-            draw.text((10, top+5), "Countdown (1hr):", font=font, fill=(255, 255, 255))
-            draw.text((10, top + 30), countdown, font=font, fill=(255, 255, 255))
 
+
+    if clickA == "single":
+        print("Single click detected on Button A")
+        selected_musical = (selected_musical + 1) % len(musicals)
+    elif clickA == "double":
+        print("Double click detected on Button A")
+        volume_up(song_state)
+    
+    if clickB == "single":
+        print("Single click detected on Button B")
+        selected_musical = (selected_musical - 1) % len(musicals)
+    elif clickB == "double":
+        print("Double click detected on Button B")
+        volume_down(song_state)
+        
+    if last_audio_played != audio_waiting[selected_musical]:
+        stop_song(song_state)
+        play_song(audio_waiting[selected_musical])
+        last_audio_played = audio_waiting[selected_musical]
+        
+    if win_lottery:
+        background_to_show = background_win_lottery[selected_musical]
+    elif now.hour < lottery_closes[selected_musical]:
+        background_to_show = background_lottery[selected_musical]
+    else:
+        print("Waiting background")
+        background_to_show = background_waiting[selected_musical]
+    
+    image.paste(background_to_show, (0, 0))
+
+        
+# Now actually paste the chosen background once
+# image.paste(background_to_show, (0, 0))
+    if both_pressed:
+        win_lottery = True
+        target = datetime.now() + timedelta(hours=1) 
+    else:
+        if win_lottery is True:
+            remaining = target - now
+            if remaining.total_seconds() <= 0:
+            # hours, minutes, seconds = 0, 0, 0
+                win_lottery = False
+            else:
+                hours, remainder = divmod(int(remaining.total_seconds()), 3600)
+                minutes, seconds = divmod(remainder, 60)
+                countdown = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+                draw.text((10, top+5), "Countdown (1hr):", font=font, fill=(255, 255, 255))
+                draw.text((10, top + 30), countdown, font=font, fill=(255, 255, 255))
+
+        
+        
+        # image.paste(background_waiting[selected_musical], (0, 0))
+        
+        # 
+            
     if win_lottery is False:
-        # Target time (9:00 AM today) for the lottery to be opened next
+        # if a_pressed and not b_pressed:
+        #     selected_musical = (selected_musical + 1) % len(musicals)
+        # if b_pressed and not a_pressed:
+        #     selected_musical = (selected_musical - 1) % len(musicals)
+       
+        # image.paste(background_waiting[selected_musical], (0,0))
         target = now.replace(hour=lottery_opens[selected_musical], minute=0, second=0, microsecond=0)
-        # if it's past 9 AM but before 3pm, set target to 3 PM today
+        
         if now.hour < lottery_closes[selected_musical]: 
             target = now.replace(hour=lottery_closes[selected_musical], minute=0, second=0, microsecond=0)
-            image.paste(background_lottery[selected_musical], (0,0))
+            # image.paste(background_lottery[selected_musical], (0,0))
             lottery_is_open = True
         # if it's past 3pm, set target to 9 AM tomorrow
         if now.hour >= lottery_closes[selected_musical]: 
@@ -247,21 +272,24 @@ while True:
 
         # Format nicely
         waiting_time = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
-
+        
         # Draw it on your canvas
         # draw.text((15, top), day_name, font=font, fill=(255, 255, 255))
         if lottery_is_open is False:
             draw.text((10, top+5), "Countdown to Lottery:", font=font, fill=(255, 255, 255))
             draw.text((20, top + 30), waiting_time, font=font, fill=(255, 255, 255))
         else: 
-            play_song(audio_lottery[selected_musical])
-
+            flash = not flash
             draw.text((10, top+5), "Lottery Opens Until:", font=font, fill=(255, 255, 255))
-            draw.text((20,  top + 30), waiting_time, font=font, fill=(255, 255, 255))
+
+            if flash:
+                draw.text((20,  top + 30), waiting_time, font=font, fill=(255, 255, 255))
        
         draw.text((10, height //2 +10), "Next Performance:", font=font, fill=(255, 255, 255))
         draw.text((20, height //2 + 30), performance_time.strftime("%Y-%m-%d %H:%M"), font=font, fill=(255, 255, 255))
-
+    
     # Display image.
     disp.image(image, rotation)
-    time.sleep(.03)
+    print("Image sent to display at", datetime.now())
+
+    time.sleep(.1)
