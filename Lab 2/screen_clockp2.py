@@ -177,6 +177,8 @@ def check_button(button, button_state, button_name):
     return None
 
 last_audio_played = None
+flash  = True
+
 while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=400)
@@ -184,11 +186,13 @@ while True:
     a_pressed = (buttonA.value == False)
     b_pressed = (buttonB.value == False)
     now = datetime.now()
+    # To test when the lottery is open, uncomment the line below
+    # now = now.replace(hour=10)
     clickA = check_button(buttonA, buttonA_state, "Button A")
     clickB = check_button(buttonB, buttonB_state, "Button B")
     both_pressed = a_pressed and b_pressed
 
-
+    print(now.strftime("%Y-%m-%d %H:%M:%S"))
     if clickA == "single":
         print("Single click detected on Button A")
         selected_musical = (selected_musical + 1) % len(musicals)
@@ -203,7 +207,7 @@ while True:
         print("Double click detected on Button B")
         volume_down(song_state)
         
-    if last_audio_played != audio_waiting[selected_musical] and not win_lottery:
+    if last_audio_played != audio_waiting[selected_musical] and not win_lottery and not now.hour < lottery_closes[selected_musical]:
         stop_song(song_state)
         play_song(audio_waiting[selected_musical])
         last_audio_played = audio_waiting[selected_musical]
@@ -216,6 +220,10 @@ while True:
             play_song(audio_win[selected_musical])
             last_audio_played = audio_win[selected_musical]
     elif now.hour < lottery_closes[selected_musical]:
+        if last_audio_played != audio_lottery[selected_musical]:
+            stop_song(song_state)
+            play_song(audio_lottery[selected_musical])
+            last_audio_played = audio_lottery[selected_musical]
         background_to_show = background_lottery[selected_musical]
     else:
         print("Waiting background")

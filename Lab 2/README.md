@@ -256,6 +256,13 @@ Music & Volume Change:
 Changing Musicals and Winning with New Winning Music:
 [Winning Music link](https://drive.google.com/file/d/1-S7UC0oqTkPrTbRzU3gmu1pX4ZtCu7Fr/view?usp=drive_link)
 
+Musicals play different music & displays different images if the lottery is open or not:
+- Lion King Lottery is open & Wicked is not:
+- [lk open video link](https://drive.google.com/file/d/18IlOuVOIIrNpbnIepBKwHyolMyOh_N2n/view?usp=drive_link)
+
+- Lion king & Wicked are open:
+- [both open video link] (https://drive.google.com/file/d/1mywDpt9Q_Ud_gNqxgy7D6oFiEhVtutHl/view?usp=drive_link)
+
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
 ### What’s in here
@@ -280,6 +287,11 @@ We created four “scenes,” like acts in a show:
 Curtains are the perfect metaphor for Broadway Musical!
 - They **build suspense** (everyone knows something magical is about to happen).  
 - They **tell a story** visually (closed = waiting, opening = excitement, open = showtime).   
+
+## Clock with Music
+By managing the musical state and using vlc library we can track which musical has been selected and change the music if the current musical does not the music playing on each cycle. We only change the music if there is a mismatch or we go into the winning state where we stop the currently playing music and change to the victory music. 
+Music was taken from the broadway soundtracks with the countdown music is different than the 
+The most challenging part was getting the double click for volume because we had to time it so that one click to change musicals was not the same as the double click for volume control. The way part 1 was set up was constantly rerendering the images and music could not be repeatedly queued because the song would not continue.
 
 ## Who did what
 - **Nana**: Took charge of the core Lab 1 code + added the curtain magic (`screen_curtain.py`).  
