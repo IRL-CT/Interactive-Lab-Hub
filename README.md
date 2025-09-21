@@ -3,7 +3,7 @@ for [Interactive Device Design](https://github.com/Daidai1031/Developing-and-Des
 
 Please place links here to the README.md's for each of your labs here:
 
-[Lab 1. Staging Interaction](Lab%201/)
+[Lab 1. Staging Interaction](https://github.com/Daidai1031/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md)
 
 [Lab 2. Interactive Prototyping: The Clock of Pi](https://github.com/Daidai1031/Interactive-Lab-Hub/blob/Fall2025/Lab%202/README.md)
 
