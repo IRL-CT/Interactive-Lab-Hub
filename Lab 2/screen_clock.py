@@ -48,8 +48,9 @@ font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48)
 
 # Note system
 note_map = {
-    0: None, 1: "a1", 2: "a1s", 3: "b1", 4: "c1", 5: "c1s", 6: "d1",
-    7: "d1s", 8: "e1", 9: "f1", 10: "f1s", 11: "g1", 12: "g1s"
+    0: None,
+    1: "c1", 2: "c1s", 3: "d1", 4: "d1s", 5: "e1", 6: "f1",
+    7: "f1s", 8: "g1", 9: "g1s", 10: "a1", 11: "a1s", 12: "b1"
 }
 
 #play note file
