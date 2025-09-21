@@ -160,7 +160,7 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 #### Displaying an image
 
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
-![imagetest](red_test.jpg)
+![imagetest](redtest.jpg)
 
 
 ## Part D. 
