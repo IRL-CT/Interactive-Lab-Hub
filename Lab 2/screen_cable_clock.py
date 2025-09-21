@@ -39,8 +39,8 @@ rotation = 90
 draw = ImageDraw.Draw(image)
 
 # Load fonts
-font_small = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 16)
-font_large = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 20)
+font_title = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 16)
+font_car   = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
 
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
@@ -48,39 +48,52 @@ backlight.switch_to_output()
 backlight.value = True
 
 while True:
-    # Clear screen
-    draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
+    # Current time → seconds from midnight
+    lt = localtime()
+    seconds_today = lt.tm_hour * 3600 + lt.tm_min * 60 + lt.tm_sec
 
-    # Time info
-    minutes_today = localtime().tm_hour * 60 + localtime().tm_min
-    seconds_today = minutes_today * 60 + localtime().tm_sec
-
-    # Trips
+    # Trips calculation
     trips_float = seconds_today / 1800   # 30min = 1800s
     trips_int = int(trips_float)
     seconds_in_cycle = seconds_today % 1800
 
-    # Display trip counts
-    draw.text((10, 10), f"Cable round trips: {trips_int}", font=font_small, fill=(255, 255, 0))
-    draw.text((10, height - 30), f"Trips = {trips_float:.2f}", font=font_large, fill=(0, 255, 0))
+    # Background color: interpolate from light red → dark red
+    max_trips = 48  # 24h / 0.5h
+    ratio = min(trips_float / max_trips, 1.0)
+    r = int(255 - (127 * ratio))  # 255 → 128
+    g = int(180 - (180 * ratio))  # 180 → 0
+    b = int(180 - (180 * ratio))  # 180 → 0
+    bg_color = (r, g, b)
 
-    # Draw cable line
-    cable_y = height // 2
-    draw.line((0, cable_y, width, cable_y), fill=(200, 200, 200), width=3)
+    # Fill background
+    draw.rectangle((0, 0, width, height), outline=0, fill=bg_color)
 
-    # Cable car position (smooth by seconds)
+    # Draw title
+    draw.text((10, 10), "CABLE ROUND TRIPS", font=font_title, fill=(255, 255, 255))
+
+    # Cable line position (move up a bit)
+    cable_y = height // 3
+    draw.line((0, cable_y, width, cable_y), fill=(0, 100, 255), width=4)
+
+    # Cable car movement (smooth left ↔ right)
     if seconds_in_cycle < 900:
-        # Moving right
         progress = seconds_in_cycle / 900
-        car_x = int(progress * (width - 30))
+        car_x = int(progress * (width - 40))
     else:
-        # Moving left
         progress = (seconds_in_cycle - 900) / 900
-        car_x = int((1 - progress) * (width - 30))
+        car_x = int((1 - progress) * (width - 40))
 
-    car_y = cable_y - 15
-    draw.rectangle((car_x, car_y, car_x + 30, car_y + 20), fill=(0, 128, 255))  # cable car
-    draw.line((car_x + 15, car_y, car_x + 15, cable_y), fill=(255, 255, 255), width=2)  # hanging line
+    # Draw hanging line
+    rope_length = 30
+    draw.line((car_x + 20, cable_y, car_x + 20, cable_y + rope_length), fill=(0, 100, 255), width=3)
+
+    # Draw cable car (bigger rectangle)
+    car_w, car_h = 60, 35
+    car_y = cable_y + rope_length
+    draw.rectangle((car_x - 10, car_y, car_x - 10 + car_w, car_y + car_h), fill=(0, 128, 255))
+
+    # Draw trip number inside cable car
+    draw.text((car_x, car_y + 8), f"{trips_float:.2f}", font=font_car, fill=(255, 255, 255))
 
     # Update display
     disp.image(image, rotation)
