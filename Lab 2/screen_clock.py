@@ -50,8 +50,7 @@ font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48)
 
 # Turn on the backlight
 backlight = digitalio.DigitalInOut(board.D22)
-backlight.switch_to_output()
-backlight.value = True
+backlight.switch_to_output(value=True)
 
 # Scale the image to the smaller screen dimension
 image_ratio = image.width / image.height
@@ -74,7 +73,7 @@ button.switch_to_input(pull=digitalio.Pull.UP)
 
 # Note system
 note_map = {
-    1: "a1", 2: "a1s", 3: "b1", 4: "c1", 5: "c1s", 6: "d1",
+    0: None, 1: "a1", 2: "a1s", 3: "b1", 4: "c1", 5: "c1s", 6: "d1",
     7: "d1s", 8: "e1", 9: "f1", 10: "f1s", 11: "g1", 12: "g1s"
 }
 
@@ -89,52 +88,42 @@ def play_note(note_key):
 #time to notes
 def play_time_as_notes():
     now = time.localtime()
+    print(now)
     hour = now.tm_hour % 12 or 12
     minute = now.tm_min
     
-    tens = (minute // 10) % 12 or 12
-    ones = (minute % 12) or 12
-    
-    notes_to_play = [note_map[hour], note_map[tens], note_map[ones]]
+    tens = (minute // 10)
+    ones = (minute % 10) or 10
+    print(f"Digits - Hour: {hour}, Tens: {tens}, Ones: {ones}")
+
+    # Map all numbers to notes
+    notes_to_play = [note_map[12], note_map[hour], note_map[tens], note_map[ones]]
+
     print("Playing notes:", notes_to_play)
 
     for n in notes_to_play:
         play_note(n)
+        print("Playing note:",n)
 
 # display time
 def show_time_on_screen():
+    draw.rectangle((0, 0, width, height), outline=0, fill=0) 
     now = time.localtime()
     time_text = f"{now.tm_hour:02d}:{now.tm_min:02d}:{now.tm_sec:02d}"
-
-    # Clear screen
-    draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
-
-    # Draw time in the center
-    text_width, text_height = draw.textsize(time_text, font=font)
-    x = (width - text_width) // 2
-    y = (height - text_height) // 2
     draw.text((x, y), time_text, font=font, fill=(255, 255, 255))
-
+    
     # Update display
     disp.image(image, rotation)
 
 while True:    
 
-    # Get time and display it
-    current_time = time.strftime("%H:%M:%S")
-    # Draw time 
-    y = 3
-    x = 1 
-    draw.text((x, y), current_time, font=font, fill="#FFFFFF")
-    # Display image.
-    disp.image(image, rotation)
+    button_pressed = (button.value == False)    
+    backlight.value = True
+
     play_time_as_notes()
     #button press
-    if not button.value:
-        if not button.value:  # LOW when pressed
-            show_time_on_screen()
-            time.sleep(0.3)  # debounce
-    else:
-        time.sleep(0.05)
+    if button_pressed:
+        show_time_on_screen()
+    disp.image(image, rotation)
 
     time.sleep(30)
