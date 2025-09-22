@@ -34,12 +34,52 @@ See the [Video Walkthrough](https://www.youtube.com/shorts/e1CtdqeT3o0)
 
 1. Charge the Bluetooth speaker with the paired USB type C cable.
 2. Disconnect the speaker from charging. Long press the power icon on the speaker body, until the small white LED flashes.
+
+#### Option 1: GUI Method (VNC)
 3. Open VNC viewer and connect your Pi5. On the top right corner, click the Bluetooth icon, and on the dropdown menu, select "Make Discoverable". Meanwhile, select "Add Device". Once you find the 'X1', pair and connect with it. You should hear a "beep" if the connection is successful
 <img src="https://github.com/IRL-CT/Interactive-Lab-Hub/blob/Fall2025-shadow/Lab%203/Bluetooth.png" alt="choose os" height="400" />
 
+#### Option 2: Command Line Method
+Alternatively, you can pair the X1 speaker from the terminal:
+
+1. **Start Bluetooth control:**
+   ```bash
+   sudo bluetoothctl
+   ```
+
+2. **Enable Bluetooth and make discoverable:**
+   ```bash
+   power on
+   agent on
+   discoverable on
+   scan on
+   ```
+
+3. **Find your X1 speaker (filter devices by name):**
+   ```bash
+   devices
+   ```
+   Then look for a line containing "X1", or use this command to filter:
+   ```bash
+   exit
+   echo 'devices' | bluetoothctl | grep -i "X1"
+   ```
+   This will show something like: `Device XX:XX:XX:XX:XX:XX X1`
+
+4. **Pair with your X1 (replace XX:XX:XX:XX:XX:XX with your device's MAC address):**
+   ```bash
+   bluetoothctl
+   pair XX:XX:XX:XX:XX:XX
+   trust XX:XX:XX:XX:XX:XX
+   connect XX:XX:XX:XX:XX:XX
+   exit
+   ```
+
+You should hear a "beep" from the speaker when successfully connected.
+
 ### Set up the Web camera
 
-1. stay in the VNC, open terminal and run this commandline:
+1. stay in the VNC, open terminal and run this commandline when on VNC or pi connect:
 
 	```
 	$ sudo apt install pavucontrol
