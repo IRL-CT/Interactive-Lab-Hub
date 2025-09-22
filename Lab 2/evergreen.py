@@ -3,8 +3,10 @@
 # Wiring change: connect the display's CS to GPIO5 (pin 29), not CE0.
 
 import time
+from datetime import datetime
 import digitalio
 import board
+from PIL import Image, ImageDraw, ImageFont
 
 import csv
 from adafruit_rgb_display.rgb import color565
@@ -75,19 +77,42 @@ def draw_streak(streak):
     rows = 7
     spacing = 3
     block_size = 30
-    start_x = 16
-    start_y = 3
+    start_x = 22
+    start_y = 207
+
+    # display a congratuatory message if the streak is 21 days and rotate 90 degrees
+    if len(streak) >= 21 and streak[-1][1] > 0:
+        display.fill_rectangle(0, 0, display.width, display.height, color565(0, 0, 0))
+        # draw "21 days!" in white
+        font = None
+        try:
+            from PIL import ImageFont
+            font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 20)
+        except Exception as e:
+            print("Could not load font, using default font:", e)
+        if font:
+            from PIL import Image, ImageDraw
+            image = Image.new("RGB", (display.height, display.width))
+            draw = ImageDraw.Draw(image)
+            text = "21 Days Evergreen!"
+            draw.text((10, 10), text, font=font, fill=(0, 255, 0))
+            display.image(image, 90)
+            time.sleep(5)
+        display.fill_rectangle(0, 0, display.width, display.height, color565(0, 0, 0))
+
 
     for i, (d, hours) in enumerate(streak[-21:]):
         row = i // rows
         col = i - (rows * row)
-        x = start_x + col * (block_size + spacing)
-        y = start_y + row * (block_size + spacing)
+        x = start_x + row * (block_size + spacing)
+        y = start_y - col * (block_size + spacing)
         green = min(int((hours / 8) * 255), 255)
+        print(x, y, col, row, i)
         display.fill_rectangle(x, y, block_size, block_size, color565(0, green, 0))
+    print("over")
 
 # Read CSV into a list of (date, hours) tuples
-tracker_file = "tracker.csv"
+tracker_file = "evergreen_tracker.csv"
 data = []
 
 prev_date = None
@@ -100,11 +125,15 @@ with open(tracker_file, newline='') as csvfile:
 
         if prev_date and (date - prev_date).days > 1:
             data = []  # reset if non-consecutive dates
-        if hours == 0:
-            data = []  # reset if zero hours
-        data.append((date, hours))
+        if hours == 0 and date != datetime.now().date():
+            data = []  # reset if zero hours and do not include this day
+        else:
+            data.append((date, hours))
         prev_date = date
 
+print(data)
+# clear the screen
+display.fill(color565(0, 0, 0)) 
 # display the data as green bars
 draw_streak(data)
 
@@ -122,15 +151,21 @@ while True:
         # Increment today's hours
         today = datetime.now().date()
         if data and data[-1][0] == today:
+            if data[-1][1] >= 12:
+                continue
             data[-1] = (today, data[-1][1] + 1)
+            print("add", data[-1])
+            draw_streak(data)
         else:
             data.append((today, 1))
+            draw_streak(data)
     elif b_pressed and not a_pressed:
         # Decrement today's hours
         today = datetime.now().date()
         if data and data[-1][0] == today and data[-1][1] > 0:
             data[-1] = (today, data[-1][1] - 1)
-    draw_streak(data)
+            print("minus",data[-1])
+            draw_streak(data)
     # write back to CSV
     with open(tracker_file, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
