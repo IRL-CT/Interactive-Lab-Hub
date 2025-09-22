@@ -1,5 +1,4 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
 
 Does it feel like time is moving strangely during this semester?
 
@@ -9,7 +8,7 @@ It is worth spending a little time thinking about how you mark time, and what wo
 
 **Please indicate anyone you collaborated with on this Lab here.**
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
-
+I learned about the pomodora method from my older brother which involves working for 25 minutes at a time and then taking a break.
 ## Prep
 
 Lab Prep is extra long this week. Make sure to start this early for lab on Thursday.
