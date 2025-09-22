@@ -215,6 +215,25 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
+# Evergreen tracker application
+# 1. Read the tracker CSV file from disk.
+# 2. Extract a sequence of (date, hours) pairs.
+# 3. Only keep the most recent consecutive sequence of days with nonzero working hours.
+# 4. Visualize each day's hours as a green bar:
+#    - Each bar's brightness and lightness reflect the number of hours worked (more hours = brighter green).
+
+# --- User Interaction ---
+# - Button A: Increments today's working hours by 1 (adds to today's entry in the CSV).
+# - Button B: Decrements today's working hours by 1 (subtracts from today's entry, but not below zero).
+# - Buttons A + B together: Turns off the backlight to save power.
+# - After each button press, update the display to reflect the new value for today.
+
+# --- Display ---
+# - The display shows a series of vertical green bars, one for each day in the current consecutive sequence.
+# - The height of each bar is fixed, but the brightness of the green color varies based on the number of hours worked that day.
+# - The display updates in real-time as buttons are pressed.
+# after the user reaches 21 streak days, the display will show a congratulatory message!
+
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
@@ -222,7 +241,7 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 \*\*\***Take a video of your PiClock.**\*\*\*
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
-
+https://drive.google.com/file/d/1Kn-wtulAN2dvr05UCd79TFr7sG9a_Mcn/view?usp=sharing
 ```
 (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git add .
 (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git commit -m 'your commit message here'
