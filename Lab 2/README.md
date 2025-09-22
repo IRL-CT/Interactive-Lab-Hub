@@ -281,6 +281,10 @@ Can you make time interactive? You can look in `screen_test.py` for examples for
 
 Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
 
+<p float="left">
+  <img src="images/diagram.png" alt="diagram" width="500" />
+</p>
+
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
 
@@ -291,6 +295,32 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+### 🎥 Demo Videos 
+
+#### ▶️ Pomodoro Function Walkthrough  
+
+##### What it does  
+- ⏱ **Focus (25 min)** → shows timer + progress bar  
+- ☕ **Break (5 min)** → shows timer + progress bar  
+- 🎨 **Themes** → Normal (white/black text) or Pink (all pink text)  
+- 🎉 **Celebration** → confetti when session ends  
+
+##### Buttons  
+- 🔘 **A short** → Start / Pause  
+- 🔘 **A long** → Reset timer  
+- 🔘 **B short** → Skip to next mode (Focus ↔ Break)  
+- 🔘 **B long** → Switch theme (Normal ↔ Pink)  
+- 🔘 **B very long** → Backlight ON / OFF
+  
+[![Watch this Short](https://img.youtube.com/vi/rfxv86qZfrQ/0.jpg)](https://www.youtube.com/watch?v=rfxv86qZfrQ)
+
+#### ▶️ Celebration Demo 
+
+A quick peek at the **confetti celebration** when you complete a session 🎊  
+
+[![Watch this Short](https://img.youtube.com/vi/bDxyTUm4wsE/0.jpg)](https://www.youtube.com/watch?v=bDxyTUm4wsE)
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
