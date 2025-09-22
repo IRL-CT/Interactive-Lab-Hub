@@ -226,6 +226,10 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
+For the next phase of this lab, our team collaborated to envision a clock concept we could all contribute to. We shared our initial ideas and identified overlapping themes that resonated across the group. Ultimately, we chose to revisit an idea first explored in last semester’s Design for Physical Interaction course in Ithaca: an alarm clock that wakes the user by pouring water on their head. This playful device introduces a humorous sense of frustration into the morning routine, turning the usual annoyance of alarm clocks into a moment of comedic mischief.
+
+![Storyboard of Alarm Clock Concept](media/storyboard.png)
+![Rendering](media/rendering.png)
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
