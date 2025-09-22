@@ -184,7 +184,95 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
-## Part E.
+## Part E. Now moved to Lab2 Part 2.
+
+## Part F. Now moved to Lab2 Part 2.
+
+## Part G. 
+## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+
+## 🍅⏳ Pomodoro Clock  
+
+### Core Concept  
+The **Pomodoro Clock** is more than just a timepiece — it is a personal productivity companion that supports focus, breaks, and balance. Inspired by the Pomodoro technique, the clock guides users through focused work and restorative breaks while adapting to the environment with gesture controls, proximity peek, auto-dimming, and customizable themes. The result is a calm, supportive, and enjoyable experience.  
+
+---
+
+### 🔧 Feature Specification  
+
+#### 1. Pomodoro Mode  
+- **Purpose**: Support productivity through focus/break cycles.  
+- **Details**:  
+  - Focus session: **25 minutes**  
+  - Break session: **5 minutes**  
+  - Progress ring fills the clock face  
+    - **Red** during focus  
+    - **Green** during break  
+  - **Micro-celebration** at session end (flash, pulse, confetti animation)  
+- **Controls**:  
+  - **Short press** → Start/stop session  
+  - **Long press** → Reset session  
+  - *(Other modes)* Long press may open settings or clear timer  
+
+#### 2. Proximity Peek (APDS9960 Sensor)  
+- **Purpose**: Provide quick glance information while saving energy  
+- **Details**:  
+  - Trigger: **Wave hand** near the device  
+  - Peek view shows:  
+    - Current time (large, minimal), or  
+    - Remaining Pomodoro time  
+    - Optional quick icons (battery, connection, IP)  
+- **Benefit**: Reduces distraction and gives the sense the device “notices” the user  
+
+#### 3. Auto-Dimming (APDS9960 Light Sensor)  
+- **Purpose**: Adjust display brightness to match environment  
+- **Details**:  
+  - Bright room → **High brightness**  
+  - Dark room → **Soft dim** or night mode colors  
+- **Benefit**: Improves comfort and reduces glare  
+
+#### 4. Quiet Hours  
+- **Purpose**: Respect nighttime environment  
+- **Details**:  
+  - Default schedule: **11 pm – 7 am**  
+  - Behavior:  
+    - Auto-dim screen  
+    - Disable chimes/alerts  
+    - Display 🌙 icon  
+  - Configurable later through settings  
+
+#### 5. Mode Toggling  
+- **Purpose**: Navigate different functions easily  
+- **Modes**:  
+  - **Clock → Pomodoro → Timer → World Clock**  
+- **Interactions**:  
+  - **Single button press** cycles through modes  
+  - **Swipe left/right** gesture also toggles between modes  
+- **Feedback**: Small mode label displayed at the top (e.g., “CLOCK,” “POMODORO”)  
+
+#### 6. Color Themes  
+- **Purpose**: Personalization and accessibility  
+- **Options**: Pastel, high-contrast, dark mode  
+- **Interactions**:  
+  - **Long-press menu** opens theme settings  
+  - **Swipe up/down** gesture cycles through themes  
+- **Benefit**: Matches user preference and environment  
+
+<p align="left">
+  <img src="images/pomo_red.png" alt="Pomodoro Time" width="180" />
+  <img src="images/pomo_green.png" alt="Break Time" width="180" />
+</p>
+
+# Prep for Part 2
+
+1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
+  
+
+2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
+
+# Lab 2 Part 2
+
+## Assignment that was formerly Lab 2 Part E.
 ### Modify the barebones clock to make it your own
 
 Does time have to be linear?  How do you measure a year? [In daylights? In midnights? In cups of coffee?](https://www.youtube.com/watch?v=wsj15wPpjLY)
@@ -193,10 +281,51 @@ Can you make time interactive? You can look in `screen_test.py` for examples for
 
 Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
 
+<p float="left">
+  <img src="images/diagram.png" alt="diagram" width="500" />
+</p>
+
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+
+
+## Assignment that was formerly Part F. 
+## Make a short video of your modified barebones PiClock
+
+\*\*\***Take a video of your PiClock.**\*\*\*
+
+
+### 🎥 Demo Videos 
+
+#### ▶️ Pomodoro Function Walkthrough  
+
+##### What it does  
+- ⏱ **Focus (25 min)** → shows timer + progress bar  
+- ☕ **Break (5 min)** → shows timer + progress bar  
+- 🎨 **Themes** → Normal (white/black text) or Pink (all pink text)  
+- 🎉 **Celebration** → confetti when session ends  
+
+##### Buttons  
+- 🔘 **A short** → Start / Pause  
+- 🔘 **A long** → Reset timer  
+- 🔘 **B short** → Skip to next mode (Focus ↔ Break)  
+- 🔘 **B long** → Switch theme (Normal ↔ Pink)  
+- 🔘 **B very long** → Backlight ON / OFF
+
+<a href="https://www.youtube.com/watch?v=rfxv86qZfrQ" target="_blank">
+  <img src="https://img.youtube.com/vi/rfxv86qZfrQ/0.jpg" alt="Watch this Short" width="480">
+</a>
+
+#### ▶️ Celebration Demo 
+
+A quick peek at the **confetti celebration** when you complete a session 🎊  
+
+<a href="https://www.youtube.com/watch?v=bDxyTUm4wsE" target="_blank">
+  <img src="https://img.youtube.com/vi/bDxyTUm4wsE/0.jpg" alt="Watch this Short" width="480">
+</a>
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -208,24 +337,6 @@ After you edit and work on the scripts for Lab 2, the files should be upload bac
 
 After that, Git will ask you to login to your GitHub account to push the updates online, you will be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you set up in Part A as the password instead of your account one! Go on your GitHub repo with your laptop, you should be able to see the updated files from your Pi!
 
-
-## Part F. 
-## Make a short video of your modified barebones PiClock
-
-\*\*\***Take a video of your PiClock.**\*\*\*
-
-## Part G. 
-## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
-
-
-# Prep for Part 2
-
-1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
-  
-
-2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
-
-# Lab 2 Part 2
 
 [Update your Lab Hub](pull_updates/README.md) to get the latest content and requirements for Part 2.
 
