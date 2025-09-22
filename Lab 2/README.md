@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+**Xiang Chang (xc529) & Dingran Dai (dd699)**
 
 Does it feel like time is moving strangely during this semester?
 
@@ -321,17 +321,125 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
 Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/358ca170-0106-4cf1-bec2-e6a81e2475b3" width="900" height="600"  >
+</p>
+
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
-
-\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+**Concept**
+
+- This PiClock shows time as: a **traditional digital clock** (baseline), an **hourglass** that “drains” over a duration, a **jittery heartbeat waveform**, a **wobbling egg**.
+
+- A rotary knob (I²C Seesaw encoder) switches views. An IMU (LSM6DS*) adds physicality—shake/tilt the device and the hourglass deforms, the heartbeat becomes erratic, and the egg rocks. A servo swings like a **pendulum (left 1 s, right 1 s)**, giving a tangible rhythm for time passing.
+
+**Video of our PiClock**
+
+1. In the first video, the display screen shows the current time in various ways.
+- A 9 g micro-servo drives a small gear back and forth—one second to the left, one second to the right—mimicking the motion of an old-fashioned clock pendulum.
+- Meanwhile, turning the top knob (controlled by a rotary encoder) cycles the screen through different time-themed visualizations: the flow of an hourglass, a heartbeat-like electrocardiogram, and a hatching egg animation.
+
+https://github.com/user-attachments/assets/81d5acea-d417-4cd6-95df-f77baac639f7
+
+2. In the second video, the focus shifts to active user interaction, where people can intervene to disrupt the objective flow of time. When a person shakes the egg, both the hourglass and the egg animations wobble, and the heartbeat trace intensifies its vibration, amplifying the sense that **human action can temporarily disturb time’s natural rhythm**.
+
+https://github.com/user-attachments/assets/1b1d2144-52de-40a9-bb68-448889e3be9a
+
+
+**Hardware**
+
+- ST7789 240×135 SPI TFT (Adafruit mini-PiTFT style)
+
+- I²C Seesaw Rotary Encoder (addr 0x36) with push button
+
+- IMU: any of the Adafruit LSM6DS family (LSM6DS3, LSM6DS33, LSM6DSOX) on I²C
+
+- 9g servo (or similar) powered from external 5V
+
+- Common GND between Pi and external 5V
+
+**Wiring**
+
+- Display (ST7789)
+
+- SPI: SCK/MOSI from Pi SPI0, DC → D25, CS → D5, RST → none
+
+- Offsets for 240×135 panels: x_offset=53, y_offset=40, rotation 90.
+
+- Backlight: D22 (GPIO 22) high = on.
+
+- Rotary (Seesaw): I²C SCL/SDA + 3V + GND, address 0x36.
+
+- Button pin on the Seesaw board typically 24 (internal pull-up).
+
+- IMU: I²C SCL/SDA + 3V + GND.
+
+- Servo: signal → GPIO 13 (can also use 12/19), power from external 5V, ground tied to Pi GND.
+
+  <img width="1006" height="537" alt="2ba72b7a24987760804a07cef7d4ff39" src="https://github.com/user-attachments/assets/bd687fb7-920a-440b-b614-3ac0f7278b03" />
+
+
+**Technical Overview**
+
+A single Python program that:
+
+- drives a 240×135 ST7789 SPI TFT for graphics
+
+- reads a Seesaw I²C rotary encoder (with push-button) to switch four visual modes
+
+- samples an I²C IMU (LSM6DS*) to modulate animations
+
+- and runs a servo pendulum on GPIO13 (hardware PWM via lgpio) at the same time
+
+The four modes are: **Clock, Hourglass, Heartbeat, Egg**. The **knob rotates** to change modes; a short press returns to the Clock. If the IMU is missing, tilt/shake gracefully fall back to (0, 0).
+
+**Mode logic**
+
+- **Clock**: Once per second, draw centered HH:MM:SS; date above; label “CLOCK”.
+
+- **Hourglass**: 60 s drain timer; top sand decreases as bottom fills; narrow “neck” stream. Tilt adds horizontal shear to the glass and sand layers; small label shows seconds remaining.
+
+- **Heartbeat**: Synthetic ECG (P-QRS-T) via a few Gaussians + sines. Shake raises BPM and adds noise → agitated trace over a grid.
+
+- **Egg**: Egg silhouette on an RGBA layer, rotated about its center. Tilt sets static lean (±12° clamp); shake adds micro wobble.
+
+**Key implementation details**
+
+**1. eesaw encoder**
+
+Uses I²C (no Pi-side quadrature decoding).
+
+Robust against bouncing; just compare `position` to the previous value each frame.
+
+Button read is active-low. If your board’s button pin differs, change the Seesaw pin number (commonly 24 or 9).
+
+**2. Servo timing (why cosine)**
+
+`cos()` gives natural easing—gentle near extremes, faster through center—so the gear motion looks physical rather than robotic.
+
+Tunables:
+
+Center (`1500µs`) → trim neutral angle,
+
+Amplitude (`±400µs`) → swing width,
+
+Period (`2.0 s`) → tempo.
+
+**3. ST7789 performance**
+
+SPI at 64 MHz; draw off-screen with PIL, then a single blit per frame (reduces tearing).
+
+Font metrics via `textbbox()` for crisp, centered text.
+
+**4. IMU fallback**
+
+No fake tilt/shake: if the IMU probe fails, we return `(0, 0)` so visuals stay stable and predictable.
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
