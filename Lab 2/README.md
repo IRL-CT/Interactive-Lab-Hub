@@ -11,7 +11,7 @@ It is worth spending a little time thinking about how you mark time, and what wo
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
 <details>
-<summary>## Prep<summary>
+  <summary>## Prep<summary>
   
   Lab Prep is extra long this week. Make sure to start this early for lab on Thursday.
   
