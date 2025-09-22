@@ -9,7 +9,7 @@ Adafruit-PureIO==1.1.8
 bidict==0.21.2
 click==7.1.2
 dnspython==1.16.0
-eventlet==0.31.0
+eventlet==0.40.3
 Flask==1.1.2
 Flask-SocketIO==5.0.1
 gevent==21.1.2
