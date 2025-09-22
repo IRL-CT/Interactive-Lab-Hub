@@ -247,8 +247,8 @@ You are permitted (but not required) to work in groups and share a turn in; you 
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
-
-[video link](https://drive.google.com/file/d/1czePDeVOzNTZ2pZRB3JytRmQpM2qhg5j/view?usp=drive_link)
+Curtain Opens as the show time approaches: 
+[Curtain Open](https://drive.google.com/file/d/1CMcjgGFUvTPyA9OwY-yK1p_7U0lHQFyb/view?usp=drive_link)
 
 Music & Volume Change:
 [Music Volume link](https://drive.google.com/file/d/1qkxTGRjWdE7F0SoBBiX94pVf0yKrqxtB/view?usp=drive_link)
