@@ -4,3 +4,16 @@
 venv
 venv*
 __*
+
+# Lab 3 Speech/Audio temporary files
+Lab\ 3/speech-scripts/test.txt
+Lab\ 3/speech-scripts/recorded_mono.wav
+Lab\ 3/speech-scripts/*.wav
+Lab\ 3/speech-scripts/ollama_venv/
+Lab\ 3/ollama/ollama_venv/
+Lab\ 3/dspeech/venv/
+Lab\ 3/.venv/
+
+# Audio output files
+*.wav
+welcome.wav

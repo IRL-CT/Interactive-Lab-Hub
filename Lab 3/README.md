@@ -44,6 +44,11 @@ pi@ixe00:~/Interactive-Lab-Hub $ source .venv/bin/activate
 Run the setup script
 ```(.venv)pi@ixe00:~/Interactive-Lab-Hub $ pip install -r requirements.txt  ```
 
+Next, run the setup script to install additional text-to-speech dependencies:
+```
+(.venv)pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ ./setup.sh
+```
+
 ### Text to Speech 
 
 In this part of lab, we are going to start peeking into the world of audio on your Pi! 
@@ -98,9 +103,10 @@ echo 'This sentence is spoken first. This sentence is synthesized while the firs
 ### Speech to Text
 
 Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
+
+Make sure you're running in your virtual environment with the dependencies already installed:
 ```
-pip install vosk
-pip install sounddevice
+source .venv/bin/activate
 ```
 
 Test if vosk works by transcribing text:
@@ -122,6 +128,13 @@ By contrast, Vosk is more lightweight and optimized for running efficiently on l
 
 In this class, we provide two Whisper options: A quantized 8-bit faster-whisper model for speed, and the standard Whisper model. Try them out and compare the trade-offs.
 
+Make sure you're in the Lab 3 directory with your virtual environment activated:
+```
+cd ~/Interactive-Lab-Hub/Lab\ 3/speech-scripts
+source ../.venv/bin/activate
+```
+
+Then test the Whisper models:
 ```
 python whisper_try.py
 ```
@@ -146,9 +159,18 @@ curl -fsSL https://ollama.com/install.sh | sh
 # Download recommended model for Pi 5
 ollama pull phi3:mini
 
-# Install Python dependencies
+# Install system dependencies for audio (required for pyaudio)
+sudo apt-get update
+sudo apt-get install -y portaudio19-dev python3-dev
+
+# Create separate virtual environment for Ollama (due to pyaudio conflicts)
+cd ollama/
+python3 -m venv ollama_venv
+source ollama_venv/bin/activate
+
+# Install Python dependencies in separate environment
 pip install -r ollama_requirements.txt
-```
+
 
 #### Ready-to-Use Scripts
 
