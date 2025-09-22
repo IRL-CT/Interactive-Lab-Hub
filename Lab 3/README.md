@@ -124,7 +124,7 @@ python test_microphone.py -m en
 
 ---
 Bonus:
-[Whisper](https://openai.com/index/whisper/)is a neural network–based speech-to-text (STT) model developed and open-sourced by OpenAI. Compared to Vosk, Whisper generally achieves higher accuracy, particularly on noisy audio and diverse accents. It is available in multiple model sizes; for edge devices such as the Raspberry Pi 5 used in this class, the tiny.en model runs with reasonable latency even without a GPU.
+[Whisper](https://openai.com/index/whisper/) is a neural network–based speech-to-text (STT) model developed and open-sourced by OpenAI. Compared to Vosk, Whisper generally achieves higher accuracy, particularly on noisy audio and diverse accents. It is available in multiple model sizes; for edge devices such as the Raspberry Pi 5 used in this class, the tiny.en model runs with reasonable latency even without a GPU.
 
 By contrast, Vosk is more lightweight and optimized for running efficiently on low-power devices like the Raspberry Pi. The choice between Whisper and Vosk depends on your scenario: if you need higher accuracy and can afford slightly more compute, Whisper is preferable; if your priority is minimal resource usage, Vosk may be a better fit.
 
@@ -137,7 +137,6 @@ source ../.venv/bin/activate
 ```
 
 Then test the Whisper models:
-```
 python whisper_try.py
 ```
 and
@@ -177,7 +176,6 @@ pip install -r ollama_requirements.txt
 #### Ready-to-Use Scripts
 
 We've created three Ollama integration scripts for different use cases:
-
 **1. Basic Demo** - Learn how Ollama works:
 ```bash
 python3 ollama_demo.py
@@ -274,6 +272,18 @@ The system should:
 *Document how the system works*
 
 *Include videos or screencaptures of both the system and the controller.*
+
+<details>
+  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
+  
+  **Before submitting your README.md:**
+  - This readme.md file has a lot of extra text for guidance.
+  - Remove all instructional text and example prompts from this file.
+  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
+  - Your final submission should be neat, focused on your own work, and easy to read for grading.
+  
+  This helps ensure your README.md is clear professional and uniquely yours!
+</details>
 
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
