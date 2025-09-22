@@ -312,15 +312,18 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 - 🔘 **B short** → Skip to next mode (Focus ↔ Break)  
 - 🔘 **B long** → Switch theme (Normal ↔ Pink)  
 - 🔘 **B very long** → Backlight ON / OFF
-  
-[![Watch this Short](https://img.youtube.com/vi/rfxv86qZfrQ/0.jpg)](https://www.youtube.com/watch?v=rfxv86qZfrQ)
+
+<a href="https://www.youtube.com/watch?v=rfxv86qZfrQ" target="_blank">
+  <img src="https://img.youtube.com/vi/rfxv86qZfrQ/0.jpg" alt="Watch this Short" width="480">
+</a>
 
 #### ▶️ Celebration Demo 
 
 A quick peek at the **confetti celebration** when you complete a session 🎊  
 
-[![Watch this Short](https://img.youtube.com/vi/bDxyTUm4wsE/0.jpg)](https://www.youtube.com/watch?v=bDxyTUm4wsE)
-
+<a href="https://www.youtube.com/watch?v=bDxyTUm4wsE" target="_blank">
+  <img src="https://img.youtube.com/vi/bDxyTUm4wsE/0.jpg" alt="Watch this Short" width="480">
+</a>
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
