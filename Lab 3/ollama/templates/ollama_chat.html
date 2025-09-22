@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollama Voice Assistant - Lab 3</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            line-height: 1.4;
+        }
+        
+        .user-message {
+            background: rgba(100, 200, 255, 0.3);
+            margin-left: 50px;
+            text-align: right;
+        }
+        
+        .ai-message {
+            background: rgba(255, 100, 150, 0.3);
+            margin-right: 50px;
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        #messageInput {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        #messageInput::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .status.connected {
+            background: rgba(0, 255, 0, 0.2);
+        }
+        
+        .status.disconnected {
+            background: rgba(255, 0, 0, 0.2);
+        }
+        
+        .thinking {
+            text-align: center;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Ollama Voice Assistant</h1>
+        
+        <div id="status" class="status disconnected">
+            Connecting to Ollama...
+        </div>
+        
+        <div id="chatContainer" class="chat-container">
+            <div class="message ai-message">
+                👋 Hello! I'm your Ollama-powered voice assistant. Type a message or use the voice features below!
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <input type="text" id="messageInput" placeholder="Type your message here..." />
+            <button class="btn" onclick="sendMessage()">Send</button>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" onclick="sendVoiceMessage()">🎤 Voice Chat</button>
+            <button class="btn" onclick="speakLastResponse()">🔊 Speak Last</button>
+            <button class="btn" onclick="clearChat()">🗑️ Clear Chat</button>
+            <button class="btn" onclick="checkStatus()">📊 Status</button>
+        </div>
+    </div>
+
+    <script>
+        // WebSocket connection
+        const socket = io();
+        let lastResponse = '';
+        
+        // DOM elements
+        const chatContainer = document.getElementById('chatContainer');
+        const messageInput = document.getElementById('messageInput');
+        const statusDiv = document.getElementById('status');
+        
+        // Check Ollama status on load
+        checkStatus();
+        
+        // Socket event handlers
+        socket.on('connect', function() {
+            console.log('Connected to server');
+        });
+        
+        socket.on('ai_response', function(data) {
+            addMessage(data.user_message, 'user');
+            addMessage(data.ai_response, 'ai');
+            lastResponse = data.ai_response;
+            hideThinking();
+        });
+        
+        socket.on('voice_response', function(data) {
+            addMessage(data.user_message + ' 🎤', 'user');
+            addMessage(data.ai_response + ' 🔊', 'ai');
+            lastResponse = data.ai_response;
+            hideThinking();
+        });
+        
+        socket.on('speak_complete', function(data) {
+            console.log('Speech completed:', data.text);
+        });
+        
+        // Functions
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                showThinking();
+                socket.emit('chat_message', { message: message });
+                messageInput.value = '';
+            }
+        }
+        
+        function sendVoiceMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                showThinking();
+                socket.emit('voice_chat', { message: message });
+                messageInput.value = '';
+            } else {
+                alert('Please type a message first, then click Voice Chat to hear the response!');
+            }
+        }
+        
+        function speakLastResponse() {
+            if (lastResponse) {
+                socket.emit('speak_request', { text: lastResponse });
+            } else {
+                alert('No response to speak yet!');
+            }
+        }
+        
+        function addMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}-message`;
+            messageDiv.textContent = text;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        function showThinking() {
+            const thinkingDiv = document.createElement('div');
+            thinkingDiv.className = 'thinking';
+            thinkingDiv.id = 'thinking';
+            thinkingDiv.textContent = '🧠 Thinking...';
+            chatContainer.appendChild(thinkingDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        function hideThinking() {
+            const thinkingDiv = document.getElementById('thinking');
+            if (thinkingDiv) {
+                thinkingDiv.remove();
+            }
+        }
+        
+        function clearChat() {
+            chatContainer.innerHTML = '<div class="message ai-message">👋 Chat cleared! How can I help you?</div>';
+            lastResponse = '';
+        }
+        
+        async function checkStatus() {
+            try {
+                const response = await fetch('/status');
+                const data = await response.json();
+                
+                if (data.status === 'connected') {
+                    statusDiv.className = 'status connected';
+                    statusDiv.textContent = `✅ Connected to Ollama (Model: ${data.current_model})`;
+                } else {
+                    statusDiv.className = 'status disconnected';
+                    statusDiv.textContent = `❌ ${data.message}`;
+                }
+            } catch (error) {
+                statusDiv.className = 'status disconnected';
+                statusDiv.textContent = '❌ Cannot connect to server';
+            }
+        }
+        
+        // Enter key to send message
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Auto-focus input
+        messageInput.focus();
+    </script>
+</body>
+</html>
