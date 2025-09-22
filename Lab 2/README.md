@@ -229,6 +229,8 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 Measuring Time in Musical Notes is a playful way of turning the clock into music. Instead of looking at numbers, the time is expressed as a short sequence of notes: one for the hour, and two for the minutes (split into tens and ones). For example, if it’s 10:58, you’d hear three distinct notes, forming a little melody that only makes sense at that moment. It transforms checking the time from a routine glance into a small musical experience, something you can listen to instead of read. Over the day, the clock creates different melodies, making time feel less rigid and a bit more alive.
 
+On the screen, there is a picture of a piano being played with the clock displayed for the sole purpose of accessibility. Until the user learns the association between the notes and the time, it is there for reference, not as the clock itself.
+
 -----------------------------------------------------------------------------------------------------------------------------
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
