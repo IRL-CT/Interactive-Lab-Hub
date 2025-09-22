@@ -214,6 +214,11 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 ![Verplank digram](./Verplank_digram.jpg)
 
+
+Our Piclock idea uses the metaphor of time flowing like sand in an hourglass. Instead of showing digital numbers, we display time through three hourglasses on the screen - one for hours, one for minutes, and one for seconds. When each time unit fills up, it triggers the next level, just like sand flowing from top to bottom. 
+
+Users can watch the sand move to understand how time passes. The buttons allow users to switch between timer mode and regular clock display.
+
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
 
