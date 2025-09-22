@@ -212,14 +212,16 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
+![Verplank digram](./Verplank_digram.jpg)
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
-![Verplank digram](./Verplank_digram.jpg)
+
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
 *[Updated Attempt](https://youtube.com/shorts/gtvHuZM5ic4)*
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
