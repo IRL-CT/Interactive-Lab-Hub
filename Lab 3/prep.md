@@ -32,8 +32,8 @@ See the [Video Walkthrough](https://www.youtube.com/shorts/e1CtdqeT3o0)
 
 1. Charge the Bluetooth speaker with the paired USB type C cable.
 2. Disconnect the speaker from charging. Long press the power icon on the speaker body, until the small white LED flashes.
-3. Open VNC viewer and connect your Pi5. On the top right corner, click the Bluetooth icon, and make the Pi5 discoverable. Once you find the 'X1', pair and connect with it. You should hear a "beep" if the connection is successful
-
+3. Open VNC viewer and connect your Pi5. On the top right corner, click the Bluetooth icon, and on the dropdown menu, select "Make Discoverable". Meanwhile, select "Add Device". Once you find the 'X1', pair and connect with it. You should hear a "beep" if the connection is successful
+<img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/wiki/images/pi_imager_os_select.png" alt="choose os" height="200" />
 
 ### Set up the Web camera
 
@@ -47,6 +47,7 @@ See the [Video Walkthrough](https://www.youtube.com/shorts/e1CtdqeT3o0)
  	```
 	$ pavucontrol
 	```
+<img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/wiki/images/pi_imager_os_select.png" alt="choose os" height="200" />
 3. Navigate to the Configuration, make sure the profile of the C270 Webcam is Mono Input
 4. Navigate to the Input Devices, you should see a bar moving as you speak - which means you have set up correctly
 	
