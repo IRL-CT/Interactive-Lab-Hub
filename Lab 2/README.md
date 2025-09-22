@@ -223,9 +223,37 @@ Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://c
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
-
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
+---
+
+### Overview
+
+A **shared dining device** designed to make hotpot or barbecue experiences more **convenient, fun, and perfectly timed**. The tool helps diners know exactly when their ingredients, like meat, seafood, or vegetables, are ready without needing to check their phones or guess.
+
+### Scenario
+
+Imagine sitting at a hotpot or Korean barbecue restaurant with friends. Instead of constantly asking “Is this ready yet?” or pulling out your phone timer, you simply select your ingredient on the device, and it takes care of the timing for you.
+
+### Target Users
+
+- **Casual diners** who don’t know the proper cooking times for different ingredients.
+- **Groups of friends or families** who want to focus on conversation instead of managing timers.
+
+### Key Functions
+
+- **Menu Page** – Users scroll through ingredient options (beef, shrimp, vegetables, etc.).
+  - **Button A**: Scroll through the menu to choose the ingredient.
+  - **Button B**: Confirm selection and move to the countdown page.
+- **Countdown Page** – Displays a timer specific to the selected ingredient’s ideal cooking time.
+- **Exit Countdown Mode** – Press buttons A + B simultaneously to stop the timer and return to the menu.
+- **Notification** – At the end of the countdown, the device displays a clear message indicating the food is ready to eat.
+
+### Goal
+
+- **Convenience** – No need for phones or manual timing.
+- **Fun** – Adds a playful, interactive element to the dining experience.
+- **Better-Timed Food** – Reduces overcooking or undercooking, leading to a tastier meal.
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
