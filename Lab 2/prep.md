@@ -158,6 +158,10 @@ sudo nmcli connection add type wifi con-name "HomeWiFi" ifname wlan0 ssid "YourN
 
 **Replace `YourNetworkName` and `YourPassword` with your actual home WiFi details.**
 
+E.g. when setting up the Wifi for the house:
+```bash
+sudo nmcli connection add type wifi con-name "WhiteSky-Cornell" ifname wlan0 ssid "WhiteSky-Cornell" wifi-sec.key-mgmt wpa-psk wifi-sec.psk “THEPASSWORDHERE" connection.autoconnect yes
+```
 **Why this matters:** If you only have school WiFi configured and take your Pi home, you'll lose SSH access and won't be able to connect remotely to fix it! Having home WiFi pre-configured means your Pi will automatically connect when you get home.
 
 **Verify it worked:**
@@ -251,7 +255,7 @@ There is plenty more to learn about using the terminal to navigate a computer bu
 
 
 ### Using VNC to see your Pi desktop
-Another convenient way to remotely connect to your Pi is using VNC (Virtual Network Computing), it essentially is remote login. The easiest client to use is [VNC Connect](https://www.realvnc.com/en/connect/download/viewer/). Download and install it. Once that's done type the IP address of your Pi in the text-box at the top. 
+Another convenient way to remotely connect to your Pi is using VNC (Virtual Network Computing), it essentially is remote login. The easiest client to use is [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/). Download and install it. Once that's done type the IP address of your Pi in the text-box at the top. 
 ![](images/VNC1.png)
 
 After that a login window should appear, use your normal logins (originally: Account=pi, Password=raspberry).
@@ -263,6 +267,19 @@ See here for more troubleshooting [realvnc.com Pi Setup](https://help.realvnc.co
 
 
 At that point the normal RPi desktop should appear and you can start and stop programs from here. 
+
+### Raspberry Pi Connect - Alternative Remote Access
+
+**Quick addendum**: Raspberry Pi now has its own in-house solution for screen sharing via [Raspberry Pi Connect](https://www.raspberrypi.com/documentation/services/connect.html). This requires linking your Pi to a Raspberry Pi account, but then allows remote SSH and screen sharing through just a browser window, even when on different networks.
+
+**Setup** (SSH into your Pi first):
+```bash
+rpi-connect on
+loginctl enable-linger  # Set rpi connect to autostart even when no user is logged in
+rpi-connect signin 
+```
+
+After setup, your Pi will appear on: https://connect.raspberrypi.com/devices and you can connect from anywhere.
 
 ### Setting up WendyTA - Your AI Teaching Assistant
 
