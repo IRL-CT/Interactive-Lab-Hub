@@ -5,6 +5,7 @@ import digitalio
 import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
+from datetime import datetime
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.D5) 
@@ -44,7 +45,7 @@ backlight.switch_to_output(value=True)
 #image = Image.open("pianohands.jpg").resize((width, height))
 
 #load a TTF font.
-font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48)
+font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 30)
 
 # Note system
 note_map = {
@@ -54,8 +55,8 @@ note_map = {
 }
 # image system
 image_map = {
-    1: "1piano", 2: "2piano", 3: "3piano", 4: "4piano", 5: "5piano", 6: "6piano",
-    7: "7piano", 8: "8piano", 9: "9piano", 10: "10piano", 11: "11piano", 12: "12piano"
+    1: "1piano.jpg", 2: "2piano.jpg", 3: "3piano.jpg", 4: "4piano.jpg", 5: "5piano.jpg", 6: "6piano.jpg",
+    7: "7piano.jpg", 8: "8piano.jpg", 9: "9piano.jpg", 10: "10piano.jpg", 11: "11piano.jpg", 12: "12piano.jpg"
 }
 #play note file
 def play_note(note_key):
@@ -128,11 +129,11 @@ while True:
     image_file = image_map[current_hour_12]
     
     # Open and resize the image to fit the display
-    clock_img = Image.open(image_file).resize((width, height)).convert("RGB")
+    clock_img = Image.open(image_file).resize((width, height))
 
     draw = ImageDraw.Draw(clock_img)
 
-    current_time = time.strftime("%M: %S %p")
+    current_time = time.strftime(":%M %p")
     
     # Get the bounding box of the text to calculate its size
     text_bbox = draw.textbbox((0, 0), current_time, font=font)
@@ -142,9 +143,9 @@ while True:
     # Calculate the bottom-right position
     # Subtract text size from image size, then add a small margin (e.g., 5 pixels)
     x = width - text_width - 5
-    y = height - text_height - 5
+    y = height - text_height - 8
     # Position the text on top of the image (you may need to adjust these coordinates)
-    draw.text((0, 0), current_time, font=font, fill="white")
+    draw.text((x, y), current_time, font=font, fill="black")
     disp.image(clock_img, rotation)
     
     if now.tm_min != last_minute:
