@@ -13,6 +13,7 @@
 
 ### Install Active Cooler
 
+- Disconnect the Mini screen on pi just for now
 - Unpack the preassembled Active Cooler from its box.
 - Remove the backing paper from the thermal pads on the underside of the product.
 - Make sure your Raspberry Pi 5 is powered off. Position the Active Cooler carefully in the correct space on Raspberry Pi 5, making sure not to hit any of the connectors. Please refer to the diagram on the front of the box which shows the correct position and orientation of the product.
@@ -20,9 +21,10 @@
 - When correctly positioned, press evenly on the tops of the two push pins simultaneously until they click, indicating that they are clipped onto the board.
 - Once the Active Cooler is mounted, connect its fan cable to the connector labelled‘FAN’ on Raspberry Pi 5. Take care to ensure the cable’s connector is the correct way round when inserting it. If you feel any resistance, stop immediately, remove the fan cable connector, and make sure that both it and the connector on Raspberry Pi 5 are undamaged before proceeding. Make sure that the connector on the cable is pushed down fully onto the connector on Raspberry Pi 5.
 - We recommend that the Active Cooler is not removed once it is fitted to Raspberry Pi 5. Removal of the Active Cooler will cause the push pins and thermal pads to degrade and is likely to lead to product damage.
-- Ensure the push pins are undamaged and can clip on to the Raspberry Pi board
-securely before use. Discontinue use of the Active Cooler and replace the push pins
-if they are damaged or deformed, or if they do not clip securely
+- Ensure the push pins are undamaged and can clip on to the Raspberry Pi board securely before use. Discontinue use of the Active Cooler and replace the push pins if they are damaged or deformed, or if they do not clip securely
+- Connect the stacking header 40 pin to the 40-pin GPIO of RaspberryPi5
+- Reinstall the mini pi screen
+
 
 See the [User Manual](https://datasheets.raspberrypi.com/cooling/raspberry-pi-active-cooler-product-brief.pdf)
 See the [Video Walkthrough](https://www.youtube.com/shorts/e1CtdqeT3o0)
