@@ -132,8 +132,17 @@ while True:
 
     draw = ImageDraw.Draw(clock_img)
 
-    current_time = time.strftime("%I:%M %p")
+    current_time = time.strftime("%M: %S %p")
     
+    # Get the bounding box of the text to calculate its size
+    text_bbox = draw.textbbox((0, 0), current_time, font=font)
+    text_width = text_bbox[2] - text_bbox[0]
+    text_height = text_bbox[3] - text_bbox[1]
+
+    # Calculate the bottom-right position
+    # Subtract text size from image size, then add a small margin (e.g., 5 pixels)
+    x = width - text_width - 5
+    y = height - text_height - 5
     # Position the text on top of the image (you may need to adjust these coordinates)
     draw.text((0, 0), current_time, font=font, fill="white")
     disp.image(clock_img, rotation)
