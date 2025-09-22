@@ -41,7 +41,7 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output(value=True)
 
 # image cofig
-image = Image.open("pianohands.jpg").resize((width, height))
+#image = Image.open("pianohands.jpg").resize((width, height))
 
 #load a TTF font.
 font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48)
@@ -52,7 +52,11 @@ note_map = {
     1: "c1", 2: "c1s", 3: "d1", 4: "d1s", 5: "e1", 6: "f1",
     7: "f1s", 8: "g1", 9: "g1s", 10: "a1", 11: "a1s", 12: "b1"
 }
-
+# image system
+image_map = {
+    1: "1piano", 2: "2piano", 3: "3piano", 4: "4piano", 5: "5piano", 6: "6piano",
+    7: "7piano", 8: "8piano", 9: "9piano", 10: "10piano", 11: "11piano", 12: "12piano"
+}
 #play note file
 def play_note(note_key):
     filename = f"{note_key}.wav"
@@ -114,11 +118,23 @@ last_minute = -1
 while True:    
     now = time.localtime()
     
-    clock_img = image.copy()
+    # Get the current hour in 12-hour format
+    current_hour_24 = datetime.now().hour
+    current_hour_12 = current_hour_24 % 12
+    if current_hour_12 == 0:
+        current_hour_12 = 12
+
+    # Load the corresponding image from the map
+    image_file = image_map[current_hour_12]
+    
+    # Open and resize the image to fit the display
+    clock_img = Image.open(image_file).resize((width, height)).convert("RGB")
+
     draw = ImageDraw.Draw(clock_img)
 
     current_time = time.strftime("%I:%M %p")
     
+    # Position the text on top of the image (you may need to adjust these coordinates)
     draw.text((0, 0), current_time, font=font, fill="white")
     disp.image(clock_img, rotation)
     
