@@ -73,7 +73,7 @@ The questions we explore:
 - Could trust in such a clock be measured in user studies?  
 
 **Sketch**  
-![IMG_5301](https://github.com/user-attachments/assets/8bb8f1e4-0726-4145-8bb4-1c7edf5ec0b5)
+![IMG_5302](https://github.com/user-attachments/assets/a8aa2600-d298-4a1c-8271-d537bce888ee)
 
 ---
 
