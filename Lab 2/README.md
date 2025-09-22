@@ -248,12 +248,14 @@ The device was situated to hang over a shelf or other elevation above a bed. The
 ### Final Look:
 
 ![Her Shot](media/hero-shot.jpg)
-[Watch the demo video here!](media/Clock2_Compressed.mp4)
+
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+[Watch the demo video here!](media/Clock2_Compressed.mp4)
 
 
 
