@@ -196,6 +196,8 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 ![Diagram](demo_pic/PXL_20250912_024137487.MP.jpg)
 ![Key](demo_pic/PXL_20250912_024126481.MP.jpg)
+
+The overall idea for Lab2 is creating a clock that plays notes that correspond to a number, therefore communicating time in a non-traditional way.
 # Prep for Part 2
 
 1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
