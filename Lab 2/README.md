@@ -296,6 +296,7 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 \*\*\***Take a video of your PiClock.**\*\*\*
 
+
 ### 🎥 Demo Videos 
 
 #### ▶️ Pomodoro Function Walkthrough  
@@ -324,6 +325,7 @@ A quick peek at the **confetti celebration** when you complete a session 🎊
 <a href="https://www.youtube.com/watch?v=bDxyTUm4wsE" target="_blank">
   <img src="https://img.youtube.com/vi/bDxyTUm4wsE/0.jpg" alt="Watch this Short" width="480">
 </a>
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
