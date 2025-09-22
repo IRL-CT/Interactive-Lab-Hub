@@ -10,7 +10,8 @@ It is worth spending a little time thinking about how you mark time, and what wo
 **Please indicate anyone you collaborated with on this Lab here.**
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
-## Prep
+<details>
+<summary>## Prep<summary>
 
 Lab Prep is extra long this week. Make sure to start this early for lab on Thursday.
 
@@ -190,7 +191,7 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part E. Now moved to Lab2 Part 2.
 
 ## Part F. Now moved to Lab2 Part 2.
-
+</details>
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
