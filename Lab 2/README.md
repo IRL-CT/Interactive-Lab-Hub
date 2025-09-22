@@ -310,4 +310,10 @@ As always, make sure you document contributions and ideas from others explicitly
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
 
+## Reflection
+For this lab, our team divided the work into two main directions.  
+I was primarily responsible for the **Reminder Clock** implementation. My focus was on extending the barebones PiClock with both gesture and button interactions. I implemented the `gesture_daemon.py` script, which allows users to wave their hand in front of the PiClock to toggle between the detailed reminder view and a simplified time-only view. In addition, I worked on the `reminder_clock.py` script, where I added button functions: pressing **A** switches to the next reminder, **B** switches to the previous reminder, and pressing **A + B** together deletes the current reminder. Through this process, I gained hands-on experience in integrating hardware input (buttons and proximity sensor) with the software interface to create a more interactive time display.
 
+**Jiayi Sun** was responsible for the **Cable Car Clock** concept and its implementation. She designed and prototyped a creative visualization of time as cable car round trips, moving away from traditional clock metaphors. Her work involved sketching and developing the diagram, as well as experimenting with ways to represent the passage of time in a more narrative and playful format.
+
+Overall, our collaboration allowed us to explore two different interpretations of “making time interactive.” My Reminder Clock emphasized practical interaction through reminders and controls, while Jiayi’s Cable Car Clock highlighted conceptual and visual creativity. This division of labor helped us learn from each other’s approaches and combine functional coding with imaginative design.
