@@ -11,3 +11,5 @@ Here are some notes I took while grading Lab 1:
 7. Here are some good examples of Lab 1. Check how they organize their documentation and how the concept evolves into the actual working prototype:  
    - [Thomas Knoepffler, Rajvi Ranjit Patil, Om Kamath, Laura Moreno](https://github.com/thomknoe/INFO-5345/tree/Fall2025/Lab%201)  
    - [Wenzhuo Ma, Yoyo Wang](https://github.com/mawenzhuo2022/Interactive-Lab-Hub/tree/Fall2025/Lab%201)  
+   - [Jully Li, Sirui Wang, Amy Chen](https://github.com/ac3295-lab/Interactive-Lab-Hub/tree/Fall2025/Lab%201)
+   - [Weicong Hong (wh528), Feier Su (fs495)](https://github.com/wendyyh/Interactive-Lab-Hub/blob/Fall2025/Lab%201/README.md)
