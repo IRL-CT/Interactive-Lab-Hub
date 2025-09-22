@@ -287,7 +287,9 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*   
-<mark> **Here is the video of my PiClock demo: [https://youtu.be/Pi32cqu7j2A](https://youtu.be/Pi32cqu7j2A)** </mark>
+<mark> **Here is the video of my Reminder Clock demo: 👉 [https://youtu.be/Pi32cqu7j2A](https://youtu.be/Pi32cqu7j2A)** </mark>
+
+<mark> **Here is the video of my Cable Clock demo: 👉 [https://youtu.be/d-vsA0yDSq8](https://youtu.be/d-vsA0yDSq8)** </mark>
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
