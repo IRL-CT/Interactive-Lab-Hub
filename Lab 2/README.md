@@ -232,6 +232,8 @@ Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://c
 
 \*\*\***Take a video of your PiClock.**\*\*\*
 
+https://github.com/user-attachments/assets/2a973db1-5ccc-49a2-b3e1-7ada9772d3f3
+
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
 ```
