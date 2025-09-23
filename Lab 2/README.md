@@ -225,7 +225,7 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
-
+![finalimage](PXL_20250922_214321453.MP.jpg)
 \*\*\***Take a video of your PiClock.**\*\*\*
 # Final Video & Description
 ![finalvideo](pianoclock.mp4)
