@@ -229,7 +229,7 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 \*\*\***Take a video of your PiClock.**\*\*\*
 # Final Video & Description
 ![finalvideo](pianoclock_v2.mp4)
-<video src="pianoclock.mp4" width="320" height="240" controls></video>
+![finalvideo](pianoclock.mp4)
 Measuring Time in Musical Notes is a playful way of turning the clock into music. Instead of looking at numbers, the time is expressed as a short sequence of notes: one for the hour, and two for the minutes (split into tens and ones). For example, if it’s 10:58, you’d hear three distinct notes, forming a little melody that only makes sense at that moment. It transforms checking the time from a routine glance into a small musical experience, something you can listen to instead of read. Over the day, the clock creates different melodies, making time feel less rigid and a bit more alive.
 On the screen, there is a picture of a piano, with the amount of white keys shaded in to represent the hour, with the minutes portrayed in the lower right corner.
 
