@@ -1,25 +1,5 @@
 # Ph-UI!!!
 
-## Quick Start: Python Environment Setup
-
-1. **Create and activate a virtual environment in Lab 4:**
-	```bash
-	cd ~/Interactive-Lab-Hub-upstream/Lab\ 4
-	python3 -m venv .venv
-	source .venv/bin/activate
-	```
-2. **Install all Lab 4 requirements:**
-	```bash
-	pip install -r requirements2025.txt
-	```
-3. **Check CircuitPython Blinka installation:**
-	```bash
-	python blinkatest.py
-	```
-	If you see "Hello blinka!", your setup is correct. If not, follow the troubleshooting steps in the file or ask for help.
-
----
-
 ## Lab Overview
 **NAMES OF COLLABORATORS HERE**
 
@@ -101,6 +81,24 @@ G) [Record the interaction](#part-g)
 
 ## The Report (Part 1: A-D, Part 2: E-F)
 
+### Quick Start: Python Environment Setup
+
+1. **Create and activate a virtual environment in Lab 4:**
+	```bash
+	cd ~/Interactive-Lab-Hub-upstream/Lab\ 4
+	python3 -m venv .venv
+	source .venv/bin/activate
+	```
+2. **Install all Lab 4 requirements:**
+	```bash
+	pip install -r requirements2025.txt
+	```
+3. **Check CircuitPython Blinka installation:**
+	```bash
+	python blinkatest.py
+	```
+	If you see "Hello blinka!", your setup is correct. If not, follow the troubleshooting steps in the file or ask for help.
+
 ### Part A
 ### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
 
@@ -113,11 +111,6 @@ We want to introduce you to the [capacitive sensor](https://learn.adafruit.com/a
 </p>
 
 Plug in the capacitive sensor board with the QWIIC connector. Connect your Twizzlers with either the copper tape or the alligator clips (the clips work better). Install the latest requirements from your working virtual environment:
-
-```
-(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ pip install -r requirements.txt
-
-```
 
 <img src="https://media.discordapp.net/attachments/679721816318803975/823299613812719666/PXL_20210321_205742253.jpg" width=400>
 These Twizzlers are connected to pads 6 and 10. When you run the code and touch a Twizzler, the terminal will print out the following

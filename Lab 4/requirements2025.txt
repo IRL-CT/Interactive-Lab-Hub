@@ -26,4 +26,4 @@ sparkfun-qwiic-proximity
 adafruit-circuitpython-busdevice
 sparkfun-pi-servo-hat
 adafruit-circuitpython-lsm6ds
-
+sparkfun-qwiic-button
