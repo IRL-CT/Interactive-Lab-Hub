@@ -1,5 +1,26 @@
 # Ph-UI!!!
 
+## Quick Start: Python Environment Setup
+
+1. **Create and activate a virtual environment in Lab 4:**
+	```bash
+	cd ~/Interactive-Lab-Hub-upstream/Lab\ 4
+	python3 -m venv .venv
+	source .venv/bin/activate
+	```
+2. **Install all Lab 4 requirements:**
+	```bash
+	pip install -r requirements2025.txt
+	```
+3. **Check CircuitPython Blinka installation:**
+	```bash
+	python blinkatest.py
+	```
+	If you see "Hello blinka!", your setup is correct. If not, follow the troubleshooting steps in the file or ask for help.
+
+---
+
+## Lab Overview
 **NAMES OF COLLABORATORS HERE**
 
 
@@ -130,9 +151,7 @@ Connect it to your pi with Qwiic connector and try running the three example scr
 
 You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_CircuitPython_APDS9960) to see more examples for this sensor!
 
-#### Rotary Encoder (optional)
-
-> **_NOTE:_**  Not in the kit yet - skip this.
+#### Rotary Encoder 
 
 A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came with separate breakout board and encoder itself, that is, they will need to be soldered if you have not yet done so! We will be bringing the soldering station to the lab class for you to use, also, you can go to the MakerLAB to do the soldering off-class. Here is some [guidance on soldering](https://learn.adafruit.com/adafruit-guide-excellent-soldering/preparation) from Adafruit. When you first solder, get someone who has done it before (ideally in the MakerLAB environment). It is a good idea to review this material beforehand so you know what to look at.
 
@@ -261,40 +280,47 @@ LAB PART 2
 
 Following exploration and reflection from Part 1, complete the "looks like," "works like" and "acts like" prototypes for your design, reiterated below.
 
-### Part E (Optional)
-### Servo Control with Joystick
 
-> **_NOTE:_**  Not in the kit yet.
+### Part E 
 
-In the class kit, you should be able to find the [Qwiic Servo Controller](https://www.sparkfun.com/products/16773) and [Micro Servo Motor SG51](https://www.adafruit.com/product/2201). The Qwiic Servo Controller will need external power supply to drive, which is included in your kit. Connect the servo controller to the miniPiTFT through qwiic connector and connect the external battery to the 2-Pin JST port (ower port) on the servo controller. Connect your servo to channel 2 on the controller, make sure the brown is connected to GND and orange is connected to PWM.
+### Servo Control with SparkFun Servo pHAT
+For this lab, you will use the **SparkFun Servo pHAT** to control a micro servo (such as the Miuzei MS18 or similar 9g servo). The Servo pHAT stacks directly on top of the Adafruit Mini PiTFT (135×240) display without pin conflicts:
+- The Mini PiTFT uses SPI (GPIO22, 23, 24, 25) for display and buttons ([SPI pinout](https://pinout.xyz/pinout/spi)).
+- The Servo pHAT uses I²C (GPIO2 & 3) for the PCA9685 servo driver ([I2C pinout](https://pinout.xyz/pinout/i2c)).
+- Since SPI and I²C are separate buses, you can use both boards together.
+**⚡ Power:**
+- Plug a USB-C cable into the Servo pHAT to provide enough current for the servos. The Pi itself should still be powered by its own USB-C supply. Do NOT power servos from the Pi’s 5V rail.
 
-
-<img src="Servo_Setup.jpg" width="400"/>
-
-In this exercise, we will be using the nice [ServoKit library](https://learn.adafruit.com/16-channel-pwm-servo-driver/python-circuitpython) developed by Adafruit! We will continue to use the `circuitpython` virtual environment we created. Activate the virtual environment and make sure to install the latest required libraries by running:
-
+**Basic Python Example:**
+We provide a simple example script: `Lab 4/pi_servo_hat_test.py` (requires the `pi_servo_hat` Python package).
+To install the requirement:
 ```
-(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ pip3 install -r requirements.txt
+pip install pi_servo_hat 
 ```
-
-A servo motor is a rotary actuator or linear actuator that allows for precise control of angular or linear position. The position of a servo motor is set by the width of an electrical pulse, that is, we can use PWM (pulse-width modulation) to set and control the servo motor position. You can read [this](https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/servo-motors) to learn a bit more about how exactly a servo motor works.
-
-
-Now that you have a basic idea of what a servo motor is, look into the script `servo_test.py` we provide. In line 14, you should see that we have set up the min_pulse and max_pulse corresponding to the servo turning 0 - 180 degrees. Try running the servo example code now and see what happens:
-
-
+Then run the example:
 ```
-(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ python servo_test.py
+python pi_servo_hat_test.py
 ```
+For more details and advanced usage, see the [official SparkFun Servo pHAT documentation](https://learn.sparkfun.com/tutorials/pi-servo-phat-v2-hookup-guide/all#resources-and-going-further).
+A servo motor is a rotary actuator that allows for precise control of angular position. The position is set by the width of an electrical pulse (PWM). You can read [this Adafruit guide](https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/servo-motors) to learn more about how servos work.
 
-It is also possible to control the servo using the sensors mentioned in as in part A and part B, and/or from some of the buttons or parts included in your kit, the simplest way might be to chain Qwiic buttons to the other end of the Qwiic OLED. Like this:
+---
 
-<p align="center"> <img src="chaining.png"  width="200" ></p>
+#### Chaining Devices and Exploring Interaction Effects
 
-You can then call whichever control you like rather than setting a fixed value for the servo. For more information on controlling Qwiic devices, Sparkfun has several python examples, such as [this](https://learn.sparkfun.com/tutorials/qwiic-joystick-hookup-guide/all#python-examples).
+One of the strengths of the Qwiic/STEMMA QT ecosystem is the ability to easily chain multiple I2C devices together—such as encoders, accelerometers, displays, and more. Try connecting several devices at once and experiment with how their data and controls can be combined in your prototype.
 
-We encourage you to try using these controls, **while** paying particular attention to how the interaction changes depending on the position of the controls. For example, if you have your servo rotating a screen (or a piece of cardboard) from one position to another, what changes about the interaction if the control is on the same side of the screen, or the opposite side of the screen? Trying and retrying different configurations generally helps reveal what a design choice changes about the interaction -- _make sure to document what you tried_!
+**Questions to consider:**
+- What new types of interaction become possible when you combine two or more sensors or actuators?
+- How does the physical arrangement of devices (e.g., where the encoder or sensor is placed) change the user experience?
+- What happens if you use one device to control or modulate another (e.g., encoder sets a threshold, sensor triggers an action)?
+- How does the system feel if you swap which device is "primary" and which is "secondary"?
 
+Try chaining different combinations and document what you discover!
+
+See encoder_accel_servo_dashboard.py in the Lab 4 folder for an example of chaining together three devices. 
+
+**`Lab 4/encoder_accel_servo_dashboard.py`**
 
 ### Part F (Optional)
 ### Camera

@@ -1,25 +1,28 @@
 import pi_servo_hat
 import time
 
-test = pi_servo_hat.PiServoHat()
+# For most 9g micro servos (like SG90, MS18, SER0048), safe range is 0-120 degrees
+SERVO_MIN = 0
+SERVO_MAX = 120
+SERVO_CH = 0  # Channel 0 by default
 
-test.restart()
+servo = pi_servo_hat.PiServoHat()
+servo.restart()
 
-test.move_servo_position(0, 0)
+print(f"Sweeping servo on channel {SERVO_CH} from {SERVO_MIN} to {SERVO_MAX} degrees...")
 
-time.sleep(1)
-
-test.move_servo_position(0, 90)
-
-time.sleep(1)
-
-while True:
-    for i in range(0, 90):
-        print(i)
-        test.move_servo_position(0, i)
-        time.sleep(.001)
-    for i in range(90, 0, -1):
-        print(i)
-        test.move_servo_position(0, i)
-        time.sleep(.001)
-
+try:
+    while True:
+        # Sweep up
+        for angle in range(SERVO_MIN, SERVO_MAX + 1, 1):
+            servo.move_servo_position(SERVO_CH, angle)
+            print(f"Angle: {angle}")
+            time.sleep(0.01)
+        # Sweep down
+        for angle in range(SERVO_MAX, SERVO_MIN - 1, -1):
+            servo.move_servo_position(SERVO_CH, angle)
+            print(f"Angle: {angle}")
+            time.sleep(0.01)
+except KeyboardInterrupt:
+    print("\nTest stopped.")
+    servo.move_servo_position(SERVO_CH, 60)  # Move to center on exit

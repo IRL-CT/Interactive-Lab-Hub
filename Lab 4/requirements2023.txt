@@ -1,4 +1,3 @@
-
 Adafruit-Blinka
 adafruit-circuitpython-busdevice
 adafruit-circuitpython-framebuf
@@ -24,5 +23,5 @@ RPi.GPIO
 spidev
 sysv-ipc
 sparkfun-qwiic-proximity
-sparkfun-pi-servo-hat
+
 
