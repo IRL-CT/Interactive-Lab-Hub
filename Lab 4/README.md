@@ -112,7 +112,6 @@ We want to introduce you to the [capacitive sensor](https://learn.adafruit.com/a
 
 Plug in the capacitive sensor board with the QWIIC connector. Connect your Twizzlers with either the copper tape or the alligator clips (the clips work better). Install the latest requirements from your working virtual environment:
 
-<img src="https://media.discordapp.net/attachments/679721816318803975/823299613812719666/PXL_20210321_205742253.jpg" width=400>
 These Twizzlers are connected to pads 6 and 10. When you run the code and touch a Twizzler, the terminal will print out the following
 
 ```
