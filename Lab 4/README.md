@@ -357,6 +357,38 @@ For more details, see the [Qwiic Button Hookup Guide](https://learn.sparkfun.com
 
 ---
 
+### PCF8574 GPIO Expander: Add More Pins Over I²C
+
+Sometimes your Pi’s header GPIO pins are already full (e.g., with a display or HAT). That’s where an I²C GPIO expander comes in handy.
+
+We use the Adafruit PCF8574 I²C GPIO Expander, which gives you 8 extra digital pins over I²C. It’s a great way to prototype with LEDs, buttons, or other components on the breadboard without worrying about pin conflicts—similar to how Arduino users often expand their pinouts when prototyping physical interactions.
+
+**Why is this useful?**
+- You only need two wires (I²C: SDA + SCL) to unlock 8 extra GPIOs.
+- It integrates smoothly with CircuitPython and Blinka.
+- It allows a clean prototyping workflow when the Pi’s 40-pin header is already occupied by displays, HATs, or sensors.
+- Makes breadboard setups feel more like an Arduino-style prototyping environment where it’s easy to wire up interaction elements.
+
+**Demo Script:** `Lab 4/gpio_expander.py`
+
+<p align="center">
+    <img src="gpio_leds.gif" alt="GPIO Expander LED Demo" width="400"/>
+</p>
+
+We connected 8 LEDs (through 220 Ω resistors) to the expander and ran a little light show. The script cycles through three patterns:
+- Chase (one LED at a time, left to right)
+- Knight Rider (back-and-forth sweep)
+- Disco (random blink chaos)
+
+Every few runs, the script swaps to the next pattern automatically:
+```bash
+python gpio_expander.py
+```
+
+This is a playful way to visualize how the expander works, but the same technique applies if you wanted to prototype buttons, switches, or other interaction elements. It’s a lightweight, flexible addition to your prototyping toolkit.
+
+---
+
 ### Servo Control with SparkFun Servo pHAT
 For this lab, you will use the **SparkFun Servo pHAT** to control a micro servo (such as the Miuzei MS18 or similar 9g servo). The Servo pHAT stacks directly on top of the Adafruit Mini PiTFT (135×240) display without pin conflicts:
 - The Mini PiTFT uses SPI (GPIO22, 23, 24, 25) for display and buttons ([SPI pinout](https://pinout.xyz/pinout/spi)).
@@ -364,6 +396,10 @@ For this lab, you will use the **SparkFun Servo pHAT** to control a micro servo 
 - Since SPI and I²C are separate buses, you can use both boards together.
 **⚡ Power:**
 - Plug a USB-C cable into the Servo pHAT to provide enough current for the servos. The Pi itself should still be powered by its own USB-C supply. Do NOT power servos from the Pi’s 5V rail.
+
+<p align="center">
+    <img src="Servo_pHAT.gif" alt="Servo pHAT Demo" width="400"/>
+</p>
 
 **Basic Python Example:**
 We provide a simple example script: `Lab 4/pi_servo_hat_test.py` (requires the `pi_servo_hat` Python package).

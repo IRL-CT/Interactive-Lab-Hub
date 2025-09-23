@@ -27,3 +27,4 @@ adafruit-circuitpython-busdevice
 sparkfun-pi-servo-hat
 adafruit-circuitpython-lsm6ds
 sparkfun-qwiic-button
+adafruit-circuitpython-pcf8574
