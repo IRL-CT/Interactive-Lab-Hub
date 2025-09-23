@@ -234,23 +234,25 @@ Measuring Time in Musical Notes is a playful way of turning the clock into music
 On the screen, there is a picture of a piano, with the amount of white keys shaded in to represent the hour, with the minutes portrayed in the lower right corner.
 
 -----------------------------------------------------------------------------------------------------------------------------
-After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
-
-```
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git add .
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git commit -m 'your commit message here'
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git push
-```
-
-After that, Git will ask you to login to your GitHub account to push the updates online, you will be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you set up in Part A as the password instead of your account one! Go on your GitHub repo with your laptop, you should be able to see the updated files from your Pi!
-
-
-[Update your Lab Hub](pull_updates/README.md) to get the latest content and requirements for Part 2.
-
-Modify the code from last week's lab to make a new visual interface for your new clock. You may [extend the Pi](Extending%20the%20Pi.md) by adding sensors or buttons, but this is not required.
-
-As always, make sure you document contributions and ideas from others explicitly in your writeup.
-
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
-
+<details> 
+    <summary> End</summary>
+    After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
+    
+    ```
+    (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git add .
+    (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git commit -m 'your commit message here'
+    (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git push
+    ```
+    
+    After that, Git will ask you to login to your GitHub account to push the updates online, you will be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you set up in Part A as the password instead of your account one! Go on your GitHub repo with your laptop, you should be able to see the updated files from your Pi!
+    
+    
+    [Update your Lab Hub](pull_updates/README.md) to get the latest content and requirements for Part 2.
+    
+    Modify the code from last week's lab to make a new visual interface for your new clock. You may [extend the Pi](Extending%20the%20Pi.md) by adding sensors or buttons, but this is not required.
+    
+    As always, make sure you document contributions and ideas from others explicitly in your writeup.
+    
+    You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
+</details>
 
