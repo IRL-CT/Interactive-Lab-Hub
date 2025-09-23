@@ -13,6 +13,7 @@ Lab\ 3/speech-scripts/ollama_venv/
 Lab\ 3/ollama/ollama_venv/
 Lab\ 3/dspeech/venv/
 Lab\ 3/.venv/
+Lab\ 4/.venv/
 
 # Audio output files
 *.wav

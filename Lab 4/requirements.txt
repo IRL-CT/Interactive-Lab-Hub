@@ -24,4 +24,5 @@ RPi.GPIO
 spidev
 sysv-ipc
 sparkfun-qwiic-proximity
+sparkfun-pi-servo-hat
 
