@@ -274,7 +274,88 @@ LAB PART 2
 Following exploration and reflection from Part 1, complete the "looks like," "works like" and "acts like" prototypes for your design, reiterated below.
 
 
-### Part E 
+
+### Part E
+
+### Using Multiple Qwiic Buttons: Changing I2C Address (Physically & Digitally)
+
+If you want to use more than one Qwiic Button in your project, you must give each button a unique I2C address. There are two ways to do this:
+
+#### 1. Physically: Soldering Address Jumpers
+
+On the back of the Qwiic Button, you'll find four solder jumpers labeled A0, A1, A2, and A3. By bridging these with solder, you change the I2C address. Only one button on the chain can use the default address (0x6F).
+
+**Address Table:**
+
+| A3 | A2 | A1 | A0 | Address (hex) |
+|----|----|----|----|---------------|
+|  0 |  0 |  0 |  0 |    0x6F       |
+|  0 |  0 |  0 |  1 |    0x6E       |
+|  0 |  0 |  1 |  0 |    0x6D       |
+|  0 |  0 |  1 |  1 |    0x6C       |
+|  0 |  1 |  0 |  0 |    0x6B       |
+|  0 |  1 |  0 |  1 |    0x6A       |
+|  0 |  1 |  1 |  0 |    0x69       |
+|  0 |  1 |  1 |  1 |    0x68       |
+|  1 |  0 |  0 |  0 |    0x67       |
+| ...| ...| ...| ... |     ...      |
+
+For example, if you solder A0 closed (leave A1, A2, A3 open), the address becomes 0x6E.
+
+**Soldering Tips:**
+- Use a small amount of solder to bridge the pads for the jumper you want to close.
+- Only one jumper needs to be closed for each address change (see table above).
+- Power cycle the button after changing the jumper.
+
+#### 2. Digitally: Using Software to Change Address
+
+You can also change the address in software (temporarily or permanently) using the example script `qwiic_button_ex6_changeI2CAddress.py` in the Lab 4 folder. This is useful if you want to reassign addresses without soldering.
+
+Run the script and follow the prompts:
+```bash
+python qwiic_button_ex6_changeI2CAddress.py
+```
+Enter the new address (e.g., 5B for 0x5B) when prompted. Power cycle the button after changing the address.
+
+**Note:** The software method is less foolproof and you need to make sure to keep track of which button has which address!
+
+
+#### Using Multiple Buttons in Code
+
+After setting unique addresses, you can use multiple buttons in your script. See these example scripts in the Lab 4 folder:
+
+- **`qwiic_1_button.py`**: Basic example for reading a single Qwiic Button (default address 0x6F). Run with:
+	```bash
+	python qwiic_1_button.py
+	```
+
+- **`qwiic_button_led_demo.py`**: Demonstrates using two Qwiic Buttons at different addresses (e.g., 0x6F and 0x6E) and controlling their LEDs. Button 1 toggles its own LED; Button 2 toggles both LEDs. Run with:
+	```bash
+	python qwiic_button_led_demo.py
+	```
+
+Here is a minimal code example for two buttons:
+```python
+import qwiic_button
+
+# Default button (0x6F)
+button1 = qwiic_button.QwiicButton()
+# Button with A0 soldered (0x6E)
+button2 = qwiic_button.QwiicButton(0x6E)
+
+button1.begin()
+button2.begin()
+
+while True:
+		if button1.is_button_pressed():
+				print("Button 1 pressed!")
+		if button2.is_button_pressed():
+				print("Button 2 pressed!")
+```
+
+For more details, see the [Qwiic Button Hookup Guide](https://learn.sparkfun.com/tutorials/qwiic-button-hookup-guide/all#i2c-address).
+
+---
 
 ### Servo Control with SparkFun Servo pHAT
 For this lab, you will use the **SparkFun Servo pHAT** to control a micro servo (such as the Miuzei MS18 or similar 9g servo). The Servo pHAT stacks directly on top of the Adafruit Mini PiTFT (135×240) display without pin conflicts:
@@ -299,7 +380,7 @@ A servo motor is a rotary actuator that allows for precise control of angular po
 
 ---
 
-#### Chaining Devices and Exploring Interaction Effects
+### Chaining Devices and Exploring Interaction Effects
 
 One of the strengths of the Qwiic/STEMMA QT ecosystem is the ability to easily chain multiple I2C devices together—such as encoders, accelerometers, displays, and more. Try connecting several devices at once and experiment with how their data and controls can be combined in your prototype.
 
