@@ -198,13 +198,13 @@ Be generous in acknowledging their contributions! And also recognizing any other
 ![Key](demo_pic/PXL_20250912_024126481.MP.jpg)
 
 The overall idea for Lab2 is creating a clock that plays notes that correspond to a number, therefore communicating time in a non-traditional way.
-# Prep for Part 2
-
-1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
-  
-
-2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
-
+<details>
+    <summary># Prep for Part 2</summary>
+    
+    1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
+    
+    2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
+</details>
 # Lab 2 Part 2
 
 ## Assignment that was formerly Lab 2 Part E.
@@ -220,15 +220,16 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
-![code](screen_clock.py)
+`screen_clock.py`
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 ![finalimage](PXL_20250922_214321453.MP.jpg)
-\*\*\***Take a video of your PiClock.**\*\*\*
 # Final Video & Description
 ![finalvideo: 3 note time](pianoclockv2.mp4)
 ![finalvideo: hour change](pianoclock.mp4)
+
+
 Measuring Time in Musical Notes is a playful way of turning the clock into music. Instead of looking at numbers, the time is expressed as a short sequence of notes: one for the hour, and two for the minutes (split into tens and ones). For example, if it’s 10:58, you’d hear three distinct notes, forming a little melody that only makes sense at that moment. It transforms checking the time from a routine glance into a small musical experience, something you can listen to instead of read. Over the day, the clock creates different melodies, making time feel less rigid and a bit more alive.
 On the screen, there is a picture of a piano, with the amount of white keys shaded in to represent the hour, with the minutes portrayed in the lower right corner.
 
