@@ -145,6 +145,7 @@ We can test it by typing
 ```
 (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ python screen_test.py
 ```
+\*\*\***Include a picture of your own Raspberry Pi displaying the piscreen.service with your unique MAC address. Additionally, please provide another picture showing the successful completion of the screen test.**\*\*\*
 
 You can type the name of a color then press either of the buttons on the MiniPiTFT to see what happens on the display! You can press `ctrl-c` to exit the script. Take a look at the code with
 ```
