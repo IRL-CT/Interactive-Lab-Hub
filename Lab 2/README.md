@@ -86,6 +86,15 @@ Done!
 
 ## Modify the barebones clock to make it your own
 I modified `screen_clock.py` to integrate the **VLT pipeline**. Instead of just printing system time, the script captures an image via Pi Camera, passes it to the local VLM, and shows both the **predicted “AI time”** and the **real time** side by side.  
+=======
+## Assignment that was formerly Lab 2 Part E.
+### Modify the barebones clock to make it your own
+
+Does time have to be linear?  How do you measure a year? [In daylights? In midnights? In cups of coffee?](https://www.youtube.com/watch?v=wsj15wPpjLY)
+
+Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
+
+Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!
 
 This aligns with the theme: *If we trust LLMs for everything else, why not for interpreting time itself?*  
 
