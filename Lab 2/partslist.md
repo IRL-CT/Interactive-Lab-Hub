@@ -18,8 +18,6 @@
 
 1 x [Adafruit 6-DoF Accel + Gyro IMU LSM6DS3TR-C](https://www.adafruit.com/product/4503)
 
-1 x [Adafruit MPR121 Capacitive Touch Sensor QT](https://www.adafruit.com/product/4830)
-
 1 x [Adafruit PCF8574 I2C GPIO Expander Breakout - STEMMA QT / Qwiic](https://www.adafruit.com/product/5545)
 
 1 x [Adafruit MPR121 12-Key Capacitive Touch Sensor Gator Breakout - STEMMA QT / Qwiic](https://www.adafruit.com/product/4830)

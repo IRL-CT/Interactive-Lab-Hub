@@ -80,9 +80,10 @@ state = None
 target = None
 flash = False
 
-lottery_open = 9
-lottery_close = 15
-performance_time = 20
+lottery_open = 18
+lottery_close = 19
+
+performance_time =  20
 performance_duration = 2
 
 while True: 
@@ -141,4 +142,4 @@ while True:
     
     # Display image.
     disp.image(image, rotation)
-    time.sleep(1)
+    time.sleep(0.5)
