@@ -7,7 +7,7 @@ Please place links here to the README.md's for each of your labs here:
 
 Lab 2. [Interactive Prototyping: The Clock of Pi](https://github.com/ChangXiang-SCU/Interactive-Lab-Hub/tree/Fall2025/Lab%202)
 
-Lab 3. Chatterboxes
+[Lab 3. Chatterboxes](Lab%203/)
 
 Lab 4. Ph-UI!!!
 
