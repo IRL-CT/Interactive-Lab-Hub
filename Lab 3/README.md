@@ -55,33 +55,12 @@ Next, run the setup script to install additional text-to-speech dependencies:
 
 In this part of lab, we are going to start peeking into the world of audio on your Pi! 
 
-We will be using the microphone and speaker on your webcamera. In the directory is a folder called `speech-scripts` containing several shell scripts. `cd` to the folder and list out all the files by `ls`:
-
-```
-pi@ixe00:~/speech-scripts $ ls
-Download        festival_demo.sh  GoogleTTS_demo.sh  pico2text_demo.sh
-espeak_demo.sh  flite_demo.sh     lookdave.wav
-```
-
-You can run these shell files `.sh` by typing `./filename`, for example, typing `./espeak_demo.sh` and see what happens. Take some time to look at each script and see how it works. You can see a script by typing `cat filename`. For instance:
-
-```
-pi@ixe00:~/speech-scripts $ cat festival_demo.sh 
-#from: https://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)#Festival_Text_to_Speech
-```
-You can test the commands by running
-```
-echo "Just what do you think you're doing, Dave?" | festival --tts
-```
-
-Now, you might wonder what exactly is a `.sh` file? 
-Typically, a `.sh` file is a shell script which you can execute in a terminal. The example files we offer here are for you to figure out the ways to play with audio on your Pi!
-
-You can also play audio files directly with `aplay filename`. Try typing `aplay lookdave.wav`.
-
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
+
 This is the greeting script:
 [greets.sh](greets.sh)
+
+Test commands by running:
 ```bash
 ./greets.sh
 ```
@@ -310,6 +289,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
