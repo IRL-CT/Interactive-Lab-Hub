@@ -216,9 +216,6 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
-- Our team decided to make a device that can track the passage of seasons. The user of this device can  control how fast time passes by pressing the buttons on the pi. We also made a bar loading seasons changing device.
-
-Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
 
 We began shaping our concept using a Verplank diagram and shared it with Gemini to help refine the details. The original link doesn’t seem to work, so I used this alternative one instead: http://hci.sapp.org/lectures/verplank/interaction/
 <img width="711" height="672" alt="Screen Shot 2025-09-21 at 12 25 29 PM" src="https://github.com/user-attachments/assets/14d62fb5-54c3-4d81-980d-3cb31bdaf79a" />
