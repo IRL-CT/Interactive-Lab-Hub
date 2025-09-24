@@ -1,0 +1,24 @@
+# Requirements for Ollama Integration in Lab 3
+
+# Core dependencies for Ollama integration
+requests>=2.31.0
+flask>=2.3.0
+flask-socketio>=5.3.0
+
+# Voice processing dependencies
+SpeechRecognition>=3.10.0
+pyaudio>=0.2.11
+pyttsx3>=2.90
+
+# Alternative TTS (system-level, installed via apt)
+# espeak (install with: sudo apt-get install espeak)
+
+# Optional: Enhanced audio processing
+# sounddevice>=0.4.6
+# numpy>=1.24.0
+
+# For web interface
+eventlet>=0.33.3
+
+# Note: Ollama itself is installed separately using the install script:
+# curl -fsSL https://ollama.com/install.sh | sh
