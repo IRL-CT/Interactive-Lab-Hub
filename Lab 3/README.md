@@ -234,6 +234,16 @@ From a remote browser on the same network, check to make sure your webserver is 
 
 ### Storyboard
 
+Potential Ideas: 
+- talking mirror
+- talking table
+- talking stove
+- talking building (directory)
+- talking trash can
+- talking backpack
+- talking lamp
+- talking key-holder
+
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
 
 \*\***Post your storyboard and diagram here.**\*\*
@@ -306,6 +316,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
