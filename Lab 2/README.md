@@ -279,7 +279,7 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
-Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
+Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!
 
 <p float="left">
   <img src="images/diagram.png" alt="diagram" width="500" />
