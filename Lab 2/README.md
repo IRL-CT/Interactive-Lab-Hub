@@ -61,7 +61,9 @@ Work on `screen_clock.py`, try to show the time by filling in the while loop (at
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
 1. I've explored several different ideas along quite different tracks:
-   <img src="interaction/media/Sketch-2.jpg" alt="Sketch 2" width="250"/>
+
+<img src="interaction/media/Sketch-2.jpg" alt="Sketch 2" width="600"/>
+
 2. Of all the ideas I've decided to explore the "relaxation" clock idea and the "coding clock" idea more in depth.
 
 #### coding clock
@@ -84,7 +86,7 @@ Work on `screen_clock.py`, try to show the time by filling in the while loop (at
 <img src="interaction/wellness/story1.png" alt="frame 1" width="500"/>
 <img src="interaction/wellness/story2.png" alt="frame 1" width="500"/>
 
-
+- Here's a mockup for the screen/UI.
 - Here's a more detailed view on the interaction design and user flow
 
 <img src="interaction/wellness/frame1.png" alt="frame 1" width="250"/>
