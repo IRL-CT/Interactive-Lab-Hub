@@ -130,6 +130,21 @@ python faster_whisper_try.py
 ```
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
+This is the voice number input script:
+[ask_number.sh](ask_number.sh)
+
+Test commands by running:
+```bash
+./ask_number.sh
+```
+
+The script will:
+1. Ask "Please tell me your number" using text-to-speech
+2. Record 5 seconds of audio input
+3. Process the speech using Vosk offline recognition
+4. Save the result to `recorded_number.txt`
+5. Play back the recognized number using text-to-speech
+
 ### 🤖 NEW: AI-Powered Conversations with Ollama
 
 Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
@@ -196,6 +211,29 @@ answer = ask_ai("How should I greet users?")
 **📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
+
+This is the voice AI assistant script:
+[voice_ai_assistant.py](voice_ai_assistant.py)
+
+Test commands by running:
+```bash
+python3 voice_ai_assistant.py
+```
+
+The script combines:
+1. **Real-time speech recognition** using Vosk 
+2. **AI processing** using Ollama API  
+3. **Text-to-speech output** using Festival
+
+Features:
+- Real-time voice input with live transcription feedback
+- AI-powered responses using Ollama phi3:mini model
+- Voice output using Festival TTS
+- Conversation logging to `conversation_log.txt`
+- Say "exit" to quit the conversation
+
+**User Response Documentation:**
+The voice AI assistant provides a natural conversational experience. All interactions are logged to [conversation_log.txt](conversation_log.txt) with timestamps for easy review and analysis.
 
 ### Serving Pages
 
