@@ -226,7 +226,7 @@ Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://c
 ## Make a short video of your modified barebones PiClock
 ![finalimage](PXL_20250922_214321453.MP.jpg)
 # Final Video & Description
-![finalvideo: 3 note time](pianoclockv2.mp4)
+![finalvideo: 3 note time](pianoclock_3note.mp4)
 ![finalvideo: hour change](pianoclock.mp4)
 
 
