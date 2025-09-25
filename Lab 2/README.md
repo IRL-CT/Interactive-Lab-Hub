@@ -54,36 +54,36 @@ G) [Sketch and brainstorm further interactions and features you would like for y
 
 Work on `screen_clock.py`, try to show the time by filling in the while loop (at the bottom of the script where we noted "TODO" for you). You can use the code in `cli_clock.py` and `stats.py` to figure this out.
 
-[Demo pic](interaction/media/partD.JPG)
+<img src="interaction/media/partD.JPG" alt="Demo pic" width="150"/>
 
 ## Part G.
 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
 1. I've explored several different ideas along quite different tracks:
-   ![Sketch 2](interaction/media/Sketch-2.jpg)
+   <img src="interaction/media/Sketch-2.jpg" alt="Sketch 2" width="150"/>
 2. Of all the ideas I've decided to explore the "relaxation" clock idea and the "coding clock" idea more in depth.
 
 ##### coding clock
 
 - Here's the storyboard for one of the more promising ideas - coding clock! This is entirely for developers like me who push commits on the daily (for the job!) and we experience time in terms of pull requests and github commits.
-  ![Sketch 1](interaction/media/Sketch-1.jpg)
+  <img src="interaction/media/Sketch-1.jpg" alt="Sketch 1" width="150"/>
 
 - Here's a more detailed view on the interaction design and user flow:
-  ![frame 1](interaction/github/frame1.png)
-  ![frame 2](interaction/github/frame2.png)
-  ![frame 3](interaction/github/frame4.png)
-  ![frame 4](interaction/github/frame4.png)
+  <img src="interaction/github/frame1.png" alt="frame 1" width="150"/>
+  <img src="interaction/github/frame2.png" alt="frame 2" width="150"/>
+  <img src="interaction/github/frame3.png" alt="frame 3" width="150"/>
+  <img src="interaction/github/frame4.png" alt="frame 4" width="150"/>
 
 ##### relaxation/wellness clock
 
 - Here's the storyboard for the relaxation/wellness clock idea. This idea is for people who often lose track of time at work, and often end up having a lot of stress. The purpose of this device is to increase the quality of life and try to provide a better work/life balance for people who are busy.
 
-![frame 1](interaction/wellness/frame1.png)
-![frame 2](interaction/wellness/frame2.png)
-![frame 3](interaction/wellness/frame3.png)
-![frame 4](interaction/wellness/frame4.png)
-![frame 5](interaction/wellness/frame5.png)
+<img src="interaction/wellness/frame1.png" alt="frame 1" width="150"/>
+<img src="interaction/wellness/frame2.png" alt="frame 2" width="150"/>
+<img src="interaction/wellness/frame3.png" alt="frame 3" width="150"/>
+<img src="interaction/wellness/frame4.png" alt="frame 4" width="150"/>
+<img src="interaction/wellness/frame5.png" alt="frame 5" width="150"/>
 
 # Lab 2 Part 2
 
