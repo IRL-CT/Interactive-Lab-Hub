@@ -150,14 +150,13 @@ Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://c
 
 Based on the feedback and the storyboards,
 
-<img src="interaction/wellness2/userflow.png" alt="frame 1" width="250"/>
+<img src="interaction/wellness2/userflow.png" alt="frame 1" height="250"/>
 
 And from the flow, I derived several interaction points and features.
 
-<img src="interaction/wellness2/feature.png" alt="frame 1" width="250"/>
+<img src="interaction/wellness2/feature.png" alt="frame 1" height="500"/>
 
 Image source: Figma, designed
-
 
 #### Iterative Design
 
