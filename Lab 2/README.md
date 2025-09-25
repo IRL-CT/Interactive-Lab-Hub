@@ -74,10 +74,10 @@ Work on `screen_clock.py`, try to show the time by filling in the while loop (at
 
 - Here's a more detailed view on the interaction design and user flow:
 
-<img src="interaction/github/frame1.png" alt="frame 1" width="250"/>
-<img src="interaction/github/frame2.png" alt="frame 2" width="250"/>
-<img src="interaction/github/frame3.png" alt="frame 3" width="250"/>
-<img src="interaction/github/frame4.png" alt="frame 4" width="250"/>
+<img src="interaction/github/frame1.png" alt="frame 1" width="500"/>
+<img src="interaction/github/frame2.png" alt="frame 2" width="550"/>
+<img src="interaction/github/frame3.png" alt="frame 3" width="550"/>
+<img src="interaction/github/frame4.png" alt="frame 4" width="550"/>
 
 #### relaxation/wellness clock
 
