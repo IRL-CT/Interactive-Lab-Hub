@@ -151,90 +151,94 @@
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
-### 🤖 NEW: AI-Powered Conversations with Ollama
+<details> 
+  <summary>AI Setup</summary>
+    ### 🤖 NEW: AI-Powered Conversations with Ollama
+    
+    Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
+    
+    #### Quick Start with Ollama
+    
+    **Installation** (takes ~5 minutes):
+    ```bash
+    # Install Ollama
+    curl -fsSL https://ollama.com/install.sh | sh
+    
+    # Download recommended model for Pi 5
+    ollama pull phi3:mini
+    
+    # Install system dependencies for audio (required for pyaudio)
+    sudo apt-get update
+    sudo apt-get install -y portaudio19-dev python3-dev
+    
+    # Create separate virtual environment for Ollama (due to pyaudio conflicts)
+    cd ollama/
+    python3 -m venv ollama_venv
+    source ollama_venv/bin/activate
+    
+    # Install Python dependencies in separate environment
+    pip install -r ollama_requirements.txt
+    ```
+    #### Ready-to-Use Scripts
+    
+    We've created three Ollama integration scripts for different use cases:
+    
+    **1. Basic Demo** - Learn how Ollama works:
+    ```bash
+    python3 ollama_demo.py
+    ```
+    
+    **2. Voice Assistant** - Full speech-to-text + AI + text-to-speech:
+    ```bash
+    python3 ollama_voice_assistant.py
+    ```
+    
+    **3. Web Interface** - Beautiful web-based chat with voice options:
+    ```bash
+    python3 ollama_web_app.py
+    # Then open: http://localhost:5000
+    ```
+    
+    #### Integration in Your Projects
+    
+    Simple example to add AI to any project:
+    ```python
+    import requests
+    
+    def ask_ai(question):
+        response = requests.post(
+            "http://localhost:11434/api/generate",
+            json={"model": "phi3:mini", "prompt": question, "stream": False}
+        )
+        return response.json().get('response', 'No response')
+    
+    # Use it anywhere!
+    answer = ask_ai("How should I greet users?")
+    ```
+    
+    **📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
 
-Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
-
-#### Quick Start with Ollama
-
-**Installation** (takes ~5 minutes):
-```bash
-# Install Ollama
-curl -fsSL https://ollama.com/install.sh | sh
-
-# Download recommended model for Pi 5
-ollama pull phi3:mini
-
-# Install system dependencies for audio (required for pyaudio)
-sudo apt-get update
-sudo apt-get install -y portaudio19-dev python3-dev
-
-# Create separate virtual environment for Ollama (due to pyaudio conflicts)
-cd ollama/
-python3 -m venv ollama_venv
-source ollama_venv/bin/activate
-
-# Install Python dependencies in separate environment
-pip install -r ollama_requirements.txt
-```
-#### Ready-to-Use Scripts
-
-We've created three Ollama integration scripts for different use cases:
-
-**1. Basic Demo** - Learn how Ollama works:
-```bash
-python3 ollama_demo.py
-```
-
-**2. Voice Assistant** - Full speech-to-text + AI + text-to-speech:
-```bash
-python3 ollama_voice_assistant.py
-```
-
-**3. Web Interface** - Beautiful web-based chat with voice options:
-```bash
-python3 ollama_web_app.py
-# Then open: http://localhost:5000
-```
-
-#### Integration in Your Projects
-
-Simple example to add AI to any project:
-```python
-import requests
-
-def ask_ai(question):
-    response = requests.post(
-        "http://localhost:11434/api/generate",
-        json={"model": "phi3:mini", "prompt": question, "stream": False}
-    )
-    return response.json().get('response', 'No response')
-
-# Use it anywhere!
-answer = ask_ai("How should I greet users?")
-```
-
-**📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
+</details>
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
-
-### Serving Pages
-
-In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
-
-```
-pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
- * Serving Flask app "server" (lazy loading)
- * Environment: production
-   WARNING: This is a development server. Do not use it in a production deployment.
-   Use a production WSGI server instead.
- * Debug mode: on
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 162-573-883
-```
-From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
+<details> 
+  <summary>### Serving Pages</summary>
+  In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
+    
+    ```
+    pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
+     * Serving Flask app "server" (lazy loading)
+     * Environment: production
+       WARNING: This is a development server. Do not use it in a production deployment.
+       Use a production WSGI server instead.
+     * Debug mode: on
+     * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+     * Restarting with stat
+     * Debugger is active!
+     * Debugger PIN: 162-573-883
+    ```
+    From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
+</details>
 
 ### Storyboard
 
@@ -310,6 +314,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
