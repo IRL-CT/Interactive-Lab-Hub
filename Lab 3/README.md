@@ -64,7 +64,7 @@ The voice AI assistant provides a natural conversational experience. All interac
 
 ### Verplank Diagram
 
-![](Diagram.jpg)
+![](diagram.jpg)
 
 ### Acting out the dialogue
 
@@ -128,6 +128,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
