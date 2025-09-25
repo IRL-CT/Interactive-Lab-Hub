@@ -155,7 +155,7 @@ This script plays an audio prompt, records user speech, uses `faster-whisper` to
 #### Example Run
 Here is a screenshot of the script running on my Pi, showing the audio file created, the transcript, and the recognized digits:
 
-![ask_number_whisper output](./images/ask_number_whisper_output.png)
+![ask_number_whisper output](./Screenshot_1.png)
 
 ### 🤖 NEW: AI-Powered Conversations with Ollama
 
@@ -316,6 +316,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
