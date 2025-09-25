@@ -103,6 +103,7 @@ echo 'This sentence is spoken first. This sentence is synthesized while the firs
   piper --model en_US-lessac-medium --output-raw | \
   aplay -r 22050 -f S16_LE -t raw -
 ```
+<mark>See my generated audio file here: [welcome.wav](./my-scripts/welcome.wav)</mark>
   
 ### Speech to Text
 
