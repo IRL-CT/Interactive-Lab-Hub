@@ -149,7 +149,8 @@ and
 python faster_whisper_try.py
 ```
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*   
-See my custom Whisper-based number input script here: [ask_number_whisper.sh](./my-scripts/ask_number_whisper.sh)   
+<mark>See my custom Whisper-based number input script here: [ask_number_whisper.sh](./my-scripts/ask_number_whisper.sh) </mark>   
+
 This script plays an audio prompt, records user speech, uses `faster-whisper` to transcribe it, extracts digits, and saves them to `data/answers.csv`.
 
 #### Example Run
@@ -316,6 +317,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
