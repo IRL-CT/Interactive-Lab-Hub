@@ -159,7 +159,8 @@ echo "Hello! I am ready to record a numerical value from you."
 echo "Please enter a numerical value (e.g., your phone number, >
 read user_input
 
-echo "Thank you. I have recorded the following value: $user_inp>echo "$user_input" >> recorded_data.txt
+echo "Thank you. I have recorded the following value: $user_inp>
+echo "$user_input" >> recorded_data.txt
 exit 0
 
 ```
@@ -342,6 +343,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
