@@ -103,6 +103,7 @@ echo 'This sentence is spoken first. This sentence is synthesized while the firs
   piper --model en_US-lessac-medium --output-raw | \
   aplay -r 22050 -f S16_LE -t raw -
 ```
+
 <mark>See my generated audio file here: [welcome.wav](./my-scripts/welcome.wav)</mark>
   
 ### Speech to Text
@@ -148,8 +149,8 @@ and
 ```
 python faster_whisper_try.py
 ```
-\*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*   
-<mark>See my custom Whisper-based number input script here: [ask_number_whisper.sh](./my-scripts/ask_number_whisper.sh) </mark>   
+***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.***   
+<mark>See my custom Whisper-based number input script here: [ask_number_whisper.sh](./my-scripts/ask_number_whisper.sh)</mark>   
 
 This script plays an audio prompt, records user speech, uses `faster-whisper` to transcribe it, extracts digits, and saves them to `data/answers.csv`.
 
@@ -157,6 +158,7 @@ This script plays an audio prompt, records user speech, uses `faster-whisper` to
 Here is a screenshot of the script running on my Pi, showing the audio file created, the transcript, and the recognized digits:
 
 ![ask_number_whisper output](./Screenshot_1.png)
+
 
 ### 🤖 NEW: AI-Powered Conversations with Ollama
 
@@ -317,11 +319,6 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
-
-
-
-
-
 
 
 
