@@ -4,8 +4,9 @@ import numpy as np
 import tempfile
 import wavio
 import os
+import re
 
-# 1. 让 Pi 用 TTS 提问
+# 1. 用 TTS 提示用户
 os.system('espeak "Please say a number now"')
 
 # 2. 录音设置
@@ -23,13 +24,20 @@ with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
     wav_path = f.name
 
 # 4. 使用 Whisper 转文字
-model = whisper.load_model("tiny.en")  # tiny.en 模型轻量且速度快
+model = whisper.load_model("tiny.en")  # 小模型
 result = model.transcribe(wav_path)
 text = result.get("text", "")
 
-# 5. 输出结果
-print("你说的是：", text)
-os.system(f'espeak "You said: {text}"')
+# 5. 只保留数字
+numbers_only = "".join(re.findall(r'\d+', text))
 
-# 6. 删除临时文件
+# 6. 输出并播报结果
+if numbers_only:
+    print("You said (numbers only):", numbers_only)
+    os.system(f'espeak "You said {numbers_only}"')
+else:
+    print("No numbers detected.")
+    os.system('espeak "No numbers detected"')
+
+# 7. 删除临时文件
 os.remove(wav_path)
