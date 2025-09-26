@@ -213,50 +213,27 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
 
-\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+Evergreen tracker application
+1. Read the tracker CSV file from disk.
+2. 2. Extract a sequence of (date, hours) pairs.
+3. Only keep the most recent consecutive sequence of days with nonzero working hours.
+4. Visualize each day's hours as a green bar:
+  - Each bar's brightness and lightness reflect the number of hours worked (more hours = brighter green).
 
-# Evergreen tracker application
-# 1. Read the tracker CSV file from disk.
-# 2. Extract a sequence of (date, hours) pairs.
-# 3. Only keep the most recent consecutive sequence of days with nonzero working hours.
-# 4. Visualize each day's hours as a green bar:
-#    - Each bar's brightness and lightness reflect the number of hours worked (more hours = brighter green).
+ --- User Interaction ---
+- Button A: Increments today's working hours by 1 (adds to today's entry in the CSV).
+- Button B: Decrements today's working hours by 1 (subtracts from today's entry, but not below zero).
+- Buttons A + B together: Turns off the backlight to save power.
+  - After each button press, update the display to reflect the new value for today.
 
-# --- User Interaction ---
-# - Button A: Increments today's working hours by 1 (adds to today's entry in the CSV).
-# - Button B: Decrements today's working hours by 1 (subtracts from today's entry, but not below zero).
-# - Buttons A + B together: Turns off the backlight to save power.
-# - After each button press, update the display to reflect the new value for today.
-
-# --- Display ---
-# - The display shows a series of vertical green bars, one for each day in the current consecutive sequence.
-# - The height of each bar is fixed, but the brightness of the green color varies based on the number of hours worked that day.
-# - The display updates in real-time as buttons are pressed.
-# after the user reaches 21 streak days, the display will show a congratulatory message!
+--- Display ---
+- The display shows a series of vertical green bars, one for each day in the current consecutive sequence.
+- The height of each bar is fixed, but the brightness of the green color varies based on the number of hours worked that day.
+- The display updates in real-time as buttons are pressed.
+after the user reaches 21 streak days, the display will show a congratulatory message!
 
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
-\*\*\***Take a video of your PiClock.**\*\*\*
-
-After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 https://drive.google.com/file/d/1Kn-wtulAN2dvr05UCd79TFr7sG9a_Mcn/view?usp=sharing
-```
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git add .
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git commit -m 'your commit message here'
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git push
-```
-
-After that, Git will ask you to login to your GitHub account to push the updates online, you will be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you set up in Part A as the password instead of your account one! Go on your GitHub repo with your laptop, you should be able to see the updated files from your Pi!
-
-
-[Update your Lab Hub](pull_updates/README.md) to get the latest content and requirements for Part 2.
-
-Modify the code from last week's lab to make a new visual interface for your new clock. You may [extend the Pi](Extending%20the%20Pi.md) by adding sensors or buttons, but this is not required.
-
-As always, make sure you document contributions and ideas from others explicitly in your writeup.
-
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
-
-
