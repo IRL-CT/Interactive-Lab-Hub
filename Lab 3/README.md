@@ -151,6 +151,18 @@
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
+```
+#!/bin/bash
+
+# This script prompts the user for a numerical input and record>
+echo "Hello! I am ready to record a numerical value from you."
+echo "Please enter a numerical value (e.g., your phone number, >
+read user_input
+
+echo "Thank you. I have recorded the following value: $user_inp>echo "$user_input" >> recorded_data.txt
+exit 0
+
+```
 <details> 
   <summary>AI Setup</summary>
     ### 🤖 NEW: AI-Powered Conversations with Ollama
@@ -330,6 +342,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
