@@ -11,6 +11,9 @@ import requests
 import subprocess
 import os
 import time
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
+
 
 # Ollama configuration
 OLLAMA_URL = "http://localhost:11434"
