@@ -1,14 +1,14 @@
-import whisper
 import sounddevice as sd
 import numpy as np
 import tempfile
 import wavio
 import os
 import re
+from faster_whisper import WhisperModel
 
 os.system('espeak "Please say a number now"')
 
-duration = 5 
+duration = 3  
 samplerate = 16000
 
 print("Recording... Speak now!")
@@ -20,9 +20,10 @@ with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
     wavio.write(f.name, recording, samplerate, sampwidth=2)
     wav_path = f.name
 
-model = whisper.load_model("tiny.en")  
-result = model.transcribe(wav_path)
-text = result.get("text", "")
+model = WhisperModel("tiny.en", device="cpu", compute_type="int8")  # int8 模式更快
+segments, info = model.transcribe(wav_path)
+
+text = " ".join([segment.text for segment in segments])
 
 numbers_only = "".join(re.findall(r'\d+', text))
 
@@ -34,4 +35,3 @@ else:
     os.system('espeak "No numbers detected"')
 
 os.remove(wav_path)
-
