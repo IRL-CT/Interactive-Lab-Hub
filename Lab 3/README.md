@@ -244,11 +244,11 @@
 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
 
-\*\***Post your storyboard and diagram here.**\*\*
+![verplank diagram](PXL_20250926_163629402.MP.jpg)
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
-\*\***Please describe and document your process.**\*\*
+For my interactive speaking device, the idea is to enable communication with plants. Inspiration being the Lorax, I thought it would be interesting to be able to understand a plant's needs and feelings. Plants can be delicate beings, not too much water, not too much sun, therefore making it difficult to keep alive for some people. Now, with the ability to speak to the plants directly, you not only have a living, thriving plant, but also a new friend!
 
 ### Acting out the dialogue
 
@@ -314,6 +314,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
