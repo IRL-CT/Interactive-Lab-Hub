@@ -248,14 +248,22 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
 
 For my interactive speaking device, the idea is to enable communication with plants. Inspiration being the Lorax, I thought it would be interesting to be able to understand a plant's needs and feelings. Plants can be delicate beings, not too much water, not too much sun, therefore making it difficult to keep alive for some people. Now, with the ability to speak to the plants directly, you not only have a living, thriving plant, but also a new friend!
 
-Sample dialoge:
+
+#### Sample dialogue:
 Person 1: Hello Plant! How are you feeling today?
+
 Plant: Hey, I'm doing great, though I am a little thirsty.
+
 Person 1: Oh, no worries, let me help. * adds water *
+
 Plant: Thank you so much, this weather has been drying me out lowkey.
+
 Person 1: Yea me too, I can't wait for the fall.
+
 Plant: Not me, I don't want to lose my leaves.. do you know how much work it is to regrow them every year??
+
 Person 1: Oops, my bad plant.
+
 Plant: All good, talk to you later.
 
 ### Acting out the dialogue
@@ -322,6 +330,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
