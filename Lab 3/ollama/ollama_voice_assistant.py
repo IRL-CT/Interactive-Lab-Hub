@@ -69,13 +69,13 @@ def query_ollama(prompt, model=DEFAULT_MODEL):
 def speak_text(text):
     """Use espeak to speak text safely with Unicode handling."""
     try:
-        # Replace problematic Unicode characters
-        safe_text = text.replace("–", "-").replace("…", "...")
-        # Split text into chunks to avoid very long lines for espeak
-        max_chunk = 200
+        # Replace characters that espeak cannot handle
+        safe_text = text.replace("—", "-").replace("–", "-").replace("…", "...").replace("‘", "'").replace("’", "'")
+        # espeak supports UTF-8 with -v option
+        max_chunk = 200  # split long text to avoid TTS issues
         for i in range(0, len(safe_text), max_chunk):
             chunk = safe_text[i:i + max_chunk]
-            subprocess.run(['espeak', chunk], check=False)
+            subprocess.run(['espeak', '-v', 'en', chunk], check=False, encoding='utf-8')
     except Exception as e:
         print(f"TTS Error: {e}")
 
