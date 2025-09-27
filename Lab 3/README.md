@@ -247,6 +247,15 @@ I implemented a simple pipeline that connects **speech recognition → Ollama LL
 
 This creates a conversational loop where the Pi listens, processes, and speaks back.
 
+### How users responded
+- **Test dialogue:**  
+  - User asked: *“Do you know the weather today? I’m in New York.”*  
+  - System replied: *“The forecast is partly cloudy with a slight chance of rain.”*  
+
+- **Feedback:**  
+  - Users found the interaction smooth and natural — they were impressed that the Pi could listen and reply with a synthesized voice.  
+  - Some noted the short recording window (8s) limited longer questions, but for quick queries the pipeline worked effectively.  
+  - Overall, the demonstration showed how a lightweight Pi setup can support **real-time conversational AI**.
 
 
 ### Serving Pages
@@ -341,6 +350,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
