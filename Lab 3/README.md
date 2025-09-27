@@ -80,7 +80,9 @@ Typically, a `.sh` file is a shell script which you can execute in a terminal. T
 You can also play audio files directly with `aplay filename`. Try typing `aplay lookdave.wav`.
 
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
-(This shell file should be saved to your own repo for this lab.)
+(This shell file should be saved to your own repo for this lab.)  
+
+<mark>See my implementation here: [greet_joy.sh](./speech-scripts/greet_joy.sh)</mark>
 
 ---
 Bonus:
@@ -145,7 +147,10 @@ and
 ```
 python faster_whisper_try.py
 ```
-\*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+\*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*  
+
+<mark>See my number speech detection script here: [ask_number.sh](./speech-scripts/ask_number.sh)</mark>
+
 ### Picture 1: Number Speech Record
 <img src="speech number recording.jpg" alt="Interactive Speech AI" width="700">
 
@@ -293,15 +298,116 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
 
 \*\***Post your storyboard and diagram here.**\*\*
 
-Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
+### Verplank diagram
+We designed a **Smart Mirror Outfit Assistant** that recommends daily outfits based on **weather, temperature, and special occasions**. The interaction is through **voice input** and **speech + visual overlay** output.
+
+1. **Morning Start**  
+<img src="./storyboard1.jpg" alt="Storyboard Situation 1" width="500"/>  
+
+2. **Special Occasion**  
+<img src="./storyboard2.jpg" alt="Storyboard Situation 2" width="500"/>  
+
+3. **Misunderstanding Branch**  
+<img src="./storyboard3.jpg" alt="Storyboard Situation 3" width="500"/>  
+
+
+Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.   
 
 \*\***Please describe and document your process.**\*\*
+## 🌳 Dialogue Tree: Smart Mirror Outfit Assistant
+### Panel 1 – Morning Start (Weather-based Recommendation)
+
+**User**: "Mirror, what should I wear today?"  
+→ *System checks today’s weather*
+
+#### If Rainy 🌧️
+- **System**: "It’s rainy today. I recommend wearing a raincoat and waterproof shoes."  
+- **User**: "Should I also bring an umbrella?"  
+- **System**: "Yes, carrying an umbrella will keep you dry."
+
+#### If Snowy ❄️
+- **System**: "It’s snowing today. I suggest a down jacket, warm boots, and gloves."  
+- **User**: "Can I wear sneakers instead?"  
+- **System**: "Sneakers may get wet in the snow. Boots would be safer."
+
+#### If Sunny & Hot ☀️
+- **System**: "It’s sunny and warm, around 28 degrees. I recommend a T-shirt and shorts."  
+- **User**: "Do I need sunglasses?"  
+- **System**: "Yes, sunglasses will help protect your eyes from the bright sun."
+
+#### If Cold but Clear 🌤️
+- **System**: "It’s 12 degrees but clear. I suggest wearing long pants and a jacket."
+
+---
+
+### Panel 2 – Special Occasion (Context-based Recommendation)
+
+**User**: "I have a job interview today."  
+→ *System applies formal attire rules*
+
+- **System**: "For a formal occasion, I recommend a dark suit with a white shirt. That will look more professional."  
+- **User**: "Should I wear a tie?"  
+  - If **Yes** → "A simple dark tie will make your outfit more polished."  
+  - If **No** → "That’s fine, but with a tie you’ll look more formal."  
+
+- **User**: "Can you show me how it looks?"  
+- **System**: *[Overlay suit + tie on reflection]*
+
+#### Alternative Occasions
+- **If Dinner Date** → "A smart-casual outfit would be good, like a blazer with chinos."  
+- **If Sports Event** → "Casual wear is fine — maybe a hoodie and sneakers."
+
+---
+
+### Panel 3 – Misunderstanding Branch (Error Handling)
+
+**User**: "Recommend a pair of shoes."  
+→ *ASR Misheard* → "Recommend a skirt."  
+
+- **System (clarification strategy)**: "Did you mean skirt or shoes?"  
+- **User**: "Shoes."  
+- **System**: "Great. Do you want formal shoes or casual shoes?"  
+  - If **Formal** → "Black leather shoes would match your suit perfectly."  
+  - If **Casual** → "White sneakers would go well with a casual outfit."
+  
 
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
 
+### 🎧 Dialogue Audio Recording
+You can listen to the acted-out dialogue here:  
+[Dialogue performing.m4a](./Dialogue%20performing.m4a)   
+
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+### Reflection: Differences Between Imagined and Real Dialogue
+
+When we acted out the dialogue, it turned out to be quite different from the imagined dialogue tree.
+
+#### Structured vs. Natural Flow
+- **Imagined version**: Highly structured, with predefined conditions (rainy, snowy, sunny, cold).  
+  - User asked short, direct questions like *“Should I also bring an umbrella?”* or *“Do I need sunglasses?”*.  
+  - The flow assumed clear, logical branches.  
+
+- **Real version**: User spoke more naturally and unpredictably.  
+  - Example: *“Today I would like to go out. What kind of suit would you recommend?”*  
+  - This shifted the topic toward **activity-based clothing** rather than just weather.  
+  - System (played by partner) adapted by asking about the **occasion**, leading to discussions about **sportswear, tennis skirts, and even color preferences**.
+
+#### Personalization and Context
+- Real dialogue introduced **unexpected context and personalization**.  
+  - Example: detecting closet inventory (*“blue and pink skirts”*) and giving **tailored recommendations**.  
+- This personalization was **not considered** in the original dialogue flow.
+
+#### Key Insights
+- **Imagined script**: Useful as a starting point to structure logic.  
+- **Real interaction**: Showed that actual users bring in:  
+  - Personal preferences  
+  - Casual, varied language  
+  - Follow-up questions beyond the rigid tree  
+
+**Conclusion**: The acting-out exercise highlighted the importance of **flexibility, personalization, and error-handling** in real system design, beyond what a fixed dialogue tree can capture.
+
 
 ### Wizarding with the Pi (optional)
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
@@ -361,6 +467,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
