@@ -3,13 +3,12 @@
 Ollama Voice Assistant for Lab 3
 - Speech input via microphone
 - Query Ollama (up to 3 minutes)
-- Speak response using espeak (Unicode safe, async)
+- Speak response using espeak (Unicode safe, BLOCKING)
 """
 
 import speech_recognition as sr
 import requests
 import subprocess
-import threading
 import time
 import sys
 
@@ -57,19 +56,14 @@ def query_ollama(prompt, model=DEFAULT_MODEL, timeout=180):
         return f"Error: {str(e)}"
 
 def speak_text(text):
-    """Convert text to speech using espeak asynchronously."""
-    def run_tts(chunk):
-        try:
-            # Use UTF-8 encoding, escape characters safely
-            subprocess.run(['espeak', '-v', 'en', chunk], check=False, encoding='utf-8', timeout=30)
-        except subprocess.TimeoutExpired:
-            print("TTS timeout exceeded")
-        except Exception as e:
-            print(f"TTS Error: {e}")
-
-    # Run TTS in a separate thread to avoid blocking
-    t = threading.Thread(target=run_tts, args=(text,))
-    t.start()
+    """Convert text to speech using espeak (BLOCKING)."""
+    try:
+        # Blocking call: waits until speech finishes
+        subprocess.run(['espeak', '-v', 'en', text], check=False, encoding='utf-8', timeout=120)
+    except subprocess.TimeoutExpired:
+        print("TTS timeout exceeded")
+    except Exception as e:
+        print(f"TTS Error: {e}")
 
 def main():
     """Main loop: listen → recognize → query → speak."""
@@ -99,6 +93,7 @@ def main():
                     ai_response = query_ollama(user_text)
                     print(f"Ollama: {ai_response}")
 
+                    # BLOCKING speak: next listen starts only after TTS finishes
                     speak_text(ai_response)
 
                 except sr.WaitTimeoutError:
