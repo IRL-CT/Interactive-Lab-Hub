@@ -14,6 +14,17 @@ import time
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
+# -------------------------------
+# Safe print wrapper
+# -------------------------------
+def safe_print(text):
+    """Print safely with UTF-8 encoding fallback."""
+    try:
+        print(text)
+    except UnicodeEncodeError:
+        # Replace problematic characters to avoid crash
+        print(text.encode("utf-8", errors="replace").decode("utf-8"))
+
 
 # Ollama configuration
 OLLAMA_URL = "http://localhost:11434"
@@ -23,18 +34,18 @@ DEFAULT_MODEL = "phi3:mini"
 def get_microphone_index():
     """Find and return the index of the preferred microphone."""
     mic_list = sr.Microphone.list_microphone_names()
-    print("Detected microphones:")
+    safe_print("Detected microphones:")
     for idx, name in enumerate(mic_list):
-        print(f"{idx}: {name}")
+        safe_print(f"{idx}: {name}")
 
     # Prefer Logitech C270 HD Webcam
     for i, name in enumerate(mic_list):
         if "C270 HD WEBCAM" in name:
-            print(f"Using preferred device: {name} (index={i})")
+            safe_print(f"Using preferred device: {name} (index={i})")
             return i
 
     # Fallback to default
-    print("C270 microphone not found, using default device")
+    safe_print("C270 microphone not found, using default device")
     return 0
 
 
@@ -63,7 +74,7 @@ def speak_text(text):
     try:
         subprocess.run(['espeak', text], check=False)
     except Exception as e:
-        print(f"TTS Error: {e}")
+        safe_print(f"TTS Error: {e}")
 
 
 def main():
@@ -72,38 +83,38 @@ def main():
     r = sr.Recognizer()
 
     with sr.Microphone(device_index=device_index) as source:
-        print("Calibrating microphone for ambient noise...")
+        safe_print("Calibrating microphone for ambient noise...")
         r.adjust_for_ambient_noise(source, duration=1)
-        print("Calibration complete")
+        safe_print("Calibration complete")
 
-        print("Voice assistant ready. Speak into the microphone.")
-        print("Press Ctrl+C to stop.")
+        safe_print("Voice assistant ready. Speak into the microphone.")
+        safe_print("Press Ctrl+C to stop.")
 
         while True:
             try:
-                print("\nListening...")
+                safe_print("\nListening...")
                 audio = r.listen(source, timeout=None, phrase_time_limit=5)
 
-                print("Recognizing speech...")
+                safe_print("Recognizing speech...")
                 user_text = r.recognize_google(audio, language="en-US")
-                print(f"You said: {user_text}")
+                safe_print(f"You said: {user_text}")
 
                 # Query Ollama
                 ai_response = query_ollama(user_text)
-                print(f"Ollama: {ai_response}")
+                safe_print(f"Ollama: {ai_response}")
 
                 # Speak response
                 speak_text(ai_response)
 
             except sr.UnknownValueError:
-                print("Could not understand audio")
+                safe_print("Could not understand audio")
             except sr.RequestError as e:
-                print(f"Speech Recognition service error: {e}")
+                safe_print(f"Speech Recognition service error: {e}")
             except KeyboardInterrupt:
-                print("\n Exiting voice assistant...")
+                safe_print("\n Exiting voice assistant...")
                 break
             except Exception as e:
-                print(f"Error: {e}")
+                safe_print(f"Error: {e}")
                 time.sleep(1)
 
 
