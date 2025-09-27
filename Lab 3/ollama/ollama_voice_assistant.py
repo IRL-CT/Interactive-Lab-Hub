@@ -55,9 +55,11 @@ def query_ollama(prompt, model=DEFAULT_MODEL):
         return f"Error: {str(e)}"
 
 def speak_text(text):
-    """Convert text to speech using espeak."""
+    """Convert text to speech using espeak (cleaned to ASCII)."""
     try:
-        subprocess.run(['espeak', text], check=False)
+        # Remove unsupported characters (keep only ASCII)
+        safe_text = text.encode("ascii", errors="ignore").decode("ascii")
+        subprocess.run(['espeak', safe_text], check=False)
     except Exception as e:
         print(f"TTS Error: {e}")
 
