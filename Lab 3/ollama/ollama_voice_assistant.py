@@ -14,9 +14,11 @@ import time
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
+
 # Ollama configuration
 OLLAMA_URL = "http://localhost:11434"
 DEFAULT_MODEL = "phi3:mini"
+
 
 def get_microphone_index():
     """Find and return the index of the preferred microphone."""
@@ -35,13 +37,15 @@ def get_microphone_index():
     print("C270 microphone not found, using default device")
     return 0
 
+
 def query_ollama(prompt, model=DEFAULT_MODEL):
     """Send prompt to Ollama and return response."""
     try:
+        print("Querying Ollama (this may take up to 3 minutes)...")
         response = requests.post(
             f"{OLLAMA_URL}/api/generate",
             json={"model": model, "prompt": prompt, "stream": False},
-            timeout=180   # ⬅️ increased to 3 minutes
+            timeout=180  # 3 minutes
         )
 
         if response.status_code == 200:
@@ -50,23 +54,25 @@ def query_ollama(prompt, model=DEFAULT_MODEL):
             return f"Error: Ollama returned status {response.status_code}"
 
     except requests.exceptions.Timeout:
-        return "Sorry, the response took too long (over 3 minutes). Please try again."
+        return "Sorry, the response took too long. Please try again."
     except Exception as e:
         return f"Error: {str(e)}"
 
+
 def speak_text(text):
-    """Convert text to speech using espeak (cleaned to ASCII)."""
+    """Convert text to speech using espeak."""
     try:
-        # Remove unsupported characters (keep only ASCII)
-        safe_text = text.encode("ascii", errors="ignore").decode("ascii")
-        subprocess.run(['espeak', safe_text], check=False)
+        subprocess.run(['espeak', text], check=False)
     except Exception as e:
         print(f"TTS Error: {e}")
+
 
 def main():
     """Main loop: listen → recognize → query → speak."""
     device_index = get_microphone_index()
     r = sr.Recognizer()
+    r.pause_threshold = 2.0  # Stop listening if silence > 2 sec
+    r.energy_threshold = 300  # Adjust if too sensitive or too quiet
 
     with sr.Microphone(device_index=device_index) as source:
         print("Calibrating microphone for ambient noise...")
@@ -79,14 +85,12 @@ def main():
         while True:
             try:
                 print("\nListening...")
-                audio = r.listen(source, timeout=None, phrase_time_limit=5)
-
+                audio = r.listen(source, timeout=None, phrase_time_limit=15)
                 print("Recognizing speech...")
                 user_text = r.recognize_google(audio, language="en-US")
                 print(f"You said: {user_text}")
 
                 # Query Ollama
-                print("Querying Ollama (this may take up to 3 minutes)...")
                 ai_response = query_ollama(user_text)
                 print(f"Ollama: {ai_response}")
 
@@ -98,11 +102,12 @@ def main():
             except sr.RequestError as e:
                 print(f"Speech Recognition service error: {e}")
             except KeyboardInterrupt:
-                print("\n Exiting voice assistant...")
+                print("\nExiting voice assistant...")
                 break
             except Exception as e:
                 print(f"Error: {e}")
                 time.sleep(1)
+
 
 if __name__ == "__main__":
     main()
