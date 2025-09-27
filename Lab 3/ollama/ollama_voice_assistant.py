@@ -56,14 +56,19 @@ def query_ollama(prompt, model=DEFAULT_MODEL, timeout=180):
         return f"Error: {str(e)}"
 
 def speak_text(text):
-    """Convert text to speech using espeak (BLOCKING)."""
+    """Convert text to speech using espeak (BLOCKING, safe Unicode)."""
     try:
-        # Blocking call: waits until speech finishes
-        subprocess.run(['espeak', '-v', 'en', text], check=False, encoding='utf-8', timeout=120)
+        # Replace problematic characters
+        safe_text = text.replace('–', '-').replace('—', '-').replace('…', '...')
+
+        safe_text = ''.join(c if ord(c) < 128 else ' ' for c in safe_text)
+
+        subprocess.run(['espeak', '-v', 'en', safe_text], check=False, encoding='utf-8', timeout=120)
     except subprocess.TimeoutExpired:
         print("TTS timeout exceeded")
     except Exception as e:
         print(f"TTS Error: {e}")
+
 
 def main():
     """Main loop: listen → recognize → query → speak."""
