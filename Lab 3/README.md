@@ -226,6 +226,28 @@ answer = ask_ai("How should I greet users?")
 **📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
+- **My code is located at:**  
+  [`Lab 3/my-scripts/voice_interaction.py`](./my-scripts/voice_interaction.py)
+
+- **Screenshots:**  
+  *Program execution (record → STT → LLM → TTS):*  
+  ![Execution log](./lab_3_screenshot_2.png)  
+
+### What I built
+I implemented a simple pipeline that connects **speech recognition → Ollama LLM processing → text-to-speech output**:
+
+1. **Recording & STT (Speech-to-Text):**  
+   The system records 8 seconds of audio through `arecord` and transcribes it using Whisper.
+
+2. **LLM processing with Ollama:**  
+   The recognized text is sent to an Ollama model, which generates a natural language reply.
+
+3. **TTS (Text-to-Speech):**  
+   The reply is synthesized into speech using Piper TTS and played back through the speaker.
+
+This creates a conversational loop where the Pi listens, processes, and speaks back.
+
+
 
 ### Serving Pages
 
@@ -319,6 +341,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
