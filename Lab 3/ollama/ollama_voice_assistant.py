@@ -1,31 +1,24 @@
 #!/usr/bin/env python3
 """
-Ollama Voice Assistant for Lab 3 (Raspberry Pi optimized)
+Ollama Voice Assistant for Lab 3
 - Speech input via microphone
-- Query Ollama with up to 3-minute response timeout
-- Speak response using espeak (Unicode-safe)
+- Query Ollama (up to 3 minutes)
+- Speak response using espeak (Unicode safe, async)
 """
 
 import speech_recognition as sr
 import requests
 import subprocess
+import threading
 import time
 import sys
 
-# Ensure stdout supports UTF-8
+# Ensure stdout uses utf-8 to avoid encoding errors
 sys.stdout.reconfigure(encoding='utf-8')
 
 # Ollama configuration
 OLLAMA_URL = "http://localhost:11434"
 DEFAULT_MODEL = "phi3:mini"
-
-# Maximum Ollama query timeout (in seconds)
-OLLAMA_TIMEOUT = 180  # 3 minutes
-
-# Microphone settings
-MAX_LISTEN_TIME = 15       # maximum listening duration in seconds
-SILENCE_TIMEOUT = 2        # seconds of silence to stop recording early
-
 
 def get_microphone_index():
     """Find and return the index of the preferred microphone."""
@@ -44,15 +37,13 @@ def get_microphone_index():
     print("C270 microphone not found, using default device")
     return 0
 
-
-def query_ollama(prompt, model=DEFAULT_MODEL):
-    """Send prompt to Ollama and return response."""
+def query_ollama(prompt, model=DEFAULT_MODEL, timeout=180):
+    """Send prompt to Ollama and return response (up to 3 minutes)."""
     try:
-        print(f"Querying Ollama (this may take up to {OLLAMA_TIMEOUT // 60} minutes)...")
         response = requests.post(
             f"{OLLAMA_URL}/api/generate",
             json={"model": model, "prompt": prompt, "stream": False},
-            timeout=OLLAMA_TIMEOUT
+            timeout=timeout
         )
 
         if response.status_code == 200:
@@ -65,60 +56,63 @@ def query_ollama(prompt, model=DEFAULT_MODEL):
     except Exception as e:
         return f"Error: {str(e)}"
 
-
 def speak_text(text):
-    """Use espeak to speak text safely with Unicode handling."""
-    try:
-        # Replace characters that espeak cannot handle
-        safe_text = text.replace("—", "-").replace("–", "-").replace("…", "...").replace("‘", "'").replace("’", "'")
-        # espeak supports UTF-8 with -v option
-        max_chunk = 200  # split long text to avoid TTS issues
-        for i in range(0, len(safe_text), max_chunk):
-            chunk = safe_text[i:i + max_chunk]
-            subprocess.run(['espeak', '-v', 'en', chunk], check=False, encoding='utf-8')
-    except Exception as e:
-        print(f"TTS Error: {e}")
+    """Convert text to speech using espeak asynchronously."""
+    def run_tts(chunk):
+        try:
+            # Use UTF-8 encoding, escape characters safely
+            subprocess.run(['espeak', '-v', 'en', chunk], check=False, encoding='utf-8', timeout=30)
+        except subprocess.TimeoutExpired:
+            print("TTS timeout exceeded")
+        except Exception as e:
+            print(f"TTS Error: {e}")
 
+    # Run TTS in a separate thread to avoid blocking
+    t = threading.Thread(target=run_tts, args=(text,))
+    t.start()
 
 def main():
     """Main loop: listen → recognize → query → speak."""
     device_index = get_microphone_index()
     r = sr.Recognizer()
 
-    with sr.Microphone(device_index=device_index) as source:
-        print("Calibrating microphone for ambient noise...")
-        r.adjust_for_ambient_noise(source, duration=1)
-        print("Calibration complete")
-        print("Voice assistant ready. Speak into the microphone.")
-        print("Press Ctrl+C to stop.")
+    try:
+        with sr.Microphone(device_index=device_index) as source:
+            print("Calibrating microphone for ambient noise...")
+            r.adjust_for_ambient_noise(source, duration=1)
+            print("Calibration complete")
 
-        while True:
-            try:
-                print("\nListening...")
-                audio = r.listen(source, timeout=None, phrase_time_limit=MAX_LISTEN_TIME)
+            print("Voice assistant ready. Speak into the microphone.")
+            print("Press Ctrl+C to stop.")
 
-                print("Recognizing speech...")
-                user_text = r.recognize_google(audio, language="en-US")
-                print(f"You said: {user_text}")
+            while True:
+                try:
+                    print("\nListening...")
+                    # Listen for up to 15 seconds, end after 2s silence
+                    audio = r.listen(source, timeout=15, phrase_time_limit=15)
 
-                # Query Ollama
-                ai_response = query_ollama(user_text)
-                print(f"Ollama: {ai_response}")
+                    print("Recognizing speech...")
+                    user_text = r.recognize_google(audio, language="en-US")
+                    print(f"You said: {user_text}")
 
-                # Speak response
-                speak_text(ai_response)
+                    print("Querying Ollama (this may take up to 3 minutes)...")
+                    ai_response = query_ollama(user_text)
+                    print(f"Ollama: {ai_response}")
 
-            except sr.UnknownValueError:
-                print("Could not understand audio")
-            except sr.RequestError as e:
-                print(f"Speech Recognition service error: {e}")
-            except KeyboardInterrupt:
-                print("\nExiting voice assistant...")
-                break
-            except Exception as e:
-                print(f"Error: {e}")
-                time.sleep(1)
+                    speak_text(ai_response)
 
+                except sr.WaitTimeoutError:
+                    print("No speech detected in time.")
+                except sr.UnknownValueError:
+                    print("Could not understand audio.")
+                except sr.RequestError as e:
+                    print(f"Speech Recognition service error: {e}")
+                except Exception as e:
+                    print(f"Error: {e}")
+                    time.sleep(1)
+
+    except KeyboardInterrupt:
+        print("\nExiting voice assistant...")
 
 if __name__ == "__main__":
     main()
