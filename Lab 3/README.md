@@ -146,6 +146,9 @@ and
 python faster_whisper_try.py
 ```
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+### Picture 1: Number Speech Record
+<img src="speech number recording.jpg" alt="Interactive Speech AI" width="700">
+
 
 ### 🤖 NEW: AI-Powered Conversations with Ollama
 
@@ -213,7 +216,11 @@ answer = ask_ai("How should I greet users?")
 **📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*  
-【图片放这】  
+
+### Picture 2: Interactive Speech
+<img src="interactive speech ai.jpg" alt="Interactive Speech AI" width="700">
+
+
 ## System Components
 
 ### 1. Speech Recognition
@@ -354,6 +361,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
