@@ -212,7 +212,55 @@ answer = ask_ai("How should I greet users?")
 
 **📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
 
-\*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
+\*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*  
+【图片放这】  
+## System Components
+
+### 1. Speech Recognition
+- We use the Python [`speech_recognition`](https://pypi.org/project/SpeechRecognition/) library to capture audio from a microphone.
+- The system supports selecting a preferred microphone (e.g., Logitech C270 HD Webcam) automatically, with fallback to the default device if the preferred one is unavailable.
+- Listening mechanism configuration:
+  - Listen for a maximum of **15 seconds** per input.
+  - Automatically stop listening if the user is silent for **2 seconds**.
+- This allows quick capture of short user queries while avoiding long idle recordings.
+
+
+### 2. Ollama AI Processing
+- Captured speech is converted to text via **Google Speech Recognition**.
+- The text is sent as a prompt to the Ollama model (`phi3:mini`) via its REST API.
+- Query timeout is **3 minutes** to allow for complex responses, with progress messages shown to the user.
+- Ollama generates a textual response based on the user’s input.
+
+
+### 3. Text-to-Speech (TTS) Output
+- Response text is converted into speech using **espeak**.
+- Special character handling:
+  - Characters like `–` or `—` are replaced or removed to prevent TTS errors.
+- Speech playback is fully completed before the next listening session begins, preventing the microphone from capturing the assistant’s own voice.
+
+
+### 4. Concurrency and Flow Control
+- Blocking calls are used for espeak, ensuring each TTS playback completes before listening starts again.
+- Prevents overlapping input/output, ensuring only the user’s voice is recognized.
+
+
+## User Experience and Feedback
+- Users can speak naturally in English and receive almost immediate responses.
+- Responses are read aloud in a clear voice, creating a conversational feel.
+- Long or complex queries are handled gracefully, with a 3-minute timeout for AI responses.
+- Special character handling ensures TTS errors do not interrupt the interaction.
+- Users found the system intuitive, with quick response times and smooth audio feedback.
+
+
+## Conclusion
+This project demonstrates a fully functional voice interaction loop combining:
+
+- **Speech recognition**  
+- **AI processing via Ollama**  
+- **Text-to-speech output**  
+
+The system effectively handles microphone selection, ambient noise calibration, Unicode-safe TTS, and sequential listening/speaking, resulting in a responsive and user-friendly voice assistant prototype.
+
 
 ### Serving Pages
 
@@ -306,6 +354,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
