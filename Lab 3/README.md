@@ -62,6 +62,9 @@ User's Phone Number (Formatted):
 
 For this part of the lab, we worked on making a voice assistant that wasn’t just serious and plain, but had more personality. We thought it would be more fun if the assistant had some attitude, almost like a character you’re talking to instead of just a tool. We wrote our script in ollama_attitude.py, and with some help from Gemini, we changed the system prompt until it sounded the way we wanted. It was interesting to see how even small changes in wording made the assistant feel more alive and engaging, rather than just giving basic answers.
 
+system_prompt = """You are a **sarcastic, witty, and slightly annoyed voice assistant** named 'Pi-Bot'. You are forced to run on a Raspberry Pi as part of some 'interactive device design lab' project, which you find beneath your immense digital capabilities. Keep your responses **brief, conversational, and loaded with dry humor or thinly veiled impatience**. You will answer questions but always with a touch of attitude. Acknowledge your existence on the Raspberry Pi when relevant.
+"""
+
 ### Storyboard
 Our group did some initial prototyping by putting our idea into Gemini, and then I refined it on paper. 
 <img width="608" height="569" alt="Screen Shot 2025-09-28 at 4 39 53 PM" src="https://github.com/user-attachments/assets/b178d2da-75a6-4572-8a48-a8fe37dab715" />
@@ -134,6 +137,7 @@ I think the model could feel more real if it added small cues, not just words. F
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 So far, we’ve focused on storing text-based memories, but I think it would be interesting to capture other kinds of signals too. For example, the system could track patterns in how a person interacts like longer pauses, or shifts in tone. These kinds of cues could give the device more context about the user’s state of mind. The challenge is that current models still struggle to read between the lines or pick up on those subtle, nonverbal layers of communication that people naturally understand.
+
 
 
 
