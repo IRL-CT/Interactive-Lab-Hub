@@ -285,7 +285,9 @@ Plant: All good, talk to you later.
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
 
-\*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+!(Video of Dialogue Acting)[rasppi_plant_dialogue.mp4]
+
+The dialogue went pretty much along with what I imagined since it is a simple conversation about well being. Of course, when acting something out without sharing the same script, there is a slight variation in the questions, such as Angela mentioning to move the plant as a solution to the plant being thirsty and hot, which was not planned.
 
 ### Wizarding with the Pi (optional)
 <details> 
@@ -349,6 +351,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
