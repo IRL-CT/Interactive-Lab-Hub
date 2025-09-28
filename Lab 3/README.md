@@ -149,6 +149,30 @@ and
 python faster_whisper_try.py
 ```
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+```
+#!/bin/bash
+# ask_number_vosk.sh
+# Ask a number, record it, and transcribe with Vosk
+
+QUESTION="Please say a number, such as your phone number or zipcode."
+DURATION=5               # seconds to record
+OUTFILE="answer.wav"
+RESULT="result.txt"
+
+# Speak the question
+espeak "$QUESTION"
+
+echo "Recording for $DURATION seconds..."
+arecord -d $DURATION -f cd -t wav "$OUTFILE"
+
+echo "Transcribing with Vosk..."
+vosk-transcriber -i "$OUTFILE" -o "$RESULT"
+
+echo "Transcription saved to $RESULT"
+echo "Detected text:"
+cat "$RESULT"
+```
+
 
 ### 🤖 NEW: AI-Powered Conversations with Ollama
 
@@ -309,6 +333,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
