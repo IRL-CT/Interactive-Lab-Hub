@@ -105,9 +105,8 @@ The biggest improvement would be giving the therapist better wording and more sh
 Adding a visual extension to the therapist would help make the system feel more human-like and easier to talk to. 
 
 3. Make a new storyboard, diagram and/or script based on these reflections.
-   Initial prototype with Gemini:
+   Initial prototype with Gemini and refined version:
    <img width="607" height="557" alt="Screen Shot 2025-09-28 at 4 48 08 PM" src="https://github.com/user-attachments/assets/4d2ef03d-fc51-49a2-8ded-ec4c595061b5" />
-Refined version by me:
    <img width="621" height="489" alt="Screen Shot 2025-09-28 at 4 48 50 PM" src="https://github.com/user-attachments/assets/8f81c415-d523-4adf-98cb-80184fc5943e" />
 
 ## Prototype your system
@@ -135,6 +134,7 @@ I think the model could feel more real if it added small cues, not just words. F
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 So far, we’ve focused on storing text-based memories, but I think it would be interesting to capture other kinds of signals too. For example, the system could track patterns in how a person interacts like longer pauses, or shifts in tone. These kinds of cues could give the device more context about the user’s state of mind. The challenge is that current models still struggle to read between the lines or pick up on those subtle, nonverbal layers of communication that people naturally understand.
+
 
 
 
