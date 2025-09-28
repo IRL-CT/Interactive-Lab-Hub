@@ -240,6 +240,63 @@ answer = ask_ai("How should I greet users?")
 **📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
+```
+import speech_recognition as sr
+import requests
+import pyttsx3
+
+# URL of the local Ollama API
+OLLAMA_URL = "http://localhost:11434/api/generate"
+# Name of the model you have pulled (change if needed)
+MODEL      = "llama3"
+
+def listen():
+    """Capture microphone input and convert to text using Google Speech Recognition."""
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("🎤 Speak now...")
+        r.adjust_for_ambient_noise(source)  # reduce background noise
+        audio = r.listen(source)
+    try:
+        text = r.recognize_google(audio)
+        print("You said:", text)
+        return text
+    except Exception as e:
+        print("Speech recognition failed:", e)
+        return ""
+
+def query_ollama(prompt):
+    """Send the recognized text to Ollama and collect the streamed response."""
+    data = {"model": MODEL, "prompt": prompt}
+    resp = requests.post(OLLAMA_URL, json=data, stream=True)
+    reply = ""
+    for line in resp.iter_lines():
+        if not line:
+            continue
+        part = line.decode("utf-8")
+        # Ollama streams JSON lines; extract the "response" field
+        if '"response":"' in part:
+            reply += part.split('"response":"')[1].split('"')[0]
+    print("Ollama:", reply)
+    return reply
+
+def speak(text):
+    """Speak the response aloud using offline TTS."""
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
+
+# Main loop: continuously listen → process → speak
+print("Start talking (say 'exit' or 'quit' to stop)")
+while True:
+    user_text = listen()
+    if not user_text:
+        continue
+    if user_text.lower() in ["exit", "quit", "stop"]:
+        break
+    answer = query_ollama(user_text)
+    speak(answer)
+```
 
 ### Serving Pages
 
@@ -333,6 +390,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
