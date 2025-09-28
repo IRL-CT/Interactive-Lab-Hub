@@ -81,7 +81,7 @@ AI Therapist: I understand your concern, it seems that you are currently feeling
 Participant: …
 AI Therapist: All the emotions you are experiencing are extremely valid. It is normal to feel this way. One recommendation I have is to x, x, or x.
 
-Here is the video of the initial interaction: 
+Here is the video of the initial interaction: https://youtu.be/vX0yXSxaXyY
 
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
@@ -118,11 +118,11 @@ For context, we used a file called memories.txt. The idea is that the ollama mod
 
 For the visual side, we decided to make the therapist look like a rubber duck. This is a playful nod to how programmers talk to rubber ducks to work through problems. In the same way, this “rubber duck therapist” could help people work through their own thoughts and feelings. Our long-term goal is to turn the duck into a moving gif that can show emotions.
 
-Here is a video of our setup:
+Here is a video of our setup: https://youtu.be/vX0yXSxaXyY
 
 ## Test the system
 
-Here is the video of our interaction:
+Here is the video of our interaction: https://youtu.be/vX0yXSxaXyY
 
 ### What worked well about the system and what didn't?
 
@@ -139,6 +139,7 @@ I think the model could feel more real if it added small cues, not just words. F
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 So far, we’ve focused on storing text-based memories, but I think it would be interesting to capture other kinds of signals too. For example, the system could track patterns in how a person interacts like longer pauses, or shifts in tone. These kinds of cues could give the device more context about the user’s state of mind. The challenge is that current models still struggle to read between the lines or pick up on those subtle, nonverbal layers of communication that people naturally understand.
+
 
 
 
