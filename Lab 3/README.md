@@ -81,7 +81,7 @@ AI Therapist: I understand your concern, it seems that you are currently feeling
 Participant: …
 AI Therapist: All the emotions you are experiencing are extremely valid. It is normal to feel this way. One recommendation I have is to x, x, or x.
 
-Here is the recording of the initial interaction: 
+Here is the video of the initial interaction: 
 
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
@@ -122,6 +122,8 @@ Here is a video of our setup:
 
 ## Test the system
 
+Here is the video of our interaction:
+
 ### What worked well about the system and what didn't?
 
 In my view, having stored memories really helped make the interaction feel more tailored, almost like the device actually knew the user instead of starting fresh each time. On the other hand, the duck in its current form felt too static, which made it harder to see it as anything more than just an image. If we want the duck to feel alive and engaging, it should be able to move or react in some way. I imagine an animated version like a gif that plays only when the duck is “speaking” or showing emotion would make the experience better. 
@@ -137,6 +139,7 @@ I think the model could feel more real if it added small cues, not just words. F
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 So far, we’ve focused on storing text-based memories, but I think it would be interesting to capture other kinds of signals too. For example, the system could track patterns in how a person interacts like longer pauses, or shifts in tone. These kinds of cues could give the device more context about the user’s state of mind. The challenge is that current models still struggle to read between the lines or pick up on those subtle, nonverbal layers of communication that people naturally understand.
+
 
 
 
