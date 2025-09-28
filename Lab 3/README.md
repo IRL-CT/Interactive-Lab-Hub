@@ -214,7 +214,10 @@ answer = ask_ai("How should I greet users?")
 
 **📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
 
-\*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
+\*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*  
+See script here ('final_voice_assistant.py in ollama folder) : https://github.com/ji227/Jesse-Iriah-s-Lab-Hub/blob/Fall2025/Lab%203/ollama/final_voice_assistant.py  
+See documentation on the script and response here: https://docs.google.com/document/d/1MC8Soh6y-xnqsH4-R49oLbx3axFsuhnrAuuwzcrkruw/edit?tab=t.0  
+
 
 ### Serving Pages
 
@@ -232,7 +235,8 @@ pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
  * Debugger is active!
  * Debugger PIN: 162-573-883
 ```
-From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
+From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.  
+<img width="376" height="94" alt="Screenshot 2025-09-28 at 00 58 12" src="https://github.com/user-attachments/assets/5c693891-a609-4e64-8b60-072b146de9de" />  
 
 ### Storyboard
 
@@ -308,6 +312,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
