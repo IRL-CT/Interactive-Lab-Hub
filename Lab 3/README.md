@@ -274,7 +274,11 @@ Potential Ideas:
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
-\*\***Please describe and document your process.**\*\*
+**Process:**
+- Picked out a scenario for using my device, in this case, I decided to have it assist a user in building an interactive device.
+- I came up with potential questions that the user may ask and drew up responses for each situation
+- Tried to keep the interactions short and repeatable, ending with either helping the user, or not being able to help
+- Made sure to include a catch-all for any commands/questions that my device couldn't respond to
 ![IMG_0703](https://github.com/user-attachments/assets/2673f814-3544-4995-bdd0-31858b0e8b18)
 
 </details>
@@ -354,6 +358,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
