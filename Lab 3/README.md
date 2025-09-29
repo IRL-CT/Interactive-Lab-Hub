@@ -44,7 +44,9 @@ Option 2: On your your own GitHub repo, [create pull request](https://github.com
 
 
 ## Part 1.
-### Setup 
+
+<details>
+<summary><strong>Setup</strong></summary>
 
 Activate your virtual environment
 
@@ -65,7 +67,10 @@ Next, run the setup script to install additional text-to-speech dependencies:
 (.venv)pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ ./setup.sh
 ```
 
-### Text to Speech 
+</details> 
+
+<details>
+<summary><strong>Text to Speech </strong></summary>
 
 In this part of lab, we are going to start peeking into the world of audio on your Pi! 
 
@@ -73,6 +78,8 @@ We will be using the microphone and speaker on your webcamera. In the directory 
 
 ```
 pi@ixe00:~/speech-scripts $ ls
+(my path) cd ~/Documents/GitHub/Interactive-Lab-Hub/Lab\ 3/speech-scripts $ ls
+
 Download        festival_demo.sh  GoogleTTS_demo.sh  pico2text_demo.sh
 espeak_demo.sh  flite_demo.sh     lookdave.wav
 ```
@@ -93,9 +100,6 @@ Typically, a `.sh` file is a shell script which you can execute in a terminal. T
 
 You can also play audio files directly with `aplay filename`. Try typing `aplay lookdave.wav`.
 
-\*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
-(This shell file should be saved to your own repo for this lab.)
-
 ---
 Bonus:
 [Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspberry pi which can be installed easily through python with:
@@ -115,6 +119,9 @@ echo 'This sentence is spoken first. This sentence is synthesized while the firs
   piper --model en_US-lessac-medium --output-raw | \
   aplay -r 22050 -f S16_LE -t raw -
 ```
+</details>
+
+\*\***My own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
   
 ### Speech to Text
 
