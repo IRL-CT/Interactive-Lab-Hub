@@ -122,6 +122,8 @@ echo 'This sentence is spoken first. This sentence is synthesized while the firs
 </details>
 
 \*\***My own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
+[greet_Carrie.sh](speech-scripts/greet_Carrie.sh)
+
   
 ### Speech to Text
 
