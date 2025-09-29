@@ -1,15 +1,7 @@
 # Chatterboxes
 **NAMES OF COLLABORATORS HERE**
-<<<<<<< HEAD
-
-<details>
-<summary> Assignment </summary>
-=======
-Lianne Bisch (lb854)
-
 <details>
 <summary>Instruction </summary>
->>>>>>> 50cad4ec6f188542c8d8e603afd4d6babed512a7
 [![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
 
 In this lab, we want you to design interaction with a speech-enabled device--something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1).  First, we want you first to storyboard what you imagine the conversational interaction to be like. Then, you will use wizarding techniques to elicit examples of what people might say, ask, or respond.  We then want you to use the examples collected from at least two other people to inform the redesign of the device.
@@ -317,6 +309,7 @@ Answer the following:
 
 \*\**your answer here*\*\*
 
+
 </details>
 
 ## Part1
@@ -335,37 +328,10 @@ I wrote code that only used the shell commands on the .sh file, but I modified t
 This will ask the phone number, and once there are 10 digits, it will stop listening, and repeating what it heard. 
 The phone number will be stored in the phone.txt.
 
-</details>
+\*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
 
-\*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
+* [Test](ollama/ollama_test.py)
 
-[nana_demo.sh](Lab 3/speech-scripts/nana_demo.sh)
-
-
-\*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
-
-[ask_phone_number.sh](Lab 3/speech-scripts/ask_phone_number.sh)
-[ask_phone_number.py](Lab 3/speech-scripts/ask_phone_number.py)
-
-This will ask the phone number, and record the 10 digits into the phone.txt. 
-
-Initially I implemnted only using command lines. 
-The command lines version is commented out in the bash file.
-
-Then, I decided to create a new pyhont file for this.
-
-I asked ChatGPT here with the prompt: 
-
-I want to modify this so that it only uses numerical value and once it gets enough number for phone number, then it closes
-
-I also attached the test_microphone.py as a reference. 
-
-
-\*\***Post your storyboard and diagram here.**\*\*
-
-Smart Fridge... 
-
-We konw it's kinda boring, but also it's fun. 
 
 \*\***Post your storyboard and diagram here.**\*\*
 
@@ -373,9 +339,6 @@ We konw it's kinda boring, but also it's fun.
 [storyboard_fridge.pdf](https://github.com/user-attachments/files/22589047/storyboard_fridge.pdf)
 \*\***Please describe and document your process.**\*\*
 
-<<<<<<< HEAD
-\*\***Please describe and document your process.**\*\*
-=======
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
@@ -386,4 +349,3 @@ Find a partner, and *without sharing the script with your partner* try out the d
 
 The dialogue was generally straightforward. In the second conversation, there was a slight overlap when the fridge attempted to make a suggestion. This felt fairly realistic, as interactions with smart devices often involve brief pauses that can lead to unintentional 
 interruptions. People sometimes add follow-up thoughts after a moment of silence, which smart devices may interpret as the end of a statement, prompting them to respond prematurely.
->>>>>>> 50cad4ec6f188542c8d8e603afd4d6babed512a7
