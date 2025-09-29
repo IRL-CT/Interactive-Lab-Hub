@@ -235,7 +235,26 @@ exit 0
 
 </details>
 
-\*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
+### A simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output.
+
+```
+def ask_specialized_ollama(question, personality):
+    response = requests.post(
+        "http://localhost:11434/api/generate",
+        json={
+            "model": "phi3:mini",
+            "prompt": question,
+            "system": personality,  # This changes behavior!
+            "stream": False
+        }
+    )
+    return response.json().get('response', 'Sorry, no response')
+
+plant_response = ask_specialized_ollama(
+    "How are you doing?", 
+    "You are a green houseplant. Give a conversational response with a funny personality."
+)
+```
 <details> 
   <summary>Serving Pages</summary>
   In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
@@ -351,6 +370,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
