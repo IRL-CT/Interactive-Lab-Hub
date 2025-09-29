@@ -235,6 +235,8 @@ pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
 ```
 From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
 
+---
+
 ### Storyboard
 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
@@ -249,6 +251,31 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
   <img src="Pics/storyboard.png" alt="diagram" width="500" />
 </p>
 
+One of the core functions of this device is to act as a speech- and gesture-enabled moderator for the party game *Werewolf*.  
+It listens to player input, provides moderator narration, and supports secret gestures for actions like targeting — making the game fair, consistent, and immersive.  
+
+#### 🎮 How to Use the Device  
+
+Setup  
+- Each player registers their seat number.  
+- The device randomly assigns roles and privately informs players.
+  
+Night Phase 
+- The device calls roles one by one.  
+- Werewolves, Seer, and Witch use hand gestures over the sensor to secretly perform actions.
+  
+Day Phase  
+- The device announces the results of the night (e.g., who died or was saved).  
+- A discussion timer starts for accusations and defenses.
+  
+Voting Phase  
+- Players vote by speaking or by hovering their hand over the sensor for a silent vote.
+  
+Win Check  
+- The device tracks remaining players.  
+- If one side wins, it announces the result. Otherwise, the cycle continues.
+
+---
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
@@ -349,6 +376,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
