@@ -1,5 +1,8 @@
 # Chatterboxes
 **NAMES OF COLLABORATORS HERE**
+
+<details>
+<summary> Assignment </summary>
 [![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
 
 In this lab, we want you to design interaction with a speech-enabled device--something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1).  First, we want you first to storyboard what you imagine the conversational interaction to be like. Then, you will use wizarding techniques to elicit examples of what people might say, ask, or respond.  We then want you to use the examples collected from at least two other people to inform the redesign of the device.
@@ -308,7 +311,38 @@ Answer the following:
 \*\**your answer here*\*\*
 
 
+</details>
+
+\*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
+
+[nana_demo.sh](Lab 3/speech-scripts/nana_demo.sh)
+
+
+\*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+
+[ask_phone_number.sh](Lab 3/speech-scripts/ask_phone_number.sh)
+[ask_phone_number.py](Lab 3/speech-scripts/ask_phone_number.py)
+
+This will ask the phone number, and record the 10 digits into the phone.txt. 
+
+Initially I implemnted only using command lines. 
+The command lines version is commented out in the bash file.
+
+Then, I decided to create a new pyhont file for this.
+
+I asked ChatGPT here with the prompt: 
+
+I want to modify this so that it only uses numerical value and once it gets enough number for phone number, then it closes
+
+I also attached the test_microphone.py as a reference. 
+
+
+\*\***Post your storyboard and diagram here.**\*\*
+
+Smart Fridge... 
+
+We konw it's kinda boring, but also it's fun. 
 
 
 
-
+\*\***Please describe and document your process.**\*\*
