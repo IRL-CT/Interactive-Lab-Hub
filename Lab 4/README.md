@@ -1,4 +1,61 @@
+
 # Ph-UI!!!
+
+<details>
+	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
+  
+	**Submission Cleanup Reminder:**
+	- This README.md contains extra instructional text for guidance.
+	- Before submitting, remove all instructional text and example prompts from this file.
+	- You may delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
+	- Your final submission should be neat, focused on your own work, and easy to read for grading.
+  
+	This helps ensure your README.md is clear, professional, and uniquely yours!
+</details>
+
+---
+
+## Lab 4 Deliverables
+
+### Part 1 (Week 1)
+**Submit the following for Part 1:**  
+*️⃣ **A. Capacitive Sensing**
+	- Photos/videos of your Twizzler (or other object) capacitive sensor setup
+	- Code and terminal output showing touch detection
+
+*️⃣ **B. More Sensors**
+	- Photos/videos of each sensor tested (light/proximity, rotary encoder, joystick, distance sensor)
+	- Code and terminal output for each sensor
+
+*️⃣ **C. Physical Sensing Design**
+	- 5 sketches of different ways to use your chosen sensor
+	- Written reflection: questions raised, what to prototype
+	- Pick one design to prototype and explain why
+
+*️⃣ **D. Display & Housing**
+	- 5 sketches for display/button/knob positioning
+	- Written reflection: questions raised, what to prototype
+	- Pick one display design to integrate
+	- Rationale for design
+	- Photos/videos of your cardboard prototype
+
+---
+
+### Part 2 (Week 2)
+**Submit the following for Part 2:**  
+*️⃣ **E. Multi-Device Demo**
+	- Code and video for your multi-input multi-output demo (e.g., chaining Qwiic buttons, servo, GPIO expander, etc.)
+	- Reflection on interaction effects and chaining
+
+*️⃣ **F. Camera Test (Optional)**
+	- Code and video for camera test (if attempted)
+
+*️⃣ **G. Final Documentation**
+	- Photos/videos of your final prototype
+	- Written summary: what it looks like, works like, acts like
+	- Reflection on what you learned and next steps
+
+---
 
 ## Lab Overview
 **NAMES OF COLLABORATORS HERE**
@@ -12,7 +69,7 @@ For lab this week, we focus both on sensing, to bring in new modes of input into
 As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. As we discussed in the class, there are 2 ways you can do so:
 
 
-**\[recommended\]**Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the personal access token for this.
+Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the personal access token for this.
 ```
 pi@ixe00:~$ cd Interactive-Lab-Hub
 pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2022
@@ -42,8 +99,6 @@ Option 3: (preferred) use the Github.com interface to update the changes.
 * Cutting board
 * Cutting tools
 * Markers
-
-* New hardware for your kit will be handed out. Update your parts list. 
 
 
 (We do offer shared cutting board, cutting tools, and markers on the class cart during the lab, so do not worry if you don't have them!)
@@ -162,7 +217,7 @@ Connect it to your pi with Qwiic connector and try running the example script, i
 
 You can go to the [Adafruit Learn Page](https://learn.adafruit.com/adafruit-i2c-qt-rotary-encoder/python-circuitpython) to learn more about the sensor! The sensor actually comes with an LED (neo pixel): Can you try lighting it up? 
 
-#### Joystick (optional)
+#### Joystick 
 
 
 A [joystick](https://www.sparkfun.com/products/15168) can be used to sense and report the input of the stick for it pivoting angle or direction. It also comes with a button input!
@@ -266,7 +321,7 @@ Build a cardboard prototype of your design.
 **\*\*\*Document your rough prototype.\*\*\***
 
 
-LAB PART 2
+# LAB PART 2
 
 ### Part 2
 
@@ -431,7 +486,7 @@ See encoder_accel_servo_dashboard.py in the Lab 4 folder for an example of chain
 
 **`Lab 4/encoder_accel_servo_dashboard.py`**
 
-### Part F (Optional)
+### Part F (Optional - Scripts not up to date)
 ### Camera
 You can use the inputs and outputs from the video camera in the kit. 
 We provide another script called camera_test.py to test the USB camera on raspberry pi. 
