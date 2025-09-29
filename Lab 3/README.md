@@ -55,8 +55,12 @@ Restart ollama so that the AI response would not time out.
 
 Delete `/audio` files to save memory.
 
-#### User feedback
+#### Video Demo
+- [link](https://youtu.be/cbnLyy9lcVg)
 
+#### User feedback
+Zoe thinks the flow is straightforward, and she likes the humourous and lighthearted tone!
+She thinks the device could encourage more specific input from user so the turnaround time is not super long.
 
 ### Storyboard
 
@@ -93,6 +97,15 @@ I then selected two scenarios that I want to create an interactive script for:
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+
+[Warewolves](https://youtu.be/oKx95uURB4s)
+
+[Ideabox](https://youtu.be/8xRIaNbEIwg)
+
+[Rules Explanation Bot](https://drive.google.com/file/d/10ByKoQw41XVuMDyUWIKn8qw_uJNr9zi4/view?usp=drive_link)
+
+#### Notes And Observations
+<!-- //TODO: -->
 
 ### Wizarding with the Pi (optional)
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
