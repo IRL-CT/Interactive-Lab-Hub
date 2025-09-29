@@ -331,11 +331,37 @@ Following exploration and reflection from Part 1, complete the "looks like," "wo
 
 ### Part E
 
-### Using Multiple Qwiic Buttons: Changing I2C Address (Physically & Digitally)
+#### Chaining Devices and Exploring Interaction Effects
+
+For Part 2, you will design and build a fun interactive prototype using multiple inputs and outputs. This means chaining Qwiic and STEMMA QT devices (e.g., buttons, encoders, sensors, servos, displays) and/or combining with traditional breadboard prototyping (e.g., LEDs, buzzers, etc.).
+
+**Your prototype should:**
+- Combine at least two different types of input and output devices, inspired by your physical considerations from Part 1.
+- Be playful, creative, and demonstrate multi-input/multi-output interaction.
+
+**Document your system with:**
+- Code for your multi-device demo
+- Photos and/or video of the working prototype in action
+- A simple interaction diagram or sketch showing how inputs and outputs are connected and interact
+- Written reflection: What did you learn about multi-input/multi-output interaction? What was fun, surprising, or challenging?
+
+**Questions to consider:**
+- What new types of interaction become possible when you combine two or more sensors or actuators?
+- How does the physical arrangement of devices (e.g., where the encoder or sensor is placed) change the user experience?
+- What happens if you use one device to control or modulate another (e.g., encoder sets a threshold, sensor triggers an action)?
+- How does the system feel if you swap which device is "primary" and which is "secondary"?
+
+Try chaining different combinations and document what you discover!
+
+See encoder_accel_servo_dashboard.py in the Lab 4 folder for an example of chaining together three devices.
+
+**`Lab 4/encoder_accel_servo_dashboard.py`**
+
+#### Using Multiple Qwiic Buttons: Changing I2C Address (Physically & Digitally)
 
 If you want to use more than one Qwiic Button in your project, you must give each button a unique I2C address. There are two ways to do this:
 
-#### 1. Physically: Soldering Address Jumpers
+##### 1. Physically: Soldering Address Jumpers
 
 On the back of the Qwiic Button, you'll find four solder jumpers labeled A0, A1, A2, and A3. By bridging these with solder, you change the I2C address. Only one button on the chain can use the default address (0x6F).
 
@@ -361,7 +387,7 @@ For example, if you solder A0 closed (leave A1, A2, A3 open), the address become
 - Only one jumper needs to be closed for each address change (see table above).
 - Power cycle the button after changing the jumper.
 
-#### 2. Digitally: Using Software to Change Address
+##### 2. Digitally: Using Software to Change Address
 
 You can also change the address in software (temporarily or permanently) using the example script `qwiic_button_ex6_changeI2CAddress.py` in the Lab 4 folder. This is useful if you want to reassign addresses without soldering.
 
@@ -374,7 +400,7 @@ Enter the new address (e.g., 5B for 0x5B) when prompted. Power cycle the button 
 **Note:** The software method is less foolproof and you need to make sure to keep track of which button has which address!
 
 
-#### Using Multiple Buttons in Code
+##### Using Multiple Buttons in Code
 
 After setting unique addresses, you can use multiple buttons in your script. See these example scripts in the Lab 4 folder:
 
@@ -470,21 +496,8 @@ A servo motor is a rotary actuator that allows for precise control of angular po
 
 ---
 
-### Chaining Devices and Exploring Interaction Effects
 
-One of the strengths of the Qwiic/STEMMA QT ecosystem is the ability to easily chain multiple I2C devices together—such as encoders, accelerometers, displays, and more. Try connecting several devices at once and experiment with how their data and controls can be combined in your prototype.
 
-**Questions to consider:**
-- What new types of interaction become possible when you combine two or more sensors or actuators?
-- How does the physical arrangement of devices (e.g., where the encoder or sensor is placed) change the user experience?
-- What happens if you use one device to control or modulate another (e.g., encoder sets a threshold, sensor triggers an action)?
-- How does the system feel if you swap which device is "primary" and which is "secondary"?
-
-Try chaining different combinations and document what you discover!
-
-See encoder_accel_servo_dashboard.py in the Lab 4 folder for an example of chaining together three devices. 
-
-**`Lab 4/encoder_accel_servo_dashboard.py`**
 
 ### Part F (Optional - Scripts not up to date)
 ### Camera
