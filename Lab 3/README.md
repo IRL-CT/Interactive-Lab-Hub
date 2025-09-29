@@ -22,6 +22,7 @@ As always, pull updates from the class Interactive-Lab-Hub to both your Pi and y
 
 ```
 pi@ixe00:~$ cd Interactive-Lab-Hub
+(my path) cd ~/Documents/GitHub/Interactive-Lab-Hub/Lab\ 3
 pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2025
 pi@ixe00:~/Interactive-Lab-Hub $ git add .
 pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab3 updates"
@@ -38,6 +39,7 @@ Activate your virtual environment
 ```
 pi@ixe00:~$ cd Interactive-Lab-Hub
 pi@ixe00:~/Interactive-Lab-Hub $ cd Lab\ 3
+(my path) cd ~/Documents/GitHub/Interactive-Lab-Hub/Lab\ 3
 pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python3 -m venv .venv
 pi@ixe00:~/Interactive-Lab-Hub $ source .venv/bin/activate
 (.venv)pi@ixe00:~/Interactive-Lab-Hub $ 
@@ -306,6 +308,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
