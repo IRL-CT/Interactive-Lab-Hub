@@ -113,7 +113,6 @@ The deliverables for this lab are, writings, sketches, photos, and videos that s
 For submission, the readme.md page for this lab should be edited to include the work you have done:
 * Upload any materials that explain what you did, into your lab 4 repository, and link them in your lab 4 readme.md.
 * Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
-* Group members can turn in one repository, but make sure your Hub readme.md links to the shared repository.
 * Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
 
 
