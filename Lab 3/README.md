@@ -1,5 +1,8 @@
 # Chatterboxes
 **NAMES OF COLLABORATORS HERE**
+
+Jessica Hsiao (dh779), Irene Wu (yw2785)
+
 [![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
 
 In this lab, we want you to design interaction with a speech-enabled device--something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1).  First, we want you first to storyboard what you imagine the conversational interaction to be like. Then, you will use wizarding techniques to elicit examples of what people might say, ask, or respond.  We then want you to use the examples collected from at least two other people to inform the redesign of the device.
@@ -82,6 +85,8 @@ You can also play audio files directly with `aplay filename`. Try typing `aplay 
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 (This shell file should be saved to your own repo for this lab.)
 
+I wrote it in the `greet.sh` file.
+
 ---
 Bonus:
 [Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspberry pi which can be installed easily through python with:
@@ -146,6 +151,8 @@ and
 python faster_whisper_try.py
 ```
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+
+I wrote it in the `ask_number.sh` file.
 
 ### 🤖 NEW: AI-Powered Conversations with Ollama
 
@@ -214,6 +221,8 @@ answer = ask_ai("How should I greet users?")
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
 
+I used the `ollama_voice_assistant.py` file.
+
 ### Serving Pages
 
 In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
@@ -240,13 +249,23 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
+<img src="./assets/FairyMate.png" height="400" />
+
 \*\***Please describe and document your process.**\*\*
+
+We wanted to design a voice interaction that helps people share their feelings. We imagined the assistant as a friendly, almost magical companion that listens and responds with care.
+
+In my storyboard, the user says “I feel sad” and the system replies with empathy, like “I’m sorry to hear that.” If the user doesn’t speak, the system waits and gently encourages them to try again. A simple microphone icon shows when it’s listening, so the user feels in control.
+
+The goal of this design is not just to capture speech, but to make the interaction feel supportive and human-like, even if the technology is simple. By focusing on small touches—like empathetic phrases, a friendly face, and clear feedback—We want the system to feel less like a tool and more like a caring friend.
 
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+
+https://github.com/user-attachments/assets/1e8f9f19-1dea-4df8-9c3a-cf5216112271
 
 ### Wizarding with the Pi (optional)
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
