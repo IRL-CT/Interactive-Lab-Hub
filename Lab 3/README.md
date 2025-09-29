@@ -1,5 +1,8 @@
 # Chatterboxes
 **NAMES OF COLLABORATORS HERE**
+
+Charlotte Lin (hl2575), Zoe Tseng (yzt2), Eva Huang (lh764)
+
 [![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
 
 In this lab, we want you to design interaction with a speech-enabled device--something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1).  First, we want you first to storyboard what you imagine the conversational interaction to be like. Then, you will use wizarding techniques to elicit examples of what people might say, ask, or respond.  We then want you to use the examples collected from at least two other people to inform the redesign of the device.
@@ -238,13 +241,46 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
 
 \*\***Post your storyboard and diagram here.**\*\*
 
+<p float="left">
+  <img src="Pics/diagram.jpg" alt="diagram" width="500" />
+</p>
+
+<p float="left">
+  <img src="Pics/storyboard.png" alt="diagram" width="500" />
+</p>
+
+
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
 \*\***Please describe and document your process.**\*\*
 
+Step 1: Brainstorm
+
+I began by outlining the major phases of the Werewolf game: Setup, Night, Day, Voting, and Win Check. For each phase, I noted what a human moderator normally says to guide the game. I also decided which actions would be handled by speech and which would be handled by gestures. This gave me a clear map of where the device should speak.
+
+Step 2: Create Dialogue Cards
+
+Next, I made dialogue cards to prototype the interactions. On pink Post-its, I wrote the device’s moderator prompts. On blue Post-its, I wrote player responses (spoken or gestures). This created a physical back-and-forth I could shuffle and test.
+
+Example:
+<p float="left">
+  <img src="Pics/step2.png" alt="diagram" width="500" />
+</p>
+
+Step 3: Test with Peers 
+
+I then tested the dialogue flow with friends by pretending to be the device. I read the pink cards aloud, while they acted as players and gave responses from the blue cards. 
+
+Step 4: Group & Refine
+
+Based on observations, I refined the device’s prompts to better align with natural player speech and made the interaction more flexible and realistic.
+
+
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
+
+[![Werewolf Device Demo](https://img.youtube.com/vi/oKx95uURB4s/0.jpg)](https://youtu.be/oKx95uURB4s)
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
@@ -306,6 +342,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
