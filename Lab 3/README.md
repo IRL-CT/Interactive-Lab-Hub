@@ -269,22 +269,28 @@ Potential Ideas:
 - talking lamp
 - talking key-holder
 
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
-
-\*\***Post your storyboard and diagram here.**\*\*
+\*\***Verplank diagram**\*\*
+![IMG_0702](https://github.com/user-attachments/assets/7ae09a90-10ba-42d4-a126-634197837dab)
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
 \*\***Please describe and document your process.**\*\*
+![IMG_0703](https://github.com/user-attachments/assets/2673f814-3544-4995-bdd0-31858b0e8b18)
 
 </details>
 
 <details open>
 <summary><h3>Acting out the dialogue</h3></summary>
 
-Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
+Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).  
+
+▶️ [Watch the interaction](https://drive.google.com/file/d/1X4qozkjWHV7CG7UEsd9Pb28_1pUznamv/preview)
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+- The user took on a much more of a conversational tone rather than just giving the table commands. This made it harder to decide how to respond or which part of the statement to respond to.
+- It wasn't very clear to the user what capabilities the device had/what it could help with. Therefore, many of the interactions I had mapped out weren't used.
+- The search feature might not be as useful as we initially thought. 
+
 </details>
 
 <details open>
@@ -348,6 +354,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
