@@ -275,7 +275,6 @@ Step 4: Group & Refine
 
 Based on observations, I refined the device’s prompts to better align with natural player speech and made the interaction more flexible and realistic.
 
-
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
@@ -284,10 +283,18 @@ Find a partner, and *without sharing the script with your partner* try out the d
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
+The result turned out a little different than I originally imagined. Since the game is designed for many participants, acting it out with only three people changed the dynamic. In my original script, there were multiple roles such as killers, villagers, seers, and a witch, but for the play-through we simplified it to only killers and villagers. Even with this reduction, the overall steps of the game stayed consistent.
+
+One new realization I had was about character assignment. During the acting, I noticed that the device may need to remember each player’s name and assign roles one by one, either by calling them over to whisper their role or by showing it on a mini screen on the Pi. This was something I hadn’t considered in my initial design.
+
 ### Wizarding with the Pi (optional)
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
 
 \*\***Describe if the dialogue seemed different than what you imagined, or when acted out, when it was wizarded, and how.**\*\*
+
+The result turned out a little different than I originally imagined. Since the game is designed for many participants, acting it out with only three people changed the dynamic. In my original script, there were multiple roles such as killers, villagers, seers, and a witch, but for the play-through we simplified it to only killers and villagers. Even with this reduction, the overall steps of the game stayed consistent.
+
+One new realization I had was about character assignment. During the acting, I noticed that the device may need to remember each player’s name and assign roles one by one, either by calling them over to whisper their role or by showing it on a mini screen on the Pi. This was something I hadn’t considered in my initial design.
 
 # Lab 3 Part 2
 
@@ -342,6 +349,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
