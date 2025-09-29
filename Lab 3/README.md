@@ -84,6 +84,7 @@ You can also play audio files directly with `aplay filename`. Try typing `aplay 
 
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 (This shell file should be saved to your own repo for this lab.)
+See *[See greet.sh](https://github.com/m-lmq/Interactive-Lab-Hub/blob/Fall2025/Lab%203/speech-scripts/greet.sh)*
 
 ---
 Bonus:
@@ -241,13 +242,21 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
 
 \*\***Post your storyboard and diagram here.**\*\*
 
+![Verplank digram_1](./Verplank_digram_1.jpg)
+
+![Verplank digram_2](./Verplank_digram_2.jpg)
+
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
 \*\***Please describe and document your process.**\*\*
 
+*[See Document](https://docs.google.com/document/d/1e_OX-vOWRYc_an2_wXuBSy633hKnThJmf2AJ_P2LgNg/edit?tab=t.0)*
+
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
+
+*[Dialogue Video](https://drive.google.com/file/d/1YpRYrWIZNIVNQHW5lIoD8B3Sx3k7n2K-/view?usp=sharing)*
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
@@ -309,6 +318,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
