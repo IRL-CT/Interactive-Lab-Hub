@@ -217,6 +217,8 @@ answer = ask_ai("How should I greet users?")
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
 
+I built a Raspberry Pi voice assistant using offline speech recognition (Vosk), AI responses (Ollama), and text-to-speech (espeak). It handles simple greetings and exit commands with pre-set responses, while all other input is answered by Ollama dynamically. Users speak naturally, and the assistant replies verbally. In testing, it reliably recognized speech, generated coherent AI responses, and provided fallback answers if something went wrong. Users found it easy to use, responsive, and engaging.
+
 ### Serving Pages
 
 In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
@@ -376,6 +378,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
