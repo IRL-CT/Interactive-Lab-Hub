@@ -336,7 +336,12 @@ The phone number will be stored in the phone.txt.
 \*\***Post your storyboard and diagram here.**\*\*
 
 <img src="image/diagram.jpg" height="400" />
-[storyboard_fridge.pdf](https://github.com/user-attachments/files/22589047/storyboard_fridge.pdf)
+<img src="image/storyboard_fridge.jpg" height="400">
+<img src="image/storyboard_fridge2.jpg" height="400">
+
+Graph of possible dialogues:
+<img src="image/Fridgely-graph.png" height="400">
+
 \*\***Please describe and document your process.**\*\*
 
 ### Acting out the dialogue
@@ -347,5 +352,5 @@ Find a partner, and *without sharing the script with your partner* try out the d
 
 [Video](https://drive.google.com/file/d/1Ygd8ufaxSdl0j79uujBPMpG46CjaomNH/view?usp=drive_link)
 
-The dialogue was generally straightforward. In the second conversation, there was a slight overlap when the fridge attempted to make a suggestion. This felt fairly realistic, as interactions with smart devices often involve brief pauses that can lead to unintentional 
-interruptions. People sometimes add follow-up thoughts after a moment of silence, which smart devices may interpret as the end of a statement, prompting them to respond prematurely.
+The dialogue was generally straightforward. In the second conversation, there was a slight overlap when the fridge attempted to make a suggestion. This felt fairly realistic, as interactions with smart devices often involve brief pauses that can lead to unintentional interruptions. People sometimes add follow-up thoughts after a moment of silence, which smart devices may interpret as the end of a statement, prompting them to respond prematurely.
+
