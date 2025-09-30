@@ -14,7 +14,7 @@ Dependencies:
 import speech_recognition as sr
 import subprocess
 import requests
-import json
+import json 
 import time
 import sys
 import threading
