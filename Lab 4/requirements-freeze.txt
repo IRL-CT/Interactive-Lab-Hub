@@ -189,7 +189,7 @@ twython==3.8.2
 typed-ast==1.4.2
 typing-extensions==4.7.1
 unicornhathd==0.0.4
-urllib3==1.26.5
+urllib3==2.5.0
 v4l2-python3==0.3.2
 vosk==0.3.45
 webencodings==0.5.1
