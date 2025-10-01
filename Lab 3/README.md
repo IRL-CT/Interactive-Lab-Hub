@@ -330,7 +330,7 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
    Such modes of interaction beyond speech could be a sensor that is activated by a wave. This is a social norm in greeting, which often starts a conversation. Additionally, an image with text can be displayed on the raspeberry pi for further instructions, saying "Wave to wake me up" or something similar.
    
 3. Make a new storyboard, diagram and/or script based on these reflections.
-   ![new storyboard](updatedplant.jpg)
+<img src="updatedplant.jpg" alt="new storyboard" width="50%" />
 
 ## Prototype your system
 
@@ -375,6 +375,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
