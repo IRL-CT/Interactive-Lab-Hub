@@ -324,8 +324,12 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 ## Prep for Part 2
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
-2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
-3. Make a new storyboard, diagram and/or script based on these reflections.
+   Concrete things that could use improvement in the design would be the activation factor. For example, my current idea assumes the user knows how to activate the conversation to start it which is not intuitive at all.
+   
+3. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
+   Such modes of interaction beyond speech could be a sensor that is activated by a wave. This is a social norm in greeting, which often starts a conversation. Additionally, an image with text can be displayed on the raspeberry pi for further instructions, saying "Wave to wake me up" or something similar.
+   
+5. Make a new storyboard, diagram and/or script based on these reflections.
 
 ## Prototype your system
 
@@ -370,6 +374,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
