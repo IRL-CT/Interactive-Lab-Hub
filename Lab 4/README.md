@@ -125,9 +125,7 @@ D) [Materiality](#part-d)
 
 E) [Servo Control](#part-e)
 
-F) [Camera Test](#part-f)
-
-G) [Record the interaction](#part-g)
+F) [Record the interaction](#part-f)
 
 
 ## The Report (Part 1: A-D, Part 2: E-F)
