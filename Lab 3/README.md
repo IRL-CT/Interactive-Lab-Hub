@@ -124,8 +124,8 @@ echo 'This sentence is spoken first. This sentence is synthesized while the firs
 \*\***My own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 [greet_Carrie.sh](speech-scripts/greet_Carrie.sh)
 
-  
-### Speech to Text
+<details>
+<summary><strong>Speech to Text</strong></summary>
 
 Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
 
@@ -168,9 +168,13 @@ and
 ```
 python faster_whisper_try.py
 ```
-\*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+</details>
 
-### 🤖 NEW: AI-Powered Conversations with Ollama
+\*\***Own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+[ask_pets.py](speech-scripts/ask_pets.py)
+
+<details>
+<summary><strong>🤖 NEW: AI-Powered Conversations with Ollama</strong></summary>
 
 Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
 
@@ -235,9 +239,13 @@ answer = ask_ai("How should I greet users?")
 
 **📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
 
-\*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
+</details>
 
-### Serving Pages
+\*\***A simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
+
+
+<details>
+<summary><strong>Serving Pages</strong></summary>
 
 In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
 
@@ -255,11 +263,18 @@ pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
 ```
 From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
 
+</details>
+
+
 ### Storyboard
 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
 
 \*\***Post your storyboard and diagram here.**\*\*
+![Storyboard](media/Storyboard.jpg)
+![Storyboard2](media/Storyboard2.jpg)
+![Storyboard3](media/Storyboard3.jpg)
+
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
@@ -268,6 +283,8 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
+
+![Acting_Dialogue](media/Acting_Interaction.mp4)
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
