@@ -47,10 +47,7 @@
 	- Code and video for your multi-input multi-output demo (e.g., chaining Qwiic buttons, servo, GPIO expander, etc.)
 	- Reflection on interaction effects and chaining
 
-*️⃣ **F. Camera Test (Optional)**
-	- Code and video for camera test (if attempted)
-
-*️⃣ **G. Final Documentation**
+*️⃣ **F. Final Documentation**
 	- Photos/videos of your final prototype
 	- Written summary: what it looks like, works like, acts like
 	- Reflection on what you learned and next steps
