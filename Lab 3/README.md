@@ -29,8 +29,7 @@ As always, pull updates from the class Interactive-Lab-Hub to both your Pi and y
 **\[recommended\]**Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the *personal access token* for this.
 
 ```
-pi@ixe00:~$ cd Interactive-Lab-Hub
-(my path) cd ~/Documents/GitHub/Interactive-Lab-Hub/Lab\ 3
+pi@ixe00:~$ cd ~/Documents/GitHub/Interactive-Lab-Hub/Lab\ 3
 pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2025
 pi@ixe00:~/Interactive-Lab-Hub $ git add .
 pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab3 updates"
@@ -155,7 +154,7 @@ In this class, we provide two Whisper options: A quantized 8-bit faster-whisper 
 
 Make sure you're in the Lab 3 directory with your virtual environment activated:
 ```
-cd ~/Interactive-Lab-Hub/Lab\ 3/speech-scripts
+cd ~/Documents/GitHub/Interactive-Lab-Hub/Lab\ 3/speech-scripts
 source ../.venv/bin/activate
 ```
 
