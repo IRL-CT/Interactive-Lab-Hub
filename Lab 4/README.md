@@ -72,7 +72,7 @@ As always, pull updates from the class Interactive-Lab-Hub to both your Pi and y
 Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the personal access token for this.
 ```
 pi@ixe00:~$ cd Interactive-Lab-Hub
-pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2022
+pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2025
 pi@ixe00:~/Interactive-Lab-Hub $ git add .
 pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab4 content"
 pi@ixe00:~/Interactive-Lab-Hub $ git push
@@ -139,7 +139,7 @@ G) [Record the interaction](#part-g)
 
 1. **Create and activate a virtual environment in Lab 4:**
 	```bash
-	cd ~/Interactive-Lab-Hub-upstream/Lab\ 4
+	cd ~/Interactive-Lab-Hub/Lab\ 4
 	python3 -m venv .venv
 	source .venv/bin/activate
 	```
@@ -482,11 +482,7 @@ For this lab, you will use the **SparkFun Servo pHAT** to control a micro servo 
 
 **Basic Python Example:**
 We provide a simple example script: `Lab 4/pi_servo_hat_test.py` (requires the `pi_servo_hat` Python package).
-To install the requirement:
-```
-pip install pi_servo_hat 
-```
-Then run the example:
+Run the example:
 ```
 python pi_servo_hat_test.py
 ```
@@ -496,30 +492,7 @@ A servo motor is a rotary actuator that allows for precise control of angular po
 ---
 
 
-
-
-### Part F (Optional - Scripts not up to date)
-### Camera
-You can use the inputs and outputs from the video camera in the kit. 
-We provide another script called camera_test.py to test the USB camera on raspberry pi. 
-It uses qt to render a video to the screen, so it is necessary to connect a screen or to connect via VNC to run this script. 
-
-First install some more dependencies into your virtual environment. OpenCV should already be installed on the Pi for the super user. 
-
-```
-sudo apt-get install portaudio19-dev python-all-dev
-pip install opencv-python pyaudio pygame
-```
-
-Once executed the script will render the camera output, press 'q' to stop video and record a sound through the microphone which will be played back by specificing the audio output. 
-
----
-The video is rendered locally on the pi. For wizarding interactions and prototyping it can be necessary to stream the video to another device such as your laptop. A wizard, observing the user and acting as a computer vision algorithm, can then trigger interactions remotley, such as we did in the tinkerbelle lab.
-
-The following resources are good starts on how to stream video: 
-* [OpenCV – Stream video to web browser/HTML page](https://pyimagesearch.com/2019/09/02/opencv-stream-video-to-web-browser-html-page/)
-* [Live video streaming over network with OpenCV and ImageZMQ](https://pyimagesearch.com/2019/04/15/live-video-streaming-over-network-with-opencv-and-imagezmq/)
-### Part G
+### Part F
 
 ### Record
 
