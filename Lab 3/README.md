@@ -326,10 +326,11 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
    Concrete things that could use improvement in the design would be the activation factor. For example, my current idea assumes the user knows how to activate the conversation to start it which is not intuitive at all.
    
-3. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
+2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
    Such modes of interaction beyond speech could be a sensor that is activated by a wave. This is a social norm in greeting, which often starts a conversation. Additionally, an image with text can be displayed on the raspeberry pi for further instructions, saying "Wave to wake me up" or something similar.
    
-5. Make a new storyboard, diagram and/or script based on these reflections.
+3. Make a new storyboard, diagram and/or script based on these reflections.
+   !(new storyboard)[updatedplant.jpg]
 
 ## Prototype your system
 
@@ -338,7 +339,7 @@ The system should:
 * use one or more sensors
 * require participants to speak to it. 
 
-*Document how the system works*
+The system is initially activated when the sensor is triggered. This happens when someone waves at the plant. Once it is awake, the plant will make the first statement, "Good morning/afternoon/evening, how are you today?". Then, the user can interact with the plant as if they are conversing with a person, yet about plant topics. The plant then goes to sleep once it hears "Goodbye/Bye".
 
 *Include videos or screencaptures of both the system and the controller.*
 
@@ -374,6 +375,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
