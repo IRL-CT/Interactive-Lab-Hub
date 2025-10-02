@@ -426,8 +426,8 @@ User: three people and there's no
 \*\***Post your storyboard and diagram here.**\*\*
 
 <img src="image/diagram.jpg" height="400" />
-<img src="image/storyboard_fridge.jpg" height="400">
-<img src="image/storyboard_fridge2.jpg" height="400">
+<img src="image/storyboard_fridge01.jpg" height="400">
+<img src="image/storyboard_fridge02.jpg" height="400">
 
 Graph of possible dialogues:
 <img src="image/Fridgely-graph.png" height="400">
