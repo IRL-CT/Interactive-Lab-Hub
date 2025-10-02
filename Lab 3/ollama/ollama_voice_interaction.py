@@ -6,6 +6,7 @@ Pi Voice Assistant using Vosk + Ollama + espeak
 - Dynamic AI-generated responses using Ollama
 - Fully offline speech recognition with Vosk (blocking)
 - Speaks responses with espeak
+- Plays a beep sound before listening
 """
 
 import subprocess
@@ -33,10 +34,16 @@ def speak(text):
     print(f"Assistant: {text}")
     subprocess.run(f'espeak "{text}"', shell=True, check=False)
 
+def play_beep():
+    """Play beep sound before recording"""
+    subprocess.run(['mpg123', 'beep.mp3'], check=False)
+
 def listen(duration=5, fs=16000):
     """Record audio and return recognized text using Vosk (blocking)"""
     try:
         print("Listening...")
+        play_beep()  # << Play beep before recording
+
         # Record audio for fixed duration
         audio = sd.rec(int(duration * fs), samplerate=fs, channels=1, dtype='int16')
         sd.wait()  # Wait until recording is finished

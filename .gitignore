@@ -1,6 +1,59 @@
 .DS_Store
 *.tflite
 *.scorer
-venv
+
+# Virtual environments
+venv/
+.venv/
 venv*
-__*
+.venv*
+*venv/
+*venv*
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.env
+config.ini
+secrets.json
+api_keys.txt
+token.txt
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
