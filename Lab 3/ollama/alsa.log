@@ -1,0 +1,632 @@
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.front.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM front
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround40.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround40
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround41
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround50
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround51
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround71.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround71
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_a52.c:1001:(_snd_pcm_a52_open) a52 is only for playback
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=6,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958:{AES0 0x6 AES1 0x82 AES2 0x0 AES3 0x2 CARD 0}
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib pcm_dmix.c:999:(snd_pcm_dmix_open) unable to open slave
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.front.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM front
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround40.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround40
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround41
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround50
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround51
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround71.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround71
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_a52.c:1001:(_snd_pcm_a52_open) a52 is only for playback
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=6,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958:{AES0 0x6 AES1 0x82 AES2 0x0 AES3 0x2 CARD 0}
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib pcm_dmix.c:999:(snd_pcm_dmix_open) unable to open slave
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.front.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM front
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround40.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround40
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround41
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround50
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround51
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround71.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround71
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_a52.c:1001:(_snd_pcm_a52_open) a52 is only for playback
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=6,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958:{AES0 0x6 AES1 0x82 AES2 0x0 AES3 0x2 CARD 0}
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib pcm_dmix.c:999:(snd_pcm_dmix_open) unable to open slave
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.front.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM front
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround40.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround40
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround41
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround50
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround51
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround71.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround71
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_a52.c:1001:(_snd_pcm_a52_open) a52 is only for playback
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=6,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958:{AES0 0x6 AES1 0x82 AES2 0x0 AES3 0x2 CARD 0}
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib pcm_dmix.c:999:(snd_pcm_dmix_open) unable to open slave
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.front.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM front
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround40.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround40
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround41
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround50
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround51
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround71.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround71
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_a52.c:1001:(_snd_pcm_a52_open) a52 is only for playback
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=6,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958:{AES0 0x6 AES1 0x82 AES2 0x0 AES3 0x2 CARD 0}
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib pcm_dmix.c:999:(snd_pcm_dmix_open) unable to open slave
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.front.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM front
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround40.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround40
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround41
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround50
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround51
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround71.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround71
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_a52.c:1001:(_snd_pcm_a52_open) a52 is only for playback
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=6,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958:{AES0 0x6 AES1 0x82 AES2 0x0 AES3 0x2 CARD 0}
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib pcm_dmix.c:999:(snd_pcm_dmix_open) unable to open slave
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.front.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM front
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround40.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround40
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround41
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround50
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround51
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround71.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround71
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_a52.c:1001:(_snd_pcm_a52_open) a52 is only for playback
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=6,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958:{AES0 0x6 AES1 0x82 AES2 0x0 AES3 0x2 CARD 0}
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib pcm_dmix.c:999:(snd_pcm_dmix_open) unable to open slave
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.front.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM front
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround40.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround40
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround41
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround50
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround51
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.surround71.0:CARD=0'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM surround71
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_a52.c:1001:(_snd_pcm_a52_open) a52 is only for playback
+ALSA lib confmisc.c:1369:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=6,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:5180:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5703:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2666:(snd_pcm_open_noupdate) Unknown PCM iec958:{AES0 0x6 AES1 0x82 AES2 0x0 AES3 0x2 CARD 0}
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib pcm_dmix.c:999:(snd_pcm_dmix_open) unable to open slave
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock

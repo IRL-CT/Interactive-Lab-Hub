@@ -20,13 +20,22 @@ import sys
 import threading
 from queue import Queue
 
+RED = "\033[91m"
+BLUE = "\033[94m"
+RESET = "\033[0m"
+
 # Set UTF-8 encoding for output
-if sys.stdout.encoding != 'UTF-8':
-    import codecs
-    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
-if sys.stderr.encoding != 'UTF-8':
-    import codecs
-    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+# if sys.stdout.encoding != 'UTF-8':
+#     import codecs
+#     sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+# if sys.stderr.encoding != 'UTF-8':
+#     import codecs
+#     sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+except Exception:
+    pass
 
 try:
     import pyttsx3
@@ -36,7 +45,7 @@ except ImportError:
     print("pyttsx3 not available, using espeak for TTS")
 
 class OllamaVoiceAssistant:
-    def __init__(self, model_name="phi3:mini", ollama_url="http://localhost:11434"):
+    def __init__(self, model_name="qwen2.5:0.5b-instruct", ollama_url="http://localhost:11434"):
         self.model_name = model_name
         self.ollama_url = ollama_url
         self.recognizer = sr.Recognizer()
@@ -81,7 +90,7 @@ class OllamaVoiceAssistant:
         """Convert text to speech"""
         # Clean text to avoid encoding issues
         clean_text = text.encode('ascii', 'ignore').decode('ascii')
-        print(f"Assistant: {clean_text}")
+        print(RED + f"Assistant: {clean_text}" + RESET)
         
         if TTS_ENGINE == 'pyttsx3':
             self.tts_engine.say(clean_text)
@@ -163,7 +172,8 @@ class OllamaVoiceAssistant:
                 
                 if user_input is None:
                     continue
-                    
+                
+                print(BLUE+ f"User: {user_input}" + RESET)
                 # Check for exit commands
                 if any(word in user_input for word in ['exit', 'quit', 'bye', 'goodbye']):
                     self.speak("Goodbye! Have a great day!")
@@ -177,7 +187,6 @@ class OllamaVoiceAssistant:
                 # Send to Ollama for processing
                 print("Thinking...")
                 response = self.query_ollama(user_input, system_prompt)
-                
                 # Speak the response
                 self.speak(response)
                 

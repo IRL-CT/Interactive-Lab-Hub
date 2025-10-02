@@ -19,14 +19,23 @@ import time
 import sys
 import threading
 from queue import Queue
+RED = "\033[91m"
+BLUE = "\033[94m"
+RESET = "\033[0m"
 
 # Set UTF-8 encoding for output
-if sys.stdout.encoding != 'UTF-8':
-    import codecs
-    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
-if sys.stderr.encoding != 'UTF-8':
-    import codecs
-    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+# if sys.stdout.encoding != 'UTF-8':
+#     import codecs
+#     sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+# if sys.stderr.encoding != 'UTF-8':
+#     import codecs
+#     sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+except Exception:
+    pass
 
 try:
     import pyttsx3
@@ -36,11 +45,13 @@ except ImportError:
     print("pyttsx3 not available, using espeak for TTS")
 
 class OllamaVoiceAssistant:
-    def __init__(self, model_name="phi3:mini", ollama_url="http://localhost:11434"):
+    def __init__(self, model_name="qwen2.5:0.5b-instruct", ollama_url="http://localhost:11434"):
         self.model_name = model_name
         self.ollama_url = ollama_url
         self.recognizer = sr.Recognizer()
         self.microphone = sr.Microphone()
+        self.conversation_history = []
+
         
         # Initialize TTS
         if TTS_ENGINE == 'pyttsx3':
@@ -81,7 +92,8 @@ class OllamaVoiceAssistant:
         """Convert text to speech"""
         # Clean text to avoid encoding issues
         clean_text = text.encode('ascii', 'ignore').decode('ascii')
-        print(f"Assistant: {clean_text}")
+        self.conversation_history.append({"role": "assistant", "content": clean_text})
+        print(RED + f"Assistant: {clean_text}" + RESET)
         
         if TTS_ENGINE == 'pyttsx3':
             self.tts_engine.say(clean_text)
@@ -101,7 +113,8 @@ class OllamaVoiceAssistant:
             print("Recognizing...")
             # Use Google Speech Recognition (free)
             text = self.recognizer.recognize_google(audio)
-            print(f"You said: {text}")
+            if text: 
+                self.conversation_history.append({"role": "user", "content": text})
             return text.lower()
             
         except sr.WaitTimeoutError:
@@ -116,10 +129,17 @@ class OllamaVoiceAssistant:
 
     def query_ollama(self, prompt, system_prompt=None):
         """Send a query to Ollama and get response"""
+        history_text = ""
+        for turn in self.conversation_history:
+            history_text += f"{turn['role'].capitalize()}: {turn['content']}\n"
+
+        print("Conversation history:")
+        print(history_text)
+
         try:
             data = {
                 "model": self.model_name,
-                "prompt": prompt,
+                "prompt": history_text,
                 "stream": False
             }
             
@@ -150,11 +170,19 @@ class OllamaVoiceAssistant:
         print("=" * 50)
         
         # System prompt to make the assistant more conversational
-        system_prompt = """You are a helpful voice assistant. Keep your responses concise and conversational, 
-        typically 1-2 sentences. Be friendly and engaging. You are running on a Raspberry Pi as part of an 
-        interactive device design lab."""
+        system_prompt = """You are a restaurant reservation assistant.
+            Rules:  
+            - Always ask exactly ONE question per turn.  
+            - Do not combine multiple questions.  
+            - Wait for the user’s response before moving to the next detail.  
+            - The required details for making a reservation are: date → time → number of people → allergies.  
+            - If the user only gives a short answer (like “Friday”), expand it into a full confirmation: e.g., say “Okay, I’ll note Friday. What time on Friday?”  
+            - Rephrase partial answers into full sentences internally, but only ask the next question out loud.  
+            - At the end, summarize the details clearly in bullet points and ask for confirmation.  
+            - If the year was not provided, assume it is the 2025.
+        """
         
-        self.speak("Hello! I'm your Ollama voice assistant. How can I help you today?")
+        self.speak("Hello! Would you like to make reservation today?")
         
         while True:
             try:
@@ -164,6 +192,7 @@ class OllamaVoiceAssistant:
                 if user_input is None:
                     continue
                     
+                print(BLUE+ f"User: {user_input}" + RESET)
                 # Check for exit commands
                 if any(word in user_input for word in ['exit', 'quit', 'bye', 'goodbye']):
                     self.speak("Goodbye! Have a great day!")
