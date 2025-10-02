@@ -28,9 +28,41 @@ section {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Chart containers - same width */
+/* Sensors side-by-side layout */
+.sensors-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sensor-panel {
+    flex: 1;
+    min-width: 350px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.sensor-panel h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border: none;
+    font-size: 18px;
+}
+
+.sensor-panel p {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin: 10px 0 0 0;
+}
+
+/* Chart containers - same width within panels */
 #chart, #audio-chart {
-    margin: 20px auto;
+    margin: 15px auto;
     text-align: center;
 }
 
@@ -107,7 +139,16 @@ section {
     margin: 5px 0;
 }
 
-/* Magic 8 Ball section */
+/* Wizard Control Panel */
+.wizard-control {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 15px 0;
+    text-align: center;
+}
+
 input[type="text"] {
     padding: 10px;
     margin: 10px;
@@ -119,7 +160,7 @@ input[type="text"] {
 
 button#send {
     padding: 10px 20px;
-    background: #9b59b6;
+    background: #8e44ad;
     color: white;
     border: none;
     border-radius: 4px;
@@ -129,7 +170,34 @@ button#send {
 }
 
 button#send:hover {
-    background: #8e44ad;
+    background: #9b59b6;
+}
+
+.wizard-tips {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.wizard-tips h3 {
+    color: #856404;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+.wizard-tips ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.wizard-tips li {
+    color: #856404;
+    margin: 5px 0;
+    font-size: 14px;
 }
 
 /* Responsive design */

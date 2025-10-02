@@ -156,6 +156,7 @@ socket.on('audio-status', (data) => {
 
 send.onclick = () => {
   socket.emit('speak', wordsIn.value)
+  console.log('Wizard sent audio response:', wordsIn.value)
   wordsIn.value = ''
 }
 wordsIn.onkeyup = (e) => { if (e.keyCode === 13) { send.click(); } };
@@ -173,8 +174,8 @@ socket.on('disconnect', () => {
 var vlSpec = {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   data: {name: 'table'},
-  width: 600,  // Match audio chart width
-  height: 200, // Add consistent height
+  width: 350,  // Smaller width for side-by-side layout
+  height: 180, // Consistent height
   mark: 'line',
   encoding: {
     x: {field: 'x', type: 'quantitative', scale: {zero: false}},
@@ -212,8 +213,8 @@ vegaEmbed('#chart', vlSpec).then( (res) => {
 var audioSpec = {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   data: {name: 'audio'},
-  width: 600, // Wider to better show longer time period
-  height: 200,
+  width: 350,  // Match accelerometer chart width
+  height: 180, // Match accelerometer chart height
   mark: {type: 'line', strokeWidth: 1},
   encoding: {
     x: {field: 'sample', type: 'quantitative', scale: {zero: false}},

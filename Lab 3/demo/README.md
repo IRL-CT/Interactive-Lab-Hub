@@ -1,81 +1,253 @@
-# Magic Ball WoZ
+# 🧙‍♂️ Magic 8 Ball - Wizard of Oz Interface
 
-This is a Demo App for a Wizard of Oz interactive system where the wizard is playing a magic 8 ball
+This is a **Wizard of Oz interactive system** where you (the wizard) control a Magic 8 Ball experience. The user thinks they're interacting with a magical device, but you're secretly controlling all the responses!
 
 <img src='https://images-na.ssl-images-amazon.com/images/I/71729uRDw2L._AC_SY606_.jpg' width=200>
 
-## Hardware Set-Up
+## 🚀 Quick Start (Automated Setup)
 
-For this demo, you will need: 
-* your Raspberry Pi, 
-* a Qwiic/Stemma Cable, 
-* the display (we are just using it for the Qwiic/StemmaQT port. Feel free to use the display in your projects), 
-* your accelerometer (LSM6DS3 or MSA311), and 
-`* your Bluetooth speaker (paired)
+**New! Use our automated scripts for easy setup:**
 
-**Note**: Different class years may have different hardware:
-- **Fall 2026+**: Bluetooth speakers (Pi 5 has no audio jack), LSM6DS3 accelerometer
+```bash
+# One command to set up and run everything
+./setup_and_run_3las.sh
+
+# To stop all services
+./stop_3las.sh
+```
+
+For manual setup instructions, see the [Manual Setup](#manual-setup) section below.
+
+## 🔧 Hardware Setup
+
+You'll need:
+* **Raspberry Pi** (Pi 5 recommended) 
+* **Qwiic/Stemma Cable**
+* **Display** (for Qwiic/StemmaQT port)
+* **Accelerometer**: LSM6DS3 (Pi 5+) or MSA311/MPU6050 (older)
+* **Bluetooth Speaker** (paired with Pi)
+* **USB Microphone** (for eavesdropping - Bluetooth speakers typically don't have mics)
+
+**Hardware Compatibility by Class Year:**
+- **Fall 2026+**: Pi 5, Bluetooth speakers, LSM6DS3 accelerometer
 - **Fall 2025**: USB webcam with microphone, LSM6DS3 accelerometer  
 - **Earlier years**: USB webcam with microphone, MSA311 or MPU6050 accelerometer
 
-The demo supports different sensors - see app.py for easy sensor swapping.
-
-**Audio Setup:**
-- **Speech output**: Works with Bluetooth speakers via PulseAudio
-- **Eavesdropping**: Requires a separate USB microphone (Bluetooth speakers typically don't have mics)
-
-<p float="left"><img src="https://cdn-learn.adafruit.com/assets/assets/000/082/842/large1024/adafruit_products_4393_iso_ORIG_2019_10.jpg" height="200" />
+<p float="left">
+<img src="https://cdn-learn.adafruit.com/assets/assets/000/082/842/large1024/adafruit_products_4393_iso_ORIG_2019_10.jpg" height="200" />
 <img src="https://github.com/adafruit/Adafruit_MPU6050/raw/master/assets/board.jpg?raw=true" height="200" />
+</p>
 
-Plug the display in and connect the accelerometer to the port underneath with your Qwiic connector cable. Plug the web camera into the raspberry pi. 
+**Connection Steps:**
+1. Plug the display into your Pi
+2. Connect the accelerometer to the port underneath with your Qwiic cable
+3. Plug the USB microphone into the Pi
+4. Ensure Bluetooth speaker is paired
 
-## Software Setup
+## ⚡ Audio Options Available
 
-Ssh on to your Raspberry Pi as we've done previously
+### 1. **Standard Audio Streaming**
+- ~2-3 second delay
+- Works in any browser
+- More compatible but higher latency
 
-`ssh pi@yourHostname.local`
+### 2. **Ultra-Low Latency (3LAS)**
+- <50ms delay for real-time audio
+- Requires Chrome browser
+- Uses WebRTC for instant streaming
 
-Ensure audio is playing through the aux connector by typing
+## 🎭 Wizard Interface Features
 
-`sudo raspi-config`
+### **Side-by-Side Sensor Monitoring**
+- **📊 Accelerometer Data**: Watch for device shaking
+- **🎵 Live Audio Waveform**: Real-time microphone visualization
 
-on `system options` hit enter. Go down to `s2 Audio` and hit enter. Select `1 USB Audio` and hit enter. Then navigate to `<Finish>` and exit the config menu.
+### **🧙‍♂️ Wizard Control Panel**
+- Type responses for the Magic 8 Ball to "say"
+- Send audio directly to user's speakers
+- Built-in tips for classic Magic 8 Ball responses
 
-We will need one additional piece of software called VLC Media player. To install it type `sudo apt-get install vlc` 
+### **🎧 Eavesdropping Options**
+- Choose your preferred audio streaming method
+- Monitor what the user is saying in real-time
 
+## 📋 Requirements Installation
 
-I would suggest making a new virtual environment for this demo then navigating to this folder and installing the requirements.
-
+### Automated Method (Recommended)
+The setup script will automatically install all requirements:
+```bash
+./setup_and_run_3las.sh
 ```
-pi@yourHostname:~ $ virtualenv woz
-pi@yourHostname:~ $ source woz/bin/activate
-(woz) pi@yourHostname:~ $ cd Interactive-Lab-Hub/Lab\ 3/demo
-(woz) pi@yourHostname:~/Interactive-Lab-Hub/Lab 3/demo $ 
-(woz) pi@yourHostname:~/Interactive-Lab-Hub/Lab 3/demo $ pip install -r requirements.txt
+
+### Manual Method
+If you need to install requirements manually:
+
+```bash
+# Install system dependencies
+sudo apt-get update
+sudo apt-get install pulseaudio-utils netcat nodejs npm
+
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate
+
+# Install Python requirements
+pip install -r requirements.txt
+
+# Initialize 3LAS submodule (if not done automatically)
+git submodule add https://github.com/JoJoBond/3LAS.git 3LAS
+git submodule update --init --recursive
+
+# Install Node.js dependencies for 3LAS
+cd 3LAS/example/server
+npm install
 ```
 
-## Running
+## 🏃‍♂️ Running the System
 
-To run the app
+### Option 1: Automated (Recommended)
+```bash
+./setup_and_run_3las.sh
+```
 
-`(woz) pi@yourHostname:~/Interactive-Lab-Hub/Lab 3/demo $ python app.py`
+### Option 2: Manual
+```bash
+# Terminal 1: Start 3LAS server with audio
+cd 3LAS/example/server
+parecord --channels=1 --rate=22050 --format=s16le --raw | node 3las.server.js -port 8080 -channels 1 -samplerate 22050
 
-In the browser of a computer on the same network, navigate to http://yourHostname.local:5000/ where in my case my hostname is ixe00
+# Terminal 2: Start Flask app
+source .venv/bin/activate
+python app.py
+```
 
-![](./imgs/page.png)
+## 🌐 Access URLs
 
-The interface will immediately begin streaming the accelerometer to let you know if your participant shakes their Magic 8 ball. The "eavesdrop" button will begin streaming audio from the Pi to your browser (note there is a noticeable delay it is best to start eavesdropping right at the beginning). To have the Pi speak, you can write in the text box and hit send or press enter.
+- **Wizard Interface**: http://localhost:5001 (or http://yourHostname.local:5001)
+- **Ultra-Low Latency Audio**: http://localhost:5001/3las
 
-## Notes
+![interface](<interface-8ball.png>)
 
-## Audio Setup Notes
+## 🎪 How to Use as Wizard
 
-**For eavesdropping feature to work, you need a microphone:**
+1. **👂 Start Eavesdropping**: Click "Standard Audio Stream" to hear the user
+2. **👀 Monitor Sensors**: Watch accelerometer for shaking, audio for speaking  
+3. **🎭 Wait for Interaction**: User asks question and shakes device
+4. **💬 Respond**: Type Magic 8 Ball response in control panel
+5. **📤 Send**: Click "Send Audio Response" - user hears it as the Magic 8 Ball!
 
-1. **USB Camera with Microphone**: Plug in your USB camera - the app will automatically detect it
-2. **No Microphone**: If no microphone is detected, you'll see a message in the terminal. The Magic 8 ball will still work, but eavesdropping won't be available.
+## 🎱 Classic Magic 8 Ball Responses
 
-The app automatically detects available microphones and configures audio streaming. You no longer need to manually configure hardware devices.
+**Positive**: "Yes, definitely", "It is certain", "Without a doubt"  
+**Negative**: "Don't count on it", "My sources say no", "Very doubtful"  
+**Neutral**: "Ask again later", "Reply hazy, try again", "Cannot predict now"
 
-**Speech Output**: Works automatically with your paired Bluetooth speaker via PulseAudio.
+## 🛠️ Manual Setup
+
+If you prefer to set up everything manually or the automated script doesn't work:
+
+### System Dependencies
+```bash
+sudo apt-get update
+sudo apt-get install pulseaudio-utils netcat nodejs npm git
+```
+
+### Audio Configuration
+```bash
+# Configure audio output (if needed)
+sudo raspi-config
+# Navigate to: System Options > Audio > Select your audio output
+```
+
+### Python Environment
+```bash
+# Create and activate virtual environment
+python -m venv .venv
+source .venv/bin/activate
+
+# Install Python dependencies
+pip install -r requirements.txt
+```
+
+### 3LAS Submodule Setup
+```bash
+# Initialize 3LAS submodule (if not already done)
+git submodule add https://github.com/JoJoBond/3LAS.git 3LAS
+git submodule update --init --recursive
+
+# Install Node.js dependencies
+cd 3LAS/example/server
+npm install ws wrtc node-pre-gyp
+cd ../../..
+```
+
+### Manual Start Services
+```bash
+# Terminal 1: 3LAS Server with Audio Pipeline
+cd 3LAS/example/server
+parecord --channels=1 --rate=22050 --format=s16le --raw | node 3las.server.js -port 8080 -channels 1 -samplerate 22050
+
+# Terminal 2: Flask Application
+source .venv/bin/activate
+python app.py
+```
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**"3LAS submodule not found"**
+```bash
+git submodule update --init --recursive
+```
+
+**"parecord command not found"** 
+```bash
+sudo apt-get install pulseaudio-utils
+```
+
+**"Node.js dependencies missing"**
+```bash
+cd 3LAS/example/server
+npm install
+```
+
+**"Permission denied on scripts"**
+```bash
+chmod +x setup_and_run_3las.sh stop_3las.sh
+```
+
+### Check Service Status
+```bash
+# Check if services are running
+ps aux | grep -E "(node|python)" | grep -v grep
+
+# Check port usage
+sudo lsof -i :5001  # Flask app
+sudo lsof -i :8080  # 3LAS server
+```
+
+### View Logs
+```bash
+# Service logs (when using automated scripts)
+cat /tmp/3las_complete.log    # 3LAS server and audio
+cat /tmp/flask_app.log        # Flask application
+```
+
+## 📚 Additional Documentation
+
+- **[3LAS Scripts Guide](3LAS_SCRIPTS_README.md)**: Detailed script documentation
+- **[Wizard Guide](WIZARD_OF_OZ_GUIDE.md)**: Complete wizard operation manual
+- **[Interface Improvements](INTERFACE_IMPROVEMENTS.md)**: Latest UI changes and features
+
+## 🎯 Pro Tips
+
+- **Timing**: Wait for natural pauses after shaking before responding
+- **Variety**: Mix positive, negative, and neutral responses
+- **Chrome Browser**: Use Chrome for best 3LAS performance
+- **Audio Quality**: USB microphones work better than built-in mics
+
+---
+
+**Remember**: The user doesn't know you exist! Make the magic believable! 🪄
 

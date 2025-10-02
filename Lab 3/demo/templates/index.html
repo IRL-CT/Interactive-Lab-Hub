@@ -10,27 +10,54 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
     <link rel="stylesheet" href="static/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
-    <title>Document</title>
+    <title>Magic 8 Ball - Wizard Interface</title>
 </head>
 <body>
     <h1>🎱 Magic 8 Ball - Pi 5 Edition</h1>
     
-    <!-- Sensor Data Visualization -->
+    <!-- Sensor Data Visualizations Side-by-Side -->
     <section>
-        <h2>📊 Accelerometer Data</h2>
-        <div id='chart'></div>
+        <h2>📊 Sensor Data Monitoring</h2>
+        <div class="sensors-container">
+            <div class="sensor-panel">
+                <h3>📊 Accelerometer Data</h3>
+                <div id='chart'></div>
+                <p><em>Watch for shaking activity</em></p>
+            </div>
+            <div class="sensor-panel">
+                <h3>🎵 Live Audio Waveform</h3>
+                <div id='audio-chart'></div>
+                <p><em>Real-time audio from microphone</em></p>
+            </div>
+        </div>
     </section>
     
-    <!-- Audio Visualization (Always Active) -->
+    <!-- Wizard of Oz Control Interface -->
     <section>
-        <h2>🎵 Live Audio Waveform</h2>
-        <div id='audio-chart'></div>
-        <p><em>Real-time audio visualization from microphone</em></p>
+        <h2>🧙‍♂️ Wizard Control Panel</h2>
+        <p><strong>Wizard of Oz Interface:</strong> Use this to control the audio output and fake the Magic 8 Ball responses.</p>
+        <div class="wizard-control">
+            <label>Speak Response to User:
+                <input type="text" id='wordsIn' placeholder="Enter what the Magic 8 Ball should say...">
+                <button id='send'>Send Audio Response</button>
+            </label>
+            <p><em>The user will hear this through their speakers as if the Magic 8 Ball is responding!</em></p>
+        </div>
+        <div class="wizard-tips">
+            <h3>Tips for the Wizard:</h3>
+            <ul>
+                <li>Watch the accelerometer data to see when user shakes the device</li>
+                <li>Monitor the audio waveform to hear what the user is saying</li>
+                <li>Type responses that sound like classic Magic 8 Ball answers</li>
+                <li>Examples: "Yes, definitely", "Ask again later", "My sources say no"</li>
+            </ul>
+        </div>
     </section>
     
     <!-- Eavesdropping Controls -->
     <section>
         <h2>🎧 Audio Eavesdropping Options</h2>
+        <p><em>Choose your preferred method to listen to the user's audio:</em></p>
         <div class="eavesdrop-controls">
             <div class="audio-option">
                 <button id='play' class="audio-btn delayed">🔊 Standard Audio Stream</button>
@@ -46,16 +73,6 @@
                 <p class="description">Real-time audio streaming with &lt;50ms latency. Requires Chrome browser and 3LAS server running.</p>
             </div>
         </div>
-    </section>
-    
-    <!-- Magic 8 Ball Interaction -->
-    <section>
-        <h2>🎱 Magic 8 Ball</h2>
-        <label>Ask a Question:
-            <input type="text" id='wordsIn' placeholder="What should I ask the magic 8 ball?">
-            <button id='send'>Ask Magic 8 Ball</button>
-        </label>
-        <p><em>Shake the Pi to get an answer!</em></p>
     </section>
     
 <script src="static/index.js"></script>
