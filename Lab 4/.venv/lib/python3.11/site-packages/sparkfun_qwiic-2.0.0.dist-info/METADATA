@@ -1,0 +1,80 @@
+Metadata-Version: 2.4
+Name: sparkfun_qwiic
+Version: 2.0.0
+Summary: SparkFun Electronics qwiic library
+Author-email: SparkFun Electronics <info@sparkfun.com>
+Project-URL: homepage, http://www.sparkfun.com/qwiic
+Keywords: electronics,maker
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: sparkfun-qwiic-serlcd
+Requires-Dist: sparkfun-qwiic-i2c
+Requires-Dist: sparkfun-qwiic-bme280
+Requires-Dist: sparkfun-qwiic-lsm6dso
+Requires-Dist: sparkfun-qwiic-keypad
+Requires-Dist: sparkfun-qwiic-sgp40
+Requires-Dist: sparkfun-qwiic-veml6030
+Requires-Dist: sparkfun-qwiic-soil-moisture-sensor
+Requires-Dist: sparkfun-qwiic-cap1203
+Requires-Dist: sparkfun-qwiic-ultrasonic
+Requires-Dist: sparkfun-qwiic-joystick
+Requires-Dist: sparkfun-qwiic-nau7802
+Requires-Dist: sparkfun-qwiic-alphanumeric
+Requires-Dist: sparkfun-qwiic-relay
+Requires-Dist: sparkfun-qwiic-button
+Requires-Dist: sparkfun-qwiic-mmc5983ma
+Requires-Dist: sparkfun-qwiic-max3010x
+Requires-Dist: sparkfun-qwiic-rfid
+Requires-Dist: sparkfun-qwiic-led-stick
+Requires-Dist: sparkfun-qwiic-twist
+Requires-Dist: sparkfun-qwiic-otos
+Requires-Dist: sparkfun-qwiic-kx13x
+Requires-Dist: sparkfun-qwiic-icm20948
+Requires-Dist: sparkfun-qwiic-scmd
+Requires-Dist: sparkfun-qwiic-pca9685
+Requires-Dist: sparkfun-qwiic-gpio
+Requires-Dist: sparkfun-qwiic-fs3000
+Requires-Dist: sparkfun-qwiic-micropressure
+Requires-Dist: sparkfun-qwiic-as7265x
+Requires-Dist: sparkfun-qwiic-as726x
+Requires-Dist: sparkfun-qwiic-vl53l5cx
+Requires-Dist: sparkfun-qwiic-rv8803
+Requires-Dist: sparkfun-qwiic-scd4x
+Requires-Dist: sparkfun-qwiic-ads1015
+Requires-Dist: sparkfun-qwiic-bmp581
+Requires-Dist: sparkfun-qwiic-mcp4725
+Requires-Dist: sparkfun-qwiic-mcp9600
+Requires-Dist: sparkfun-qwiic-tmp102
+Requires-Dist: sparkfun-qwiic-tmp117
+Requires-Dist: sparkfun-qwiic-max1704x
+Requires-Dist: sparkfun-qwiic-ens160
+Requires-Dist: sparkfun-qwiic-titan-gps
+Requires-Dist: sparkfun-qwiic-oled-base
+Requires-Dist: sparkfun-qwiic-ism330dhcx
+Requires-Dist: sparkfun-qwiic-vl53l1x
+Requires-Dist: sparkfun-qwiic-tca9548a
+Requires-Dist: sparkfun-qwiic-huskylens
+Requires-Dist: sparkfun-pi-servo-hat
+Requires-Dist: sparkfun-qwiic-adxl313
+Requires-Dist: sparkfun-qwiic-as6212
+Requires-Dist: sparkfun-qwiic-ccs811
+Requires-Dist: sparkfun-qwiic-dual-encoder-reader
+Requires-Dist: sparkfun-qwiic-eeprom
+Requires-Dist: sparkfun-opt4048-tristimulus-color-sensor
+Requires-Dist: sparkfun-qwiic-pir
+Requires-Dist: sparkfun-qwiic-proximity
+Requires-Dist: sparkfun-top-phat-button
+Requires-Dist: sparkfun-ublox-gps
+Dynamic: license-file
+
+Qwiic Package
+==========================
+
+This package provides an overall python support for the qwiic system.

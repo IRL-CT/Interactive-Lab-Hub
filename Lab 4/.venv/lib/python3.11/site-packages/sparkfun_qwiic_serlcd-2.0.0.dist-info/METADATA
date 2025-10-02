@@ -1,0 +1,30 @@
+Metadata-Version: 2.2
+Name: sparkfun_qwiic_serlcd
+Version: 2.0.0
+Summary: SparkFun Electronics Qwiic SerLCD
+Author-email: Sparkfun Electronics <info@sparkfun.com>
+Project-URL: homepage, https://www.sparkfun.com/products/16396
+Keywords: electronics, maker
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Programming Language :: Python :: Implementation :: MicroPython
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: sparkfun_qwiic_i2c
+
+Qwiic Dual Encoder Reader
+==========================
+
+This package provides support to use three varieties of the SparkFun SerLCD screens: 16x2 SerLCD - RGB Backlight (QWIIC), 16x2 SerLCD - RGB Text (QWIIC), and 20x4 SerLCD - RGB Backlight (QWIIC).

@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: sparkfun-ublox-gps
+Version: 1.1.5
+Summary: SparkFun Electronics Python Package for u-blox GPS modules.
+Home-page: https://www.sparkfun.com/gps
+Author: SparkFun Electronics
+Author-email: info@sparkfun.com
+License: GPL GNU 3.0
+Keywords: electronics,maker,gps
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.10
+License-File: LICENSE
+
+Qwiic Ublox GPS Py 
+==========================
+
+This package provdes functionality for u-blox based GPS modules. 
+
+

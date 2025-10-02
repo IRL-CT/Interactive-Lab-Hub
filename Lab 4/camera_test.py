@@ -64,5 +64,5 @@ def test_speaker():
 
 if __name__ == "__main__":
     test_camera()
-    test_microphone()
-    test_speaker()
+    # test_microphone()
+    # test_speaker()

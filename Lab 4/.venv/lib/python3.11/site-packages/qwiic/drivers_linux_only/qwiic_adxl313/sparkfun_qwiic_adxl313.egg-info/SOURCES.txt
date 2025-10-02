@@ -1,0 +1,9 @@
+README.md
+qwiic_adxl313.py
+setup.cfg
+setup.py
+sparkfun_qwiic_adxl313.egg-info/PKG-INFO
+sparkfun_qwiic_adxl313.egg-info/SOURCES.txt
+sparkfun_qwiic_adxl313.egg-info/dependency_links.txt
+sparkfun_qwiic_adxl313.egg-info/requires.txt
+sparkfun_qwiic_adxl313.egg-info/top_level.txt
