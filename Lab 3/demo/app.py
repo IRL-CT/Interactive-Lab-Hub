@@ -33,7 +33,8 @@ app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading')
 
 # Audio streaming - simple approach using parecord
-audio_streaming = False
+audio_streaming = False  # For visualization (always on)
+audio_playback_active = False  # For actual audio playback
 audio_thread = None
 audio_queue = queue.Queue(maxsize=20)  # Smaller buffer for faster streaming
 
@@ -102,11 +103,13 @@ def create_wav_header():
     return header
 
 def generate_audio():
-    """Generate audio data for HTTP streaming - optimized for speed"""
+    """Generate audio data for HTTP streaming - only when playback is active"""
+    global audio_playback_active
+    
     # Send WAV header first
     yield create_wav_header()
     
-    while True:
+    while audio_playback_active:
         try:
             # Get audio data from queue with minimal timeout for responsiveness
             data = audio_queue.get(timeout=0.1)
@@ -122,26 +125,30 @@ def handel_speak(val):
 
 @socketio.on('start-audio')
 def start_audio():
+    global audio_playback_active
+    audio_playback_active = True
+    emit('audio-status', {'status': 'started'})
+    print("Audio playback started")
+
+@socketio.on('stop-audio')
+def stop_audio():
+    global audio_playback_active
+    audio_playback_active = False
+    emit('audio-status', {'status': 'stopped'})
+    print("Audio playback stopped")
+
+@socketio.on('connect')
+def test_connect():
+    print('connected')
+    emit('after connect',  {'data':'Lets dance'})
+    # Automatically start audio visualization (not streaming)
     global audio_streaming, audio_thread
     if not audio_streaming:
         audio_streaming = True
         audio_thread = threading.Thread(target=stream_audio)
         audio_thread.daemon = True
         audio_thread.start()
-        emit('audio-status', {'status': 'started'})
-        print("Audio streaming started")
-
-@socketio.on('stop-audio')
-def stop_audio():
-    global audio_streaming
-    audio_streaming = False
-    emit('audio-status', {'status': 'stopped'})
-    print("Audio streaming stopped")
-
-@socketio.on('connect')
-def test_connect():
-    print('connected')
-    emit('after connect',  {'data':'Lets dance'})
+        print('Audio visualization started automatically')
 
 @socketio.on('ping-gps')
 def handle_message(val):

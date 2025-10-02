@@ -130,7 +130,7 @@ let isEavesdropping = false;
 play.onclick = () => {
   if (!isEavesdropping) {
     socket.emit('start-audio');
-    play.innerText = 'Stop Eavesdropping';
+    play.innerHTML = '🛑 Stop Standard Audio';
     isEavesdropping = true;
     
     // Start audio playback
@@ -139,7 +139,7 @@ play.onclick = () => {
     audioPlayer.play().catch(e => console.log('Audio play failed:', e));
   } else {
     socket.emit('stop-audio');
-    play.innerText = 'Start Eavesdropping';
+    play.innerHTML = '🔊 Standard Audio Stream';
     isEavesdropping = false;
     
     // Stop audio playback
@@ -173,7 +173,8 @@ socket.on('disconnect', () => {
 var vlSpec = {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   data: {name: 'table'},
-  width: 400,
+  width: 600,  // Match audio chart width
+  height: 200, // Add consistent height
   mark: 'line',
   encoding: {
     x: {field: 'x', type: 'quantitative', scale: {zero: false}},

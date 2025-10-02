@@ -13,28 +13,51 @@
     <title>Document</title>
 </head>
 <body>
-	<div id='chart'></div>
-    <br>
-    <div id='audio-chart'></div>
-    <br>
-	<button id='play'>Start Eavesdropping</button>
-    <audio id='audio-player' controls style="display: none;"></audio>
-    <div id='audio-status'>Audio: Stopped</div>
-        <br>
-    <a href="/3las" target="_blank" style="display: inline-block; padding: 10px 20px; background: #007cba; color: white; text-decoration: none; border-radius: 5px; margin: 10px 0;">
-        🎧 Ultra-Low Latency Audio (3LAS)
-    </a>
-    <p style="font-size: 0.9em; color: #666; margin-top: 5px;">
-        For instantaneous audio streaming (&lt;50ms latency), click above to open the 3LAS client.<br>
-        <strong>Note:</strong> Requires Node.js and 3LAS server to be running. See documentation below.
-    </p>
-        <br>
-            <br>
-    <label> Speak
-        <input type="text" id='wordsIn'>
-        <button id='send'>send</button>
-
-    </label>
+    <h1>🎱 Magic 8 Ball - Pi 5 Edition</h1>
+    
+    <!-- Sensor Data Visualization -->
+    <section>
+        <h2>📊 Accelerometer Data</h2>
+        <div id='chart'></div>
+    </section>
+    
+    <!-- Audio Visualization (Always Active) -->
+    <section>
+        <h2>🎵 Live Audio Waveform</h2>
+        <div id='audio-chart'></div>
+        <p><em>Real-time audio visualization from microphone</em></p>
+    </section>
+    
+    <!-- Eavesdropping Controls -->
+    <section>
+        <h2>🎧 Audio Eavesdropping Options</h2>
+        <div class="eavesdrop-controls">
+            <div class="audio-option">
+                <button id='play' class="audio-btn delayed">🔊 Standard Audio Stream</button>
+                <p class="description">Traditional audio streaming with ~2-3 second delay. More compatible but higher latency.</p>
+                <audio id='audio-player' controls style="display: none;"></audio>
+                <div id='audio-status'>Audio: Stopped</div>
+            </div>
+            
+            <div class="audio-option">
+                <a href="/3las" target="_blank" class="audio-btn ultra-low">
+                    ⚡ Ultra-Low Latency (3LAS)
+                </a>
+                <p class="description">Real-time audio streaming with &lt;50ms latency. Requires Chrome browser and 3LAS server running.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Magic 8 Ball Interaction -->
+    <section>
+        <h2>🎱 Magic 8 Ball</h2>
+        <label>Ask a Question:
+            <input type="text" id='wordsIn' placeholder="What should I ask the magic 8 ball?">
+            <button id='send'>Ask Magic 8 Ball</button>
+        </label>
+        <p><em>Shake the Pi to get an answer!</em></p>
+    </section>
+    
 <script src="static/index.js"></script>
 </body>
 </html>
