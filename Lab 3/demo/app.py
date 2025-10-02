@@ -10,6 +10,7 @@ import socket
 import struct
 import signal
 import sys
+import queue
 
 # Sensor imports - uncomment the one you're using
 # For Fall 2025+ (Pi 5 compatible):
@@ -34,6 +35,7 @@ socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading')
 # Audio streaming - simple approach using parecord
 audio_streaming = False
 audio_thread = None
+audio_queue = queue.Queue(maxsize=100)  # Buffer for HTTP audio stream
 
 def stream_audio():
     """Stream audio data in real-time using parecord"""
@@ -54,6 +56,17 @@ def stream_audio():
             audio_data = process.stdout.read(chunk_size * 2)  # 2 bytes per sample
             
             if len(audio_data) == chunk_size * 2:
+                # Add to queue for HTTP streaming
+                try:
+                    audio_queue.put_nowait(audio_data)
+                except queue.Full:
+                    # Remove oldest data if queue is full
+                    try:
+                        audio_queue.get_nowait()
+                        audio_queue.put_nowait(audio_data)
+                    except queue.Empty:
+                        pass
+                
                 # Convert to integers for visualization
                 audio_samples = struct.unpack(f'{chunk_size}h', audio_data)
                 # Send a subset for visualization (every 10th sample to reduce data)
@@ -68,6 +81,38 @@ def stream_audio():
         if 'process' in locals():
             process.terminate()
         print("Audio streaming stopped")
+
+def create_wav_header():
+    """Create a WAV header for 16-bit mono 22050 Hz audio"""
+    # WAV header for streaming (simplified)
+    header = b'RIFF'
+    header += (0xFFFFFFFF).to_bytes(4, 'little')  # File size (unknown for stream)
+    header += b'WAVE'
+    header += b'fmt '
+    header += (16).to_bytes(4, 'little')  # Format chunk size
+    header += (1).to_bytes(2, 'little')   # Audio format (PCM)
+    header += (1).to_bytes(2, 'little')   # Number of channels (mono)
+    header += (22050).to_bytes(4, 'little')  # Sample rate
+    header += (44100).to_bytes(4, 'little')  # Byte rate (sample_rate * channels * bits/8)
+    header += (2).to_bytes(2, 'little')   # Block align (channels * bits/8)
+    header += (16).to_bytes(2, 'little')  # Bits per sample
+    header += b'data'
+    header += (0xFFFFFFFF).to_bytes(4, 'little')  # Data size (unknown for stream)
+    return header
+
+def generate_audio():
+    """Generate audio data for HTTP streaming"""
+    # Send WAV header first
+    yield create_wav_header()
+    
+    while True:
+        try:
+            # Get audio data from queue
+            data = audio_queue.get(timeout=1.0)
+            yield data
+        except queue.Empty:
+            # Send silence if no data available
+            yield b'\x00' * 4410  # 0.1 seconds of silence
 
 @socketio.on('speak')
 def handel_speak(val):
@@ -108,6 +153,17 @@ def handle_message(val):
 @app.route('/')
 def index():
     return render_template('index.html', hostname=hostname)
+
+@app.route('/audio-stream')
+def audio_stream():
+    """Serve live audio stream as raw PCM"""
+    return Response(generate_audio(),
+                   mimetype="audio/wav",
+                   headers={
+                       'Cache-Control': 'no-cache',
+                       'Connection': 'keep-alive',
+                       'Content-Type': 'audio/wav'
+                   })
 
 def signal_handler(sig, frame):
     print('Closing Gracefully')

@@ -122,6 +122,7 @@ const play = document.getElementById('play');
 const wordsIn = document.getElementById('wordsIn');
 const send = document.getElementById('send');
 const audioStatus = document.getElementById('audio-status');
+const audioPlayer = document.getElementById('audio-player');
 
 let isEavesdropping = false;
 
@@ -131,10 +132,20 @@ play.onclick = () => {
     socket.emit('start-audio');
     play.innerText = 'Stop Eavesdropping';
     isEavesdropping = true;
+    
+    // Start audio playback
+    audioPlayer.src = '/audio-stream';
+    audioPlayer.style.display = 'block';
+    audioPlayer.play().catch(e => console.log('Audio play failed:', e));
   } else {
     socket.emit('stop-audio');
     play.innerText = 'Start Eavesdropping';
     isEavesdropping = false;
+    
+    // Stop audio playback
+    audioPlayer.pause();
+    audioPlayer.src = '';
+    audioPlayer.style.display = 'none';
   }
 }
 
@@ -200,7 +211,7 @@ vegaEmbed('#chart', vlSpec).then( (res) => {
 var audioSpec = {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   data: {name: 'audio'},
-  width: 400,
+  width: 600, // Wider to better show longer time period
   height: 200,
   mark: {type: 'line', strokeWidth: 1},
   encoding: {
@@ -211,7 +222,7 @@ var audioSpec = {
 
 vegaEmbed('#audio-chart', audioSpec).then( (audioRes) => {
   let audioCounter = 0;
-  let maxSamples = 200;
+  let maxSamples = 1000; // Show more audio history like accelerometer (was 200)
   
   socket.on('audio-data', (audioData) => {
     const audioVals = audioData.map((amplitude, index) => {
