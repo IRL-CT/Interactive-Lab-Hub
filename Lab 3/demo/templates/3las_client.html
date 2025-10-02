@@ -1,0 +1,471 @@
+﻿<!DOCTYPE html><!DOCTYPE html><!DOCTYPE html>
+
+<html lang="en">
+
+<head><html lang="en"><html lang="en">
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">	<head>	<head>
+
+    <title>3LAS - Ultra-Low Latency Audio Streaming</title>
+
+    <style>		<meta charset="utf-8">		<meta charset="utf-8">
+
+        body {
+
+            background: #000;		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+            color: #fff;
+
+            font-family: Arial, sans-serif;		<meta name="apple-mobile-web-app-title" content="3LAS Ultra-Low Latency Audio Streaming">		<meta name="apple-mobile-web-app-title" content="3LAS (Low Latency Live Audio Streaming)">
+
+            margin: 0;
+
+            padding: 20px;		<meta name="apple-mobile-web-app-capable" content="yes">		<meta name="apple-mobile-web-app-capable" content="yes">
+
+        }
+
+        .header {		<meta name="apple-mobile-web-app-status-bar-style" content="black">		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+            position: absolute;
+
+            top: 10px;		<meta name="format-detection" content="telephone=no">		<meta name="format-detection" content="telephone=no">
+
+            left: 10px;
+
+            z-index: 10000;
+
+        }
+
+        .header a {		<title>3LAS - Ultra-Low Latency Audio Streaming</title>		<title>3LAS (Low Latency Live Audio Streaming)</title>
+
+            color: #fff;
+
+            text-decoration: none;				
+
+            padding: 10px;
+
+            background: rgba(0,0,0,0.7);		<!-- 3LAS Core Files -->		<script src="static/3las/util/3las.helpers.js"></script>
+
+            border-radius: 5px;
+
+        }		<script src="3LAS/client/src/util/3las.helpers.js"></script>		<script src="static/3las/util/3las.logging.js"></script>
+
+        .container {
+
+            text-align: center;		<script src="3LAS/client/src/util/3las.logging.js"></script>
+
+            margin-top: 80px;
+
+        }		<script src="3LAS/client/src/util/3las.websocketclient.js"></script>        <link rel="stylesheet" href="static/style/main.css">
+
+        .status {
+
+            margin: 20px 0;		        <link rel="stylesheet" href="static/style/log_window.css">
+
+            padding: 10px;
+
+            background: rgba(255,255,255,0.1);		<!-- 3LAS Audio Components -->		<link rel="stylesheet" href="static/style/player_controls.css">
+
+            border-radius: 5px;
+
+        }		<script src="3LAS/client/src/fallback/3las.formatreader.js"></script>		
+
+        #audio-controls {
+
+            margin: 20px 0;		<script src="3LAS/client/src/fallback/formats/3las.formatreader.mpeg.js"></script>		<script src="static/3las/fallback/3las.liveaudioplayer.js"></script>
+
+        }
+
+        button {		<script src="3LAS/client/src/fallback/formats/3las.formatreader.wav.js"></script>		<script src="static/3las/fallback/3las.formatreader.js"></script>
+
+            padding: 15px 30px;
+
+            font-size: 16px;		<script src="3LAS/client/src/fallback/3las.liveaudioplayer.js"></script>		<script src="static/3las/fallback/formats/3las.formatreader.mpeg.js"></script>
+
+            margin: 10px;
+
+            border: none;		<script src="3LAS/client/src/fallback/3las.fallback.js"></script>		<script src="static/3las/fallback/formats/3las.formatreader.wav.js"></script>
+
+            border-radius: 5px;
+
+            cursor: pointer;				<script src="static/3las/util/3las.websocketclient.js"></script>
+
+        }
+
+        .play-btn {		<!-- 3LAS WebRTC Components -->		<script src="static/3las/fallback/3las.fallback.js"></script>
+
+            background: #28a745;
+
+            color: white;		<script src="3LAS/client/src/3las.webrtc.js"></script>		<script src="static/3las/3las.webrtc.js"></script>
+
+        }
+
+        .stop-btn {		<script src="3LAS/client/src/3las.js"></script>		<script src="static/3las/3las.js"></script>
+
+            background: #dc3545;
+
+            color: white;				<script src="static/3las/main.js"></script>
+
+        }
+
+        .disabled {		<!-- 3LAS Client UI -->		<script>
+
+            background: #6c757d;
+
+            cursor: not-allowed;		<script src="3LAS/example/client/main.js"></script>			var RtcConfig = {
+
+        }
+
+        #status {				/*
+
+            margin-top: 20px;
+
+            font-weight: bold;		<!-- 3LAS Styles -->				iceServers: [
+
+        }
+
+    </style>        <link rel="stylesheet" href="3LAS/example/client/style/main.css">					{
+
+</head>
+
+<body>        <link rel="stylesheet" href="3LAS/example/client/style/log_window.css">						urls: "turns:turnserver.example.org",
+
+    <div class="header">
+
+        <a href="/">← Back to Magic 8 Ball</a>		<link rel="stylesheet" href="3LAS/example/client/style/player_controls.css">					},
+
+    </div>
+
+    							{
+
+    <div class="container">
+
+        <h1>🎧 3LAS Ultra-Low Latency Audio Streaming</h1>		<script>						urls: "stun:stunserver.example.org"
+
+        <p>Professional-grade audio streaming with &lt;50ms latency</p>
+
+        			var RtcConfig = {					}
+
+        <div class="status">
+
+            <strong>3LAS Server:</strong> <span id="server-status">Checking...</span><br>				// Add STUN/TURN servers here if needed				]
+
+            <strong>Audio Stream:</strong> <span id="audio-status">Stopped</span><br>
+
+            <strong>Latency:</strong> &lt;50ms (when active)				/*				*/
+
+        </div>
+
+        				iceServers: [			};
+
+        <div id="audio-controls">
+
+            <button id="start-btn" class="play-btn" onclick="startAudio()">▶️ Start Ultra-Low Latency Stream</button>					{
+
+            <button id="stop-btn" class="stop-btn disabled" onclick="stopAudio()" disabled>⏹️ Stop Stream</button>
+
+        </div>						urls: "stun:stun.l.google.com:19302"			var AudioTagId = "audioTag";
+
+        
+
+        <div id="status">					}
+
+            Click "Start Ultra-Low Latency Stream" to begin streaming audio with professional-grade latency.
+
+        </div>				]			// Bind init to page load see code in main.ts/main.js
+
+        
+
+        <div style="margin-top: 30px; font-size: 0.9em; color: #ccc;">				*/			window.addEventListener('load', Init, false);
+
+            <p><strong>Requirements:</strong></p>
+
+            <ul style="text-align: left; display: inline-block;">			};			document.ontouchmove  = function(e){ 
+
+                <li>3LAS server running on port 8080</li>
+
+                <li>Chrome browser (recommended for WebRTC)</li>				e.preventDefault(); 
+
+                <li>Microphone access permission</li>
+
+            </ul>			var AudioTagId = "audioTag";			}
+
+        </div>
+
+    </div>			var SocketPort = 8080;  // 3LAS server port			
+
+
+
+    <script>			function hideChromeBanner ()
+
+        let audioContext = null;
+
+        let websocket = null;			// Bind init to page load see code in main.ts/main.js			{
+
+        let isStreaming = false;
+
+        			window.addEventListener('load', Init, false);				document.getElementById("chromesuggestion").style.display = "none";
+
+        // Check if 3LAS server is running
+
+        async function checkServer() {			document.ontouchmove = function(e){ 			}
+
+            try {
+
+                const response = await fetch('http://localhost:8080', {method: 'HEAD'});				e.preventDefault(); 		</script> 
+
+                document.getElementById('server-status').textContent = 'Running ✅';
+
+                document.getElementById('server-status').style.color = '#28a745';			}	</head>
+
+                return true;
+
+            } catch (e) {				<body style="background:#000000;">
+
+                document.getElementById('server-status').textContent = 'Not Running ❌';
+
+                document.getElementById('server-status').style.color = '#dc3545';			function hideChromeBanner() {		<audio id="audioTag"></audio>
+
+                return false;
+
+            }				document.getElementById("chromesuggestion").style.display = "none";		<div id="viewcontainer">
+
+        }
+
+        			}			<div id="audioplayer">
+
+        // Start ultra-low latency audio streaming
+
+        async function startAudio() {		</script> 				<div id="playbuttonoverlay">
+
+            try {
+
+                // Check server first	</head>					<div id="playbutton"></div>
+
+                const serverRunning = await checkServer();
+
+                if (!serverRunning) {	<body style="background:#000000;">				</div>
+
+                    alert('3LAS server is not running on port 8080.\\n\\nPlease start it with:\\ncd 3LAS/example/server\\nparecord --format=s16le --rate=44100 --channels=1 --raw | node 3las.server.js -port 8080 -channels 1 -samplerate 44100');
+
+                    return;		<audio id="audioTag"></audio>				<div id="activityindicator">
+
+                }
+
+                							<div id="redlighton"></div>
+
+                // Initialize Web Audio API
+
+                if (!audioContext) {		<div style="position: absolute; top: 10px; left: 10px; z-index: 10000;">					<div id="redlightoff"></div>
+
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+                }			<a href="/" style="color: #fff; text-decoration: none; padding: 10px; background: rgba(0,0,0,0.7); border-radius: 5px;">				</div>
+
+                
+
+                if (audioContext.state === 'suspended') {				← Back to Magic 8 Ball				<div id="controlbar">
+
+                    await audioContext.resume();
+
+                }			</a>					<div id="mutebutton"></div>
+
+                
+
+                // Connect to 3LAS WebSocket server		</div>					<div id="unmutebutton"></div>
+
+                websocket = new WebSocket('ws://localhost:8080');
+
+                						</div>
+
+                websocket.onopen = () => {
+
+                    console.log('Connected to 3LAS server');		<div id="viewcontainer">				<div id="volumebar">
+
+                    isStreaming = true;
+
+                    updateUI();			<div id="audioplayer">					<div id="totalvolume"></div>
+
+                    document.getElementById('status').textContent = 'Connected! Ultra-low latency audio streaming active.';
+
+                };				<div id="playbuttonoverlay">					<div id="currentvolume"></div>
+
+                
+
+                websocket.onmessage = (event) => {					<div id="playbutton"></div>					<div id="volumeknob"></div>
+
+                    // Handle incoming audio data
+
+                    if (event.data instanceof ArrayBuffer) {				</div>				</div>
+
+                        playAudioBuffer(event.data);
+
+                    }				<div id="activityindicator">			</div>
+
+                };
+
+                					<div id="redlighton"></div>				<p id="logwindowbutton">Show/Hide event log</p>
+
+                websocket.onerror = (error) => {
+
+                    console.error('WebSocket error:', error);					<div id="redlightoff"></div>				<ul id="logwindow"></ul>
+
+                    document.getElementById('status').textContent = 'Connection error. Check if 3LAS server is running.';
+
+                    stopAudio();				</div>		</div>
+
+                };
+
+                				<div id="controlbar">		<div id="lightbutton" style="display: none;"></div>
+
+                websocket.onclose = () => {
+
+                    console.log('Disconnected from 3LAS server');					<div id="mutebutton"></div>		<noscript>
+
+                    isStreaming = false;
+
+                    updateUI();					<div id="unmutebutton"></div>			<div class="errormessage">
+
+                    document.getElementById('status').textContent = 'Disconnected from server.';
+
+                };				</div>				<p>JavaScript not supported!</p>
+
+                
+
+            } catch (error) {				<div id="volumebar">				<p>Please enable JavaScript.</p>
+
+                console.error('Failed to start audio:', error);
+
+                document.getElementById('status').textContent = 'Failed to start audio: ' + error.message;					<div id="totalvolume"></div>				<p>Or try another browser.</p>
+
+            }
+
+        }					<div id="currentvolume"></div>			</div>
+
+        
+
+        // Stop audio streaming					<div id="volumeknob"></div>		</noscript>
+
+        function stopAudio() {
+
+            if (websocket) {				</div>		<div id="chromesuggestion">
+
+                websocket.close();
+
+                websocket = null;			</div>			<p>We recommend viewing this page with Google Chrome.</p>
+
+            }
+
+            isStreaming = false;			<p id="logwindowbutton">Show/Hide event log</p>			<p><a href="http://itunes.apple.com/app/id535886823">Download Google Chrome</a></p>
+
+            updateUI();
+
+            document.getElementById('status').textContent = 'Audio streaming stopped.';			<ul id="logwindow"></ul>			<p><span onclick="hideChromeBanner();">Ignore and continue</span></p>
+
+        }
+
+        		</div>		</div>
+
+        // Play audio buffer (simplified - 3LAS handles the complex parts)
+
+        function playAudioBuffer(arrayBuffer) {				<div class="errormessage" id="typesunsupported" style="display: none;">
+
+            if (!audioContext) return;
+
+            		<div id="lightbutton" style="display: none;"></div>			<p>None of the used datatypes are supported by your browser!</p>
+
+            try {
+
+                // This is a simplified version - the real 3LAS client handles					<p>Please try another browser.</p>
+
+                // complex audio decoding and ultra-low latency playback
+
+                console.log('Received audio data:', arrayBuffer.byteLength, 'bytes');		<noscript>		</div>
+
+            } catch (error) {
+
+                console.error('Audio playback error:', error);			<div class="errormessage">		<div class="errormessage" id="socketsunsupported" style="display: none;">
+
+            }
+
+        }				<p>JavaScript not supported!</p>			<p>Websockets are not supported by your browser!</p>
+
+        
+
+        // Update UI state				<p>Please enable JavaScript.</p>			<p>Please try another browser.</p>
+
+        function updateUI() {
+
+            const startBtn = document.getElementById('start-btn');				<p>Or try another browser.</p>		</div>
+
+            const stopBtn = document.getElementById('stop-btn');
+
+            const audioStatus = document.getElementById('audio-status');			</div>		<div class="errormessage" id="webaudiounsupported" style="display: none;">
+
+            
+
+            if (isStreaming) {		</noscript>			<p>The WebAudio API is not supported by your browser!</p>
+
+                startBtn.classList.add('disabled');
+
+                startBtn.disabled = true;					<p>Please try another browser.</p>
+
+                stopBtn.classList.remove('disabled');
+
+                stopBtn.disabled = false;		<div id="chromesuggestion">		</div>
+
+                audioStatus.textContent = 'Streaming (Ultra-Low Latency)';
+
+                audioStatus.style.color = '#28a745';			<p>We recommend viewing this page with Google Chrome.</p>		<div id="lightoff" style="display: none;"></div>
+
+            } else {
+
+                startBtn.classList.remove('disabled');			<p><a href="http://itunes.apple.com/app/id535886823">Download Google Chrome</a></p>	</body>
+
+                startBtn.disabled = false;
+
+                stopBtn.classList.add('disabled');			<p><span onclick="hideChromeBanner();">Ignore and continue</span></p></html>
+
+                stopBtn.disabled = true;
+
+                audioStatus.textContent = 'Stopped';		</div>
+
+                audioStatus.style.color = '#dc3545';		
+
+            }		<div class="errormessage" id="typesunsupported" style="display: none;">
+
+        }			<p>None of the used datatypes are supported by your browser!</p>
+
+        			<p>Please try another browser.</p>
+
+        // Check server status on page load		</div>
+
+        window.addEventListener('load', () => {		
+
+            checkServer();		<div class="errormessage" id="socketsunsupported" style="display: none;">
+
+            updateUI();			<p>Websockets are not supported by your browser!</p>
+
+        });			<p>Please try another browser.</p>
+
+        		</div>
+
+        // Handle page unload		
+
+        window.addEventListener('beforeunload', () => {		<div class="errormessage" id="webaudiounsupported" style="display: none;">
+
+            if (websocket) {			<p>The WebAudio API is not supported by your browser!</p>
+
+                websocket.close();			<p>Please try another browser.</p>
+
+            }		</div>
+
+        });		
+
+    </script>		<div id="lightoff" style="display: none;"></div>
+
+</body>	</body>
+
+</html></html>

@@ -1,4 +1,4 @@
-from flask import Flask, Response, render_template
+from flask import Flask, Response, render_template, send_from_directory, send_file
 from flask_socketio import SocketIO, send, emit
 from subprocess import Popen, call, PIPE
 import threading
@@ -155,6 +155,53 @@ def handle_message(val):
 def index():
     return render_template('index.html', hostname=hostname)
 
+@app.route('/3las')
+def threelas_client():
+    """Serve the official 3LAS client for ultra-low latency audio streaming"""
+    try:
+        return send_file('3LAS/example/client/index.html')
+    except FileNotFoundError:
+        return "3LAS client not found. Please ensure the 3LAS submodule is initialized.", 404
+
+@app.route('/3las/<path:filename>')
+def threelas_static(filename):
+    """Serve 3LAS static files"""
+    import os
+    return send_from_directory(os.path.join('3LAS/example/client'), filename)
+
+# Add specific routes for script and style files
+@app.route('/script/<path:filename>')
+def threelas_scripts(filename):
+    """Serve 3LAS script files"""
+    import os
+    return send_from_directory('3LAS/example/client/script', filename)
+
+@app.route('/style/<path:filename>')
+def threelas_client_styles(filename):
+    """Serve 3LAS style files"""
+    import os
+    return send_from_directory('3LAS/example/client/style', filename)
+
+@app.route('/img/<path:filename>')
+def threelas_images(filename):
+    """Serve 3LAS image files"""
+    import os
+    return send_from_directory('3LAS/example/client/img', filename)
+
+@app.route('/3LAS/<path:filename>')
+def threelas_direct(filename):
+    """Serve 3LAS files from the main 3LAS directory"""
+    import os
+    return send_from_directory('3LAS', filename)
+
+@app.route('/static/3las/<path:filename>')
+def threelas_client_src(filename):
+    """Serve 3LAS client src files"""
+    import os
+    return send_from_directory('3LAS/client/src', filename)
+
+
+
 @app.route('/audio-stream')
 def audio_stream():
     """Serve live audio stream as raw PCM"""
@@ -179,6 +226,6 @@ signal.signal(signal.SIGINT, signal_handler)
 
 
 if __name__ == "__main__":
-    socketio.run(app, host='0.0.0.0', port=5001)
+    socketio.run(app, host='0.0.0.0', port=5001, allow_unsafe_werkzeug=True)
 
 
