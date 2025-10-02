@@ -66,11 +66,11 @@ You'll need:
 - Type responses for the Magic 8 Ball to "say"
 - Send audio directly to user's speakers
 - Built-in tips for classic Magic 8 Ball responses
-
+![interface](<interface-8ball.png>)
 ### **🎧 Eavesdropping Options**
 - Choose your preferred audio streaming method
 - Monitor what the user is saying in real-time
-
+![eavesdropping options](<eavesdropping.png>)
 ## 📋 Requirements Installation
 
 ### Automated Method (Recommended)
@@ -125,8 +125,6 @@ python app.py
 
 - **Wizard Interface**: http://localhost:5001 (or http://yourHostname.local:5001)
 - **Ultra-Low Latency Audio**: http://localhost:5001/3las
-
-![interface](<interface-8ball.png>)
 
 ## 🎪 How to Use as Wizard
 
