@@ -216,7 +216,7 @@ var audioSpec = {
   mark: {type: 'line', strokeWidth: 1},
   encoding: {
     x: {field: 'sample', type: 'quantitative', scale: {zero: false}},
-    y: {field: 'amplitude', type: 'quantitative', scale: {domain: [-32768, 32767]}},
+    y: {field: 'amplitude', type: 'quantitative', scale: {domain: [-128, 127]}}, // 8-bit range
   }
 };
 
