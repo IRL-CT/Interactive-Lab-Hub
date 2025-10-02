@@ -430,6 +430,7 @@ User: three people and there's no
 <img src="image/storyboard_fridge02.jpg" height="400">
 
 Graph of possible dialogues:
+
 <img src="image/Fridgely-graph.png" height="400">
 
 \*\***Please describe and document your process.**\*\*
@@ -460,6 +461,16 @@ source fridgely_venv/bin/activate
 
 pip install -r requirements.txt
 
+#Make sure I2C is enabled
+sudo raspi-config
+#Go to Interface Options → I2C → Enable.
+
+#install i2c-tools
+sudo apt-get install -y i2c-tools
+
+#try this. and you are supposed to see a5.
+i2cdetect -y 1
+
 python3 fridgely.py 2> alsa.log
 
 #You can also test whether the sensor is working or not by running 
@@ -481,3 +492,4 @@ python3 test_condition.py
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+One sensor might be the temp
