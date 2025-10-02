@@ -10,9 +10,14 @@ For this demo, you will need:
 * your Raspberry Pi, 
 * a Qwiic/Stemma Cable, 
 * the display (we are just using it for the Qwiic/StemmaQT port. Feel free to use the display in your projects), 
-* your accelerometer, and 
+* your accelerometer (LSM6DS3 or MSA311), and 
 * your web camera
 
+**Note**: Different class years may have different accelerometer sensors:
+- **Fall 2025+**: LSM6DS3 (recommended for Pi 5)
+- **Earlier years**: MSA311 or MPU6050
+
+The demo supports both sensors - see app.py for easy sensor swapping.
 
 <p float="left"><img src="https://cdn-learn.adafruit.com/assets/assets/000/082/842/large1024/adafruit_products_4393_iso_ORIG_2019_10.jpg" height="200" />
 <img src="https://github.com/adafruit/Adafruit_MPU6050/raw/master/assets/board.jpg?raw=true" height="200" />
