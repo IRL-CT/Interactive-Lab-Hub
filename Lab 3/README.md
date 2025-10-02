@@ -254,7 +254,7 @@ def listen():
     """Capture microphone input and convert to text using Google Speech Recognition."""
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        print("🎤 Speak now...")
+        print("Speak now...")
         r.adjust_for_ambient_noise(source)  # reduce background noise
         audio = r.listen(source)
     try:
@@ -390,6 +390,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
