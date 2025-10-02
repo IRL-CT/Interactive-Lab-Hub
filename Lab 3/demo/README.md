@@ -74,18 +74,26 @@ You'll need:
 ## 📋 Requirements Installation
 
 ### Automated Method (Recommended)
-The setup script will automatically install all requirements:
+The setup script handles **everything automatically**:
+- ✅ Creates Python virtual environment (`.venv`)
+- ✅ Installs all Python requirements from `requirements.txt`
+- ✅ Initializes 3LAS git submodule
+- ✅ Installs Node.js dependencies
+- ✅ Checks and installs system tools (parecord, netcat)
+
 ```bash
 ./setup_and_run_3las.sh
 ```
 
-### Manual Method
-If you need to install requirements manually:
+**No manual setup required!** The script will create the virtual environment and install all dependencies automatically.
+
+### Manual Method (If Needed)
+If you prefer manual setup or the script doesn't work:
 
 ```bash
 # Install system dependencies
 sudo apt-get update
-sudo apt-get install pulseaudio-utils netcat nodejs npm
+sudo apt-get install python3 python3-pip python3-venv pulseaudio-utils netcat nodejs npm
 
 # Create virtual environment
 python -m venv .venv

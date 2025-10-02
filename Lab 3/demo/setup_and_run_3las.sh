@@ -77,8 +77,17 @@ else
     print_success "Node.js dependencies already installed"
 fi
 
-# Step 3: Check for required audio tools
-print_status "Step 3: Checking audio tools..."
+# Step 3: Check for required tools
+print_status "Step 3: Checking required tools..."
+
+# Check Python
+if ! command -v python &> /dev/null && ! command -v python3 &> /dev/null; then
+    print_error "Python not found. Installing python3..."
+    sudo apt-get update
+    sudo apt-get install -y python3 python3-pip python3-venv
+fi
+
+# Check audio tools
 if ! command -v parecord &> /dev/null; then
     print_error "parecord not found. Installing pulseaudio-utils..."
     sudo apt-get update
@@ -90,7 +99,7 @@ if ! command -v nc &> /dev/null; then
     sudo apt-get install -y netcat
 fi
 
-print_success "Audio tools ready"
+print_success "Required tools ready"
 
 # Step 4: Kill any existing processes
 print_status "Step 4: Cleaning up existing processes..."
@@ -142,9 +151,39 @@ else
     exit 1
 fi
 
-# Step 7: Start Flask app
-print_status "Step 7: Starting Flask Magic 8 Ball app..."
+# Step 7: Setup Python virtual environment and requirements
+print_status "Step 7: Setting up Python virtual environment..."
 cd "$DEMO_DIR"
+
+# Create virtual environment if it doesn't exist
+if [ ! -d ".venv" ]; then
+    print_status "Creating Python virtual environment..."
+    python -m venv .venv
+    print_success "Virtual environment created"
+else
+    print_success "Virtual environment already exists"
+fi
+
+# Check if requirements need to be installed
+REQUIREMENTS_INSTALLED=false
+if [ -f ".venv/pyvenv.cfg" ] && [ -f "requirements.txt" ]; then
+    # Check if Flask-SocketIO is installed (key dependency)
+    if .venv/bin/python -c "import flask_socketio" 2>/dev/null; then
+        REQUIREMENTS_INSTALLED=true
+        print_success "Python requirements already installed"
+    fi
+fi
+
+# Install requirements if needed
+if [ "$REQUIREMENTS_INSTALLED" = false ]; then
+    print_status "Installing Python requirements..."
+    .venv/bin/pip install --upgrade pip
+    .venv/bin/pip install -r requirements.txt
+    print_success "Python requirements installed"
+fi
+
+# Step 8: Start Flask Magic 8 Ball app
+print_status "Step 8: Starting Flask Magic 8 Ball app..."
 
 # Activate virtual environment and start Flask
 nohup bash -c "source .venv/bin/activate && python app.py" > /tmp/flask_app.log 2>&1 &
@@ -161,7 +200,7 @@ else
     exit 1
 fi
 
-# Step 8: Display status and URLs
+# Step 9: Display status and URLs
 print_success "🎉 All services started successfully!"
 echo ""
 echo "📱 Access URLs:"

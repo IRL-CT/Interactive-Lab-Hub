@@ -18,8 +18,10 @@ This directory contains automated scripts to set up and run the 3LAS (Low Latenc
 
 ### `setup_and_run_3las.sh`
 - Initializes 3LAS git submodule
-- Installs Node.js dependencies (ws, wrtc)
-- Checks for required audio tools (parecord, netcat)
+- Installs Node.js dependencies (ws, wrtc)  
+- Creates Python virtual environment (`.venv`)
+- Installs Python requirements from `requirements.txt`
+- Checks for required tools (Python, parecord, netcat)
 - Starts 3LAS server with direct audio pipeline
 - Starts Flask Magic 8 Ball application
 - Provides complete status and access URLs
