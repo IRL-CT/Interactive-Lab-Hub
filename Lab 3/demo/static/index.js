@@ -115,32 +115,33 @@
 
 const socket = io();
 socket.on('connect', () => {
-//   socket.onAny((event, ...args) => {
-//   console.log(Date.now(),event, args);
-// });
+  console.log('Connected to server');
 });
 
-const mic = document.getElementById('mic');
 const play = document.getElementById('play');
 const wordsIn = document.getElementById('wordsIn');
 const send = document.getElementById('send');
+const audioStatus = document.getElementById('audio-status');
 
-const src = mic.src
-mic.src = ''
+let isEavesdropping = false;
 
+// Handle audio streaming toggle
 play.onclick = () => {
-  if(mic.paused) {
-  console.log('redo audio')
-  mic.src = src
-  mic.play()
-  play.innerText='Pause'
+  if (!isEavesdropping) {
+    socket.emit('start-audio');
+    play.innerText = 'Stop Eavesdropping';
+    isEavesdropping = true;
   } else {
-    mic.pause()
-      mic.src = '';
-    play.innerText='Eavesdrop'
+    socket.emit('stop-audio');
+    play.innerText = 'Start Eavesdropping';
+    isEavesdropping = false;
   }
-  
 }
+
+// Handle audio status updates
+socket.on('audio-status', (data) => {
+  audioStatus.innerText = `Audio: ${data.status}`;
+});
 
 send.onclick = () => {
   socket.emit('speak', wordsIn.value)
@@ -194,3 +195,40 @@ vegaEmbed('#chart', vlSpec).then( (res) => {
   })
 
 })
+
+// Audio waveform visualization
+var audioSpec = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {name: 'audio'},
+  width: 400,
+  height: 200,
+  mark: {type: 'line', strokeWidth: 1},
+  encoding: {
+    x: {field: 'sample', type: 'quantitative', scale: {zero: false}},
+    y: {field: 'amplitude', type: 'quantitative', scale: {domain: [-32768, 32767]}},
+  }
+};
+
+vegaEmbed('#audio-chart', audioSpec).then( (audioRes) => {
+  let audioCounter = 0;
+  let maxSamples = 200;
+  
+  socket.on('audio-data', (audioData) => {
+    const audioVals = audioData.map((amplitude, index) => {
+      return {
+        sample: audioCounter + index,
+        amplitude: amplitude
+      };
+    });
+    
+    audioCounter += audioData.length;
+    
+    const changeSet = vega
+      .changeset()
+      .insert(audioVals)
+      .remove( (t) => {
+        return t.sample < audioCounter - maxSamples;
+      });
+    audioRes.view.change('audio', changeSet).run();
+  });
+});

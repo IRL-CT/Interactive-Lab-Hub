@@ -11,13 +11,18 @@ For this demo, you will need:
 * a Qwiic/Stemma Cable, 
 * the display (we are just using it for the Qwiic/StemmaQT port. Feel free to use the display in your projects), 
 * your accelerometer (LSM6DS3 or MSA311), and 
-* your web camera
+`* your Bluetooth speaker (paired)
 
-**Note**: Different class years may have different accelerometer sensors:
-- **Fall 2025+**: LSM6DS3 (recommended for Pi 5)
-- **Earlier years**: MSA311 or MPU6050
+**Note**: Different class years may have different hardware:
+- **Fall 2026+**: Bluetooth speakers (Pi 5 has no audio jack), LSM6DS3 accelerometer
+- **Fall 2025**: USB webcam with microphone, LSM6DS3 accelerometer  
+- **Earlier years**: USB webcam with microphone, MSA311 or MPU6050 accelerometer
 
-The demo supports both sensors - see app.py for easy sensor swapping.
+The demo supports different sensors - see app.py for easy sensor swapping.
+
+**Audio Setup:**
+- **Speech output**: Works with Bluetooth speakers via PulseAudio
+- **Eavesdropping**: Requires a separate USB microphone (Bluetooth speakers typically don't have mics)
 
 <p float="left"><img src="https://cdn-learn.adafruit.com/assets/assets/000/082/842/large1024/adafruit_products_4393_iso_ORIG_2019_10.jpg" height="200" />
 <img src="https://github.com/adafruit/Adafruit_MPU6050/raw/master/assets/board.jpg?raw=true" height="200" />
@@ -63,27 +68,14 @@ The interface will immediately begin streaming the accelerometer to let you know
 
 ## Notes
 
-You may need to change line 26 in `app.py`
+## Audio Setup Notes
 
-```
-hardware = 'plughw:2,0'
-```
+**For eavesdropping feature to work, you need a microphone:**
 
-This is the soundcard and hardware device associated with the USB microphone. To check, you can run `python get_device.py` which will output A LOT of nonsense. At the end, you will see 
+1. **USB Camera with Microphone**: Plug in your USB camera - the app will automatically detect it
+2. **No Microphone**: If no microphone is detected, you'll see a message in the terminal. The Magic 8 ball will still work, but eavesdropping won't be available.
 
-```
-0 bcm2835 Headphones: - (hw:0,0)
-1 webcamproduct: USB Audio (hw:2,0)
-2 sysdefault
-3 lavrate
-4 samplerate
-5 speexrate
-6 pulse
-7 upmix
-8 vdownmix
-9 dmix
-10 default
-```
+The app automatically detects available microphones and configures audio streaming. You no longer need to manually configure hardware devices.
 
-In our case, `webcamproduct: USB Audio (hw:2,0)` is the name of our microphone and the index is in parenthesis.
+**Speech Output**: Works automatically with your paired Bluetooth speaker via PulseAudio.
 
