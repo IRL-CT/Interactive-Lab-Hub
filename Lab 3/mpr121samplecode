@@ -1,0 +1,8 @@
+import board, adafruit_mpr121
+i2c = board.I2C()
+touch_pad = adafruit_mpr121.MPR121(i2c)
+
+while True:
+  for i in range(12):
+    if touch_pad[i].value:
+      print('You touched pad # {}!'.format(i))
