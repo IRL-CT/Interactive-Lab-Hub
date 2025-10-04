@@ -342,7 +342,7 @@ The system should:
 * require participants to speak to it. 
 
 ## How PlantTalk works:
-The system is initially activated when the sensor is triggered. This happens when someone waves at the plant. Once it is awake, the plant will make the first statement, "Good morning/afternoon/evening, how are you today?". Then, the user can interact with the plant as if they are conversing with a person, yet about plant topics. The plant then goes to sleep once it hears "Goodbye/Bye".
+The system is initially activated when the sensor detects movement, such as when someone waves at the plant. This gesture “wakes up” the plant, prompting it to begin the interaction with a friendly greeting, such as, “Good morning/afternoon/evening, how are you today?” Once awake, the plant engages the user in a conversational manner, responding to questions or comments as if it were a lively being, though its responses remain focused on plant-related topics, such as sunlight, water, or care. The interaction continues until the user signals the end of the conversation by saying “Goodbye” or “Bye,” at which point the plant returns to its dormant state, awaiting the next wave to reactivate it.
 
 ## PlantTalk Video Demo
 
@@ -387,6 +387,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
