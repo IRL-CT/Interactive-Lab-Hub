@@ -55,18 +55,56 @@ Restart ollama so that the AI response would not time out.
 
 Delete `/audio` files to save memory.
 
-#### User feedback
+#### Video Demo
+- [link](https://youtu.be/cbnLyy9lcVg)
 
+#### User feedback
+Zoe thinks the flow is straightforward, and she likes the humourous and lighthearted tone!
+She thinks the device could encourage more specific input from user so the turnaround time is not super long.
 
 ### Storyboard
 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
 
+We got together to brainstorm on potential ideas. We really like the theme of game night and party game in general, so we decide to branch off here and explore different variants. We have three branches in total.
+
+####  Warewolves/Game Host Bot @Charlotte (@hl2575)
+
+####  Explanation Bot @Zoe (@yzt2)
+
+\*\***Post your storyboard and diagram here.**\*\*
+- 
+![Alt text](interaction/explanation/lab3_1.png)
+![Alt text](interaction/explanation/lab3_2.png)
+
+Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
+
+\*\***Please describe and document your process.**\*\*
+
+- I designed the conversation workflow by breaking down how players naturally interact with both the game and each other. The first thought in designing the device and its conversation flow was to make sure the device can be like an assistant that feels like part of the table. Instead of letting the users feel that the device is a rulebook or just a scorekeeper, I tried to design the conversation in a way that it can flow based on the interactions with the users (mainly the speech input from user) while keeping the game engaging. 
+
+- The flow begins with `Onboarding`, where the device sets up players and starting balances. During gameplay, players can enter the `Rule Explanation` flow whenever they are confused. This is mainly to help the players continue the game more smoothly without consulting manuals. The `Score & Money Tracking Flow` manages updates of balances and transactions so players don’t have to track them manually. In this mode, there is also the `Game Summary` feature which the device provides quick overviews of the current standings, making it easy to see who is leading. 
+
+- In each of the flow chart below, **green box represents the user, blue box represent the device, and the orange box indicate the settings / features of the device.**
+
+- `Onboarding / Starting the Game`: The device sets up the game by identifying the players, initializing balances, and preparing to assist during play.
+![Alt text](interaction/explanation/start.png)
+
+- `Asking for Rule Explanation`: Players ask the device about unclear rules, and it provides quick, accurate clarifications.
+![Alt text](interaction/explanation/explaination.png)
+
+- `Score Tracking & Game Summary` : The device records in-game actions (like passing Go, paying rent, or buying properties) and updates players’ balances. In the summary mode, the device provides a snapshot of the current game state, showing balances, property ownership, and who is leading.
+![Alt text](interaction/explanation/score.png)
+
+- Here's the link to Figma (which I used to create the flow chart) : [Link to figma board](https://www.figma.com/board/QSjo9tSrzV6DxOiC4RmsFJ/IDD-lab3_pt1_flow?node-id=0-1&t=BxyXoOAZD8CCBanm-1)
+
+####  IdeaBox @Eva (@lh764)
+
 \*\***Post your storyboard and diagram here.**\*\*
 
-<img src="interaction/storyboard/userflow.png" alt="frame 1" width="1200"/>
+<img src="interaction/ideabox/userflow.png" alt="frame 1" width="1200"/>
 
-<img src="interaction/storyboard/ideabox.png" alt="frame 1" width="1200"/>
+<img src="interaction/ideabox/ideabox.png" alt="frame 1" width="1200"/>
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
@@ -79,7 +117,7 @@ In the journey map, I used the following as the 4 aspects that I am designing fo
 - dialogue
 - goals
 
-<img src="interaction/storyboard/userjourney.png" alt="frame 1" width="1200"/>
+<img src="interaction/ideabox/userjourney.png" alt="frame 1" width="1200"/>
 
 I then selected two scenarios that I want to create an interactive script for:
 - creative facilitating mode
@@ -93,6 +131,15 @@ I then selected two scenarios that I want to create an interactive script for:
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+
+[Warewolves](https://youtu.be/oKx95uURB4s)
+
+[Ideabox](https://youtu.be/8xRIaNbEIwg)
+
+[Rules Explanation Bot](https://drive.google.com/file/d/10ByKoQw41XVuMDyUWIKn8qw_uJNr9zi4/view?usp=drive_link)
+
+#### Notes And Observations
+<!-- //TODO: -->
 
 ### Wizarding with the Pi (optional)
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
