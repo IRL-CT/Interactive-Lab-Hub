@@ -5,6 +5,48 @@ import json
 import subprocess
 import requests
 from vosk import Model, KaldiRecognizer
+import digitalio
+import board
+from PIL import Image, ImageDraw, ImageFont
+import adafruit_rgb_display.st7789 as st7789
+
+#Image configeration
+# Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
+cs_pin = digitalio.DigitalInOut(board.D5) 
+dc_pin = digitalio.DigitalInOut(board.D25)
+reset_pin = None
+
+# Config for display baudrate (default max is 24mhz):
+BAUDRATE = 64000000
+
+# Setup SPI bus using hardware SPI:
+spi = board.SPI()
+
+# Create the ST7789 display:
+disp = st7789.ST7789(
+    spi,
+    cs=cs_pin,
+    dc=dc_pin,
+    rst=reset_pin,
+    baudrate=BAUDRATE,
+    width=135,
+    height=240,
+    x_offset=53,
+    y_offset=40,
+)
+
+height = disp.width  # we swap height/width to rotate it to landscape!
+width = disp.height
+image = Image.new("RGB", (width, height))
+rotation = 90
+
+draw = ImageDraw.Draw(image)
+
+backlight = digitalio.DigitalInOut(board.D22)
+backlight.switch_to_output(value=True)
+
+awake = "awake.png"
+asleep = "asleep.png"
 
 # -----------------------------
 # Ollama integration
@@ -75,12 +117,14 @@ def listen_and_transcribe():
 def main():
     print("Plant device is running...")
     asleep = True
- 
+    draw = ImageDraw.Draw(asleep)
+    
     while True:
         if asleep:
             choice = input("Wave at the plant? (y/n): ").strip().lower()
             if choice == "y":
                 asleep = False
+                draw = ImageDraw.Draw(awake)
                 speak("Good day human! How are you today?")
             else:
                 continue
