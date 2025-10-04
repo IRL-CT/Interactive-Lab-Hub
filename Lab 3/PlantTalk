@@ -1,0 +1,124 @@
+"""
+Talking Plant with Ollama + Voice I/O
+------------------------------------
+- Wakes up when sensor is triggered (wave at plant)
+- Greets depending on time of day
+- Listens to user speech (via microphone)
+- Responds in a playful plant personality using Ollama
+- Speaks replies aloud with espeak
+- Goes back to sleep when user says "Goodbye" or "Bye"
+"""
+
+import requests
+import subprocess
+import sys
+import time
+import speech_recognition as sr
+
+# --- Ensure UTF-8 safe output ---
+if sys.stdout.encoding != 'UTF-8':
+    import codecs
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+if sys.stderr.encoding != 'UTF-8':
+    import codecs
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+
+# --- Voice Helpers ---
+recognizer = sr.Recognizer()
+mic = sr.Microphone()
+
+def listen_to_user():
+    """Capture speech from microphone and convert to text"""
+    with mic as source:
+        print("🎤 Listening...")
+        recognizer.adjust_for_ambient_noise(source)
+        audio = recognizer.listen(source)
+
+    try:
+        text = recognizer.recognize_google(audio)  # you can use other engines
+        print(f"You: {text}")
+        return text
+    except sr.UnknownValueError:
+        print("🌱 Plant: I didn’t catch that.")
+        return None
+    except sr.RequestError:
+        print("🌱 Plant: Speech recognition service unavailable.")
+        return None
+
+def speak_text(text):
+    """Text-to-speech via espeak"""
+    clean_text = text.encode('ascii', 'ignore').decode('ascii')
+    print(f"🌱 Plant: {clean_text}")
+    subprocess.run(['espeak', f'"{clean_text}"'], shell=True, check=False)
+
+# --- Ollama Integration ---
+def query_ollama(prompt, model="phi3:mini", personality=None):
+    """Send a prompt to Ollama"""
+    full_prompt = prompt
+    if personality:
+        full_prompt = personality + "\nUser: " + prompt
+
+    try:
+        response = requests.post(
+            "http://localhost:11434/api/generate",
+            json={
+                "model": model,
+                "prompt": full_prompt,
+                "stream": False
+            },
+            timeout=30
+        )
+        if response.status_code == 200:
+            return response.json().get('response', 'No response')
+        else:
+            return f"Error: {response.status_code}"
+    except Exception as e:
+        return f"Error: {e}"
+
+# --- Plant Personality ---
+plant_personality = (
+    "You are a funny greenhouse plant. "
+    "You like sunlight, water, and soil. "
+    "You speak in short, playful, and plant-themed ways."
+)
+
+# --- Conversation Logic ---
+def plant_chat():
+    """Handles active conversation until 'goodbye' is said"""
+    # Greeting based on time
+    hour = time.localtime().tm_hour
+    if hour < 12:
+        greeting = "Good morning, how are you today?"
+    elif hour < 18:
+        greeting = "Good afternoon, how are you today?"
+    else:
+        greeting = "Good evening, how are you today?"
+
+    speak_text(greeting)
+
+    while True:
+        user_input = listen_to_user()
+        if not user_input:
+            continue
+
+        if user_input.lower() in ["goodbye", "bye"]:
+            speak_text("Photosynthesizing nap time... see you later!")
+            break
+
+        response = query_ollama(user_input, personality=plant_personality)
+        speak_text(response)
+
+# --- Sensor Trigger (replace with actual sensor logic) ---
+def sensor_triggered():
+    """Simulate sensor detection"""
+    val = input("Wave at the plant? (y/n): ").strip().lower()
+    return val == "y"
+
+# --- Main Program ---
+if __name__ == "__main__":
+    print("🌱 Plant device is running...")
+    while True:
+        print("💤 Plant is sleeping...")
+        if sensor_triggered():  # TODO: replace with accelerometer or GPIO check
+            print("🌱 Plant wakes up!")
+            plant_chat()
