@@ -373,20 +373,20 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+What worked well about the system is the basic interactions of the waking/sleeping triggered by a wave as well as having a simple conversation that mentions specific keywords. What did not work as efficiently was the Ollama unique responses. They take too much time to process and interupt the flow of the conversation.
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+For this project, I used a combination of hard-coding and Ollama processing, meaning there were some keywords that would trigger an automatic response, which was my way of "controlling" the system from afar. However, this is fairly limited, once again limiting the conversation to basic things related to plants such as sun and water. This worked well for the first interaction as the participant was more focused on plant-based things, while the second interaction took longer as it relied more on Ollama.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
+Lessons to take away could be to figure out how to make the Ollama processing more efficient and have it respond in a way that allows me to take off the "training wheels" of a hard-coded response and let it respond on its own. That would make it more autonomous overall. However, the WoZ interactions were able to get the point across in the two interactions that I conducted with my friends.
 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
+This system could be used to create a dataset of human–plant interactions by logging both the user’s spoken input and the plant’s responses. Each interaction could be timestamped and annotated with contextual details (e.g., whether the plant was waking up, in mid-conversation, or going to sleep). Over time, this would build a dataset of natural language patterns that occur in this unique context, which could later be used to train more efficient conversational models or fine-tune Ollama for plant-specific dialogues. This could also create a more "relationship" feeling with the plant such as a real friend if it has some sort of memory overall. Other ideas could be using temperature or light sensors to help the plant provide more feedback on its overall wellbeing.
 
 
 
