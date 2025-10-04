@@ -348,8 +348,8 @@ The system is initially activated when the sensor is triggered. This happens whe
 [![Watch the video](PXL_20251004_181145829.MP.jpg)](https://drive.google.com/file/d/1ILJaev_CUCzJAVU_pVKi9vNfMA3_HBC6/view?usp=sharing)
 
 To make the PlantTalk seem more "Alive" I added an expressive face that indicates the status of the system in a familiar and friendly way:
-<img src="awake.png" alt="awake" width="100%" />
-<img src="asleep.png" alt="asleep" width="100%" />
+<img src="awake.png" alt="awake" width="50%" />
+<img src="asleep.png" alt="asleep" width="50%" />
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
@@ -383,6 +383,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
