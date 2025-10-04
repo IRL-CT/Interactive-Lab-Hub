@@ -16,10 +16,10 @@ import qwiic_joystick
 
 joystick = qwiic_joystick.QwiicJoystick()
 if not joystick.connected:
-    print("❌ Joystick not connected! Please check wiring (SDA/SCL).")
+    print("Joystick not connected! Please check wiring (SDA/SCL).")
 else:
     joystick.begin()
-    print("✅ Joystick connected successfully.")
+    print("Joystick connected successfully.")
 
 
 hostname = socket.gethostname()
@@ -28,7 +28,6 @@ hardware = 'plughw:2,0'
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-# VLC 音频流
 audio_stream = Popen(
     f"/usr/bin/cvlc alsa://{hardware} "
     "--sout='#transcode{vcodec=none,acodec=mp3,ab=256,channels=2,"
@@ -38,9 +37,6 @@ audio_stream = Popen(
 )
 
 
-# --------------------------
-# SocketIO 事件
-# --------------------------
 @socketio.on('speak')
 def handle_speak(val):
     print(f"Speaking: {val}")
@@ -49,13 +45,12 @@ def handle_speak(val):
 
 @socketio.on('connect')
 def test_connect():
-    print('✅ Client connected')
+    print('Client connected')
     emit('after connect', {'data': 'Joystick ready!'})
 
 
 @socketio.on('ping-gps')
 def handle_message(val):
-    """发送 Joystick 数据，代替原来的加速度数据"""
     joystick.horizontal
     joystick.vertical
     joystick.button
@@ -74,7 +69,7 @@ def index():
 
 
 def signal_handler(sig, frame):
-    print('🔚 Closing Gracefully')
+    print('Closing Gracefully')
     audio_stream.terminate()
     sys.exit(0)
 
@@ -83,5 +78,6 @@ signal.signal(signal.SIGINT, signal_handler)
 
 
 if __name__ == "__main__":
-    print("🚀 Starting Flask + Joystick server at port 5000...")
+    print("Starting Flask + Joystick server at port 5000...")
     socketio.run(app, host='0.0.0.0', port=5000)
+
