@@ -91,7 +91,7 @@ Typically, a `.sh` file is a shell script which you can execute in a terminal. T
 You can also play audio files directly with `aplay filename`. Try typing `aplay lookdave.wav`.
 
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
-(This shell file should be saved to your own repo for this lab.)
+> found in speech-scripts/greet.sh
 
 Bonus: 
   
@@ -161,6 +161,7 @@ python faster_whisper_try.py
 ```
 
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+> found in speech-scripts/speech_text.sh
 
 </details>
 
@@ -326,7 +327,9 @@ In the [demo directory](./demo), you will find an example Wizard of Oz project. 
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
 
-## Prep for Part 2
+## Prep for Part 2  
+
+We chose to focus on the key holder device since we felt like it provided a more guided experience.
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
   - Timing!!! Know when user is leaving
@@ -394,6 +397,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
