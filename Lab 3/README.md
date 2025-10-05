@@ -194,11 +194,11 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 ## Prototype your system
 ### <mark>1.New Story Board</mark>
-#### Situation 1:
+#### Situation 1: Choose the Type
+<img src="choose the type.jpg" alt="Choose the Type" width="500">
 
-
-#### Situation 2:
-
+#### Situation 2: Choose the Outfit
+<img src="choose the outfit.jpg" alt="Choose the Outfit" width="500">
 
 ### <mark>2.Document how the system works</mark>
 
@@ -226,6 +226,7 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
