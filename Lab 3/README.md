@@ -1,5 +1,5 @@
 # Chatterboxes
-**Collaborator: Yoyo Wang - 867**
+**Collaborator: Yoyo Wang - hw867**
 
 ## Part 1.
 ### Setup 
@@ -85,13 +85,31 @@ Our dialogue is almost the same as what we set up and what we expected to do. Th
 
 # Lab 3 Part 2
 
-For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
-
 ## Prep for Part 2
 
-1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
-2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
-3. Make a new storyboard, diagram and/or script based on these reflections.
+Improvements:
+
+a. Wording / Language
+
+- Keep instructions short, direct, and quantitatively precise
+
+- Instead of: “Carefully prepare the dry ingredients by measuring them with precision before mixing.”
+
+- Use: “Measure 200 g all-purpose flour, 50 g sugar, and 2 g salt. Mix them in a large stainless-steel bowl for 30 seconds until evenly combined.”
+  
+- Focus on converting vague instructions into specific, measurable actions: include exact quantities (grams, milliliters), temperature targets (°C/°F), tools or equipment (e.g., whisk, mixer, pan type), and observable conditions (e.g., “until golden brown,” “until dough forms a smooth ball”).
+
+b. Button / Tap Interaction
+
+- Confirm recipe steps at the beginning
+
+- Users select and confirm the recipe before starting. This reduces confusion later in the process.
+
+- Skip step (only via button, not speech)
+
+- Prevents accidental skips from misheard voice commands.
+
+![](storyboard2.jpg)
 
 ## Prototype your system
 
@@ -136,6 +154,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
