@@ -40,7 +40,7 @@ NAMES OF COLLABORATORS: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx218
 # Part 1
 
 <details>
-  <summary><strong># Setup (Click to Expand)</strong></summary>
+  <summary><strong> Setup (Click to Expand)</strong></summary>
   
   Activate your virtual environment
   
@@ -116,145 +116,156 @@ NAMES OF COLLABORATORS: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx218
 
 *[See greet.sh](https://github.com/m-lmq/Interactive-Lab-Hub/blob/Fall2025/Lab%203/speech-scripts/greet.sh)*
 
+<details>
+  <summary><strong> Speech to Text (Click to Expand)</strong></summary>
 
-### Speech to Text
+  Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
+  
+  Make sure you're running in your virtual environment with the dependencies already installed:
+  ```
+  source .venv/bin/activate
+  ```
+  
+  Test if vosk works by transcribing text:
+  
+  ```
+  vosk-transcriber -i recorded_mono.wav -o test.txt
+  ```
+  
+  You can use vosk with the microphone by running 
+  ```
+  python test_microphone.py -m en
+  ```
+  
+  ---
+  Bonus:
+  [Whisper](https://openai.com/index/whisper/) is a neural network–based speech-to-text (STT) model developed and open-sourced by OpenAI. Compared to Vosk, Whisper generally achieves higher accuracy, particularly on noisy audio and diverse accents. It is available in multiple model sizes; for edge devices such as the Raspberry Pi 5 used in this class, the tiny.en model runs with reasonable latency even without a GPU.
+  
+  By contrast, Vosk is more lightweight and optimized for running efficiently on low-power devices like the Raspberry Pi. The choice between Whisper and Vosk depends on your scenario: if you need higher accuracy and can afford slightly more compute, Whisper is preferable; if your priority is minimal resource usage, Vosk may be a better fit.
+  
+  In this class, we provide two Whisper options: A quantized 8-bit faster-whisper model for speed, and the standard Whisper model. Try them out and compare the trade-offs.
+  
+  Make sure you're in the Lab 3 directory with your virtual environment activated:
+  ```
+  cd ~/Interactive-Lab-Hub/Lab\ 3/speech-scripts
+  source ../.venv/bin/activate
+  ```
+  
+  Then test the Whisper models:
+  ```
+  python whisper_try.py
+  ```
+  and
+  
+  ```
+  python faster_whisper_try.py
+  ```
+</details>
 
-Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
-
-Make sure you're running in your virtual environment with the dependencies already installed:
-```
-source .venv/bin/activate
-```
-
-Test if vosk works by transcribing text:
-
-```
-vosk-transcriber -i recorded_mono.wav -o test.txt
-```
-
-You can use vosk with the microphone by running 
-```
-python test_microphone.py -m en
-```
-
----
-Bonus:
-[Whisper](https://openai.com/index/whisper/) is a neural network–based speech-to-text (STT) model developed and open-sourced by OpenAI. Compared to Vosk, Whisper generally achieves higher accuracy, particularly on noisy audio and diverse accents. It is available in multiple model sizes; for edge devices such as the Raspberry Pi 5 used in this class, the tiny.en model runs with reasonable latency even without a GPU.
-
-By contrast, Vosk is more lightweight and optimized for running efficiently on low-power devices like the Raspberry Pi. The choice between Whisper and Vosk depends on your scenario: if you need higher accuracy and can afford slightly more compute, Whisper is preferable; if your priority is minimal resource usage, Vosk may be a better fit.
-
-In this class, we provide two Whisper options: A quantized 8-bit faster-whisper model for speed, and the standard Whisper model. Try them out and compare the trade-offs.
-
-Make sure you're in the Lab 3 directory with your virtual environment activated:
-```
-cd ~/Interactive-Lab-Hub/Lab\ 3/speech-scripts
-source ../.venv/bin/activate
-```
-
-Then test the Whisper models:
-```
-python whisper_try.py
-```
-and
-
-```
-python faster_whisper_try.py
-```
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
 *[See number_input.sh](https://github.com/m-lmq/Interactive-Lab-Hub/blob/Fall2025/Lab%203/speech-scripts/number_input.sh)*
 
-### 🤖 NEW: AI-Powered Conversations with Ollama
+<details>
+  <summary><strong> 🤖 NEW: AI-Powered Conversations with Ollama (Click to Expand)</strong></summary>
 
-Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
-
-#### Quick Start with Ollama
-
-**Installation** (takes ~5 minutes):
-```bash
-# Install Ollama
-curl -fsSL https://ollama.com/install.sh | sh
-
-# Download recommended model for Pi 5
-ollama pull phi3:mini
-
-# Install system dependencies for audio (required for pyaudio)
-sudo apt-get update
-sudo apt-get install -y portaudio19-dev python3-dev
-
-# Create separate virtual environment for Ollama (due to pyaudio conflicts)
-cd ollama/
-python3 -m venv ollama_venv
-source ollama_venv/bin/activate
-
-# Install Python dependencies in separate environment
-pip install -r ollama_requirements.txt
-```
-#### Ready-to-Use Scripts
-
-We've created three Ollama integration scripts for different use cases:
-
-**1. Basic Demo** - Learn how Ollama works:
-```bash
-python3 ollama_demo.py
-```
-
-**2. Voice Assistant** - Full speech-to-text + AI + text-to-speech:
-```bash
-python3 ollama_voice_assistant.py
-```
-
-**3. Web Interface** - Beautiful web-based chat with voice options:
-```bash
-python3 ollama_web_app.py
-# Then open: http://localhost:5000
-```
-
-#### Integration in Your Projects
-
-Simple example to add AI to any project:
-```python
-import requests
-
-def ask_ai(question):
-    response = requests.post(
-        "http://localhost:11434/api/generate",
-        json={"model": "phi3:mini", "prompt": question, "stream": False}
-    )
-    return response.json().get('response', 'No response')
-
-# Use it anywhere!
-answer = ask_ai("How should I greet users?")
-```
-
-**📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
+  Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
+  
+  #### Quick Start with Ollama
+  
+  **Installation** (takes ~5 minutes):
+  ```bash
+  # Install Ollama
+  curl -fsSL https://ollama.com/install.sh | sh
+  
+  # Download recommended model for Pi 5
+  ollama pull phi3:mini
+  
+  # Install system dependencies for audio (required for pyaudio)
+  sudo apt-get update
+  sudo apt-get install -y portaudio19-dev python3-dev
+  
+  # Create separate virtual environment for Ollama (due to pyaudio conflicts)
+  cd ollama/
+  python3 -m venv ollama_venv
+  source ollama_venv/bin/activate
+  
+  # Install Python dependencies in separate environment
+  pip install -r ollama_requirements.txt
+  ```
+  #### Ready-to-Use Scripts
+  
+  We've created three Ollama integration scripts for different use cases:
+  
+  **1. Basic Demo** - Learn how Ollama works:
+  ```bash
+  python3 ollama_demo.py
+  ```
+  
+  **2. Voice Assistant** - Full speech-to-text + AI + text-to-speech:
+  ```bash
+  python3 ollama_voice_assistant.py
+  ```
+  
+  **3. Web Interface** - Beautiful web-based chat with voice options:
+  ```bash
+  python3 ollama_web_app.py
+  # Then open: http://localhost:5000
+  ```
+  
+  #### Integration in Your Projects
+  
+  Simple example to add AI to any project:
+  ```python
+  import requests
+  
+  def ask_ai(question):
+      response = requests.post(
+          "http://localhost:11434/api/generate",
+          json={"model": "phi3:mini", "prompt": question, "stream": False}
+      )
+      return response.json().get('response', 'No response')
+  
+  # Use it anywhere!
+  answer = ask_ai("How should I greet users?")
+  ```
+  
+  **📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
+</details>
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
 
 *[See mini_voice_assistant.py](https://github.com/m-lmq/Interactive-Lab-Hub/blob/Fall2025/Lab%203/ollama/mini_voice_assistant.py)*
 
-### Serving Pages
 
-In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
+<details>
+  <summary><strong> Serving Pages (Click to Expand)</strong></summary>
 
-```
-pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
- * Serving Flask app "server" (lazy loading)
- * Environment: production
-   WARNING: This is a development server. Do not use it in a production deployment.
-   Use a production WSGI server instead.
- * Debug mode: on
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 162-573-883
-```
-From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
+  In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
+  
+  ```
+  pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
+   * Serving Flask app "server" (lazy loading)
+   * Environment: production
+     WARNING: This is a development server. Do not use it in a production deployment.
+     Use a production WSGI server instead.
+   * Debug mode: on
+   * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+   * Restarting with stat
+   * Debugger is active!
+   * Debugger PIN: 162-573-883
+  ```
+  From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
 
-### Storyboard
+</details>
 
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
+<details>
+  <summary><strong> Storyboard (Click to Expand)</strong></summary>
 
+  Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
+
+</details>
+  
 \*\***Post your storyboard and diagram here.**\*\*
 
 ![Verplank digram_1](./Verplank_digram_1.png)
@@ -333,6 +344,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
