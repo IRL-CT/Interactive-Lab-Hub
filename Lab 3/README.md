@@ -447,8 +447,10 @@ The dialogue was generally straightforward. In the second conversation, there wa
 
 ## Part2
 
-We decided to add touch sensor for knowing which item that the user wants to buy relating to the items in the fridge. 
-We thought this is better than voice command, that it's faster to do it. 
+Building on the smart fridge concept, we took inspiration from the Amazon Dash button and used the Adafruit MPR121 12-Key Capacitive Touch Sensor (STEMMA QT / Qwiic) to simulate a shopping cart.
+In our envisioned system, users could assign their top-ordered items to each touchpad and simply press a button to add them to a wish list.
+
+We tested this prototype with two users — my sister and her husband.
 
 How to run the code. 
 ```bash 
@@ -477,19 +479,41 @@ python3 fridgely.py 2> alsa.log
 python3 test_condition.py 
 ```
 
+### Video 
+
+
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+Once I explained the system, users understood how it worked and used the touch buttons to add items. However, they were confused about why a touch sensor was necessary when they could simply use voice commands.
+
+We then tested a voice-only version, where they said phrases like “add one tomato” or “add one asparagus.” The main issue was speech-to-text errors — when recognition failed, my follow-up question (“One asparagus?”) frustrated them.
+
+Overall, they appreciated the speed of adding items but found it cognitively demanding to remember which button corresponded to which item. They also wished the system displayed a visual confirmation of newly added items, rather than only relying on audio feedback.
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+The controller ran smoothly — it converted speech to text, displayed the recognized text, and read out my typed response. However, the process was sometimes slow, and the text wasn’t always accurate.
+Since I could still hear what they said, I was able to respond correctly, but this wouldn’t be possible in a fully autonomous version.
+
+As a Wizard-of-Oz (WoZ) controller, it was sometimes challenging to decide how to respond in real time, given the variability of user input.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
+The WoZ setup was extremely valuable for observing user reactions and pain points before full automation.
+We learned that repeated clarification (due to recognition errors) quickly annoys users, and even with a short introduction, they were initially confused about button-item mappings.
+However, allowing them to interact hands-on helped them understand the system and suggest improvements.
+
+When we built a smart reservation bot for Ollama, we found that tuning prompts to achieve desired behavior was difficult. In contrast, the WoZ approach highlighted user-experience issues (rather than technical ones) and allowed quick prototyping and testing — such as comparing touch-based vs. voice-only versions — without coding every variation.
 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
-One sensor might be the temp
+The system could generate valuable datasets on ordering frequency, item preferences, and time patterns, enabling personalized recommendations or automated restocking suggestions.
+
+Additional sensing modalities that could enhance a future smart fridge include:
+- Internal temperature sensors — detect door status and food safety.
+- Environmental sensors — adjust recipe or item recommendations based on weather.
+- Facial or voice recognition — identify who’s interacting to personalize dialogue and reference previous interactions (e.g., tracking household members’ preferences).
+- Food recognition / freshness detection — monitor inventory and suggest which items to use first.
+
+We used ChatGPT to clean up the sentences, but all the ideas are ours. 
+Prompt: can you clean up
