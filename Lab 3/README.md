@@ -1,7 +1,6 @@
 # Chatterboxes
-**NAMES OF COLLABORATORS HERE**
 
-Name: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx2185)
+NAMES OF COLLABORATORS: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx2185)
 
 <details>
   <summary><strong>Prep (Click to Expand)</strong></summary>
@@ -329,6 +328,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
