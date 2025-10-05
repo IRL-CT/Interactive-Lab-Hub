@@ -933,4 +933,132 @@
 2025-10-05 03:09:45,759 - CookingAssistant - INFO - Button action triggered!
 2025-10-05 03:09:58,078 - CookingAssistant - INFO - You said: huh
 2025-10-05 03:10:31,104 - CookingAssistant - INFO - You said: huh
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           2025-10-05 19:35:47,007 - CookingAssistant - INFO - Cooking Assistant started
+2025-10-05 19:35:47,007 - CookingAssistant - INFO - DigitalIO button support not available, using keyboard input instead
+2025-10-05 19:35:47,007 - CookingAssistant - INFO - Press 'b' key to simulate button press
+2025-10-05 19:35:48,351 - CookingAssistant - INFO - Vosk model loaded successfully
+2025-10-05 19:35:48,351 - CookingAssistant - INFO - Audio device configured - Sample rate: 44100
+2025-10-05 19:35:48,351 - CookingAssistant - INFO - Microphone is ready for speech input
+2025-10-05 19:35:48,351 - CookingAssistant - INFO - Cooking Assistant Starting...
+2025-10-05 19:35:48,352 - CookingAssistant - INFO - ==================================================
+2025-10-05 19:35:48,361 - CookingAssistant - INFO - Ollama is running. Available models: ['tinyllama:latest', 'phi3:mini']
+2025-10-05 19:35:48,362 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:35:48,362 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:35:51,160 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:35:51,160 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:35:51,160 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:35:57,391 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:35:57,391 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:35:57,391 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:36:04,004 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:36:13,188 - CookingAssistant - INFO - You said: i have cabbages
+2025-10-05 19:37:08,405 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:37:08,406 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:38:14,689 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:38:18,496 - CookingAssistant - INFO - You said: yeah
+2025-10-05 19:38:18,496 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:38:18,496 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:38:25,308 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:38:29,593 - CookingAssistant - INFO - You said: the first one
+2025-10-05 19:38:29,593 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:38:29,593 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:38:36,412 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:38:41,746 - CookingAssistant - INFO - You said: i will like to take the first one
+2025-10-05 19:38:41,746 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:38:41,747 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:38:48,563 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:38:52,101 - CookingAssistant - INFO - Cooking session interrupted by user
+2025-10-05 19:38:52,102 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:38:52,102 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:38:52,142 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:38:52,143 - CookingAssistant - INFO - Cooking Assistant session ended
+2025-10-05 19:38:53,591 - CookingAssistant - INFO - Cooking Assistant started
+2025-10-05 19:38:53,592 - CookingAssistant - INFO - DigitalIO button support not available, using keyboard input instead
+2025-10-05 19:38:53,592 - CookingAssistant - INFO - Press 'b' key to simulate button press
+2025-10-05 19:38:54,028 - CookingAssistant - INFO - Vosk model loaded successfully
+2025-10-05 19:38:54,028 - CookingAssistant - INFO - Audio device configured - Sample rate: 44100
+2025-10-05 19:38:54,028 - CookingAssistant - INFO - Microphone is ready for speech input
+2025-10-05 19:38:54,029 - CookingAssistant - INFO - Cooking Assistant Starting...
+2025-10-05 19:38:54,029 - CookingAssistant - INFO - ==================================================
+2025-10-05 19:38:54,034 - CookingAssistant - INFO - Ollama is running. Available models: ['tinyllama:latest', 'phi3:mini']
+2025-10-05 19:38:54,034 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:38:54,034 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:38:56,773 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:38:56,774 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:38:56,774 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:39:03,005 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:39:03,005 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:39:03,005 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:39:09,621 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:39:13,156 - CookingAssistant - INFO - You said: i have cabbages
+2025-10-05 19:39:52,269 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:39:52,270 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:40:59,491 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:41:00,390 - CookingAssistant - INFO - You said: size
+2025-10-05 19:41:00,390 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:41:00,391 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:41:07,170 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:41:13,607 - CookingAssistant - INFO - You said: i like the first one
+2025-10-05 19:42:27,388 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:42:27,389 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:42:39,961 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:42:40,124 - CookingAssistant - INFO - Cooking session interrupted by user
+2025-10-05 19:42:40,124 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:42:40,124 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:42:40,143 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:42:40,144 - CookingAssistant - INFO - Cooking Assistant session ended
+2025-10-05 19:42:41,489 - CookingAssistant - INFO - Cooking Assistant started
+2025-10-05 19:42:41,489 - CookingAssistant - INFO - DigitalIO button support not available, using keyboard input instead
+2025-10-05 19:42:41,489 - CookingAssistant - INFO - Press 'b' key to simulate button press
+2025-10-05 19:42:41,945 - CookingAssistant - INFO - Vosk model loaded successfully
+2025-10-05 19:42:41,945 - CookingAssistant - INFO - Audio device configured - Sample rate: 44100
+2025-10-05 19:42:41,945 - CookingAssistant - INFO - Microphone is ready for speech input
+2025-10-05 19:42:41,946 - CookingAssistant - INFO - Cooking Assistant Starting...
+2025-10-05 19:42:41,946 - CookingAssistant - INFO - ==================================================
+2025-10-05 19:42:41,952 - CookingAssistant - INFO - Ollama is running. Available models: ['tinyllama:latest', 'phi3:mini']
+2025-10-05 19:42:41,952 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:42:41,952 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:42:44,693 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:42:44,693 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:42:44,693 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:42:50,928 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:42:50,928 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:42:50,929 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:42:57,580 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:43:04,604 - CookingAssistant - INFO - You said: hit
+2025-10-05 19:43:07,621 - CookingAssistant - INFO - Cooking session interrupted by user
+2025-10-05 19:43:07,622 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:43:07,622 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:43:07,709 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:43:07,710 - CookingAssistant - INFO - Cooking Assistant session ended
+2025-10-05 19:43:08,861 - CookingAssistant - INFO - Cooking Assistant started
+2025-10-05 19:43:08,861 - CookingAssistant - INFO - DigitalIO button support not available, using keyboard input instead
+2025-10-05 19:43:08,861 - CookingAssistant - INFO - Press 'b' key to simulate button press
+2025-10-05 19:43:09,300 - CookingAssistant - INFO - Vosk model loaded successfully
+2025-10-05 19:43:09,300 - CookingAssistant - INFO - Audio device configured - Sample rate: 44100
+2025-10-05 19:43:09,300 - CookingAssistant - INFO - Microphone is ready for speech input
+2025-10-05 19:43:09,301 - CookingAssistant - INFO - Cooking Assistant Starting...
+2025-10-05 19:43:09,301 - CookingAssistant - INFO - ==================================================
+2025-10-05 19:43:09,306 - CookingAssistant - INFO - Ollama is running. Available models: ['tinyllama:latest', 'phi3:mini']
+2025-10-05 19:43:09,306 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:43:09,307 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:43:12,066 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:43:12,067 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:43:12,067 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:43:18,337 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:43:18,337 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:43:18,337 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:43:24,988 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:43:31,987 - CookingAssistant - INFO - You said: i have carrots
+2025-10-05 19:44:14,334 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:44:14,335 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:45:30,345 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:45:31,201 - CookingAssistant - INFO - You said: cause
+2025-10-05 19:46:02,726 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:46:02,727 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:46:45,863 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:46:45,895 - CookingAssistant - INFO - Cooking session interrupted by user
+2025-10-05 19:46:45,895 - CookingAssistant - INFO - Paused speech listening while assistant is speaking
+2025-10-05 19:46:45,896 - CookingAssistant - INFO - Cleared audio queue to prevent echo
+2025-10-05 19:46:46,052 - CookingAssistant - INFO - Resumed speech listening after assistant finished speaking
+2025-10-05 19:46:46,052 - CookingAssistant - INFO - Cooking Assistant session ended

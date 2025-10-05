@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Interactive Cooking Assistant with Ollama Integration
-This script implements a step-by-step cooking guide with voice interaction and button control.
-"""
+### Interactive Cooking Assistant with Ollama Integration
+### This script implements a step-by-step cooking guide with voice interaction and button control.
+
 
 import requests
 import json
@@ -55,22 +54,25 @@ class CookingAssistant:
         # Button setup (keyboard input only)
         self.button_available = False
         self.button_pressed = False  # Track button press state
-        self.last_button_time = 0    # For debouncing
+        self.last_button_time = 0  
         self.listen_to_speech = True  # Control speech listening
         self.setup_buttons()
         
         # Audio setup
         self.setup_audio()
         
-        # Ollama setup
-        self.model = "tinyllama"  # Use tinyllama as requested
+        # Tinyllama setup
+        self.model = "tinyllama"  
         
         # Conversation log
         self.conversation_log = "cooking_conversation_log.txt"
         self.init_log()
         
+
+
+    ### Logging Functions ###
     def setup_logging(self):
-        """Setup logging to .log file"""
+        # Setup logging to .log file
         # Create logger
         self.logger = logging.getLogger('CookingAssistant')
         self.logger.setLevel(logging.INFO)
@@ -80,34 +82,34 @@ class CookingAssistant:
         file_handler = logging.FileHandler(log_filename)
         file_handler.setLevel(logging.INFO)
         
-        # Create formatter
+        # Set the format
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         file_handler.setFormatter(formatter)
         
-        # Add handler to logger
-        self.logger.addHandler(file_handler)
+        self.logger.addHandler(file_handler) # Add handler to logger
         
-        # Log startup
+        # Start Logging
         self.logger.info("Cooking Assistant started")
         print(f"[LOG] Logging to file: {log_filename}")
         
     def log_info(self, message):
-        """Log info message to both console and file"""
+        # Log info message to both console and file
         print(f"[INFO] {message}")
         self.logger.info(message)
         
     def log_error(self, message):
-        """Log error message to both console and file"""
+        # Log error message to both console and file
         print(f"[ERROR] {message}")
         self.logger.error(message)
         
     def log_debug(self, message):
-        """Log debug message to both console and file"""
+        # Log debug message to both console and file
         print(f"[DEBUG] {message}")
         self.logger.debug(message)
         
+    ### Core Functions ###
     def setup_buttons(self):
-        """Setup digitalio button detection"""
+        # Setup digitalio button detection
         if DIGITALIO_BUTTON_AVAILABLE:
             try:
                 # DigitalIO button setup (GPIO23)
@@ -127,13 +129,12 @@ class CookingAssistant:
                 self.log_error(f"DigitalIO button setup failed: {e}")
                 self.button_available = False
         else:
-            self.log_info("DigitalIO button support not available - using keyboard input instead")
+            self.log_info("DigitalIO button support not available, using keyboard input instead")
             self.log_info("Press 'b' key to simulate button press")
             self.button_available = False
-            
         
     def setup_audio(self):
-        """Setup audio for speech recognition"""
+        # Setup audio for speech recognition
         try:
             self.vosk_model = Model(lang="en-us")
             self.log_info("Vosk model loaded successfully")
@@ -151,13 +152,13 @@ class CookingAssistant:
             sys.exit(1)
         
     def init_log(self):
-        """Initialize conversation log"""
+        # Initialize conversation log
         with open(self.conversation_log, "w", encoding="utf-8") as f:
             f.write(f"Cooking Assistant Conversation Log - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
             f.write("="*60+"\n")
             
     def log_conversation(self, user_text, ai_response):
-        """Log conversation to file"""
+        # Log conversation to file
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         with open(self.conversation_log, "a", encoding="utf-8") as f:
             f.write(f"[{timestamp}] User: {user_text}\n")
@@ -165,7 +166,7 @@ class CookingAssistant:
             f.write("-"*50+"\n")
             
     def speak_text(self, text):
-        """Convert text to speech using espeak"""
+        # Convert text to speech using espeak
         # Clean the text first to remove duplicates
         cleaned_text = self.clean_ollama_response(text)
         clean_text = cleaned_text.encode('ascii', 'ignore').decode('ascii')
@@ -198,7 +199,7 @@ class CookingAssistant:
             self.log_info("Resumed speech listening after assistant finished speaking")
             
     def query_ollama(self, prompt, system_prompt=None):
-        """Send prompt to Ollama with optional system prompt"""
+        # Send prompt to Ollama with optional system prompt
         try:
             full_prompt = prompt
             if system_prompt:
@@ -223,7 +224,7 @@ class CookingAssistant:
             return f"Error: {e}"
             
     def check_ollama(self):
-        """Check if Ollama is running"""
+        # Check if Ollama is running
         try:
             response = requests.get("http://localhost:11434/api/tags", timeout=30)
             if response.status_code == 200:
@@ -240,7 +241,7 @@ class CookingAssistant:
             return False
             
     def handle_button_press_detection(self):
-        """Handle button press detection - using same logic as mood clock"""
+        # Handle button press detection - using same logic as mood clock
         current_time = time.time()
         
         # Debouncing: ignore rapid button presses
@@ -276,13 +277,13 @@ class CookingAssistant:
         return False
 
     def handle_button_action(self):
-        """Process button action based on current state"""
+        # Process button action based on current state
         self.log_info("Button action triggered!")
         
         # If we're in button control mode (after step4), button always advances steps
         if self.current_state in [CookingState.WAITING_FOR_BUTTON_PRESS, CookingState.EXECUTING_STEPS, CookingState.WAITING_FOR_FINAL_BUTTON]:
             if self.current_state == CookingState.WAITING_FOR_FINAL_BUTTON:
-                self.step6_completion()
+                self.completion()
             else:
                 self.next_step()
         else:
@@ -292,17 +293,17 @@ class CookingAssistant:
             elif self.current_state == CookingState.EXECUTING_STEPS:
                 self.next_step()
             elif self.current_state == CookingState.WAITING_FOR_FINAL_BUTTON:
-                self.step6_completion()
+                self.completion()
             
     def audio_callback(self, indata, frames, time, status):
-        """Audio callback for speech recognition"""
+        # Audio callback for speech recognition
         if status:
             print(status, file=sys.stderr)
         self.audio_queue.put(bytes(indata))
         
 
     def handle_user_speech(self, text):
-        """Handle user speech input based on current state"""
+        # Handle user speech input based on current state
         if "exit" in text.lower() or "quit" in text.lower():
             print("User wants to exit...")
             self.speak_text("Goodbye! Have a great day!")
@@ -321,7 +322,7 @@ class CookingAssistant:
             self.handle_voice_during_cooking(text)
             
     def process_ingredients_input(self, text):
-        """Process ingredients input from user"""
+        # Process ingredients input from user
         print("Processing ingredients input...")
         validation_prompt = f"User said: '{text}'. Did they provide ingredients and mention what they want to cook? Answer only 'YES' if they provided both ingredients and dish preference, 'NO' if not."
         validation = self.query_ollama(validation_prompt)
@@ -330,13 +331,13 @@ class CookingAssistant:
             self.ingredients = text
             self.log_conversation(text, "Ingredients received")
             # Move to next step
-            self.step2_suggest_dishes()
+            self.suggest_dishes()
         else:
             self.speak_text("I didn't quite catch that. Could you tell me what ingredients you have and what you'd like to cook?")
             # Stay in current state - the continuous listening loop will handle the next input
             
     def process_dish_selection_input(self, text):
-        """Process dish selection input from user"""
+        # Process dish selection input from user
         print("Processing dish selection...")
         selected_dish = self.map_selection_to_dish(text, self.available_dishes)
         
@@ -344,14 +345,14 @@ class CookingAssistant:
             self.selected_dish = selected_dish
             self.log_conversation(text, "Dish selected")
             # Move to next step
-            self.step3_provide_steps()
+            self.provide_steps()
             self.speak_text("say yes when you are ready to start cooking")
         else:
             self.speak_text("Could you please select one of the dishes I suggested? Just say the name or number.")
             # Stay in current state - the continuous listening loop will handle the next input
             
     def process_steps_confirmation_input(self, text):
-        """Process steps confirmation input from user"""
+        # Process steps confirmation input from user
         print("Processing steps confirmation...")
         validation_prompt = f"User said: '{text}'. Did they confirm they understand the steps and are ready to proceed? Look for words like 'ok', 'yes', 'good', 'ready', 'let's do it'. Answer only 'YES' if they confirmed, 'NO' if not."
         validation = self.query_ollama(validation_prompt)
@@ -359,13 +360,13 @@ class CookingAssistant:
         if "YES" in validation.upper():
             self.log_conversation(text, "Steps confirmed")
             # Move to next step
-            self.step4_ready_to_cook()
+            self.ready_to_cook()
         else:
             self.speak_text("Please let me know when you're ready to start cooking. Say something like 'ok' or 'yes' when you're ready.")
             # Stay in current state - the continuous listening loop will handle the next input
         
     def clean_ollama_response(self, response):
-        """Clean Ollama response to remove duplicates, labels, and fix formatting"""
+        # Clean Ollama response to remove duplicates, labels, and fix formatting
         if not response:
             return response
             
@@ -403,21 +404,8 @@ class CookingAssistant:
                         break
         
         return " ".join(words)
-        
-    def step1_ask_ingredients(self):
-        """Step 1: Ask user about ingredients and what they want to cook"""
-        system_prompt = """You are a helpful cooking assistant. Ask the user what ingredients they have and what kind of dish they want to make. Be friendly and encouraging. Keep your response concise and avoid repeating the same sentence. Do NOT include any "User:" or "System:" labels in your response - just give a direct response as the cooking assistant."""
-        
-        prompt = "Hello! What ingredients do you have today? And what kind of dish would you like to make?"
-        response = self.query_ollama(prompt, system_prompt)
-        
-        # Clean the response to remove duplicates
-        cleaned_response = self.clean_ollama_response(response)
-        self.speak_text(cleaned_response)
-        
-        # Set state - continuous listening loop will handle user input
-        self.current_state = CookingState.WAITING_FOR_INGREDIENTS
             
+    ### Recipe Functions ###
     def parse_dish_suggestion(self, response):
         """Parse dish suggestions and create mapping"""
         lines = response.split('\n')
@@ -432,7 +420,7 @@ class CookingAssistant:
         return dishes
         
     def map_selection_to_dish(self, user_input, dishes):
-        """Map user selection (number or name) to actual dish"""
+        # Map user selection (number or name) to actual dish
         user_input_lower = user_input.lower().strip()
         
         # Check for number selection
@@ -461,8 +449,8 @@ class CookingAssistant:
                 
         return None
         
-    def step2_suggest_dishes(self):
-        """Step 2: Suggest dishes based on ingredients"""
+    def suggest_dishes(self):
+        # Step 2: Suggest dishes based on ingredients
         system_prompt = """You are a cooking expert. Strictly only based on the ingredients provided, suggest 3-4 specific dish. Name only, no details or explanations. Just list the dish names with numbers like "1. Dish Name" format. Keep it simple and concise. Do NOT include any "User:" or "System:" labels in your response - just give a direct response as the cooking expert."""
         
         prompt = f"The user has these ingredients: {self.ingredients}. Suggest 3-4 specific dishes they can make."
@@ -501,8 +489,8 @@ class CookingAssistant:
                     
         return steps
         
-    def step3_provide_steps(self):
-        """Step 3: Provide detailed cooking steps"""
+    def provide_steps(self):
+        # Step 3: Provide detailed cooking steps
         system_prompt = """You are a detailed cooking instructor. Only provide step-by-step cooking instructions for the selected dish. Make each step clear and actionable. Number each step clearly like "1. Step description" or "Step 1: Step description". Keep your response organized. Do NOT include any "User:" or "System:" labels in your response - just give a direct response as the cooking instructor."""
         
         prompt = f"The user wants to cook: {self.selected_dish}. Using these ingredients: {self.ingredients}. Provide detailed step-by-step cooking instructions."
@@ -515,8 +503,8 @@ class CookingAssistant:
         # Set state - continuous listening loop will handle user input
         self.current_state = CookingState.WAITING_FOR_STEPS_CONFIRMATION
             
-    def step4_ready_to_cook(self):
-        """Step 4: Tell user they can press button to start"""
+    def ready_to_cook(self):
+        # Step 4: Tell user they can press button to start
         if self.button_available:
             message = "Great! Now you can press the button (GPIO23) to start cooking. I'll guide you through each step."
         else:
@@ -528,8 +516,8 @@ class CookingAssistant:
         self.listen_to_speech = True
         self.log_info("Speech listening enabled for cooking questions")
         
-    def step5_execute_steps(self):
-        """Step 5: Execute cooking steps with button control"""
+    def execute_steps(self):
+        # Step 5: Execute cooking steps with button control
         if self.current_step < len(self.cooking_steps):
             step_text = self.cooking_steps[self.current_step]
             self.speak_text(f"Step {self.current_step + 1}: {step_text}")
@@ -551,22 +539,22 @@ class CookingAssistant:
                 # Tell user they can ask questions
                 self.speak_text("You can ask me questions about this step, or press the button to continue to the next step.")
             
-    def step6_completion(self):
-        """Step 6: Congratulate user on completion"""
+    def completion(self):
+        # Step 6: Congratulate user on completion
         message = "Congratulations! You've completed all the cooking steps. Your dish should be ready now. Enjoy your meal!"
         self.speak_text(message)
         self.current_state = CookingState.COMPLETED
         
     def next_step(self):
-        """Handle next step in cooking process"""
+        # Handle next step in cooking process
         if self.current_state == CookingState.WAITING_FOR_BUTTON_PRESS:
             self.current_state = CookingState.EXECUTING_STEPS
-            self.step5_execute_steps()
+            self.execute_steps()
         elif self.current_state == CookingState.EXECUTING_STEPS:
-            self.step5_execute_steps()
+            self.execute_steps()
             
     def handle_voice_during_cooking(self, user_input):
-        """Handle voice input during cooking steps"""
+        # Handle voice input during cooking steps
         # Handle questions during any cooking-related state
         if self.current_state in [CookingState.WAITING_FOR_BUTTON_PRESS, CookingState.EXECUTING_STEPS, CookingState.WAITING_FOR_FINAL_BUTTON]:
             # Determine current step context
@@ -594,7 +582,7 @@ class CookingAssistant:
             
             
     def run(self):
-        """Main execution loop - continuous listening like voice_ai_assistant"""
+        # Main execution loop - continuous listening like voice_ai_assistant
         self.log_info("Cooking Assistant Starting...")
         self.log_info("=" * 50)
         
