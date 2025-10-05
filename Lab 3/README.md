@@ -37,10 +37,10 @@ NAMES OF COLLABORATORS: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx218
 
 </details>
 
+# Part 1
+
 <details>
-  <summary><strong>Part 1 (Click to Expand)</strong></summary>
- 
-  ### Setup 
+  <summary><strong>Setup (Click to Expand)</strong></summary>
   
   Activate your virtual environment
   
@@ -59,8 +59,10 @@ NAMES OF COLLABORATORS: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx218
   ```
   (.venv)pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ ./setup.sh
   ```
-  
-  ### Text to Speech 
+</details>
+
+<details>
+  <summary><strong>Text to Speech (Click to Expand)</strong></summary>
   
   In this part of lab, we are going to start peeking into the world of audio on your Pi! 
   
@@ -88,6 +90,25 @@ NAMES OF COLLABORATORS: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx218
   
   You can also play audio files directly with `aplay filename`. Try typing `aplay lookdave.wav`.
 
+  ---
+  Bonus:
+  [Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspberry pi which can be installed easily through python with:
+  ```
+  pip install piper-tts
+  ```
+  and used from the command line. Running the command below the first time will download the model, concurrent runs will be faster. 
+  ```
+  echo 'Welcome to the world of speech synthesis!' | piper \
+    --model en_US-lessac-medium \
+    --output_file welcome.wav
+  ```
+  Check the file that was created by running `aplay welcome.wav`. Many more languages are supported and audio can be streamed dirctly to an audio output, rather than into an file by:
+  
+  ```
+  echo 'This sentence is spoken first. This sentence is synthesized while the first sentence is spoken.' | \
+    piper --model en_US-lessac-medium --output-raw | \
+    aplay -r 22050 -f S16_LE -t raw -
+  ```
 </details>
 
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
@@ -95,26 +116,7 @@ NAMES OF COLLABORATORS: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx218
 
 *[See greet.sh](https://github.com/m-lmq/Interactive-Lab-Hub/blob/Fall2025/Lab%203/speech-scripts/greet.sh)*
 
----
-Bonus:
-[Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspberry pi which can be installed easily through python with:
-```
-pip install piper-tts
-```
-and used from the command line. Running the command below the first time will download the model, concurrent runs will be faster. 
-```
-echo 'Welcome to the world of speech synthesis!' | piper \
-  --model en_US-lessac-medium \
-  --output_file welcome.wav
-```
-Check the file that was created by running `aplay welcome.wav`. Many more languages are supported and audio can be streamed dirctly to an audio output, rather than into an file by:
 
-```
-echo 'This sentence is spoken first. This sentence is synthesized while the first sentence is spoken.' | \
-  piper --model en_US-lessac-medium --output-raw | \
-  aplay -r 22050 -f S16_LE -t raw -
-```
-  
 ### Speech to Text
 
 Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
@@ -331,6 +333,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
