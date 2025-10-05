@@ -485,13 +485,13 @@ python3 test_condition.py
 ### What worked well about the system and what didn't?
 Once I explained the system, users understood how it worked and used the touch buttons to add items. However, they were confused about why a touch sensor was necessary when they could simply use voice commands.
 
-We then tested a voice-only version, where they said phrases like “add one tomato” or “add one asparagus.” The main issue was speech-to-text errors — when recognition failed, my follow-up question (“One asparagus?”) frustrated them.
+We then tested a voice-only version, where they said phrases like “add one tomato” or “add one asparagus.” The main issue was speech-to-text errors, when recognition failed, my follow-up question (“One asparagus?”) frustrated them.
 
 Overall, they appreciated the speed of adding items but found it cognitively demanding to remember which button corresponded to which item. They also wished the system displayed a visual confirmation of newly added items, rather than only relying on audio feedback.
 
 ### What worked well about the controller and what didn't?
 
-The controller ran smoothly — it converted speech to text, displayed the recognized text, and read out my typed response. However, the process was sometimes slow, and the text wasn’t always accurate.
+The controller ran smoothly. It converted speech to text, displayed the recognized text, and read out my typed response. However, the process was sometimes slow, and the text wasn’t always accurate.
 Since I could still hear what they said, I was able to respond correctly, but this wouldn’t be possible in a fully autonomous version.
 
 As a Wizard-of-Oz (WoZ) controller, it was sometimes challenging to decide how to respond in real time, given the variability of user input.
@@ -502,7 +502,7 @@ The WoZ setup was extremely valuable for observing user reactions and pain point
 We learned that repeated clarification (due to recognition errors) quickly annoys users, and even with a short introduction, they were initially confused about button-item mappings.
 However, allowing them to interact hands-on helped them understand the system and suggest improvements.
 
-When we built a smart reservation bot for Ollama, we found that tuning prompts to achieve desired behavior was difficult. In contrast, the WoZ approach highlighted user-experience issues (rather than technical ones) and allowed quick prototyping and testing — such as comparing touch-based vs. voice-only versions — without coding every variation.
+When we built a smart reservation bot for Ollama, we found that tuning prompts to achieve desired behavior was difficult. In contrast, the WoZ approach highlighted user-experience issues (rather than technical ones) and allowed quick prototyping and testing, such as comparing touch-based vs. voice-only versions — without coding every variation.
 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
