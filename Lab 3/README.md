@@ -40,7 +40,7 @@ NAMES OF COLLABORATORS: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx218
 # Part 1
 
 <details>
-  <summary><strong>Setup (Click to Expand)</strong></summary>
+  ### <summary><strong>Setup (Click to Expand)</strong></summary>
   
   Activate your virtual environment
   
@@ -333,6 +333,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
