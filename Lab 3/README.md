@@ -269,8 +269,11 @@ Potential Ideas:
 - talking lamp
 - talking key-holder
 
+**Device 1: Table Assistant**
+
 \*\***Verplank diagram**\*\*
 ![IMG_0702](https://github.com/user-attachments/assets/7ae09a90-10ba-42d4-a126-634197837dab)
+
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
@@ -281,6 +284,18 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 - Made sure to include a catch-all for any commands/questions that my device couldn't respond to
 ![IMG_0703](https://github.com/user-attachments/assets/2673f814-3544-4995-bdd0-31858b0e8b18)
 
+**Device 2: Key Holder**
+
+\*\***Verplank diagram**\*\*
+<img width="2360" height="1640" alt="interaction_diagram" src="https://github.com/user-attachments/assets/482b1195-8f98-48a8-a91e-3b9bafbaa6ab" />
+
+**Process:**
+
+>Since the use case of this project is relatively narrow, this process felt straightforward to me. I first imagined the process I go through manually in the morning (namely, gathering my keys, checking the weather, and then assembling an outfit). I then automated this interaction, though I did feel that this initial draft was a little restrictive.
+
+<img width="1640" height="2360" alt="interaction_diagram_flowchart" src="https://github.com/user-attachments/assets/3b2c138f-4ff9-4952-b4c0-e94513b20ee3" />
+
+
 </details>
 
 <details open>
@@ -288,16 +303,18 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).  
 
-▶️ [Watch the interaction](https://drive.google.com/file/d/1X4qozkjWHV7CG7UEsd9Pb28_1pUznamv/preview)
+▶️ [Watch the table interaction](https://drive.google.com/file/d/1X4qozkjWHV7CG7UEsd9Pb28_1pUznamv/preview)  
+▶️ [Watch the key holder interaction](https://drive.google.com/file/d/1WJVCHFZDOf9HbCw9gRurgA3TDscG2uMM/view)
 
-\*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
-- The user took on a much more of a conversational tone rather than just giving the table commands. This made it harder to decide how to respond or which part of the statement to respond to.
-- It wasn't very clear to the user what capabilities the device had/what it could help with. Therefore, many of the interactions I had mapped out weren't used.
-- The search feature might not be as useful as we initially thought. 
+\*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*  
+Table Assistant:  
+>The user took on a much more of a conversational tone rather than just giving the table commands. This made it harder to decide how to respond or which part of the statement to respond to. It wasn't very clear to the user what capabilities the device had/what it could help with. Therefore, many of the interactions I had mapped out weren't used. Addionally, the search feature might not be as useful as we initially thought.
 
+Interactive Key Holder:  
+> The dialogue was significantly different when acted out. I imagined the device as more of the questioning figure, but my partner largely led the conversation, rather than waiting for questions from the device. This significantly altered my flowchart; I realized that my final version of the device would have to be significantly more flexible than the version currently implemented.
 </details>
 
-<details open>
+<details>
 <summary><h3>Wizarding with the Pi (optional)</h3></summary>
   
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
@@ -313,8 +330,9 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
   - Timing!!! Know when user is leaving
+  - Wording: make it more obvious what the device can help with
 3. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
-  - Jingling keys as a reminder (visual)
+  - Shakling keys as a reminder (visual)
   - Distance sensor to know if someone's walking by/is currently grabbing keys (tactile)
 4. Make a new storyboard, diagram and/or script based on these reflections.
 
@@ -325,9 +343,24 @@ The system should:
 * use one or more sensors
 * require participants to speak to it. 
 
-*Document how the system works*
+***Document how the system works***  
+The system uses the following components: 
+- Webcam: used to detect whether a person is walking by the device
+- Proximity Sensor: used to detect when the user reaches for the keys
+- Actuator: used to shake the keys when triggered
+- Raspberry Pi: used to run the code
+- Speaker: used for audio output  
 
-*Include videos or screencaptures of both the system and the controller.*
+Interaction Flow:  
+- The device waits until the camera detects a person walking by or entering the frame. We used an existing model: mobilenet-ssd for person detection.
+- When the user is detected, it triggers the key shaking mechanism and the device starts prompting the user "Don't forget your keys"
+- The key shaking is achieved by using an actuator that sweeps from 0 to 90 degrees. 
+- Once the user reaches for the keys, the proximity sensor is able to detect it and trigger the actuator and prompts to stop.
+- Then, the device asks if there is anything else it can help with, and provides a list of possible tasks.
+- Based on the user's asks, the device can respond accordingly through wizarding. There are a few pre-set responses, but it can also speak whatever is typed into it. 
+
+***Include videos or screencaptures of both the system and the controller.***  
+▶️ [Watch demo](https://drive.google.com/file/d/1qCZAVFRZPhjGw6e46kcf-VXWHTivVRyO/view?usp=sharing)  
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
@@ -361,6 +394,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
