@@ -113,38 +113,82 @@ b. Button / Tap Interaction
 
 ## Prototype your system
 
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
+# [Interactive Cooking Assistant](./cooking_assistant.py) (Raspberry Pi + Vosk + tinyllama/Ollama)
 
-*Document how the system works*
+## [cooking_assistant.py](./cooking_assistant.py)
 
-*Include videos or screencaptures of both the system and the controller.*
+## What it is
+A voice-first cooking guide that runs on Raspberry Pi. It uses:
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
-  
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-  This helps ensure your README.md is clear professional and uniquely yours!
-</details>
+- **Sensors:** your mic (audio input sensor) + optional **GPIO button** on **GPIO23** as a physical controller.  
+- **Speech:** listens with **Vosk**, speaks with **espeak**, reasons with **tinyllama** via **local Ollama** (no cloud).
+
+---
+## Quick Start
+```
+# 1) System deps
+sudo apt update
+sudo apt install -y python3-pip espeak
+
+# 2) Python deps
+pip3 install vosk sounddevice requests adafruit-blinka
+
+# 3) (Optional) DigitalIO support for the button
+pip3 install adafruit-circuitpython-digitalio
+
+# 4) Ollama (local LLM runtime) + tinyllama
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull tinyllama
+ollama serve  # keep running in a terminal
+
+# 5) Verify Ollama is up (should list `tinyllama`)
+curl http://localhost:11434/api/tags
+
+# 6) Run the assistant (in a new terminal)
+python3 cooking_assistant.py
+
+```
+
+## How to Use
+
+### 1) Tell it your ingredients + goal
+- Say one sentence, e.g., “I have chicken, onions, garlic; I want something quick.”
+- If it didn’t catch you, speak clearly near the mic and try again.
+
+### 2) Pick a dish from suggestions
+- It will read **3–4 dish names**: say **the name** or **a number** (e.g., “two” or “the second one”).
+- If it misheard, restate the dish name.
+
+### 3) Confirm to start
+- Say **“yes”**, **“ok”**, or **“ready.”**  
+- It will switch to **step-by-step** mode.
+
+### 4) Advance steps (controller)
+- **With button (GPIO23):** press and release to go to the **next step**.
+- After each step is spoken, you can either **ask a question** or **press again** to continue.
+
+### 5) Ask questions anytime
+- Examples: “How finely should I chop the onions?” / “What heat level?”
+- It answers briefly, then reminds you to press the button or continue.
+
+### 6) Finish
+- After the last step, **press the button once more** to complete.
+- Say **“exit”** at any time to quit.
+
 
 ## Test the system
-**Demo Video**
+**Demo Video (Must Watch)**
 
 You can watch the  [**Demo Video**](https://drive.google.com/file/d/15Dc6L-n8PIi3LA8wX3G2NgVQAjvs3cX8/view?usp=drive_link):
 [https://drive.google.com/file/d/15Dc6L-n8PIi3LA8wX3G2NgVQAjvs3cX8/view?usp=drive_link](https://drive.google.com/file/d/15Dc6L-n8PIi3LA8wX3G2NgVQAjvs3cX8/view?usp=drive_link)
 
 **Demo Log**
-You can view the Demo Log
+
+You can view the **[cooking_assistant.log](./cooking_assistant.log)** to see system runtime messages, including Ollama responses, user speech inputs, and button interactions.
 
 
-Answer the following:
+
+
 
 ### What worked well about the system and what didn't?
 \*\**your answer here*\*\*
