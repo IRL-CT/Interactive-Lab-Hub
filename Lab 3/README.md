@@ -191,20 +191,22 @@ You can view the **[cooking_assistant.log](./cooking_assistant.log)** to see sys
 
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+The system performed very well in understanding and responding to user commands. The speech recognition has accurately captured most spoken inputs, and the AI responses from Ollama were detailed and contextually relevant. The system was able to handle user questions like "How long should I cook this?" or "What heat level should I use?" effectively, which made the prototype experience quite realistic and helpful. However, there were a few limitations. The audio output in the demo video was relatively low, making it slightly difficult to hear the prototype's voice clearly. Additionally, while the recognition worked well in quiet environments, it could struggle in noisy kitchen conditions with background sounds like chopping or boiling water.
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+The physical button (GPIO23) worked reliably and provided a simple, intuitive way to control progress through recipe steps. It successfully allowed users to advance steps, confirm actions, or end the session, which reduced the chance of misheard voice commands and made the experience smoother. However, the system only relies on a single button, which could be confusing for first-time users to remember what each press does. It might be beneficial to add audio or visual feedback such as a light to blink when the button is pressed to confirm an action. In future iterations, additional physical controls like buttons for "repeat" or "pause" could make the interface more flexible.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
+From the Wizard of Oz interactions, we learned that natural conversation and contextual understanding are key to user satisfaction. Users appreciated when the assistant understood follow up questions to clarified recipe details. These interactions highlighted the need for dialogue management, where the system maintains memory of the current recipe step and adapts responses accordingly.
 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
+The system could easily be adapted to log multimodal interaction data for further improvement. Each cooking session can be recorded in a structured dataset containing: 1. Speech transcripts 2. Timestamps for each exchange 3. Button press events 4. Recipe progress states 5. Error logs. These logs could form a valuable dataset for training better conversational and timing models and used specifically to kitchen environments.
+
 
 
 
