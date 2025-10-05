@@ -1,5 +1,5 @@
 # Chatterboxes
-**Collaborator: Miriam Alex ([Repo](https://github.com/miriam-alex/Interactive-Lab-Hub/tree/Fall2025/Lab%203))**
+**Collaborator: Miriam Alex - mta64 ([Repo](https://github.com/miriam-alex/Interactive-Lab-Hub/tree/Fall2025/Lab%203))**
 
 <details>
 <summary>Lab Description</summary>
@@ -397,6 +397,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
