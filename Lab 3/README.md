@@ -236,12 +236,37 @@ The Pi immediately converts the text into speech using the built-in text-to-spee
 
 This prototype effectively recreates a two-way conversational experience between a user and an intelligent mirror, without relying on heavy machine-learning or cloud components. It provides a simple, tangible framework to explore timing, responsiveness, and interaction design in human-mirror communication.
 
-### System Documentation 2: Joystick Interaction
+### System Documentation 2: Outfit Recommendation Assistant
 
-The system is an interactive outfit recommendation device built with a Raspberry Pi and a SparkFun Qwiic Joystick. The joystick provides horizontal, vertical, and button inputs over the I²C interface, while the software interprets these signals to control theme navigation and trigger voice responses. When the program starts, it calibrates the joystick by sampling its center values and dynamically sets threshold ranges for motion detection. Pushing the joystick **up or down** changes the outfit theme (Sports, Social, Color, Interview, Daily) and automatically plays a voice line through Piper TTS. Moving **left or right** cycles through the options within that theme, and pressing the joystick button runs `voice_interaction_router.py`, which handles open-ended voice questions using the logic defined in `outfits.py`. Each spoken line follows the unified format:  
-`recommend type: <Theme>. Option <Index>. <Sentence>`.
+#### 1. Overview
+This project is an interactive outfit recommendation system implemented on a Raspberry Pi using a SparkFun Qwiic Joystick as the primary input device. The system runs locally and provides real-time voice feedback to guide users through outfit themes and style options. Each joystick movement or press triggers context-aware spoken responses generated through Piper text-to-speech. The prototype simulates a “smart mirror” that can not only recommend outfits but also engage in short, spoken dialogues with the user through a secondary voice interaction script. The goal is to explore embodied interaction and conversational timing in tangible, voice-driven interfaces.
 
-The main control loop continuously polls `joystick.horizontal`, `joystick.vertical`, and `joystick.button` at around 20 Hz. It applies hysteresis thresholds to avoid jitter and uses short cooldown timers to prevent rapid re-triggering. If the button hardware fails or is unavailable, the system automatically falls back to a “mid-hold” interaction—holding the joystick near its center for 1.2 seconds also starts voice Q&A. All audio is generated through Piper and played via `aplay`, with Espeak as a backup. Error handling ensures stable operation even when I²C reads intermittently fail, so users always experience smooth physical control and synchronized spoken feedback.
+#### 2. What We Achieved
+- Created a fully functional **joystick-based voice interface** that allows users to browse outfit themes (Sports, Social, Color, Interview, Daily) and listen to style options without a screen.  
+- Implemented **robust motion recognition** and threshold calibration for smooth, low-latency navigation on the Raspberry Pi.  
+- Integrated **text-to-speech (Piper → aplay fallback to Espeak)** for consistent and clear local audio playback.  
+- Added **voice Q&A mode** triggered by joystick press or mid-hold gesture, enabling interactive question–answer conversations powered by `voice_interaction_router.py`.  
+
+#### 3. How It Works
+The system establishes a continuous interaction loop between the user’s physical gestures and the Raspberry Pi’s audio responses:
+
+- **Hardware Input (Joystick):**  
+  The SparkFun Qwiic Joystick provides horizontal, vertical, and button data over I²C. At startup, the script samples joystick values to determine the neutral center and automatically sets sensitivity thresholds. Moving the joystick **up or down** changes the outfit theme, while **left or right** cycles through the available options within that theme. Each action immediately triggers a voice message in the format:  
+  `recommend type: <Theme>. Option <Index>. <Sentence>`
+
+- **Speech Output (TTS):**  
+  When a new theme or option is selected, the system converts the corresponding text from `outfits.py` into audio using Piper TTS, then plays it through ALSA (`aplay`). If Piper fails, Espeak automatically handles fallback playback to maintain responsiveness.
+
+- **Voice Interaction:**  
+  Pressing the joystick (or holding it steady at center for 1.2s, if button readout fails) launches `voice_interaction_router.py`. This script processes user speech or text queries, determines relevant outfit logic from `outfits.py`, and returns a spoken reply. The exchange mimics natural dialogue—like asking a mirror, “What should I wear for sports?”—and receiving a contextual spoken answer.
+
+**Overall Flow:**
+1. User performs a joystick gesture → Raspberry Pi detects motion and determines action type.  
+2. Corresponding text prompt is selected from `outfits.py`.  
+3. Text is synthesized into speech via Piper and played aloud.  
+4. Optional voice Q&A extends the dialogue, forming a closed feedback loop between physical input and auditory output.
+
+This architecture enables a fully local, screenless, and conversational prototype—illustrating how a tangible interface can blend physical gestures with responsive, expressive voice output to create a personalized interactive mirror experience.
 
 
 ### <mark>3.Include videos or screencaptures of both the system and the controller.</mark>
@@ -266,4 +291,5 @@ From the Wizard-of-Oz sessions, it became clear that the system benefits from sh
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 The system could log joystick positions, button states, timestamps, and recognized speech transcripts to create a dataset of multimodal interactions. Each session could store pairs of physical input sequences and spoken responses, enabling supervised learning of user intent patterns. Adding a small microphone array could capture tone and hesitation, while a camera could record facial expressions or gaze direction to analyze engagement. These additional sensing modalities would allow future models to learn richer mappings between gesture, voice, and emotional state, supporting more adaptive and autonomous dialogue behavior.
+
 
