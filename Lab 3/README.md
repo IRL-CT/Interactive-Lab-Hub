@@ -1,158 +1,17 @@
 # Chatterboxes
-**NAMES OF COLLABORATORS HERE**
-[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
-
-In this lab, we want you to design interaction with a speech-enabled device--something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1).  First, we want you first to storyboard what you imagine the conversational interaction to be like. Then, you will use wizarding techniques to elicit examples of what people might say, ask, or respond.  We then want you to use the examples collected from at least two other people to inform the redesign of the device.
-
-We will focus on **audio** as the main modality for interaction to start; these general techniques can be extended to **video**, **haptics** or other interactive mechanisms in the second part of the Lab.
-
-## Prep for Part 1: Get the Latest Content and Pick up Additional Parts 
-
-Please check instructions in [prep.md](prep.md) and complete the setup before class on Wednesday, Sept 23rd.
-
-### Pick up Web Camera If You Don't Have One
-
-Students who have not already received a web camera will receive their [Logitech C270 Webcam](https://www.amazon.com/Logitech-Desktop-Widescreen-Calling-Recording/dp/B004FHO5Y6/ref=sr_1_3?crid=W5QN79TK8JM7&dib=eyJ2IjoiMSJ9.FB-davgIQ_ciWNvY6RK4yckjgOCrvOWOGAG4IFaH0fczv-OIDHpR7rVTU8xj1iIbn_Aiowl9xMdeQxceQ6AT0Z8Rr5ZP1RocU6X8QSbkeJ4Zs5TYqa4a3C_cnfhZ7_ViooQU20IWibZqkBroF2Hja2xZXoTqZFI8e5YnF_2C0Bn7vtBGpapOYIGCeQoXqnV81r2HypQNUzFQbGPh7VqjqDbzmUoloFA2-QPLa5lOctA.L5ztl0wO7LqzxrIqDku9f96L9QrzYCMftU_YeTEJpGA&dib_tag=se&keywords=webcam%2Bc270&qid=1758416854&sprefix=webcam%2Bc270%2Caps%2C125&sr=8-3&th=1) and bluetooth speaker on Wednesday at the beginning of lab. If you cannot make it to class this week, please contact the TAs to ensure you get these. 
-
-### Get the Latest Content
-
-As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. There are 2 ways you can do so:
-
-**\[recommended\]**Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the *personal access token* for this.
-
-```
-pi@ixe00:~$ cd Interactive-Lab-Hub
-pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2025
-pi@ixe00:~/Interactive-Lab-Hub $ git add .
-pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab3 updates"
-pi@ixe00:~/Interactive-Lab-Hub $ git push
-```
-
-Option 2: On your your own GitHub repo, [create pull request](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2022Fall/readings/Submitting%20Labs.md) to get updates from the class Interactive-Lab-Hub. After you have latest updates online, go on your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull` to get updates from your own GitHub repo.
-
+**Huiying Zhan (hz764) and Joy Sun (Jiayi Sun)**
 ## Part 1.
-### Setup 
-
-Activate your virtual environment
-
-```
-pi@ixe00:~$ cd Interactive-Lab-Hub
-pi@ixe00:~/Interactive-Lab-Hub $ cd Lab\ 3
-pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python3 -m venv .venv
-pi@ixe00:~/Interactive-Lab-Hub $ source .venv/bin/activate
-(.venv)pi@ixe00:~/Interactive-Lab-Hub $ 
-```
-
-Run the setup script
-```(.venv)pi@ixe00:~/Interactive-Lab-Hub $ pip install -r requirements.txt  ```
-
-Next, run the setup script to install additional text-to-speech dependencies:
-```
-(.venv)pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ ./setup.sh
-```
-
 ### Text to Speech 
-
-In this part of lab, we are going to start peeking into the world of audio on your Pi! 
-
-We will be using the microphone and speaker on your webcamera. In the directory is a folder called `speech-scripts` containing several shell scripts. `cd` to the folder and list out all the files by `ls`:
-
-```
-pi@ixe00:~/speech-scripts $ ls
-Download        festival_demo.sh  GoogleTTS_demo.sh  pico2text_demo.sh
-espeak_demo.sh  flite_demo.sh     lookdave.wav
-```
-
-You can run these shell files `.sh` by typing `./filename`, for example, typing `./espeak_demo.sh` and see what happens. Take some time to look at each script and see how it works. You can see a script by typing `cat filename`. For instance:
-
-```
-pi@ixe00:~/speech-scripts $ cat festival_demo.sh 
-#from: https://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)#Festival_Text_to_Speech
-```
-You can test the commands by running
-```
-echo "Just what do you think you're doing, Dave?" | festival --tts
-```
-
-Now, you might wonder what exactly is a `.sh` file? 
-Typically, a `.sh` file is a shell script which you can execute in a terminal. The example files we offer here are for you to figure out the ways to play with audio on your Pi!
-
-You can also play audio files directly with `aplay filename`. Try typing `aplay lookdave.wav`.
-
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 (This shell file should be saved to your own repo for this lab.)
 
 <mark>See my implementation here: [greet_me.sh](./my-scripts/greet_me.sh)</mark>
 
----
-Bonus:
-[Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspberry pi which can be installed easily through python with:
-```
-pip install piper-tts
-```
-and used from the command line. Running the command below the first time will download the model, concurrent runs will be faster. 
-```
-echo 'Welcome to the world of speech synthesis!' | piper \
-  --model en_US-lessac-medium \
-  --output_file welcome.wav
-```
-Check the file that was created by running `aplay welcome.wav`. Many more languages are supported and audio can be streamed dirctly to an audio output, rather than into an file by:
-
-```
-echo 'This sentence is spoken first. This sentence is synthesized while the first sentence is spoken.' | \
-  piper --model en_US-lessac-medium --output-raw | \
-  aplay -r 22050 -f S16_LE -t raw -
-```
-
 <mark>See my generated audio file here: [welcome.wav](./my-scripts/welcome.wav)</mark>
   
 ### Speech to Text
-
-Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
-
-Make sure you're running in your virtual environment with the dependencies already installed:
-```
-source .venv/bin/activate
-```
-
-Test if vosk works by transcribing text:
-
-```
-vosk-transcriber -i recorded_mono.wav -o test.txt
-```
-
-You can use vosk with the microphone by running 
-```
-python test_microphone.py -m en
-```
-
----
-Bonus:
-[Whisper](https://openai.com/index/whisper/) is a neural network–based speech-to-text (STT) model developed and open-sourced by OpenAI. Compared to Vosk, Whisper generally achieves higher accuracy, particularly on noisy audio and diverse accents. It is available in multiple model sizes; for edge devices such as the Raspberry Pi 5 used in this class, the tiny.en model runs with reasonable latency even without a GPU.
-
-By contrast, Vosk is more lightweight and optimized for running efficiently on low-power devices like the Raspberry Pi. The choice between Whisper and Vosk depends on your scenario: if you need higher accuracy and can afford slightly more compute, Whisper is preferable; if your priority is minimal resource usage, Vosk may be a better fit.
-
-In this class, we provide two Whisper options: A quantized 8-bit faster-whisper model for speed, and the standard Whisper model. Try them out and compare the trade-offs.
-
-Make sure you're in the Lab 3 directory with your virtual environment activated:
-```
-cd ~/Interactive-Lab-Hub/Lab\ 3/speech-scripts
-source ../.venv/bin/activate
-```
-
-Then test the Whisper models:
-```
-python whisper_try.py
-```
-and
-
-```
-python faster_whisper_try.py
-```
 ***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.***   
 <mark>See my custom Whisper-based number input script here: [ask_number_whisper.sh](./my-scripts/ask_number_whisper.sh)</mark>   
-
-This script plays an audio prompt, records user speech, uses `faster-whisper` to transcribe it, extracts digits, and saves them to `data/answers.csv`.
 
 #### Example Run
 Here is a screenshot of the script running on my Pi, showing the audio file created, the transcript, and the recognized digits:
@@ -165,66 +24,6 @@ Here is a screenshot of the script running on my Pi, showing the audio file crea
 Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
 
 #### Quick Start with Ollama
-
-**Installation** (takes ~5 minutes):
-```bash
-# Install Ollama
-curl -fsSL https://ollama.com/install.sh | sh
-
-# Download recommended model for Pi 5
-ollama pull phi3:mini
-
-# Install system dependencies for audio (required for pyaudio)
-sudo apt-get update
-sudo apt-get install -y portaudio19-dev python3-dev
-
-# Create separate virtual environment for Ollama (due to pyaudio conflicts)
-cd ollama/
-python3 -m venv ollama_venv
-source ollama_venv/bin/activate
-
-# Install Python dependencies in separate environment
-pip install -r ollama_requirements.txt
-```
-#### Ready-to-Use Scripts
-
-We've created three Ollama integration scripts for different use cases:
-
-**1. Basic Demo** - Learn how Ollama works:
-```bash
-python3 ollama_demo.py
-```
-
-**2. Voice Assistant** - Full speech-to-text + AI + text-to-speech:
-```bash
-python3 ollama_voice_assistant.py
-```
-
-**3. Web Interface** - Beautiful web-based chat with voice options:
-```bash
-python3 ollama_web_app.py
-# Then open: http://localhost:5000
-```
-
-#### Integration in Your Projects
-
-Simple example to add AI to any project:
-```python
-import requests
-
-def ask_ai(question):
-    response = requests.post(
-        "http://localhost:11434/api/generate",
-        json={"model": "phi3:mini", "prompt": question, "stream": False}
-    )
-    return response.json().get('response', 'No response')
-
-# Use it anywhere!
-answer = ask_ai("How should I greet users?")
-```
-
-**📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
-
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
 - **My code is located at:**  
   [`Lab 3/my-scripts/voice_interaction.py`](./my-scripts/voice_interaction.py)
@@ -257,29 +56,7 @@ This creates a conversational loop where the Pi listens, processes, and speaks b
   - Some noted the short recording window (8s) limited longer questions, but for quick queries the pipeline worked effectively.  
   - Overall, the demonstration showed how a lightweight Pi setup can support **real-time conversational AI**.
 
-
-### Serving Pages
-
-In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
-
-```
-pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
- * Serving Flask app "server" (lazy loading)
- * Environment: production
-   WARNING: This is a development server. Do not use it in a production deployment.
-   Use a production WSGI server instead.
- * Debug mode: on
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 162-573-883
-```
-From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
-
 ### Storyboard
-
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
-
 \*\***Post your storyboard and diagram here.**\*\*
 
 ### Verplank diagram
@@ -394,68 +171,106 @@ When we acted out the dialogue, it turned out to be quite different from the ima
 
 
 
-### Wizarding with the Pi (optional)
-In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
-
-\*\***Describe if the dialogue seemed different than what you imagined, or when acted out, when it was wizarded, and how.**\*\*
-
 # Lab 3 Part 2
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
 
-## Prep for Part 2
-
-1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
-2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
-3. Make a new storyboard, diagram and/or script based on these reflections.
-
 ## Prototype your system
+### <mark>1.New Story Board</mark>
+#### Situation 1: Choose the Type
+<img src="choose the type.jpg" alt="Choose the Type" width="500">
 
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
+#### Situation 2: Choose the Outfit
+<img src="choose the outfit.jpg" alt="Choose the Outfit" width="500">
 
-*Document how the system works*
+### <mark>2.Document how the system works</mark>
+### System Documentation 1: Wizard of oz
+#### 1.Overview
 
-*Include videos or screencaptures of both the system and the controller.*
+This project is an interactive demo that runs on a Raspberry Pi and connects a SparkFun Qwiic Joystick to a web interface. The system streams joystick data to a browser in real time and allows the user to convert typed text into spoken audio on the Pi. The implementation uses a lightweight Flask web server with Socket.IO for bi-directional messaging, and espeak for local text-to-speech output.
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
-  
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-  This helps ensure your README.md is clear professional and uniquely yours!
-</details>
+#### 2.What we achieved
+
+- Provide a clean, low-latency demo of hardware → web interaction.
+
+- Replace an accelerometer-based input with a Qwiic Joystick as the primary interaction device.
+
+- Keep audio output stable and deterministic (avoid flaky real-time microphone streaming).
+
+#### 3.How it works
+This prototype demonstrates an interactive dialogue system between a user and a smart mirror, implemented on a Raspberry Pi.
+
+The interaction is simulated through a hardware joystick and a web interface:
+
+- The joystick acts as the user’s physical input device, representing gestures or presence in front of the mirror.
+When the joystick is moved or pressed, its real-time position data are captured by the Raspberry Pi and transmitted to the browser via a lightweight Flask + Socket.IO server.
+This simulates how the mirror might sense or respond to a user’s movements or actions.
+
+- The web interface represents the mirror’s intelligence and speech output.
+The browser allows text input, which mimics what the mirror would “say” in response to the user.
+When a line of text is entered, it is sent to the Raspberry Pi through a WebSocket connection.
+The Pi immediately converts the text into speech using the built-in text-to-speech engine (espeak), producing an audible reply through the speaker — just as a smart mirror might talk back to the user.
+
+**Through this setup, the system forms a closed interaction loop:**
+
+1.User gesture or presence → sensed by the joystick and visualized on the web page.
+
+2.Mirror response → simulated by typed text, spoken aloud by the Raspberry Pi.
+
+This prototype effectively recreates a two-way conversational experience between a user and an intelligent mirror, without relying on heavy machine-learning or cloud components. It provides a simple, tangible framework to explore timing, responsiveness, and interaction design in human-mirror communication.
+
+### System Documentation 2: Outfit Recommendation Assistant
+
+#### 1. Overview
+This project is an interactive outfit recommendation system implemented on a Raspberry Pi using a SparkFun Qwiic Joystick as the primary input device. The system runs locally and provides real-time voice feedback to guide users through outfit themes and style options. Each joystick movement or press triggers context-aware spoken responses generated through Piper text-to-speech. The prototype simulates a “smart mirror” that can not only recommend outfits but also engage in short, spoken dialogues with the user through a secondary voice interaction script. The goal is to explore embodied interaction and conversational timing in tangible, voice-driven interfaces.
+
+#### 2. What We Achieved
+- Created a fully functional **joystick-based voice interface** that allows users to browse outfit themes (Sports, Social, Color, Interview, Daily) and listen to style options without a screen.  
+- Implemented **robust motion recognition** and threshold calibration for smooth, low-latency navigation on the Raspberry Pi.  
+- Integrated **text-to-speech (Piper → aplay fallback to Espeak)** for consistent and clear local audio playback.  
+- Added **voice Q&A mode** triggered by joystick press or mid-hold gesture, enabling interactive question–answer conversations powered by `voice_interaction_router.py`.  
+
+#### 3. How It Works
+The system establishes a continuous interaction loop between the user’s physical gestures and the Raspberry Pi’s audio responses:
+
+- **Hardware Input (Joystick):**  
+  The SparkFun Qwiic Joystick provides horizontal, vertical, and button data over I²C. At startup, the script samples joystick values to determine the neutral center and automatically sets sensitivity thresholds. Moving the joystick **up or down** changes the outfit theme, while **left or right** cycles through the available options within that theme. Each action immediately triggers a voice message in the format:  
+  `recommend type: <Theme>. Option <Index>. <Sentence>`
+
+- **Speech Output (TTS):**  
+  When a new theme or option is selected, the system converts the corresponding text from `outfits.py` into audio using Piper TTS, then plays it through ALSA (`aplay`). If Piper fails, Espeak automatically handles fallback playback to maintain responsiveness.
+
+- **Voice Interaction:**  
+  Pressing the joystick (or holding it steady at center for 1.2s, if button readout fails) launches `voice_interaction_router.py`. This script processes user speech or text queries, determines relevant outfit logic from `outfits.py`, and returns a spoken reply. The exchange mimics natural dialogue—like asking a mirror, “What should I wear for sports?”—and receiving a contextual spoken answer.
+
+**Overall Flow:**
+1. User performs a joystick gesture → Raspberry Pi detects motion and determines action type.  
+2. Corresponding text prompt is selected from `outfits.py`.  
+3. Text is synthesized into speech via Piper and played aloud.  
+4. Optional voice Q&A extends the dialogue, forming a closed feedback loop between physical input and auditory output.
+
+This architecture enables a fully local, screenless, and conversational prototype—illustrating how a tangible interface can blend physical gestures with responsive, expressive voice output to create a personalized interactive mirror experience.
+
+
+### <mark>3.Include videos or screencaptures of both the system and the controller.</mark>
+
+[Watch the Mirror Interaction video here](https://youtu.be/myvbhKIoJT8)
+
+[Watch the User Conversation video here](https://youtu.be/t43ZWVyX4Zk)
+
+
+
 
 ## Test the system
-Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
-
-Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+The system successfully guided both participants through theme and outfit selection with clear audio feedback. The voice output was natural and the “recommend type” prefix helped them understand the context of each option. The participants found the up/down and left/right navigation intuitive once they heard the first few lines. However, there was occasional delay in audio playback, especially when Piper was generating longer sentences. One participant also noticed that quick joystick movements were sometimes ignored, suggesting that the input thresholds could be more responsive.
 
 ### What worked well about the controller and what didn't?
-
-\*\**your answer here*\*\*
+The Qwiic Joystick offered smooth analog control and provided a clear sense of directionality for switching between options. The physical form made it easy for users to remember which axis changed themes versus options. The press-to-speak action worked well for triggering the voice Q&A mode, but some users pressed too briefly, leading to missed triggers due to hardware debounce. The fallback “hold in the middle” interaction helped prevent deadlocks, but users didn’t always realize it was an intentional feature.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-
-\*\**your answer here*\*\*
-
+From the Wizard-of-Oz sessions, it became clear that the system benefits from short, conversational feedback to keep users engaged. Participants tended to wait for confirmation after each action, implying that a fully autonomous version should generate quick acknowledgments such as “Got it” or “Switching to Social theme.” It also showed that adaptive timing—pausing slightly after playback before accepting new input—would make interactions feel smoother. A more autonomous version could combine user intent prediction (based on repeated joystick patterns) with contextual language responses for a more human-like experience.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-
-\*\**your answer here*\*\*
-
-
-
-
-
-
-
+The system could log joystick positions, button states, timestamps, and recognized speech transcripts to create a dataset of multimodal interactions. Each session could store pairs of physical input sequences and spoken responses, enabling supervised learning of user intent patterns. Adding a small microphone array could capture tone and hesitation, while a camera could record facial expressions or gaze direction to analyze engagement. These additional sensing modalities would allow future models to learn richer mappings between gesture, voice, and emotional state, supporting more adaptive and autonomous dialogue behavior.
