@@ -373,20 +373,20 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+\*\**The system successfully generated dynamic outputs and could clearly convey at least one emotion, such as anger. However, it struggled to adapt across a broader range of emotions and responses without explicit prompting. We also noticed challenges in maintaining fluid, engaging conversations — some responses were delayed, and the interactions tended to remain shallow rather than exploring the user’s input more deeply.*\*\*
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+\*\**In our project, we don't design an externalc controller but connect with OpenAI’s ChatGPT. By prompt engineering between user's input and th device's output, the interaction gennerally worked well for our specific use case but still had room for improvement. It could benefit from more detailed prompting and finer adjustments to its hyperparameters. The expressiveness of its responses also required refinement over time, as some early outputs felt overly convoluted or cliché.*\*\*
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
+\*\**Our group spent very little time using Wizard of Oz techniques to prototype in the initial phases. We did try to envision how users might react based off of our acting demo. Even so, perhaps it gave us too much of a bias towards seeing the negative of the system and instead prevented us from engaging with the ideas that we initially had from the ground running. We immediately wanted to try to utilize more autonomous systems and therefore turn to ChatGPT and OpenAI as a sort of expressive robot in the loop. Still using an autonomous system requires just as much iteration and fine-tuning to ensure that the interactions that you're hoping to achieve run smoothly. So there isn't really an "end" to the evaluation or design.*\*\*
 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
+\*\**We later hope to incorporate some amount of computer vision so that the system can recognize the user in front of them. While the immediate response would be that of reservation, considering that we wouldn't want a mean doorbell to be actively hostile to a user and their appearance, our intention is not to explicitly target appearance qualifiers from the user. Rather, we want to be able to investigate facial reactions and other nonverbal cues that might point towards more sophisticated responses from the AI. In this setting, the responses can also be more humorous as they're playing on other aspects the user may not necessarily be privy to. Similar to how a stand-up comedian might also bring up crowd members and their reactions in a playful way, not in a mocking way. We don't intend on creating a data set from any responses. It's more about seeing where the interaction will go and the qualitative experience that the user has on their end.*\*\*
 
 
 
