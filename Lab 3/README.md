@@ -246,9 +246,11 @@ The main control loop continuously polls `joystick.horizontal`, `joystick.vertic
 
 ### <mark>3.Include videos or screencaptures of both the system and the controller.</mark>
 
-[Watch the Mirror Interaction video here](https://youtu.be/t43ZWVyX4Zk)
+[Watch the Mirror Interaction video here](https://youtu.be/myvbhKIoJT8)
 
-[Watch the User Conversation video here](https://youtu.be/myvbhKIoJT8)
+[Watch the User Conversation video here](https://youtu.be/t43ZWVyX4Zk)
+
+
 
 
 ## Test the system
@@ -264,3 +266,4 @@ From the Wizard-of-Oz sessions, it became clear that the system benefits from sh
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 The system could log joystick positions, button states, timestamps, and recognized speech transcripts to create a dataset of multimodal interactions. Each session could store pairs of physical input sequences and spoken responses, enabling supervised learning of user intent patterns. Adding a small microphone array could capture tone and hesitation, while a camera could record facial expressions or gaze direction to analyze engagement. These additional sensing modalities would allow future models to learn richer mappings between gesture, voice, and emotional state, supporting more adaptive and autonomous dialogue behavior.
+
