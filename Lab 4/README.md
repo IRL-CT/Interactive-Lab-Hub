@@ -55,7 +55,7 @@
 ---
 
 ## Lab Overview
-**NAMES OF COLLABORATORS HERE**
+**Nophar Shalom, Angela Bi**
 
 
 For lab this week, we focus both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
@@ -168,6 +168,10 @@ These Twizzlers are connected to pads 6 and 10. When you run the code and touch 
 Twizzler 10 touched!
 Twizzler 6 touched!
 ```
+### Mints Box Capacitive Sensing
+<a href="https://drive.google.com/file/d/1o_3bsJ4SPG-J-lyWNZgraCDtJGMWwgW-/view?usp=sharing">
+  <img src="mints_touch_sensor.png" alt="Watch the video" width="50%"/>
+</a>
 
 ### Part B
 ### More sensors
