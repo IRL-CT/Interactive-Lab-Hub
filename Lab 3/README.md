@@ -384,17 +384,18 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-> The system worked well at getting people's attention and conveying the general purpose of getting people to take their keys. However, the interactions were fairly short since many of our users did not see a need for further interaction with the device after getting their keys. Labeling the device as a key holder may have limited the scope of interaction since it inherently does not provide much purpose besides holding keys. Additionally, we did have one user who was confused about how to take the keys off of the device, so we might need to clarify that interaction in the future. 
+> The system worked well at getting people's attention and conveying the general purpose of getting people to take their keys. However, the interactions were fairly short since many of our users did not see a need for further interaction with the device after getting their keys. Labeling the device as a key holder may have limited the scope of interaction since it inherently does not provide much purpose besides holding keys. Additionally, we did have some confusion about how to take the keys off of the device, so we might need to clarify that interaction in the future. 
 
 ### What worked well about the controller and what didn't?
 > It worked well that our controller was fairly automated for the beginning of the interaction, however, we did have some problems with the proximity sensor not triggering at the correct moments, which added some confusion on how to remove the keys from the device. Additionally, the wizarding part of the controller to respond to the user was not as seamless since it took extra time to type out a reply, which made it less believable that the device was responding on its own. Having some pre-set responses worked well though whenever the user did ask the correct questions. 
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-> One lesson we can take away is that it truly is hard to predict how a user will interact with our device. Therefore, in order to design a truly autonomous version of the system, implementing AI-powered responses might be necessary to cover all the unpredictable interactions. Additionally, it is important to make the purpose or capabilities of the device clear, or else users might not use it to its full potential.
+> One lesson we can take away is that it truly is hard to predict how a user will interact with our device. Therefore, in order to design a truly autonomous version of the system, implementing AI-powered responses might be necessary to cover all the unpredictable interactions. Additionally, it is important to make the purpose or capabilities of the device clear, or else users might not use it to its full potential. We had to give our users some background in order for them to understand how to interact with the device, but ideally, the design of the device should be able to convey this. 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 > We could use our system to record how many people forget their keys on the daily, and also what the most important information is that people want to know before leaving their house. It could make sense to capture more imaging of what users are wearing, potentially 
 to provide advice based on the weather.
+
 
 
 
