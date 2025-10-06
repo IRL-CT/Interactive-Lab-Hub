@@ -293,6 +293,8 @@ The system should:
 
 *Include videos or screencaptures of both the system and the controller.*
 
+https://github.com/user-attachments/assets/e1faef80-e93d-4fc6-898c-d23e209f9f9c
+
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
   
@@ -325,6 +327,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
