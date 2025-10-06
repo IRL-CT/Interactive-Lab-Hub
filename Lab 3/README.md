@@ -192,7 +192,9 @@ You can view the **[cooking_conversation_log.txt](./cooking_conversation_log.txt
 
 ### What worked well about the system and what didn't?
 
-The system performed very well in understanding and responding to user commands. The speech recognition has accurately captured most spoken inputs, and the AI responses from Ollama were detailed and contextually relevant. The system was able to handle user questions like "How long should I cook this?" or "What heat level should I use?" effectively, which made the prototype experience quite realistic and helpful. However, there were a few limitations. The audio output in the demo video was relatively low, making it slightly difficult to hear the prototype's voice clearly. Additionally, while the recognition worked well in quiet environments, it could struggle in noisy kitchen conditions with background sounds like chopping or boiling water.
+The system performed very well in understanding and responding to user commands. The speech recognition accurately captured most spoken inputs, and the AI responses from Ollama were detailed and contextually relevant. The system was able to handle user questions like "How long should I cook this?" or "What heat level should I use?" effectively, which made the prototype experience quite realistic and helpful.
+
+However, there were a few limitations. The audio output in the demo video was relatively low, making it slightly difficult to hear the prototype's voice clearly. Additionally, while the recognition worked well in quiet environments, it could struggle in noisy kitchen conditions with background sounds like chopping or boiling water. The system also needs to be used in a relatively quiet environment for optimal performance. Interestingly, Ollama occasionally showed humorous or unpredictable behavior — for example, it once mentioned that it "doesn’t like cabbage" for no apparent reason, which highlights some quirks in model personality or response randomness.
 
 ### What worked well about the controller and what didn't?
 
@@ -206,7 +208,6 @@ From the Wizard of Oz interactions, we learned that natural conversation and con
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 The system could easily be adapted to log multimodal interaction data for further improvement. Each cooking session can be recorded in a structured dataset containing: 1. Speech transcripts 2. Timestamps for each exchange 3. Button press events 4. Recipe progress states 5. Error logs. These logs could form a valuable dataset for training better conversational and timing models and used specifically to kitchen environments.
-
 
 
 
