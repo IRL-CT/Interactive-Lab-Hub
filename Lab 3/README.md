@@ -1,7 +1,7 @@
 # Chatterboxes
 **NAMES OF COLLABORATORS HERE**
 
-ianne Bisch (lb854)
+Lianne Bisch (lb854)
 
 <details>
 <summary>Instruction </summary>
