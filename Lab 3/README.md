@@ -277,10 +277,7 @@ Brainstorming Potential Ideas:
 \*\***Verplank diagram**\*\*
 ![IMG_0702](https://github.com/user-attachments/assets/7ae09a90-10ba-42d4-a126-634197837dab)
 
-
-Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
-
-**Process:**
+**Dialogue Process:**
 - Picked out a scenario for using my device, in this case, I decided to have it assist a user in building an interactive device.
 - I came up with potential questions that the user may ask and drew up responses for each situation
 - Tried to keep the interactions short and repeatable, ending with either helping the user, or not being able to help
@@ -292,12 +289,11 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 \*\***Verplank diagram**\*\*
 <img width="2360" height="1640" alt="interaction_diagram" src="https://github.com/user-attachments/assets/482b1195-8f98-48a8-a91e-3b9bafbaa6ab" />
 
-**Process:**
+**Dialogue Process:**
 
 >Since the use case of this project is relatively narrow, this process felt straightforward to me. I first imagined the process I go through manually in the morning (namely, gathering my keys, checking the weather, and then assembling an outfit). I then automated this interaction, though I did feel that this initial draft was a little restrictive.
 
 <img width="700" alt="interaction_diagram_flowchart" src="https://github.com/user-attachments/assets/3b2c138f-4ff9-4952-b4c0-e94513b20ee3" />
-
 
 </details>
 
@@ -400,6 +396,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 > We could use our system to record how many people forget their keys on the daily, and also what the most important information is that people want to know before leaving their house. To do this, we would need to record the input from the users using a microphone and some speech-to-text software. It could make sense to capture more imaging of what users are wearing, potentially 
 to provide advice based on the weather. 
+
 
 
 
