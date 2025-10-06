@@ -2,9 +2,6 @@
 Cast of the video: (poor guys tortured by the aferMATH deployer)
 Estelle Zhang, Zirui Han
 
-## Prep for Part 1: Get the Latest Content and Pick up Additional Parts 
-### Pick up Web Camera If You Don't Have One
-### Get the Latest Content
 ## Part 1.
 ### Setup 
 Activate your virtual environment. (I retain this because I will always use it)
@@ -152,21 +149,13 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 ## Prototype your system
 
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
 
-*Document how the system works*
-
-*Include videos or screencaptures of both the system and the controller.*
-
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
   
 
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
+
+
 
 Answer the following:
 
@@ -185,6 +174,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
