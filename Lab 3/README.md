@@ -321,10 +321,6 @@ In the [demo directory](./demo), you will find an example Wizard of Oz project. 
 
 \*\***Describe if the dialogue seemed different than what you imagined, or when acted out, when it was wizarded, and how.**\*\*
 
-The result turned out a little different than I originally imagined. Since the game is designed for many participants, acting it out with only three people changed the dynamic. In my original script, there were multiple roles such as killers, villagers, seers, and a witch, but for the play-through we simplified it to only killers and villagers. Even with this reduction, the overall steps of the game stayed consistent.
-
-One new realization I had was about character assignment. During the acting, I noticed that the device may need to remember each player’s name and assign roles one by one, either by calling them over to whisper their role or by showing it on a mini screen on the Pi. This was something I hadn’t considered in my initial design.
-
 # Lab 3 Part 2
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
@@ -332,8 +328,23 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 ## Prep for Part 2
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
+
+There are a few concrete areas where the device could be improved:  
+
+- **🧍 Player Identification** – During the game setup stage, the device should remember each player’s name or assign them a number. This would make it possible to assign roles accurately and call players individually during the night phase.  
+- **🔊 Audio Timing** – The device sometimes misses the first few seconds of a player’s speech when testing. Adding a short beep sound before recording starts would alert players that the device is ready, ensuring their words are captured completely.  
+- **⏱️ Clearer Transitions** – The pacing between speaking phases could be more distinct. Small pauses or auditory cues between phases (like a chime or tone) would help players anticipate what’s coming next and reduce confusion.  
+
 2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
+
+To make the experience clearer and more engaging, additional interaction modes could be added:  
+
+- **🔘 Button Input** – A simple button could be used to confirm actions such as role assignment or voting, especially for players who prefer tactile feedback.  
+- **💡 LED Indicators** – Lights could signal whether it’s currently day or night (e.g., blue for night, yellow for day), helping players stay aware of the game’s phase at a glance.  
+- **🖥️ On-Screen Display** – Showing brief text or icons on the Raspberry Pi’s screen could help clarify instructions, show countdowns, or confirm gestures — making the interaction more intuitive and engaging.  
+
 3. Make a new storyboard, diagram and/or script based on these reflections.
+
 
 ## Prototype your system
 
@@ -378,6 +389,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
