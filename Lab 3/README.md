@@ -296,7 +296,7 @@ if __name__ == "__main__":
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
 
 [Test Video, starred by Estelle](https://drive.google.com/video/captions/edit?id=1HtOWd5qiqxzV8Nk49G2B0hetfA2mPaQ_)
-[Test Video, starred by Zirui]https://drive.google.com/video/captions/edit?id=1pMhvXTp2bB1YKboAv1vLF-kOwPaE2E9H
+[Test Video, starred by Zirui](https://drive.google.com/video/captions/edit?id=1pMhvXTp2bB1YKboAv1vLF-kOwPaE2E9H)
 
 Answer the following:
 
@@ -322,6 +322,7 @@ action : continue, stop, repeat, give correct answers...
 mood analysis : freq analysis of audio...
 
 A video camera can be used to read the answer, since sometimes participants read when they valculate and may affect the stt process. 
+
 
 
 
