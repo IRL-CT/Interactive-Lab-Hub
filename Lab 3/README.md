@@ -177,7 +177,7 @@ python3 cooking_assistant.py
 
 
 ## Test the system
-**Demo Video (Must Watch)**
+**Demo Video (Must Watch)** (Increase the volume when watching)
 
 You can watch the  [**Demo Video**](https://drive.google.com/file/d/15Dc6L-n8PIi3LA8wX3G2NgVQAjvs3cX8/view?usp=drive_link):
 [https://drive.google.com/file/d/15Dc6L-n8PIi3LA8wX3G2NgVQAjvs3cX8/view?usp=drive_link](https://drive.google.com/file/d/15Dc6L-n8PIi3LA8wX3G2NgVQAjvs3cX8/view?usp=drive_link)
@@ -186,6 +186,15 @@ You can watch the  [**Demo Video**](https://drive.google.com/file/d/15Dc6L-n8PIi
 
 You can view the **[cooking_conversation_log.txt](./cooking_conversation_log.txt)** and **[cooking_assistant.log](./cooking_assistant.log)** to see system runtime messages, including Ollama responses, user speech inputs, and button interactions.
 
+**Feedback**
+
+"The prototype looks really impressive! It perfectly addresses the hands-free need I mentioned before, and the real-time guidance feels smooth and practical. From a technical perspective, the speech recognition and state management are remarkably stable — the transition between user input, processing, and feedback feels seamless, which shows solid system design and robust integration."
+
+——Dean Xu
+
+"This is a really creative and useful idea. I like how it lets you cook step by step instead of dumping all the instructions at once. The question and answer feature makes it feel more interactive and practical. However, the voice was hard to understand at times, which made following along a bit difficult."
+
+——Jessie Chen
 
 
 
@@ -208,6 +217,7 @@ From the Wizard of Oz interactions, we learned that natural conversation and con
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 The system could easily be adapted to log multimodal interaction data for further improvement. Each cooking session can be recorded in a structured dataset containing: 1. Speech transcripts 2. Timestamps for each exchange 3. Button press events 4. Recipe progress states 5. Error logs. These logs could form a valuable dataset for training better conversational and timing models and used specifically to kitchen environments.
+
 
 
 
