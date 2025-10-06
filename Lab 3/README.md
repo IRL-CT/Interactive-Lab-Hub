@@ -298,22 +298,50 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 
 # Lab 3 Part 2
 
-For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
+<details>
+  <summary><strong>Prep for Part 2 (Click to Expand)</strong></summary>
+  For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
+  
+  ## Prep for Part 2
+  
+  1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
+  2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
+  3. Make a new storyboard, diagram and/or script based on these reflections.
+  
+  ## Prototype your system
+  
+  The system should:
+  * use the Raspberry Pi 
+  * use one or more sensors
+  * require participants to speak to it.
+</details>
 
-## Prep for Part 2
-
-1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
-2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
-3. Make a new storyboard, diagram and/or script based on these reflections.
-
-## Prototype your system
-
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
+![Verplank digram_1](./Verplank_digram_1.png)
 
 *Document how the system works*
+This is a music guessing game that uses a Raspberry Pi. Players listen to song clips and try to guess the song name by speaking to the system.
+
+1. Design Improvements
+We made several improvements based on Part 1 feedback:
+
+- Clearer Instructions: We used more clear and standard wording to give users instructions
+- Lower Difficulty: We made the song guessing process easier for players
+
+
+2. Interaction Modes and System Design
+The system uses speech interaction:
+
+Users must click a button on the webpage to start the game.
+And the speaker will instruct the user to play the game.
+After each game, users need to reset and click start again to play
+
+The system includes:
+
+Raspberry Pi: Main controller
+Speaker and Web Camera
+
+System Control:
+Speech Input: Players speak their guesses to the system
 
 *Include videos or screencaptures of both the system and the controller.*
 *[Guessing Game Video](https://drive.google.com/file/d/1LMfZVcPqiEs-d2FYJQiQ2slWikf9R6w-/view?usp=sharing)*
@@ -350,6 +378,7 @@ I learned that designing a system requires thinking about human factors. People 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 The system could collect useful data for improvement. We could record all user guesses to create a voice dataset with both correct and incorrect answers. We could measure response time to see how long users take to guess each song. This would help us understand song difficulty and rate songs based on how often users guess correctly. We could also track error patterns to find common mistakes in voice recognition. This data could help make the game better and more user-friendly in future versions.
+
 
 
 
