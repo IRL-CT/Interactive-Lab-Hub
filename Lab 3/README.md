@@ -316,10 +316,13 @@ There could be more interactions like inserted dialogues. eg. "Pardon?", "What's
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 answer : video and audio abstract
+
 action : continue, stop, repeat, give correct answers...
+
 mood analysis : freq analysis of audio...
 
 A video camera can be used to read the answer, since sometimes participants read when they valculate and may affect the stt process. 
+
 
 
 
