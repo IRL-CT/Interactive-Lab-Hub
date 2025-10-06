@@ -270,7 +270,7 @@ Brainstorming Potential Ideas:
 - talking lamp
 - talking key-holder
 
->Initially, we explored two potential ideas to see which one would have more potential/provide better interactions.
+>Initially, we explored two potential ideas to see which one would have more potential/provide better interactions. We decided to map out the interactions for an interactive table assistant device, and an interactive key holder reminder. 
 
 **Device 1: Table Assistant**
 
@@ -329,6 +329,7 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 We chose to focus on the key holder device since we felt like it provided a more guided experience.
 
+### Reflections  
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
   - Timing!!! Know when user is leaving, also respond/prompt quickly
   - Wording: make it more obvious what the device can help with, possibly by stating it?
@@ -345,44 +346,44 @@ We chose to focus on the key holder device since we felt like it provided a more
 
 ## Prototype your system
 
-***Document how the system works***  
+### Document how the system works
 **The system uses the following components:**  
 - Webcam: used to detect whether a person is walking by the device
 - Proximity Sensor: used to detect when the user reaches for the keys
 - Actuator: used to shake the keys when triggered
-- Raspberry Pi: used to run the code
+- Raspberry Pi: used to run the code (all code for our device is in lab3_distance_servo.py file)
 - Speaker: used for audio output
 - Cardboard Shell: Used to house the device, laser-cut in the MakerLab :)
+<img width="490" alt="Device Front" src="https://github.com/user-attachments/assets/79889b4e-21b4-4ddb-a7ca-83e6cba31230" />
+<img width="500" alt="Device Corner" src="https://github.com/user-attachments/assets/e04d39d5-eda1-480d-a121-9bbec3726cbb" />
 
 **Interaction Flow:**   
 - The device holds the users keys, which are clipped onto a carabinger on the front of the device.
-- The device waits until the camera detects a person walking by or entering the frame. We used an existing model: mobilenet-ssd for person detection.
+- The device waits until the camera detects a person walking by or entering the frame. We used an existing model: mobilenet-ssd, and adapted it specifically for person detection. [(reference here)](https://medium.com/@tauseefahmad12/object-detection-using-mobilenet-ssd-e75b177567ee)
 - When the user is detected, it triggers the key shaking mechanism and the device starts prompting the user "Don't forget your keys"
-- The key shaking is achieved by using an actuator, which the carabinger is attached to, that sweeps from 0 to 90 degrees. 
+- The key shaking is achieved by using an actuator, which the carabinger is attached to, that sweeps from 0 to 90 degrees.
+- The prompting and shaking continue in a loop until the user notices and goes to take their keys.
 - Once the user reaches for the keys, the proximity sensor is able to detect it and trigger the actuator and prompts to stop.
 - Then, the device asks if there is anything else it can help with, and provides a list of possible tasks.
-- Based on the user's asks, the device can respond accordingly through wizarding. There are a few pre-set responses, but it can also speak whatever is typed into it. 
+- Based on the user's asks, the device can respond accordingly through wizarding. There are a few pre-set responses, but it can also speak whatever is typed into it.
+- Everything in the controller besides the last part is automated through sensors. Only the voice interaction part is wizarded.
 
-***Include videos or screencaptures of both the system and the controller.***  
-▶️ [Watch demo](https://drive.google.com/file/d/1qCZAVFRZPhjGw6e46kcf-VXWHTivVRyO/view?usp=sharing)  
-
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
-  
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-  This helps ensure your README.md is clear professional and uniquely yours!
-</details>
+▶️ [Watch full video demo](https://drive.google.com/file/d/1qCZAVFRZPhjGw6e46kcf-VXWHTivVRyO/view?usp=sharing)  
 
 ## Test the system
+### Interactions 
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)  
+> We were able to get three users to interact with our system a few times. Although we did not inform them of the wizarding, they did seem to notice some wizarding was happening.  
+> **Process:** First, we introduced KeyBot to each participant as a robot which reminds you to retrieve your keys. We wanted to see what their natural reactions were to the voice and interactive elements of the project, so we avoided being overly prescriptive in our initial description. After an initial run, we would then outline the robot’s typical behaviors and facilitate the interaction again.  
+
 ▶️ [Watch the interactions](https://drive.google.com/file/d/1lpc3bVY-RKFJTVEG3BpNxegezBsAOpbU/view?usp=sharing)  
 
-Answer the following:
+> **Participant #1** was familiar with the idea of the robot needing a voice component before our study, so she went in with a bit of an edge. Her interactions with the robot were polite and concise, and she tried to engage with it as much as she could. However, the structure of the key holder was confusing to her; she couldn’t figure out how to remove the key from the carabiner attachment, so she initially held onto it.  
+> **Participant #2** was taken aback by the speech functionality and a little confused how to approach the robot. She was also confused on how to retrieve the key; however, unlike Participant #1, she understood how to do so but typically carries her keys attached to a carabiner. Therefore, her reaction to the robot’s structure was thinking about ways to remove it (though it was taped on somewhat securely). However, after the second run of the study, she engaged with the robot more and asked questions about the weather/clothing.  
+> **Participant #3** understood the robot the most, removing the key easily and asking a few cursory questions when prompted. However, from her demeanor, it was apparent that the speech component was not as central to her.
+
+A relevant takeaway would be to redesign the exterior of the device such that it is more apparent what the purpose of KeyBot is (beyond holding keys) and to replace the carabiner with a more traditional hook.  
+
 
 ### What worked well about the system and what didn't?
 > The system worked well at getting people's attention and conveying the general purpose of getting people to take their keys. However, the interactions were fairly short since many of our users did not see a need for further interaction with the device after getting their keys. Labeling the device as a key holder may have limited the scope of interaction since it inherently does not provide much purpose besides holding keys. Additionally, we did have some confusion about how to take the keys off of the device, so we might need to clarify that interaction in the future. 
@@ -396,6 +397,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 > We could use our system to record how many people forget their keys on the daily, and also what the most important information is that people want to know before leaving their house. To do this, we would need to record the input from the users using a microphone and some speech-to-text software. It could make sense to capture more imaging of what users are wearing, potentially 
 to provide advice based on the weather. 
+
 
 
 
