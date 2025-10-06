@@ -60,8 +60,8 @@
 
 For lab this week, we focus both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
 
-<summary>
-	<details><strong>Part 1 Lab Preparation</strong></details>
+<details>
+	<summary><strong>Part 1 Lab Preparation</strong></summary>
 	### Get the latest content:
 	As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. As we discussed in the class, there are 2 ways you can do so:
 	
@@ -147,7 +147,7 @@ For lab this week, we focus both on sensing, to bring in new modes of input into
 		python blinkatest.py
 		```
 		If you see "Hello blinka!", your setup is correct. If not, follow the troubleshooting steps in the file or ask for help.
-</summary>
+</details>
 ### Part A
 ### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
 
