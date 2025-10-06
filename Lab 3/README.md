@@ -120,10 +120,14 @@ while True:
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
 
 \*\***Post your storyboard and diagram here.**\*\*
+![633ed1c52f3e6f34551f16214cfc09c1](https://github.com/user-attachments/assets/82466cbe-d8f7-40f5-9147-08a31e8b3b93)
+
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
 \*\***Please describe and document your process.**\*\*
+![95918264d08586473d2e751919934381](https://github.com/user-attachments/assets/54358e9c-3650-4f6b-a449-78afd5768293)
+
 
 ### Acting out the dialogue
 
@@ -160,14 +164,6 @@ The system should:
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
   
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-  This helps ensure your README.md is clear professional and uniquely yours!
-</details>
 
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
@@ -189,6 +185,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
