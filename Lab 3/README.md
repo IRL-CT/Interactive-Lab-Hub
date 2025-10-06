@@ -279,6 +279,10 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 
 \*\***Please describe and document your process.**\*\*
 
+We imagine the dialogue happening between a doorway, so we envision the initial actuation pressing a door valve button. But we want to take it further and envision a device that's on the button being reactive and displaying some form of emotion or response to the user, which can be funny as well. If the user continues to engage us with the doorbell object, then they will continue to get a reaction from it, thus entering into a feedback loop of reaction, response, engagement.
+
+For this project, we had decided to create a expressive and funny doorbell. The scenario being the user would approach the doorbell, ring it, and by ringing it, would induce the doorbell to a mean, spiteful dialogue against the user, subverting, the assumption that objects associated with an entrance should be welcoming or inviting.
+
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
@@ -286,6 +290,8 @@ Find a partner, and *without sharing the script with your partner* try out the d
 [Acting Out the Dialogue - Video (MP4)](media/Acting_Interaction.mp4)
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+
+We originally thought that the dialogue would feel a little bit funny or absurd, having a doorbell talk back to the user after it has been rung. However, as demonstrated by this dramatized reenactment of the tests, the interaction turned out to be rather awkward and clumsy. The users had no idea how to react to a belligerent doorbell, and trying to come up with quippy dialogue for the doorbell without having any context or any computer vision would be very difficult, without making any assumptions. So, considering these insights, it would be best to refactor the doorbell and implement other techniques to make the interaction slightly smoother while still maintaining the absurdity of the situation. 
 
 ### Wizarding with the Pi (optional)
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
@@ -346,6 +352,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
