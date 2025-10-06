@@ -184,7 +184,7 @@ You can watch the  [**Demo Video**](https://drive.google.com/file/d/15Dc6L-n8PIi
 
 **Demo Log**
 
-You can view the **[cooking_assistant.log](./cooking_assistant.log)** to see system runtime messages, including Ollama responses, user speech inputs, and button interactions.
+You can view the **[cooking_conversation_log.txt](./cooking_conversation_log.txt)** and **[cooking_assistant.log](./cooking_assistant.log)** to see system runtime messages, including Ollama responses, user speech inputs, and button interactions.
 
 
 
@@ -206,6 +206,7 @@ From the Wizard of Oz interactions, we learned that natural conversation and con
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 The system could easily be adapted to log multimodal interaction data for further improvement. Each cooking session can be recorded in a structured dataset containing: 1. Speech transcripts 2. Timestamps for each exchange 3. Button press events 4. Recipe progress states 5. Error logs. These logs could form a valuable dataset for training better conversational and timing models and used specifically to kitchen environments.
+
 
 
 
