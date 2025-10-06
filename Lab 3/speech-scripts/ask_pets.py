@@ -14,7 +14,6 @@ with mic as source:
     print("🎤 Listening for your answer...")
     audio = recognizer.listen(source)
 
-print("🔁 Transcribing...")
 try:
     text = recognizer.recognize_whisper(audio, model="base")
     print("You said:", text)
