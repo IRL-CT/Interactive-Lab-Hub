@@ -137,12 +137,155 @@ The participant seems not to enjoy the arithmetics (that's their problems >:( ) 
 # Lab 3 Part 2
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
+![ceddb4077bf1370bf7647e50cdba6596](https://github.com/user-attachments/assets/6795ee23-605c-4058-b945-5428bea37b84)
+
 
 ## Prep for Part 2
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
 2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
 3. Make a new storyboard, diagram and/or script based on these reflections.
+
+```
+# -*- coding: utf-8 -*-
+import sounddevice as sd
+import numpy as np
+import json
+from vosk import Model, KaldiRecognizer
+import re
+import time
+import random
+import pandas as pd
+import subprocess
+import os
+from gtts import gTTS
+import warnings
+from word2number import w2n
+
+warnings.filterwarnings("ignore", message="FP16 is not supported on CPU")
+
+digits_vocab = [
+    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", 
+    "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", 
+    "sixty", "seventy", "eighty", "ninety"]     # The stt models are all so bad that I have to use a limited word list
+
+# Settings
+SAMPLE_RATE = 16000   # Whisper recommended sample rate
+ANSWER_DURATION = 30  # max recording time in seconds
+
+# load vosk model once
+model = Model("model")
+rec = KaldiRecognizer(model, 16000, json.dumps(digits_vocab))
+
+# Load CSV (must have 2 columns: Question, Answer)
+questions = pd.read_csv("questions.csv")
+
+# Counters
+count = 0
+win = 0
+
+def record_audio(duration=ANSWER_DURATION):
+    # Record audio for a fixed duration
+    print(f"Recording for {duration} seconds...")
+    audio = sd.rec(int(duration * SAMPLE_RATE), 
+                   samplerate=SAMPLE_RATE, 
+                   channels=1, 
+                   dtype='int16')
+    sd.wait()
+    print("Recording finished.")
+    return np.squeeze(audio)
+
+def transcribe_and_extract_numbers(audio):
+    # Transcribe speech to text and extract numbers
+    print("Transcribing with Vosk...")
+
+    # Ensure audio is PCM bytes (int16)
+    audio_bytes = audio.tobytes()
+
+    if rec.AcceptWaveform(audio_bytes):
+        result = json.loads(rec.Result())
+    else:
+        result = json.loads(rec.PartialResult())
+
+    text = result.get("text", "")
+    # Extract integers from the text
+    try:
+        number = w2n.word_to_num(text)
+        return number
+    except:
+        return None
+
+def ask_question(count):
+    """Select a random question and return index, question text, correct answer"""
+    if count < 6:
+        i = random.randint(0, 50)
+        d = 10
+    elif count < 10:
+        i = random.randint(51, 99)
+        d= 15
+    else:
+        i = 99
+        d = 25
+    q = questions.iloc[i, 0]   # Question text
+    a = questions.iloc[i, 1]  # Correct answer (as string)
+    return i, q, a, d
+
+def speak(text, filename="output_padded.mp3"):
+    """Speak text using gTTS, prepend 0.3s silence with ffmpeg, and play with mpg123"""
+    # Save raw mp3
+    tts = gTTS(text=text, lang="en")
+    tts.save("output_raw.mp3")
+
+    # Prepend 2s silence
+    subprocess.run([
+        "ffmpeg", "-y",
+        "-f", "lavfi", "-i", "anullsrc=r=16000:cl=mono:d=2",
+        "-i", "output_raw.mp3",
+        "-filter_complex", "[0:a][1:a]concat=n=2:v=0:a=1[out]",
+        "-map", "[out]",
+        filename
+    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    # Play with mpg123
+    subprocess.run(["mpg123", filename], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+def main():
+    global count, win
+    speak("Hahahaha, I am After Math Deployer! Now torture begins!")
+    while True:
+        count += 1
+        # Select a question
+        i, q, a, d= ask_question(count)
+
+        # Speak the question
+        print(f"Question: {q}")
+        speak(q)
+
+        # Record answer
+        audio = record_audio(d)
+        nums = transcribe_and_extract_numbers(audio)
+
+        # Evaluate
+        print(nums)
+        if nums == a:   # compare the extracted number
+            win += 1
+            print("Correct!")
+            speak("Oh Pity! You made it right.")
+        else:
+            print(f"Wrong. Correct answer was: {a}")
+            speak("Heeheehee, Booboo! Wrong Answer, Hahaha!")
+
+        print(f"Score: {win}/{count}")
+
+        if count == 10:
+            print("Game over.")
+            speak("Enough for today!")
+            break
+
+if __name__ == "__main__":
+    main()
+```
 
 ## Prototype your system
 
@@ -177,6 +320,7 @@ action : continue, stop, repeat, give correct answers...
 mood analysis : freq analysis of audio...
 
 A video camera can be used to read the answer, since sometimes participants read when they valculate and may affect the stt process. 
+
 
 
 
