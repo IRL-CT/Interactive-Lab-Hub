@@ -129,13 +129,10 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
-
+[Acting out](https://drive.google.com/video/captions/edit?id=1U9JBEsrq14Mv1NO6AZO3RXu17p5BgyGX)
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+The participant seems not to enjoy the arithmetics (that's their problems >:( ) and they some times will react with a mixture of words and numbers, because they are calculating, or they are initially confused by the question.
 
-### Wizarding with the Pi (optional)
-In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
-
-\*\***Describe if the dialogue seemed different than what you imagined, or when acted out, when it was wizarded, and how.**\*\*
 
 # Lab 3 Part 2
 
@@ -149,31 +146,37 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 ## Prototype your system
 
-[Test Video, tested by myself](https://drive.google.com/video/captions/edit?id=1U9JBEsrq14Mv1NO6AZO3RXu17p5BgyGX)
+[Myself testing the prototype](https://drive.google.com/video/captions/edit?id=1auHtaVb_D5dP7Y4rtOu4LpyDfaS5jWwF)
   
 
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
 
 [Test Video, starred by Estelle](https://drive.google.com/video/captions/edit?id=1HtOWd5qiqxzV8Nk49G2B0hetfA2mPaQ_)
+[Test Video, starred by Zirui]https://drive.google.com/video/captions/edit?id=1pMhvXTp2bB1YKboAv1vLF-kOwPaE2E9H
 
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+√ The questions are broadcast well out.
+√ The numbers are abstracted from complicated sentences.
+X The numbers are misrecognized when the participant does not stay close to the mic.
+X Some initial words are not completely spoken by the tts.
 
 ### What worked well about the controller and what didn't?
-
-\*\**your answer here*\*\*
+√ Everything goes automatically well, according to the difficulty level.
+X Sometimes the final question show up earlier, and sometimes the question repeats.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
-
+There could be more interactions like inserted dialogues. eg. "Pardon?", "What's the correct answer?"
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
+answer : video and audio abstract
+action : continue, stop, repeat, give correct answers...
+mood analysis : freq analysis of audio...
 
-\*\**your answer here*\*\*
+A video camera can be used to read the answer, since sometimes participants read when they valculate and may affect the stt process. 
 
 
 
