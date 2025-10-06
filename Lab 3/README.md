@@ -303,12 +303,17 @@ Answer the following:
 
 ### What worked well about the system and what didn't?
 √ The questions are broadcast well out.
+
 √ The numbers are abstracted from complicated sentences.
+
 X The numbers are misrecognized when the participant does not stay close to the mic.
+
 X Some initial words are not completely spoken by the tts.
+
 
 ### What worked well about the controller and what didn't?
 √ Everything goes automatically well, according to the difficulty level.
+
 X Sometimes the final question show up earlier, and sometimes the question repeats.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
@@ -323,6 +328,7 @@ action : continue, stop, repeat, give correct answers...
 mood analysis : freq analysis of audio...
 
 A video camera can be used to read the answer, since sometimes participants read when they valculate and may affect the stt process. 
+
 
 
 
