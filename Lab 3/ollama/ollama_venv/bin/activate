@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='/home/pi/Interactive-Lab-Hub/Lab 3/ollama/ollama_venv'
+VIRTUAL_ENV='/home/pi/Documents/Interactive-Lab-Hub/Lab 3/ollama/ollama_venv'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

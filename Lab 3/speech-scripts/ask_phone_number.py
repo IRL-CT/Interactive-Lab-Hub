@@ -1,7 +1,7 @@
 #!/usr/bin/env -S /home/pi/Interactive-Lab-Hub/Lab\ 3/.venv/bin/python
 # Restrict Vosk to numbers and stop when we have enough digits for a phone number.
 
-#I asked CHatGPT to write this script for me.
+#We asked CHatGPT to write this script.
 #The prompt was "i want to modify this so that it only uses numerical value and once it gets enough number for phone number, then it closes," 
 import argparse
 import json

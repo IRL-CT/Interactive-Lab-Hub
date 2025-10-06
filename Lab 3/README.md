@@ -1,7 +1,7 @@
 # Chatterboxes
 **NAMES OF COLLABORATORS HERE**
 
-Lianne Bisch(lb854)
+ianne Bisch (lb854)
 
 <details>
 <summary>Instruction </summary>
@@ -11,13 +11,13 @@ In this lab, we want you to design interaction with a speech-enabled device--som
 
 We will focus on **audio** as the main modality for interaction to start; these general techniques can be extended to **video**, **haptics** or other interactive mechanisms in the second part of the Lab.
 
-## Prep for Part 1: Get the Latest Content and Pick up Additional Parts 
+## Prep for Part 1: Get the Latest Content and Pick up Additional Parts
 
 Please check instructions in [prep.md](prep.md) and complete the setup before class on Wednesday, Sept 23rd.
 
 ### Pick up Web Camera If You Don't Have One
 
-Students who have not already received a web camera will receive their [Logitech C270 Webcam](https://www.amazon.com/Logitech-Desktop-Widescreen-Calling-Recording/dp/B004FHO5Y6/ref=sr_1_3?crid=W5QN79TK8JM7&dib=eyJ2IjoiMSJ9.FB-davgIQ_ciWNvY6RK4yckjgOCrvOWOGAG4IFaH0fczv-OIDHpR7rVTU8xj1iIbn_Aiowl9xMdeQxceQ6AT0Z8Rr5ZP1RocU6X8QSbkeJ4Zs5TYqa4a3C_cnfhZ7_ViooQU20IWibZqkBroF2Hja2xZXoTqZFI8e5YnF_2C0Bn7vtBGpapOYIGCeQoXqnV81r2HypQNUzFQbGPh7VqjqDbzmUoloFA2-QPLa5lOctA.L5ztl0wO7LqzxrIqDku9f96L9QrzYCMftU_YeTEJpGA&dib_tag=se&keywords=webcam%2Bc270&qid=1758416854&sprefix=webcam%2Bc270%2Caps%2C125&sr=8-3&th=1) and bluetooth speaker on Wednesday at the beginning of lab. If you cannot make it to class this week, please contact the TAs to ensure you get these. 
+Students who have not already received a web camera will receive their [Logitech C270 Webcam](https://www.amazon.com/Logitech-Desktop-Widescreen-Calling-Recording/dp/B004FHO5Y6/ref=sr_1_3?crid=W5QN79TK8JM7&dib=eyJ2IjoiMSJ9.FB-davgIQ_ciWNvY6RK4yckjgOCrvOWOGAG4IFaH0fczv-OIDHpR7rVTU8xj1iIbn_Aiowl9xMdeQxceQ6AT0Z8Rr5ZP1RocU6X8QSbkeJ4Zs5TYqa4a3C_cnfhZ7_ViooQU20IWibZqkBroF2Hja2xZXoTqZFI8e5YnF_2C0Bn7vtBGpapOYIGCeQoXqnV81r2HypQNUzFQbGPh7VqjqDbzmUoloFA2-QPLa5lOctA.L5ztl0wO7LqzxrIqDku9f96L9QrzYCMftU_YeTEJpGA&dib_tag=se&keywords=webcam%2Bc270&qid=1758416854&sprefix=webcam%2Bc270%2Caps%2C125&sr=8-3&th=1) and bluetooth speaker on Wednesday at the beginning of lab. If you cannot make it to class this week, please contact the TAs to ensure you get these.
 
 ### Get the Latest Content
 
@@ -36,7 +36,7 @@ pi@ixe00:~/Interactive-Lab-Hub $ git push
 Option 2: On your your own GitHub repo, [create pull request](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2022Fall/readings/Submitting%20Labs.md) to get updates from the class Interactive-Lab-Hub. After you have latest updates online, go on your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull` to get updates from your own GitHub repo.
 
 ## Part 1.
-### Setup 
+### Setup
 
 Activate your virtual environment
 
@@ -45,7 +45,7 @@ pi@ixe00:~$ cd Interactive-Lab-Hub
 pi@ixe00:~/Interactive-Lab-Hub $ cd Lab\ 3
 pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python3 -m venv .venv
 pi@ixe00:~/Interactive-Lab-Hub $ source .venv/bin/activate
-(.venv)pi@ixe00:~/Interactive-Lab-Hub $ 
+(.venv)pi@ixe00:~/Interactive-Lab-Hub $
 ```
 
 Run the setup script
@@ -56,9 +56,9 @@ Next, run the setup script to install additional text-to-speech dependencies:
 (.venv)pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ ./setup.sh
 ```
 
-### Text to Speech 
+### Text to Speech
 
-In this part of lab, we are going to start peeking into the world of audio on your Pi! 
+In this part of lab, we are going to start peeking into the world of audio on your Pi!
 
 We will be using the microphone and speaker on your webcamera. In the directory is a folder called `speech-scripts` containing several shell scripts. `cd` to the folder and list out all the files by `ls`:
 
@@ -71,7 +71,7 @@ espeak_demo.sh  flite_demo.sh     lookdave.wav
 You can run these shell files `.sh` by typing `./filename`, for example, typing `./espeak_demo.sh` and see what happens. Take some time to look at each script and see how it works. You can see a script by typing `cat filename`. For instance:
 
 ```
-pi@ixe00:~/speech-scripts $ cat festival_demo.sh 
+pi@ixe00:~/speech-scripts $ cat festival_demo.sh
 #from: https://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)#Festival_Text_to_Speech
 ```
 You can test the commands by running
@@ -79,7 +79,7 @@ You can test the commands by running
 echo "Just what do you think you're doing, Dave?" | festival --tts
 ```
 
-Now, you might wonder what exactly is a `.sh` file? 
+Now, you might wonder what exactly is a `.sh` file?
 Typically, a `.sh` file is a shell script which you can execute in a terminal. The example files we offer here are for you to figure out the ways to play with audio on your Pi!
 
 You can also play audio files directly with `aplay filename`. Try typing `aplay lookdave.wav`.
@@ -93,7 +93,7 @@ Bonus:
 ```
 pip install piper-tts
 ```
-and used from the command line. Running the command below the first time will download the model, concurrent runs will be faster. 
+and used from the command line. Running the command below the first time will download the model, concurrent runs will be faster.
 ```
 echo 'Welcome to the world of speech synthesis!' | piper \
   --model en_US-lessac-medium \
@@ -106,10 +106,10 @@ echo 'This sentence is spoken first. This sentence is synthesized while the firs
   piper --model en_US-lessac-medium --output-raw | \
   aplay -r 22050 -f S16_LE -t raw -
 ```
-  
+
 ### Speech to Text
 
-Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
+Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi.
 
 Make sure you're running in your virtual environment with the dependencies already installed:
 ```
@@ -122,7 +122,7 @@ Test if vosk works by transcribing text:
 vosk-transcriber -i recorded_mono.wav -o test.txt
 ```
 
-You can use vosk with the microphone by running 
+You can use vosk with the microphone by running
 ```
 python test_microphone.py -m en
 ```
@@ -240,11 +240,11 @@ From a remote browser on the same network, check to make sure your webserver is 
 
 ### Storyboard
 
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
+Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.)
 
 \*\***Post your storyboard and diagram here.**\*\*
 
-Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
+Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
 
 \*\***Please describe and document your process.**\*\*
 
@@ -272,9 +272,9 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 ## Prototype your system
 
 The system should:
-* use the Raspberry Pi 
+* use the Raspberry Pi
 * use one or more sensors
-* require participants to speak to it. 
+* require participants to speak to it.
 
 *Document how the system works*
 
@@ -282,13 +282,13 @@ The system should:
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
-  
+
   **Before submitting your README.md:**
   - This readme.md file has a lot of extra text for guidance.
   - Remove all instructional text and example prompts from this file.
   - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
   - Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
+
   This helps ensure your README.md is clear professional and uniquely yours!
 </details>
 
@@ -329,13 +329,13 @@ Answer the following:
 * [Phone number python](speech-scripts/ask_phone_number.py)
 
 I wrote code that only used the shell commands on the .sh file, but I modified to run the python file.
-This will ask the phone number, and once there are 10 digits, it will stop listening, and repeating what it heard. 
+This will ask the phone number, and once there are 10 digits, it will stop listening, and repeating what it heard.
 The phone number will be stored in the phone.txt.
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
 
 We made a reservation bot.
-We modifid the prompt to 
+We modifid the prompt to
 ```bash
 """You are a restaurant reservation assistant.
 
@@ -355,7 +355,7 @@ We modifid the prompt to
             - Use concise, friendly sentences.
             - For the final summary, present bullet points.
 ```
-       
+
 The conversation was like
 
 ```bash
@@ -405,7 +405,7 @@ We changed the prompt to be simpler.
     """
 ```
 
-Since the current conversation did not include the conversation history, we added the converstion history in the prompt. 
+Since the current conversation did not include the conversation history, we added the converstion history in the prompt.
 
 ```bash
 Assistant: Hello! Would you like to make reservation today?
@@ -452,11 +452,11 @@ In our envisioned system, users could assign their top-ordered items to each tou
 
 We tested this prototype with two users — my sister and her husband.
 
-How to run the code. 
-```bash 
+How to run the code.
+```bash
 cd fridgely
 
-#If you do not have venv ready 
+#If you do not have venv ready
 python3 -m venv fridgely_venv
 
 source fridgely_venv/bin/activate
@@ -474,12 +474,16 @@ sudo apt-get install -y i2c-tools
 i2cdetect -y 1
 
 python3 fridgely.py 2> alsa.log
+python3 fridgely2.py 2> alsa.log
 
-#You can also test whether the sensor is working or not by running 
-python3 test_condition.py 
+#You can also test whether the sensor is working or not by running
+python3 test_condition.py
 ```
 
-### Video 
+### Video
+[Video](https://drive.google.com/file/d/1y6u7ZUspF8cZDlv49KX7V6TnU6PQt2wZ/view?usp=drive_link)
+
+[Video](https://drive.google.com/file/d/1_LhfOJKmJTM6E9kmma_JgTcQN1gu8ZxT/view?usp=drive_link)
 
 
 ### What worked well about the system and what didn't?
@@ -487,12 +491,16 @@ Once I explained the system, users understood how it worked and used the touch b
 
 We then tested a voice-only version, where they said phrases like “add one tomato” or “add one asparagus.” The main issue was speech-to-text errors, when recognition failed, my follow-up question (“One asparagus?”) frustrated them.
 
-Overall, they appreciated the speed of adding items but found it cognitively demanding to remember which button corresponded to which item. They also wished the system displayed a visual confirmation of newly added items, rather than only relying on audio feedback.
+On Lianne's system the speech was not very clear even after troubleshooting. It seemed the system had problems with the voice files but did speak the dialogue, though choppy.
+We faced problems regarding mic input versus bluetooth output where the pi tried to use only one of the devices. Eventually we explicitly told the pi which input to use for the mic. We faced a small issue with image saving from wikipedia and had to make some tweaks to the code in order to make sure the images were coming in correctly. When an image was not available we added a generic picture of food.
+
+Overall, they appreciated the speed of adding items but found it cognitively demanding to remember which button corresponded to which item. They also wished the system displayed a visual confirmation of newly added items, rather than only relying on audio feedback. Users liked the ability to see the items being added to the list and change the items as customization.
 
 ### What worked well about the controller and what didn't?
 
 The controller ran smoothly. It converted speech to text, displayed the recognized text, and read out my typed response. However, the process was sometimes slow, and the text wasn’t always accurate.
 Since I could still hear what they said, I was able to respond correctly, but this wouldn’t be possible in a fully autonomous version.
+
 
 As a Wizard-of-Oz (WoZ) controller, it was sometimes challenging to decide how to respond in real time, given the variability of user input.
 
@@ -515,5 +523,9 @@ Additional sensing modalities that could enhance a future smart fridge include:
 - Facial or voice recognition — identify who’s interacting to personalize dialogue and reference previous interactions (e.g., tracking household members’ preferences).
 - Food recognition / freshness detection — monitor inventory and suggest which items to use first.
 
-We used ChatGPT to clean up the sentences, but all the ideas are ours. 
+We used ChatGPT to clean up the sentences, but all the ideas are ours.
 Prompt: can you clean up
+
+We also asked ChatGPT to help us use wikipedia for images
+Prompt: Can you help me create a script to retrieve and save food images from wikipedia please
+

@@ -134,6 +134,6 @@ def status():
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
 if __name__ == '__main__':
-    print("Starting Ollama Flask Web Interface...")
+    print("🚀 Starting Ollama Flask Web Interface...")
     print("Open your browser to http://localhost:5000")
     socketio.run(app, host='0.0.0.0', port=5000, debug=True)
