@@ -279,6 +279,8 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 
 \*\***Please describe and document your process.**\*\*
 
+![Diagram](media/Diagram_1.jpg)
+
 We imagine the dialogue happening between a doorway, so we envision the initial actuation pressing a door valve button. But we want to take it further and envision a device that's on the button being reactive and displaying some form of emotion or response to the user, which can be funny as well. If the user continues to engage us with the doorbell object, then they will continue to get a reaction from it, thus entering into a feedback loop of reaction, response, engagement.
 
 For this project, we had decided to create a expressive and funny doorbell. The scenario being the user would approach the doorbell, ring it, and by ringing it, would induce the doorbell to a mean, spiteful dialogue against the user, subverting, the assumption that objects associated with an entrance should be welcoming or inviting.
@@ -306,8 +308,20 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 ## Prep for Part 2
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
+
+One major area for improvement is the clarity and consistency of the doorbell’s emotional responses. Early feedback showed that the “mean doorbell” concept felt confusing because it reacted aggressively without responding to users’ words, which limited how people understood and engaged with it. 
+
 2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
+
+Beyond speech, incorporating physical and visual cues could make the interaction more intuitive and expressive. For instance, the device could use exaggerated movements, reactive lighting, or subtle changes in form to signal its mood and anticipate user actions. We plan to add an eye element to the front of the doorbell to give it more personality and allow it to convey emotions more vividly through its “expressions.” Additionally, integrating dynamic lighting will help communicate the intensity of those emotions, making the device’s reactions clearer and more engaging for users.
+
 3. Make a new storyboard, diagram and/or script based on these reflections.
+
+![Revised_Storyboard1](media/Revised_Storyboard1.jpg)
+![Revised_Storyboard2](media/Revised_Storyboard2.jpg)
+![Revised_Storyboard3](media/Revised_Storyboard3.jpg)
+![Revised_Storyboard4](media/Revised_Storyboard4.jpg)
+![Revised_Storyboard5](media/Revised_Storyboard5.jpg)
 
 ## Prototype your system
 
@@ -316,9 +330,30 @@ The system should:
 * use one or more sensors
 * require participants to speak to it. 
 
+![Prototype1](media/Process_1.jpg)
+![Prototype2](media/Process_2.jpg)
+![Prototype3](media/Process_3.jpg)
+
+
 *Document how the system works*
 
+Our electronics assembly made use of the Pi, a breadboard, multiple jumper wires, a red LED, a 220 Ohm resistor, a tactile button switch, a mini speaker, and a WebCam for microphone use. The electronics were tested separately before being assembled.
+
+We modeled our enclosure in Rhino 3D. This time we made sure to accommodate all the internal electronics within the device. The doorbell was modeled with a modern aesthetic in mind, with beveled edges and a perforated speaker in the front, with a central button in the middle to ring the doorbell. Design was base off traditional injection molding processes and translated to 3D printing to preserve materiality.
+
 *Include videos or screencaptures of both the system and the controller.*
+
+![Blueprint1](media/view1.png)
+![Blueprint2](media/view2.png)
+![Blueprint3](media/view3.png)
+
+
+![Product1](media/Image_1.jpg)
+![Product2](media/Image_2.jpg)
+
+[Interaction Video](media/Revised_Interaction.mp4)
+
+
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
