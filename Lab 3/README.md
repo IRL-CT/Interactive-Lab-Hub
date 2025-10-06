@@ -336,20 +336,21 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+The controller performed smoothly during testing. It played music without problems and responded quickly to user inputs. The basic game flow worked as we expected. Players could start the game, hear songs, make guesses, and receive feedback from the system.
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+We found several problems during testing. The biggest issue was voice recognition. The system had difficulty understanding what players said. Sometimes players guessed the correct song name, but the system did not recognize it. The system also required exact matching. Players had to say the exact song name without adding or missing any words. This was very frustrating for users. Another problem was song length. Many users told us the music intro was too short. They could not recognize the song before it ended. Users also wanted more features. When they could not guess a song, they wanted to hear more of it, but the system did not have this option.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
-
+I learned that designing a system requires thinking about human factors. People who use the system for the first time need clear guidance and instructions so they understand how to play. They also need forgiveness for small mistakes because people naturally speak in different ways. Users need enough time to think and respond, especially when listening to music they are trying to remember. The system should also provide flexible input methods because strict rules make the game less fun and more frustrating.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
+The system could collect useful data for improvement. We could record all user guesses to create a voice dataset with both correct and incorrect answers. We could measure response time to see how long users take to guess each song. This would help us understand song difficulty and rate songs based on how often users guess correctly. We could also track error patterns to find common mistakes in voice recognition. This data could help make the game better and more user-friendly in future versions.
+
 
 
 
