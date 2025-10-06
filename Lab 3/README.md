@@ -201,40 +201,66 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 <img src="choose the outfit.jpg" alt="Choose the Outfit" width="500">
 
 ### <mark>2.Document how the system works</mark>
+### System Documentation 1: Wizard of oz
+#### 1.Overview
 
-这里放说明
+This project is an interactive demo that runs on a Raspberry Pi and connects a SparkFun Qwiic Joystick to a web interface. The system streams joystick data to a browser in real time and allows the user to convert typed text into spoken audio on the Pi. The implementation uses a lightweight Flask web server with Socket.IO for bi-directional messaging, and espeak for local text-to-speech output.
+
+#### 2.What we achieved
+
+- Provide a clean, low-latency demo of hardware → web interaction.
+
+- Replace an accelerometer-based input with a Qwiic Joystick as the primary interaction device.
+
+- Keep audio output stable and deterministic (avoid flaky real-time microphone streaming).
+
+#### 3.How it works
+This prototype demonstrates an interactive dialogue system between a user and a smart mirror, implemented on a Raspberry Pi.
+
+The interaction is simulated through a hardware joystick and a web interface:
+
+- The joystick acts as the user’s physical input device, representing gestures or presence in front of the mirror.
+When the joystick is moved or pressed, its real-time position data are captured by the Raspberry Pi and transmitted to the browser via a lightweight Flask + Socket.IO server.
+This simulates how the mirror might sense or respond to a user’s movements or actions.
+
+- The web interface represents the mirror’s intelligence and speech output.
+The browser allows text input, which mimics what the mirror would “say” in response to the user.
+When a line of text is entered, it is sent to the Raspberry Pi through a WebSocket connection.
+The Pi immediately converts the text into speech using the built-in text-to-speech engine (espeak), producing an audible reply through the speaker — just as a smart mirror might talk back to the user.
+
+**Through this setup, the system forms a closed interaction loop:**
+
+1.User gesture or presence → sensed by the joystick and visualized on the web page.
+
+2.Mirror response → simulated by typed text, spoken aloud by the Raspberry Pi.
+
+This prototype effectively recreates a two-way conversational experience between a user and an intelligent mirror, without relying on heavy machine-learning or cloud components. It provides a simple, tangible framework to explore timing, responsiveness, and interaction design in human-mirror communication.
+
+### System Documentation 2: Joystick Interaction
+
+The system is an interactive outfit recommendation device built with a Raspberry Pi and a SparkFun Qwiic Joystick. The joystick provides horizontal, vertical, and button inputs over the I²C interface, while the software interprets these signals to control theme navigation and trigger voice responses. When the program starts, it calibrates the joystick by sampling its center values and dynamically sets threshold ranges for motion detection. Pushing the joystick **up or down** changes the outfit theme (Sports, Social, Color, Interview, Daily) and automatically plays a voice line through Piper TTS. Moving **left or right** cycles through the options within that theme, and pressing the joystick button runs `voice_interaction_router.py`, which handles open-ended voice questions using the logic defined in `outfits.py`. Each spoken line follows the unified format:  
+`recommend type: <Theme>. Option <Index>. <Sentence>`.
+
+The main control loop continuously polls `joystick.horizontal`, `joystick.vertical`, and `joystick.button` at around 20 Hz. It applies hysteresis thresholds to avoid jitter and uses short cooldown timers to prevent rapid re-triggering. If the button hardware fails or is unavailable, the system automatically falls back to a “mid-hold” interaction—holding the joystick near its center for 1.2 seconds also starts voice Q&A. All audio is generated through Piper and played via `aplay`, with Espeak as a backup. Error handling ensures stable operation even when I²C reads intermittently fail, so users always experience smooth physical control and synchronized spoken feedback.
+
 
 ### <mark>3.Include videos or screencaptures of both the system and the controller.</mark>
 
-这里放视频
+[Watch the Mirror Interaction video here](https://youtu.be/t43ZWVyX4Zk)
+
+[Watch the User Conversation video here](https://youtu.be/myvbhKIoJT8)
 
 
 ## Test the system
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+The system successfully guided both participants through theme and outfit selection with clear audio feedback. The voice output was natural and the “recommend type” prefix helped them understand the context of each option. The participants found the up/down and left/right navigation intuitive once they heard the first few lines. However, there was occasional delay in audio playback, especially when Piper was generating longer sentences. One participant also noticed that quick joystick movements were sometimes ignored, suggesting that the input thresholds could be more responsive.
 
 ### What worked well about the controller and what didn't?
-
-\*\**your answer here*\*\*
+The Qwiic Joystick offered smooth analog control and provided a clear sense of directionality for switching between options. The physical form made it easy for users to remember which axis changed themes versus options. The press-to-speak action worked well for triggering the voice Q&A mode, but some users pressed too briefly, leading to missed triggers due to hardware debounce. The fallback “hold in the middle” interaction helped prevent deadlocks, but users didn’t always realize it was an intentional feature.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-
-\*\**your answer here*\*\*
-
+From the Wizard-of-Oz sessions, it became clear that the system benefits from short, conversational feedback to keep users engaged. Participants tended to wait for confirmation after each action, implying that a fully autonomous version should generate quick acknowledgments such as “Got it” or “Switching to Social theme.” It also showed that adaptive timing—pausing slightly after playback before accepting new input—would make interactions feel smoother. A more autonomous version could combine user intent prediction (based on repeated joystick patterns) with contextual language responses for a more human-like experience.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-
-\*\**your answer here*\*\*
-
-
-
-
-
-
-
-
-
-
-
-
+The system could log joystick positions, button states, timestamps, and recognized speech transcripts to create a dataset of multimodal interactions. Each session could store pairs of physical input sequences and spoken responses, enabling supervised learning of user intent patterns. Adding a small microphone array could capture tone and hesitation, while a camera could record facial expressions or gaze direction to analyze engagement. These additional sensing modalities would allow future models to learn richer mappings between gesture, voice, and emotional state, supporting more adaptive and autonomous dialogue behavior.
