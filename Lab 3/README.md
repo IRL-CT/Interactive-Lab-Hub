@@ -149,13 +149,13 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 ## Prototype your system
 
-
+[Test Video, tested by myself](https://drive.google.com/video/captions/edit?id=1U9JBEsrq14Mv1NO6AZO3RXu17p5BgyGX)
   
 
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
 
-(Test Video, starred by Estelle)[https://drive.google.com/video/captions/edit?id=1HtOWd5qiqxzV8Nk49G2B0hetfA2mPaQ_]
+[Test Video, starred by Estelle](https://drive.google.com/video/captions/edit?id=1HtOWd5qiqxzV8Nk49G2B0hetfA2mPaQ_)
 
 Answer the following:
 
@@ -174,6 +174,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
