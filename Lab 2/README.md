@@ -221,7 +221,8 @@ Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://c
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
 
-\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*  
+> File found at screen_clock_unique.py
 
 
 ## Assignment that was formerly Part F. 
