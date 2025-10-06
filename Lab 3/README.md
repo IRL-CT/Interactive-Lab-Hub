@@ -260,7 +260,7 @@ From a remote browser on the same network, check to make sure your webserver is 
 <details open>
 <summary><h3>Storyboard</h3></summary>
 
-Potential Ideas: 
+Brainstorming Potential Ideas: 
 - talking mirror
 - talking table
 - talking stove
@@ -269,6 +269,8 @@ Potential Ideas:
 - talking backpack
 - talking lamp
 - talking key-holder
+
+>Initially, we explored two potential ideas to see which one would have more potential/provide better interactions.
 
 **Device 1: Table Assistant**
 
@@ -294,7 +296,7 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 
 >Since the use case of this project is relatively narrow, this process felt straightforward to me. I first imagined the process I go through manually in the morning (namely, gathering my keys, checking the weather, and then assembling an outfit). I then automated this interaction, though I did feel that this initial draft was a little restrictive.
 
-<img width="1640" height="2360" alt="interaction_diagram_flowchart" src="https://github.com/user-attachments/assets/3b2c138f-4ff9-4952-b4c0-e94513b20ee3" />
+<img width="700" alt="interaction_diagram_flowchart" src="https://github.com/user-attachments/assets/3b2c138f-4ff9-4952-b4c0-e94513b20ee3" />
 
 
 </details>
@@ -332,29 +334,31 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 We chose to focus on the key holder device since we felt like it provided a more guided experience.
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
-  - Timing!!! Know when user is leaving
-  - Wording: make it more obvious what the device can help with
+  - Timing!!! Know when user is leaving, also respond/prompt quickly
+  - Wording: make it more obvious what the device can help with, possibly by stating it?
+  - Have a catch-all for misunderstandings
 3. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
-  - Shakling keys as a reminder (visual)
+  - Shaking keys as a reminder (visual)
   - Distance sensor to know if someone's walking by/is currently grabbing keys (tactile)
+  - Having keys hanging and less electronics exposed might make the device less intimidating and the purpose more clear.
 4. Make a new storyboard, diagram and/or script based on these reflections.
+
+<img width="700" alt="Untitled_Artwork-2" src="https://github.com/user-attachments/assets/cf4e1fca-4f8d-406f-9947-7761c50bed60" />
+<img width="700" alt="Untitled_Artwork-3" src="https://github.com/user-attachments/assets/250adee9-603c-4fc9-aca0-eb1e610ff645" />
+<img width="700" alt="Untitled_Artwork-4" src="https://github.com/user-attachments/assets/141b42f4-5e42-4294-9c69-df1478e2a6dc" />
 
 ## Prototype your system
 
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
-
 ***Document how the system works***  
-The system uses the following components: 
+**The system uses the following components:**  
 - Webcam: used to detect whether a person is walking by the device
 - Proximity Sensor: used to detect when the user reaches for the keys
 - Actuator: used to shake the keys when triggered
 - Raspberry Pi: used to run the code
-- Speaker: used for audio output  
+- Speaker: used for audio output
+- Cardboard Shell: Used to house the device, laser-cut in the MakerLab :)
 
-Interaction Flow:  
+**Interaction Flow:**   
 - The device holds the users keys, which are clipped onto a carabinger on the front of the device.
 - The device waits until the camera detects a person walking by or entering the frame. We used an existing model: mobilenet-ssd for person detection.
 - When the user is detected, it triggers the key shaking mechanism and the device starts prompting the user "Don't forget your keys"
@@ -379,7 +383,8 @@ Interaction Flow:
 </details>
 
 ## Test the system
-Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
+Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)  
+▶️ [Watch the interactions](https://drive.google.com/file/d/1lpc3bVY-RKFJTVEG3BpNxegezBsAOpbU/view?usp=sharing)  
 
 Answer the following:
 
@@ -393,8 +398,9 @@ Answer the following:
 > One lesson we can take away is that it truly is hard to predict how a user will interact with our device. Therefore, in order to design a truly autonomous version of the system, implementing AI-powered responses might be necessary to cover all the unpredictable interactions. Additionally, it is important to make the purpose or capabilities of the device clear, or else users might not use it to its full potential. We had to give our users some background in order for them to understand how to interact with the device, but ideally, the design of the device should be able to convey this. 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-> We could use our system to record how many people forget their keys on the daily, and also what the most important information is that people want to know before leaving their house. It could make sense to capture more imaging of what users are wearing, potentially 
-to provide advice based on the weather.
+> We could use our system to record how many people forget their keys on the daily, and also what the most important information is that people want to know before leaving their house. To do this, we would need to record the input from the users using a microphone and some speech-to-text software. It could make sense to capture more imaging of what users are wearing, potentially 
+to provide advice based on the weather. 
+
 
 
 
