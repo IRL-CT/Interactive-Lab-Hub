@@ -168,9 +168,9 @@ class CookingAssistant:
     def speak_text(self, text):
         # Convert text to speech using espeak
         # Clean the text first to remove duplicates
-        cleaned_text = self.clean_ollama_response(text)
-        clean_text = cleaned_text.encode('ascii', 'ignore').decode('ascii')
-        print(f"Assistant: {clean_text}")
+        clean_text = self.clean_ollama_response(text)
+        clean_ver = clean_text.encode('ascii', 'ignore').decode('ascii')
+        print(f"Assistant: {clean_ver}")
         
         # Temporarily pause speech listening while speaking
         original_listen_state = self.listen_to_speech
@@ -187,7 +187,7 @@ class CookingAssistant:
         
         try:
             subprocess.run(['espeak', clean_text], shell=False, check=False)
-            # Wait 2 seconds after speech
+            # Wait 2 sec after speech
             time.sleep(2.0)
             
         except Exception as e:
@@ -241,7 +241,7 @@ class CookingAssistant:
             return False
             
     def handle_button_press_detection(self):
-        # Handle button press detection - using same logic as mood clock
+        # Handle button press detection (same logic as mood clock)
         current_time = time.time()
         
         # Debouncing: ignore rapid button presses
@@ -304,11 +304,14 @@ class CookingAssistant:
 
     def handle_user_speech(self, text):
         # Handle user speech input based on current state
+
+        # Exit command
         if "exit" in text.lower() or "quit" in text.lower():
             print("User wants to exit...")
             self.speak_text("Goodbye! Have a great day!")
             sys.exit(0)
-            
+        
+        # Recipe handling
         if self.current_state == CookingState.WAITING_FOR_INGREDIENTS:
             self.process_ingredients_input(text)
         elif self.current_state == CookingState.WAITING_FOR_DISH_SELECTION:
@@ -318,7 +321,7 @@ class CookingAssistant:
         elif self.current_state in [CookingState.EXECUTING_STEPS, CookingState.WAITING_FOR_FINAL_BUTTON]:
             self.handle_voice_during_cooking(text)
         elif self.current_state == CookingState.WAITING_FOR_BUTTON_PRESS:
-            # During cooking preparation, allow questions
+            # Questions allowed during cooking
             self.handle_voice_during_cooking(text)
             
     def process_ingredients_input(self, text):
@@ -346,7 +349,7 @@ class CookingAssistant:
             self.log_conversation(text, "Dish selected")
             # Move to next step
             self.provide_steps()
-            self.speak_text("say yes when you are ready to start cooking")
+            self.speak_text("Say yes when you are ready to start cooking")
         else:
             self.speak_text("Could you please select one of the dishes I suggested? Just say the name or number.")
             # Stay in current state - the continuous listening loop will handle the next input
@@ -354,65 +357,64 @@ class CookingAssistant:
     def process_steps_confirmation_input(self, text):
         # Process steps confirmation input from user
         print("Processing steps confirmation...")
-        validation_prompt = f"User said: '{text}'. Did they confirm they understand the steps and are ready to proceed? Look for words like 'ok', 'yes', 'good', 'ready', 'let's do it'. Answer only 'YES' if they confirmed, 'NO' if not."
-        validation = self.query_ollama(validation_prompt)
+        confirmation_prompt = f"User said: '{text}'. Did they confirm they understand the steps and are ready to proceed? Look for words like 'ok', 'yes', 'good', 'ready', 'let's do it'. Answer only 'YES' if they confirmed, 'NO' if not."
+        confirm = self.query_ollama(confirmation_prompt)
         
-        if "YES" in validation.upper():
+        if "YES" in confirm.upper():
             self.log_conversation(text, "Steps confirmed")
             # Move to next step
             self.ready_to_cook()
         else:
             self.speak_text("Please let me know when you're ready to start cooking. Say something like 'ok' or 'yes' when you're ready.")
-            # Stay in current state - the continuous listening loop will handle the next input
+            # Stay in current step
         
     def clean_ollama_response(self, response):
-        # Clean Ollama response to remove duplicates, labels, and fix formatting
+        # Clean Ollama response
         if not response:
             return response
             
         # Split into lines and remove empty lines
         lines = [line.strip() for line in response.split('\n') if line.strip()]
         
-        # Remove User: and System: labels and duplicate consecutive lines
+        # Remove duplicate lines
         cleaned_lines = []
         prev_line = ""
         for line in lines:
-            # Remove User: and System: labels
+            # Remove "User:" or "System:" labels if present
             if line.startswith('User:') or line.startswith('System:'):
                 line = line.split(':', 1)[1].strip()
                 if not line:
                     continue
             
-            # Skip if same as previous line
+            # Skip if repeat
             if line != prev_line:
                 cleaned_lines.append(line)
                 prev_line = line
         
-        # Join back together
         cleaned_response = " ".join(cleaned_lines)
         
         # Remove any obvious duplicates in the middle of text
-        words = cleaned_response.split()
-        if len(words) > 10:  # Only check longer responses
-            # Look for repeated phrases
-            for i in range(len(words) - 5):
-                phrase = " ".join(words[i:i+5])
-                for j in range(i+5, len(words) - 4):
-                    if phrase == " ".join(words[j:j+5]):
-                        # Found duplicate, remove the second occurrence
-                        words = words[:j] + words[j+5:]
+        response = cleaned_response.split()
+        if len(response) > 10:  # Only check longer responses
+            # Find and remove repeated phrases of 5+ words
+            for i in range(len(response) - 5):
+                phrase = " ".join(response[i:i+5])
+                for j in range(i+5, len(response) - 4):
+                    if phrase == " ".join(response[j:j+5]):
+                        # Remove the duplicate phrase
+                        response = response[:j] + response[j+5:]
                         break
         
-        return " ".join(words)
+        return " ".join(response)
             
     ### Recipe Functions ###
     def parse_dish_suggestion(self, response):
-        """Parse dish suggestions and create mapping"""
+        # Parse dish suggestions and create mapping
         lines = response.split('\n')
         dishes = []
         for line in lines:
             line = line.strip()
-            # Match patterns like "1. Dish Name", "1) Dish Name", "Number 1: Dish Name"
+            # Match patterns
             match = re.match(r'^(?:\d+[.)]\s*|Number\s+\d+[:.]\s*)(.+)$', line, re.IGNORECASE)
             if match:
                 dish_name = match.group(1).strip()
@@ -420,7 +422,7 @@ class CookingAssistant:
         return dishes
         
     def map_selection_to_dish(self, user_input, dishes):
-        # Map user selection (number or name) to actual dish
+        # Map user selection to actual dish
         user_input_lower = user_input.lower().strip()
         
         # Check for number selection
@@ -433,7 +435,7 @@ class CookingAssistant:
             except (ValueError, IndexError):
                 pass
                 
-        # Check for word-based number selection
+        # Check for number selection 
         word_to_num = {
             'first': 1, 'second': 2, 'third': 3, 'fourth': 4,
             'one': 1, 'two': 2, 'three': 3, 'four': 4
@@ -442,7 +444,7 @@ class CookingAssistant:
             if word in user_input_lower and num <= len(dishes):
                 return dishes[num - 1]
                 
-        # Check for direct dish name match
+        # Dish name matche
         for dish in dishes:
             if any(word in user_input_lower for word in dish.lower().split()):
                 return dish
@@ -450,7 +452,7 @@ class CookingAssistant:
         return None
         
     def suggest_dishes(self):
-        # Step 2: Suggest dishes based on ingredients
+        # Suggest dishes based on ingredients
         system_prompt = """You are a cooking expert. Strictly only based on the ingredients provided, suggest 3-4 specific dish. Name only, no details or explanations. Just list the dish names with numbers like "1. Dish Name" format. Keep it simple and concise. Do NOT include any "User:" or "System:" labels in your response - just give a direct response as the cooking expert."""
         
         prompt = f"The user has these ingredients: {self.ingredients}. Suggest 3-4 specific dishes they can make."
@@ -460,11 +462,11 @@ class CookingAssistant:
         # Parse dishes from response
         self.available_dishes = self.parse_dish_suggestion(response)
         
-        # Set state - continuous listening loop will handle user input
+        # Ask again if no dishes found
         self.current_state = CookingState.WAITING_FOR_DISH_SELECTION
 
     def parse_cooking_steps(self, response):
-        """Parse cooking steps using regex for better accuracy"""
+        # Parse cooking steps from response
         lines = response.split('\n')
         steps = []
         for line in lines:
@@ -490,21 +492,21 @@ class CookingAssistant:
         return steps
         
     def provide_steps(self):
-        # Step 3: Provide detailed cooking steps
+        # Provide detailed cooking steps
         system_prompt = """You are a detailed cooking instructor. Only provide step-by-step cooking instructions for the selected dish. Make each step clear and actionable. Number each step clearly like "1. Step description" or "Step 1: Step description". Keep your response organized. Do NOT include any "User:" or "System:" labels in your response - just give a direct response as the cooking instructor."""
         
         prompt = f"The user wants to cook: {self.selected_dish}. Using these ingredients: {self.ingredients}. Provide detailed step-by-step cooking instructions."
         response = self.query_ollama(prompt, system_prompt)
         self.speak_text(response)
         
-        # Parse steps from response using regex
+        # Parse steps from response
         self.cooking_steps = self.parse_cooking_steps(response)
         
-        # Set state - continuous listening loop will handle user input
+        # Move to next step
         self.current_state = CookingState.WAITING_FOR_STEPS_CONFIRMATION
             
     def ready_to_cook(self):
-        # Step 4: Tell user they can press button to start
+        # Tell user they can press button to start
         if self.button_available:
             message = "Great! Now you can press the button (GPIO23) to start cooking. I'll guide you through each step."
         else:
@@ -517,30 +519,32 @@ class CookingAssistant:
         self.log_info("Speech listening enabled for cooking questions")
         
     def execute_steps(self):
-        # Step 5: Execute cooking steps with button control
+        # Execute cooking steps with button control
         if self.current_step < len(self.cooking_steps):
             step_text = self.cooking_steps[self.current_step]
             self.speak_text(f"Step {self.current_step + 1}: {step_text}")
             self.current_step += 1
             
-            # Re-enable speech listening after step is spoken
+            # Disable speech listening during step execution
             self.listen_to_speech = True
             self.log_info("Re-enabled speech listening after step completion")
             
+            message = "That was the last step! Press the button one more time to complete cooking."
+
             # Check if this was the last step
             if self.current_step >= len(self.cooking_steps):
                 self.current_state = CookingState.WAITING_FOR_FINAL_BUTTON
                 if self.button_available:
-                    self.speak_text("That was the last step! Press the button one more time to complete cooking.")
+                    self.speak_text(message)
                 else:
-                    self.speak_text("That was the last step! Press the button one more time to complete cooking.")
+                    self.speak_text(message)
             else:
                 self.current_state = CookingState.EXECUTING_STEPS
                 # Tell user they can ask questions
                 self.speak_text("You can ask me questions about this step, or press the button to continue to the next step.")
             
     def completion(self):
-        # Step 6: Congratulate user on completion
+        # Congratulate user on completion
         message = "Congratulations! You've completed all the cooking steps. Your dish should be ready now. Enjoy your meal!"
         self.speak_text(message)
         self.current_state = CookingState.COMPLETED
@@ -555,7 +559,7 @@ class CookingAssistant:
             
     def handle_voice_during_cooking(self, user_input):
         # Handle voice input during cooking steps
-        # Handle questions during any cooking-related state
+        # Handle user questions during cooking steps
         if self.current_state in [CookingState.WAITING_FOR_BUTTON_PRESS, CookingState.EXECUTING_STEPS, CookingState.WAITING_FOR_FINAL_BUTTON]:
             # Determine current step context
             if self.current_step <= len(self.cooking_steps) and self.current_step > 0:
@@ -572,7 +576,7 @@ class CookingAssistant:
             self.speak_text(response)
             self.log_conversation(user_input, response)
             
-            # After answering, remind user they can press button to continue
+            # Remind user of button option
             if self.current_state == CookingState.WAITING_FOR_BUTTON_PRESS:
                 self.speak_text("You can press the button to start cooking, or ask me more questions.")
             elif self.current_state == CookingState.EXECUTING_STEPS:
@@ -582,7 +586,7 @@ class CookingAssistant:
             
             
     def run(self):
-        # Main execution loop - continuous listening like voice_ai_assistant
+        # Main execution loop
         self.log_info("Cooking Assistant Starting...")
         self.log_info("=" * 50)
         
@@ -592,15 +596,15 @@ class CookingAssistant:
         self.speak_text("Hi!")
         self.speak_text("Welcome to your cooking assistant! I'll help you cook step by step.")
         
-        # Ask directly for ingredients
+        # Ask for ingredients
         self.speak_text("What ingredients do you have today? And what kind of dish would you like to make?")
         
-        # Set initial state
+        # Setup initial state
         self.current_state = CookingState.WAITING_FOR_INGREDIENTS
         
         try:
             
-            # Continuous listening loop (like voice_ai_assistant)
+            # Continuous listening loop
             with sd.RawInputStream(samplerate=self.samplerate, blocksize=8000, device=None,
                     dtype="int16", channels=1, callback=self.audio_callback):
                 
@@ -627,7 +631,7 @@ class CookingAssistant:
                             current_state = self.buttonA.value
                             self.log_debug(f"Button state: {current_state} ({'RELEASED' if current_state else 'PRESSED'})")
                     
-                    # Check for audio data - only if listening is enabled
+                    # Process audio input
                     if self.listen_to_speech and not self.audio_queue.empty():
                         data = self.audio_queue.get()
                         if rec.AcceptWaveform(data):
@@ -646,7 +650,7 @@ class CookingAssistant:
                                     self.speak_text("I'm listening. What's your question? You can also press the button to continue to the next step anytime.")
                                     self.log_info("Re-enabled speech listening for user question")
                         else:
-                            # Only show partial results if we're listening to speech
+                            # Partial result (optional)
                             if self.listen_to_speech:
                                 partial = rec.PartialResult()
                                 partial_json = json.loads(partial)
@@ -654,7 +658,7 @@ class CookingAssistant:
                                 if partial_text:
                                     print(f"Listening: {partial_text}", end='\r')
                     elif not self.listen_to_speech and not self.audio_queue.empty():
-                        # If not listening, discard audio data to prevent accumulation
+                        #  Clear audio queue if not listening
                         try:
                             self.audio_queue.get_nowait()
                         except queue.Empty:
