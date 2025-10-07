@@ -473,13 +473,16 @@ Rachael: The controller was more useful than I expected. Touch pads made choosin
 
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-
-\*\**your answer here*\*\*
-
+- Clear state really helps. When the system says exactly what it’s waiting for (“Ready to update score—say ‘user one plus 300’”), people answer correctly.
+- Use the right modality for the task: Use speech to start things, but use touch for numbers and timing to avoid speech-recognition errors.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
+- Audio + transcripts: Raw audio + ASR text for both user and system.
+- Intents, slots, actions: Labeled per turn (e.g., start_game, update_score, player, amount).
+- Timing + errors: Timestamps, response delays, reprompts, timeouts, and success/fail.
+- Touch events: Pad index, press/release, hold duration, mapped option/duration.
+
 
 
 
