@@ -323,18 +323,29 @@ Based on observations, I refined the device’s prompts to better align with nat
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
 
-[![Werewolf Device Demo](https://img.youtube.com/vi/oKx95uURB4s/0.jpg)](https://youtu.be/oKx95uURB4s)
-
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
-The result turned out a little different than I originally imagined. Since the game is designed for many participants, acting it out with only three people changed the dynamic. In my original script, there were multiple roles such as killers, villagers, seers, and a witch, but for the play-through we simplified it to only killers and villagers. Even with this reduction, the overall steps of the game stayed consistent.
+We worked together to act out and test out the dialouges
+
+*Ideabox https://youtu.be/8xRIaNbEIwg
+
+*Warewolves https://youtu.be/oKx95uURB4s
+
+*Rules explain https://drive.google.com/file/d/10ByKoQw41XVuMDyUWIKn8qw_uJNr9zi4/view?usp=drive_link
+
+For the werewolves one, the result turned out a little different than I originally imagined. Since the game is designed for many participants, acting it out with only three people changed the dynamic. In my original script, there were multiple roles such as killers, villagers, seers, and a witch, but for the play-through we simplified it to only killers and villagers. Even with this reduction, the overall steps of the game stayed consistent.
 
 One new realization I had was about character assignment. During the acting, I noticed that the device may need to remember each player’s name and assign roles one by one, either by calling them over to whisper their role or by showing it on a mini screen on the Pi. This was something I hadn’t considered in my initial design.
 
-### Wizarding with the Pi (optional)
+<details>
+  <summary><strong>Wizarding with the Pi (optional)(Click to Expand)</strong></summary>
+  
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
 
 \*\***Describe if the dialogue seemed different than what you imagined, or when acted out, when it was wizarded, and how.**\*\*
+
+</details>
+
 
 # Lab 3 Part 2
 
@@ -342,11 +353,13 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 ## Prep for Part 2
 
+### Werewolves
+
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
 
 There are a few concrete areas where the device could be improved:  
 
-- **🧍 Player Identification** – During the game setup stage, the device should remember each player’s name or assign them a number. This would make it possible to assign roles accurately and call players individually during the night phase.  
+- **🧍 Player Identification** – During the game setup stage, the device should ask how many people are trying to play first and remember each player’s name/ assign them a number. This would make it possible to assign roles accurately and call players individually during the night phase.  
 - **🔊 Audio Timing** – The device sometimes misses the first few seconds of a player’s speech when testing. Adding a short beep sound before recording starts would alert players that the device is ready, ensuring their words are captured completely.  
 - **⏱️ Clearer Transitions** – The pacing between speaking phases could be more distinct. Small pauses or auditory cues between phases (like a chime or tone) would help players anticipate what’s coming next and reduce confusion.  
 
@@ -369,6 +382,65 @@ The system should:
 * require participants to speak to it. 
 
 *Document how the system works*
+
+### 🎮 Game Moderator Device – Voice Assistant (Raspberry Pi + Ollama + MPR121)
+
+Our device functions as a **voice-controlled game moderator** designed to make group games like Werewolf or Monopoly more interactive and engaging. It uses speech recognition, text-to-speech, and a touch sensor interface (MPR121) to communicate naturally with players. We originally planned three main features—IdeaBox, Werewolves, and Rules Explain—but for this prototype, we implemented two: IdeaBox and Rules Explain.
+
+- 💡 The IdeaBox feature uses AI (through the Ollama model) to generate fun, creative punishment or activity ideas that players can select by touching specific pads on the MPR121 sensor. 
+
+- 📘 The Rules Explain feature allows players to ask questions about the game’s rules, and the assistant responds with AI-generated explanations through voice output. 
+
+
+### Command Reference Table
+
+| **Command / Action** | **Input Type** | **System Action** | **Example Response Spoken by Assistant** |
+|-----------------------|----------------|-------------------|------------------------------------------|
+| **Start Game** | Voice | Initializes a new game session and asks the user to input the number of players. | “Please touch a pad to indicate the number of players.” |
+| **Enter Number of Players** | Sensor (Touch Pad for player count) | Processes the user's touch input to set up players and initialize their balances. | “Game started! User1, User2, and User3 all begin with $10,000. Let the game begin!” |
+| **Update Score** | Voice | Activates score update mode and waits for the player name and amount. | “Ready to update. Please say which user and how much.” |
+| **User# plus / minus amount** | Voice | Parses the command and updates that player's score locally. | “Understood. User1 received $300. Their new balance is $10,300.” |
+| **Show Scores** | Voice | Announces the current balance of all players. | “Current scores are: User1: $10,300, User2: $9,700, User3: $10,000.” |
+| **Exit / Stop Game** | Voice | Ends or pauses the current session. | “Goodbye! Have a great day!” |
+| **Punishment (IdeaBox)** | Voice | Generates 5 AI-powered punishment ideas using Ollama. | “Option 1: Do a 30-second victory dance for the winning team.” |
+| **Punishment Type Selection** | Sensor (Touch Pad 0–4) | Selects one of the AI-generated punishments. | “You selected option 2: Tell a joke to make everyone laugh.” |
+| **Punishment User Selection** | Voice | Listens for the user’s spoken input to determine who will receive the punishment. | (No fixed reply) → Assistant then says: “Touch a pad to select punishment duration.” |
+| **Punishment Duration Selection** | Sensor (Touch Pad 5–11) | Selects the duration of the chosen punishment. | “Duration set to 15 seconds.” |
+| **Run Punishment Countdown** | System | Displays and counts down the punishment timer for the selected player. | “Time up! Great job, Player2!” |
+| **Game Help / Instructions** | Voice | Sends the player’s question to Ollama for a conversational rule explanation. | “This rule means…” |
+
+
+### Touch Sensor Notes  Table
+| Action                        | User Action                                                          | Notes / Mapping                                                                            |
+| ----------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Initialize Number of Players        | Touch a pad 1–11 to indicate number of players                       | Pad 2 = 2 player, Pad 3 = 3 players...                              |
+| Punishment Type Selection     | Touch pad 0–4 to select one of the 5 AI-generated punishment options | Pad 0 = Option 1, Pad 1 = Option 2, Pad 2 = Option 3, … Pad 4 = Option 5                   |
+| Punishment Duration Selection | Touch pad 5–11 to select duration in seconds                         | Pad 5 = 5s, Pad 6 = 10s, Pad 7 = 15s, Pad 8 = 20s, Pad 9 = 30s, Pad 10 = 45s, Pad 11 = 60s |
+
+
+**video example**  `Start Game` -> ` Enter number of players` -> `update score` ->  `User# plus / minus amount` : 
+- After the user start the game with voice control, user can touch the pad to indicate how many players there are for this game
+- Commands like “update score” trigger a short interaction flow, where the system waits for the next instruction (player + amount).
+- https://drive.google.com/file/d/1G3Y2ljqYQE7NIuNFt3YNdnzj_blnpvc8/view?usp=drive_link
+
+**video example**  `Punishment ` -> ` Punishment Type Selection` -> ` Punishment User Selection` -> `Punishment Duration Selection` -> `Run Punishment Countdown`  :
+- Users ask the device (assistant) for punishment ideas, touch sensor to select pushishment types, touch sensor to select punishment duration
+- https://drive.google.com/file/d/1GnMq-7LttGka26wA3vRnvQHRhy9rxtnM/view?usp=drive_link
+
+**video example**  `Game help / instructions` :
+- Users ask the device (assistant) questions about the game's rule, device output AI-generated response
+- https://drive.google.com/file/d/1Ej2u_rBWTT5JamR8uJ0Miz2fz1tgFu0Z/view?usp=drive_link
+
+### System Documentation
+
+**System Flow:**
+🎤 Voice / ✋ Touch Input → 🧠 Processing (OllamaVoiceAssistant) → 🔊 Speech / 💻 Display Output
+
+
+
+
+
+
 
 *Include videos or screencaptures of both the system and the controller.*
 
@@ -404,6 +476,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
