@@ -1,6 +1,7 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+### Collaborators: None
 
+<details>
 Does it feel like time is moving strangely during this semester?
 
 For our first Pi project, we will pay homage to the [timekeeping devices of old](https://en.wikipedia.org/wiki/History_of_timekeeping_devices) by making simple clocks.
@@ -188,38 +189,74 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 
 ## Part F. Now moved to Lab2 Part 2.
+</details>
+
 
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.  
-Potential Ideas:  
+
+### Brainstorm:
+- I'm very interested in making time more visual, so you can see the passing of time in an interesting way.
+- Some of my inspiration for this is in those relaxing videos you can watch while studying or doing something else that just plays in the background.
+- I would like my clock to be interesting to look at but not too distracting.
+- It would be cool if the clock could serve some other purpose as well. 
+### Potential Ideas:  
 - Plant growing as time passes (screen too small?)
 - Ball bouncing corresponding to time, # of balls = hour
 - Dripping water corresponding to time (seconds, minutes, hour)
+- Show shelter cats of different names that correspond to times? and also allow linking to website
+
+### Sketches:
 ![IMG_1F375F07E635-1](https://github.com/user-attachments/assets/dccbe8e0-debc-4872-a8fc-2fb167f83dee)
 
 # Prep for Part 2
 
 1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
-  
 
 2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
-
+### Feedback:
+- After telling my classmates some ideas from my list, I had the most interest in the plant growing and the cat one
+- They were most interested in seeing how these ideas would be implemented
+- I think they were drawn to the cat idea since it was more novel and hadn't been done before. 
+  
 # Lab 2 Part 2
 
 ## Assignment that was formerly Lab 2 Part E.
 ### Modify the barebones clock to make it your own
 
-Does time have to be linear?  How do you measure a year? [In daylights? In midnights? In cups of coffee?](https://www.youtube.com/watch?v=wsj15wPpjLY)
+- I chose to implement the water droplets idea since it seemed more feasible to accomplish within the week (I couldn't really figure out how I could design the cat adoption one). Also, it fell into the category of being something that could be relaxing to look at.
+- I wanted to add interaction in the form of a rainstorm that takes over the entire screen if a button is pressed.
+- Some potential ideas:
+  - rainstorm washes away the clock and screen has to refresh (purpose: to hide the time)
+  - rainstorm screen acts as timer (what I ended up going with)
+  - pressing button can speed up timer (not sure how this helps with anything)
 
-Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
-
-Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!
-
+### Design: 
 ![IMG_0696](https://github.com/user-attachments/assets/4373d29c-11a6-4b85-b5f4-09c0345b10a4)
 
+### Process:
+- I spent a lot of time trying to make the screen of the clock look aesthetically pleasing
+  - This looked like adjusting the size, positioning, and rotations of the images so they fit well on the screen
+  - Code snippet: 
+<img width="1001" height="417" alt="Screenshot 2025-10-06 at 8 10 47 PM" src="https://github.com/user-attachments/assets/d9f6ef78-aa55-47ec-8558-873377c71927" />
 
-**We strongly discourage and will reject the results of literal digital or analog clock display.**
-
+- Additionally, timing was important since the water droplets had to match up with the changing seconds, minutes, and hours exactly.
+  - I mapped the size of each droplet to the current so that it would work no matter when the clock was booted up.
+  - Once the current time got close enough to changing a value, it triggers the corresponding droplet to fall
+```
+  # set droplet size
+    if not drop_h_fall:
+        drop_h_size = MAX_SIZE*(curr_time % HOUR)/HOUR + 1
+    if not drop_m_fall:
+        drop_m_size = MAX_SIZE*(curr_time % MINUTE)/MINUTE + 1
+    if not drop_s_fall:
+        drop_s_size = MAX_SIZE*(curr_time % SECOND) + 1
+```
+- The rainstorm timer screen was simple to implement, it saves the time when the button is pressed and measures elapsed time to know when to stop the timer
+- Figuring out the buttons was somewhat tricky since I didn't want the screen to keep switching while the button was pressed down. I added a condition to only switch the screen if the button was not previously pressed and is now currently pressed.
+```
+if not prev_a_state and a_pressed:
+```
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*  
 > File found at screen_clock_unique.py
