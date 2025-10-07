@@ -382,6 +382,7 @@ The system should:
 * require participants to speak to it. 
 
 *Document how the system works*
+*Include videos or screencaptures of both the system and the controller.*
 
 ### 🎮 Game Moderator Device – Voice Assistant (Raspberry Pi + Ollama + MPR121)
 
@@ -389,8 +390,15 @@ Our device functions as a **voice-controlled game moderator** designed to make g
 
 - 💡 The IdeaBox feature uses AI (through the Ollama model) to generate fun, creative punishment or activity ideas that players can select by touching specific pads on the MPR121 sensor. 
 
+<p float="left">
+  <img src="Pics/ideabox.png" alt="diagram" width="500" />
+</p>
+
 - 📘 The Rules Explain feature allows players to ask questions about the game’s rules, and the assistant responds with AI-generated explanations through voice output. 
 
+<p float="left">
+  <img src="Pics/rule.png" alt="diagram" width="500" />
+</p>
 
 ### Command Reference Table
 
@@ -437,13 +445,6 @@ Our device functions as a **voice-controlled game moderator** designed to make g
 🎤 Voice / ✋ Touch Input → 🧠 Processing (OllamaVoiceAssistant) → 🔊 Speech / 💻 Display Output
 
 
-
-
-
-
-
-*Include videos or screencaptures of both the system and the controller.*
-
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
   
@@ -462,11 +463,14 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+Rachael: The punishment part works really well. It actually makes the game smoother and saves time when people get stuck arguing. The “update scores” flow also works pretty well. However, sometimes the “start game” function fails to capture the number of players. Also, when answering general questions, I sometimes hear two voices at the same time (most of the time it happens when it calls Ollama - TTS overlaps with the model’s output or two prompts get triggered close together).
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+Rachael: The controller was more useful than I expected. Touch pads made choosing options and timing much faster, but the mapping isn’t obvious to new users, so people might hesitate. We also saw a few false touches if a finger lingered, and sometimes people might be too careful because they are afraid of pressing the wrong button, since they are close. 
+
+
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
@@ -476,6 +480,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
