@@ -2,6 +2,7 @@
 """
 ideaBox - AI-Powered Party Game Creative Assistant
 Provides creative suggestions for ongoing party games using AI.
+Enhanced with intro sound and punishment display with countdown.
 """
 
 import subprocess
@@ -11,6 +12,8 @@ import sys
 import random
 import re
 from pathlib import Path
+import threading
+
 
 class IdeaBoxAssistant:
     def __init__(self):
@@ -18,35 +21,251 @@ class IdeaBoxAssistant:
         self.whisper_model = "tiny"
         self.current_game = None
         self.audio_dir = "audio"
+        self.intro_sound = "intro.mp3"
+        self.spinner_active = False
+        self.spinner_thread = None
         
         # Create audio directory if it doesn't exist
         os.makedirs(self.audio_dir, exist_ok=True)
         
+        # Detect available Piper voices
+        self.detect_piper_voice()
+    
+    def __del__(self):
+        """Cleanup on exit"""
+        self.stop_spinner()
+    
+    def detect_piper_voice(self):
+        """Detect available Piper voices and use the first available one"""
+        try:
+            # Try to list available voices
+            result = subprocess.run(['piper', '--list-voices'], 
+                                  capture_output=True, text=True)
+            
+            if result.returncode == 0 and result.stdout:
+                # Parse available voices
+                voices = []
+                for line in result.stdout.split('\n'):
+                    if line.strip() and not line.startswith('Available'):
+                        voice_name = line.strip().split()[0]
+                        voices.append(voice_name)
+                
+                if voices:
+                    # Prefer lessac-medium, but fall back to first available
+                    if self.piper_model in voices:
+                        print(f"Using Piper voice: {self.piper_model}")
+                    else:
+                        self.piper_model = voices[0]
+                        print(f"Voice en_US-lessac-medium not found. Using: {self.piper_model}")
+                else:
+                    print("No Piper voices found. You may need to download voices.")
+                    self.print_piper_install_instructions()
+            else:
+                print("Could not detect Piper voices.")
+                self.print_piper_install_instructions()
+                
+        except Exception as e:
+            print(f"Error detecting Piper voices: {e}")
+            self.print_piper_install_instructions()
+    
+    def print_piper_install_instructions(self):
+        """Print instructions for installing Piper voices"""
+        print("\n" + "="*60)
+        print("PIPER VOICE INSTALLATION REQUIRED")
+        print("="*60)
+        print("\nTo download Piper voices, run one of these commands:\n")
+        print("Option 1 - Download en_US-lessac-medium (recommended):")
+        print("  wget https://github.com/rhasspy/piper/releases/download/v0.0.2/voice-en-us-lessac-medium.tar.gz")
+        print("  tar -xzf voice-en-us-lessac-medium.tar.gz")
+        print("  # Move .onnx and .json files to piper's voices directory\n")
+        print("Option 2 - Use piper to download:")
+        print("  piper --download-dir ./voices --voice en_US-lessac-medium")
+        print("\nOption 3 - List all available voices:")
+        print("  piper --list-voices\n")
+        print("="*60 + "\n")
+    
+    def play_intro_sound(self):
+        """Play the intro sound using mpg123 or aplay"""
+        try:
+            intro_path = os.path.join(self.audio_dir, self.intro_sound)
+            
+            if not os.path.exists(intro_path):
+                print(f"Warning: Intro sound not found at {intro_path}")
+                return False
+            
+            print("Playing intro sound...")
+            
+            # Try mpg123 first for mp3 files
+            try:
+                subprocess.run(['mpg123', intro_path], capture_output=True)
+                return True
+            except FileNotFoundError:
+                # Fall back to ffplay if mpg123 not available
+                try:
+                    subprocess.run(['ffplay', '-nodisp', '-autoexit', intro_path], 
+                                 capture_output=True)
+                    return True
+                except FileNotFoundError:
+                    print("No suitable audio player found for MP3. Install mpg123 or ffmpeg.")
+                    return False
+                    
+        except Exception as e:
+            print("Intro sound error:", e)
+            return False
+    
+    def spinner_animation(self, message="Processing"):
+        """Display spinning wheel animation"""
+        # Use ASCII characters instead of Unicode for compatibility
+        spinner_chars = ['|', '/', '-', '\\']
+        idx = 0
+        
+        while self.spinner_active:
+            sys.stdout.write(f'\r{message}... {spinner_chars[idx % len(spinner_chars)]} ')
+            sys.stdout.flush()
+            idx += 1
+            time.sleep(0.1)
+        
+        # Clear the spinner line
+        sys.stdout.write('\r' + ' ' * (len(message) + 10) + '\r')
+        sys.stdout.flush()
+    
+    def start_spinner(self, message="Processing"):
+        """Start the spinner animation in a separate thread"""
+        if self.spinner_thread and self.spinner_thread.is_alive():
+            self.stop_spinner()
+        
+        self.spinner_active = True
+        self.spinner_thread = threading.Thread(target=self.spinner_animation, args=(message,))
+        self.spinner_thread.daemon = True
+        self.spinner_thread.start()
+    
+    def stop_spinner(self):
+        """Stop the spinner animation"""
+        self.spinner_active = False
+        if self.spinner_thread:
+            self.spinner_thread.join(timeout=0.5)
+    
+    def display_punishment_name(self, player_name, countdown_seconds=10, punishment=""):
+        """Display player name during punishment countdown with synced audio"""
+        try:
+            # Countdown loop
+            for i in range(countdown_seconds, 0, -1):
+                # Clear screen and display countdown
+                os.system('clear')
+                
+                print("\n" * 3)
+                print("=" * 60)
+                print(f"{'PUNISHMENT TIME!':^60}")
+                print("=" * 60)
+                print()
+                print(f"{player_name:^60}")
+                print()
+                if punishment:
+                    # Word wrap the punishment text
+                    import textwrap
+                    wrapped = textwrap.fill(punishment, width=58)
+                    for line in wrapped.split('\n'):
+                        print(f"{line:^60}")
+                    print()
+                
+                # Display countdown number with emphasis
+                if i <= 5:
+                    print(f"{f'>>> {i} <<<':^60}")
+                else:
+                    print(f"{str(i):^60}")
+                
+                print()
+                print("=" * 60)
+                
+                # Audio countdown for last 5 seconds (synced with display)
+                if i <= 5:
+                    countdown_text = str(i)
+                    self.text_to_speech(countdown_text, f"countdown_{i}.wav")
+                else:
+                    # For non-audio seconds, just wait 1 second
+                    time.sleep(1)
+            
+            # Display "TIME UP!" message
+            os.system('clear')
+            print("\n" * 8)
+            print("=" * 60)
+            print(f"{'TIME UP!':^60}")
+            print("=" * 60)
+            print()
+            
+            time.sleep(2)
+            
+            return True
+            
+        except Exception as e:
+            print("Display error:", e)
+            return False
+    
     def text_to_speech(self, text, filename="output.wav"):
-        """Convert text to speech using Piper"""
+        """Convert text to speech using Piper or espeak as fallback"""
         try:
             print("ASSISTANT:", text)
+            
+            # Start spinner for TTS generation
+            self.start_spinner("Generating speech")
             
             # Store audio file in audio directory
             audio_path = os.path.join(self.audio_dir, filename)
             
-            # Use Piper for text-to-speech
-            process = subprocess.run(
-                ['piper', '--model', self.piper_model, '--output_file', audio_path],
-                input=text,
-                text=True,
-                capture_output=True
-            )
-            
-            if process.returncode == 0:
-                # Play the audio
-                subprocess.run(['aplay', audio_path], capture_output=True)
-                return True
-            else:
-                print("TTS ERROR:", process.stderr)
-                return False
+            # Try Piper first
+            try:
+                process = subprocess.run(
+                    ['piper', '--model', self.piper_model, '--output_file', audio_path],
+                    input=text,
+                    text=True,
+                    capture_output=True,
+                    timeout=10
+                )
+                
+                self.stop_spinner()
+                
+                if process.returncode == 0:
+                    # Play the audio with increased buffer size to prevent cutoff
+                    subprocess.run([
+                        'aplay', 
+                        '--buffer-size=8192',  # Larger buffer
+                        audio_path
+                    ], capture_output=True)
+                    return True
+                else:
+                    raise Exception("Piper failed, trying fallback")
+                    
+            except Exception as piper_error:
+                # Fallback to espeak
+                print("Piper unavailable, using espeak fallback...")
+                try:
+                    # espeak can generate wav file directly
+                    subprocess.run([
+                        'espeak',
+                        '-w', audio_path,
+                        '-s', '150',  # Speed
+                        '-a', '200',  # Amplitude
+                        text
+                    ], check=True, capture_output=True)
+                    
+                    self.stop_spinner()
+                    
+                    # Play the audio with increased buffer size to prevent cutoff
+                    subprocess.run([
+                        'aplay',
+                        '--buffer-size=8192',  # Larger buffer
+                        audio_path
+                    ], capture_output=True)
+                    return True
+                    
+                except FileNotFoundError:
+                    self.stop_spinner()
+                    # If espeak also not available, just print
+                    print("No TTS available - printing only")
+                    return True
                 
         except Exception as e:
+            self.stop_spinner()
             print("TTS ERROR:", e)
             return False
     
@@ -80,7 +299,8 @@ class IdeaBoxAssistant:
     def speech_to_text(self, audio_file):
         """Convert speech to text using Whisper"""
         try:
-            print("Converting speech to text...")
+            # Start spinner for speech-to-text conversion
+            self.start_spinner("Converting speech to text")
             
             # Audio file is already in audio directory
             audio_path = os.path.join(self.audio_dir, audio_file)
@@ -92,6 +312,8 @@ class IdeaBoxAssistant:
                 '--output_dir', self.audio_dir,
                 '--verbose', 'False'
             ], capture_output=True, text=True)
+            
+            self.stop_spinner()
             
             if result.returncode == 0:
                 # Text file will be generated in audio directory
@@ -109,6 +331,7 @@ class IdeaBoxAssistant:
                 return None
                 
         except Exception as e:
+            self.stop_spinner()
             print("Speech-to-text error:", e)
             return None
 
@@ -126,96 +349,124 @@ class IdeaBoxAssistant:
             ack_message = random.choice(ack_messages)
             self.text_to_speech(ack_message, "thinking.wav")
             
-            print("Getting AI creative suggestions...")
+            # Start spinner for AI thinking
+            self.start_spinner("AI is thinking")
             
             # Create more open-ended prompts for variety
             if request_type == "punishments":
                 prompt = f"""You're helping friends playing {game_type} who need creative consequences for losing. 
 
-Give me 3-4 fun, lighthearted punishment ideas. Be creative and think outside the box! They should be:
+Give me exactly 5 fun, lighthearted punishment ideas. Be creative and think outside the box! They should be:
 - Quick and entertaining
 - Safe and appropriate for everyone
 - Something that makes people laugh
 
 Context: {additional_context}
 
-IMPORTANT: Your response will be read aloud by text-to-speech. Do not use emojis, asterisks, bullet points, or special characters. Write in natural spoken language only. Keep it conversational and under 120 words."""
+IMPORTANT: Format your response as a numbered list with each punishment on a separate line. Start each line with the number and a period. Do not use emojis, asterisks, or special characters. Keep each punishment to one short sentence."""
             
             elif request_type == "themes":
                 prompt = f"""Players are enjoying {game_type} and want fresh theme ideas to keep it interesting.
 
-Suggest 4-5 creative themes or categories. Think of unexpected, fun angles that would make the game more exciting. 
+Suggest exactly 5 creative themes or categories. Think of unexpected, fun angles that would make the game more exciting. 
 
 Context: {additional_context}
 
-IMPORTANT: Your response will be read aloud by text-to-speech. Do not use emojis, asterisks, bullet points, or special characters. Write in natural spoken language only. Be enthusiastic and keep it under 120 words."""
+IMPORTANT: Format your response as a numbered list with each theme on a separate line. Start each line with the number and a period. Do not use emojis, asterisks, or special characters. Keep each theme to one short phrase."""
             
             elif request_type == "variations":
                 prompt = f"""Friends playing {game_type} want to shake things up with some rule variations.
 
-Give me 3-4 creative ways to modify the game. Think of fun twists that change the dynamic while keeping it enjoyable.
+Give me exactly 5 creative ways to modify the game. Think of fun twists that change the dynamic while keeping it enjoyable.
 
 Context: {additional_context}
 
-IMPORTANT: Your response will be read aloud by text-to-speech. Do not use emojis, asterisks, bullet points, or special characters. Write in natural spoken language only. Keep it energetic and under 120 words."""
+IMPORTANT: Format your response as a numbered list with each variation on a separate line. Start each line with the number and a period. Do not use emojis, asterisks, or special characters. Keep each variation to one short sentence."""
             
             else:  # General creative help
                 prompt = f"""Players of {game_type} are asking: "{additional_context}"
 
-Help them make their game more fun and memorable. Be creative and think of practical suggestions they can use right now.
+Help them make their game more fun and memorable. Give exactly 5 creative and practical suggestions they can use right now.
 
-IMPORTANT: Your response will be read aloud by text-to-speech. Do not use emojis, asterisks, bullet points, or special characters. Write in natural spoken language only. Keep it enthusiastic and under 120 words."""
+IMPORTANT: Format your response as a numbered list with each suggestion on a separate line. Start each line with the number and a period. Do not use emojis, asterisks, or special characters. Keep each suggestion to one short sentence."""
             
             # Call Ollama with longer timeout and better error handling
             result = subprocess.run([
                 'ollama', 'run', 'llama3.2',
                 prompt
-            ], capture_output=True, text=True, timeout=60)  # Increased from 30 to 60 seconds
+            ], capture_output=True, text=True, timeout=60)
+            
+            self.stop_spinner()
             
             if result.returncode == 0:
                 response = result.stdout.strip()
                 print("AI generated creative suggestions successfully")
-                return response
+                
+                # Parse the numbered list
+                suggestions = self.parse_numbered_list(response)
+                return suggestions
             else:
                 print("Ollama error:", result.stderr)
                 return self.get_fallback_suggestion(request_type, game_type)
                 
         except subprocess.TimeoutExpired:
+            self.stop_spinner()
             print("Ollama timeout - using fallback")
             return self.get_fallback_suggestion(request_type, game_type)
         except Exception as e:
+            self.stop_spinner()
             print("Ollama error:", e)
             return self.get_fallback_suggestion(request_type, game_type)
+    
+    def parse_numbered_list(self, text):
+        """Parse AI response into a list of suggestions"""
+        suggestions = []
+        lines = text.split('\n')
+        
+        for line in lines:
+            line = line.strip()
+            # Match lines that start with a number and period
+            if re.match(r'^\d+\.', line):
+                # Remove the number and period
+                suggestion = re.sub(r'^\d+\.\s*', '', line)
+                if suggestion:
+                    suggestions.append(suggestion)
+        
+        # If no numbered items found, try to split by newlines
+        if not suggestions:
+            suggestions = [line.strip() for line in lines if line.strip()]
+        
+        return suggestions[:5]  # Return max 5 suggestions
 
     def get_fallback_suggestion(self, request_type, game_type):
         """Fallback suggestions if AI isn't available"""
         fallbacks = {
-            "punishments": f"""Here are some fun punishment ideas for your {game_type} losers:
+            "punishments": [
+                "Do a 30 second victory dance for the winning team",
+                "Tell a joke or funny story to make everyone laugh",
+                "Give genuine compliments to each other player",
+                "Act out their favorite animal for 1 minute",
+                "Share an embarrassing but harmless childhood memory"
+            ],
             
-• Do a 30-second victory dance for the winning team
-• Tell a joke or funny story to make everyone laugh
-• Give genuine compliments to each other player
-• Act out their favorite animal for 1 minute
-• Share an embarrassing (but harmless) childhood memory""",
+            "themes": [
+                "90s nostalgia with movies music and trends",
+                "Childhood favorites like cartoons games and snacks",
+                "Around the world featuring countries landmarks and foods",
+                "Superheroes and villains",
+                "Time travel to past decades or future predictions"
+            ],
             
-            "themes": f"""Here are some amazing theme ideas for your {game_type}:
-            
-• 90s nostalgia (movies, music, trends)
-• Childhood favorites (cartoons, games, snacks)
-• Around the world (countries, landmarks, foods)
-• Superheroes and villains
-• Time travel (past decades or future predictions)""",
-            
-            "variations": f"""Here are some exciting variations to spice up your {game_type}:
-            
-• Speed rounds: Cut time limits in half
-• Silent mode: No talking except for answers
-• Team swap: Switch teams halfway through
-• Prop challenge: Use random objects as hints
-• Reverse rules: Play with opposite rules for one round"""
+            "variations": [
+                "Speed rounds where you cut time limits in half",
+                "Silent mode with no talking except for answers",
+                "Team swap where you switch teams halfway through",
+                "Prop challenge using random objects as hints",
+                "Reverse rules where you play with opposite rules for one round"
+            ]
         }
         
-        return fallbacks.get(request_type, f"I'd love to help with your {game_type}! Try asking me about punishments, themes, or variations.")
+        return fallbacks.get(request_type, [])
 
     def simulate_user_input(self, prompt_type="general"):
         """Simulate user input for testing without microphone"""
@@ -256,6 +507,27 @@ IMPORTANT: Your response will be read aloud by text-to-speech. Do not use emojis
                     return options[0]
             except:
                 return options[0]
+        
+        elif prompt_type == "player_name":
+            print("\nEnter player name for punishment:")
+            player_name = input("Player name: ").strip()
+            return player_name if player_name else "Player 1"
+        
+        elif prompt_type == "countdown_time":
+            print("\nEnter countdown duration (5-90 seconds):")
+            try:
+                duration = int(input("Seconds (default 10): "))
+                return str(duration) if 5 <= duration <= 90 else "10"
+            except:
+                return "10"
+        
+        elif prompt_type == "punishment_choice":
+            print("\nEnter the number of the punishment you want to use:")
+            try:
+                choice = int(input("Punishment #: "))
+                return str(choice)
+            except:
+                return "1"
         
         else:  # General creative request
             requests = [
@@ -327,10 +599,116 @@ IMPORTANT: Your response will be read aloud by text-to-speech. Do not use emojis
         else:
             return "general"
 
+    def handle_punishment_countdown(self, use_microphone, punishment_suggestions):
+        """Handle the punishment confirmation and countdown flow"""
+        try:
+            # Display punishment options
+            print("\n" + "="*60)
+            print("PUNISHMENT OPTIONS:")
+            print("="*60)
+            
+            if isinstance(punishment_suggestions, list):
+                for i, punishment in enumerate(punishment_suggestions, 1):
+                    print(f"{i}. {punishment}")
+            else:
+                # If it's a string, try to parse it
+                punishments = self.parse_numbered_list(str(punishment_suggestions))
+                for i, punishment in enumerate(punishments, 1):
+                    print(f"{i}. {punishment}")
+                punishment_suggestions = punishments
+            
+            print("="*60 + "\n")
+            
+            # Read out the punishments
+            intro = "Here are your punishment options."
+            self.text_to_speech(intro, "punishment_intro.wav")
+            
+            for i, punishment in enumerate(punishment_suggestions, 1):
+                punishment_text = f"Option {i}. {punishment}"
+                self.text_to_speech(punishment_text, f"punishment_option_{i}.wav")
+                time.sleep(0.5)
+            
+            # Ask which punishment to use
+            choice_question = "Which punishment would you like to use? Say the number."
+            self.text_to_speech(choice_question, "ask_punishment_choice.wav")
+            
+            choice_response = self.get_user_input(use_microphone, "punishment_choice", duration=5)
+            
+            # Parse the choice
+            selected_index = 0
+            if choice_response:
+                numbers = re.findall(r'\d+', choice_response)
+                if numbers:
+                    try:
+                        selected_index = int(numbers[0]) - 1
+                        if selected_index < 0 or selected_index >= len(punishment_suggestions):
+                            selected_index = 0
+                    except:
+                        selected_index = 0
+            
+            selected_punishment = punishment_suggestions[selected_index]
+            
+            # Confirm selection
+            confirm_msg = f"You selected punishment number {selected_index + 1}. {selected_punishment}"
+            self.text_to_speech(confirm_msg, "confirm_selection.wav")
+            print(f"\nSELECTED: {selected_punishment}\n")
+            
+            # Get player name
+            name_question = "What is the name of the player who will face this punishment?"
+            self.text_to_speech(name_question, "ask_player_name.wav")
+            
+            player_name = self.get_user_input(use_microphone, "player_name", duration=8)
+            if not player_name or len(player_name.strip()) == 0:
+                player_name = "Player"
+            
+            # Get countdown duration
+            duration_question = "How many seconds should the punishment countdown last? Say a number between 5 and 90."
+            self.text_to_speech(duration_question, "ask_duration.wav")
+            
+            duration_response = self.get_user_input(use_microphone, "countdown_time", duration=5)
+            
+            # Parse duration from response
+            countdown_seconds = 10  # Default
+            if duration_response:
+                # Extract numbers from response
+                numbers = re.findall(r'\d+', duration_response)
+                if numbers:
+                    try:
+                        countdown_seconds = int(numbers[0])
+                        # Clamp between 5 and 90 seconds
+                        countdown_seconds = max(5, min(90, countdown_seconds))
+                    except:
+                        countdown_seconds = 10
+            
+            # Confirm and start countdown
+            confirm_msg = f"Alright! {player_name} will have {countdown_seconds} seconds to complete. {selected_punishment}. Get ready!"
+            self.text_to_speech(confirm_msg, "start_countdown.wav")
+            
+            time.sleep(1)
+            
+            # Execute the countdown with display
+            self.display_punishment_name(player_name, countdown_seconds, selected_punishment)
+            
+            # Completion message
+            done_msg = f"Time up! {player_name} has completed the punishment. Great job everyone!"
+            self.text_to_speech(done_msg, "punishment_complete.wav")
+            
+            return True
+            
+        except Exception as e:
+            print(f"Error in punishment countdown: {e}")
+            error_msg = "Sorry, there was an issue with the punishment countdown."
+            self.text_to_speech(error_msg, "punishment_error.wav")
+            return False
+
     def run_ideabox_assistant(self, use_microphone=False):
         """Run the ideaBox AI-powered creative assistant"""
         print("Welcome to ideaBox - Your AI Creative Game Assistant!")
         print("====================================================")
+        
+        # Play intro sound
+        self.play_intro_sound()
+        time.sleep(1)
         
         # Step 1: Ask what game they're playing
         game_question = "Hi! I'm ideaBox, your AI creative assistant. What party game are you currently playing or about to play?"
@@ -356,8 +734,9 @@ IMPORTANT: Your response will be read aloud by text-to-speech. Do not use emojis
                 self.current_game, 
                 "punishments"
             )
-            self.text_to_speech(punishment_suggestions, "punishments.wav")
-            time.sleep(2)
+            
+            # Offer punishment countdown with the suggestions
+            self.handle_punishment_countdown(use_microphone, punishment_suggestions)
         
         # Step 3: Ask for other creative help
         other_help_question = "What other creative ideas would you like? I can suggest themes, game variations, or anything else to make your game more fun!"
@@ -408,6 +787,7 @@ IMPORTANT: Your response will be read aloud by text-to-speech. Do not use emojis
             "session_complete": True
         }
 
+
 def main():
     ideabox = IdeaBoxAssistant()
     
@@ -435,6 +815,7 @@ def main():
     print("Game:", result.get("game", "Unknown"))
     print("AI-powered suggestions:", "Yes" if result.get("ai_powered") else "No")
     print("Session completed:", "Yes" if result.get("session_complete") else "No")
+
 
 if __name__ == "__main__":
     main()
