@@ -139,12 +139,13 @@ Find a partner, and *without sharing the script with your partner* try out the d
 [Rules Explanation Bot](https://drive.google.com/file/d/10ByKoQw41XVuMDyUWIKn8qw_uJNr9zi4/view?usp=drive_link)
 
 #### Notes And Observations
-<!-- //TODO: -->
+Eva feedback - the script worked really well in some part's of the warewolf game, but it seemed a bit out of place during some parts of gameplay in warewolf. For example, there is a component when a killer decides on killing a player. How can the killer tell our device to record killing someone out loud? That's against the premise of the game. Finding a game that would need voice assistance may be hard.
 
-### Wizarding with the Pi (optional)
-In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
+Charlotte feedback - game explanations and rules machine may come really handy in some games when we need props, like Monopoly, but don't have any. For example, we sometimes can't find the "fake cash" to play Monopoly when we're out camping, and may be valuable to develop a feature like that to explain rules and keep counts of everyone's cash.
 
-\*\***Describe if the dialogue seemed different than what you imagined, or when acted out, when it was wizarded, and how.**\*\*
+Zoe - AI performs well in some areas, notably the creative dialogue and open ended questions. However when developing the script, it's very hard to get AI to answer something that humans know the correct answer to. We should consider leveraging the strengths of AI and avoid exposing weaknesses of AI in our system.
+
+-----
 
 # Lab 3 Part 2
 
@@ -157,11 +158,6 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 3. Make a new storyboard, diagram and/or script based on these reflections.
 
 ## Prototype your system
-
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
 
 *Document how the system works*
 
@@ -179,29 +175,207 @@ The system should:
   This helps ensure your README.md is clear professional and uniquely yours!
 </details>
 
-## Test the system
-Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
 
-Answer the following:
+Prototype your system
+* use the Raspberry Pi
+* use one or more sensors
+* require participants to speak to it.
 
-### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+**Document how the system works**
 
-### What worked well about the controller and what didn't?
+### Running the script
 
-\*\**your answer here*\*\*
+1. download dependencies and follow all instructions in `Ollama_setup.md`
 
-### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
+```
+pip install -r requirements.txt
+pip install requests speechrecognition pyaudio flask flask-socketio
+```
 
-\*\**your answer here*\*\*
+2. enable I2C and install MPR121 Library
+
+```
+pip install adafruit-circuitpython-mpr121
+
+```
+3. running the script
+
+```
+python party_game_assistant.py
+```
 
 
-### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
+### Command Reference Table
 
-\*\**your answer here*\*\*
+| Command / Action              | Input Type                          | System Action                                                              | Example Response Spoken by Assistant                                         |   |   |
+| ----------------------------- | ----------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | - | - |
+| Start Game                    | Voice                               | Initializes a new game session, ask user to input number of users          | Please touch a pad to indicate the number of players                         |   |   |
+| Entern Number of Players             | Sensor (touch pad for player count) | Process the user's input through the touch pad                             | Game started! User1, User2, User3 all begin with $10000. Let the game begin! |   |   |
+| Update Score                  | Voice                               | Activates score update mode (assistant waits for a player name and amount) | Ready to update. Please say which user and how much.                         |   |   |
+| User# plus / minus amount     | Voice                               | Parses command, updates that player’s score locally                        | Understood. User1 received $300. Their new balance is $10300.                |   |   |
+| Show Scores                   | Voice                               | Displays current player balances                                           | Current scores are: User1: $10300, User2: $9700, User3: $10000               |   |   |
+| Exit / Stop Game              | Voice                               | Ends or pauses the current session                                         | Goodbye! Have a great day!                                                   |   |   |
+| Punishment                    | Voice                               | Generates 5 AI-powered punishment suggestions                              | Option 1. Do a 30 second victory dance for the winning team.                 |   |   |
+| Punishment Type Selection     | Sensor (touch pad 0–4)              | Select one of the AI-generated punishments                                 | You selected option 2: Tell a joke to make everyone laugh                    |   |   |
+| Punishment User Selection | Voice                               | Listen to user input to select the user who recieve punishment                 | no specific response, but assistant will say "touch a pad to select punishment duration" to proceed with duration selection
+| Punishment Duration Selection | Sensor (touch pad 5–11)             | Select duration of punishment                                              | Duration set to 15 seconds                                                   |   |   |
+| Run Punishment Countdown      | System                              | Displays countdown for selected player and punishment                      | Time up! Great job Player2!                                                  |   |   |
+| Game Help / Instructions      | Voice                               | Input sent to Ollama for conversational explanation                        | This rule means ...                                                          |   |   |
+
+
+
+### Touch Sensor Notes  Table
+| Action                        | User Action                                                          | Notes / Mapping                                                                            |
+| ----------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Initialize Number of Players        | Touch a pad 1–11 to indicate number of players                       | Pad 2 = 2 player, Pad 3 = 3 players...                              |
+| Punishment Type Selection     | Touch pad 0–4 to select one of the 5 AI-generated punishment options | Pad 0 = Option 1, Pad 1 = Option 2, Pad 2 = Option 3, … Pad 4 = Option 5                   |
+| Punishment Duration Selection | Touch pad 5–11 to select duration in seconds                         | Pad 5 = 5s, Pad 6 = 10s, Pad 7 = 15s, Pad 8 = 20s, Pad 9 = 30s, Pad 10 = 45s, Pad 11 = 60s |
+
+
+**video example**  `Start Game` -> ` Enter number of players` -> `update score` ->  `User# plus / minus amount` : 
+- After the user start the game with voice control, user can touch the pad to indicate how many players there are for this game
+- Commands like “update score” trigger a short interaction flow, where the system waits for the next instruction (player + amount).
+- https://drive.google.com/file/d/1G3Y2ljqYQE7NIuNFt3YNdnzj_blnpvc8/view?usp=drive_link
+
+**video example**  `Punishment ` -> ` Punishment Type Selection` -> ` Punishment User Selection` -> `Punishment Duration Selection` -> `Run Punishment Countdown`  :
+- Users ask the device (assistant) for punishment ideas, touch sensor to select pushishment types, touch sensor to select punishment duration
+- https://drive.google.com/file/d/1GnMq-7LttGka26wA3vRnvQHRhy9rxtnM/view?usp=drive_link
+
+**video example**  `Game help / instructions` :
+- Users ask the device (assistant) questions about the game's rule, device output AI-generated response
+- https://drive.google.com/file/d/1Ej2u_rBWTT5JamR8uJ0Miz2fz1tgFu0Z/view?usp=drive_link
 
 
 
 
+### System Documentation
+### 1. Architecture
+
+#### a. Input Layer
+- Captures user input via two mechanisms:
+  1. **Microphone**
+     - Uses `speech_recognition` library.
+     - Converts audio into text using Google Speech Recognition (cloud-based).
+     - Handles:
+       - Ambient noise calibration.
+       - Timeouts for listening.
+       - Speech recognition errors.
+  2. **MPR121 Touch Sensor**
+     - Detects touch on capacitive pads via `adafruit-circuitpython-mpr121`.
+     - Used for:
+       - Selecting number of players (pad 0–11).
+       - Selecting punishment type (pad 0–4).
+       - Selecting punishment duration (pad 5–11).
+     - Debouncing implemented to prevent multiple accidental triggers.
+
+#### b. Processing Layer
+- Core class: `OllamaVoiceAssistant`.
+- Responsibilities:
+  - **Score Management**
+    - Maintains player scores in `self.player_scores`.
+    - Score updates are local only; Ollama is not used for calculations.
+    - Detects and parses score commands using regex (`parse_score_command`).
+    - Manages game state flags:
+      1. `score_initialized`: Has the game started?
+      2. `waiting_for_score_update`: Is the assistant waiting for a score update?
+  - **Punishment Management**
+    - Retrieves AI-generated punishment suggestions from Ollama (`get_punishment_suggestions`).
+    - Handles selection via touch sensor (`wait_for_touch_punishment`, `wait_for_touch_duration`).
+    - Runs punishment countdown and displays it with audio feedback (`display_punishment_countdown`).
+  - **Conversation Management**
+    - Routes general user queries to Ollama (`query_ollama`) for conversational responses.
+    - Manages greetings, help, and non-score-related questions.
+    - Optional system prompt to set assistant persona.
+
+#### c. Output Layer
+- Provides user feedback via:
+  1. **Text-to-Speech (TTS)**
+     - Uses `espeak` to read out:
+       - Player score updates.
+       - Punishment instructions and countdown.
+       - General AI-generated responses (greetings, help, rules explanations).
+  2. **Console / Terminal**
+     - Prints debug information and user feedback.
+     - Displays:
+       - Player scores.
+       - Punishment options and countdown.
+       - Touch sensor feedback for selection of options and durations.
+
+<img src="interaction/countdown.png" alt="frame 1" width="800"/>
+
+### 2. User Interaction Flow Chart
+
+#### Score Board Feature
+<img src="interaction/flow_score.png" alt="frame 1"/>
+
+#### Idea Box Feature
+<img src="interaction/flow_punishment.png" alt="frame 1" />
 
 
+**What worked well about the system and what didn't?**
+- 1. Initially, I tried to have the assistant keep track of players’ names (e.g., Charlotte, Eva, and Zoe). However, after several trials, I realized that the speech-to-text recognition often failed to correctly capture the names. To fix this issue, I replaced the names with generic identifiers such as “user 1,” “user 2,” and “user 3.” This change improved accuracy, as the speech recognizer could more reliably detect which user’s score needed to be updated.
+
+<details>
+  <summary> Click to expand the conversation details (between the user and the device) </summary>
+(before, with player's actual name) for example : 
+  
+```bash
+Assistant: Hello! I'm your Monopoly game assistant. How can I help you today?
+Listening...
+Recognizing...
+You said: start game
+Assistant: Game started! eva, charlotte, zoe all begin with $10000. Let the game begin!
+Listening...
+Recognizing...
+You said: what is 500 --> Here, what the test user actually said was "Charlotte plus 500"
+Assistant: Sorry, I still didn't catch the player and amount. Please state it like 'Eva plus 300' or 'Charlotte minus 500'.
+```
+
+(after, remove the use of player's name) for example : 
+```bash
+Assistant: Hello! I'm your Monopoly game assistant. How can I help you today?
+Listening...
+Recognizing...
+You said: start game
+Assistant: Game started! user1, user2, user3 all begin with $10000. Let the game begin!
+Listening...
+Recognizing...
+You said: update scores
+Assistant: Ready to update. Please say which user and how much. For example, 'user one plus 300'.
+Listening...
+Recognizing...
+You said: user 2 + 500
+DEBUG parsed: ('user2', '500', 'add')
+Assistant: Understood. User2 received $500. Their new balance is $10500. Scores are updated!
+Listening...
+```
+</details>
+
+- 2. Originally, when a user said phrases like “Eva plus 300,” the speech recognizer transcribed it as “Eva + 300.” However, the initial regex patterns did not account for symbols like “+,” so the command wasn’t parsed correctly. To fix this, the regex was updated to include additional patterns and symbols (e.g., “+” and “plus”), allowing the assistant to correctly recognize and process score updates. 
+
+<details>
+  <summary> Click to expand the conversation details (between the user and the device) </summary>
+for example : 
+  
+```bash
+Assistant: Hello! I'm your Monopoly game assistant. How can I help you today?
+Listening...
+Recognizing...
+You said: start game
+Assistant: Game started! eva, charlotte, zoe all begin with $10000. Let the game begin!
+Listening...
+Recognizing...
+You said: Eva + 500 --> the original regex pattern cannot capture the "+" and thus system cannot update the score accordingly
+Thinking...
+Assistant: Sorry, the response took too long. Please try again.
+```
+</details>
+
+- 3. In the original design, the players do not have to say “Update scores” to trigger the score update feature. When testing this with other users, I noticed two main issues: first, users often spoke in natural but unpredictable ways that the system struggled to parse correctly; second, without an explicit “update” trigger, the assistant sometimes confused score updates with unrelated speech, reducing accuracy and disrupting the game flow.
+
+
+**What worked well about the controller and what didn't?**
+
+**What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?**
+
+**How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?**
