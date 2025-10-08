@@ -13,8 +13,6 @@
 	This helps ensure your README.md is clear, professional, and uniquely yours!
 </details>
 
----
-
 ## Lab 4 Deliverables
 
 ### Part 1 (Week 1)
