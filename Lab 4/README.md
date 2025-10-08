@@ -19,7 +19,7 @@
 
 ### Part 1 (Week 1)
 <details>
-	<summary><strong>**Submit the following for Part 1:**  </strong></summary>
+	<summary><strong>Submit the following for Part 1:</strong></summary>
 *️⃣ **A. Capacitive Sensing**
 	- Photos/videos of your Twizzler (or other object) capacitive sensor setup
 	- Code and terminal output showing touch detection
