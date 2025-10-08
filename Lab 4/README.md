@@ -319,7 +319,7 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 
 **Pick one of these designs to prototype.**
 
-We decided to pick Freeze Dance because we thought it was the most exciting and interactive device to prototype. add more text here.
+We decided to pick Freeze Dance because we thought it was the most exciting and interactive device to prototype. It's a great challenge because we have to detect tiny movements while the music plays, then instantly stop the song and trigger a light or sound. This forces us to combine hardware, software, and a fun user experience. Since it's a party game, it's the most engaging choice for user testing and demos.
 
 ### Part D
 
@@ -378,7 +378,7 @@ These sketches raised the question of portability; how big or how small do we wa
 
 We decided to go with the Extra Portable small design so the user can have a party anywhere they go! We sacrificed the surface area for portability as well as the plan of covering the entire box in disco ball surface so it eliminates the need for a flat top to place a possible disco ball. For the size, we chose a device size that is about the span of an extended hand. Additionally, the design we chose is the one with the handle so that it can be picked up pretty easily for on-the-go moves.
 
-Build a cardboard prototype of your design.
+**Build a cardboard prototype of your design.**
 
 
 **Initial Planning**
