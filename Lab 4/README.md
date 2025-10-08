@@ -19,9 +19,9 @@
 
 ### Part 1 (Week 1)
 **Submit the following for Part 1:**  
-*️⃣ **A. Capacitive Sensing**
-	- Photos/videos of your Twizzler (or other object) capacitive sensor setup
-	- Code and terminal output showing touch detection
+~~*️⃣ **A. Capacitive Sensing**~~
+	~~- Photos/videos of your Twizzler (or other object) capacitive sensor setup~~
+	~~- Code and terminal output showing touch detection~~
 
 *️⃣ **B. More Sensors**
 	- Photos/videos of each sensor tested (light/proximity, rotary encoder, joystick, distance sensor)
@@ -169,7 +169,7 @@ These Twizzlers are connected to pads 6 and 10. When you run the code and touch 
 	```
 </details>
 
-### Mints Box Capacitive Sensing
+### *️⃣A. Mints Box Capacitive Sensing
 <a href="https://drive.google.com/file/d/1o_3bsJ4SPG-J-lyWNZgraCDtJGMWwgW-/view?usp=sharing">
   <img src="mints_touch_sensor.png" alt="Watch the video" width="50%"/>
 </a>
