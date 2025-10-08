@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Ollama Voice Assistant for Lab 3 with Touch Sensor + Punishment Feature
-Zoe's working Monopoly assistant + Your punishment suggestions & countdown
+Author: 
+- Eva Huang
+- Zoe Tseng
+- Charlotte Lin
 
 Dependencies:
 - ollama (API client)

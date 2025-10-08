@@ -148,7 +148,7 @@ Zoe - AI performs well in some areas, notably the creative dialogue and open end
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
 
-### User Interaction Flow Chart
+### User Interaction Flow Chart @Charlotte Lin
 
 ### 🎮 Game Moderator Device – Voice Assistant (Raspberry Pi + Ollama + MPR121)
 
@@ -173,7 +173,7 @@ Our device functions as a **voice-controlled game moderator** designed to make g
 
 
 
-### Running the script
+### Running the script @Eva Huang
 
 1. download dependencies and follow all instructions in `Ollama_setup.md`
 
@@ -211,7 +211,7 @@ python party_game_assistant.py
 
 ---
 
-### Command Reference Table
+### Command Reference Table @Zoe Tseng
 
 | Command / Action              | Input Type                          | System Action                                                              | Example Response Spoken by Assistant                                         |   |   |
 | ----------------------------- | ----------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | - | - |
@@ -230,7 +230,7 @@ python party_game_assistant.py
 
 
 
-### Touch Sensor Notes  Table
+### Touch Sensor Notes  Table @Zoe Tseng
 | Action                        | User Action                                                          | Notes / Mapping                                                                            |
 | ----------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | Initialize Number of Players        | Touch a pad 1–11 to indicate number of players                       | Pad 2 = 2 player, Pad 3 = 3 players...                              |
@@ -239,7 +239,7 @@ python party_game_assistant.py
 
 
 
-### System Documentation
+### System Documentation @Zoe Tseng
 ### 1. Architecture
 
 #### a. Input Layer
@@ -317,7 +317,7 @@ python party_game_assistant.py
 
 ---
 
-**What worked well about the system and what didn't?**
+**What worked well about the system and what didn't? @Zoe Tseng**
 - 1. Initially, I tried to have the assistant keep track of players’ names (e.g., Charlotte, Eva, and Zoe). However, after several trials, I realized that the speech-to-text recognition often failed to correctly capture the names. To fix this issue, I replaced the names with generic identifiers such as “user 1,” “user 2,” and “user 3.” This change improved accuracy, as the speech recognizer could more reliably detect which user’s score needed to be updated.
 
 <details>
@@ -380,7 +380,7 @@ Assistant: Sorry, the response took too long. Please try again.
 
 ---
 
-**What worked well about the controller and what didn't?**
+**What worked well about the controller and what didn't? @Eva Huang** 
 
 #### Strengths
 Our system provides rich, interactive features that is aligned with our design vision of a party game assistant.
@@ -398,7 +398,7 @@ Due to the time and resource constraints, there are a couple things that we wish
   - at one point we've thought of recording an "intro" sound effect or a "cash register" sound effect to be more immersive and offers a true excitement for our users
   - this should be relatively easy to add, we just decided to use those time to flesh out the script and implement the technical solutions better
 
-**What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?**
+**What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system? @Eva Huang**
 
 - Users expect faster AI response times
   - this is apparent and we tried multiple models
@@ -408,7 +408,7 @@ Due to the time and resource constraints, there are a couple things that we wish
 
 ---
 
-**How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?**
+**How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture? @Eva Huang**
 
 #### Interaction dataset creation
 - Log all touch inputs with timestamps (pad number, selection type, response time), voice commands with transcription confidence scores, AI-generated punishments with selection rates, and session metadata (game duration, number of players, punishment frequency).
