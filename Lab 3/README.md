@@ -2,8 +2,6 @@
 **Charlotte Lin (hl2575), Zoe Tseng (yzt2), Le-En Huang (lh764)**
 **Use of AI for this lab: Claude Sonnet4 for image creation and debugging instructions for the code.**
 
-[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
-
 In this lab, we want you to design interaction with a speech-enabled device--something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1).  First, we want you first to storyboard what you imagine the conversational interaction to be like. Then, you will use wizarding techniques to elicit examples of what people might say, ask, or respond.  We then want you to use the examples collected from at least two other people to inform the redesign of the device.
 
 We will focus on **audio** as the main modality for interaction to start; these general techniques can be extended to **video**, **haptics** or other interactive mechanisms in the second part of the Lab.
@@ -145,43 +143,19 @@ Charlotte feedback - game explanations and rules machine may come really handy i
 
 Zoe - AI performs well in some areas, notably the creative dialogue and open ended questions. However when developing the script, it's very hard to get AI to answer something that humans know the correct answer to. We should consider leveraging the strengths of AI and avoid exposing weaknesses of AI in our system.
 
------
 
 # Lab 3 Part 2
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
 
-## Prep for Part 2
+### User Interaction Flow Chart
 
-1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
-2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
-3. Make a new storyboard, diagram and/or script based on these reflections.
+#### Score Board Feature
+<img src="interaction/flow_score.png" alt="frame 1"/>
 
-## Prototype your system
+#### Idea Box Feature
+<img src="interaction/flow_punishment.png" alt="frame 1" />
 
-*Document how the system works*
-
-*Include videos or screencaptures of both the system and the controller.*
-
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
-  
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-  This helps ensure your README.md is clear professional and uniquely yours!
-</details>
-
-
-Prototype your system
-* use the Raspberry Pi
-* use one or more sensors
-* require participants to speak to it.
-
-**Document how the system works**
 
 ### Running the script
 
@@ -196,7 +170,6 @@ pip install requests speechrecognition pyaudio flask flask-socketio
 
 ```
 pip install adafruit-circuitpython-mpr121
-
 ```
 3. running the script
 
@@ -204,6 +177,23 @@ pip install adafruit-circuitpython-mpr121
 python party_game_assistant.py
 ```
 
+### Demo
+
+**video example**  `Start Game` -> ` Enter number of players` -> `update score` ->  `User# plus / minus amount` : 
+- After the user start the game with voice control, user can touch the pad to indicate how many players there are for this game
+- Commands like “update score” trigger a short interaction flow, where the system waits for the next instruction (player + amount).
+- https://drive.google.com/file/d/1G3Y2ljqYQE7NIuNFt3YNdnzj_blnpvc8/view?usp=drive_link
+
+**video example**  `Punishment ` -> ` Punishment Type Selection` -> ` Punishment User Selection` -> `Punishment Duration Selection` -> `Run Punishment Countdown`  :
+- Users ask the device (assistant) for punishment ideas, touch sensor to select pushishment types, touch sensor to select punishment duration
+- https://drive.google.com/file/d/1GnMq-7LttGka26wA3vRnvQHRhy9rxtnM/view?usp=drive_link
+
+**video example**  `Game help / instructions` :
+- Users ask the device (assistant) questions about the game's rule, device output AI-generated response
+- https://drive.google.com/file/d/1Ej2u_rBWTT5JamR8uJ0Miz2fz1tgFu0Z/view?usp=drive_link
+
+
+---
 
 ### Command Reference Table
 
@@ -230,21 +220,6 @@ python party_game_assistant.py
 | Initialize Number of Players        | Touch a pad 1–11 to indicate number of players                       | Pad 2 = 2 player, Pad 3 = 3 players...                              |
 | Punishment Type Selection     | Touch pad 0–4 to select one of the 5 AI-generated punishment options | Pad 0 = Option 1, Pad 1 = Option 2, Pad 2 = Option 3, … Pad 4 = Option 5                   |
 | Punishment Duration Selection | Touch pad 5–11 to select duration in seconds                         | Pad 5 = 5s, Pad 6 = 10s, Pad 7 = 15s, Pad 8 = 20s, Pad 9 = 30s, Pad 10 = 45s, Pad 11 = 60s |
-
-
-**video example**  `Start Game` -> ` Enter number of players` -> `update score` ->  `User# plus / minus amount` : 
-- After the user start the game with voice control, user can touch the pad to indicate how many players there are for this game
-- Commands like “update score” trigger a short interaction flow, where the system waits for the next instruction (player + amount).
-- https://drive.google.com/file/d/1G3Y2ljqYQE7NIuNFt3YNdnzj_blnpvc8/view?usp=drive_link
-
-**video example**  `Punishment ` -> ` Punishment Type Selection` -> ` Punishment User Selection` -> `Punishment Duration Selection` -> `Run Punishment Countdown`  :
-- Users ask the device (assistant) for punishment ideas, touch sensor to select pushishment types, touch sensor to select punishment duration
-- https://drive.google.com/file/d/1GnMq-7LttGka26wA3vRnvQHRhy9rxtnM/view?usp=drive_link
-
-**video example**  `Game help / instructions` :
-- Users ask the device (assistant) questions about the game's rule, device output AI-generated response
-- https://drive.google.com/file/d/1Ej2u_rBWTT5JamR8uJ0Miz2fz1tgFu0Z/view?usp=drive_link
-
 
 
 
@@ -302,14 +277,6 @@ python party_game_assistant.py
        - Touch sensor feedback for selection of options and durations.
 
 <img src="interaction/countdown.png" alt="frame 1" width="800"/>
-
-### 2. User Interaction Flow Chart
-
-#### Score Board Feature
-<img src="interaction/flow_score.png" alt="frame 1"/>
-
-#### Idea Box Feature
-<img src="interaction/flow_punishment.png" alt="frame 1" />
 
 
 **What worked well about the system and what didn't?**
@@ -373,9 +340,51 @@ Assistant: Sorry, the response took too long. Please try again.
 
 - 3. In the original design, the players do not have to say “Update scores” to trigger the score update feature. When testing this with other users, I noticed two main issues: first, users often spoke in natural but unpredictable ways that the system struggled to parse correctly; second, without an explicit “update” trigger, the assistant sometimes confused score updates with unrelated speech, reducing accuracy and disrupting the game flow.
 
+---
 
 **What worked well about the controller and what didn't?**
 
+#### Strengths
+Our system provides rich, interactive features that is aligned with our design vision of a party game assistant.
+
+- We offer practical solutions like providing rule explanations and score keeping help so the users can focus more on the game
+- Creative solutions like coming up with funny, light-hearted punishments can keep the game moving when the group is running out of ideas or when the friend group is relatively new. This greatly reduces the bottleneck of party games and enhance the fun part of it.
+- Accessibility & Availability - with the addition of the touch sensor, now there is a way to interact with the device when the enviornment noise level is high. This accounts for true game-playing scenarios when the background is usually noisy.
+
+#### Weaknesses
+Due to the time and resource constraints, there are a couple things that we wish to improve on: 
+
+- Pursuing the "warewolves" or a immersive storytelling role of the device
+  - especially with the addition of the sensor, warewolves might be a good candidate for this device because there's a component where killer has to assasinate a player, we feel this could be done through the MPR121 sensor perfectly!!
+- Flow and sound of the conversation design and dialogue
+  - at one point we've thought of recording an "intro" sound effect or a "cash register" sound effect to be more immersive and offers a true excitement for our users
+  - this should be relatively easy to add, we just decided to use those time to flesh out the script and implement the technical solutions better
+
 **What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?**
 
+- Users expect faster AI response times
+  - this is apparent and we tried multiple models
+  - this can be somewhat mitigated by offering cues like "thinking of something right now", either through audio output, or on console, to signal the conversation hasn't ended
+- Touch sensor needs confirmation feedback
+  - In a tradeoff for longer user flow, user might want to have a "back out" or "cancel" option offered when the wrong number of players is selected
+
+---
+
 **How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?**
+
+#### Interaction dataset creation
+- Log all touch inputs with timestamps (pad number, selection type, response time), voice commands with transcription confidence scores, AI-generated punishments with selection rates, and session metadata (game duration, number of players, punishment frequency).
+- This dataset will allow researchers and game desginers/developers to understand how people behave in gameplay scenarios in different sizes of groups. With the collection of user survey we can even explore how people behave and make decisions when they are in social in-groups vs strangers.
+- The punishment selection and data can be studied in various scenarios, particularly with psych/sociology or behavrioral econ contexts:
+  - How do people choose punishments among those presented to them?
+  - How long does it take for people to decide on punishments for others?
+  - When AI suggests potentially problematic options, do people still opt for those? Or do they try to come up with something everyone is comfortable with?
+
+#### Additional sensing modalities
+
+- Camera
+  - to study pose for each player when punishments are completed (did the player actually dance for 30 seconds?) 
+  - can capture facial expressions for automatic difficulty calibration or for future recommendations
+- Microphone
+  - to identify individual players by voice, track laughter intensity as an engagement metric, and detect frustration for game pacing adjustments.
+- Pressure sensors integrated into game pieces or the board itself to automatically detect player positions and trigger location-based events without manual input.
