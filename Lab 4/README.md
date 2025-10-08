@@ -205,18 +205,18 @@ You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_C
 </a>
 
 ### Proximity Sensor
-<a href="https://drive.google.com/file/d/1LHK3FUekAaceldirhANOR2ejyszXNGZs/view?usp=sharing">
-  <img src="" alt="Watch the video" width="50%"/>
+<a href="https://drive.google.com/file/d/1wR2hlbg4L0NEHqKz22Iuk_joZSZ03NmU/view?usp=sharing">
+  <img src="proximity_demo" alt="Watch the video" width="50%"/>
 </a>
 
 ### Gesture Sensor
-<a href="https://drive.google.com/file/d/1o_3bsJ4SPG-J-lyWNZgraCDtJGMWwgW-/view?usp=sharing">
-  <img src="mints_touch_sensor.png" alt="Watch the video" width="50%"/>
+<a href="https://drive.google.com/file/d/1HdXgBWi7IqDgMRbetC-ETP8n4h-rlmix/view?usp=sharing">
+  <img src="gesture_demo" alt="Watch the video" width="50%"/>
 </a>
 
-#### Rotary Encoder 
-
-A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came with separate breakout board and encoder itself, that is, they will need to be soldered if you have not yet done so! We will be bringing the soldering station to the lab class for you to use, also, you can go to the MakerLAB to do the soldering off-class. Here is some [guidance on soldering](https://learn.adafruit.com/adafruit-guide-excellent-soldering/preparation) from Adafruit. When you first solder, get someone who has done it before (ideally in the MakerLAB environment). It is a good idea to review this material beforehand so you know what to look at.
+<details> 
+	<summary><strong>Rotary Encoder </strong></summary>
+	A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came with separate breakout board and encoder itself, that is, they will need to be soldered if you have not yet done so! We will be bringing the soldering station to the lab class for you to use, also, you can go to the MakerLAB to do the soldering off-class. Here is some [guidance on soldering](https://learn.adafruit.com/adafruit-guide-excellent-soldering/preparation) from Adafruit. When you first solder, get someone who has done it before (ideally in the MakerLAB environment). It is a good idea to review this material beforehand so you know what to look at.
 
 <p float="left">
 
@@ -232,10 +232,15 @@ Connect it to your pi with Qwiic connector and try running the example script, i
 ```
 
 You can go to the [Adafruit Learn Page](https://learn.adafruit.com/adafruit-i2c-qt-rotary-encoder/python-circuitpython) to learn more about the sensor! The sensor actually comes with an LED (neo pixel): Can you try lighting it up? 
+</details>
 
-#### Joystick 
+<a href="https://drive.google.com/file/d/118q29NelT253OV3SDiViSWC53AV_Uej-/view?usp=sharing">
+  <img src="rotary_demo" alt="Watch the video" width="50%"/>
+</a>
 
-
+<details>
+	<summary><strong>Joystick</strong></summary>
+	
 A [joystick](https://www.sparkfun.com/products/15168) can be used to sense and report the input of the stick for it pivoting angle or direction. It also comes with a button input!
 
 <p float="left">
@@ -250,9 +255,15 @@ Connect it to your pi with Qwiic connector and try running the example script to
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Joystick_Py) to learn more about the sensor!
 
-#### Distance Sensor
+</details>
 
+<a href="https://drive.google.com/file/d/1omgW6KX0jmCe2UsV1cPgFuCHKB7BV50a/view?usp=sharing">
+  <img src="joystick_demo" alt="Watch the video" width="50%"/>
+</a>
 
+<details>
+	<summary><strong>Distance Sensor</strong></summary>
+	
 Earlier we have asked you to play with the proximity sensor, which is able to sense objects within a short distance. Here, we offer [Sparkfun Proximity Sensor Breakout](https://www.sparkfun.com/products/15177), With the ability to detect objects up to 20cm away.
 
 <p float="left">
@@ -267,6 +278,12 @@ Connect it to your pi with Qwiic connector and try running the example script to
 ```
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proximity_Py) to learn more about the sensor and see other examples
+</details>
+
+<a href="https://drive.google.com/file/d/1wR2hlbg4L0NEHqKz22Iuk_joZSZ03NmU/view?usp=sharing">
+  <img src="distance_demo" alt="Watch the video" width="50%"/>
+</a>
+
 
 ### Part C
 ### Physical considerations for sensing
