@@ -366,7 +366,7 @@ Think about how you want to present the information about what your sensor is se
 
 
 **5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.**
-<img src="NBMetadataCache.jpeg" width=100%>
+<img src="NBMetadataCache.jpeg" width=50%>
 <img src="PXL_20251008_210615884.MP.jpg" width=50%>
 
 **What are some things these sketches raise as questions? What do you need to physically prototype to understand how to answer those questions?**
