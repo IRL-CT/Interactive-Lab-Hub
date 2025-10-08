@@ -260,17 +260,31 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 
 **\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
 
-**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+**What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?**
+1. Anti-Roommate Snack Protector
+   - How do we conceal the wire and the rasppi so that the roommate wouldn't notice its a trap?
+   - How would we make this a more complex prototype in terms of more than just the sensor and sound?
+2. Freeze Dance!
+   - Where should we place the sensor so that it detects the right amount of movement?
+   - How can we make the party machine portable but still sturdy?
+3. Candy Motion Dispense
+   - How do we use motors to dispense the candy?
+   - Where does the sensor have to be placed in order to detect the hand?
+4. Gimme a Joke
+   - How do we make a button and mini screen inviting/attractive to the user?
+   - How do we make the tiny screen interactive?
+5. Remote Cat Toy
+   - How do we integrate all three input/outputs in a fluid manner?
+   - How do we cat-proof the second end of the device?
 
-**\*\*\*Pick one of these designs to prototype.\*\*\***
-
+**Pick one of these designs to prototype.**
+We decided to pick Freeze Dance because we thought it was the most exciting and interactive device to prototype. add more text here.
 
 ### Part D
-### Physical considerations for displaying information and housing parts
 
-
-
-Here is a Pi with a paper faceplate on it to turn it into a display interface:
+<details>
+	<summary><strong>Physical considerations for displaying information and housing parts</strong></summary>
+	Here is a Pi with a paper faceplate on it to turn it into a display interface:
 
 
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/paper_if.png?raw=true"  width="250"/>
@@ -306,6 +320,9 @@ Here is an example:
 
 Think about how you want to present the information about what your sensor is sensing! Design a paper display for your project that communicates the state of the Pi and a sensor. Ideally you should design it so that you can slide the Pi out to work on the circuit or programming, and then slide it back in and reattach a few wires to be back in operation.
  
+</details>
+
+
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
