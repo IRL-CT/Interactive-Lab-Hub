@@ -17,28 +17,30 @@
 
 ## Lab 4 Deliverables
 
-### Part 1 (Week 1)
-**Submit the following for Part 1:**  
-~~*️⃣ **A. Capacitive Sensing**~~
-	~~- Photos/videos of your Twizzler (or other object) capacitive sensor setup~~
-	~~- Code and terminal output showing touch detection~~
+<details>
+	<summary><strong>Part 1 (Week 1)</strong></summary>
+	**Submit the following for Part 1:**  
+*️⃣ **A. Capacitive Sensing**
+	- Photos/videos of your Twizzler (or other object) capacitive sensor setup
+	- Code and terminal output showing touch detection
 
-~~*️⃣ **B. More Sensors**~~
-	~~- Photos/videos of each sensor tested (light/proximity, rotary encoder, joystick, distance sensor)~~~
-	~~- Code and terminal output for each sensor~~
+*️⃣ **B. More Sensors**
+	- Photos/videos of each sensor tested (light/proximity, rotary encoder, joystick, distance sensor)
+	- Code and terminal output for each sensor
 
-~~*️⃣ **C. Physical Sensing Design**~~
-	~~- 5 sketches of different ways to use your chosen sensor~~
-	~~- Written reflection: questions raised, what to prototype~~
-	~~- Pick one design to prototype and explain why~~
+*️⃣ **C. Physical Sensing Design**
+	- 5 sketches of different ways to use your chosen sensor
+	- Written reflection: questions raised, what to prototype
+	- Pick one design to prototype and explain why
 
-~~*️⃣ **D. Display & Housing**~~
-	~~- 5 sketches for display/button/knob positioning~~
-	~~- Written reflection: questions raised, what to prototype~~
-	~~- Pick one display design to integrate~~
-	~~- Rationale for design~~
-	~~- Photos/videos of your cardboard prototype~~
+*️⃣ **D. Display & Housing**
+	- 5 sketches for display/button/knob positioning
+	- Written reflection: questions raised, what to prototype
+	- Pick one display design to integrate
+	- Rationale for design
+	- Photos/videos of your cardboard prototype
 
+</details>
 ---
 
 ### Part 2 (Week 2)
