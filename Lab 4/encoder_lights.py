@@ -1,7 +1,7 @@
 import time
 import board
 from adafruit_seesaw import seesaw, rotaryio, digitalio
-from adafruit_mcp230xx.mcp23008 import MCP23008
+from adafruit_mcp230xx.mcp23017 import MCP23017
 
 i2c = board.I2C()
 
@@ -15,7 +15,7 @@ encoder_ss.pin_mode(24, encoder_ss.INPUT_PULLUP)
 button = digitalio.DigitalIO(encoder_ss, 24)
 encoder = rotaryio.IncrementalEncoder(encoder_ss)
 
-gpio = MCP23008(i2c, address=0x27)
+gpio = MCP23017(i2c, address=0x27)
 
 led_pins = [gpio.get_pin(i) for i in range(4)]
 for led in led_pins:
@@ -24,9 +24,11 @@ for led in led_pins:
 last_position = None
 button_held = False
 
+print("Ready! Rotate encoder to change LEDs.\n")
+
 while True:
     position = -encoder.position
-    position_mod = position % 4  
+    position_mod = position % 4
 
     if position != last_position:
         last_position = position
@@ -34,7 +36,6 @@ while True:
 
         for led in led_pins:
             led.value = False
-
         led_pins[position_mod].value = True
 
     if not button.value and not button_held:
