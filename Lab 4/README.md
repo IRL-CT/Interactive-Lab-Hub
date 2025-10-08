@@ -14,9 +14,8 @@
 </details>
 
 ---
-
-## Lab 4 Deliverables
-
+<details><summary><h2>Lab 4 Deliverables</h2></summary>
+	
 ### Part 1 (Week 1)
 **Submit the following for Part 1:**  
 *️⃣ **A. Capacitive Sensing**
@@ -51,6 +50,7 @@
 	- Photos/videos of your final prototype
 	- Written summary: what it looks like, works like, acts like
 	- Reflection on what you learned and next steps
+</details>
 
 ---
 
@@ -60,7 +60,7 @@
 
 For lab this week, we focus both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
 
-## Part 1 Lab Preparation
+<details><summary><h2>Part 1 Lab Preparation</h2></summary>
 
 ### Get the latest content:
 As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. As we discussed in the class, there are 2 ways you can do so:
@@ -112,6 +112,7 @@ For submission, the readme.md page for this lab should be edited to include the 
 * Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
 * Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
 
+</details>
 
 ## Lab Overview
 
@@ -130,6 +131,8 @@ F) [Record the interaction](#part-f)
 
 ## The Report (Part 1: A-D, Part 2: E-F)
 
+<details> <summary>Setup</summary>
+	
 ### Quick Start: Python Environment Setup
 
 1. **Create and activate a virtual environment in Lab 4:**
@@ -147,10 +150,12 @@ F) [Record the interaction](#part-f)
 	python blinkatest.py
 	```
 	If you see "Hello blinka!", your setup is correct. If not, follow the troubleshooting steps in the file or ask for help.
+</details>
 
-### Part A
-### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
+### Part A: Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
 
+<details> <summary>Instructions</summary>  
+	
 We want to introduce you to the [capacitive sensor](https://learn.adafruit.com/adafruit-mpr121-gator) in your kit. It's one of the most flexible input devices we are able to provide. At boot, it measures the capacitance on each of the 12 contacts. Whenever that capacitance changes, it considers it a user touch. You can attach any conductive material. In your kit, you have copper tape that will work well, but don't limit yourself! In the example below, we use Twizzlers--you should pick your own objects.
 
 
@@ -169,8 +174,11 @@ Twizzler 10 touched!
 Twizzler 6 touched!
 ```
 
-### Part B
-### More sensors
+</details>
+
+### Part B: More sensors
+
+<details> <summary>Instructions</summary>  
 
 #### Light/Proximity/Gesture sensor (APDS-9960)
 
@@ -246,12 +254,15 @@ Connect it to your pi with Qwiic connector and try running the example script to
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proximity_Py) to learn more about the sensor and see other examples
 
+</details> 
+
 ### Part C
 ### Physical considerations for sensing
 
+<details> <summary>Instructions</summary>  
 
 Usually, sensors need to be positioned in specific locations or orientations to make them useful for their application. Now that you've tried a bunch of the sensors, pick one that you would like to use, and an application where you use the output of that sensor for an interaction. For example, you can use a distance sensor to measure someone's height if you position it overhead and get them to stand under it.
-
+</details>
 
 **\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
 
@@ -263,7 +274,7 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 ### Part D
 ### Physical considerations for displaying information and housing parts
 
-
+<details> <summary>Instructions</summary>  
 
 Here is a Pi with a paper faceplate on it to turn it into a display interface:
 
@@ -300,6 +311,8 @@ Here is an example:
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/horoscope.png?raw=true"  width="250"/>
 
 Think about how you want to present the information about what your sensor is sensing! Design a paper display for your project that communicates the state of the Pi and a sensor. Ideally you should design it so that you can slide the Pi out to work on the circuit or programming, and then slide it back in and reattach a few wires to be back in operation.
+
+</details> 
  
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
 
