@@ -200,18 +200,18 @@ You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_C
 </details>
 
 ### Light Sensor
-<a href="https://drive.google.com/file/d/1o_3bsJ4SPG-J-lyWNZgraCDtJGMWwgW-/view?usp=sharing">
-  <img src="mints_touch_sensor.png" alt="Watch the video" width="50%"/>
+<a href="https://drive.google.com/file/d/17o3jzOjhaZLSZGRchTLip_6mdbL5KMBl/view?usp=sharing">
+  <img src="light_demo.png" alt="Watch the video" width="50%"/>
 </a>
 
 ### Proximity Sensor
 <a href="https://drive.google.com/file/d/1wR2hlbg4L0NEHqKz22Iuk_joZSZ03NmU/view?usp=sharing">
-  <img src="proximity_demo" alt="Watch the video" width="50%"/>
+  <img src="proximity_demo.png" alt="Watch the video" width="50%"/>
 </a>
 
 ### Gesture Sensor
 <a href="https://drive.google.com/file/d/1HdXgBWi7IqDgMRbetC-ETP8n4h-rlmix/view?usp=sharing">
-  <img src="gesture_demo" alt="Watch the video" width="50%"/>
+  <img src="gesture_demo.png" alt="Watch the video" width="50%"/>
 </a>
 
 <details> 
@@ -235,11 +235,12 @@ You can go to the [Adafruit Learn Page](https://learn.adafruit.com/adafruit-i2c-
 </details>
 
 <a href="https://drive.google.com/file/d/118q29NelT253OV3SDiViSWC53AV_Uej-/view?usp=sharing">
-  <img src="rotary_demo" alt="Watch the video" width="50%"/>
+  <img src="rotary_demo.png" alt="Watch the video" width="50%"/>
 </a>
 
+### Joystick
 <details>
-	<summary><strong>Joystick</strong></summary>
+	<summary>Joystick Instruction</summary>
 	
 A [joystick](https://www.sparkfun.com/products/15168) can be used to sense and report the input of the stick for it pivoting angle or direction. It also comes with a button input!
 
@@ -258,11 +259,12 @@ You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Joyst
 </details>
 
 <a href="https://drive.google.com/file/d/1omgW6KX0jmCe2UsV1cPgFuCHKB7BV50a/view?usp=sharing">
-  <img src="joystick_demo" alt="Watch the video" width="50%"/>
+  <img src="joystick_demo.png" alt="Watch the video" width="50%"/>
 </a>
 
+### Distance Sensor
 <details>
-	<summary><strong>Distance Sensor</strong></summary>
+	<summary>Distance Sensor Instructions</summary>
 	
 Earlier we have asked you to play with the proximity sensor, which is able to sense objects within a short distance. Here, we offer [Sparkfun Proximity Sensor Breakout](https://www.sparkfun.com/products/15177), With the ability to detect objects up to 20cm away.
 
@@ -281,7 +283,7 @@ You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proxi
 </details>
 
 <a href="https://drive.google.com/file/d/1wR2hlbg4L0NEHqKz22Iuk_joZSZ03NmU/view?usp=sharing">
-  <img src="distance_demo" alt="Watch the video" width="50%"/>
+  <img src="distance_demo.png" alt="Watch the video" width="50%"/>
 </a>
 
 
