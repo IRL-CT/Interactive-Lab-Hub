@@ -29,7 +29,7 @@
 
 *️⃣ **C. Physical Sensing Design**
 	- 5 sketches of different ways to use your chosen sensor
-	- Written reflection: questions raised, what to prototype
+	~~- Written reflection: questions raised, what to prototype~~
 	- Pick one design to prototype and explain why
 
 *️⃣ **D. Display & Housing**
@@ -284,7 +284,8 @@ We decided to pick Freeze Dance because we thought it was the most exciting and 
 
 <details>
 	<summary><strong>Physical considerations for displaying information and housing parts</strong></summary>
-	Here is a Pi with a paper faceplate on it to turn it into a display interface:
+	
+Here is a Pi with a paper faceplate on it to turn it into a display interface:
 
 
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/paper_if.png?raw=true"  width="250"/>
