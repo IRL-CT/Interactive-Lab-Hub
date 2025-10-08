@@ -326,11 +326,14 @@ Think about how you want to present the information about what your sensor is se
 
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
 
-**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+***What are some things these sketches raise as questions? What do you need to physically prototype to understand how to answer those questions?**
 
-**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+These sketches raised the question of portability; how big or how small do we want our machine to be? Once we answer that question we can discover how to scale the project properly. These sketches also raise the question of how we orient the device; Do we prefer the vertical aspect of height or do we prioritize surface area for stability since it is going to be around lots of movement? Additionally, we need to be sure of our future plans of the device and what other additional features we may want to add, which impacts our decisions on the past two questions.
 
-**\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+**Pick one of these display designs to integrate into your prototype.**
+**Explain the rationale for the design.** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+
+We decided to go with the Extra Portable small design so the user can have a party anywhere they go! We sacrificed the surface area for portability as well as the plan of covering the entire box in disco ball surface so it eliminates the need for a flat top to place a possible disco ball. For the size, we chose a device size that is about the span of an extended hand. Additionally, the design we chose is the one with the handle so that it can be picked up pretty easily for on-the-go moves.
 
 Build a cardboard prototype of your design.
 
