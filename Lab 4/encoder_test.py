@@ -1,38 +1,41 @@
-# SPDX-FileCopyrightText: 2021 John Furcean
-# SPDX-License-Identifier: MIT
-
-"""I2C rotary encoder simple test example."""
-
+import time
 import board
 from adafruit_seesaw import seesaw, rotaryio, digitalio
+from adafruit_mcp230xx.mcp23008 import MCP23008
 
-# For use with the STEMMA connector on QT Py RP2040
-# import busio
-# i2c = busio.I2C(board.SCL1, board.SDA1)
-# seesaw = seesaw.Seesaw(i2c, 0x36)
+i2c = board.I2C()
 
-seesaw = seesaw.Seesaw(board.I2C(), addr=0x36)
+encoder_ss = seesaw.Seesaw(i2c, addr=0x36)
+encoder_product = (encoder_ss.get_version() >> 16) & 0xFFFF
+print(f"Found encoder product {encoder_product}")
+if encoder_product != 4991:
+    print("Warning: wrong firmware? Expected 4991")
 
-seesaw_product = (seesaw.get_version() >> 16) & 0xFFFF
-print("Found product {}".format(seesaw_product))
-if seesaw_product != 4991:
-    print("Wrong firmware loaded?  Expected 4991")
+encoder_ss.pin_mode(24, encoder_ss.INPUT_PULLUP)
+button = digitalio.DigitalIO(encoder_ss, 24)
+encoder = rotaryio.IncrementalEncoder(encoder_ss)
 
-seesaw.pin_mode(24, seesaw.INPUT_PULLUP)
-button = digitalio.DigitalIO(seesaw, 24)
+gpio = MCP23008(i2c, address=0x27)
+
+led_pins = [gpio.get_pin(i) for i in range(4)]
+for led in led_pins:
+    led.switch_to_output(value=False)
+
+last_position = None
 button_held = False
 
-encoder = rotaryio.IncrementalEncoder(seesaw)
-last_position = None
-
 while True:
-
-    # negate the position to make clockwise rotation positive
     position = -encoder.position
+    position_mod = position % 4  
 
     if position != last_position:
         last_position = position
-        print("Position: {}".format(position))
+        print(f"Encoder position: {position} → LED {position_mod}")
+
+        for led in led_pins:
+            led.value = False
+
+        led_pins[position_mod].value = True
 
     if not button.value and not button_held:
         button_held = True
@@ -41,3 +44,5 @@ while True:
     if button.value and button_held:
         button_held = False
         print("Button released")
+
+    time.sleep(0.05)
