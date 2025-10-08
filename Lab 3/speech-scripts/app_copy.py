@@ -193,7 +193,7 @@ def auto_after_play(token):
                 return
             if is_stopped or is_paused:
                 print("[AUTO] manually paused/stopped, abort this round.")
-                continue
+                return
             if not mixer_busy_safe():
                 break
             time.sleep(0.1)
@@ -291,7 +291,7 @@ def monitor_hardware_button():
                 
                 # Check if button is pressed: byte[3] == 0x07
                 # Normal state: byte[3] == 0x03
-                button_pressed = (result[3] == 0x07)
+                button_pressed = (result[1] == 0x03)
                 
                 # Detect button press (rising edge only)
                 if button_pressed and not button_was_pressed:
