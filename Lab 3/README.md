@@ -150,11 +150,27 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 ### User Interaction Flow Chart
 
-#### Score Board Feature
+### 🎮 Game Moderator Device – Voice Assistant (Raspberry Pi + Ollama + MPR121)
+
+Our device functions as a **voice-controlled game moderator** designed to make group games like Werewolf or Monopoly more interactive and engaging. It uses speech recognition, text-to-speech, and a touch sensor interface (MPR121) to communicate naturally with players. We originally planned three main features—IdeaBox, Werewolves, and Rules Explain—but for this prototype, we implemented two: IdeaBox and Rules Explain.
+
+- 💡 The IdeaBox feature uses AI (through the Ollama model) to generate fun, creative punishment or activity ideas that players can select by touching specific pads on the MPR121 sensor. 
+
+<p float="left">
+  <img src="interaction/ideabox.png" alt="diagram" width="500" />
+</p>
+
+<img src="interaction/flow_punishment.png" alt="frame 1" />
+
+
+- 📘 The Rules Explain feature allows players to ask questions about the game’s rules, and provides score keeping feature for players. Assistant responds with AI-generated explanations through voice output. 
+
+<p float="left">
+  <img src="interaction/rule.png" alt="diagram" width="500" />
+</p>
+
 <img src="interaction/flow_score.png" alt="frame 1"/>
 
-#### Idea Box Feature
-<img src="interaction/flow_punishment.png" alt="frame 1" />
 
 
 ### Running the script
