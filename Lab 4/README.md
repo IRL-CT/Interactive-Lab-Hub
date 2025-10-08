@@ -318,6 +318,7 @@ Usually, sensors need to be positioned in specific locations or orientations to 
    - How do we cat-proof the second end of the device?
 
 **Pick one of these designs to prototype.**
+
 We decided to pick Freeze Dance because we thought it was the most exciting and interactive device to prototype. add more text here.
 
 ### Part D
@@ -368,7 +369,7 @@ Think about how you want to present the information about what your sensor is se
 <img src="NBMetaDataCache.jpeg" width=50%>
 <img src="PXL_20251008_210615884.MP.jpg" width=50%>
 
-***What are some things these sketches raise as questions? What do you need to physically prototype to understand how to answer those questions?**
+**What are some things these sketches raise as questions? What do you need to physically prototype to understand how to answer those questions?**
 
 These sketches raised the question of portability; how big or how small do we want our machine to be? Once we answer that question we can discover how to scale the project properly. These sketches also raise the question of how we orient the device; Do we prefer the vertical aspect of height or do we prioritize surface area for stability since it is going to be around lots of movement? Additionally, we need to be sure of our future plans of the device and what other additional features we may want to add, which impacts our decisions on the past two questions.
 
@@ -381,12 +382,15 @@ Build a cardboard prototype of your design.
 
 
 **Initial Planning**
+
 <img src="PXL_20251008_212954779.MP.jpg" width=50%>
 
 **Handle Prototyping**
-<img src="PXL_20251008_213006788.MP.jpg" width=50%>
+
+<img src="PXL_20251008_213006788.MP.jpg" width=30%>
 
 **Cardboard Prototype**
+
 <img src="PXL_20251008_214438351.MP.jpg" width=50%>
 
 # LAB PART 2
