@@ -295,6 +295,7 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 
 
 **Five sketches of different ways you might use your sensor**
+
 <img src="PXL_20251008_170113134.MP.jpg" width=50%>
 <img src="PXL_20251008_170528809.MP.jpg" width=50%>
 <img src="cattoyremote.jpeg" width=50%>
@@ -365,7 +366,7 @@ Think about how you want to present the information about what your sensor is se
 
 **5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.**
 <img src="NBMetaDataCache.jpeg" width=50%>
-<img src="PXL_20251008_210615884.MP.png" width=50%>
+<img src="PXL_20251008_210615884.MP.jpg" width=50%>
 
 ***What are some things these sketches raise as questions? What do you need to physically prototype to understand how to answer those questions?**
 
@@ -380,13 +381,13 @@ Build a cardboard prototype of your design.
 
 
 **Initial Planning**
-<img src="PXL_20251008_212954779.MP.png" width=50%>
+<img src="PXL_20251008_212954779.MP.jpg" width=50%>
 
 **Handle Prototyping**
-<img src="PXL_20251008_213006788.MP.png" width=50%>
+<img src="PXL_20251008_213006788.MP.jpg" width=50%>
 
 **Cardboard Prototype**
-<img src="PXL_20251008_214438351.MP.png" width=50%>
+<img src="PXL_20251008_214438351.MP.jpg" width=50%>
 
 # LAB PART 2
 
