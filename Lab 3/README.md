@@ -309,8 +309,6 @@ python party_game_assistant.py
 
 - "The separate modes (score tracking vs punishment) made it really clear what I was doing."
 - "The visual countdown display was good "
-
-**What didn't work well:**
 - "When background noise was high (we had music playing), the mic picked up song lyrics and tried to process them as commands."
 
 **Suggestions:**
