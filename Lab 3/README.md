@@ -294,6 +294,30 @@ python party_game_assistant.py
 
 <img src="interaction/countdown.png" alt="frame 1" width="800"/>
 
+### User Testing Feedback
+
+#### User 1: Irene
+- "The touch sensor for selecting punishment duration was super intuitive - way better than trying to say numbers out loud when everyone's talking."
+- "AI came up with actually funny punishments instead of the same boring stuff we always do."
+- "I accidentally touched two pads at once when selecting a punishment and it picked the wrong one. A confirmation step would be nice."
+
+**Suggestions:**
+- Add background music during AI thinking time
+- Visual feedback on the screen showing which pad was touched
+
+#### User 2: Jessica
+
+- "The separate modes (score tracking vs punishment) made it really clear what I was doing."
+- "The visual countdown display was good "
+
+**What didn't work well:**
+- "When background noise was high (we had music playing), the mic picked up song lyrics and tried to process them as commands."
+
+**Suggestions:**
+- Print or display the pad mapping on screen during selection
+- Add a physical button for "start listening" to avoid false triggers
+
+---
 
 **What worked well about the system and what didn't?**
 - 1. Initially, I tried to have the assistant keep track of players’ names (e.g., Charlotte, Eva, and Zoe). However, after several trials, I realized that the speech-to-text recognition often failed to correctly capture the names. To fix this issue, I replaced the names with generic identifiers such as “user 1,” “user 2,” and “user 3.” This change improved accuracy, as the speech recognizer could more reliably detect which user’s score needed to be updated.
