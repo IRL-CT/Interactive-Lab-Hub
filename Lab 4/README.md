@@ -17,9 +17,9 @@
 
 ## Lab 4 Deliverables
 
+### Part 1 (Week 1)
 <details>
-	<summary><strong>Part 1 (Week 1)</strong></summary>
-	**Submit the following for Part 1:**  
+	<summary><strong>**Submit the following for Part 1:**  </strong></summary>
 *️⃣ **A. Capacitive Sensing**
 	- Photos/videos of your Twizzler (or other object) capacitive sensor setup
 	- Code and terminal output showing touch detection
