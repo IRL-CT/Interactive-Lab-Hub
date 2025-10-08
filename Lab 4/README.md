@@ -174,11 +174,11 @@ These Twizzlers are connected to pads 6 and 10. When you run the code and touch 
   <img src="mints_touch_sensor.png" alt="Watch the video" width="50%"/>
 </a>
 
-### Part B
-### More sensors
+### *️⃣B. More sensors
 
-#### Light/Proximity/Gesture sensor (APDS-9960)
-
+<details>
+	<summary><strong>Light/Proximity/Gesture sensor (APDS-9960)</strong></summary>
+	
 We here want you to get to know this awesome sensor [Adafruit APDS-9960](https://www.adafruit.com/product/3595). It is capable of sensing proximity, light (also RGB), and gesture! 
  
 <img src="https://cdn-shop.adafruit.com/970x728/3595-06.jpg" width=200>
@@ -196,6 +196,9 @@ Connect it to your pi with Qwiic connector and try running the three example scr
 ```
 
 You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_CircuitPython_APDS9960) to see more examples for this sensor!
+
+</details>
+### Light Sensor
 
 #### Rotary Encoder 
 
