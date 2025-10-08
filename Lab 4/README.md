@@ -198,7 +198,21 @@ Connect it to your pi with Qwiic connector and try running the three example scr
 You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_CircuitPython_APDS9960) to see more examples for this sensor!
 
 </details>
+
 ### Light Sensor
+<a href="https://drive.google.com/file/d/1o_3bsJ4SPG-J-lyWNZgraCDtJGMWwgW-/view?usp=sharing">
+  <img src="mints_touch_sensor.png" alt="Watch the video" width="50%"/>
+</a>
+
+### Proximity Sensor
+<a href="https://drive.google.com/file/d/1LHK3FUekAaceldirhANOR2ejyszXNGZs/view?usp=sharing">
+  <img src="" alt="Watch the video" width="50%"/>
+</a>
+
+### Gesture Sensor
+<a href="https://drive.google.com/file/d/1o_3bsJ4SPG-J-lyWNZgraCDtJGMWwgW-/view?usp=sharing">
+  <img src="mints_touch_sensor.png" alt="Watch the video" width="50%"/>
+</a>
 
 #### Rotary Encoder 
 
