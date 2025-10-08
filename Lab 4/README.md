@@ -23,21 +23,21 @@
 	~~- Photos/videos of your Twizzler (or other object) capacitive sensor setup~~
 	~~- Code and terminal output showing touch detection~~
 
-*️⃣ **B. More Sensors**
-	- Photos/videos of each sensor tested (light/proximity, rotary encoder, joystick, distance sensor)
-	- Code and terminal output for each sensor
+~~*️⃣ **B. More Sensors**~~
+	~~- Photos/videos of each sensor tested (light/proximity, rotary encoder, joystick, distance sensor)~~~
+	~~- Code and terminal output for each sensor~~
 
-*️⃣ **C. Physical Sensing Design**
-	- 5 sketches of different ways to use your chosen sensor
+~~*️⃣ **C. Physical Sensing Design**~~
+	~~- 5 sketches of different ways to use your chosen sensor~~
 	~~- Written reflection: questions raised, what to prototype~~
-	- Pick one design to prototype and explain why
+	~~- Pick one design to prototype and explain why~~
 
-*️⃣ **D. Display & Housing**
-	- 5 sketches for display/button/knob positioning
-	- Written reflection: questions raised, what to prototype
-	- Pick one display design to integrate
-	- Rationale for design
-	- Photos/videos of your cardboard prototype
+~~*️⃣ **D. Display & Housing**~~
+	~~- 5 sketches for display/button/knob positioning~~
+	~~- Written reflection: questions raised, what to prototype~~
+	~~- Pick one display design to integrate~~
+	~~- Rationale for design~~
+	~~- Photos/videos of your cardboard prototype~~
 
 ---
 
@@ -294,7 +294,10 @@ You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proxi
 Usually, sensors need to be positioned in specific locations or orientations to make them useful for their application. Now that you've tried a bunch of the sensors, pick one that you would like to use, and an application where you use the output of that sensor for an interaction. For example, you can use a distance sensor to measure someone's height if you position it overhead and get them to stand under it.
 
 
-**\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
+**Five sketches of different ways you might use your sensor**
+<img src="PXL_20251008_170113134.MP.jpg" width=50%>
+<img src="PXL_20251008_170528809.MP.jpg" width=50%>
+<img src="cattoyremote.jpeg" width=50%>
 
 **What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?**
 1. Anti-Roommate Snack Protector
@@ -360,7 +363,9 @@ Think about how you want to present the information about what your sensor is se
 </details>
 
 
-**\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+**5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.**
+<img src="NBMetaDataCache.jpeg" width=50%>
+<img src="PXL_20251008_210615884.MP.png" width=50%>
 
 ***What are some things these sketches raise as questions? What do you need to physically prototype to understand how to answer those questions?**
 
@@ -374,8 +379,14 @@ We decided to go with the Extra Portable small design so the user can have a par
 Build a cardboard prototype of your design.
 
 
-**\*\*\*Document your rough prototype.\*\*\***
+**Initial Planning**
+<img src="PXL_20251008_212954779.MP.png" width=50%>
 
+**Handle Prototyping**
+<img src="PXL_20251008_213006788.MP.png" width=50%>
+
+**Cardboard Prototype**
+<img src="PXL_20251008_214438351.MP.png" width=50%>
 
 # LAB PART 2
 
