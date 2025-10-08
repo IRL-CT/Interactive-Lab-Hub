@@ -691,20 +691,81 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+#### The features that went well:
+
+**Core Interaction Flow:** The primary user flow was very successful. Testers understood that pressing the top button initiated the process, and the two-button (Snooze/Confirm) design for the reminder was immediately intuitive.
+
+**Offline ASR Responsiveness:**  Using Vosk for local speech recognition meant the system was fast and didn't rely on an internet connection. Users appreciated the immediate "Listening..." feedback and the quick parsing of their spoken commands.
+
+**Clear Visual Feedback:** The display was crucial. It effectively communicated the system's state at all times: what it was doing (Listening...), what it had scheduled (Next Reminder: ...), and the live countdown (T-MM:SS). This prevented confusion and kept the user informed.
+
+#### The features that failed:
+
+**Narrow Natural Language Understanding:** While the time parsing was robust for specific phrases like "in three minutes" or "at 8:05 pm," it likely struggled with more conversational or ambiguous requests. For example, a user might say "remind me around dinnertime" or "in a little bit," which the system isn't designed to handle.
+
+**Physical Interaction Requirement:** Users had to physically press a button to start every interaction. This is less fluid than a hands-free "wake word" system and makes it feel more like a traditional device than a voice-first assistant.
+
+**Lack of Confirmation:** The system immediately schedules a reminder after parsing the time. If the ASR misheard "in 30 minutes" as "in 13 minutes," the user had no opportunity to correct it before the timer was set.
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+Since this was an autonomous system, there was no human "controller" or wizard. However, we can evaluate the system's internal state machine and logic as the "controller."
+
+#### What worked well about the internal controller:
+
+**Reliable State Management:** The state machine described (IDLE → AWAIT_TIME → SCHEDULED → RINGING) was robust. It correctly handled the transitions between states without getting stuck, ensuring the user journey was always logical and predictable.
+
+**Efficient Threading:** The use of dedicated threads for the countdown timer and alarm scheduling worked perfectly. This allowed the display to update smoothly every second without interfering with the main application logic that was waiting for button presses or alarms.
+
+#### What didn't work well about the internal controller: 
+
+**Single-Task Limitation:** The controller's logic is designed to handle only one reminder at a time. It cannot queue multiple reminders or manage recurring schedules, which limits its real-world utility for users with complex medication plans.
+
+**No Error Recovery Path:** The logic assumes a "happy path." If the ASR returns a nonsensical result, the system doesn't have a clear way to ask the user to repeat themselves. It either fails or parses incorrectly, tying into the "Lack of Confirmation" issue mentioned earlier.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
+Since the system is already autonomous, we can reframe this as: "What lessons from testing the prototype can inform the next, more advanced autonomous version?"
+
+**Confirmation is Non-Negotiable:** The most critical lesson is that the system must confirm critical information before acting on it. After parsing a time, the next version should always ask, "OK, setting a reminder for 10 minutes. Is that correct?" This would prevent ASR errors from causing incorrect reminders.
+
+**Flexibility in Language is Key:** Watching users interact with the system would highlight the many different ways people express time. The next version needs a much more powerful Natural Language Understanding (NLU) engine or more sophisticated parsing to handle ambiguity and a wider variety of phrases.
+
+**A Hands-Free Option is Expected:** The reliance on a button press is a major limitation. The next version should incorporate a wake word (e.g., "Hey, Meds Assistant...") to initiate the scheduling process, making the interaction feel much more natural and accessible, especially for users who may have mobility challenges.
 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
+This system is an excellent foundation for creating a valuable, specialized dataset.
+
+#### How to create the dataset:
+We can modify the code to log a structured record for each complete interaction. With user consent, we would capture:
+
+- Timestamp: The exact time the interaction started.
+
+- Raw Audio: The .wav file of the user's spoken command (e.g., "in_three_minutes_user01.wav").
+
+- ASR Transcription: The text output from Vosk (e.g., "in three minutes").
+
+- Parsed Intent: The system's interpretation (e.g., {"intent": "set_reminder", "entity": "relative_time", "value_seconds": 180}).
+
+- System Action: The final outcome (e.g., SCHEDULED, SNOOZED, CONFIRMED).
+
+This dataset would be extremely useful for training a custom ASR model tuned to time-related phrases or for building a more advanced NLU model.
+
+#### Other sensing modalities to capture:
+
+Camera Vision: A camera could add rich contextual data. It could be used for:
+
+- User Presence: Confirming a person is actually in front of the device when the alarm rings.
+
+- Medication Recognition: Using computer vision to identify the medication bottle (via QR code or image recognition) to log which specific medicine was taken.
+
+- Proximity Sensor: An ultrasonic or infrared sensor could detect if a user is nearby. If the alarm is ringing and no one is close, the system could increase the volume or send a notification to a caregiver's phone.
+
+- Accelerometer/IMU: Placing an accelerometer on the device could detect if it has been picked up or moved. This physical interaction could serve as an implicit confirmation that the user has acknowledged the reminder, even without a button press.
+
 
 
 
