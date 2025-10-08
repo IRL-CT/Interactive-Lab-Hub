@@ -157,7 +157,6 @@ F) [Record the interaction](#part-f)
 ### Part A
 <details>
 <summary><h4>Capacitive Sensing, a.k.a. Human-Twizzler Interaction</h4></summary>
-
 We want to introduce you to the [capacitive sensor](https://learn.adafruit.com/adafruit-mpr121-gator) in your kit. It's one of the most flexible input devices we are able to provide. At boot, it measures the capacitance on each of the 12 contacts. Whenever that capacitance changes, it considers it a user touch. You can attach any conductive material. In your kit, you have copper tape that will work well, but don't limit yourself! In the example below, we use Twizzlers--you should pick your own objects.
 
 
@@ -176,11 +175,12 @@ Twizzler 10 touched!
 Twizzler 6 touched!
 ```
 </details>
-##插入videos
+
+[Watch the Capacitive Sensing Test video here](https://youtu.be/Zkkp4hpUmT0)   
+
 
 ### Part B
 ### More sensors
-
 <details>
 <summary><h4>Light/Proximity/Gesture sensor (APDS-9960)</h4></summary>
 
@@ -203,9 +203,13 @@ Connect it to your pi with Qwiic connector and try running the three example scr
 You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_CircuitPython_APDS9960) to see more examples for this sensor!
 </details>
 
+[Watch the Proximity Test video here](https://youtu.be/O3EXj9QbpGg)   
+[Watch the Gesture Test video here](https://youtu.be/lSCrs3jGfG8)   
+[Watch the Color Test video here](https://youtu.be/w0VfGBpko4k)
+
+
 <details>
 <summary><h4>Rotary Encoder</h4></summary>
-
 A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came with separate breakout board and encoder itself, that is, they will need to be soldered if you have not yet done so! We will be bringing the soldering station to the lab class for you to use, also, you can go to the MakerLAB to do the soldering off-class. Here is some [guidance on soldering](https://learn.adafruit.com/adafruit-guide-excellent-soldering/preparation) from Adafruit. When you first solder, get someone who has done it before (ideally in the MakerLAB environment). It is a good idea to review this material beforehand so you know what to look at.
 
 <p float="left">
@@ -224,10 +228,10 @@ Connect it to your pi with Qwiic connector and try running the example script, i
 You can go to the [Adafruit Learn Page](https://learn.adafruit.com/adafruit-i2c-qt-rotary-encoder/python-circuitpython) to learn more about the sensor! The sensor actually comes with an LED (neo pixel): Can you try lighting it up? 
 </details>
 
+[Watch the Encoder Test video here](https://youtu.be/-VMnZd_K9Kw)
+
 <details>
 <summary><h4>Joystick</h4></summary>
-
-
 A [joystick](https://www.sparkfun.com/products/15168) can be used to sense and report the input of the stick for it pivoting angle or direction. It also comes with a button input!
 
 <p float="left">
@@ -243,10 +247,10 @@ Connect it to your pi with Qwiic connector and try running the example script to
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Joystick_Py) to learn more about the sensor!
 </details>
 
+[Watch the Joystick Test video here](https://youtu.be/3UiWbI6_ZkE)
+
 <details>
 <summary><h4>Distance Sensor</h4></summary>
-
-
 Earlier we have asked you to play with the proximity sensor, which is able to sense objects within a short distance. Here, we offer [Sparkfun Proximity Sensor Breakout](https://www.sparkfun.com/products/15177), With the ability to detect objects up to 20cm away.
 
 <p float="left">
@@ -262,7 +266,9 @@ Connect it to your pi with Qwiic connector and try running the example script to
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proximity_Py) to learn more about the sensor and see other examples
 </details>
-	
+
+[Watch the Distance Sensor Test video here](https://youtu.be/49AnOakKdbU)
+
 ### Part C
 <details>
 <summary><h3>Physical considerations for sensing</h3></summary>
