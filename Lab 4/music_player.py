@@ -17,7 +17,7 @@ apds.enable_gesture = True
 # -------------------------------
 pygame.mixer.init()
 MUSIC_FOLDER = "./music"  # adjust to your folder
-songs = [f for f in os.listdir(MUSIC_FOLDER) if f.lower().endswith(".mp3")]
+songs = [f for f in os.listdir(MUSIC_FOLDER) if f.lower().endswith(".wav")]
 songs.sort()
 
 if not songs:
