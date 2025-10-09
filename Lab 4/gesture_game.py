@@ -1,9 +1,10 @@
-# Gesture-Controlled Game Demo
+# gesture_game_ascii.py
+# Gesture-Controlled Game Demo with ASCII display
 import time
 import board
 from adafruit_apds9960.apds9960 import APDS9960
 
-# 初始化传感器
+# 初始化 APDS-9960
 i2c = board.I2C()
 apds = APDS9960(i2c)
 apds.enable_proximity = True
@@ -18,16 +19,18 @@ MAX_X = 10
 MAX_Y = 10
 
 def print_game_state(x, y):
-    """简单文本显示角色位置"""
+    """ASCII 文本显示角色位置"""
     for j in range(MAX_Y):
         row = ""
         for i in range(MAX_X):
             if i == x and j == y:
-                row += "🤖"
+                row += "@"  # 用 @ 表示角色
             else:
-                row += "·"
+                row += "."  # 用 . 表示空地
         print(row)
     print("\n" + "-"*20 + "\n")
+
+print("Gesture-Controlled Game Started! Move with gestures. Approach sensor to speed up.")
 
 while True:
     gesture = apds.gesture()
@@ -48,11 +51,11 @@ while True:
         print("Gesture: RIGHT")
 
     # 靠近触发加速
-    if prox > 50:  # 可根据实际调试调整阈值
+    if prox > 50:  # 阈值可调
         print("Proximity: NEAR! Boost activated!")
-        player_x = min(MAX_X-1, player_x + 1)  # 角色加速右移
+        player_x = min(MAX_X-1, player_x + 1)  # 向右加速
 
-    # 打印游戏状态
+    # 打印 ASCII 游戏状态
     print_game_state(player_x, player_y)
 
     time.sleep(0.2)
