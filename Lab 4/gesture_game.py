@@ -1,61 +1,75 @@
-# gesture_game_ascii.py
-# Gesture-Controlled Game Demo with ASCII display
+# gesture_full_game.py
 import time
 import board
 from adafruit_apds9960.apds9960 import APDS9960
+import pygame
 
 # 初始化 APDS-9960
 i2c = board.I2C()
 apds = APDS9960(i2c)
-apds.enable_proximity = True
 apds.enable_gesture = True
 
-# 游戏角色初始位置
+# 游戏屏幕设置
+WINDOW_WIDTH = 400
+WINDOW_HEIGHT = 400
+GRID_SIZE = 10  # 10x10 网格
+
+# 初始化 pygame
+pygame.init()
+screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("Gesture Controlled Game")
+clock = pygame.time.Clock()
+
+# 角色初始位置（格子坐标）
 player_x = 5
 player_y = 5
 
-# 假设游戏屏幕大小 10x10
-MAX_X = 10
-MAX_Y = 10
+# 画游戏状态
+def draw_game():
+    screen.fill((30, 30, 30))  # 背景色
+    cell_w = WINDOW_WIDTH // GRID_SIZE
+    cell_h = WINDOW_HEIGHT // GRID_SIZE
 
-def print_game_state(x, y):
-    """ASCII 文本显示角色位置"""
-    for j in range(MAX_Y):
-        row = ""
-        for i in range(MAX_X):
-            if i == x and j == y:
-                row += "@"  # 用 @ 表示角色
-            else:
-                row += "."  # 用 . 表示空地
-        print(row)
-    print("\n" + "-"*20 + "\n")
+    # 画网格
+    for x in range(GRID_SIZE):
+        for y in range(GRID_SIZE):
+            rect = pygame.Rect(x*cell_w, y*cell_h, cell_w-2, cell_h-2)
+            pygame.draw.rect(screen, (50, 50, 50), rect)
 
-print("Gesture-Controlled Game Started! Move with gestures. Approach sensor to speed up.")
+    # 画角色
+    rect = pygame.Rect(player_x*cell_w, player_y*cell_h, cell_w-2, cell_h-2)
+    pygame.draw.rect(screen, (0, 200, 0), rect)
 
+    pygame.display.flip()
+
+print("Use UP/DOWN to jump/squat and LEFT/RIGHT to move forward/backward!")
+
+# 主循环
 while True:
-    gesture = apds.gesture()
-    prox = apds.proximity
+    # 处理 pygame 事件
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
 
-    # 手势控制移动
+    gesture = apds.gesture()
+
+    # 上下手势 → 上跳/下蹲
     if gesture == 0x01:       # up
         player_y = max(0, player_y - 1)
-        print("Gesture: UP")
+        print("Gesture: UP → Jump")
     elif gesture == 0x02:     # down
-        player_y = min(MAX_Y-1, player_y + 1)
-        print("Gesture: DOWN")
+        player_y = min(GRID_SIZE-1, player_y + 1)
+        print("Gesture: DOWN → Squat")
+
+    # 左右手势 → 左/右移动
     elif gesture == 0x03:     # left
         player_x = max(0, player_x - 1)
-        print("Gesture: LEFT")
+        print("Gesture: LEFT → Move Backward")
     elif gesture == 0x04:     # right
-        player_x = min(MAX_X-1, player_x + 1)
-        print("Gesture: RIGHT")
+        player_x = min(GRID_SIZE-1, player_x + 1)
+        print("Gesture: RIGHT → Move Forward")
 
-    # 靠近触发加速
-    if prox > 50:  # 阈值可调
-        print("Proximity: NEAR! Boost activated!")
-        player_x = min(MAX_X-1, player_x + 1)  # 向右加速
-
-    # 打印 ASCII 游戏状态
-    print_game_state(player_x, player_y)
-
-    time.sleep(0.2)
+    draw_game()
+    clock.tick(10)  # 每秒刷新 10 帧
+    time.sleep(0.05)
