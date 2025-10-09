@@ -284,6 +284,14 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 
 </details>
 
+Script Design
+
+We designed a script for the Music Guessing Chatterbox with three main characters: a Host who introduces the system, a Robot that plays music and gives feedback, and a User who interacts with the game. The script includes several important interaction scenarios. First, the Robot introduces itself and explains the game rules. It tells users that it will play songs and they should try to guess the song names. The Robot can respond to both correct and incorrect guesses. When users guess correctly, the Robot confirms their answer and moves to the next song. When users guess incorrectly, the Robot encourages them to try again and replays the music. Users can also quit the game at any time by saying they want to stop. Acting Out the Dialogue We tested the dialogue by acting it out with a partner. One of our teammate played the role of the Robot device, and the tester played the User. We did not share the script with the User beforehand to see how natural the interaction felt.
+
+Observations from Testing
+
+The dialogue felt different when we acted it out compared to what we imagined. Several issues became clear during the test. The timing between playing music and waiting for guesses was difficult to get right. Sometimes the Robot spoke too quickly and users did not have enough time to think. Other times there were awkward silences when the Robot waited too long for a response. The feedback messages also seemed repetitive when acted out multiple times. Hearing "Oops! That's not right. Try again!" several times in a row felt discouraging rather than encouraging. We realized the system needed more variety in its responses to keep users engaged. Another important finding was that users were confused about what exactly they should say. They were not sure if they should say "the song is..." or just say the song name directly. The script did not give clear enough instructions about the expected format for answers. These observations helped us understand what needed to be improved for Part 2 of the project.
+
 *[Dialogue Video](https://drive.google.com/file/d/1YpRYrWIZNIVNQHW5lIoD8B3Sx3k7n2K-/view?usp=sharing)*
 
 
@@ -326,8 +334,8 @@ Design Improvements
 
 We made several improvements based on Part 1 feedback:
 
-- Clearer Instructions: We used more clear and standard wording to give users instructions
-- Lower Difficulty: We made the song guessing process easier for players
+- Clearer Instructions: We used clearer and standard wording to give users instructions
+- Lower Difficulty: We made the song-guessing process easier for players
 
 
 Interaction Modes and System Design
@@ -340,13 +348,18 @@ The system uses speech interaction:
 The system includes:
 - Raspberry Pi: Main controller
 - Speaker and Web Camera
+- Control Button
 
 System Control:
 - Speech Input: Players speak their guesses to the system
+- Players can use the button to pause or resume the game
 
 *Include videos or screencaptures of both the system and the controller.*
 
-*[Guessing Game Video](https://drive.google.com/file/d/1LMfZVcPqiEs-d2FYJQiQ2slWikf9R6w-/view?usp=sharing)*
+*[Guessing Game Demo Video](https://drive.google.com/file/d/1LMfZVcPqiEs-d2FYJQiQ2slWikf9R6w-/view?usp=sharing)*
+
+*[Guessing Game Video with button interaction](https://drive.google.com/file/d/19Qf-BR7qum8oTU3rRG3za_12_Lue7M31/view?usp=sharing)*
+
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
@@ -380,6 +393,7 @@ I learned that designing a system requires thinking about human factors. People 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 The system could collect useful data for improvement. We could record all user guesses to create a voice dataset with both correct and incorrect answers. We could measure response time to see how long users take to guess each song. This would help us understand song difficulty and rate songs based on how often users guess correctly. We could also track error patterns to find common mistakes in voice recognition. This data could help make the game better and more user-friendly in future versions.
+
 
 
 
