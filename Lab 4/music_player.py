@@ -11,9 +11,12 @@ apds.enable_proximity = True
 apds.enable_gesture = True
 
 # 音乐文件夹
-MUSIC_FOLDER = "/home/pi/Music"  # 替换成你实际路径
-songs = [f for f in os.listdir(MUSIC_FOLDER) if f.endswith(".mp3")]
+MUSIC_FOLDER = "./music"  # 或绝对路径
+songs = [f for f in os.listdir(MUSIC_FOLDER) if f.lower().endswith(".mp3")]
 songs.sort()
+
+if not songs:
+    raise Exception(f"No mp3 files found in {MUSIC_FOLDER}")
 current_index = 0
 
 # 播放器初始化
