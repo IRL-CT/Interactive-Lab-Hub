@@ -387,7 +387,7 @@ The controller performed smoothly during testing when we controlled it. It playe
 
 ### What worked well about the controller and what didn't?
 
-We found several problems during testing. The biggest issue was voice recognition. The system had difficulty understanding what players said. Sometimes players guessed the correct song name, but the system did not recognize it. The system also required exact matching. Players had to say the exact song name without adding or missing any words. This was very frustrating for users. Another problem was song length. Many users told us the music intro was too short. They could not recognize the song before it ended. Users also wanted more features. When they could not guess a song, they wanted to hear more of it, but the system did not have this option. Also， at first, the users found the controller system difficult to understand because too many functions were exposed to them. Based on this feedback, we improved the design by adding sensors and simplifying user interactions. This change made the controller much easier to use and helped balance control between developers and users. 
+We found several problems during testing. The biggest issue was voice recognition. The system had difficulty understanding what players said. Sometimes players guessed the correct song name, but the system did not recognize it. The system also required exact matching. Players had to say the exact song name without adding or missing any words. This was very frustrating for users. Another problem was song length. Many users told us the music intro was too short. They could not recognize the song before it ended. Users also wanted more features. When they could not guess a song, they wanted to hear more of it, but the system did not have this option. Also, at first, the users found the controller system difficult to understand because too many functions were exposed to them. Based on this feedback, we improved the design by adding sensors and simplifying user interactions. This change made the controller much easier to use and helped balance control between developers and users. 
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
@@ -396,6 +396,7 @@ I learned that designing a system requires thinking about human factors. People 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 The system could collect useful data for improvement. We could record all user guesses to create a voice dataset with both correct and incorrect answers. We could measure response time to see how long users take to guess each song. This would help us understand song difficulty and rate songs based on how often users guess correctly. We could also track error patterns to find common mistakes in voice recognition. This data could help make the game better and more user-friendly in future versions.
+
 
 
 
