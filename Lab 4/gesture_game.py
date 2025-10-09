@@ -1,4 +1,3 @@
-# proximity_jump_game.py
 import time
 import board
 from adafruit_apds9960.apds9960 import APDS9960
@@ -6,22 +5,14 @@ from adafruit_apds9960.apds9960 import APDS9960
 # 初始化传感器
 i2c = board.I2C()
 apds = APDS9960(i2c)
-apds.enable_proximity = True  # 只启用距离感应
-apds.enable_gesture = True    # 如果还想保留左右手势可以打开
+apds.enable_proximity = True
 
-# 游戏角色初始位置
 player_x = 5
 player_y = 5
-
 MAX_X = 10
 MAX_Y = 10
 
-# 阈值设置（需要根据实际传感器距离调试）
-NEAR_THRESHOLD = 60  # 靠近触发下蹲
-FAR_THRESHOLD = 20   # 远离触发上跳
-
 def print_game_state(x, y):
-    """ASCII 文本显示角色位置"""
     for j in range(MAX_Y):
         row = ""
         for i in range(MAX_X):
@@ -32,32 +23,33 @@ def print_game_state(x, y):
         print(row)
     print("\n" + "-"*20 + "\n")
 
+# 1️⃣ 测初始空手距离
+print("Measuring initial distance... please leave hand away.")
+time.sleep(1)
+samples = []
+for _ in range(5):
+    samples.append(apds.proximity)
+    time.sleep(0.1)
+initial_prox = sum(samples)/len(samples)
+print(f"Initial reference distance: {initial_prox}")
+
+# 设置动作阈值（相对变化）
+DELTA = 15  # 变化量超过 15 才触发
+
 print("Proximity Jump Game Started! Approach to squat, move away to jump.")
 
 while True:
     prox = apds.proximity
-    gesture = apds.gesture()  # 如果想左右移动，可以使用这个
+    diff = prox - initial_prox  # 相对变化量
 
-    # 靠近/远离控制上下
-    if prox > NEAR_THRESHOLD:
+    if diff > DELTA:
         player_y = min(MAX_Y - 1, player_y + 1)  # 下蹲
         print(f"Proximity {prox}: Squat (Down)")
-    elif prox < FAR_THRESHOLD:
+    elif diff < -DELTA:
         player_y = max(0, player_y - 1)  # 上跳
         print(f"Proximity {prox}: Jump (Up)")
     else:
         print(f"Proximity {prox}: Neutral")
 
-    # 手势左右移动（可选）
-    if gesture == 0x03:  # left
-        player_x = max(0, player_x - 1)
-        print("Gesture: LEFT")
-    elif gesture == 0x04:  # right
-        player_x = min(MAX_X - 1, player_x + 1)
-        print("Gesture: RIGHT")
-
-    # 显示游戏状态
     print_game_state(player_x, player_y)
-
     time.sleep(0.2)
-
