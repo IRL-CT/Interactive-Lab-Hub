@@ -1,8 +1,13 @@
-import board
 import os
 import time
+import board
 import pygame
 from adafruit_apds9960.apds9960 import APDS9960
+
+# -------------------------------
+# SDL audio driver for Raspberry Pi
+# -------------------------------
+os.environ["SDL_AUDIODRIVER"] = "alsa"
 
 # -------------------------------
 # Initialize sensor
@@ -15,13 +20,17 @@ apds.enable_gesture = True
 # -------------------------------
 # Initialize pygame mixer
 # -------------------------------
-pygame.mixer.init()
-MUSIC_FOLDER = "./music"  # adjust to your folder
+pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=4096)
+
+# -------------------------------
+# Load music files
+# -------------------------------
+MUSIC_FOLDER = "./music"
 songs = [f for f in os.listdir(MUSIC_FOLDER) if f.lower().endswith(".wav")]
 songs.sort()
 
 if not songs:
-    raise Exception(f"No mp3 files found in {MUSIC_FOLDER}")
+    raise Exception(f"No wav files found in {MUSIC_FOLDER}")
 
 current_index = 0
 playback_state = "Playing"
@@ -50,7 +59,7 @@ def resume_song():
     update_status()
 
 def update_status():
-    print("\033c", end="")  # clear terminal
+    print("\033c", end="")  # Clear terminal
     print("=== Music Player Status ===")
     print(f"Current Song: {songs[current_index]}")
     print(f"Playback State: {playback_state}")
@@ -85,11 +94,11 @@ while True:
     # -------------------------------
     # Proximity control
     # -------------------------------
-    if proximity > 100:  # adjust threshold as needed
+    if proximity > 100:  # Too close
         if playback_state != "Paused":
             last_gesture = "Near -> Pause"
             pause_song()
-    elif proximity < 30:
+    elif proximity < 30:  # Far away
         if playback_state != "Playing":
             last_gesture = "Far -> Resume"
             resume_song()
