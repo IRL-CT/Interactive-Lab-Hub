@@ -266,10 +266,25 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 
 **\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
 
+![IMG_0734](https://github.com/user-attachments/assets/7eb311af-cdc6-45fb-8abc-ad3993c832f7)
+
+- **Light Level Sensor**: can be used for plant monitoring. It senses and records the light levels for a sapling/plot. The sensor is on a stick in order to have it be above the plant so that it doesn't cast shadows on the device.
+- **LED Lightbulb Control**: Shown used in a lamp, but can be anywhere. Uses the sensor to allow for touchless control of the light. Left/Right swipes to change colors, Up/Down swipes to control brightness, Distance to turn on or off, and color sensor to match color of the light displayed.
+- **Pen Color Detector**: Sensor is mounted on the end of a pen device and detects colors. There are prongs on the sides of the sensor to ensure there is enough distance to sense the color, and lights to get the most accurate reading. Potential use case is with children: could be paired with a book and plays songs based on colors the pen is placed on.
+- **Smart Shelf**: Multiple sensors are used and mounted on the top of the shelf in order to detect if an object is present or has been removed. It can play an alert if essential items are missing.
+- **Smart Glasses Controller**: A use case for gesture control is when you cannot see the controller and find the buttons to press. Therefore, smart glasses are a good place for this since you are unable to see the sides when the glasses are being worn.
+
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+- How much can we stretch the capabilities of the sensor?
+	- Ex: how far can it sense distance and does it work comfortably/reasonably for the user
+- What's a good size to make the device and can the sensor fit on it
+	- Ex: for the LED lightbulb, is the sensor too small for big gestures
+ 	- Ex: for the Pen color detector, is the sensor too large to reasonably fit on the tip of a pen-shaped device 
 
 **\*\*\*Pick one of these designs to prototype.\*\*\***
-
+- We chose the smart shelf design since it has the most potential for different designs and usages
+- However, since this device would require multiple distance sensors, we experimented with potentially using a capacitive sensor instead since it would only need one.
+	- Additionally, the capacitive sensor wouldn't need to be above objects on the shelf like the distance sensor, removing the need for a roof.  
 
 ### Part D
 ### Physical considerations for displaying information and housing parts
@@ -315,18 +330,29 @@ Think about how you want to present the information about what your sensor is se
 </details> 
  
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+![IMG_0736](https://github.com/user-attachments/assets/32c5f13a-1546-4368-9bc5-07f631a88a47)
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+- How big should the openings be for comfortable usage?
+	- For the smaller shelves with enclosed spaces, users need to be able to grab things with ease. We can experiment with different size openings in the physical 	prototpye
+-  What height is the shelf mounted at? Or is it on the floor?
+	- We need to make sure users can see what is on the shelf while being able to reach it comfortably
+- How complex should the design be? Is an overcomplicated shelf too overwhelming?
 
 **\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+- We chose to implement the medicine cabinet display 
 
 **\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+- We chose the encloseed form so that we can experiment with both types of sensors and see which would work better (either mounted on the top or strips of copper on the bottom)
+- The size also needs to fit medicine bottles of varying sizes, but not be too big to take up too much space
+- We made sure to leave room to house the raspberry pi and required electronics
 
 Build a cardboard prototype of your design.
 
 
 **\*\*\*Document your rough prototype.\*\*\***
-
+![IMG_9963](https://github.com/user-attachments/assets/180dc625-6631-4036-89b2-19e5d514fc02)
+![IMG_9964](https://github.com/user-attachments/assets/067cc2bf-3938-4015-9261-b0ebafd55654)
 
 # LAB PART 2
 
