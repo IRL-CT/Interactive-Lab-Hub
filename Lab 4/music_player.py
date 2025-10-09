@@ -4,62 +4,80 @@ import time
 import subprocess
 from adafruit_apds9960.apds9960 import APDS9960
 
-# 初始化 I2C
+# Initialize I2C and sensor
 i2c = board.I2C()
 apds = APDS9960(i2c)
 apds.enable_proximity = True
 apds.enable_gesture = True
 
-# 音乐文件夹
-MUSIC_FOLDER = "./music"  # 或绝对路径
+# Music folder
+MUSIC_FOLDER = "./music"  # Adjust path if needed
 songs = [f for f in os.listdir(MUSIC_FOLDER) if f.lower().endswith(".mp3")]
 songs.sort()
-
 if not songs:
     raise Exception(f"No mp3 files found in {MUSIC_FOLDER}")
-current_index = 0
 
-# 播放器初始化
+current_index = 0
 player_process = None
+playback_state = "Playing"
+last_gesture = "None"
 
 def play_song(index):
-    global player_process
+    global player_process, playback_state
     if player_process:
         player_process.terminate()
     song_path = os.path.join(MUSIC_FOLDER, songs[index])
-    print(f"Playing: {songs[index]}")
-    # 使用 mpg123 播放 mp3 文件
     player_process = subprocess.Popen(["mpg123", "-q", song_path])
+    playback_state = "Playing"
+    update_status()
 
 def pause_song():
-    global player_process
+    global player_process, playback_state
     if player_process:
-        print("Pausing playback")
         player_process.terminate()
         player_process = None
+    playback_state = "Paused"
+    update_status()
 
 def resume_song():
+    global playback_state
     play_song(current_index)
+    playback_state = "Playing"
+    update_status()
 
-# 开始播放第一首歌
+def update_status():
+    # Clear the terminal line and print updated status
+    print("\033c", end="")  # Clear screen
+    print(f"=== Music Player Status ===")
+    print(f"Current Song: {songs[current_index]}")
+    print(f"Playback State: {playback_state}")
+    print(f"Last Gesture: {last_gesture}")
+    print("============================")
+
+# Start first song
 play_song(current_index)
 
 while True:
     gesture = apds.gesture()
     proximity = apds.proximity
 
-    # 手势控制切歌
-    if gesture == 0x03:  # 左
+    # Gesture control
+    if gesture == 0x03:  # Left
         current_index = (current_index - 1) % len(songs)
+        last_gesture = "Left -> Previous Song"
         play_song(current_index)
-    elif gesture == 0x04:  # 右
+    elif gesture == 0x04:  # Right
         current_index = (current_index + 1) % len(songs)
+        last_gesture = "Right -> Next Song"
         play_song(current_index)
 
-    # 接近/远离控制播放
-    if proximity > 200:  # 太靠近
+    # Proximity control
+    if proximity > 200:  # Too close
+        last_gesture = "Near -> Pause"
         pause_song()
-    elif proximity < 50:  # 远离
-        resume_song()
+    elif proximity < 50:  # Far away
+        last_gesture = "Far -> Resume"
+        if playback_state != "Playing":
+            resume_song()
 
     time.sleep(0.2)
