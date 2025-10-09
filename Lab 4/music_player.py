@@ -10,7 +10,7 @@ from adafruit_apds9960.apds9960 import APDS9960
 os.environ["SDL_AUDIODRIVER"] = "alsa"
 
 # -------------------------------
-# Initialize sensor
+# Initialize APDS-9960 sensor
 # -------------------------------
 i2c = board.I2C()
 apds = APDS9960(i2c)
@@ -35,6 +35,12 @@ if not songs:
 current_index = 0
 playback_state = "Playing"
 last_gesture = "None"
+
+# -------------------------------
+# Thresholds (adjust according to your environment)
+# -------------------------------
+PROXIMITY_CLOSE = 150  # 手靠近的数值
+PROXIMITY_FAR = 50     # 手远离的数值
 
 # -------------------------------
 # Helper functions
@@ -63,7 +69,7 @@ def update_status():
     print("=== Music Player Status ===")
     print(f"Current Song: {songs[current_index]}")
     print(f"Playback State: {playback_state}")
-    print(f"Last Gesture: {last_gesture}")
+    print(f"Last Gesture / Action: {last_gesture}")
     print("============================")
 
 # -------------------------------
@@ -94,13 +100,17 @@ while True:
     # -------------------------------
     # Proximity control
     # -------------------------------
-    if proximity > 100:  # Too close
+    if proximity > PROXIMITY_CLOSE:
         if playback_state != "Paused":
             last_gesture = "Near -> Pause"
             pause_song()
-    elif proximity < 30:  # Far away
+    elif proximity < PROXIMITY_FAR:
         if playback_state != "Playing":
             last_gesture = "Far -> Resume"
             resume_song()
 
+    # Optional: print real-time distance for debugging
+    # print(f"Proximity: {proximity}")
+
     time.sleep(0.2)
+
