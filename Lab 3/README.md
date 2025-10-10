@@ -373,6 +373,9 @@ To make the experience clearer and more engaging, additional interaction modes c
 
 3. Make a new storyboard, diagram and/or script based on these reflections.
 
+<p float="left">
+  <img src="Pics/diagram_new.jpg" alt="diagram" width="500" />
+</p>
 
 ## Prototype your system
 
@@ -464,13 +467,15 @@ Answer the following:
 
 ### What worked well about the system and what didn't?
 
-Rachael: The punishment part works really well. It actually makes the game smoother and saves time when people get stuck arguing. The “update scores” flow also works pretty well. However, sometimes the “start game” function fails to capture the number of players. Also, when answering general questions, I sometimes hear two voices at the same time (most of the time it happens when it calls Ollama - TTS overlaps with the model’s output or two prompts get triggered close together).
+Rachael (Charlotte's roommate): The punishment part works really well. It actually makes the game smoother and saves time when people get stuck arguing. The “update scores” flow also works pretty well. However, sometimes the “start game” function fails to capture the number of players. Also, when answering general questions, I sometimes hear two voices at the same time (most of the time it happens when it calls Ollama - TTS overlaps with the model’s output or two prompts get triggered close together).
+
+Zoe's roommate/ Zoe: Initially, they tried to have the assistant keep track of players’ names. However, after testing with some friends, they realized that the speech-to-text recognition often failed to correctly capture the names. To fix this issue, we replaced the names with generic identifiers such as “user 1,” “user 2,” and “user 3.” This change improved accuracy, as the speech recognizer could more reliably detect which user’s score needed to be updated.
 
 ### What worked well about the controller and what didn't?
 
-Rachael: The controller was more useful than I expected. Touch pads made choosing options and timing much faster, but the mapping isn’t obvious to new users, so people might hesitate. We also saw a few false touches if a finger lingered, and sometimes people might be too careful because they are afraid of pressing the wrong button, since they are close. 
+Rachael (Charlotte's roommate): The controller was more useful than I expected. Touch pads made choosing options and timing much faster, but the mapping isn’t obvious to new users, so people might hesitate. We also saw a few false touches if a finger lingered, and sometimes people might be too careful because they are afraid of pressing the wrong button, since they are close. 
 
-
+Zoe's roommate: The touch board made setup smoother and gave us more flexibility when starting a game, which worked well. However, I noticed the touch-sensitive area on the sensor was quite small, making it easy to tap the wrong number by accident. That sometimes caused incorrect user counts during setup. I suggested adding a confirmation step to help prevent these kinds of input errors in the future.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 - Clear state really helps. When the system says exactly what it’s waiting for (“Ready to update score—say ‘user one plus 300’”), people answer correctly.
@@ -482,6 +487,7 @@ Rachael: The controller was more useful than I expected. Touch pads made choosin
 - Intents, slots, actions: Labeled per turn (e.g., start_game, update_score, player, amount).
 - Timing + errors: Timestamps, response delays, reprompts, timeouts, and success/fail.
 - Touch events: Pad index, press/release, hold duration, mapped option/duration.
+
 
 
 
