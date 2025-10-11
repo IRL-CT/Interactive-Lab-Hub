@@ -61,7 +61,7 @@ For lab this week, we focus both on sensing, to bring in new modes of input into
 
 
 <details>
-	<summary style="font-size: 22px><strong>Part 1 Lab Preparation</strong></summary>
+	<summary><strong>Part 1 Lab Preparation</strong></summary>
 
 	### Get the latest content:
 	As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. As we discussed in the class, there are 2 ways you can do so:
