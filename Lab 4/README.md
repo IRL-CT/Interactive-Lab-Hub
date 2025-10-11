@@ -55,8 +55,7 @@
 ---
 
 ## Lab Overview
-**NAMES OF COLLABORATORS HERE**
-
+Collab: Jade Chang, Karl Muller
 
 For lab this week, we focus both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
 
@@ -495,4 +494,5 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
 
