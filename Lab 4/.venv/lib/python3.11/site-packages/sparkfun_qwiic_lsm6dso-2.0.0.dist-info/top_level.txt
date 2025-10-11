@@ -1,0 +1,1 @@
+qwiic_lsm6dso

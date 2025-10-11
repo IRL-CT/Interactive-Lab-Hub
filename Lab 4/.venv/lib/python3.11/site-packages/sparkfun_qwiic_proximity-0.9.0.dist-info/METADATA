@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: sparkfun-qwiic-proximity
+Version: 0.9.0
+Summary: SparkFun Electronics qwiic Proxmity Sensor package
+Home-page: https://www.sparkfun.com/products/15177
+Author: SparkFun Electronics
+Author-email: info@sparkfun.com
+License: MIT
+Keywords: electronics,maker
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: sparkfun-qwiic-i2c
+
+Qwiic Proximity Sensor
+==========================
+
+This package provdes support for the SparkFun qwiic Proximity Sensor Breakout board.
+

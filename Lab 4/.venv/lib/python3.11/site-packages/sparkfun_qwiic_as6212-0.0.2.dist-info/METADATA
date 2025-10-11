@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: sparkfun-qwiic-as6212
+Version: 0.0.2
+Summary: SparkFun Electronics qwiic AS6212 package
+Home-page: https://www.sparkfun.com/products/18521
+Author: SparkFun Electronics
+Author-email: info@sparkfun.com
+License: MIT
+Keywords: electronics,maker
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: sparkfun-qwiic-i2c
+
+Qwiic AS6212 Py
+=============================================
+
+The AS6212 digital temperature sensor from ams provides high-accuracy temperature 
+data combined with excellent power consumption to combine into a great temperature 
+sensing package on the SparkFun Digital Temperature Sensor Breakout - AS6212 (Qwiic). 
+The sensor measures temperature data up to ±0.2°C; accuracy over a wide range 
+(-40°C; to +125°C;) and consumes an average of 6µA.
+
+

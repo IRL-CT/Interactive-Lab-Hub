@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: sparkfun-top-phat-button
+Version: 0.0.2
+Summary: SparkFun Electronics Top pHAT Button package
+Home-page: http://www.sparkfun.com/qwiic
+Author: SparkFun Electronics
+Author-email: info@sparkfun.com
+License: MIT
+Keywords: electronics,maker
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: sparkfun-qwiic-i2c
+
+Qwiic Package Title
+==========================
+
+This is a short description of this package.
+
+

@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+sparkfun_qwiic_otos_py.egg-info/PKG-INFO
+sparkfun_qwiic_otos_py.egg-info/SOURCES.txt
+sparkfun_qwiic_otos_py.egg-info/dependency_links.txt
+sparkfun_qwiic_otos_py.egg-info/requires.txt
+sparkfun_qwiic_otos_py.egg-info/top_level.txt
