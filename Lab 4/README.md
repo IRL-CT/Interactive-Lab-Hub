@@ -61,97 +61,98 @@ For lab this week, we focus both on sensing, to bring in new modes of input into
 
 
 <details>
-	<summary><h2><strong>Part 1 Lab Preparation</strong></h2></summary>
+<summary><h3><strong>Part 1 Lab Preparation</strong></h3></summary>
 
-	### Get the latest content:
-	As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. As we discussed in the class, there are 2 ways you can do so:
+### Get the latest content:
+As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. As we discussed in the class, there are 2 ways you can do so:
 
 
-	Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the personal access token for this.
+Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the personal access token for this.
+```
+pi@ixe00:~$ cd Interactive-Lab-Hub
+pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2025
+pi@ixe00:~/Interactive-Lab-Hub $ git add .
+pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab4 content"
+pi@ixe00:~/Interactive-Lab-Hub $ git push
+```
+
+Option 2: On your own GitHub repo, [create pull request](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2021Fall/readings/Submitting%20Labs.md) to get updates from the class Interactive-Lab-Hub. After you have latest updates online, go on your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull` to get updates from your own GitHub repo.
+
+Option 3: (preferred) use the Github.com interface to update the changes.
+
+### Start brainstorming ideas by reading: 
+
+* [What do prototypes prototype?](https://www.semanticscholar.org/paper/What-do-Prototypes-Prototype-Houde-Hill/30bc6125fab9d9b2d5854223aeea7900a218f149)
+* [Paper prototyping](https://www.uxpin.com/studio/blog/paper-prototyping-the-practical-beginners-guide/) is used by UX designers to quickly develop interface ideas and run them by people before any programming occurs. 
+* [Cardboard prototypes](https://www.youtube.com/watch?v=k_9Q-KDSb9o) help interactive product designers to work through additional issues, like how big something should be, how it could be carried, where it would sit. 
+* [Tips to Cut, Fold, Mold and Papier-Mache Cardboard](https://makezine.com/2016/04/21/working-with-cardboard-tips-cut-fold-mold-papier-mache/) from Make Magazine.
+* [Surprisingly complicated forms](https://www.pinterest.com/pin/50032245843343100/) can be built with paper, cardstock or cardboard.  The most advanced and challenging prototypes to prototype with paper are [cardboard mechanisms](https://www.pinterest.com/helgangchin/paper-mechanisms/) which move and change. 
+* [Dyson Vacuum Cardboard Prototypes](http://media.dyson.com/downloads/JDF/JDF_Prim_poster05.pdf)
+<p align="center"><img src="https://dysonthedesigner.weebly.com/uploads/2/6/3/9/26392736/427342_orig.jpg"  width="200" > </p>
+
+### Gathering materials for this lab:
+
+* Cardboard (start collecting those shipping boxes!)
+* Found objects and materials--like bananas and twigs.
+* Cutting board
+* Cutting tools
+* Markers
+
+
+(We do offer shared cutting board, cutting tools, and markers on the class cart during the lab, so do not worry if you don't have them!)
+
+## Deliverables \& Submission for Lab 4
+
+The deliverables for this lab are, writings, sketches, photos, and videos that show what your prototype:
+* "Looks like": shows how the device should look, feel, sit, weigh, etc.
+* "Works like": shows what the device can do.
+* "Acts like": shows how a person would interact with the device.
+
+For submission, the readme.md page for this lab should be edited to include the work you have done:
+* Upload any materials that explain what you did, into your lab 4 repository, and link them in your lab 4 readme.md.
+* Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
+* Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
+
+
+## Lab Overview
+
+A) [Capacitive Sensing](#part-a)
+
+B) [OLED screen](#part-b) 
+
+C) [Paper Display](#part-c)
+
+D) [Materiality](#part-d)
+
+E) [Servo Control](#part-e)
+
+F) [Record the interaction](#part-f)
+
+
+## The Report (Part 1: A-D, Part 2: E-F)
+
+### Quick Start: Python Environment Setup
+
+1. **Create and activate a virtual environment in Lab 4:**
+	```bash
+	cd ~/Interactive-Lab-Hub/Lab\ 4
+	python3 -m venv .venv
+	source .venv/bin/activate
 	```
-	pi@ixe00:~$ cd Interactive-Lab-Hub
-	pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2025
-	pi@ixe00:~/Interactive-Lab-Hub $ git add .
-	pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab4 content"
-	pi@ixe00:~/Interactive-Lab-Hub $ git push
+2. **Install all Lab 4 requirements:**
+	```bash
+	pip install -r requirements2025.txt
 	```
-	
-	Option 2: On your own GitHub repo, [create pull request](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2021Fall/readings/Submitting%20Labs.md) to get updates from the class Interactive-Lab-Hub. After you have latest updates online, go on your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull` to get updates from your own GitHub repo.
-	
-	Option 3: (preferred) use the Github.com interface to update the changes.
-	
-	### Start brainstorming ideas by reading: 
-	
-	* [What do prototypes prototype?](https://www.semanticscholar.org/paper/What-do-Prototypes-Prototype-Houde-Hill/30bc6125fab9d9b2d5854223aeea7900a218f149)
-	* [Paper prototyping](https://www.uxpin.com/studio/blog/paper-prototyping-the-practical-beginners-guide/) is used by UX designers to quickly develop interface ideas and run them by people before any programming occurs. 
-	* [Cardboard prototypes](https://www.youtube.com/watch?v=k_9Q-KDSb9o) help interactive product designers to work through additional issues, like how big something should be, how it could be carried, where it would sit. 
-	* [Tips to Cut, Fold, Mold and Papier-Mache Cardboard](https://makezine.com/2016/04/21/working-with-cardboard-tips-cut-fold-mold-papier-mache/) from Make Magazine.
-	* [Surprisingly complicated forms](https://www.pinterest.com/pin/50032245843343100/) can be built with paper, cardstock or cardboard.  The most advanced and challenging prototypes to prototype with paper are [cardboard mechanisms](https://www.pinterest.com/helgangchin/paper-mechanisms/) which move and change. 
-	* [Dyson Vacuum Cardboard Prototypes](http://media.dyson.com/downloads/JDF/JDF_Prim_poster05.pdf)
-	<p align="center"><img src="https://dysonthedesigner.weebly.com/uploads/2/6/3/9/26392736/427342_orig.jpg"  width="200" > </p>
-	
-	### Gathering materials for this lab:
-	
-	* Cardboard (start collecting those shipping boxes!)
-	* Found objects and materials--like bananas and twigs.
-	* Cutting board
-	* Cutting tools
-	* Markers
-	
-	
-	(We do offer shared cutting board, cutting tools, and markers on the class cart during the lab, so do not worry if you don't have them!)
-	
-	## Deliverables \& Submission for Lab 4
-	
-	The deliverables for this lab are, writings, sketches, photos, and videos that show what your prototype:
-	* "Looks like": shows how the device should look, feel, sit, weigh, etc.
-	* "Works like": shows what the device can do.
-	* "Acts like": shows how a person would interact with the device.
-	
-	For submission, the readme.md page for this lab should be edited to include the work you have done:
-	* Upload any materials that explain what you did, into your lab 4 repository, and link them in your lab 4 readme.md.
-	* Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
-	* Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
-	
-	
-	## Lab Overview
-	
-	A) [Capacitive Sensing](#part-a)
-	
-	B) [OLED screen](#part-b) 
-	
-	C) [Paper Display](#part-c)
-	
-	D) [Materiality](#part-d)
-	
-	E) [Servo Control](#part-e)
-	
-	F) [Record the interaction](#part-f)
-	
-	
-	## The Report (Part 1: A-D, Part 2: E-F)
-	
-	### Quick Start: Python Environment Setup
-	
-	1. **Create and activate a virtual environment in Lab 4:**
-		```bash
-		cd ~/Interactive-Lab-Hub/Lab\ 4
-		python3 -m venv .venv
-		source .venv/bin/activate
-		```
-	2. **Install all Lab 4 requirements:**
-		```bash
-		pip install -r requirements2025.txt
-		```
-	3. **Check CircuitPython Blinka installation:**
-		```bash
-		python blinkatest.py
-		```
-		If you see "Hello blinka!", your setup is correct. If not, follow the troubleshooting steps in the file or ask for help.
+3. **Check CircuitPython Blinka installation:**
+	```bash
+	python blinkatest.py
+	```
+	If you see "Hello blinka!", your setup is correct. If not, follow the troubleshooting steps in the file or ask for help.
 </details>
 
 ### Part A
-### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
+<details>
+<summary><h4><strong>Capacitive Sensing, a.k.a. Human-Twizzler Interaction</strong></h4></summary>
 
 We want to introduce you to the [capacitive sensor](https://learn.adafruit.com/adafruit-mpr121-gator) in your kit. It's one of the most flexible input devices we are able to provide. At boot, it measures the capacitance on each of the 12 contacts. Whenever that capacitance changes, it considers it a user touch. You can attach any conductive material. In your kit, you have copper tape that will work well, but don't limit yourself! In the example below, we use Twizzlers--you should pick your own objects.
 
@@ -170,10 +171,15 @@ These Twizzlers are connected to pads 6 and 10. When you run the code and touch 
 Twizzler 10 touched!
 Twizzler 6 touched!
 ```
+</details>
 
-### Part B
-### More sensors
+https://github.com/user-attachments/assets/8a808329-aadb-4a14-8b3f-91a3b488fe5c
 
+
+### Part B - More sensors
+
+<details>
+<summary><h4><strong>Light/Proximity/Gesture sensor (APDS-9960)</strong></h4></summary>
 #### Light/Proximity/Gesture sensor (APDS-9960)
 
 We here want you to get to know this awesome sensor [Adafruit APDS-9960](https://www.adafruit.com/product/3595). It is capable of sensing proximity, light (also RGB), and gesture! 
@@ -193,8 +199,18 @@ Connect it to your pi with Qwiic connector and try running the three example scr
 ```
 
 You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_CircuitPython_APDS9960) to see more examples for this sensor!
+</details>
 
-#### Rotary Encoder 
+https://github.com/user-attachments/assets/6805644f-85fd-4499-8dba-0f8544a39f06
+
+https://github.com/user-attachments/assets/d243ff25-a167-4866-a3bf-dddb6f4f64da
+
+https://github.com/user-attachments/assets/fe31e3dc-e5f7-4894-9f35-d487fe4ff159
+
+
+
+<details>
+<summary><h4><strong>Rotary Encoder</strong></h4></summary>
 
 A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came with separate breakout board and encoder itself, that is, they will need to be soldered if you have not yet done so! We will be bringing the soldering station to the lab class for you to use, also, you can go to the MakerLAB to do the soldering off-class. Here is some [guidance on soldering](https://learn.adafruit.com/adafruit-guide-excellent-soldering/preparation) from Adafruit. When you first solder, get someone who has done it before (ideally in the MakerLAB environment). It is a good idea to review this material beforehand so you know what to look at.
 
@@ -212,9 +228,15 @@ Connect it to your pi with Qwiic connector and try running the example script, i
 ```
 
 You can go to the [Adafruit Learn Page](https://learn.adafruit.com/adafruit-i2c-qt-rotary-encoder/python-circuitpython) to learn more about the sensor! The sensor actually comes with an LED (neo pixel): Can you try lighting it up? 
+</details>
 
-#### Joystick 
+https://github.com/user-attachments/assets/585c991d-a60f-4e9c-bd21-8c70bad94e68
 
+https://github.com/user-attachments/assets/9b30fffa-262d-4c2d-b2b1-5984ebc2b044
+
+
+<details>
+<summary><h4><strong>Joystick</strong></h4></summary>
 
 A [joystick](https://www.sparkfun.com/products/15168) can be used to sense and report the input of the stick for it pivoting angle or direction. It also comes with a button input!
 
@@ -229,9 +251,13 @@ Connect it to your pi with Qwiic connector and try running the example script to
 ```
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Joystick_Py) to learn more about the sensor!
+</details>
 
-#### Distance Sensor
+https://github.com/user-attachments/assets/27ac043f-289c-4603-87dc-c0cca45612c2
 
+
+<details>
+<summary><h4><strong>Distance Sensor</strong></h4></summary>
 
 Earlier we have asked you to play with the proximity sensor, which is able to sense objects within a short distance. Here, we offer [Sparkfun Proximity Sensor Breakout](https://www.sparkfun.com/products/15177), With the ability to detect objects up to 20cm away.
 
@@ -247,13 +273,19 @@ Connect it to your pi with Qwiic connector and try running the example script to
 ```
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proximity_Py) to learn more about the sensor and see other examples
+</details>
+
+https://github.com/user-attachments/assets/3c8ef804-46bc-46c9-9805-2fbd9fb79fde
+
+https://github.com/user-attachments/assets/9b049b53-ba98-49ca-b2e9-d7020cfd1511
+
 
 ### Part C
-### Physical considerations for sensing
-
+<details>
+<summary><h4><strong>Physical considerations for sensing</strong></h4></summary>
 
 Usually, sensors need to be positioned in specific locations or orientations to make them useful for their application. Now that you've tried a bunch of the sensors, pick one that you would like to use, and an application where you use the output of that sensor for an interaction. For example, you can use a distance sensor to measure someone's height if you position it overhead and get them to stand under it.
-
+</details>
 
 **\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
 
@@ -263,9 +295,8 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 
 
 ### Part D
-### Physical considerations for displaying information and housing parts
-
-
+<details>
+<summary><h4><strong>Physical considerations for displaying information and housing parts</strong></h4></summary>
 
 Here is a Pi with a paper faceplate on it to turn it into a display interface:
 
@@ -302,7 +333,8 @@ Here is an example:
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/horoscope.png?raw=true"  width="250"/>
 
 Think about how you want to present the information about what your sensor is sensing! Design a paper display for your project that communicates the state of the Pi and a sensor. Ideally you should design it so that you can slide the Pi out to work on the circuit or programming, and then slide it back in and reattach a few wires to be back in operation.
- 
+</details>
+	
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
