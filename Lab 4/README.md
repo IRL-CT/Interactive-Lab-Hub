@@ -400,7 +400,7 @@ Think about how you want to present the information about what your sensor is se
   <img src="prototype.jpeg" alt="prototype" width="70%">
 </p>
 
-[Watch the Prototype video here]([https://youtu.be/Zkkp4hpUmT0](https://img.youtube.com/vi/M_O3RC8Aed4/0.jpg)](https://youtu.be/M_O3RC8Aed4))
+[Watch the Prototype video here](https://youtu.be/M_O3RC8Aed4)
 
 
 ### Explain the Rationale for the Design
@@ -416,6 +416,7 @@ Think about how you want to present the information about what your sensor is se
 - The tonearm is made from **lightweight cardboard**, and the base includes **aesthetic blue and black color contrast** to highlight the interaction zone.
 - The Raspberry Pi handles audio playback and gesture recognition through a Python script.
 - This rough prototype helps visualize how the **gesture input**, **sensor placement**, and **audio feedback** work together in a cohesive setup.
+
 
 ### User Feedback
 - Early testers reported that the design was **visually clear and intuitive**, as the record-player metaphor made the interaction immediately understandable.
