@@ -20,6 +20,9 @@ import sys
 import threading
 from queue import Queue
 
+# new imports for stable playback / warmup
+import tempfile, os, shutil, math, wave, array
+
 # Set UTF-8 encoding for output
 if sys.stdout.encoding != 'UTF-8':
     import codecs
@@ -56,6 +59,40 @@ class OllamaVoiceAssistant:
             self.recognizer.adjust_for_ambient_noise(source)
         print("Ready for conversation!")
 
+        # one-time audio warmup to avoid first-play clipping
+        self._audio_warmup()
+
+    def _audio_warmup(self, ms=400):
+        """Play a very low-amplitude tone briefly to wake audio path."""
+        try:
+            rate = 22050
+            ch = 1
+            samples = int(rate * ms / 1000)
+            amp = 10  # very low amplitude (~inaudible)
+            buf = array.array('h', [
+                int(amp * math.sin(2*math.pi*1000*n/rate)) for n in range(samples)
+            ]).tobytes()
+
+            with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
+                wav_path = f.name
+            with wave.open(wav_path, 'wb') as w:
+                w.setnchannels(ch)
+                w.setsampwidth(2)  # 16-bit
+                w.setframerate(rate)
+                w.writeframes(buf)
+
+            if shutil.which("paplay"):
+                subprocess.run(["paplay", wav_path], check=False)
+            else:
+                subprocess.run(["aplay", "-B", "400000", wav_path], check=False)
+        except Exception:
+            pass
+        finally:
+            try:
+                os.remove(wav_path)
+            except Exception:
+                pass
+
     def test_ollama_connection(self):
         """Test if Ollama is running and the model is available"""
         try:
@@ -84,11 +121,29 @@ class OllamaVoiceAssistant:
         print(f"Assistant: {clean_text}")
         
         if TTS_ENGINE == 'pyttsx3':
+            # original behavior preserved
             self.tts_engine.say(clean_text)
             self.tts_engine.runAndWait()
         else:
-            # Use espeak as fallback
-            subprocess.run(['espeak', clean_text], check=False)
+            # fallback: espeak -> wav -> paplay/aplay (avoids first-word clipping)
+            with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
+                wav_path = f.name
+            try:
+                # generate wav with espeak
+                subprocess.run(
+                    ['espeak', '-s', '170', '-v', 'en-us', '-w', wav_path, clean_text],
+                    check=False
+                )
+                # play via paplay (preferred) or aplay with larger startup buffer
+                if shutil.which("paplay"):
+                    subprocess.run(['paplay', wav_path], check=False)
+                else:
+                    subprocess.run(['aplay', '-B', '400000', wav_path], check=False)
+            finally:
+                try:
+                    os.remove(wav_path)
+                except Exception:
+                    pass
 
     def listen(self):
         """Listen for speech and convert to text"""

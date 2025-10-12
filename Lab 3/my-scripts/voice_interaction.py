@@ -4,7 +4,7 @@ from pathlib import Path
 from faster_whisper import WhisperModel
 
 # -------- Config --------
-REC_CARD = "0,0"           # arecord input (plughw:card,device)
+REC_CARD = "2,0"           # arecord input (plughw:card,device)
 REC_SECS = 8               # seconds to record
 WHISPER_MODEL = "tiny.en"
 OLLAMA_MODEL  = "phi3:mini"

@@ -1,0 +1,107 @@
+Metadata-Version: 2.4
+Name: piper-tts
+Version: 1.3.0
+Summary: Fast and local neural text-to-speech engine
+Home-page: http://github.com/OHF-voice/piper1-gpl
+Author: The Home Assistant Authors
+Author-email: hello@home-assistant.io
+License: GPL-3.0-or-later
+Keywords: home,assistant,tts,text-to-speech
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: COPYING
+Requires-Dist: onnxruntime<2,>=1
+Provides-Extra: train
+Requires-Dist: torch<3,>=2; extra == "train"
+Requires-Dist: lightning<3,>=2; extra == "train"
+Requires-Dist: tensorboard<3,>=2; extra == "train"
+Requires-Dist: tensorboardX<3,>=2; extra == "train"
+Requires-Dist: jsonargparse[signatures]>=4.27.7; extra == "train"
+Requires-Dist: pathvalidate<4,>=3; extra == "train"
+Requires-Dist: onnx<2,>=1; extra == "train"
+Requires-Dist: pysilero-vad<3,>=2.1; extra == "train"
+Requires-Dist: cython<4,>=3; extra == "train"
+Requires-Dist: librosa<1; extra == "train"
+Provides-Extra: dev
+Requires-Dist: black==24.8.0; extra == "dev"
+Requires-Dist: flake8==7.1.1; extra == "dev"
+Requires-Dist: mypy==1.14.0; extra == "dev"
+Requires-Dist: pylint==3.2.7; extra == "dev"
+Requires-Dist: pytest==8.3.4; extra == "dev"
+Requires-Dist: build==1.2.2; extra == "dev"
+Requires-Dist: scikit-build<1; extra == "dev"
+Requires-Dist: cmake<4,>=3.18; extra == "dev"
+Requires-Dist: ninja<2,>=1; extra == "dev"
+Provides-Extra: http
+Requires-Dist: flask<4,>=3; extra == "http"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Piper 1 (GPL)
+
+A fast and local neural text-to-speech engine that embeds [espeak-ng][] for phonemization.
+
+Install with:
+
+``` sh
+pip install piper
+```
+
+* 🎧 [Samples][samples]
+* 💡 [Demo][demo]
+* 🗣️ [Voices][voices]
+* 🖥️ [Command-line interface][cli]
+* 🌐 [Web server][api-http]
+* 🐍 [Python API][api-python]
+* 🏋️ [Training new voices][training]
+* 🛠️ [Building manually][building]
+
+---
+
+People/projects using Piper:
+
+* [Home Assistant](https://github.com/home-assistant/addons/blob/master/piper/README.md)
+* [NVDA - NonVisual Desktop Access](https://www.nvaccess.org/post/in-process-8th-may-2023/#voices)
+* [Image Captioning for the Visually Impaired and Blind: A Recipe for Low-Resource Languages](https://www.techrxiv.org/articles/preprint/Image_Captioning_for_the_Visually_Impaired_and_Blind_A_Recipe_for_Low-Resource_Languages/22133894)
+* [Video tutorial by Thorsten Müller](https://youtu.be/rjq5eZoWWSo)
+* [Open Voice Operating System](https://github.com/OpenVoiceOS/ovos-tts-plugin-piper)
+* [JetsonGPT](https://github.com/shahizat/jetsonGPT)
+* [LocalAI](https://github.com/go-skynet/LocalAI)
+* [Lernstick EDU / EXAM: reading clipboard content aloud with language detection](https://lernstick.ch/)
+* [Natural Speech - A plugin for Runelite, an OSRS Client](https://github.com/phyce/rl-natural-speech)
+* [mintPiper](https://github.com/evuraan/mintPiper)
+* [Vim-Piper](https://github.com/wolandark/vim-piper)
+* [POTaTOS](https://www.youtube.com/watch?v=Dz95q6XYjwY)
+
+[![A library from the Open Home Foundation](https://www.openhomefoundation.org/badges/ohf-library.png)](https://www.openhomefoundation.org/)
+
+<!-- Links -->
+[piper]: https://github.com/rhasspy/piper
+[espeak-ng]: https://github.com/espeak-ng/espeak-ng
+[cli]: https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/CLI.md
+[api-http]: https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/APT_HTTP.md
+[api-python]: https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/API_PYTHON.md
+[training]: https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/TRAINING.md
+[building]: https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/BUILDING.md
+[voices]: https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/VOICES.md
+[samples]: https://rhasspy.github.io/piper-samples
+[demo]: https://rhasspy.github.io/piper-samples/demo.html
