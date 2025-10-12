@@ -424,7 +424,7 @@ The gesture-controlled music player is implemented in [`Lab 4/music_player.py`](
 - The tonearm is made from **lightweight cardboard**, and the base includes **aesthetic blue and black color contrast** to highlight the interaction zone.
 - The Raspberry Pi handles audio playback and gesture recognition through a Python script.
 - This rough prototype helps visualize how the **gesture input**, **sensor placement**, and **audio feedback** work together in a cohesive setup.
-
+---
 
 ### User Feedback
 - Early testers reported that the design was **visually clear and intuitive**, as the record-player metaphor made the interaction immediately understandable.
