@@ -1,0 +1,35 @@
+Metadata-Version: 2.2
+Name: sparkfun_qwiic_sgp40
+Version: 2.0.0
+Summary: SparkFun Electronics Qwiic SGP40
+Author-email: Sparkfun Electronics <info@sparkfun.com>
+Project-URL: homepage, https://www.sparkfun.com/products/18345
+Keywords: electronics, maker
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Programming Language :: Python :: Implementation :: MicroPython
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: sparkfun_qwiic_i2c
+
+Qwiic Air Quality Sensor - SGP40
+=============================================
+
+The SparkFun SGP40 Air Quality Sensor provides a measurement of the quality of the air in your room or house. 
+The SGP40 is based on Sensirions CMOS technology and uses a metal oxide (MOx) sensor with a temperature 
+controlled micro hotplate and provides a humidity-compensated volatile organic compound (VOC) based indoor 
+air quality signal. Both the sensing element and VOC Algorithm feature an unmatched robustness against 
+contaminating gases present in real world applications enabling a unique long term stability as well as low 
+drift and device to device variation.

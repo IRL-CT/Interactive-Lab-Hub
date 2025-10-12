@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: sparkfun-opt4048-tristimulus-color-sensor
+Version: 1.0.0
+Summary: SparkFun Electronics Tristiumulus Color Sensor - OPT4048
+Home-page: https://www.sparkfun.com/products/22638
+Author: SparkFun Electronics
+Author-email: info@sparkfun.com
+License: MIT
+Keywords: electronics,maker,sensing
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+License-File: LICENSE
+Requires-Dist: sparkfun-qwiic-i2c
+
+Qwiic OPT4048 Tristiumulus Color Sensor
+=============================================
+
+Adds functionality for the Qwiic OPT4048 Tristiumulus Color Sensor.
+The OPT4048 is a high-performance, low-power color sensor that can 
+be used to detect the color of an object. The sensor has a 12-bit ADC 
+that can be used to measure the color of an object and output the data 
+in the form of XYZ or RGB. The sensor also has a built-in IR filter to 
+help reduce the influence of IR light on the color measurement.
+
+
