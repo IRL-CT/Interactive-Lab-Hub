@@ -273,15 +273,46 @@ You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proxi
 <details>
 <summary><h3>Physical considerations for sensing</h3></summary>
 
-
 Usually, sensors need to be positioned in specific locations or orientations to make them useful for their application. Now that you've tried a bunch of the sensors, pick one that you would like to use, and an application where you use the output of that sensor for an interaction. For example, you can use a distance sensor to measure someone's height if you position it overhead and get them to stand under it.
 </details>
 
-**\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
+### What questions do these sketches raise?
 
-**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+While sketching these five concepts, we realized that many of them share similar challenges around gesture detection, sensing range, and user feedback.
+Some key questions that emerged are:
 
-**\*\*\*Pick one of these designs to prototype.\*\*\***
+#### 1. Sensor sensitivity and detection range
+How far should the user's hand be for the APDS-9960 to reliably detect gestures?
+Will small or fast movements be missed or misclassified?
+
+#### 2. Sensor placement and orientation
+Does the sensor need to face directly toward the user, or can it work at an angle or behind a surface like acrylic?
+How much does the physical mounting affect recognition accuracy?
+
+#### 3. Environmental interference
+Will ambient light, sunlight, or reflections interfere with the proximity or gesture readings?
+
+#### 4. User feedback and learnability
+How can the system communicate successful detection?
+Do users need audio, visual, or haptic cues to understand when the system has responded?
+
+#### 5. Safety and usability in real contexts
+In touchless designs (like the dispenser or music controller), how do we avoid false triggers or unwanted activations when people simply pass by?
+
+
+### What do we need to prototype to answer those questions?
+1. To explore these issues, we will need to physically prototype and test the following aspects:
+2. Vary the distance and angle between the user's hand and the sensor to measure detection accuracy.
+3. Test gesture recognition (up, down, left, right) in different lighting environments.
+4. Integrate visual or sound feedback (like LEDs or audio tones) to evaluate whether users can easily understand system responses.
+5. Experiment with different enclosure materials (cardboard, plastic, translucent cover) to see how they affect proximity sensing.
+6. Observe how users interact with the device naturally, identifying when false detections occur.
+
+### Prototype Choice
+We decided to prototype the gesture-controlled music player using the APDS-9960 sensor.
+This design feels both fun and practical—it allows users to control music playback without touching any buttons, which is useful when their hands are busy or unclean (for example, while cooking or studying).
+
+With this prototype, we want to explore how well the sensor can recognize left and right gestures for switching songs, and near/far gestures for pausing and resuming playback. It will also help us understand how users perceive the responsiveness of the system and whether adding visual or audio feedback (like an LED flash or short tone) improves the overall interaction experience.
 
 
 ### Part D
