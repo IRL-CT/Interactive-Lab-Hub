@@ -327,19 +327,97 @@ Here is an example:
 Think about how you want to present the information about what your sensor is sensing! Design a paper display for your project that communicates the state of the Pi and a sensor. Ideally you should design it so that you can slide the Pi out to work on the circuit or programming, and then slide it back in and reattach a few wires to be back in operation.
 </details>
 
-**\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+### Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.
+#### Sketch 1 – Turntable
+<p align="center">
+  <img src="Design1.jpeg" alt="Design1" width="70%">
+</p>   
 
-**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+- The APDS-9960 sensor is positioned at the center of a turntable to detect left and right swipe gestures for switching songs.
+- The larger device is designed as a flat record player, allowing users to interact naturally by moving their hands horizontally across the sensor.  
 
-**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+#### Sketch 2 – Song Player
+<p align="center">
+  <img src="Design2.jpeg" alt="Design2" width="70%">
+</p> 
 
-**\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+- The focus of this design is how to display information through sound — using the speaker as the main medium to communicate playback status.
+- - Instead of visual feedback, music itself becomes the output, spreading through the speaker so that people nearby can hear and perceive the interaction.
 
-Build a cardboard prototype of your design.
+#### Sketch 3 – Interaction Diagram
+<p align="center">
+  <img src="Design3.jpeg" alt="Design3" width="70%">
+</p>
 
+- This diagram clarifies how hand gestures are recognized:  
+  - Swipe right → Next song  
+  - Swipe left → Previous song  
+- The Raspberry Pi connects to the APDS-9960 through I²C wiring, with enough open space around the sensor to avoid reflections or blocking.   
+- The first three sketches together describe a **single prototype concept** — an interactive vinyl record player that combines gesture-based control, sound output, and tangible form to create a better user experience.
 
-**\*\*\*Document your rough prototype.\*\*\***
+#### Sketch 4 – Wall-mounted Display Turntable
+<p align="center">
+  <img src="Design4.jpeg" alt="Design4" width="70%">
+</p>
 
+- The sensor are mounted on a vertical display turntable, fixed to the wall.  
+- Users can touch a simple “next/previous” button as backup control.  
+- Display on wall make device more public and interactive.
+
+#### Sketch 5 – Portable Pocket Player
+<p align="center">
+  <img src="Design5.jpeg" alt="Design5" width="70%">
+</p>
+
+- A compact, pocket-sized version of the music player.  
+- Includes a screen, two small buttons for switching songs, and a rotary knob for volume control.
+- The physical form focuses on mobility and personal use.
+
+---
+
+### What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+1. **Gesture Reliability:**  
+   - How consistently does the APDS-9960 recognize left/right gestures under different lighting conditions and angles?  
+   - Physical prototyping can help determine the optimal sensor placement and gesture distance.  
+
+2. **User Feedback and Visibility:**  
+   - Can users easily understand which song is playing or what gesture was detected?  
+   - Prototyping a screen layout or paper interface will help refine the feedback design.  
+
+3. **Form and Accessibility:**  
+   - How should the device’s size, height, and orientation change between tabletop, wall-mounted, and portable versions?  
+   - Physical mockups will help test usability in different contexts.  
+
+4. **Interaction Comfort:**  
+   - How natural does it feel to wave or swipe above the sensor?
+
+5. **Aesthetic Integration:**  
+   - How can the retro turntable appearance blend with the modern digital interaction?  
+---
+
+### Prototype
+<p align="center">
+  <img src="prototype.jpeg" alt="prototype" width="70%">
+</p>
+
+### Explain the Rationale for the Design
+- The design takes inspiration from a **vinyl record player**, emphasizing tangible interaction and visual familiarity.
+- The circular base represents the turntable, while the **paper tonearm** mimics the motion of a real record player.
+- The **APDS-9960 sensor** is positioned at the center, where users can naturally wave their hands to control playback.
+- This placement ensures the gestures are **easily recognized** without obstruction and allows intuitive control from a short distance (5-10 cm).
+- The overall **size and form** are chosen to be tabletop scale — large enough for comfortable hand motion, but compact enough to fit on a desk.
+- The **speaker connection** allows music to be heard by everyone around, reinforcing the shared and social aspect of the design.
+
+### Document Your Rough Prototype
+- The prototype is constructed using **cardboard and colored paper**, with the Raspberry Pi and APDS-9960 connected through I²C wiring.
+- The tonearm is made from **lightweight cardboard**, and the base includes **aesthetic blue and black color contrast** to highlight the interaction zone.
+- The Raspberry Pi handles audio playback and gesture recognition through a Python script.
+- This rough prototype helps visualize how the **gesture input**, **sensor placement**, and **audio feedback** work together in a cohesive setup.
+
+### User Feedback
+- Early testers reported that the design was **visually clear and intuitive**, as the record-player metaphor made the interaction immediately understandable.
+- However, they noted that **gesture sensitivity** could be improved — sometimes swipes were not recognized consistently, especially under bright lighting conditions.
+- Users also suggested that adding **visual indicators or LED feedback** could make the interaction feel more responsive.
 
 # LAB PART 2
 
