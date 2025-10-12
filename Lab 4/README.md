@@ -400,8 +400,9 @@ Think about how you want to present the information about what your sensor is se
   <img src="prototype.jpeg" alt="prototype" width="70%">
 </p>
 
-[Watch the Prototype video here](https://youtu.be/M_O3RC8Aed4)
+[Watch the Prototype video here](https://youtu.be/M_O3RC8Aed4)   
 
+The gesture-controlled music player is implemented in [`Lab 4/music_player.py`](https://github.com/hz764/Interactive-Lab-Hub-hz764/blob/Fall2025/Lab%204/music_player.py)
 
 ### Explain the Rationale for the Design
 - The design takes inspiration from a **vinyl record player**, emphasizing tangible interaction and visual familiarity.
