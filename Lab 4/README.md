@@ -31,9 +31,7 @@
 	- 5 sketches of different ways to use your chosen sensor
 	- Written reflection: questions raised, what to prototype
 	- Pick one design to prototype and explain why
-	
 	![eed8b497daff0d0dfb379a166a68d68d](https://github.com/user-attachments/assets/c49ca762-9313-4a61-b83e-e84d9570ae66)
-
 	![fa1d78fa387783a4802c4149ea772e10](https://github.com/user-attachments/assets/86ea7c25-36e7-49be-94aa-8180014b4e43)
 
     Sketch 1: I love to play old games, but it's not always goos using simulator on PC can be difficult because PC has no joysticks and keys are arranged different from gamepads. However, old game pads have various forms and buying all kinds of them can be time- and money-consuming. So I design this all-in-one gamepad that can reflect to 2-, 4- and 6-button old game pads at the same time.
@@ -509,6 +507,7 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
 
 
 
