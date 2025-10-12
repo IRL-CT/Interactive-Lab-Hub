@@ -412,6 +412,13 @@ Think about how you want to present the information about what your sensor is se
 - The **speaker connection** allows music to be heard by everyone around, reinforcing the shared and social aspect of the design.
 
 ### Document Your Rough Prototype
+<p align="center">
+  <img src="Handcraft1.jpeg" alt="Handcraft1" width="70%">
+</p>
+<p align="center">
+  <img src="Handcraft2.jpeg" alt="Handcraft2" width="70%">
+</p>
+
 - The prototype is constructed using **cardboard and colored paper**, with the Raspberry Pi and APDS-9960 connected through I²C wiring.
 - The tonearm is made from **lightweight cardboard**, and the base includes **aesthetic blue and black color contrast** to highlight the interaction zone.
 - The Raspberry Pi handles audio playback and gesture recognition through a Python script.
