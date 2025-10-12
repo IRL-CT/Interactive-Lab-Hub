@@ -400,6 +400,9 @@ Think about how you want to present the information about what your sensor is se
   <img src="prototype.jpeg" alt="prototype" width="70%">
 </p>
 
+[![Prototype Video](https://img.youtube.com/vi/M_O3RC8Aed4/0.jpg)](https://youtu.be/M_O3RC8Aed4)
+
+
 ### Explain the Rationale for the Design
 - The design takes inspiration from a **vinyl record player**, emphasizing tangible interaction and visual familiarity.
 - The circular base represents the turntable, while the **paper tonearm** mimics the motion of a real record player.
