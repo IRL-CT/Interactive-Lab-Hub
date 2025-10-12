@@ -400,7 +400,7 @@ Think about how you want to present the information about what your sensor is se
   <img src="prototype.jpeg" alt="prototype" width="70%">
 </p>
 
-[![Prototype Video](https://img.youtube.com/vi/M_O3RC8Aed4/0.jpg)](https://youtu.be/M_O3RC8Aed4)
+[Watch the Prototype video here]([https://youtu.be/Zkkp4hpUmT0](https://img.youtube.com/vi/M_O3RC8Aed4/0.jpg)](https://youtu.be/M_O3RC8Aed4))
 
 
 ### Explain the Rationale for the Design
