@@ -272,10 +272,40 @@ You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proxi
 ### Part C
 <details>
 <summary><h3>Physical considerations for sensing</h3></summary>
-
 Usually, sensors need to be positioned in specific locations or orientations to make them useful for their application. Now that you've tried a bunch of the sensors, pick one that you would like to use, and an application where you use the output of that sensor for an interaction. For example, you can use a distance sensor to measure someone's height if you position it overhead and get them to stand under it.
 </details>
 
+### Smart Hygiene Dispenser
+Detects hand proximity to automatically dispense sanitizer and supports gesture control to switch modes.
+<p align="center">
+  <img src="Sensor5.jpeg" alt="Smart Hygiene Dispenser" width="50%">
+</p>
+
+### Breathing Trainer
+Synchronizes light brightness with the user's breathing rhythm and turns off once the user falls asleep.
+<p align="center">
+  <img src="Sensor4.jpeg" alt="Breathing Trainer" width="50%">
+</p>
+
+### Touchless Music Controller
+Uses simple hand gestures to switch, pause, and resume songs without physical contact.
+<p align="center">
+  <img src="Sensor3.jpeg" alt="Touchless Music Controller" width="50%">
+</p>
+
+### Distance Mirror
+Displays real-time weather and time when the user approaches, and hides them when the user moves away.
+<p align="center">
+  <img src="Sensor2.jpeg" alt="Distance Mirror" width="50%">
+</p>
+
+### Gesture Lamp
+Allows users to adjust light intensity and switch lighting modes through up–down and left–right hand waves.
+<p align="center">
+  <img src="Sensor1.jpeg" alt="Gesture Lamp" width="50%">
+</p>
+
+---
 ### What questions do these sketches raise?
 
 While sketching these five concepts, we realized that many of them share similar challenges around gesture detection, sensing range, and user feedback.
@@ -297,16 +327,17 @@ How can the system communicate successful detection?
 Do users need audio, visual, or haptic cues to understand when the system has responded?
 
 #### 5. Safety and usability in real contexts
-In touchless designs (like the dispenser or music controller), how do we avoid false triggers or unwanted activations when people simply pass by?
+In touchless designs (like the dispenser or music controller), how do we avoid false triggers or unwanted activations when people simply pass by?   
 
 
 ### What do we need to prototype to answer those questions?
-1. To explore these issues, we will need to physically prototype and test the following aspects:
-2. Vary the distance and angle between the user's hand and the sensor to measure detection accuracy.
-3. Test gesture recognition (up, down, left, right) in different lighting environments.
-4. Integrate visual or sound feedback (like LEDs or audio tones) to evaluate whether users can easily understand system responses.
-5. Experiment with different enclosure materials (cardboard, plastic, translucent cover) to see how they affect proximity sensing.
-6. Observe how users interact with the device naturally, identifying when false detections occur.
+To explore these issues, we will need to physically prototype and test the following aspects:
+1. Vary the distance and angle between the user's hand and the sensor to measure detection accuracy.
+2. Test gesture recognition (up, down, left, right) in different lighting environments.
+3. Integrate visual or sound feedback (like LEDs or audio tones) to evaluate whether users can easily understand system responses.
+4. Experiment with different enclosure materials (cardboard, plastic, translucent cover) to see how they affect proximity sensing.
+5. Observe how users interact with the device naturally, identifying when false detections occur.
+   
 
 ### Prototype Choice
 We decided to prototype the gesture-controlled music player using the APDS-9960 sensor.
