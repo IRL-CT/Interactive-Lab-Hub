@@ -31,13 +31,28 @@
 	- 5 sketches of different ways to use your chosen sensor
 	- Written reflection: questions raised, what to prototype
 	- Pick one design to prototype and explain why
+	
+	![eed8b497daff0d0dfb379a166a68d68d](https://github.com/user-attachments/assets/c49ca762-9313-4a61-b83e-e84d9570ae66)
 
+	![fa1d78fa387783a4802c4149ea772e10](https://github.com/user-attachments/assets/86ea7c25-36e7-49be-94aa-8180014b4e43)
+
+    Sketch 1: I love to play old games, but it's not always goos using simulator on PC can be difficult because PC has no joysticks and keys are arranged different from gamepads. However, old game pads have various forms and buying all kinds of them can be time- and money-consuming. So I design this all-in-one gamepad that can reflect to 2-, 4- and 6-button old game pads at the same time.
+	
+    Sketch 2: As a fan of iM@s, I really want to create a machine that can summon my favorite idols whenever I want, so I design this "magic mirror". It is activated when I approach, and can broadcast different voices and songs subject to my manipulation.
+
+	Sketch 3: Fighting games are hard to begin with, and I can not always live in an arcade and spend infinite money to the game box, so there should be a simulator that can train my combo at home.
+
+	Sketch 4: I can't play piano well, and but most other common instruments have only one part. This is an easy keyboard that can play with two parts: when a key is pressed, the chord (determined by rotary encoder) and the melody (determined by twizzer touches) will be broadcast at the same time.
+
+	Sketch 5: I want to play Taiko no Tatsujin at home. That's it.
+	
 *️⃣ **D. Display & Housing**
 	- 5 sketches for display/button/knob positioning
 	- Written reflection: questions raised, what to prototype
 	- Pick one display design to integrate
 	- Rationale for design
 	- Photos/videos of your cardboard prototype
+![7cea37049b2e1ca64f6724db852bdf66](https://github.com/user-attachments/assets/3b888171-1b8d-48bc-8418-62dc93fc4963)
 
 ---
 
@@ -494,5 +509,6 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
 
 
