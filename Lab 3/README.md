@@ -1,4 +1,8 @@
 # Chatterboxes
+
+<details>
+  <summary><strong>Instructions (Click to Expand)</strong></summary>
+
 **NAMES OF COLLABORATORS HERE**
 [![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
 
@@ -232,15 +236,20 @@ pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
 ```
 From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
 
+</details>
+
 ### Storyboard
 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
 
-\*\***Post your storyboard and diagram here.**\*\*
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
-\*\***Please describe and document your process.**\*\*
+* User: "{{Pet name}} is {{mood}}"
+* Device: "{{Pet name}} is {{mood}}"
+* or if the mood is not recognized:
+  * Device: "I didn't catch that."
+
 
 ### Acting out the dialogue
 
@@ -255,59 +264,48 @@ In the [demo directory](./demo), you will find an example Wizard of Oz project. 
 
 # Lab 3 Part 2
 
-For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
-
-## Prep for Part 2
-
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
+
+it would be more ideal if the interaction could be more fluid like a normal conversation. there were many pauses and delays that made the interaction feel more robotic and less natural. also, the device could be more proactive in guiding the user through the interaction, rather than waiting for a hard coded duration of silence to indicate the user is done speaking.
+
 2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
+
+I also used the web page for visual display and control (when to start recording).
+
 3. Make a new storyboard, diagram and/or script based on these reflections.
+
 
 ## Prototype your system
 
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
-
 *Document how the system works*
 
-*Include videos or screencaptures of both the system and the controller.*
+the code is under `Lab 3/assignment`
+flow:
+* user clicks "Speak" on the web page
+* recording starts and recognition is done
+* after 10 seconds of silence, the web page displays the recognized mood of the pet
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
-  
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-  This helps ensure your README.md is clear professional and uniquely yours!
-</details>
+https://drive.google.com/file/d/1SIvdC7YM2PJvI4qrPSkuCTXOEiV8yUqC/view?usp=sharing
+
 
 ## Test the system
-Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
-
-Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+both of the participants were able to successfully use the system to record mood of their pet.
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+both participants were able to use the web page to start the recording and see the results.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
+the system should be more proactive in guiding the user through the interaction, rather than waiting for a hard coded duration.
 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
-
-
+Currently, the user simply states the pet’s mood, which is a naive use of the system. Ideally, the system would be able to infer the pet’s mood autonomously so collecting data on the pet’s behavior (e.g., barking, whining, tail wagging) and physiological signals (e.g., heart rate, body temperature) would be useful. Additionally, capturing contextual information such as time of day, location, and recent activities could help improve the accuracy of mood inference.
 
 
 

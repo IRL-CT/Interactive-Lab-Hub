@@ -1,0 +1,1 @@
+espeak -a 30 -ven+f2 -k5 -s150 --stdout "$1" | aplay
