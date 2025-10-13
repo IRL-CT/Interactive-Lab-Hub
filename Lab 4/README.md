@@ -7,7 +7,7 @@ Sachin Jojode, Nikhil Gangaram, Arya Prasad, Jaspreet Singh
 ### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
 
 Twizzler Video Link:  
-```
+
 
 ### Part B
 ### More sensors
