@@ -1,6 +1,8 @@
 
 # Ph-UI!!!
 
+Partner: Celeste (Lianne) Bisch (lb854)
+
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
   
