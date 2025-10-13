@@ -438,7 +438,7 @@ Think about how you want to present the information about what your sensor is se
 
 ---
 
-### What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+### What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?
 1. **Gesture Reliability:**  
    - How consistently does the APDS-9960 recognize left/right gestures under different lighting conditions and angles?  
    - Physical prototyping can help determine the optimal sensor placement and gesture distance.  
