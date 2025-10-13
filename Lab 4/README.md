@@ -6,24 +6,23 @@ Sachin Jojode, Nikhil Gangaram, Arya Prasad, Jaspreet Singh
 ### Part A
 ### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
 
-Twizzler Video Link:  
+Twizzler Video Link: https://youtu.be/UR29FbM2_Zg
 
 
 ### Part B
 ### More sensors
-#### Light/Proximity/Gesture sensor (APDS-9960)
 
 Light/Proximity/Gesture sensor (APDS-9960)
-Link:
+Link: https://youtu.be/EVjcOtlsp9w
 
 Rotary Encoder
-Link:
+Link: https://youtu.be/T9menfbH3-I
 
 Joystick
-Link:
+Link: https://youtu.be/TCmgt5xkJVs
 
 Distance Sensor
-Link:
+Link: https://youtu.be/fr77xgzWXX8
 
 ### Part C
 ### Physical considerations for sensing
@@ -66,7 +65,7 @@ Astroclicker Designs:
 
 For our first design, which we based on Prototype 1, we focused on making the device comfortable and practical. Since it’s handheld, we placed the joystick in a spot that feels natural to use. We made sure the speaker faces the user so the sound doesn’t get muffled. We also planned space for ventilation to keep the Raspberry Pi from overheating, along with room for a battery. When building our cardboard prototype, we included these ideas using an Altoids can as a placeholder for the battery and adding a top cutout for airflow around the Raspberry Pi.
 
-Astroclicker Prototype Video Link: 
+Astroclicker Prototype Video Link: https://youtube.com/shorts/sQySwPO-nW0?feature=share
 
 
 # LAB PART 2
