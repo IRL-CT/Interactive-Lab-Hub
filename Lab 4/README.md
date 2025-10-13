@@ -59,7 +59,6 @@ After evaluating all the ideas, we’ve chosen to continue developing the **Astr
 
 Astroclicker Designs:
 <img width="743" height="44<img width="925" height="664" alt="Screen Shot 2025-10-12 at 6 07 53 PM" src="https://github.com/user-attachments/assets/76866f4b-c63f-4da6-a6c7-7d78b7a16790" />
-6" alt="Screen Shot 2025-10-12 at 6 06 49 PM" src="https://github.com/user-attachments/assets/4341c28e-a526-40e2-9eb1-b224119415b5" />
 <img width="854" height="730" alt="Screen Shot 2025-10-12 at 6 08 02 PM" src="https://github.com/user-attachments/assets/a630e74a-7279-4e8f-8b24-b3d8ddca195d" />
 <img width="1059" height="575" alt="Screen Shot 2025-10-12 at 6 08 12 PM" src="https://github.com/user-attachments/assets/6dd2ce10-5d82-4469-b56c-fbe873b4bedc" />
 <img width="912" height="618" alt="Screen Shot 2025-10-12 at 6 08 28 PM" src="https://github.com/user-attachments/assets/ac11edc8-26c5-4739-9ae5-a8ec4d19f249" />
