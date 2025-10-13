@@ -405,7 +405,7 @@ Think about how you want to present the information about what your sensor is se
 </p> 
 
 - The focus of this design is how to display information through sound — using the speaker as the main medium to communicate playback status.
-- - Instead of visual feedback, music itself becomes the output, spreading through the speaker so that people nearby can hear and perceive the interaction.
+- Instead of visual feedback, music itself becomes the output, spreading through the speaker so that people nearby can hear and perceive the interaction.
 
 #### Sketch 3 – Interaction Diagram
 <p align="center">
