@@ -1,9 +1,8 @@
 
 # Ph-UI!!!
 
-##### Collaborators: Charlotte Lin (hl2575), Zoe Tseng (yzt2), Le-En Huang (lh764)
-
-##### Use of AI for this lab: Claude Sonnet4 for image creation and debugging instructions for the code.
+#### Collaborators: Charlotte Lin (hl2575), Zoe Tseng (yzt2), Le-En Huang (lh764) 
+#### Use of AI for this lab: Claude Sonnet4 for image creation and debugging instructions for the code.
 
 ## Lab 4 Deliverables
 
@@ -11,7 +10,7 @@
 **Submit the following for Part 1:**  
 *️⃣ **A. Capacitive Sensing**
 	- Photos/videos of your Twizzler (or other object) capacitive sensor setup
-	- Code and terminal output showing touch detection
+
 
 *️⃣ **B. More Sensors**
 	- Photos/videos of each sensor tested (light/proximity, rotary encoder, joystick, distance sensor)
@@ -51,19 +50,148 @@ F) [Record the interaction](#part-f)
 ### Part A @Zoe Tseng
 ### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
 
-- video/photo
+    
+Video (pad 6): https://drive.google.com/file/d/1b7L1SqBQUygmfVYxJiss4DIEMV0uHwtq/view?usp=drive_link
+Video (pad 10):
+https://drive.google.com/file/d/14V4hyPFF8VFP9ItwjdHoa1cymrKm751O/view?usp=sharing
+
+Code and terminal output showing touch detection
 ```
-code here
-```
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python cap_test.py 
+Twizzler 6 touched!
+Twizzler 6 touched!
+Twizzler 6 touched!
+Twizzler 6 touched!
+Twizzler 6 touched!
+Twizzler 6 touched!
+Twizzler 6 touched!
+Twizzler 6 touched!
+Twizzler 6 touched!
+Twizzler 10 touched!
+Twizzler 10 touched!
+Twizzler 10 touched!
+Twizzler 10 touched!
+Twizzler 10 touched!
+Twizzler 10 touched!
+Twizzler 10 touched!
+Twizzler 10 touched!
+Twizzler 10 touched!
+^CTraceback (most recent call last):
+  File "/home/pi/Interactive-Lab-Hub/Lab 4/cap_test.py", line 16, in <module>
+    time.sleep(0.25)  # Small delay to keep from spamming output messages.
+    ^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+``` 
 
 ### Part B
 ### More sensors
 
 #### Light/Proximity/Gesture sensor (APDS-9960) @Charlotte Lin
 
-- video/photo
+
+Proximity
+- photo
+
+![proximity](https://hackmd.io/_uploads/HkxBqpFTxl.jpg)
+
+- [video](https://drive.google.com/file/d/11OtQ9XfazL-6nwbsXwbiqk9xxBplYR6K/view?usp=drive_link)
+- console output
 ```
-code here
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python proximity_test.py
+0
+0
+0
+0
+3
+44
+167
+224
+255
+255
+253
+253
+255
+11
+6
+12
+189
+251
+254
+255
+255
+255
+255
+255
+16
+0
+0
+0
+```
+
+Gesture
+- photo
+![gesture](https://hackmd.io/_uploads/B1FO5aF6ex.jpg)
+- [video](https://drive.google.com/file/d/15aZFAI2Y_kP1M2qaymhDv42UCoqGmetB/view?usp=drive_link)
+- console output
+```
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python gesture_test.py 
+down
+right
+left
+down
+up
+down
+```
+
+Color
+- photo
+![color](https://hackmd.io/_uploads/BJ4c9TFpgg.jpg)
+- [video](https://drive.google.com/file/d/1hiBqWVPw_DqA_ngKg1g7AsKgz8PEHs_k/view?usp=drive_link)
+- console output
+```
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python color_test.py
+red:  2333
+green:  1257
+blue:  1045
+clear:  4327
+color temp 1770.7160880735482
+light lux 461.7333600000002
+red:  10
+green:  8
+blue:  6
+clear:  29
+color temp 3499.4007951306817
+light lux 4.9889
+red:  2
+green:  2
+blue:  1
+clear:  7
+color temp 3242.1840039686945
+light lux 1.7755100000000001
+red:  1
+green:  2
+blue:  1
+clear:  5
+color temp 4548.991462072831
+light lux 2.10017
+red:  3
+green:  3
+blue:  2
+clear:  8
+color temp 3942.565377810376
+light lux 2.2973100000000004
+red:  2527
+green:  1356
+blue:  1127
+clear:  4682
+color temp 1757.137645877991
+light lux 494.9913300000002
+red:  2802
+green:  1502
+blue:  1247
+clear:  5184
+color temp 1753.5357746806585
+light lux 548.3226500000003
 ```
 
 #### Rotary Encoder @Eva Huang 
@@ -146,7 +274,7 @@ Ending Example 1
 
 - video
     - [demo](https://youtube.com/shorts/v1Gfl3jC7AU?feature=share)
-    - [console output](https://youtu.be/5xiSeR5Hiec)
+- console output
 
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python qwiic_distance.py
@@ -347,6 +475,10 @@ Color sensor: Could detect pill bottle colors to track which medication
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
+- user interaction / usability : do the buttons appeared to be intuitive ? does the user understand what each element or action does ?
+- informaiton content : is the order or hierarchy of information clear? Do users interpret icons, labels, and data the way we expect?
+- Feasibility / Technical Constraint : will performance (e.g., loading time, hardware constraints) affect usability?
+
 **\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
 
 **\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
@@ -356,13 +488,31 @@ Build a cardboard prototype of your design.
 
 **\*\*\*Document your rough prototype.\*\*\***
 
-<img src="https://hackmd.io/_uploads/SJVRpdS6ge.png" width="500"/>
+<img src="https://hackmd.io/_uploads/SJVRpdS6ge.png" width="400"/>
 
 
-<img src="https://hackmd.io/_uploads/S1bEZtrpee.png" width="500"/>
+<img src="https://hackmd.io/_uploads/S1bEZtrpee.png" width="400"/>
 
 
-<img src="https://hackmd.io/_uploads/SJVRpdS6ge.png" width="500"/>
+### 🎨 Design #3: Twizzler Touch Edition (Capacitive Petting Pad)
+
+**Sensors Used:** Capacitive Sensor Board (MPR121) + Copper Tape or Twizzlers  
+
+<img src="https://hackmd.io/_uploads/H1itQCtTgx.png" width="400"/>
+
+### **Description**
+Four touch pads—🍖 Feed, 🎮 Play, 💊 Medicine, ❤️ Pet—are arranged around the central display.  
+
+### 🕹️ Design #4: Rotary Mood Dial + Distance Sensor
+
+**Sensors Used:** Rotary Encoder + Distance Sensor  
+
+<img src="https://hackmd.io/_uploads/rJI4NRYale.png" width="400"/>
+
+### **Description**
+- Combines **rotational input** for selecting pet actions with **distance sensing** to detect user presence. 
+- The rotary knob scrolls through actions like *Feed*, *Play*, *Clean*, and *Heal*.  
+- The distance sensor **wakes the pet** when the user approaches.
 
 
 # LAB PART 2
