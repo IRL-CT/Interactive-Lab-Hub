@@ -287,23 +287,23 @@ We chose **Light/Proximity/Gesture sensor (APDS-9960)** as our sensor.
 
 Application #1: Plant Health Monitor
 
-![img](./assets/C.%20Plant%20Health%20Monitor.png)
+<img src="./assets/C.%20Plant%20Health%20Monitor.png" height="400" />
 
 Application #2: Natural Lighting Room
 
-![img](./assets/C.%20Natural%20lighting%20room%20detection.png)
+<img src="./assets/C.%20Natural%20lighting%20room%20detection.png" height="400" />
 
 Application #3:  Exhibition Visitor Counter
 
-![img](./assets/C.%20Exhibition%20visitor%20counter.png)
+<img src="./assets/C.%20Exhibition%20visitor%20counter.png" height="400" />
 
 Application #4: Eye Wellness Assistant
 
-![img](./assets/C.%20Eye%20wellness%20assistant.png)
+<img src="./assets/C.%20Eye%20wellness%20assistant.png" height="400" />
 
 Application #5: Movie Controller
 
-![img](./assets/C.%20Movie%20controller.png)
+<img src="./assets/C.%20Movie%20controller.png" height="400" />
 
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
@@ -409,7 +409,7 @@ Think about how you want to present the information about what your sensor is se
 
 **Design #1**: The physical prototype includes an adjustable sensor holder extending from the computer, with a small board placed next to it for sensor integration. When the user is too close to the monitor, the board will display a red light and flash continuously to alert them. Otherwise, the board will remain black without providing any additional notifications.
 
-![img](./assets/D.%20Design%201.png)
+<img src="./assets/D.%20Design%201.png" height="400" />
 
 **Design #2**: The physical prototype includes an adjustable curved phone stand extending from the computer, with a small light placed beside it to indicate the proximity detection status. It uses a color light (green = good, yellow =  a bit close, red = too close) to present the status.
 
@@ -417,15 +417,15 @@ Think about how you want to present the information about what your sensor is se
 
 **Design #3**: The physical prototype includes an adjustable curved phone stand extending from the computer, with a small board placed next to it for sensor integration. The actual distance between the screen and the user’s face will be displayed on the board.
 
-![img](./assets/D.%20Design%203.png)
+<img src="./assets/D.%20Design%203.png" height="400" />
 
 **Design #4**: Place the sensor on top of the computer with the sensor facing downward. When the user gets too close to the computer (meaning their head is below the sensor), the sensor detects the proximity and uses a beeping sound to alert the users.
 
-![img](./assets/D.%20Design%204.png)
+<img src="./assets/D.%20Design%204.png" height="400" />
 
 **Design #5**: Place the sensor on top of the computer with the sensor facing downward. When the user gets too close to the computer (meaning their head is below the sensor), a voice message will be played to remind the user of the distance, such as “you are too close to your screen, please keep away from it”
 
-![img](./assets/D.%20Design%205.png)
+<img src="./assets/D.%20Design%205.png" height="400" />
 
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
@@ -510,7 +510,7 @@ Build a cardboard prototype of your design.
 
 **\*\*\*Document your rough prototype.\*\*\***
 
-![img](./assets/cardboard%20prototype.png)
+<img src="./assets/cardboard%20prototype.png" height="600" />
 
 # LAB PART 2
 
