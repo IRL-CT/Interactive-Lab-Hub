@@ -44,7 +44,7 @@ Sketch 4: I can't play piano well, and but most other common instruments have on
 
 Sketch 5: I want to play Taiko no Tatsujin at home. That's it.
 
-[Prototype Sketch2](https://drive.google.com/video/captions/edit?id=1sONxc1O3fI1M48DWHCV8eqoYb3It8uzL)
+[Prototype Sketch2](https://drive.google.com/video/captions/edit?id=1lF1JMMllSmGIzXxutQTKquUQsPW7Cff6)
 
 Reason for S2: Nobody should miss this tremendous iM@s Project. Besides, this includes various ways for interaction and remains much room for extension (eg. Twizzer buttons rearranged for body touch just like arcade iM@s games, oled for subtitle)
 
@@ -512,6 +512,7 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
 
 
 
