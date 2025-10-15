@@ -23,29 +23,34 @@ Collaborators: Thomas Knoepffler, Carrie Wang, Xiaocheng Li, Julia Chen, Dean Xu
 ### Part 1 (Week 1)
 
 #### A. Capacitive Sensing
-	- Photos/videos of your Twizzler (or other object) capacitive sensor setup
-	- Code and terminal output showing touch detection
+- Photos/videos of your Twizzler (or other object) capacitive sensor setup
+- Code and terminal output showing touch detection
 
 
 #### B. More Sensors
-	- Photos/videos of each sensor tested (light/proximity, rotary encoder, joystick, distance sensor)
-	- Code and terminal output for each sensor
+- Photos/videos of each sensor tested (light/proximity, rotary encoder, joystick, distance sensor)
+- Code and terminal output for each sensor
 
 #### C. Physical Sensing Design
 **5 sketches of different ways to use your chosen sensor**
 <p align="center">
-  <img src="sketches/Interaction_Image_1.png" width="30%"/>
-  <img src="sketches/Interaction_Image_2.png" width="30%"/>
-  <img src="sketches/Interaction_Image_3.png" width="30%"/>
+  <img src="sketches/Interaction_Image_1.png" width="50%"/>
+  <img src="sketches/Interaction_Image_2.png" width="50%"/>
 </p>
 <p align="center">
-  <img src="sketches/Interaction_Image_4.png" width="30%"/>
-  <img src="sketches/Interaction_Image_5.png" width="30%"/>
+  <img src="sketches/Interaction_Image_3.png" width="50%"/>
+    <img src="sketches/Interaction_Image_4.png" width="50%"/>
+</p>
+<p align="center">
+  <img src="sketches/Interaction_Image_5.png" width="50%"/>
 </p>
 
 
-	- Written reflection: questions raised, what to prototype
-	- Pick one design to prototype and explain why
+**Written reflection: questions raised, what to prototype**
+As we decided to narrow down our ideas further, we found that having a specific kind of game made the design of our interaction far more deliberate and filled with intention, so we decided to select the game Snake as a preliminary game to design our controller off of. The classic Snake made use of up, down, left, and right controls. Furthermore, the game relied on timing and precision in order for a player to navigate the winding path that the snake creates. Because of this, we wanted to think about how we might be able to place a directional pad or some other form of directional movement analog, in a way that is both playful but also takes into account the affordance of instant control over the snake character.
+
+**Pick one design to prototype and explain why**
+![Electronics Setup](prcoess/Electronics_Setup.png)
 
 ## D. Display & Housing**
 	- 5 sketches for display/button/knob positioning
