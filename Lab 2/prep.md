@@ -153,7 +153,7 @@ Again, the terminal will not show what you type for security so do not worry abo
 While you're SSH'd into your Pi, configure your home WiFi so you don't lose access when you take your Pi home:
 
 ```bash
-sudo nmcli connection add type wifi con-name "HomeWiFi" ifname wlan0 ssid "YourNetworkName" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "YourPassword" connection.autoconnect yes
+sudo nmcli connection add type wifi con-name "HomeWiFi" ifname wlan0 ssid "SpectrumSetup-5885" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "pureaudience773" connection.autoconnect yes
 ```
 
 **Replace `YourNetworkName` and `YourPassword` with your actual home WiFi details.**
@@ -172,7 +172,7 @@ This should list your home network.
 
 **Pro Tip:** Consider also setting up your phone's hotspot as a backup connection:
 ```bash
-sudo nmcli connection add type wifi con-name "PhoneHotspot" ifname wlan0 ssid "YourPhoneHotspotName" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "YourHotspotPassword" connection.autoconnect yes
+sudo nmcli connection add type wifi con-name "PhoneHotspot" ifname wlan0 ssid "hii" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "11111111" connection.autoconnect yes
 ```
 
 **Do this now while you have SSH access!** Otherwise, you'll need to come back to campus, find a screen, or reconfigure everything using the SD card formatter.

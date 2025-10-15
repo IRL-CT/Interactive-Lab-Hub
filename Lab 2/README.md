@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+**Carrie Wang, Xiaocheng Li, Dean Xu, Julia Chen, Thomas Knoepffler**
 
 Does it feel like time is moving strangely during this semester?
 
@@ -61,7 +61,7 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 Just like you did in the lab prep, ssh on to your pi. Once you get there, create a Python environment (named venv) by typing the following commands.
 
 ```
-ssh pi@<your Pi's IP address>
+ssh pi@<10.56.252.79>
 ...
 pi@raspberrypi:~ $ python -m venv venv
 pi@raspberrypi:~ $ source venv/bin/activate
@@ -71,8 +71,8 @@ pi@raspberrypi:~ $ source venv/bin/activate
 ### Setup Personal Access Tokens on GitHub
 Set your git name and email so that commits appear under your name.
 ```
-git config --global user.name "Your Name"
-git config --global user.email "yourNetID@cornell.edu"
+git config --global user.name "Carrie Wang"
+git config --global user.email "jw2796@cornell.edu"
 ```
 
 The support for password authentication of GitHub was removed on August 13, 2021. That is, in order to link and sync your own lab-hub repo with your Pi, you will have to set up a "Personal Access Tokens" to act as the password for your GitHub account on your Pi when using git command, such as `git clone` and `git push`.
@@ -85,7 +85,7 @@ Following the steps listed [here](https://docs.github.com/en/authentication/keep
 Clone your own lab-hub repo for this assignment to your Pi and change the directory to Lab 2 folder (remember to replace the following command line with your own GitHub ID):
 
 ```
-(venv) pi@raspberrypi:~$ git clone https://github.com/<YOURGITID>/Interactive-Lab-Hub.git
+(venv) pi@raspberrypi:~$ git clone https://github.com/cakkrie/Interactive-Lab-Hub.git
 (venv) pi@raspberrypi:~$ cd Interactive-Lab-Hub/Lab\ 2/
 ```
 Depends on the setting, you might be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you just set up as the password instead of your account one!
@@ -191,6 +191,17 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
+1. The Sunny-Side Timer
+
+Two Modes:
+
+Clock Mode (Idle): When not used as a timer, the yolk displays a clean, minimalist digital or analog clock face. The egg white remains a clean, uniform white.
+
+Timer Mode (Active): When a timer is set, the clock face disappears, and the entire egg begins its "cooking" transformation.
+![Egg Clock](egg_clock.png)
+
+2. City View Clock
+Turn the view of city into colorful lighting and project  on the wall
 
 # Prep for Part 2
 
@@ -215,11 +226,38 @@ Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://c
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
+For the next phase of this lab, our team collaborated to envision a clock concept we could all contribute to. We shared our initial ideas and identified overlapping themes that resonated across the group. Ultimately, we chose to revisit an idea first explored in last semester’s Design for Physical Interaction course in Ithaca: an alarm clock that wakes the user by pouring water on their head. This playful device introduces a humorous sense of frustration into the morning routine, turning the usual annoyance of alarm clocks into a moment of comedic mischief.
+
+**Group Work (Thomas Knoepffler, Carrie Wang, Xiaocheng Li Julia Chen, Dean Xu)**
+
+![Storyboard of Alarm Clock Concept](media/storyboard.png)
+![Rendering](media/rendering.png)
+
+Original Prompt: Please design product renderings for a water-based alarm clock. The alarm clock's base should be a clear water tank with a digital time display. The robotic arm of the alarm clock should have a nozzle at its end, capable of extending over the bed to aim at a sleeping person's face. Ensure the bedside table is flush with the bed, and a plant is placed on the bedside table. For the second consecutive story image, please show the alarm clock display reading 'Wake Up' with a water droplet icon, while the nozzle gently mists a small amount of water onto a naturally waking person with slightly opened eyes.
+
+### Process:
+We utilized both the MiniPiTFT to display a short 10 second count down followed by a "WAKE UP!!!" message on the screen, and a small Stepper Motor that would hold a cup of water and pour it at the end of the countdown. This required a careful consideration of we might use multi-threading functions so as to not overlap protocols with one another, but still alow the user to have various controls. We also needed to change our initial pin setup, eventually using a pin extender add-on that would let us use shared pins. A 3D printed platform was made to hold the electronics assembly and a cardboard enclosure was created to house the wires. The clock was then decorated with office decor to make more appropriate for a domestic setting.
+
+![Wiring1](media/wiring1.jpg)
+
+The device was situated to hang over a shelf or other elevation above a bed. The display showcasing the moment of waterfall. A secondary function had to be incorporated onto the other button on the MiniPiTFTF to adjust the Stepper Motor to be in the correct position. In hindsight, this is a limitation of the Stepper Motor where it cannot be precise in the angle positioning, rather it can only to take a set of steps towards a particular direction. In a future implementation, it would be ideal to use a Servo Motor instead. The demostration showed that the device worked in concept, although considering the anticipation and depending on the sleeping position, the moment of waterfall can be a little...unexpected.
+
+
+![Wiring2](media/wiring2.jpg)
+
+### Final Look:
+
+![Her Shot](media/hero-shot.jpg)
+
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+[Watch the demo video here!](media/Clock2_Compressed.mp4)
+
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
