@@ -28,7 +28,7 @@ last_position = None
 while True:
 
     # negate the position to make clockwise rotation positive
-    position = -encoder.position
+    position = encoder.position
 
     if position != last_position:
         last_position = position

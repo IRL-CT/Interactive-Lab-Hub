@@ -1,0 +1,1 @@
+qwiic_mmc5983ma

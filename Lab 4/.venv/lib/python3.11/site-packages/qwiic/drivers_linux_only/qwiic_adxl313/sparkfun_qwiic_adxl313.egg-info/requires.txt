@@ -1,0 +1,1 @@
+sparkfun_qwiic_i2c
