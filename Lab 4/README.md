@@ -1,6 +1,9 @@
 
 # Ph-UI!!!
 
+Collaborators: Thomas Knoepffler, Carrie Wang, Xiaocheng Li, Julia Chen, Dean Xu
+
+
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
   
@@ -18,21 +21,33 @@
 ## Lab 4 Deliverables
 
 ### Part 1 (Week 1)
-**Submit the following for Part 1:**  
-*️⃣ **A. Capacitive Sensing**
+
+#### A. Capacitive Sensing
 	- Photos/videos of your Twizzler (or other object) capacitive sensor setup
 	- Code and terminal output showing touch detection
 
-*️⃣ **B. More Sensors**
+
+#### B. More Sensors
 	- Photos/videos of each sensor tested (light/proximity, rotary encoder, joystick, distance sensor)
 	- Code and terminal output for each sensor
 
-*️⃣ **C. Physical Sensing Design**
-	- 5 sketches of different ways to use your chosen sensor
+#### C. Physical Sensing Design
+**5 sketches of different ways to use your chosen sensor**
+<p align="center">
+  <img src="sketches/Interaction_Image_1.png" width="30%"/>
+  <img src="sketches/Interaction_Image_2.png" width="30%"/>
+  <img src="sketches/Interaction_Image_3.png" width="30%"/>
+</p>
+<p align="center">
+  <img src="sketches/Interaction_Image_4.png" width="30%"/>
+  <img src="sketches/Interaction_Image_5.png" width="30%"/>
+</p>
+
+
 	- Written reflection: questions raised, what to prototype
 	- Pick one design to prototype and explain why
 
-*️⃣ **D. Display & Housing**
+## D. Display & Housing**
 	- 5 sketches for display/button/knob positioning
 	- Written reflection: questions raised, what to prototype
 	- Pick one display design to integrate
