@@ -382,6 +382,7 @@ For Part 2, you will design and build a fun interactive prototype using multiple
 **Questions to consider:**
 - What new types of interaction become possible when you combine two or more sensors or actuators?
 - How does the physical arrangement of devices (e.g., where the encoder or sensor is placed) change the user experience?
+	- We thought about using different sensors to change what is shown on the displays (button vs gesture sensor). We decided on using a button since it is more intuitive and we could not find a good place to place the sensor where it would make sense for the user since we were having the sensor change all three screens at once. 
 - What happens if you use one device to control or modulate another (e.g., encoder sets a threshold, sensor triggers an action)?
 - How does the system feel if you swap which device is "primary" and which is "secondary"?
 
