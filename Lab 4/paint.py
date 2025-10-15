@@ -127,28 +127,29 @@ try:
 
         # encoder button: short = cycle manual color; long = toggle auto_color
         # detect press length
-        static_press_t = getattr(enc_button, "_press_t", None)
-        if not enc_button.value and static_press_t is None:   # pressed now
-            enc_button._press_t = time.time()
-        if enc_button.value and static_press_t is not None:   # released now
-            held = time.time() - enc_button._press_t
-            enc_button._press_t = None
-            if held > 0.7:
-                auto_color = not auto_color
-                print(f"Auto color: {'ON' if auto_color else 'OFF'}")
-            else:
-                ci = (ci + 1) % len(palette)
-                print(f"Color idx: {ci}")
+        # static_press_t = getattr(enc_button, "_press_t", None)
+        # if not enc_button.value and static_press_t is None:   # pressed now
+        #     enc_button._press_t = time.time()
+        # if enc_button.value and static_press_t is not None:   # released now
+        #     held = time.time() - enc_button._press_t
+        #     enc_button._press_t = None
+        #     if held > 0.7:
+        #         auto_color = not auto_color
+        #         print(f"Auto color: {'ON' if auto_color else 'OFF'}")
+        #     else:
+        #         ci = (ci + 1) % len(palette)
+        #         print(f"Color idx: {ci}")
 
         # ----- APDS9960 read (non-blocking-ish) -----
-        now = time.time()
-        if auto_color and (now - last_color_read) > 0.05:  # ~20 Hz
+        # now = time.time()
+        # if auto_color and (now - last_color_read) > 0.05:  # ~20 Hz
             # wait briefly for ready without stalling the frame
-            if apds.color_data_ready:
-                r, g, b, c = apds.color_data
-                sensed = rgb_from_apds(r, g, b, c)
-                curr_color = smooth_rgb(curr_color, sensed, 0.35)
-                last_color_read = now
+        if apds.color_data_ready:
+            # print("reading color")
+            r, g, b, c = apds.color_data
+            sensed = rgb_from_apds(r, g, b, c)
+            curr_color = smooth_rgb(curr_color, sensed, 0.35)
+            # last_color_read = now
 
         # choose brush color
         brush_color = curr_color if auto_color else palette[ci]
