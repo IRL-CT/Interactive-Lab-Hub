@@ -1,6 +1,8 @@
 
 # Ph-UI!!!
 
+Partner: Celeste (Lianne) Bisch (lb854)
+
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
   
@@ -11,7 +13,7 @@
 	- Your final submission should be neat, focused on your own work, and easy to read for grading.
   
 	This helps ensure your README.md is clear, professional, and uniquely yours!
-</details>
+
 
 ---
 
@@ -496,3 +498,44 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
 
+</details>
+
+## Part 1
+
+#### Capacitive Sensing, a.k.a. Human-Twizzler Interaction
+- [video](https://drive.google.com/file/d/18yES5zgi9vadJ35WmzPh92G5otRxhHDW/view?usp=drive_link)
+#### Light/Proximity/Gesture sensor (APDS-9960)
+- [color_sensor](https://drive.google.com/file/d/1nGoNoW5VqaMlu44S1YrABpeoOqZt3pnG/view?usp=drive_link)
+- [Gesture](https://drive.google.com/file/d/1kV9ytehZo7h0iTpj5iUL3qDl60VlzUWA/view?usp=drive_link)
+
+#### Rotary Encoder
+- [video](https://drive.google.com/file/d/1gFWGG_V0EaZ-SAlwyjkxl6xNygtXT9-M/view?usp=drive_link)
+
+#### Joystick
+- [video](https://drive.google.com/file/d/1-eFuz5ohCwvVwxiNTdq3e_H6tSxvZnMg/view?usp=drive_link)
+
+#### Distance Sensor
+- [video](https://drive.google.com/file/d/1nly-xRRw7lkPNoYq9m0ssxKG0KIIMCPE/view?usp=drive_link)
+
+**\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+<img src="image/sketch1.jpg" height="400" />
+<img src="image/sketch2.jpg" height="400" />
+<img src="image/sketch3.jpg" height="400" />
+
+**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+
+- We need to consider when this sensor should be activated. For example, when I drew the cloth color detection, I realized that I do not want this sensor to be active all the time, but only when the user wants to use. One way might be through on/off button, but also thought we can use other sensor such as motion detection when the door opens to activate. 
+
+- For the rotator, we really need some indication of how much it rotates. Without those indications, users will not be able to remember how much she/he rotates. 
+
+**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+- We decided the sound idea. 
+
+**\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+
+- We designed the bell ring in the size that the users can easily touch and shake. 
+- However, since we built with paper, which is non-conductive, we realized that we need to put the conductive tape everywhere so that no matter when the user touches, it should ring.
+- We thought the use of motion detection; however, we concluded it will be too heavy. 
+
+**\*\*\*Document your rough prototype.\*\*\***
+- [video](https://drive.google.com/file/d/13n8Z8xWamGpGf9VqfbEW2rgNa3ycgp4j/view?usp=drive_link)
