@@ -153,14 +153,14 @@ Again, the terminal will not show what you type for security so do not worry abo
 While you're SSH'd into your Pi, configure your home WiFi so you don't lose access when you take your Pi home:
 
 ```bash
-sudo nmcli connection add type wifi con-name "HomeWiFi" ifname wlan0 ssid "SpectrumSetup-5885" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "pureaudience773" connection.autoconnect yes
+sudo nmcli connection add type wifi con-name "HomeWiFi" ifname wlan0 ssid "<YOUR_SSID>" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "<YOUR_PASSWORD>" connection.autoconnect yes
 ```
 
 **Replace `YourNetworkName` and `YourPassword` with your actual home WiFi details.**
 
 E.g. when setting up the Wifi for the house:
 ```bash
-sudo nmcli connection add type wifi con-name "WhiteSky-Cornell" ifname wlan0 ssid "WhiteSky-Cornell" wifi-sec.key-mgmt wpa-psk wifi-sec.psk “THEPASSWORDHERE" connection.autoconnect yes
+sudo nmcli connection add type wifi con-name "WhiteSky-Cornell" ifname wlan0 ssid "WhiteSky-Cornell" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "<CORNELL_WIFI_PASSWORD>" connection.autoconnect yes
 ```
 **Why this matters:** If you only have school WiFi configured and take your Pi home, you'll lose SSH access and won't be able to connect remotely to fix it! Having home WiFi pre-configured means your Pi will automatically connect when you get home.
 
@@ -172,7 +172,7 @@ This should list your home network.
 
 **Pro Tip:** Consider also setting up your phone's hotspot as a backup connection:
 ```bash
-sudo nmcli connection add type wifi con-name "PhoneHotspot" ifname wlan0 ssid "hii" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "11111111" connection.autoconnect yes
+sudo nmcli connection add type wifi con-name "PhoneHotspot" ifname wlan0 ssid "<YOUR_HOTSPOT_SSID>" wifi-sec.key-mgmt wpa-psk wifi-sec.psk "<YOUR_HOTSPOT_PASSWORD>" connection.autoconnect yes
 ```
 
 **Do this now while you have SSH access!** Otherwise, you'll need to come back to campus, find a screen, or reconfigure everything using the SD card formatter.

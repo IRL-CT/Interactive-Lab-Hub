@@ -32,7 +32,7 @@ network={
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 network={
     ssid="DeviceFarm"
-    psk="device@theFarm"
+    psk="<DEVICEFARM_PASSWORD>"
     key_mgmt=WPA-PSK
 }
 
@@ -102,7 +102,7 @@ If you have a WiFi router at home that you control, you can connect to it by set
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 network={
     ssid="DeviceFarm"
-    psk="device@theFarm"
+    psk="<DEVICEFARM_PASSWORD>"
     key_mgmt=WPA-PSK
 }
 
@@ -155,7 +155,8 @@ import datetime
 # Change to your own account information
 to = 'YOUREMAIL@DOMAIN.com'
 gmail_user = 'interactiveDeviceDesign@gmail.com'
-gmail_password = 'device@theFarm'
+gmail_password = '<GMAIL_PASSWORD>'
+ 
 smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
 smtpserver.ehlo()
 smtpserver.starttls()
@@ -266,7 +267,7 @@ You can also comment out `DeviceFarm` settings so that you only connect to `RedR
 #ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 #network={
 #    ssid="DeviceFarm"
-#    psk="device@theFarm"
+#    psk="<DEVICEFARM_PASSWORD>"
 #    key_mgmt=WPA-PSK
 #}
 ```
