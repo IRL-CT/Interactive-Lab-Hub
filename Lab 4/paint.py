@@ -14,9 +14,11 @@ from adafruit_apds9960.apds9960 import APDS9960
 # ===== MPR121 touch sensor =====
 import adafruit_mpr121
 
+from adafruit_lsm6ds.lsm6ds3 import LSM6DS3
 # ===== touch sensor setup =====
 i2c = busio.I2C(board.SCL, board.SDA)
 mpr121 = adafruit_mpr121.MPR121(i2c)
+sensor = LSM6DS3(i2c)
 
 # ===== Display setup =====
 cs_pin = digitalio.DigitalInOut(board.D5)
@@ -102,6 +104,9 @@ def smooth_rgb(old, new, alpha=0.3):
 
 try:
     while True:
+        # ----- accelerometer read -----
+        accel_x, accel_y, accel_z = sensor.acceleration
+
         # ----- joystick movement -----
         jx = js.horizontal   # 0..1023
         jy = js.vertical
@@ -134,6 +139,12 @@ try:
             brush = clamp(brush + diff, 1, 30)
             print(f"Brush: {brush}")
 
+        #clean when the accelerometer is tilted forward 
+        if accel_y < 0.0: 
+            img.paste((0,0,0), [0,0,img.size[0],img.size[1]])
+            print("Canvas cleared")
+            time.sleep(0.5)  # debounce
+    
         # ----- APDS9960 read (non-blocking-ish) -----
         # now = time.time()
         # if auto_color and (now - last_color_read) > 0.05:  # ~20 Hz
@@ -157,13 +168,15 @@ try:
         # }
         for i in range(12):
             if mpr121[i].value:
-                print(f"Option selected: {draw_options[i]}")
+                # print(f"Option selected: {i]}")
                 if i == 0:
                     #this is erase
+                    print("ERASING")
                     auto_color = False
                     brush_color = background_color
                 
                 if i == 3:
+                    print("DRAWING")
                     auto_color = True    
                     brush_type = "circle" if brush_type == "rectangle" else "rectangle"
                     print(f"Brush type: {brush_type}")            
@@ -171,10 +184,12 @@ try:
                 if i == 5:
                     #this is save
                     img.save(f"drawing/my_drawing_{int(time.time())}.png")
+                    print(f"Image saved to drawing/my_drawing_{int(time.time())}.png")
 
                 if i == 7:
                     background_color = brush_color
                     img.paste(background_color, [0,0,img.size[0],img.size[1]])
+                    print("Background color set")
 
                 time.sleep(0.3)  # debounce
 
