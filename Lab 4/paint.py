@@ -4,6 +4,7 @@ from PIL import Image, ImageDraw
 import qwiic_joystick
 import board, digitalio,busio
 import adafruit_rgb_display.st7789 as st7789
+import vlc
 
 # Seesaw encoder
 from adafruit_seesaw import seesaw as ss_mod, rotaryio as srotaryio, digitalio as sdio
@@ -18,7 +19,7 @@ from adafruit_lsm6ds.lsm6ds3 import LSM6DS3
 # ===== touch sensor setup =====
 i2c = busio.I2C(board.SCL, board.SDA)
 mpr121 = adafruit_mpr121.MPR121(i2c)
-sensor = LSM6DS3(i2c)
+# sensor = LSM6DS3(i2c)
 
 # ===== sound setup =====
 state = {
@@ -26,10 +27,10 @@ state = {
     "media_player": None
 }
 
-draw_sound = "audio/draw.mp3"
+draw_sound = "sounds/draw.mp3"
 erase_sound = "sounds/eraser.mp3"
 sounds = [draw_sound, erase_sound]
-def play_sound(song, state=song_state):
+def play_sound(song, state=state):
     print(state["media_player"])
     if not state["media_player"]:
         media_player = state["instance"].media_player_new()
@@ -39,7 +40,7 @@ def play_sound(song, state=song_state):
         media_player.play()
         state["media_player"] = media_player
     
-def stop_sound(state=song_state):
+def stop_sound(state=state):
     if state["media_player"]:
         state["media_player"].pause()
         state["media_player"] = None
@@ -131,7 +132,7 @@ last_audio_played = None
 try:
     while True:
         # ----- accelerometer read -----
-        accel_x, accel_y, accel_z = sensor.acceleration
+        # accel_x, accel_y, accel_z = sensor.acceleration
 
         # ----- joystick movement -----
         jx = js.horizontal   # 0..1023
@@ -166,10 +167,10 @@ try:
             print(f"Brush: {brush}")
 
         #clean when the accelerometer is tilted forward 
-        if accel_y < 0.0: 
-            img.paste((0,0,0), [0,0,img.size[0],img.size[1]])
-            print("Canvas cleared")
-            time.sleep(0.5)  # debounce
+        # if accel_y < 0.0: 
+        #     img.paste((0,0,0), [0,0,img.size[0],img.size[1]])
+        #     print("Canvas cleared")
+        #     time.sleep(0.5)  # debounce
     
         # ----- APDS9960 read (non-blocking-ish) -----
         # now = time.time()
@@ -192,8 +193,10 @@ try:
         #     "clear": lambda: img.paste(background_color, [0,0,img.size[0],img.size[1]]),
         #     "save": lambda: img.save(f"my_drawing_{int(time.time())}.png"),
         # }
-        if isDrawing and not isErasing:
-            play_sound(draw_sound)
+        if isDrawing and not isErasing and last_audio_played != 'draw':
+            last_audio_played = 'draw'
+            play_sound(sounds[0])
+        
         for i in range(12):
             if mpr121[i].value:
                 # print(f"Option selected: {i]}")
@@ -203,7 +206,7 @@ try:
                     auto_color = False
                     brush_color = background_color
                     isErasing = True
-                    play_sound(erase_sound)
+                    play_sound(sounds[1])
                 
                 if i == 3:
                     print("DRAWING")
@@ -214,7 +217,7 @@ try:
                     isErasing = False
                     if last_audio_played != 'draw':
                         last_audio_played = 'draw'
-                        play_sound(draw_sound)
+                        play_sound(sounds[0])
                     
                 if i == 5:
                     #this is save
