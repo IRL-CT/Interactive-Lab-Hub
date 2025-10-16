@@ -5,6 +5,7 @@ import qwiic_joystick
 import board, digitalio,busio
 import adafruit_rgb_display.st7789 as st7789
 import vlc
+from ctypes import c_int
 
 # Seesaw encoder
 from adafruit_seesaw import seesaw as ss_mod, rotaryio as srotaryio, digitalio as sdio
@@ -19,31 +20,55 @@ from adafruit_lsm6ds.lsm6ds3 import LSM6DS3
 # ===== touch sensor setup =====
 i2c = busio.I2C(board.SCL, board.SDA)
 mpr121 = adafruit_mpr121.MPR121(i2c)
-# sensor = LSM6DS3(i2c)
+sensor = LSM6DS3(i2c)
 
 # ===== sound setup =====
 state = {
-    "instance": vlc.Instance('--aout=alsa'),
-    "media_player": None
+    "instance": vlc.Instance('--aout=alsa', '--no-video'),
+    "media_player": None,
+    "current_sound": None
 }
 
 draw_sound = "sounds/draw.mp3"
 erase_sound = "sounds/eraser.mp3"
 sounds = [draw_sound, erase_sound]
+
 def play_sound(song, state=state):
-    print(state["media_player"])
+    # If switching to a different sound, stop the current one
+    if state["media_player"] and state["current_sound"] != song:
+        state["media_player"].stop()
+        state["media_player"].release()
+        state["media_player"] = None
+    
+    # Create new player if needed
     if not state["media_player"]:
         media_player = state["instance"].media_player_new()
         media = state["instance"].media_new(song)
+        
+        # Set looping before playing
+        media.add_option('input-repeat=-1')
+        
         media_player.set_media(media)
         media_player.audio_set_volume(70)
         media_player.play()
+        
         state["media_player"] = media_player
+        state["current_sound"] = song
     
+def pause_sound(state=state):
+    if state["media_player"] and state["media_player"].is_playing():
+        state["media_player"].pause()
+
+def unpause_sound(state=state):
+    if state["media_player"]:
+        state["media_player"].play()
+
 def stop_sound(state=state):
     if state["media_player"]:
-        state["media_player"].pause()
+        state["media_player"].stop()
+        state["media_player"].release()
         state["media_player"] = None
+        state["current_sound"] = None
 
 # ===== Display setup =====
 cs_pin = digitalio.DigitalInOut(board.D5)
@@ -149,6 +174,25 @@ try:
         dx, dy = int(raw_dx / sens), int(raw_dy / sens)
         dx, dy = rot_vec(dx, dy, rotation)
 
+        if (dx != 0 or dy != 0):
+            if isDrawing and not isErasing:
+                if last_audio_played != 'draw':
+                    last_audio_played = 'draw'
+                    play_sound(sounds[0])
+                else:
+                    unpause_sound()
+            elif isErasing:
+                if last_audio_played != 'erase':
+                    last_audio_played = 'erase'
+                    play_sound(sounds[1])
+                else:
+                    unpause_sound()
+        else:
+            # Pause when movement stops
+            if last_audio_played is not None:
+                pause_sound()
+                
+                
         x = clamp(x + dx, 0, W - 1)
         y = clamp(y + dy, 0, H - 1)
 
@@ -193,9 +237,6 @@ try:
         #     "clear": lambda: img.paste(background_color, [0,0,img.size[0],img.size[1]]),
         #     "save": lambda: img.save(f"my_drawing_{int(time.time())}.png"),
         # }
-        if isDrawing and not isErasing and last_audio_played != 'draw':
-            last_audio_played = 'draw'
-            play_sound(sounds[0])
         
         for i in range(12):
             if mpr121[i].value:
