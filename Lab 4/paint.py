@@ -150,34 +150,33 @@ try:
         
         brush_coordinates = [x - brush, y - brush, x + brush, y + brush]
         #change brush choices
-        draw_options = ["erase", "clear", "save", "draw", "rectangle", "circle", "line", "fill", "triangle", "polygon", "ellipse"]
-        drawing_methods = {
-            "clear": lambda: img.paste(background_color, [0,0,img.size[0],img.size[1]]),
-            "save": lambda: img.save(f"my_drawing_{int(time.time())}.png"),
-        }
+        # draw_options = ["erase", "clear", "save", "draw", "rectangle", "circle", "line", "fill", "triangle", "polygon", "ellipse"]
+        # drawing_methods = {
+        #     "clear": lambda: img.paste(background_color, [0,0,img.size[0],img.size[1]]),
+        #     "save": lambda: img.save(f"my_drawing_{int(time.time())}.png"),
+        # }
         for i in range(12):
             if mpr121[i].value:
                 print(f"Option selected: {draw_options[i]}")
-                if draw_options[i] == "erase":
+                if i == 0:
+                    #this is erase
                     auto_color = False
                     brush_color = background_color
                 
-                if draw_options[i] == "draw":
+                if i == 3:
                     auto_color = True    
-
-                if draw_options[i] == "rectangle" or draw_options[i] == "circle":
-                    brush_type = draw_options[i]
+                    brush_type = "circle" if brush_type == "rectangle" else "rectangle"
                     print(f"Brush type: {brush_type}")            
                     
-                if draw_options[i] in drawing_methods:
-                    drawing_methods[draw_options[i]]()
-               
-                if draw_options[i] == "fill":
+                if i == 5:
+                    #this is save
+                    img.save(f"drawing/my_drawing_{int(time.time())}.png")
+
+                if i == 7:
                     background_color = brush_color
                     img.paste(background_color, [0,0,img.size[0],img.size[1]])
 
                 time.sleep(0.3)  # debounce
-            
 
         # ----- draw -----
         if isDrawing:
