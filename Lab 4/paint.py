@@ -20,7 +20,7 @@ from adafruit_lsm6ds.lsm6ds3 import LSM6DS3
 # ===== touch sensor setup =====
 i2c = busio.I2C(board.SCL, board.SDA)
 mpr121 = adafruit_mpr121.MPR121(i2c)
-sensor = LSM6DS3(i2c)
+# sensor = LSM6DS3(i2c)
 
 # ===== sound setup =====
 state = {
@@ -220,6 +220,7 @@ try:
         # now = time.time()
         # if auto_color and (now - last_color_read) > 0.05:  # ~20 Hz
             # wait briefly for ready without stalling the frame
+            
         if apds.color_data_ready:
             # print("reading color")
             r, g, b, c = apds.color_data
@@ -247,7 +248,6 @@ try:
                     auto_color = False
                     brush_color = background_color
                     isErasing = True
-                    play_sound(sounds[1])
                 
                 if i == 3:
                     print("DRAWING")
@@ -256,9 +256,6 @@ try:
                     brush_type = "circle" if brush_type == "rectangle" else "rectangle"
                     print(f"Brush type: {brush_type}")
                     isErasing = False
-                    if last_audio_played != 'draw':
-                        last_audio_played = 'draw'
-                        play_sound(sounds[0])
                     
                 if i == 5:
                     #this is save
