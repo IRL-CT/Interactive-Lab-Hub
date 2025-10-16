@@ -20,6 +20,30 @@ i2c = busio.I2C(board.SCL, board.SDA)
 mpr121 = adafruit_mpr121.MPR121(i2c)
 sensor = LSM6DS3(i2c)
 
+# ===== sound setup =====
+state = {
+    "instance": vlc.Instance('--aout=alsa'),
+    "media_player": None
+}
+
+draw_sound = "audio/draw.mp3"
+erase_sound = "sounds/eraser.mp3"
+sounds = [draw_sound, erase_sound]
+def play_sound(song, state=song_state):
+    print(state["media_player"])
+    if not state["media_player"]:
+        media_player = state["instance"].media_player_new()
+        media = state["instance"].media_new(song)
+        media_player.set_media(media)
+        media_player.audio_set_volume(70)
+        media_player.play()
+        state["media_player"] = media_player
+    
+def stop_sound(state=song_state):
+    if state["media_player"]:
+        state["media_player"].pause()
+        state["media_player"] = None
+
 # ===== Display setup =====
 cs_pin = digitalio.DigitalInOut(board.D5)
 dc_pin = digitalio.DigitalInOut(board.D25)
@@ -69,6 +93,7 @@ ci = 0
 prev_js_btn = 1
 isDrawing = False
 brush_type = "circle" 
+isErasing = False
 
 # color control
 auto_color = True            # start with sensor-driven color
@@ -102,6 +127,7 @@ def smooth_rgb(old, new, alpha=0.3):
             lerp(old[1], new[1], alpha),
             lerp(old[2], new[2], alpha))
 
+last_audio_played = None
 try:
     while True:
         # ----- accelerometer read -----
@@ -166,6 +192,8 @@ try:
         #     "clear": lambda: img.paste(background_color, [0,0,img.size[0],img.size[1]]),
         #     "save": lambda: img.save(f"my_drawing_{int(time.time())}.png"),
         # }
+        if isDrawing and not isErasing:
+            play_sound(draw_sound)
         for i in range(12):
             if mpr121[i].value:
                 # print(f"Option selected: {i]}")
@@ -174,12 +202,19 @@ try:
                     print("ERASING")
                     auto_color = False
                     brush_color = background_color
+                    isErasing = True
+                    play_sound(erase_sound)
                 
                 if i == 3:
                     print("DRAWING")
+                    isErasing = False
                     auto_color = True    
                     brush_type = "circle" if brush_type == "rectangle" else "rectangle"
-                    print(f"Brush type: {brush_type}")            
+                    print(f"Brush type: {brush_type}")
+                    isErasing = False
+                    if last_audio_played != 'draw':
+                        last_audio_played = 'draw'
+                        play_sound(draw_sound)
                     
                 if i == 5:
                     #this is save
@@ -200,7 +235,7 @@ try:
             if brush_type == "circle":
                 draw.ellipse((x - brush, y - brush, x + brush, y + brush),
                             fill=brush_color)
-
+            
         # push frame
         disp.image(img, rotation)
         time.sleep(0.016)  # ~60 FPS

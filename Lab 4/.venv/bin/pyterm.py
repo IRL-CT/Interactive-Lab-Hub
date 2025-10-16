@@ -1,4 +1,4 @@
-#!/home/pi/Interactive-Lab-Hub/Lab 4/.venv/bin/python3
+#!/home/pi/Documents/nanasGit/Lab 4/.venv/bin/python3
 
 """Simple Python serial terminal
 """
