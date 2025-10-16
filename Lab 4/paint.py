@@ -2,7 +2,7 @@
 import time, sys
 from PIL import Image, ImageDraw
 import qwiic_joystick
-import board, digitalio
+import board, digitalio,busio
 import adafruit_rgb_display.st7789 as st7789
 
 # Seesaw encoder
@@ -10,6 +10,13 @@ from adafruit_seesaw import seesaw as ss_mod, rotaryio as srotaryio, digitalio a
 
 # APDS9960 color sensor
 from adafruit_apds9960.apds9960 import APDS9960
+
+# ===== MPR121 touch sensor =====
+import adafruit_mpr121
+
+# ===== touch sensor setup =====
+i2c = busio.I2C(board.SCL, board.SDA)
+mpr121 = adafruit_mpr121.MPR121(i2c)
 
 # ===== Display setup =====
 cs_pin = digitalio.DigitalInOut(board.D5)
@@ -26,6 +33,7 @@ disp = st7789.ST7789(
 rotation = 90          # rotate on send
 W, H = 240, 135        # draw in landscape
 
+background_color = (0, 0, 0, 255) # black
 img = Image.new("RGB", (W, H), (0, 0, 0))
 draw = ImageDraw.Draw(img)
 disp.image(img, rotation)
@@ -58,6 +66,7 @@ ci = 0
 
 prev_js_btn = 1
 isDrawing = False
+brush_type = "circle" 
 
 # color control
 auto_color = True            # start with sensor-driven color
@@ -114,7 +123,7 @@ try:
         # JS button: toggle draw on press edge
         if prev_js_btn == 1 and js_btn == 0:
             isDrawing = not isDrawing
-            print("🖌️ ON" if isDrawing else "✋ OFF")
+            print("ON" if isDrawing else "OFF")
         prev_js_btn = js_btn
 
         # ----- encoder brush size & color toggle -----
@@ -124,21 +133,6 @@ try:
             last_position = pos
             brush = clamp(brush + diff, 1, 30)
             print(f"Brush: {brush}")
-
-        # encoder button: short = cycle manual color; long = toggle auto_color
-        # detect press length
-        # static_press_t = getattr(enc_button, "_press_t", None)
-        # if not enc_button.value and static_press_t is None:   # pressed now
-        #     enc_button._press_t = time.time()
-        # if enc_button.value and static_press_t is not None:   # released now
-        #     held = time.time() - enc_button._press_t
-        #     enc_button._press_t = None
-        #     if held > 0.7:
-        #         auto_color = not auto_color
-        #         print(f"Auto color: {'ON' if auto_color else 'OFF'}")
-        #     else:
-        #         ci = (ci + 1) % len(palette)
-        #         print(f"Color idx: {ci}")
 
         # ----- APDS9960 read (non-blocking-ish) -----
         # now = time.time()
@@ -152,12 +146,46 @@ try:
             # last_color_read = now
 
         # choose brush color
-        brush_color = curr_color if auto_color else palette[ci]
+        brush_color = curr_color if auto_color else brush_color
+        
+        brush_coordinates = [x - brush, y - brush, x + brush, y + brush]
+        #change brush choices
+        draw_options = ["erase", "clear", "save", "draw", "rectangle", "circle", "line", "fill", "triangle", "polygon", "ellipse"]
+        drawing_methods = {
+            "clear": lambda: img.paste(background_color, [0,0,img.size[0],img.size[1]]),
+            "save": lambda: img.save(f"my_drawing_{int(time.time())}.png"),
+        }
+        for i in range(12):
+            if mpr121[i].value:
+                print(f"Option selected: {draw_options[i]}")
+                if draw_options[i] == "erase":
+                    auto_color = False
+                    brush_color = background_color
+                
+                if draw_options[i] == "draw":
+                    auto_color = True    
+
+                if draw_options[i] == "rectangle" or draw_options[i] == "circle":
+                    brush_type = draw_options[i]
+                    print(f"Brush type: {brush_type}")            
+                    
+                if draw_options[i] in drawing_methods:
+                    drawing_methods[draw_options[i]]()
+               
+                if draw_options[i] == "fill":
+                    background_color = brush_color
+                    img.paste(background_color, [0,0,img.size[0],img.size[1]])
+
+                time.sleep(0.3)  # debounce
+            
 
         # ----- draw -----
         if isDrawing:
-            draw.ellipse((x - brush, y - brush, x + brush, y + brush),
-                         fill=brush_color)
+            if brush_type == "rectangle":
+                draw.rectangle(brush_coordinates, outline= brush_color, width=brush)
+            if brush_type == "circle":
+                draw.ellipse((x - brush, y - brush, x + brush, y + brush),
+                            fill=brush_color)
 
         # push frame
         disp.image(img, rotation)
