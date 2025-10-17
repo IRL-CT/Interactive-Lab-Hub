@@ -86,8 +86,25 @@ As well as my Verplank diagram.
 
 ![IMG_5664](https://github.com/user-attachments/assets/2b2f3549-7e14-438d-8e45-494d0c324e92)
 
+As much as I love wizarding, I wanted to go for a completely continuous live experience for my interaction. So I completely removed the need for a controller / wizarding by just having the interaction loop continuously run on the Raspberry PI 5 infinitely.
 
-*Include videos or screencaptures of both the system and the controller.*
+My interaction loop:
+
+1.) Listens for user input, once user input has stopped being detected, uses STT to record what the user said.
+
+2.) Once it has recorded what the user said, it takes a temporary picture with the webcam of the user.
+
+3.) This temporary picture is used in a precomputed facial landmark database for similarity to other faces.
+
+4.) Finds the most similar face (no threshold was implemented in my version), then returns the name associated with the face.
+
+5.) The name associated with the face is fed into a system prompt which guides the system in responding to a.) the user prompt with b.) details of the user's name according to the landmark database and c.) using TTS to respond to user with a personalized response including their name.
+
+6.) Repeats to Step 1 again, infinitely.
+
+Here is a picture of the device (with webcam attached):
+
+![IMG_5667](https://github.com/user-attachments/assets/4ad3289d-ab45-4851-acce-8c8230b6c2a1)
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
@@ -121,6 +138,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
