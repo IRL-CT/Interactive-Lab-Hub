@@ -56,11 +56,7 @@ My interaction was done with Benthan Vu but I did not record it. However, I did 
 
 It is important to note that his integral question was not answered correctly by Ollama.
 
-<audio controls>
-<source src="https://github.com/user-attachments/files/22980122/IDD_Lab3_vcalc_demo.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
-
+https://github.com/user-attachments/assets/3330cb21-fc17-4547-b27f-a5998e017719
 
 The dialogue was a bit different due to understandable impatience due to pacing, and limits of using Ollama for mathematics.
 
@@ -125,6 +121,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
