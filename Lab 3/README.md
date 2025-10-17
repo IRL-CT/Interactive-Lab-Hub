@@ -1,6 +1,5 @@
 # Chatterboxes
 **Sean Hardesty Lewis (Solo)**
-[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
 
 ## Prep for Part 1: Get the Latest Content and Pick up Additional Parts 
 
@@ -25,9 +24,7 @@ My script is `speech-scripts/check_words_example/number_input.sh`. I re-used the
 
 ### 🤖 NEW: AI-Powered Conversations with Ollama
 
-\*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
-
-
+My simple voice interaction is a "voice calculator". I have always found TI-84s and similar calculators to be nightmares to use since they have so many buttons- and I often find myself able to articulate what I want in my head, but it will take minutes to find each button and press them in the right order on the calculator. To this extent, my voice interaction aims to solve that. You ask your questions similarly to our numeric input system from earlier, we can then perform simple calculations in the backend (or in this case, utilize Ollama's trained knowledge, and hope that it is correct), then use text to speech to give the result back to the user.
 
 ### Serving Pages
 
@@ -35,43 +32,64 @@ Done!
 
 ### Storyboard
 
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
+Done!
 
-\*\***Post your storyboard and diagram here.**\*\*
+![IMG_5662](https://github.com/user-attachments/assets/b3aebdce-016e-46e7-bdda-9751e7c3cce2)
 
-Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
+**Imagined Dialogue:**
 
-\*\***Please describe and document your process.**\*\*
+User: "What is fifty divided by five?"
+
+System: "Fifty divided by five is ten."
+
+User: "What is nine times eight?"
+
+System: "Nine times eight is seventy two."
+
+User: "What is ten percent of two hundred?"
+
+System: "Ten percent of two hundred is twenty."
 
 ### Acting out the dialogue
 
-Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
+My interaction was done with Benthan Vu but I did not record it. However, I did write down the transcript, and have re-recorded his exact questions below.
 
-\*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+It is important to note that his integral question was not answered correctly by Ollama.
 
-### Wizarding with the Pi (optional)
-In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
+<audio controls>
+<source src="https://github.com/user-attachments/files/22980122/IDD_Lab3_vcalc_demo.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 
-\*\***Describe if the dialogue seemed different than what you imagined, or when acted out, when it was wizarded, and how.**\*\*
+
+The dialogue was a bit different due to understandable impatience due to pacing, and limits of using Ollama for mathematics.
+
+For the pacing, it was quickly realized that the restatement of the response was unnecessary. User preferred shortened answers, and full restatements (“Fifty divided by five is ten”) worked for the first turn but were repetitive by the second question. The user got impatient to listen to it repeat the entire problem again before giving the answer and expressed this after the the dialogue concluded.
+
+For the limits of using Ollama, since the model is rather a text-generation model and not performing any background scripts, it became very clear as soon as more complex math was asked (e.g. derivatives, integrals, etc.) that it was not well-suited for the task.
 
 # Lab 3 Part 2
 
-For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
-
 ## Prep for Part 2
 
-1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings...
-2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
-3. Make a new storyboard, diagram and/or script based on these reflections.
+I feel like the text to speech model could be swapped out to a higher quality one.
+   
+I would love to integrate some kind of sensor, like vision of the surrounding environment or actors through a camera, or kinetic motion through the gyro sensors similar to the example WoZ eight-ball.
+
+Based on my above reflections, I have decided to create a Personalized Robot. This project will have heavy similarities to the [below Harvard project](https://lil.law.harvard.edu/events/i-xray-lunch/). This idea is not that original and has been in many different contexts throghout the years (ex. [Clearview AI](https://www.forbes.com/sites/roberthart/2024/09/03/clearview-ai-controversial-facial-recognition-firm-fined-33-million-for-illegal-database/)). Relating to myself, I came up with my own version of this idea two years ago during undergrad and working with traffic cameras when the newest python facial landmark detection library came out but never did anything with it. So like how MIT has its slogan "demo or die" I never demo'd or built my idea for this two years ago, and have subsequently been outdone (to great extent!) by these Harvard students. Their project is well recorded and has some good videos of interaction with it- I recommend you check out the following video, and support their privacy safety efforts.
+
+https://github.com/user-attachments/assets/e7b0a26d-7fb8-4843-81f1-5763f8280f30
 
 ## Prototype your system
 
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
+Below are some of my sketches for the system prototype.
 
-*Document how the system works*
+![IMG_5663](https://github.com/user-attachments/assets/d5c179c4-424c-4281-bc8b-9651a92601a9)
+
+As well as my Verplank diagram.
+
+![IMG_5664](https://github.com/user-attachments/assets/2b2f3549-7e14-438d-8e45-494d0c324e92)
+
 
 *Include videos or screencaptures of both the system and the controller.*
 
@@ -107,6 +125,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
