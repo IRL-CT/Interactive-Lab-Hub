@@ -98,7 +98,11 @@ My interaction loop:
 
 4.) Finds the most similar face (no threshold was implemented in my version), then returns the name associated with the face.
 
-5.) The name associated with the face is fed into a system prompt which guides the system in responding to a.) the user prompt with b.) details of the user's name according to the landmark database and c.) using TTS to respond to user with a personalized response including their name.
+5.) The name associated with the face is fed into a system prompt which guides the system in responding to
+
+  * the user prompt
+  * details of the user's name according to the landmark database
+  * using TTS to respond to user with a personalized response including their name
 
 6.) Repeats to Step 1 again, infinitely.
 
@@ -138,6 +142,7 @@ Answer the following:
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
 \*\**your answer here*\*\*
+
 
 
 
