@@ -411,8 +411,9 @@ For Part 2, you will design and build a fun interactive prototype using multiple
   
 
 **Document your system with:**
-- **Multidevice Code**
-	    
+<details>
+	<summary><strong>Multidevice Code</strong></summary>
+	
 		import qwiic_proximity
 		import time
 		import sys
@@ -505,9 +506,9 @@ For Part 2, you will design and build a fun interactive prototype using multiple
 		        except Exception as e:
 		            print("Could not delete temp file:", e)
 		        sys.exit(0)
-- Photos and/or video of the working prototype in action
+</details>
 
-##Iterative Process
+## Iterative Process
 During our design process, we decided to add lights to the device. However, with our cardboard prototype, there wasn't an aesthetic way to portray it well. Thus, we decided to laser cut acrylic for a see-through look, where the colorfulness of the lights and the inside machinery of the device can be seen from the outside without even opening the box. We also included a crochet handle for easy transportation of the device.
 
 The first iteration of the lights:
