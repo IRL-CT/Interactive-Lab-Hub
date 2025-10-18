@@ -153,7 +153,8 @@ F) [Record the interaction](#part-f)
 	If you see "Hello blinka!", your setup is correct. If not, follow the troubleshooting steps in the file or ask for help.
 </details>
 
-### Part A: Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
+### Part A
+#### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
 
 <details> <summary>Instructions</summary>  
 	
@@ -174,14 +175,23 @@ These Twizzlers are connected to pads 6 and 10. When you run the code and touch 
 Twizzler 10 touched!
 Twizzler 6 touched!
 ```
-
 </details>
 
-### Part B: More sensors
+> For part A, I didn’t modify the code — I just experimented with different setups :)
+>
+> I ran the code and touched the sensor with my bare hand.
+> 
+> I also tried connecting the sensor using an alligator clip (channel 7). BTW, the paper towel is damp so that it can conduct electricity.
 
-<details> <summary>Instructions</summary>  
+![cap1](images/cap1.JPG)
+![cap2](images/cap2.JPG)
+
+### Part B
+#### More sensors
 
 #### Light/Proximity/Gesture sensor (APDS-9960)
+
+<details> <summary>Instructions</summary>  
 
 We here want you to get to know this awesome sensor [Adafruit APDS-9960](https://www.adafruit.com/product/3595). It is capable of sensing proximity, light (also RGB), and gesture! 
  
@@ -200,8 +210,30 @@ Connect it to your pi with Qwiic connector and try running the three example scr
 ```
 
 You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_CircuitPython_APDS9960) to see more examples for this sensor!
+</details>
+
+> **Test Proximity:** higher values indicating that something is close to the sensor. (from Adafruit GitHub Page) 🎥 Watch the video below.
+> [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/WFwUsQmDPsw/0.jpg)](https://youtu.be/WFwUsQmDPsw)
+
+> **Test Gesture:** The sensor was a bit less responsive than expected. 🎥 See the testing video below.
+> [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8LWAxlkJQjM/0.jpg)](https://youtu.be/8LWAxlkJQjM)
+
+> **Test Color:** To verify the detected color, I added the following lines of code to display the RGB values. (Code can be found here: **color_test.py**)
+> ```
+> red = int((r / c) * 255)
+> green = int((g / c) * 255)
+> blue = int((b / c) * 255)
+> print(red, green, blue)
+>```
+> Based on the RGB values, I looked up the corresponding color on a [website](https://htmlcolorcodes.com/). The following photos show the test results.
+> ![color](images/color1.JPG)
+> ![color](images/color2.JPG)
+
+**Reference:**
+* Color Code Website: https://htmlcolorcodes.com/
 
 #### Rotary Encoder 
+<details> <summary>Instructions</summary>  
 
 A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came with separate breakout board and encoder itself, that is, they will need to be soldered if you have not yet done so! We will be bringing the soldering station to the lab class for you to use, also, you can go to the MakerLAB to do the soldering off-class. Here is some [guidance on soldering](https://learn.adafruit.com/adafruit-guide-excellent-soldering/preparation) from Adafruit. When you first solder, get someone who has done it before (ideally in the MakerLAB environment). It is a good idea to review this material beforehand so you know what to look at.
 
@@ -219,9 +251,14 @@ Connect it to your pi with Qwiic connector and try running the example script, i
 ```
 
 You can go to the [Adafruit Learn Page](https://learn.adafruit.com/adafruit-i2c-qt-rotary-encoder/python-circuitpython) to learn more about the sensor! The sensor actually comes with an LED (neo pixel): Can you try lighting it up? 
+</details>
+
+> I realized soldering wasn't necessary for this setup :) 🎥 The testing video is shown below.
+> 
+> [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/eFCc-bMzxYs/0.jpg)](https://youtu.be/eFCc-bMzxYs)
 
 #### Joystick 
-
+<details> <summary>Instructions</summary>  
 
 A [joystick](https://www.sparkfun.com/products/15168) can be used to sense and report the input of the stick for it pivoting angle or direction. It also comes with a button input!
 
@@ -236,9 +273,14 @@ Connect it to your pi with Qwiic connector and try running the example script to
 ```
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Joystick_Py) to learn more about the sensor!
+</details>
+
+> 🎥 See the tesing video down below.
+> 
+> [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/nPrkx-3D8Xk/0.jpg)](https://youtu.be/nPrkx-3D8Xk)
 
 #### Distance Sensor
-
+<details> <summary>Instructions</summary>  
 
 Earlier we have asked you to play with the proximity sensor, which is able to sense objects within a short distance. Here, we offer [Sparkfun Proximity Sensor Breakout](https://www.sparkfun.com/products/15177), With the ability to detect objects up to 20cm away.
 
@@ -254,11 +296,14 @@ Connect it to your pi with Qwiic connector and try running the example script to
 ```
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proximity_Py) to learn more about the sensor and see other examples
-
 </details> 
 
+> The detection range of the SparkFun proximity sensor is indeed wider, as shown in the testing video below. 🎥 
+>
+> [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/xmkhN6yoABM/0.jpg)](https://youtu.be/xmkhN6yoABM)
+
 ### Part C
-### Physical considerations for sensing
+#### Physical considerations for sensing
 
 <details> <summary>Instructions</summary>  
 
@@ -267,7 +312,7 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 
 **\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
 
-![IMG_0734](https://github.com/user-attachments/assets/7eb311af-cdc6-45fb-8abc-ad3993c832f7)
+![partc](images/part_c.png)
 
 - **Light Level Sensor**: can be used for plant monitoring. It senses and records the light levels for a sapling/plot. The sensor is on a stick in order to have it be above the plant so that it doesn't cast shadows on the device.
 - **LED Lightbulb Control**: Shown used in a lamp, but can be anywhere. Uses the sensor to allow for touchless control of the light. Left/Right swipes to change colors, Up/Down swipes to control brightness, Distance to turn on or off, and color sensor to match color of the light displayed.
@@ -276,11 +321,30 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 - **Smart Glasses Controller**: A use case for gesture control is when you cannot see the controller and find the buttons to press. Therefore, smart glasses are a good place for this since you are unable to see the sides when the glasses are being worn.
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+
+<details>
+<summary>Answer instruction</summary>
+
 - How much can we stretch the capabilities of the sensor?
 	- Ex: how far can it sense distance and does it work comfortably/reasonably for the user
 - What's a good size to make the device and can the sensor fit on it
 	- Ex: for the LED lightbulb, is the sensor too small for big gestures
  	- Ex: for the Pen color detector, is the sensor too large to reasonably fit on the tip of a pen-shaped device 
+---
+</details>
+
+* **Light Level Sensor:** 
+	* What height/angle above the plant gives stable readings -> Stick-mounted sensor with adjustable height (10–40 cm)
+* **LED Lightbulb Control:**
+	* Distance on/off threshold that feels natural ->  Tests with controlled swipe distances (5/10/15 cm)
+* **Pen Color Detector:**
+	* Can the sensor + LEDs + standoffs fit at a pen tip without blocking view?
+* **Smart Shelf:**
+	* Material dependence: does glass, plastic, or fabric trigger reliably? -> YES!! Copper tape 
+	* Can it distinguish one big object vs. two small ones?
+	* False alarms from slight changes
+* **Smart Glasses Controller:**
+	* On-face noise: hair, cheeks, and motion while walking might cause triggers
 
 **\*\*\*Pick one of these designs to prototype.\*\*\***
 - We chose the smart shelf design since it has the most potential for different designs and usages
@@ -288,7 +352,7 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 	- Additionally, the capacitive sensor wouldn't need to be above objects on the shelf like the distance sensor, removing the need for a roof.  
 
 ### Part D
-### Physical considerations for displaying information and housing parts
+#### Physical considerations for displaying information and housing parts
 
 <details> <summary>Instructions</summary>  
 
@@ -331,29 +395,54 @@ Think about how you want to present the information about what your sensor is se
 </details> 
  
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
-![IMG_0736](https://github.com/user-attachments/assets/32c5f13a-1546-4368-9bc5-07f631a88a47)
+
+![design_a](images/design_amd.png)
+![design_yyc](images/design_yyc.JPG)
+<img width="700" alt="design_shy" src="images/design_shy.jpg" />  
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
-- How big should the openings be for comfortable usage?
-	- For the smaller shelves with enclosed spaces, users need to be able to grab things with ease. We can experiment with different size openings in the physical 	prototpye
--  What height is the shelf mounted at? Or is it on the floor?
-	- We need to make sure users can see what is on the shelf while being able to reach it comfortably
-- How complex should the design be? Is an overcomplicated shelf too overwhelming?
+
+* How big should the openings be for comfortable usage?
+	* For the smaller shelves with enclosed spaces, users need to be able to grab things with ease. We can experiment with different size openings in the physical prototpye
+* What height is the shelf mounted at? Or is it on the floor?
+	* We need to make sure users can see what is on the shelf while being able to reach it comfortably
+* How complex should the design be? Is an overcomplicated shelf too overwhelming?
+* Is there any way to address the issue of false triggers?
+
+
+* Some design scenarios, like the parking lot, are too large to prototype in practice.
+* We don’t have components such as pressure sensors, some concepts might not be feasible to implement.
 
 **\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
-- We chose to implement the medicine cabinet display 
+
+We chose to implement the **medicine cabinet** display
+
 
 **\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
-- We chose the encloseed form so that we can experiment with both types of sensors and see which would work better (either mounted on the top or strips of copper on the bottom)
-- The size also needs to fit medicine bottles of varying sizes, but not be too big to take up too much space
-- We made sure to leave room to house the raspberry pi and required electronics
 
 Build a cardboard prototype of your design.
 
+* We chose the encloseed form so that we can experiment with both types of sensors and see which would work better (either mounted on the top or strips of copper on the bottom)
+* The size also needs to fit medicine bottles of varying sizes, but not be too big to take up too much space
+* We made sure to leave room to house the raspberry pi and required electronics
 
-**\*\*\*Document your rough prototype.\*\*\***
-![IMG_9963](https://github.com/user-attachments/assets/180dc625-6631-4036-89b2-19e5d514fc02)
-![IMG_9964](https://github.com/user-attachments/assets/067cc2bf-3938-4015-9261-b0ebafd55654)
+**\*\*\*Document your rough prototype.\*\*\***  
+<img width="600" alt="prototype-front" src="images/prototye1.png" /> 
+<img width="600" alt="prototype-back" src="images/prototype2.png" /> 
+
+
+
+**＊ Wizarding Video**
+
+We use a distance sensor and a display screen to demonstrate the functionality.
+
+🎥 See the testing video below.
+> [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/9FVgsd9ga6w/0.jpg)](https://youtu.be/9FVgsd9ga6w)
+
+
+For the design of the project, when a user takes out a pill or bottle, the screen will display the time the pill was taken. However, for the wizarding phase, we implemented a simpler version — the screen lights up in color when an object is taken.
+The remaining functions will be completed in Part 2.
+
 
 # LAB PART 2
 
@@ -364,9 +453,9 @@ Following exploration and reflection from Part 1, complete the "looks like," "wo
 
 
 ### Part E
-
 #### Chaining Devices and Exploring Interaction Effects
 
+<details><summary>Instructions</summary>
 For Part 2, you will design and build a fun interactive prototype using multiple inputs and outputs. This means chaining Qwiic and STEMMA QT devices (e.g., buttons, encoders, sensors, servos, displays) and/or combining with traditional breadboard prototyping (e.g., LEDs, buzzers, etc.).
 
 **Your prototype should:**
@@ -378,17 +467,63 @@ For Part 2, you will design and build a fun interactive prototype using multiple
 - Photos and/or video of the working prototype in action
 - A simple interaction diagram or sketch showing how inputs and outputs are connected and interact
 - Written reflection: What did you learn about multi-input/multi-output interaction? What was fun, surprising, or challenging?
+</details>
+
+**Feedback on Original Prototype**
+> Feedback from Thomas Knoepffler and others
+> - The purpose of the device was not originally clear, he believed it seemed like there should be drawers to be pulled out.
+> - The openings may be too small depending on the user.
+> - The labels of morning, noon, and night restricted the usage of the device.
+
+**🔁 Prototype Iteration**
+
+>We made some adjustments to the look and logic of our prototype.
+>
+>Previously, our idea was to divide the schedule into morning, noon, and night, and record the time of each intake.
+>
+>However, we realized that in real use, the intervals between different medicines vary — so the system should be organized **by medicine**, not by time period.
+>Therefore, we redesigned the interaction so that the display screen shows and reminds the user of the next intake time for each specific pill.
+>
+>The updated prototype design is shown in the figure below.
+![design1](images/interat1.jpg)
+
+---
+**Combined with Multi-Device**
+
+>Next, we added some interactive features to the new design.
+>A **rotator (rotary encoder)** was introduced to switch the text on the display — similar to turning pages.
+>We also added a **sound output** to remind the user when it’s time to take their medicine.
+>
+>Please see the following figure and description for details.
+![iterate2](images/iterate2.jpg)
+
+**💊 Medical Cabinet Sensors — I/O Device Overview:**
+* **Light/Proximity Sensor (Input Components)** => knows if the users have taken the medicine or not (records the last time taken) and if time will identify the pill based on the color.
+* **Rotator/ Rotary Encoder (Input Components)** => Allows the user to switch between different OLED display sets.
+* **Speaker (Output Components)** => Announces a reminder when it’s past the scheduled time to take a pill.
+* **3 OLED Displays (Output Components)** => Display the following information for each pill (Pill name, next scheduled intake time, last intake time).
+
+**Interaction Diagram**
+![interaction](images/Interaction_diagram.jpeg)
+
+The connections between the sensor and I/O devices are shown in the figure below.
+![connection](images/connect_diagram.jpeg)
 
 **Questions to consider:**
-- What new types of interaction become possible when you combine two or more sensors or actuators?
-	- 
-- How does the physical arrangement of devices (e.g., where the encoder or sensor is placed) change the user experience?
-	- We thought about using different sensors to change what is shown on the displays (button vs gesture sensor). We decided on using a button since it is more intuitive and we could not find a good place to place the sensor where it would make sense for the user since we were having the sensor change all three screens at once. It was unintuitive to swipe on the right side to change the leftmost screen. Therefore, a button can be placed anywhere and used to change the display. 
-- What happens if you use one device to control or modulate another (e.g., encoder sets a threshold, sensor triggers an action)?
-- How does the system feel if you swap which device is "primary" and which is "secondary"?
-- 
-**PROBLEM**
-  - We originally wanted to use multiple APDS9960 sensors but it seems like we cannot change the address on it. 
+- **What new types of interaction become possible when you combine two or more sensors or actuators?**
+	- Since our display screen is quite small, adding a rotary encoder allows us to “turn pages” and display more information within limited space.
+	- We used a distance sensor, but it can be interchangeable with a light/proximity sensor — which means it could also be used to detect the color of the pill bottle (though we didn’t implement that feature in the final version).
+- **How does the physical arrangement of devices (e.g., where the encoder or sensor is placed) change the user experience?**
+	- For the distance sensor, we placed it on the top of the cabinet, since putting it at the bottom could cause the pill bottles to tip over easily.
+	- The rotary encoder was positioned on the side of the cabinet, close to the display screen, making it more intuitive for the user to understand that it controls the display. This placement also allows the user to know the switch would change the information shown across all screens simultaneously.
+  - We thought about using different sensors to change what is shown on the displays (button vs gesture sensor vs rotary encoder). We decided on using an encoder since it is more intuitive and we could not find a good place to place the sensor where it would make sense for the user since we were having the sensor change all three screens at once. It was unintuitive to swipe on the right side to change the leftmost screen  
+- **What happens if you use one device to control or modulate another (e.g., encoder sets a threshold, sensor triggers an action)?**
+	- We could potentially use another rotary encoder to adjust the threshold of the distance sensor, allowing the system to adapt to different bottle sizes as the cabinet’s compartments are adjusted. However, this feature was not implemented in our final version.
+- **How does the system feel if you swap which device is "primary" and which is "secondary"?**
+	- In our current design, the distance sensor acts as the primary device, since it directly detects user actions (whether the medicine is taken) and triggers system responses such as recording time or playing reminders.
+	- The rotary encoder functions as a secondary device, mainly used to switch the information shown on the display.
+	- Because the encoder doesn’t trigger the system’s core behavior, swapping their roles wouldn’t make much sense in our case — the interaction flow is centered around the sensor’s detection rather than the encoder’s control.
+	- Swapping the device would change the main the functionality of our system from a detection system to more of an information display system.
 
 Try chaining different combinations and document what you discover!
 
@@ -397,6 +532,7 @@ See encoder_accel_servo_dashboard.py in the Lab 4 folder for an example of chain
 **`Lab 4/encoder_accel_servo_dashboard.py`**
 
 #### Using Multiple Qwiic Buttons: Changing I2C Address (Physically & Digitally)
+<details>
 
 If you want to use more than one Qwiic Button in your project, you must give each button a unique I2C address. There are two ways to do this:
 
@@ -438,9 +574,7 @@ Enter the new address (e.g., 5B for 0x5B) when prompted. Power cycle the button 
 
 **Note:** The software method is less foolproof and you need to make sure to keep track of which button has which address!
 
-
 ##### Using Multiple Buttons in Code
-
 After setting unique addresses, you can use multiple buttons in your script. See these example scripts in the Lab 4 folder:
 
 - **`qwiic_1_button.py`**: Basic example for reading a single Qwiic Button (default address 0x6F). Run with:
@@ -475,9 +609,10 @@ while True:
 For more details, see the [Qwiic Button Hookup Guide](https://learn.sparkfun.com/tutorials/qwiic-button-hookup-guide/all#i2c-address).
 
 ---
+</details>
 
-### PCF8574 GPIO Expander: Add More Pins Over I²C
-
+#### PCF8574 GPIO Expander: Add More Pins Over I²C
+<details>
 Sometimes your Pi’s header GPIO pins are already full (e.g., with a display or HAT). That’s where an I²C GPIO expander comes in handy.
 
 We use the Adafruit PCF8574 I²C GPIO Expander, which gives you 8 extra digital pins over I²C. It’s a great way to prototype with LEDs, buttons, or other components on the breadboard without worrying about pin conflicts—similar to how Arduino users often expand their pinouts when prototyping physical interactions.
@@ -507,8 +642,10 @@ python gpio_expander.py
 This is a playful way to visualize how the expander works, but the same technique applies if you wanted to prototype buttons, switches, or other interaction elements. It’s a lightweight, flexible addition to your prototyping toolkit.
 
 ---
+</details>
 
-### Servo Control with SparkFun Servo pHAT
+#### Servo Control with SparkFun Servo pHAT
+<details>
 For this lab, you will use the **SparkFun Servo pHAT** to control a micro servo (such as the Miuzei MS18 or similar 9g servo). The Servo pHAT stacks directly on top of the Adafruit Mini PiTFT (135×240) display without pin conflicts:
 - The Mini PiTFT uses SPI (GPIO22, 23, 24, 25) for display and buttons ([SPI pinout](https://pinout.xyz/pinout/spi)).
 - The Servo pHAT uses I²C (GPIO2 & 3) for the PCA9685 servo driver ([I2C pinout](https://pinout.xyz/pinout/i2c)).
@@ -530,14 +667,72 @@ For more details and advanced usage, see the [official SparkFun Servo pHAT docum
 A servo motor is a rotary actuator that allows for precise control of angular position. The position is set by the width of an electrical pulse (PWM). You can read [this Adafruit guide](https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/servo-motors) to learn more about how servos work.
 
 ---
-
+</details>
 
 ### Part F
-
-### Record
-
+#### Record
+<details> <summary>Instructions</summary>
 Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+</details>
+
+**TODO List**
+1. briefly explain the code (not sure if we shuld put it in Part E or Part F) or at least where the code is.
+2. ✅ Written summary: what it looks like, works like, acts like
+2. put the photos of our final device
+3. ✅ videos
+4. ✅ feedback we get from interacting with the device
+5. something we learned, example: how do we use multiple display? why we still can't use three distance sensor
+
+**Code Overview**
+> The code for our device is located in [main_file.py](/Lab%204/main_file.py)
+> 
+> **Chaining Displays**
+> - Our biggest challenge was figuring out how to chain the OLED displays since it was essential for our device. This was difficult because there is no way of changing the address of the displays
+> - Through research, we found that a solution is to put each display on a separate bus so that they can be accessed separately, which required enabling software buses in addition to the original physical bus.
+> - We referenced ChatGPT to help troubleshoot how to accomplish this, and added these lines to the configuration file
+> ```
+> dtoverlay=i2c-gpio,bus=15,i2c_gpio_sda=26,i2c_gpio_scl=19
+> dtoverlay=i2c-gpio,bus=16,i2c_gpio_sda=20,i2c_gpio_scl=21
+> ```
+> - After wiring each screen to the correct gpio pins on the raspberry pi, we were able to control each screen separately
+>
+> **Displaying Text**
+> - Since we were using the smbus2 package to access screens on each different bus, we had to send the text to the screen in bytes rather than being able to just display an image using pillow.
+> - We once again queried ChatGPT to help us create a function for drawing text to the screen in 32-byte chunks
+>
+> **Chaining Sensors**
+> - The distance sensors we used only had 2 different possible addresses, which was a problem since we needed to have 3 for our prototype.
+> - We had the trouble with chaining the three distance sensors using the same method as the screens since the software buses had a fairly significant delay compared to the hardware bus. This wasn't a problem for the screens since the small delay only made the text appear a little later, and wasn't a big deal. However, for the sensors, it caused problems in the sensing capabilities.
+> - In the end, we only implemented sensing capability for one of the sensors while the rest were chained onto the same buses as their corresponding screen, but didn't function completely. The code for these sensors is commented out in our code file.
+> - One potential solution is to use a multiplexer and have them all connected to the physical bus, however, we did not have this part. 
+
+**Written summary: what it *looks like, works like, acts like***
+> * **"Looks like":** It looks like **a small shelf** rather than a traditional bathroom-style medicine cabinet. A rotary encoder knob is placed on the side, and the whole device is designed to **sit on a desk or tabletop** or be **mounted to a wall**. In terms of weight, it’s roughly around 800 grams (about 1.8 pounds) — a small cardboard box containing a Raspberry Pi, a few sensors, and a mini speaker. It is meant to be a simple design that can be part of any home without being too intrusive. 
+> * **"Works like":** The core function is detecting when a pill is taken, displaying the next and last intake time, and playing a sound reminder through the speaker. So basically, it can **show the time and remind the user to take their medicine**. 
+> * **"Acts like":** The user can turn the encoder to **view the pill name, the last intake time, and the next scheduled time**. When it’s time to take the medicine, the speaker **plays a reminder sound**. Once the user picks up the medicine, the sensor detects the change in distance and **records the latest intake time**, continuing the loop. It is able to automatically keep track of when the user last took their pills to counter forgetfulness and taking too much/little medicine.
+
+**Photos of Medicine Cabinet**  
+
+<img width="700" alt="cabinet-front" src="images/cabinet_front.jpg" /> 
+<img width="700" alt="cabinet-side" src="images/cabinet_side.jpg" /> 
+<img width="700" alt="cabinet-back" src="images/cabinet_back.jpg" /> 
+
+**Videos for Medicine Cabinet**
+
+> 🎥 Watch the video demo for the **Medicine Cabinet** below.
+>
+> [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/LHmUcn-DoOg/0.jpg)](https://youtu.be/LHmUcn-DoOg)
+
+> 🎥 Watch the **Interaction Video** for the **Medicine Cabinet** below.
+>
+> [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/qEu0_KRe0Cs/0.jpg)](https://youtu.be/qEu0_KRe0Cs)
+
+**💬 Feedback We Recieved**
+> Special thanks: Jacey Hu (not an IDD student)
+* Suggested adding **a small LED light** to indicate which medicine should be taken, since it’s not obvious which one to pick up.
+* Mentioned that the speaker sound is a bit scary — it might make users **feel pressured** when taking medicine, and the sound isn’t very clear.
+* Noted that the cabinet structure seems **unstable**; if it’s bumped, the bottles might tip over and cause the recorded time to become inaccurate.
 
