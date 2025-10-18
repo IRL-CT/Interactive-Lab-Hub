@@ -110,38 +110,71 @@ Here is a picture of the device (with webcam attached):
 
 ![IMG_5667](https://github.com/user-attachments/assets/4ad3289d-ab45-4851-acce-8c8230b6c2a1)
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
-  
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-  This helps ensure your README.md is clear professional and uniquely yours!
-</details>
+## System Details
 
+I find it pertinent to give an overview of the system itself and some details of how it works.
+
+### Preparing the System
+
+To create the facial landmark database, we needed to have some faces for usage. **For educational and research purposes only,** I created a small database of the Linkedin headshots of people in our class. This database was created by scraping the list of names from the Canvas class page, then using a Linkedin headshot Selenium scraper. The automated browser used a logged-in Linkedin session, searched for each name + "Cornell Tech", found the most relevant person, and downloaded their Linkedin headshot (with the format `FIRST_LAST_LINKEDINID.jpeg`).
+
+It is important to note that users with no Linkedin headshot (or an avatar instead of an IRL face) could not be identified as no facial landmarks could be computed for them. 
+
+I then used the Python library Insightface with the Linkedin headshot folder and created a script that matched an input image to the most likely face from the Linkedin headshot folder. This was a bit slow (around 15s) for each call, since it would calculate the embeddings for the entire folder and the embedding for the input image and compare them. I resolved this down to <2s by caching the embeddings of the Linkedin headshot folder (since we would be comparing against that folder everytime).
+
+For privacy reasons, I have not included the source code for the Selenium scraper for Linkedin headshots. Please reach out to my [email address](mailto:shl225@cornell.edu) if you would like to have it.
+
+### Creating the Pipeline
+
+My system involves a pipeline described in the interaction loop above. To create this pipeline, I relied on Copilot and ChatGPT for much of the code that I was unfamiliar with (I have never used Insightface in the past). To this extent, I created a pipeline that consisted of the following files:
+
+* `master.py` : an infinitely running one-shot script which orchestrates the following module python scripts in the pipeline order of the interaction loop.
+* `face_server.py` : a server running on port `7860` which uses the precomputed embeddings and Insightface to find the most similar headshot and retrieve the relevant name.
+* `love_server.py` : a server running on port `7861` which queries Ollama with the user's input, a system prompt, and relevant name from `face_server`, then outputs a response to the user's query.
+* `greet_name_piper.py` : an executable one-shot script which is an upgraded version of our STT that uses Python Piper STT library, immediately outputs via speaker the audio, and is the final module to be called.
+  
 ## Test the system
-Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
 
-Answer the following:
+Since the interaction for my device was simple, just an Ollama chatbot with the additional information of knowing the user's name, I put more emphasis on the discussion/debriefing after the interaction. I believe the importance of this project, similar to the Harvard one, is to encourage discussion around contextual privacy.
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+The interaction would be somewhat slow since even though the landmark facial recognition was done in under 2s on average, text generation and subsequent TTS often took 10s plus. This led to a disrepency between the user asking a question, then needing to wait around 15s for an answer, which felt somewhat awkward. I believe this could easily be fixed by offloading to a powerful PC for the text generation etc. so that the local RPI5 is only doing minimal computational tasks. Another issue was that some of the Linkedin headshots were of different points of view of a face than the current point of view of the person facing the camera, causing some misidentification. As always, it is important to mention that bias still exists in face recognition models and could be seen sometimes even in this toy example, with certain ethnicities being more prone to misidentification.
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+There was no controller in my setup due to the infinite loop script. Please refer to my discussion section with the users afterward as my consolation for this.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
-
+I believe I already designed a little bit of an autonomous system with the infinite loop script, but I will describe some lessons and some future improvements of the current system.
+- WoZ interactions, and autonomous ones for that matter, can feel quite unrealistic if the pacing/timing is off. This was readily apparent in my system with the ~15s response times, and it makes it less of an interaction and more of a waiting game. The simple and easy fix to this would be to offload heavy computational tasks to more powerful PCs.
+- As noted by several participants and spectators, having the system say the user's name directly is quite straightforward and puts the user on their defensive immediately, wondering "How did this robot know my name?". To this extent, better '*social engineering*' experiments could be conducted. Please see the Harvard video above for a good example of this where they interact with Boston residents not by directly saying their name, but by rather saying an association or relative of that person. This lowers the defensive wall for the user and elicits a more natural reaction than one where the user is immediately put on guard. This is a bit deceitful of course, so please note that these thoughts are being expressed for educational reasons only, and I do not encourage these types of insincere interactions.
+- The system sometimes did not elicit quality responses to user queries which led to confusion on the user's side. This could be solved with a higher quality language model (at the cost of speed).
+- It was readily apparant that the webcam was being used for the face recognition, and participants quickly gleaned this once they heard their name being spoken. I wonder if there is a way of disguising the webcam so that the participant does not realize it is face recognition. What different interactions could occur from this? Would the paricipant believe that their name is just in the knowledge-base of the LLM, some voice recognition is being done, etc.? I think it would be interesting to explore what reasons users can come up for *why* a privacy breach is occurring. It might give an insight into what people believe are the most privacy-breaching technologies of the current day.
+- It was raised by a few participants that they would be okay with the interaction if they had "consented" to it. They defined this consent as being given an explicit ask by the robot about opting into recognition, and then affirming that the robot could use sensor information to guess who they were.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
+Similar to how current LLMs rely on RL of human-LLM conversations to have larger databases for training, I believe that the same sort of thing can be done with privacy-breach human-LLM conversations. Conversations where privacy has been breached by the LLM are quite different than normal conversations and would be an interesting database to create and utilize for developing models to better interact in scenarios where there is a lessened sense of privacy.
+
+Other sensing modalities (and perhaps more important) would be voice recognition. A camera can only see in a certain range of view- and within that view several actors may exist, while sound can come from anywhere- and from any actor. Therefore, an easy issue to see would be if there were two people in front of the camera of this system and only one of them is speaking. The same notion goes for if the person interacting with the robot is out of the field of the view of the camera. There is no detection being done for `is_speaking`, or rotating of the camera to face audio source, so the model will try to identify whichever individual is in camera-view after the audio source has elapsed speaking and could be completely wrong about who to address. With voice recognition, the model could recognize and assign names to each voice and be able to converse personally even while blind (no camera). 
+
+## Discussion
+
+As the purpose of my interaction was more of an experimental demo to encourage discussion around contextual privacy, I realize a Discussion section could be useful for this project.
+
+I tested this system with several participants. While I did not get videos of these interactions, I will describe each below.
+
+| Person | Viewpoint |
+|---|---|
+| **Thomas Knoepffler** | Thomas wants the system to earn any use of your identity with a clear, easy story that a regular person would accept. Just proving it knows your name is not helpful, and it can feel like showing off unless that knowledge unlocks something you actually want. He thinks about it like a trade. If the system asks you to spend a privacy coin, it should hand you something valuable right away, like faster checkout, a smarter default, less typing, or a safer choice. The reason should show up in the moment so you do not have to guess what is happening. Say what you are doing and why you are doing it, for example, “I am using your name to load your saved preferences so you can finish in one tap,” instead of “Hi, Thomas.” He also says you do not always need a big justification for every detail, but if you cross a boundary like revealing that you recognized someone, you should explain why now, what the benefit is, and how to turn it off. Tie identity to a goal, show the payoff quickly, and let people opt out without friction. |
+| **Nana Takada** | For Nana, the creepy factor starts when a system recognizes you without telling you first. That collapses the line between being a person in public and being a record in a profile. She draws a clear distinction between visible, announced uses by institutions, like a city posting signs about analytic cameras, and secret, always-on recognition in home devices that you never consented to. If her smart speaker did that, she would return it. The fear behind this is a surveillance state vibe where quiet dossiers get built, corporations aggregate data, and the motives are not clear. Creepy here is when your expectations do not match the hidden capabilities, especially when the company has more power than you do. Good fixes start with upfront disclosure, honest consent, and visible rules that are easy to understand. Do not surprise people. Say what you do, do only that, and prove it. |
+| **Miriam Alex** | Miriam focuses on what is necessary for the task. Lots of questions, like “What is the weather in NYC,” do not need identity at all, so using her name adds risk without adding value. She is more comfortable when sensing is explained and when consent is asked in the moment. A simple prompt like “I am scanning your face to personalize your commute alerts, may I proceed?” makes a huge difference. She also points out a tricky feeling. If the system knows who you are but does not say anything, the moment might feel less awkward, but ethically that is weaker because you are not being told what is going on. The practical rule is to minimize data by default, show recognition only when it clearly improves the outcome, and bind any personal address to a purpose the user can see. Stay anonymous when you can, escalate only when needed, and make the benefit obvious so the trade feels worth it. |
+| **Anonmyous** | Anonymous prefers softer identity cues and short-lived use of recognition. Instead of naming a person outright, point to situational or public details so it feels responsive without locking onto a specific identity. An example would be “I think you are number 33 on Forbes 40 under 40, isn't that right?” rather than calling someone by name out of nowhere. They also note that big organizations invest in social engineering tactics, which creates a power gap between those who hold information and everyone else. To reduce that gap, keep recognition as a one-time flourish, make it clearly optional, and avoid storing it after the moment passes. Prefer public or volunteered facts, avoid status-based callouts that single people out, and cap precision to what the task needs. Save persistent profiles only for explicit opt in, with clear controls and visible benefits. |
+
+
+
 
 
 
