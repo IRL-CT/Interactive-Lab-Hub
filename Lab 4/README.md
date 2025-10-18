@@ -512,24 +512,24 @@ During our design process, we decided to add lights to the device. However, with
 
 The first iteration of the lights:
 
-![light prototype](lightprototype.jpg)
+<img src="lightprototype.jpg" width=50%>
 
 The process of laser cutting:
 
-![laser cutting](lasercutting.jpg)
+<img src="lasercutting.jpg" width=50%>
 
 Comparison of our two iterations:
 
-![iterations](iterationcomparison.jpg)
+<img src="iterationcomparison.jpg" width=50%>
 
 Take it togo with the handle!
 
-![handle](handle.jpg)
+<img src="handle.jpg" width=50%>
 
 
 - A simple interaction diagram or sketch showing how inputs and outputs are connected and interact
 
-![interaction diagram](interactionmap.jpg)
+<img src="interactionmap.jpg" width=50%>
 
 - Written reflection: What did you learn about multi-input/multi-output interaction? What was fun, surprising, or challenging?
 
