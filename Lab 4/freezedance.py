@@ -41,7 +41,7 @@ def download_video(url):
 
 def setup_rotary_encoder():
     """Initialize Seesaw rotary encoder and button."""
-    ss = seesaw.Seesaw(board.I2C(), addr=0x36)
+    ss = seesaw.Seesaw(board.I2C(), addr=0x71)
 
     ss_product = (ss.get_version() >> 16) & 0xFFFF
     print("Found Seesaw product {}".format(ss_product))
