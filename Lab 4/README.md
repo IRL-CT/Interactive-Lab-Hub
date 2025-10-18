@@ -678,14 +678,6 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Acts like": shows how a person would interact with the device
 </details>
 
-**TODO List**
-1. briefly explain the code (not sure if we shuld put it in Part E or Part F) or at least where the code is.
-2. ✅ Written summary: what it looks like, works like, acts like
-2. put the photos of our final device
-3. ✅ videos
-4. ✅ feedback we get from interacting with the device
-5. something we learned, example: how do we use multiple display? why we still can't use three distance sensor
-
 **Code Overview**
 > The code for our device is located in [main_file.py](/Lab%204/main_file.py)
 > 
@@ -735,4 +727,10 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * Suggested adding **a small LED light** to indicate which medicine should be taken, since it’s not obvious which one to pick up.
 * Mentioned that the speaker sound is a bit scary — it might make users **feel pressured** when taking medicine, and the sound isn’t very clear.
 * Noted that the cabinet structure seems **unstable**; if it’s bumped, the bottles might tip over and cause the recorded time to become inaccurate.
+
+**Reflections**
+> - From the feedback we received, next steps could include adding the LED functionality to make the interaction more seamless and improving on the speaker quality
+> - We could also figure out how to properly chain the distance sensors, either by using a multiplexer or finding a different method.
+> - Or alternatively, we could use a different sensor, such as the capacitive sensor which would be able to sense all three locations, or a different one that allows for address changing.
+> - Our biggest takeaway from this lab was learning different methods for how to chain different devices, such as through changing the address through hardware or software, using different buses, using a multiplexer, and more. 
 
