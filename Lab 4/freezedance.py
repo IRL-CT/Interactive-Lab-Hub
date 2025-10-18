@@ -64,10 +64,10 @@ def runExample():
         return
     oProx.begin()
 
-    # --- Setup Rotary Encoder ---
-    ss, encoder, button = setup_rotary_encoder()
-    button_held = False
-    last_position = encoder.position
+    # # --- Setup Rotary Encoder ---
+    # ss, encoder, button = setup_rotary_encoder()
+    # button_held = False
+    # last_position = encoder.position
 
     # --- Prepare Video ---
     if not os.path.exists(TEMP_FILE):
