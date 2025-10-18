@@ -718,23 +718,28 @@ Think about how you want to present the information about what your sensor is se
  
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
 
-**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
-**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
-
-**\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
-
-Build a cardboard prototype of your design.
-
-**\*\*\*Document your rough prototype.\*\*\***
+### Design #1: Top Sensor Classic
+**Sensors Used:** APDS Gesture Sensor
 
 <img src="https://hackmd.io/_uploads/SJVRpdS6ge.png" width="400"/>
 
+### **Description**
+- Users interact through simple hand gestures above the device — for example, swiping up to Feed or down to Play
+- The screen displays pet status (Hunger, Happiness) and visual reactions
+- Three buttons (A, B, C) below the screen support menu navigation and confirmations
+
+### Design #2: Joystick Control
+**Sensors Used:** APDS Gesture Sensor + Analog Joystick
 
 <img src="https://hackmd.io/_uploads/S1bEZtrpee.png" width="400"/>
 
+### **Description**
+- The joystick enables directional inputs for Feed, Play, Clean, and Pet, making it feel more game-like and interactive
+- The APDS sensor adds shortcut gestures for instant responses, enhancing speed and convenience
 
-### 🎨 Design #3: Twizzler Touch Edition (Capacitive Petting Pad)
+
+### Design #3: Twizzler Touch Edition (Capacitive Petting Pad)
 
 **Sensors Used:** Capacitive Sensor Board (MPR121) + Copper Tape or Twizzlers  
 
@@ -743,7 +748,7 @@ Build a cardboard prototype of your design.
 ### **Description**
 - Four touch pads—🍖 Feed, 🎮 Play, 💊 Medicine, ❤️ Pet—are arranged around the central display.  
 
-### 🕹️ Design #4: Rotary Mood Dial + Distance Sensor
+### Design #4: Rotary Mood Dial + Distance Sensor
 
 **Sensors Used:** Rotary Encoder + Distance Sensor  
 
@@ -753,6 +758,41 @@ Build a cardboard prototype of your design.
 - Combines **rotational input** for selecting pet actions with **distance sensing** to detect user presence. 
 - The rotary knob scrolls through actions like *Feed*, *Play*, *Clean*, and *Heal*.  
 - The distance sensor **wakes the pet** when the user approaches.  
+
+
+### Design #5: Hybrid Playground (APDS + Joystick + Rotary Encoder)
+
+**Sensors Used:** APDS Gesture Sensor + Joystick + Rotary Encoder
+
+<img src="https://hackmd.io/_uploads/B1Re6qTTlg.png" width="400"/>
+
+### **Description**
+- The APDS sensor at the top detects quick gestures
+- The joystick provides tactile input for Feed, Play, and Clean actions — giving users fine control and an arcade-like feel
+- The rotary dial adjusts secondary settings such as brightness, sound, or pet mood intensity
+
+
+
+
+**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+
+- user interaction / usability : do the buttons appeared to be intuitive ? does the user understand what each element or action does ?
+- informaiton content : is the order or hierarchy of information clear? Do users interpret icons, labels, and data the way we expect?
+- Feasibility / Technical Constraint : will performance (e.g., loading time, hardware constraints) affect usability?
+
+
+**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+
+**\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+
+Build a cardboard prototype of your design.
+
+
+**\*\*\*Document your rough prototype.\*\*\***
+
+
+
+
 
 
 # LAB PART 2
