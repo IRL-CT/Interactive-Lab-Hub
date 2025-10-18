@@ -66,18 +66,16 @@ def ssd1306_init(bus):
 for bus in buses:
     ssd1306_init(bus)
 
-# ---------------------------
-# DRAW NUMBERS
-# ---------------------------
-# Load font
+
 font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 16)
 
+# draw text function
 def draw_text(bus, number):
     # Create monochrome image
     image = Image.new("1", (WIDTH, HEIGHT))
     draw = ImageDraw.Draw(image)
     
-    # Draw number at top-left
+    # Draw at top-left
     draw.text((0, 0), str(number), font=font, fill=255)
     
     # Convert image to bytes for SSD1306
@@ -107,31 +105,24 @@ if not sensor.connected:
     exit(1)
 sensor.begin()
 
-# VCNL4040 command registers
-PROX_RATE = 0x03
-PROX_DATA_MSB = 0x08
-PROX_DATA_LSB = 0x09
-COMMAND_REG = 0x03
+# # VCNL4040 command registers (didn't work well)
+# PROX_RATE = 0x03
+# PROX_DATA_MSB = 0x08
+# PROX_DATA_LSB = 0x09
+# COMMAND_REG = 0x03
 
-def read_proximity(bus, addr):
-    # Trigger a single proximity measurement
-    bus.write_byte_data(addr, COMMAND_REG, 0x08)
-    time.sleep(0.01)  # wait 10 ms for measurement
+# def read_proximity(bus, addr):
+#     # Trigger a single proximity measurement
+#     bus.write_byte_data(addr, COMMAND_REG, 0x08)
+#     time.sleep(0.01)  # wait 10 ms for measurement
 
-    # Read 16-bit proximity value
-    msb = bus.read_byte_data(addr, PROX_DATA_MSB)
-    lsb = bus.read_byte_data(addr, PROX_DATA_LSB)
-    return ((msb << 8) | lsb) / 10.0
+#     # Read 16-bit proximity value
+#     msb = bus.read_byte_data(addr, PROX_DATA_MSB)
+#     lsb = bus.read_byte_data(addr, PROX_DATA_LSB)
+#     return ((msb << 8) | lsb) / 10.0
 
 
-# --- Font ---
-font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-if os.path.exists(font_path):
-    font = ImageFont.truetype(font_path, 15)
-else:
-    font = ImageFont.load_default()
-
-# --- State ---
+# --- Time States ---
 last_taken = datetime.now() - timedelta(hours=4)
 next_time = datetime.now()+ timedelta(seconds=20)
 object_present = False
@@ -160,12 +151,12 @@ while True:
         print(f"Distance: {distance_cm:.1f} cm")
         currently_present = distance_cm > 10
 
+        # (still didn't work well)
         # distance2 = read_proximity(bus_sw14, 0x60)
         # currently_present2 = distance2 < 10
         # draw_text(bus_sw14, f"S2: {distance2:.1f}cm")
 
-        # --- Handle medication taken event ---
-        # update time only when object taken
+        # update time only when medication taken
         if not currently_present and object_present:
             last_taken = now
             next_time = last_taken + timedelta(minutes=1)
@@ -179,33 +170,22 @@ while True:
             speak_message("Please take your Tylenol right now. Please take your Tylenol right now. Please take your Tylenol right now.")
             reminder_spoken = True
 
-        # --- Draw OLED ---
-        # image = Image.new("1", (oled.width, oled.height))
-        # draw = ImageDraw.Draw(image)
+        # --- Display ---
 
         if display_mode == 0:
             draw_text(bus_hw, "Last taken:\n" + last_taken.strftime("%H:%M:%S"))
             draw_text(bus_sw14, "Last taken:\n 10:24:21")
             draw_text(bus_sw13, "Last taken:\n 9:12:10")
-            # draw.text((0, 0), "Last taken:", font=font, fill=255)
-            # draw.text((0, 14), last_taken.strftime("%H:%M:%S") if last_taken else "None", font=font, fill=255)
 
         elif display_mode == 1:
             draw_text(bus_hw, "Next time:\n" + next_time.strftime("%H:%M:%S"))
             draw_text(bus_sw14, "Next time:\n 16:24:21")
             draw_text(bus_sw13, "Next time:\n 12:23:01")
-            # draw.text((0, 0), "Next time:", font=font, fill=255)
-            # draw.text((0, 14), next_time.strftime("%H:%M:%S") if next_time else "None", font=font, fill=255)
 
         else:
             draw_text(bus_hw, "Medication:\n Tylenol")
             draw_text(bus_sw14, "Medication:\n Advil")
             draw_text(bus_sw13, "Medication:\n Benadryl")
-            # draw.text((0, 0), "Medication:", font=font, fill=255)
-            # draw.text((0, 14), "Tylenol", font=font, fill=255)
-
-        # oled.image(image)
-        # oled.show()
 
     except Exception as e:
         print("Error:", e)
