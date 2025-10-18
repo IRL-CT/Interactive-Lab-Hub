@@ -39,20 +39,20 @@ def download_video(url):
     return TEMP_FILE
 
 
-def setup_rotary_encoder():
-    """Initialize Seesaw rotary encoder and button."""
-    ss = seesaw.Seesaw(board.I2C(), addr=0x71)
+# def setup_rotary_encoder():
+#     """Initialize Seesaw rotary encoder and button."""
+#     ss = seesaw.Seesaw(board.I2C(), addr=0x71)
 
-    ss_product = (ss.get_version() >> 16) & 0xFFFF
-    print("Found Seesaw product {}".format(ss_product))
-    if ss_product != 4991:
-        print("Warning: expected 4991 firmware, got {}".format(ss_product))
+#     ss_product = (ss.get_version() >> 16) & 0xFFFF
+#     print("Found Seesaw product {}".format(ss_product))
+#     if ss_product != 4991:
+#         print("Warning: expected 4991 firmware, got {}".format(ss_product))
 
-    ss.pin_mode(24, ss.INPUT_PULLUP)
-    button = digitalio.DigitalIO(ss, 24)
-    encoder = rotaryio.IncrementalEncoder(ss)
+#     ss.pin_mode(24, ss.INPUT_PULLUP)
+#     button = digitalio.DigitalIO(ss, 24)
+#     encoder = rotaryio.IncrementalEncoder(ss)
 
-    return ss, encoder, button
+#     return ss, encoder, button
 
 
 def runExample():
@@ -114,27 +114,27 @@ def runExample():
                     player.pause()
                     is_playing = False
 
-        # --- Rotary Encoder Logic ---
-        position = encoder.position
-        if position != last_position:
-            delta = position - last_position
-            last_position = position
-            volume = max(0, min(100, volume + delta * VOLUME_STEP))
-            player.audio_set_volume(volume)
-            print(f"Volume changed to {volume}")
+        # # --- Rotary Encoder Logic ---
+        # position = encoder.position
+        # if position != last_position:
+        #     delta = position - last_position
+        #     last_position = position
+        #     volume = max(0, min(100, volume + delta * VOLUME_STEP))
+        #     player.audio_set_volume(volume)
+        #     print(f"Volume changed to {volume}")
 
-        # --- Button Logic ---
-        if not button.value and not button_held:
-            button_held = True
-            is_muted = not is_muted
-            player.audio_toggle_mute()
-            print("Button pressed → Mute toggled:", is_muted)
+        # # --- Button Logic ---
+        # if not button.value and not button_held:
+        #     button_held = True
+        #     is_muted = not is_muted
+        #     player.audio_toggle_mute()
+        #     print("Button pressed → Mute toggled:", is_muted)
 
-        if button.value and button_held:
-            button_held = False
-            print("Button released")
+        # if button.value and button_held:
+        #     button_held = False
+        #     print("Button released")
 
-        time.sleep(CHECK_INTERVAL)
+        # time.sleep(CHECK_INTERVAL)
 
 
 if __name__ == '__main__':
