@@ -721,13 +721,17 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 > [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/qEu0_KRe0Cs/0.jpg)](https://youtu.be/qEu0_KRe0Cs)
 
 **💬 Feedback We Recieved**
-> Special thanks: Jacey Hu (not an IDD student)
+> Special thanks: Jacey Hu and Marianne Arriola (not IDD students)
 * Suggested adding **a small LED light** to indicate which medicine should be taken, since it’s not obvious which one to pick up.
 * Mentioned that the speaker sound is a bit scary — it might make users **feel pressured** when taking medicine, and the sound isn’t very clear.
 * Noted that the cabinet structure seems **unstable**; if it’s bumped, the bottles might tip over and cause the recorded time to become inaccurate.
+* Suggest that since taking medication at the wrong time can also be harmful, it would be helpful if the system had a way to warn the users not to take the medicine before the right time
+* Noted that it would be helpful to add the dosage and a way to check if the users had actually taken their pills and the right amount.
+* Pointed out that if a user puts the medication in the wrong spot, then they would be taking the wrong medication unknowingly and without thinking too much about it
 
 **Reflections**
 > - From the feedback we received, next steps could include adding the LED functionality to make the interaction more seamless and improving on the speaker quality
+> - In addition for more advanced functionality we could add speaker alerts for taking the medication too early, a weight sensor to detect the number of pills taken out of the bottle, as well as switch out the distance sensor for a light proximity sensor or a camera to detect if the right bottle has been placed in the right location.
 > - We could also figure out how to properly chain the distance sensors, either by using a multiplexer or finding a different method.
 > - Or alternatively, we could use a different sensor, such as the capacitive sensor which would be able to sense all three locations, or a different one that allows for address changing.
 > - Our biggest takeaway from this lab was learning different methods for how to chain different devices, such as through changing the address through hardware or software, using different buses, using a multiplexer, and more. 
