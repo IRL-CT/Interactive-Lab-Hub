@@ -148,4 +148,4 @@ if __name__ == '__main__':
                 print("Deleted:", TEMP_FILE)
         except Exception as e:
             print("Could not delete temp file:", e)
-        sys.exit(0
+        sys.exit(0)
