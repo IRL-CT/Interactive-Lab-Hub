@@ -688,9 +688,10 @@ A servo motor is a rotary actuator that allows for precise control of angular po
 ### Part F
 
 ### Record
-#### Video Demos
+Video Demos
 [![Watch the video](freezedance.jpg)](https://drive.google.com/file/d/10Wo1qmLYmR_ZGpVNb6uvr7U2zcjgi07F/view?usp=sharing)
-#### Longer Demo
+
+Longer Demo
 [![Watch the video](freezedance.jpg)](https://drive.google.com/file/d/1dpAZBzrJYfMq6LQ22NpXZKjHJwe6HQbL/view?usp=sharing)
 
 Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
