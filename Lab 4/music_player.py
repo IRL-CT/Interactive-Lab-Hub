@@ -2,6 +2,25 @@ import os
 import time
 import board
 import pygame
+
+import subprocess
+
+def ensure_pcm_wav(filepath):
+    """Convert WAV to standard PCM if pygame can't play it."""
+    fixed_path = filepath.replace(".wav", "_pygame.wav")
+    if os.path.exists(fixed_path):
+        return fixed_path
+    try:
+        subprocess.run([
+            "ffmpeg", "-y", "-i", filepath,
+            "-acodec", "pcm_s16le", "-ar", "44100", fixed_path
+        ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print(f"Converted {os.path.basename(filepath)} -> {os.path.basename(fixed_path)}")
+        return fixed_path
+    except Exception as e:
+        print(f"Conversion failed for {filepath}: {e}")
+        return filepath
+
 from adafruit_apds9960.apds9960 import APDS9960
 
 # -------------------------------
@@ -47,7 +66,9 @@ PROXIMITY_FAR = 50     # 手远离的数值
 # -------------------------------
 def play_song(index):
     global playback_state
-    pygame.mixer.music.load(os.path.join(MUSIC_FOLDER, songs[index]))
+    original_path = os.path.join(MUSIC_FOLDER, songs[index])
+    safe_path = ensure_pcm_wav(original_path)
+    pygame.mixer.music.load(safe_path)
     pygame.mixer.music.play()
     playback_state = "Playing"
     update_status()
