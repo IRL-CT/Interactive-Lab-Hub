@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV '/home/pi/Documents/nanasGit/Lab 4/.venv'
+set -gx VIRTUAL_ENV '/home/pi/Interactive-Lab-Hub/Lab 4/.venv'
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

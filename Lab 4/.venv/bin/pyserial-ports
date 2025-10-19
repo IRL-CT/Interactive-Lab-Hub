@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/home/pi/Documents/nanasGit/Lab 4/.venv/bin/python3" "$0" "$@"
+'''exec' "/home/pi/Interactive-Lab-Hub/Lab 4/.venv/bin/python3" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

@@ -1,0 +1,5 @@
+sparkfun-qwiic-joystick
+pillow
+adafruit-circuitpython-rgb-display
+python-vlc
+pygame

@@ -539,3 +539,8 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 
 **\*\*\*Document your rough prototype.\*\*\***
 - [video](https://drive.google.com/file/d/13n8Z8xWamGpGf9VqfbEW2rgNa3ycgp4j/view?usp=drive_link)
+
+
+### How to run this code
+
+sudo systemctl stop piscreen.service --now
