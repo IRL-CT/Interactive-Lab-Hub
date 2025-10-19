@@ -717,11 +717,14 @@ A servo motor is a rotary actuator that allows for precise control of angular po
 Longer Demo:
 
 <a href="https://drive.google.com/file/d/1dpAZBzrJYfMq6LQ22NpXZKjHJwe6HQbL/view?usp=sharing">
-  <img src="freezedance.jpg" alt="Watch the video" width="50%" />
+  <img src="finalfreezedance.jpg" alt="Watch the video" width="50%" />
 </a>
 
 #### Freeze Dance "Works Like" Demos:
 Volume/Shuffle Demo:
+To lower the volume -> touch any sensor 6-8
+To higher the volume -> touch any sensor 9-11
+Shuffle the song/Next song -> touch any sensor 0-5
 
 <a href="https://drive.google.com/file/d/10GrAU5XFSXOs6kXI2o4m75T27K3gBZ_S/view?usp=sharing">
   <img src="sensordemo.png" alt="Watch the video" width="50%" />
