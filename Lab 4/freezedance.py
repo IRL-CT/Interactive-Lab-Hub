@@ -13,18 +13,9 @@ i2c = busio.I2C(board.SCL, board.SDA)
 vcnl4040 = qwiic.QwiicVL53L1X()
 mpr121 = adafruit_mpr121.MPR121(i2c)
 
-if not vcnl4040.is_connected():
-    print("VCNL4040 not connected. Check wiring.")
-    exit()
-
-if not mpr121.is_connected():
-    print("MPR121 not connected. Check wiring.")
-    exit()
-
 vcnl4040.begin()
 mpr121.begin()
 
-print("Sensors initialized successfully")
 
 # --- Initialize pygame for music ---
 pygame.mixer.init()
