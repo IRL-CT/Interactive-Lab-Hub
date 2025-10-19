@@ -515,9 +515,10 @@ The first iteration of the lights:
 
 <img src="lightprototype.jpg" width=50%>
 
-The process of laser cutting:
+The process of laser cutting and Illustrator file:
 
 <img src="lasercutting.jpg" width=50%>
+<img src="freezedancefile.png" width=50%>
 
 Comparison of our two iterations:
 
