@@ -4,7 +4,7 @@ import board
 import pygame
 import subprocess
 from adafruit_apds9960.apds9960 import APDS9960
-from sparkfun_qwiic_button import QwiicButton
+import qwiic_button
 
 # -------------------------------
 # SDL audio driver for Raspberry Pi
@@ -41,7 +41,7 @@ apds.enable_gesture = True
 # -------------------------------
 # Initialize Qwiic Button
 # -------------------------------
-button = QwiicButton()
+button = qwiic_button.QwiicButton()
 if not button.begin():
     print("Button not detected. Check wiring!")
 else:
