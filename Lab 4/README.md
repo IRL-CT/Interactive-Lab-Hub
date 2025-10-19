@@ -502,8 +502,13 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 
 ## Part 1
 
+## A
+
 #### Capacitive Sensing, a.k.a. Human-Twizzler Interaction
 - [video](https://drive.google.com/file/d/18yES5zgi9vadJ35WmzPh92G5otRxhHDW/view?usp=drive_link)
+
+## B 
+
 #### Light/Proximity/Gesture sensor (APDS-9960)
 - [color_sensor](https://drive.google.com/file/d/1nGoNoW5VqaMlu44S1YrABpeoOqZt3pnG/view?usp=drive_link)
 - [Gesture](https://drive.google.com/file/d/1kV9ytehZo7h0iTpj5iUL3qDl60VlzUWA/view?usp=drive_link)
@@ -517,7 +522,9 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 #### Distance Sensor
 - [video](https://drive.google.com/file/d/1nly-xRRw7lkPNoYq9m0ssxKG0KIIMCPE/view?usp=drive_link)
 
-**\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+## C
+
+**\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
 <img src="image/sketch1.jpg" height="400" />
 <img src="image/sketch2.jpg" height="400" />
 <img src="image/sketch3.jpg" height="400" />
@@ -528,8 +535,10 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 
 - For the rotator, we really need some indication of how much it rotates. Without those indications, users will not be able to remember how much she/he rotates. 
 
-**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+**\*\*\*Pick one of these designs to prototype.\*\*\***
 - We decided the sound idea. 
+
+## D
 
 **\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
 
