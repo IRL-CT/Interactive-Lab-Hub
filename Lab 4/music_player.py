@@ -48,7 +48,7 @@ MUSIC_FOLDER = "./music"
 songs = [
     f for f in os.listdir(MUSIC_FOLDER)
     if f.lower().endswith(".wav")
-    and all(x not in f.lower() for x in ["_pcm", "_pygame", "_fixed"])
+    and all(x not in f.lower() for x in ["_pcm", "_pygame"])
 ]
 songs.sort()
 
