@@ -5,28 +5,35 @@ import board
 import busio
 import adafruit_mpr121
 import qwiic
+import os
+
+# --- Get base folder for music ---
+base_path = os.path.dirname(os.path.abspath(__file__))
+music_folder = os.path.join(base_path, "music")
+
+# --- Build playlist dynamically ---
+playlist = [os.path.join(music_folder, f) for f in sorted(os.listdir(music_folder)) if f.endswith(".mp3")]
+
+if not playlist:
+    print("No music files found in 'music' folder!")
+    exit()
 
 # --- Initialize I2C ---
 i2c = busio.I2C(board.SCL, board.SDA)
 
-# --- Initialize sensors ---
-# MPR121 capacitive touch
+# --- Initialize MPR121 capacitive touch sensor ---
 mpr121 = adafruit_mpr121.MPR121(i2c)
 
-# VL53L1X / VCNL4040 distance sensor
+# --- Initialize VL53L1X distance sensor ---
 vcnl4040 = qwiic.QwiicVL53L1X()
+if vcnl4040.sensor_init() != 0:
+    print("VL53L1X not detected. Check wiring.")
+    exit()
+print("VL53L1X online")
+print("MPR121 online")
 
 # --- Initialize pygame for music ---
 pygame.mixer.init()
-
-playlist = [
-    "music/song1.mp3",
-    "music/song2.mp3",
-    "music/song3.mp3",
-    "music/song4.mp3",
-    "music/song5.mp3"
-]
-
 current_song = 0
 volume = 0.5
 pygame.mixer.music.set_volume(volume)
@@ -35,15 +42,12 @@ def play_song(index):
     pygame.mixer.music.load(playlist[index])
     pygame.mixer.music.play(-1)
 
-def stop_song():
-    pygame.mixer.music.stop()
-
 def shuffle_songs():
     global current_song
     random.shuffle(playlist)
     current_song = 0
     play_song(current_song)
-    print("Playlist shuffled!")
+    print("🎵 Playlist shuffled")
 
 def change_volume(delta):
     global volume
@@ -55,16 +59,16 @@ def change_volume(delta):
 play_song(current_song)
 print("Freeze Dance Machine ready!")
 
-# --- Main Loop ---
-MOTION_THRESHOLD = 2000  # Adjust based on environment
+# --- Main loop ---
+MOTION_THRESHOLD = 2000  # adjust based on environment
 last_motion = False
 
 while True:
-    # --- Read distance/motion ---
+    # --- Read distance / motion ---
     try:
         vcnl4040.start_ranging()
-        time.sleep(0.005)
-        distance = vcnl4040.get_distance()  # mm
+        time.sleep(0.02)  # short delay to avoid I2C errors
+        distance = vcnl4040.get_distance()
         vcnl4040.stop_ranging()
         motion = distance > MOTION_THRESHOLD
     except Exception as e:
