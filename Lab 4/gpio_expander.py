@@ -1,64 +1,47 @@
-# gpio_expander.py
-# LED fun with PCF8574 I2C GPIO expander
-#
-# Demonstrates how to use an I2C GPIO expander to sink current
-# and control multiple LEDs for quick breadboard prototyping.
-
+import qwiic_proximity
 import time
+import sys
+import statistics
+import vlc
+import yt_dlp
+import os
 import random
-import board
-import adafruit_pcf8574
+# Qwiic GPIO Expander Library
+from __future__ import print_function
+import qwiic_gpio
 
-# Initialize I2C and PCF8574
-i2c = board.I2C()
-pcf = adafruit_pcf8574.PCF8574(i2c)
+# --- CONFIGURATION ---
+YOUTUBE_URL = "https://youtu.be/EPo5wWmKEaI?si=P4iQHYS6ml0Li500"
+TEMP_FILE = "/tmp/video.mp4"
+SAMPLE_WINDOW = 10      # Number of proximity readings to use for standard deviation
+MOVEMENT_THRESHOLD = 5  # Standard deviation threshold to detect motion
+CHECK_INTERVAL = 0.05   # Loop delay for responsiveness
 
-# Grab all 8 pins
-leds = [pcf.get_pin(i) for i in range(8)]
+# List of Qwiic GPIO pins used for active-low LEDs (connected 3.3V to Pin)
+LED_PINS = [0, 1, 2, 3] 
+# ---------------------
 
-# Configure as outputs (HIGH = off, LOW = LED on)
-for ld in leds:
-    ld.switch_to_output(value=True)
+# Global Qwiic GPIO object
+myGPIO = None
 
-# --- Patterns ---
-def chase():
-    """Simple left-to-right chase"""
-    for ld in leds:
-        ld.value = False
-        time.sleep(0.12)
-        ld.value = True
+# --- UTILITY FUNCTIONS ---
 
-def knight_rider():
-    """Bounce back and forth"""
-    for ld in leds:
-        ld.value = False
-        time.sleep(0.12)
-        ld.value = True
-    for ld in reversed(leds[1:-1]):
-        ld.value = False
-        time.sleep(0.12)
-        ld.value = True
+def download_video(url):
+    """Download YouTube video to a local MP4 file using yt_dlp."""
+    print("Downloading video to /tmp/video.mp4 ... (this may take ~30s)")
+    ydl_opts = {
+        'quiet': True,
+        'format': 'best[ext=mp4]/best',
+        'outtmpl': TEMP_FILE,
+        'noplaylist': True,
+    }
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+    return TEMP_FILE
 
-def disco():
-    """Random LED flashing"""
-    for _ in range(12):
-        ld = random.choice(leds)
-        ld.value = False
-        time.sleep(0.08)
-        ld.value = True
+# -------------------------
+# --- GPIO CONTROL FUNCTIONS ---
+# -------------------------
 
-patterns = [chase, knight_rider, disco]
-
-# --- Main Loop ---
-pattern_index = 0
-runs = 0
-
-while True:
-    # Run current pattern
-    patterns[pattern_index]()
-    runs += 1
-
-    # After a few runs, switch pattern
-    if runs >= 5:
-        runs = 0
-        pattern_index = (pattern_index + 1) % len(patterns)
+def initialize_gpio():
+    """Initializes
