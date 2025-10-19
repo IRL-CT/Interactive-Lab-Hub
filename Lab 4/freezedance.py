@@ -6,7 +6,7 @@ import random
 import pygame
 
 # --- Initialize sensors ---
-vcnl4040 = qwiic_vcnl4040.QwiicVCNL4040()
+vcnl4040 = qwiic.QwiicVL53L1X()
 mpr121 = qwiic_mpr121.QwiicMPR121()
 
 if not vcnl4040.is_connected():
