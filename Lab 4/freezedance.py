@@ -25,11 +25,14 @@ i2c = busio.I2C(board.SCL, board.SDA)
 mpr121 = adafruit_mpr121.MPR121(i2c)
 
 # --- Initialize VL53L1X distance sensor ---
+time.sleep(0.05)
 vcnl4040 = qwiic.QwiicVL53L1X()
-if vcnl4040.sensor_init() != 0:
+  # Give sensor time to power up
+if not vcnl4040.begin():
     print("VL53L1X not detected. Check wiring.")
     exit()
 print("VL53L1X online")
+
 print("MPR121 online")
 
 # --- Initialize pygame for music ---
