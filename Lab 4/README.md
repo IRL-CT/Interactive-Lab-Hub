@@ -414,98 +414,116 @@ For Part 2, you will design and build a fun interactive prototype using multiple
 <details>
 	<summary><strong>Multidevice Code</strong></summary>
 	
-		import qwiic_proximity
+		import smbus2
 		import time
-		import sys
-		import statistics
-		import vlc
-		import yt_dlp
+		import random
+		import pygame
+		import board
+		import busio
+		import adafruit_mpr121
+		import qwiic
 		import os
-		YOUTUBE_URL = "https://youtu.be/EPo5wWmKEaI?si=P4iQHYS6ml0Li500"
-		TEMP_FILE = "/tmp/video.mp4"
-		SAMPLE_WINDOW = 10
-		MOVEMENT_THRESHOLD = 5
-		CHECK_INTERVAL = 0.4
 		
+		# -------------------- TCA9534 LED setup --------------------
+		I2C_ADDR = 0x27
+		bus = smbus2.SMBus(1)
 		
-		def download_video(url):
-		    """Download YouTube video to a local MP4 file using yt_dlp."""
-		    print("Downloading video to /tmp/video.mp4 ... (this may take ~30s)")
-		    ydl_opts = {
-		        'quiet': False,
-		        'format': 'best[ext=mp4]/best',
-		        'outtmpl': TEMP_FILE,
-		        'noplaylist': True,
-		    }
-		    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-		        ydl.download([url])
-		    return TEMP_FILE
+		OUTPUT_REG = 0x01
+		CONFIG_REG = 0x03  # 1=input, 0=output
+		bus.write_byte_data(I2C_ADDR, CONFIG_REG, 0x00)  # all pins as outputs
 		
+		# -------------------- Music & Sensors setup --------------------
+		base_path = os.path.dirname(os.path.abspath(__file__))
+		music_folder = os.path.join(base_path, "music")
+		playlist = [os.path.join(music_folder, f) for f in sorted(os.listdir(music_folder)) if f.endswith(".mp3")]
+		if not playlist:
+		    print("No music files found in 'music' folder!")
+		    exit()
 		
-		def runExample():
-		    print("\nSparkFun VCNL4040 Proximity Sensor + VLC (Local Playback Mode)\n")
-		    oProx = qwiic_proximity.QwiicProximity()
+		# I2C for MPR121
+		i2c = busio.I2C(board.SCL, board.SDA)
+		try:
+		    mpr121 = adafruit_mpr121.MPR121(i2c)
+		except ValueError:
+		    print("MPR121 not detected. Check wiring.")
+		    exit()
 		
-		    if not oProx.connected:
-		        print("The Qwiic Proximity device isn't connected. Please check your connection.", file=sys.stderr)
-		        return
+		# Distance sensor
+		vcnl4040 = qwiic.QwiicVL53L1X()
 		
-		    oProx.begin()
+		# Pygame music
+		pygame.mixer.init()
+		current_song = 0
+		volume = 0.5
+		pygame.mixer.music.set_volume(volume)
 		
-		    # Step 1: Ensure we have the video locally
-		    if not os.path.exists(TEMP_FILE):
-		        video_path = download_video(YOUTUBE_URL)
-		    else:
-		        video_path = TEMP_FILE
-		        print("Using cached video:", video_path)
+		def play_song(index):
+		    pygame.mixer.music.load(playlist[index])
+		    pygame.mixer.music.play(-1)
 		
-		    # Step 2: Play it with VLC
-		    print("Starting VLC player...")
-		    player = vlc.MediaPlayer(video_path)
-		    player.play()
-		    time.sleep(5)
+		def shuffle_songs():
+		    global current_song
+		    random.shuffle(playlist)
+		    current_song = 0
+		    play_song(current_song)
+		    print("Playlist shuffled")
 		
-		    readings = []
-		    is_playing = True
+		def change_volume(delta):
+		    global volume
+		    volume = min(1.0, max(0.0, volume + delta))
+		    pygame.mixer.music.set_volume(volume)
+		    print(f"Volume set to {volume:.2f}")
 		
+		play_song(current_song)
+		print("Freeze Dance Machine + Disco LEDs ready!")
+		
+		# -------------------- Main loop --------------------
+		MOTION_THRESHOLD = 2000
+		last_motion = False
+		
+		try:
 		    while True:
-		        proxValue = oProx.get_proximity()
-		        print(f"Proximity Value: {proxValue}")
-		
-		        readings.append(proxValue)
-		        if len(readings) > SAMPLE_WINDOW:
-		            readings.pop(0)
-		
-		        if len(readings) >= SAMPLE_WINDOW:
-		            variation = statistics.stdev(readings)
-		            print(f"Variation: {variation:.2f}")
-		
-		            if variation > MOVEMENT_THRESHOLD:
-		                if not is_playing:
-		                    print("Movement detected: PLAY")
-		                    player.play()
-		                    is_playing = True
-		            else:
-		                if is_playing:
-		                    print("Stable distance: PAUSE")
-		                    player.pause()
-		                    is_playing = False
-		
-		        time.sleep(CHECK_INTERVAL)
-		
-		
-		if __name__ == '__main__':
-		    try:
-		        runExample()
-		    except (KeyboardInterrupt, SystemExit):
-		        print("\nExiting program. Cleaning up temporary file.")
-		        try:
-		            if os.path.exists(TEMP_FILE):
-		                os.remove(TEMP_FILE)
-		                print("Deleted:", TEMP_FILE)
-		        except Exception as e:
-		            print("Could not delete temp file:", e)
-		        sys.exit(0)
+		        # --- TCA9534 LED "disco" ---
+		        led_pattern = random.randint(0, 255)
+		        bus.write_byte_data(I2C_ADDR, OUTPUT_REG, led_pattern)
+		        # print(f"LED pattern: {led_pattern:08b}")  # optional debug
+
+        # --- Distance / motion ---
+        try:
+            vcnl4040.start_ranging()
+            time.sleep(0.02)
+            distance = vcnl4040.get_distance()
+            vcnl4040.stop_ranging()
+            motion = distance > MOTION_THRESHOLD
+        except OSError as e:
+            print("Distance sensor error:", e)
+            motion = False
+
+        if motion and not last_motion:
+            pygame.mixer.music.unpause()
+        elif not motion and last_motion:
+            pygame.mixer.music.pause()
+
+        last_motion = motion
+
+        # --- Capacitive touch inputs ---
+        for i in range(12):
+            if mpr121[i].value:
+                if 0 <= i <= 5:
+                    shuffle_songs()
+                elif 6 <= i <= 8:
+                    change_volume(-0.1)
+                elif 9 <= i <= 11:
+                    change_volume(+0.1)
+                time.sleep(0.3)  # debounce
+
+        # Randomized LED delay for disco feel
+        time.sleep(random.uniform(0.05, 0.1))
+
+		except KeyboardInterrupt:
+		    bus.write_byte_data(I2C_ADDR, OUTPUT_REG, 0x00)  # turn off LEDs
+		    pygame.mixer.music.stop()
+		    print("\nParty over. Lights off, music stopped.")
 </details>
 
 ## Iterative Process
@@ -534,15 +552,17 @@ Take it togo with the handle!
 <img src="interactionmap.jpg" width=50%>
 
 - Written reflection: What did you learn about multi-input/multi-output interaction? What was fun, surprising, or challenging?
-  	- 
+  	- Through this project, I learned how combining multiple input and output devices can create a more dynamic and interactive experience. Integrating the MPR121 capacitive touch sensor with a speaker output through VLC playback showed me how users can directly and intuitively influence sound, volume, and playlist behavior. I also realized how sensitive hardware interactions can be. Proper wiring, power supply, and I2C address management are crucial for seamless communication, which was very challenging to accomplish and took some trial and error. What was fun was seeing everything come togther, and have the features I implemented work out in the physical hardware. The final outcome and product was worth the hours spent connecting wires and fixing lines of code.
 
 **Questions to consider:**
 - What new types of interaction become possible when you combine two or more sensors or actuators?
 	- When combining two or more sensors or actuators new types of interactions arise such as the user having more control of their overall experience as well as an enhanced sense of the device's status and being. For example, the added lights provide an improved ambiance to the device, while additionally allowing the user to also know when it is powered on/working.
 - How does the physical arrangement of devices (e.g., where the encoder or sensor is placed) change the user experience?
-  	- Every sensor has to be physically arranged to provide the user with the easiest, most intuitive experience. We placed our motion sensor in a broad area that is able to capture the most motion without the user having to angle themselves in any particular way. The speaker was also placed on the same side so that the audio projection will be in the direction of the user. The handle was placed at the top so that it can be lifted/modified in an area that doesn't interfere with the main actions of the device.
+  	- Every sensor has to be physically arranged to provide the user with the easiest, most intuitive experience. We placed our motion sensor in a broad area that is able to capture the most motion without the user having to angle themselves in any particular way. The speaker was also placed on the same side so that the audio projection will be in the direction of the user. The handle and volume/shuffle sensors were placed at the top so that it can be lifted/modified in an area that doesn't interfere with the main actions of the device.
 - What happens if you use one device to control or modulate another (e.g., encoder sets a threshold, sensor triggers an action)?
+  	- In this setup, the MPR121 serves as the controller that directly modulates the VLC output system. Touching certain pads changes the song (next/shuffle), while others increase or decrease the playback volume. This demonstrates how one input device can effectively control multiple parameters of another output system, resulting in layered control without needing multiple physical interfaces.
 - How does the system feel if you swap which device is "primary" and which is "secondary"?
+	- If the MPR121 sensor were made the primary input instead of the distance sensor, the system would shift from automatic, environmental control to a more direct control. Music could start or change based on intentional touch rather than motion or movement. This would make the experience more deliberate and less ambient. Conversely, making touch the primary input gives users explicit control, making the system feel more personal and interactive.
 
 <details>
 	<summary>Try chaining different combinations and document what you discover!</summary>
@@ -687,10 +707,8 @@ A servo motor is a rotary actuator that allows for precise control of angular po
 
 </details>
 
-### Part F
-
-### Record
-Video Demos:
+### Part F - Record
+#### Freeze Dance "Acts Like" Demos:
 
 <a href="https://drive.google.com/file/d/10Wo1qmLYmR_ZGpVNb6uvr7U2zcjgi07F/view?usp=sharing">
   <img src="freezedance.jpg" alt="Watch the video" width="50%" />
@@ -700,6 +718,13 @@ Longer Demo:
 
 <a href="https://drive.google.com/file/d/1dpAZBzrJYfMq6LQ22NpXZKjHJwe6HQbL/view?usp=sharing">
   <img src="freezedance.jpg" alt="Watch the video" width="50%" />
+</a>
+
+#### Freeze Dance "Works Like" Demos:
+Volume/Shuffle Demo:
+
+<a href="https://drive.google.com/file/d/10GrAU5XFSXOs6kXI2o4m75T27K3gBZ_S/view?usp=sharing">
+  <img src="sensordemo.png" alt="Watch the video" width="50%" />
 </a>
 
 Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
