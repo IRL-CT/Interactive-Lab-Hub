@@ -20,11 +20,11 @@ vcnl4040 = qwiic.QwiicVL53L1X()
 pygame.mixer.init()
 
 playlist = [
-    "/music/song1.mp3",
-    "/music/song2.mp3",
-    "/music/song3.mp3",
-    "/music/song4.mp3",
-    "/music/song5.mp3"
+    "music/song1.mp3",
+    "music/song2.mp3",
+    "music/song3.mp3",
+    "music/song4.mp3",
+    "music/song5.mp3"
 ]
 
 current_song = 0
