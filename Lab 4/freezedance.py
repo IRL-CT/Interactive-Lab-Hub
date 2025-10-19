@@ -1,5 +1,4 @@
-import qwiic_vcnl4040
-import qwiic_mpr121
+import qwiic
 import time
 import random
 import pygame
