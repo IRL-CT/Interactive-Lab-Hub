@@ -29,7 +29,7 @@ except ValueError:
 
 # --- Initialize VL53L1X distance sensor safely ---
 vcnl4040 = qwiic.QwiicVL53L1X()
-time.sleep(0.05)  # give sensor time to power up
+time.sleep(0.1)  # give sensor time to power up
 try:
     ret = vcnl4040.sensor_init()
     if ret is not None and ret != 0:
