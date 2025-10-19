@@ -502,8 +502,14 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 
 ## Part 1
 
+### A. Capacitive Sensing
+
 #### Capacitive Sensing, a.k.a. Human-Twizzler Interaction
 - [video](https://drive.google.com/file/d/18yES5zgi9vadJ35WmzPh92G5otRxhHDW/view?usp=drive_link)
+
+
+### B. More Sensors 
+
 #### Light/Proximity/Gesture sensor (APDS-9960)
 - [color_sensor](https://drive.google.com/file/d/1nGoNoW5VqaMlu44S1YrABpeoOqZt3pnG/view?usp=drive_link)
 - [Gesture](https://drive.google.com/file/d/1kV9ytehZo7h0iTpj5iUL3qDl60VlzUWA/view?usp=drive_link)
@@ -517,30 +523,69 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 #### Distance Sensor
 - [video](https://drive.google.com/file/d/1nly-xRRw7lkPNoYq9m0ssxKG0KIIMCPE/view?usp=drive_link)
 
+### C. Physical Sensing Design
+
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+- **Idea1 (Color Sensor)** -  Detecting the color of the clothes for color-blinded people
+
+- **Idea2 (Rotary Encoder)** - Security Box 
+
 <img src="image/sketch1.jpg" height="400" />
+
+- **Idea3 (Distance Sensor)** - Curling Game 
+
 <img src="image/sketch2.jpg" height="400" />
+
+- **Idea4(Capacitive Sensor)** - Draw and play music!
+
 <img src="image/sketch3.jpg" height="400" />
+
+- **Idea5(Rotary Encoder, Joystick)** - Drawing board
+
+<img src="image/sketch4.jpg" height="400" />
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
-- We need to consider when this sensor should be activated. For example, when I drew the cloth color detection, I realized that I do not want this sensor to be active all the time, but only when the user wants to use. One way might be through on/off button, but also thought we can use other sensor such as motion detection when the door opens to activate. 
+1. When should the sensors be activated?
 
-- For the rotator, we really need some indication of how much it rotates. Without those indications, users will not be able to remember how much she/he rotates. 
+While sketching the color-detection cloth, I realized that having the sensor always on might not be ideal—it could waste energy or annoy the user. This raises the question: When should the sensor be active?
+Should users control activation manually (e.g., with an on/off button), or should it be triggered automatically (e.g., by motion detection when the door opens)?
+To answer this, we need to build a physical prototype and test both conditions to observe user preferences and comfort levels—whether constant activation feels intrusive or if automatic triggering feels intuitive.
+
+2. How steady should the drawing board be?
+
+In Idea 5 (the drawing board), we imagined how the user would physically interact with the joystick and rotary encoder. These components require a certain level of resistance—too loose and they feel flimsy, too tight and they’re hard to control.
+This raises questions about stability and usability: How much resistance or structural support should the board have for comfortable use?
+We need to prototype the actual physical setup to test different materials, resistances, and mounting methods that balance stability with smooth movement.
+
+3. What is the appropriate size for the device?
+
+For both Idea 1 and Idea 5, scale is an important factor, especially for the drawing board. It needs to be large enough for expressive drawing but small enough to remain portable and easy to handle.
+This raises the question: How big should the board be to fit the intended user and context of use?
+To explore this, we’ll prototype boards at different scales and test them with target users, considering comfort, usability, and situational fit (e.g., classroom, home, or outdoor use).
+
 
 **\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
-- We decided the sound idea. 
+
+- We decided to proceed with the **Idea 5. drawing board**!
+
+
+### D. Display & Housing - 5 sketches for display/button/knob positioning - Written reflection: questions raised, what to prototype - Pick one display design to integrate - Rationale for design - Photos/videos of your cardboard prototype
+
+**\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+
+<!-- <img src="image/physical_drawing1.jpg" height="400" /> -->
+
+<img src="image/physical_drawing2.jpg" height="400" />
+
+**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+
+
+**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
 
 **\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
 
-- We designed the bell ring in the size that the users can easily touch and shake. 
-- However, since we built with paper, which is non-conductive, we realized that we need to put the conductive tape everywhere so that no matter when the user touches, it should ring.
-- We thought the use of motion detection; however, we concluded it will be too heavy. 
+Build a cardboard prototype of your design.
+
 
 **\*\*\*Document your rough prototype.\*\*\***
-- [video](https://drive.google.com/file/d/13n8Z8xWamGpGf9VqfbEW2rgNa3ycgp4j/view?usp=drive_link)
-
-
-### How to run this code
-
-sudo systemctl stop piscreen.service --now
