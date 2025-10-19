@@ -29,15 +29,15 @@ except ValueError:
 
 # --- Initialize VL53L1X distance sensor safely ---
 vcnl4040 = qwiic.QwiicVL53L1X()
-time.sleep(0.1)  # give sensor time to power up
-try:
-    ret = vcnl4040.sensor_init()
-    if ret is not None and ret != 0:
-        print("VL53L1X not detected. Check wiring.")
-        exit()
-except OSError as e:
-    print("VL53L1X I2C error during init:", e)
-    exit()
+# time.sleep(0.1)  # give sensor time to power up
+# try:
+#     ret = vcnl4040.sensor_init()
+#     if ret is not None and ret != 0:
+#         print("VL53L1X not detected. Check wiring.")
+#         exit()
+# except OSError as e:
+#     print("VL53L1X I2C error during init:", e)
+#     exit()
 
 print("Both sensors detected. Ready to run.")
 
