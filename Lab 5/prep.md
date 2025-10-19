@@ -12,7 +12,7 @@ Install dependencies in it
 ### Mediapipe
 For the media pipe example 
 
-Run outside the .venv environment with ```sudo``
+Run outside the .venv environment with ```sudo```
 
 ``````
 (.venv) deactivate
