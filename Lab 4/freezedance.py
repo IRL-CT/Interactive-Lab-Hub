@@ -1,4 +1,3 @@
-
 import qwiic_proximity
 import time
 import sys
