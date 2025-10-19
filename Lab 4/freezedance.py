@@ -1,3 +1,4 @@
+
 import qwiic_proximity
 import time
 import sys
@@ -25,6 +26,14 @@ def download_video(url):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
     return TEMP_FILE
+
+def disco():
+    """Random LED flashing"""
+    for _ in range(12):
+        ld = random.choice(leds)
+        ld.value = False
+        time.sleep(0.08)
+        ld.value = True
 
 
 def runExample():
@@ -68,6 +77,7 @@ def runExample():
             if variation > MOVEMENT_THRESHOLD:
                 if not is_playing:
                     print("Movement detected: PLAY")
+                    disco()
                     player.play()
                     is_playing = True
             else:
