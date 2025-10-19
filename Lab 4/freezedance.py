@@ -1,22 +1,23 @@
-import adafruit_mpr121
-from adafruit_apds9960.apds9960 import APDS9960
-import qwiic
 import time
 import random
 import pygame
 import board
 import busio
+import adafruit_mpr121
+import qwiic
 
 # --- Initialize sensors ---
 i2c = busio.I2C(board.SCL, board.SDA)
 
-vcnl4040 = qwiic.QwiicVL53L1X()
 mpr121 = adafruit_mpr121.MPR121(i2c)
+vcnl4040 = qwiic.QwiicVL53L1X()
 
-vcnl4040.begin()
-mpr121.begin()
-
-
+vcnl4040 = qwiic.QwiicVL53L1X()
+if vcnl4040.sensor_init() is None:
+    print("VCNL4040 / VL53L1X sensor online!")
+else:
+    print("VCNL4040 / VL53L1X not detected, check wiring.")
+    exit()
 # --- Initialize pygame for music ---
 pygame.mixer.init()
 
