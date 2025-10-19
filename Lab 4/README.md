@@ -61,11 +61,23 @@ Charlotte Lin (hl2575), Zoe Tseng (yzt2), Eva Huang (lh764)
 
 For lab this week, we focus both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
 
-## Part 1 Lab Preparation
+A) [Capacitive Sensing](#part-a)
+
+B) [OLED screen](#part-b) 
+
+C) [Paper Display](#part-c)
+
+D) [Materiality](#part-d)
+
+E) [Servo Control](#part-e)
+
+F) [Record the interaction](#part-f)
+
+<details>
+	<summary><strong>Part 1 Lab Preparation(Click to Expand)</strong></summary>
 
 ### Get the latest content:
 As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. As we discussed in the class, there are 2 ways you can do so:
-
 
 Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the personal access token for this.
 ```
@@ -98,7 +110,6 @@ Option 3: (preferred) use the Github.com interface to update the changes.
 * Cutting tools
 * Markers
 
-
 (We do offer shared cutting board, cutting tools, and markers on the class cart during the lab, so do not worry if you don't have them!)
 
 ## Deliverables \& Submission for Lab 4
@@ -113,26 +124,13 @@ For submission, the readme.md page for this lab should be edited to include the 
 * Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
 * Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
 
-
-## Lab Overview
-
-A) [Capacitive Sensing](#part-a)
-
-B) [OLED screen](#part-b) 
-
-C) [Paper Display](#part-c)
-
-D) [Materiality](#part-d)
-
-E) [Servo Control](#part-e)
-
-F) [Record the interaction](#part-f)
-
+</details>
 
 ## The Report (Part 1: A-D, Part 2: E-F)
 
-### Quick Start: Python Environment Setup
-
+<details>
+	<summary><strong>Quick Start: Python Environment Setup(Click to Expand)</strong></summary>
+	
 1. **Create and activate a virtual environment in Lab 4:**
 	```bash
 	cd ~/Interactive-Lab-Hub/Lab\ 4
@@ -149,6 +147,8 @@ F) [Record the interaction](#part-f)
 	```
 	If you see "Hello blinka!", your setup is correct. If not, follow the troubleshooting steps in the file or ask for help.
 
+</details>
+	
 ### Part A
 ### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
 
@@ -177,6 +177,9 @@ Video (pad 6): https://drive.google.com/file/d/1b7L1SqBQUygmfVYxJiss4DIEMV0uHwtq
 Video (pad 10):
 https://drive.google.com/file/d/14V4hyPFF8VFP9ItwjdHoa1cymrKm751O/view?usp=sharing
 
+<details>
+	<summary><strong>Console Output(Click to Expand)</strong></summary>
+	
 Code and terminal output showing touch detection
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python cap_test.py 
@@ -203,7 +206,8 @@ Twizzler 10 touched!
     time.sleep(0.25)  # Small delay to keep from spamming output messages.
     ^^^^^^^^^^^^^^^^
 KeyboardInterrupt
-``` 
+```
+</details>
 
 ### Part B
 ### More sensors
@@ -232,14 +236,18 @@ You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_C
 
 </details>
 
-Proximity
+#### 📍 Proximity
+
 - photo
 <p align="left">
   <img src="https://hackmd.io/_uploads/HkxBqpFTxl.jpg" width="400" alt="color">
 </p>
 
 - [video](https://drive.google.com/file/d/11OtQ9XfazL-6nwbsXwbiqk9xxBplYR6K/view?usp=drive_link)
-- console output
+
+<details>
+	<summary><strong>Console Output(Click to Expand)</strong></summary>
+	
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python proximity_test.py
 0
@@ -271,15 +279,19 @@ Proximity
 0
 0
 ```
+</details>
 
-Gesture
+#### 📍 Gesture
+
 - photo
 <p align="left">
   <img src="https://hackmd.io/_uploads/B1FO5aF6ex.jpg" width="400" alt="color">
 </p>
 
 - [video](https://drive.google.com/file/d/15aZFAI2Y_kP1M2qaymhDv42UCoqGmetB/view?usp=drive_link)
-- console output
+
+<details>
+	<summary><strong>Console Output(Click to Expand)</strong></summary>
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python gesture_test.py 
 down
@@ -289,15 +301,18 @@ down
 up
 down
 ```
+</details>
 
-Color
+#### 📍 Color
 - photo
 <p align="left">
   <img src="https://hackmd.io/_uploads/BJ4c9TFpgg.jpg" width="400" alt="color">
 </p>
 
 - [video](https://drive.google.com/file/d/1hiBqWVPw_DqA_ngKg1g7AsKgz8PEHs_k/view?usp=drive_link)
-- console output
+
+<details>
+	<summary><strong>Console Output(Click to Expand)</strong></summary>
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python color_test.py
 red:  2333
@@ -343,7 +358,7 @@ clear:  5184
 color temp 1753.5357746806585
 light lux 548.3226500000003
 ```
-
+</details>
 
 #### Rotary Encoder 
 
@@ -367,10 +382,10 @@ You can go to the [Adafruit Learn Page](https://learn.adafruit.com/adafruit-i2c-
 
 </details>
 
-- video
-    - [demo](https://youtube.com/shorts/MpNVKIntTzs?feature=share)
-    - [console output](https://youtu.be/KHeE8NTnrzw)
-
+ - [video](https://youtube.com/shorts/MpNVKIntTzs?feature=share)
+  
+<details>
+	<summary><strong>Console Output(Click to Expand)</strong></summary>
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python encoder_test.py
 Found product 4991
@@ -384,9 +399,9 @@ Position: 6
 Position: 7
 Position: 8
 ```
+</details>
 
 #### Joystick 
-
 
 A [joystick](https://www.sparkfun.com/products/15168) can be used to sense and report the input of the stick for it pivoting angle or direction. It also comes with a button input!
 
@@ -407,10 +422,11 @@ You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Joyst
 
 </details>
 
-- video
-    - [demo](https://youtube.com/shorts/pW5QYDFqWGM)
-    - [console output](https://youtu.be/lZxyvGsi0Zo)
-
+- [video](https://youtube.com/shorts/pW5QYDFqWGM)
+ 
+<details>
+	<summary><strong>Console Output(Click to Expand)</strong></summary>
+	
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python joystick_test.py
 
@@ -459,6 +475,7 @@ X: 514, Y: 517, Button: 1
 ^C
 Ending Example 1
 ```
+</details>
 
 #### Distance Sensor
 
@@ -481,10 +498,10 @@ You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proxi
 
 </details>
 
+- [video](https://youtube.com/shorts/v1Gfl3jC7AU?feature=share)
 
-- video
-    - [demo](https://youtube.com/shorts/v1Gfl3jC7AU?feature=share)
-- console output
+<details>
+	<summary><strong>Console Output(Click to Expand)</strong></summary>
 
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4 $ python qwiic_distance.py
@@ -524,6 +541,7 @@ Proximity Value: 3
 ^C
 Ending Example 1
 ```
+</details>
 
 ### Part C
 ### Physical considerations for sensing
@@ -676,15 +694,13 @@ Color sensor: Could detect pill bottle colors to track which medication
 
 
 ### Part D
-### Physical considerations for displaying information and housing parts
 
-
+<details>
+	<summary><strong>Physical considerations for displaying information and housing parts (Click to Expand)</strong></summary>
 
 Here is a Pi with a paper faceplate on it to turn it into a display interface:
 
-
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/paper_if.png?raw=true"  width="250"/>
-
 
 This is fine, but the mounting of the display constrains the display location and orientation a lot. Also, it really only works for applications where people can come and stand over the Pi, or where you can mount the Pi to the wall.
 
@@ -692,14 +708,12 @@ Here is another prototype for a paper display:
 
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/b_box.png?raw=true"  width="250"/>
 
-
 Your kit includes these [SparkFun Qwiic OLED screens](https://www.sparkfun.com/products/17153). These use less power than the MiniTFTs you have mounted on the GPIO pins of the Pi, but, more importantly, they can be more flexibly mounted elsewhere on your physical interface. The way you program this display is almost identical to the way you program a  Pi display. Take a look at `oled_test.py` and some more of the [Adafruit examples](https://github.com/adafruit/Adafruit_CircuitPython_SSD1306/tree/master/examples).
 
 <p float="left">
 <img src="https://cdn.sparkfun.com//assets/parts/1/6/1/3/5/17153-SparkFun_Qwiic_OLED_Display__0.91_in__128x32_-01.jpg" height="200" />
 
 </p>
-
 
 It holds a Pi and usb power supply, and provides a front stage on which to put writing, graphics, LEDs, buttons or displays.
 
@@ -715,64 +729,10 @@ Here is an example:
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/horoscope.png?raw=true"  width="250"/>
 
 Think about how you want to present the information about what your sensor is sensing! Design a paper display for your project that communicates the state of the Pi and a sensor. Ideally you should design it so that you can slide the Pi out to work on the circuit or programming, and then slide it back in and reattach a few wires to be back in operation.
+
+</details>
  
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
-
-
-### Design #1: Top Sensor Classic
-**Sensors Used:** APDS Gesture Sensor
-
-<img src="https://hackmd.io/_uploads/SJVRpdS6ge.png" width="400"/>
-
-### **Description**
-- Users interact through simple hand gestures above the device — for example, swiping up to Feed or down to Play
-- The screen displays pet status (Hunger, Happiness) and visual reactions
-- Three buttons (A, B, C) below the screen support menu navigation and confirmations
-
-### Design #2: Joystick Control
-**Sensors Used:** APDS Gesture Sensor + Analog Joystick
-
-<img src="https://hackmd.io/_uploads/S1bEZtrpee.png" width="400"/>
-
-### **Description**
-- The joystick enables directional inputs for Feed, Play, Clean, and Pet, making it feel more game-like and interactive
-- The APDS sensor adds shortcut gestures for instant responses, enhancing speed and convenience
-
-
-### Design #3: Twizzler Touch Edition (Capacitive Petting Pad)
-
-**Sensors Used:** Capacitive Sensor Board (MPR121) + Copper Tape or Twizzlers  
-
-<img src="https://hackmd.io/_uploads/H1itQCtTgx.png" width="400"/>
-
-### **Description**
-- Four touch pads—🍖 Feed, 🎮 Play, 💊 Medicine, ❤️ Pet—are arranged around the central display.  
-
-### Design #4: Rotary Mood Dial + Distance Sensor
-
-**Sensors Used:** Rotary Encoder + Distance Sensor  
-
-<img src="https://hackmd.io/_uploads/rJI4NRYale.png" width="400"/>
-
-### **Description**
-- Combines **rotational input** for selecting pet actions with **distance sensing** to detect user presence. 
-- The rotary knob scrolls through actions like *Feed*, *Play*, *Clean*, and *Heal*.  
-- The distance sensor **wakes the pet** when the user approaches.  
-
-
-### Design #5: Hybrid Playground (APDS + Joystick + Rotary Encoder)
-
-**Sensors Used:** APDS Gesture Sensor + Joystick + Rotary Encoder
-
-<img src="https://hackmd.io/_uploads/B1Re6qTTlg.png" width="400"/>
-
-### **Description**
-- The APDS sensor at the top detects quick gestures
-- The joystick provides tactile input for Feed, Play, and Clean actions — giving users fine control and an arcade-like feel
-- The rotary dial adjusts secondary settings such as brightness, sound, or pet mood intensity
-
-
-
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
@@ -780,17 +740,90 @@ Think about how you want to present the information about what your sensor is se
 - informaiton content : is the order or hierarchy of information clear? Do users interpret icons, labels, and data the way we expect?
 - Feasibility / Technical Constraint : will performance (e.g., loading time, hardware constraints) affect usability?
 
+### Design #1: Top Sensor Classic
+**Sensors Used:** APDS Gesture Sensor
+
+<img src="https://hackmd.io/_uploads/SJVRpdS6ge.png" width="400"/>
+
+**Description:**
+- Users interact through simple hand gestures above the device — for example, swiping up to Feed or down to Play
+- The screen displays pet status (Hunger, Happiness) and visual reactions
+- Three buttons (A, B, C) below the screen support menu navigation and confirmations
+
+**Need to Prototype:**
+- Test gesture accuracy and false triggers with a top-mounted APDS in varied lighting and hand positions.
+
+### Design #2: Joystick Control
+**Sensors Used:** APDS Gesture Sensor + Analog Joystick
+
+<img src="https://hackmd.io/_uploads/S1bEZtrpee.png" width="400"/>
+
+**Description:**
+- The joystick enables directional inputs for Feed, Play, Clean, and Pet, making it feel more game-like and interactive
+- The APDS sensor adds shortcut gestures for instant responses, enhancing speed and convenience
+
+**Need to Prototype:**
+- Build a mock joystick setup to test comfort, accuracy, and how it integrates with gesture inputs.
+
+### Design #3: Twizzler Touch Edition (Capacitive Petting Pad)
+
+**Sensors Used:** Capacitive Sensor Board (MPR121) + Copper Tape or Twizzlers  
+
+<img src="https://hackmd.io/_uploads/H1itQCtTgx.png" width="400"/>
+
+**Description:**
+- Four touch pads—🍖 Feed, 🎮 Play, 💊 Medicine, ❤️ Pet—are arranged around the central display
+
+**Need to Prototype:**
+- Create a touch-panel mockup with copper pads and test pad spacing, labeling, and sensitivity.
+
+### Design #4: Rotary Mood Dial + Distance Sensor
+
+**Sensors Used:** Rotary Encoder + Distance Sensor  
+
+<img src="https://hackmd.io/_uploads/rJI4NRYale.png" width="400"/>
+
+**Description:**
+- Combines **rotational input** for selecting pet actions with **distance sensing** to detect user presence
+- The rotary knob scrolls through actions like *Feed*, *Play*, *Clean*, and *Heal*
+- The distance sensor **wakes the pet** when the user approaches  
+
+**Need to Prototype:**
+- Assemble a tabletop model to test rotary precision and wake-on-approach reliability.
+
+### Design #5: Hybrid Playground (APDS + Joystick + Rotary Encoder)
+
+**Sensors Used:** APDS Gesture Sensor + Joystick + Rotary Encoder
+
+<img src="https://hackmd.io/_uploads/B1Re6qTTlg.png" width="400"/>
+
+**Description:**
+- The APDS sensor at the top detects quick gestures
+- The joystick provides tactile input for Feed, Play, and Clean actions — giving users fine control and an arcade-like feel
+- The rotary dial adjusts secondary settings such as brightness, sound, or pet mood intensity
+
+**Need to Prototype:**
+- Build a hybrid cardboard rig to test simultaneous sensor inputs and multi-modal user behavior.
+
+&nbsp;  
 
 **\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
 
 **\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
 
-Build a cardboard prototype of your design.
-
-
 **\*\*\*Document your rough prototype.\*\*\***
 
+## 🧭 Input Function Chart
 
+| Component | Function | Type of Interaction | Example Behavior | Purpose in Design |
+|------------|-----------|--------------------|------------------|-------------------|
+| 🕹️ **Joystick** | Controls **Feed**, **Play**, **Clean**, **Pet**, and **Drink Water** | Tactile / Directional | Move joystick up to Feed, down to Play, left/right for other actions | Provides **precise, game-like control** for core care actions |
+| 🔘 **Button** | Confirm selection / special action (in development) | Tactile / Confirm | Press to confirm feeding amount or start a mini-game | Adds **clear physical confirmation**; reduces accidental actions |
+| ✋ APDS Gesture Sensor | Proximity + simple gestures (affection/presence) | Contact-free / Ambient | Gesture up = wake up, gesture down = sleep, hand moving toward sensor = petting (affection) | Creates lifelike, emotional responses (petting, wake/sleep based on attention) |
+
+## Prototype
+
+<img src="https://hackmd.io/_uploads/Sy6AUtzAgl.jpg" width="400"/>
 
 
 
@@ -831,7 +864,11 @@ See encoder_accel_servo_dashboard.py in the Lab 4 folder for an example of chain
 
 **`Lab 4/encoder_accel_servo_dashboard.py`**
 
-#### Using Multiple Qwiic Buttons: Changing I2C Address (Physically & Digitally)
+
+<details>
+	<summary><strong>Instructions</strong></summary>
+
+##### Using Multiple Qwiic Buttons: Changing I2C Address (Physically & Digitally)
 
 If you want to use more than one Qwiic Button in your project, you must give each button a unique I2C address. There are two ways to do this:
 
@@ -872,7 +909,6 @@ python qwiic_button_ex6_changeI2CAddress.py
 Enter the new address (e.g., 5B for 0x5B) when prompted. Power cycle the button after changing the address.
 
 **Note:** The software method is less foolproof and you need to make sure to keep track of which button has which address!
-
 
 ##### Using Multiple Buttons in Code
 
@@ -964,15 +1000,86 @@ python pi_servo_hat_test.py
 For more details and advanced usage, see the [official SparkFun Servo pHAT documentation](https://learn.sparkfun.com/tutorials/pi-servo-phat-v2-hookup-guide/all#resources-and-going-further).
 A servo motor is a rotary actuator that allows for precise control of angular position. The position is set by the width of an electrical pulse (PWM). You can read [this Adafruit guide](https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/servo-motors) to learn more about how servos work.
 
+</details>
+
+#### Interaction Design & Reflections
+
+##### 1. Interaction Complexity & Systems
+> Key Insight: 1 + 1 > 2
+
+Multi-input systems aren't just "more inputs" — they create a multiplication effect where interactions become richer than the sum of their parts. When we combined feeding (joystick) with petting (gesture), it created a "moment" that cannot be accomplished by either one action.
+
+
+Precise control (joystick navigation) + Spontaneous motion (gesture petting) ->  Emergent complexity
+
+Example from our prototype:
+Joystick Feed alone      = Dog eats (functional)
+Gesture Pet alone        = Dog feels loved (emotional)
+BOTH together            = Hand-feeding moment (intimate bonding)
+
+##### 2. How Emotions Are Created
+> Learned interactions, with proper rewarding mechanism, feel more natural and intuitive.
+
+After talking to users, we learned there's a high correlation between motivation/attachment in gameplay when there are more than one outputs involved. Simultaneous outputs make the interactions feel more **real**. Especially when there are more than one senses engaged (visual + audio). That is why we decided to use an audio output.
+
+##### 3. Managing Input Conflicts
+> Figure out what takes precedence is more important than we thought - it defines the system and the expected interaction.
+
+What happens when someone tries to pet and it tricked the light sensor into thinking it's night time? 
+
+**Short answer: iterations of feature design.** 
+
+We decided to redesign the gesture that will trigger a petting action, that will be compatible with the capability of the sen
+
+
+#### Interaction Diagram
+
+##### Data Flow
+![Screenshot 2025-10-19 at 11.27.58 AM](https://hackmd.io/_uploads/Bk5tQYzCge.png)
+
+
+##### input + output
+
+![image](https://hackmd.io/_uploads/ry_itKMCel.png)
+
+##### Multi-input + output
+
+![image](https://hackmd.io/_uploads/ryQTOFMCxg.png)
+
+##### Multi-input + Multi-output
+![image](https://hackmd.io/_uploads/HJqudtMRee.png)
+
 ---
 
 
 ### Part F
 
 ### Record
-
 Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
+1.  video : [single input & single output](https://youtube.com/shorts/1MbfEf6G84s?feature=share)
+
+| Input  | Output (MiniPft Display)|
+|--------|--------|
+|Joystick - Left | Jump!   |
+|Joystick - Right | Move head left to right  |
+|Joystick - Up |Poop   |
+|Joystick - Down | Shake head (disappointedly) |
+|ADPS Proximity - Closer|  |
+
+2.  video : [multi output & multi output]
+ 
+| Input1  | Input2  | Output1 (MiniPft Display)| Output2 (Sound)|
+|--------|----------|--------|--------|
+|Joystick - Left | ADPS sensor Proximity  | Celebrate | Bark (Happily)
+
+
+
+3. video : [multi input & multi output] 
+    -  input : 
+    -  output :
+
 
