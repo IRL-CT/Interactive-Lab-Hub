@@ -766,7 +766,7 @@ Initially, users were confused about where the drawing or erasing was happening 
 
 5. **Joystick ergonomics**
 
-Some users found the joystick slightly hard to tilt. One user with larger hands (about 180 cm tall) mentioned that the joystick felt too close to the handle, making it awkward to use. This feedback suggests we may need to adjust spacing or resistance for better accessibility.
+Some users found the joystick slightly hard to tilt. One user with larger hands mentioned that the joystick felt too close to the handle, making it awkward to use. This feedback suggests we may need to adjust spacing or resistance for better accessibility.
 
 ### F. Final Documentation
 
