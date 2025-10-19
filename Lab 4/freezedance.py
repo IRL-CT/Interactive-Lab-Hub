@@ -110,7 +110,6 @@ def flash_lights_if_playing(player):
 # -------------------------
 # --- MAIN PROGRAM LOOP ---
 # -------------------------
-
 def runExample():
     global myGPIO
     print("\nSparkFun VCNL4040 + Qwiic GPIO + VLC (Motion-Activated Disco)\n")
@@ -160,25 +159,34 @@ def runExample():
         if len(readings) >= SAMPLE_WINDOW:
             # Calculate variation (standard deviation)
             variation = statistics.stdev(readings) if len(readings) > 1 else 0
+            
+            # Check the current VLC state
+            current_state = player.get_state()
 
             # --- Motion Detection (Play/Pause) Logic ---
             if variation > MOVEMENT_THRESHOLD:
                 if not is_playing:
                     print(f"Movement detected (Var: {variation:.2f}): PLAY")
+                    
+                    # --- CRITICAL FIX ---
+                    # If the clip has ended, set its position back to 0 before playing.
+                    if current_state == vlc.State.Ended:
+                        print("Clip ended, restarting from beginning.")
+                        player.set_position(0.0)
+                    # --------------------
+
                     player.play()
                     is_playing = True
             else:
                 if is_playing:
                     print(f"Stable distance (Var: {variation:.2f}): PAUSE")
-                    player.pause()
+                    player.pause() # This correctly holds the current position
                     is_playing = False
                     
         # --- Light Flashing Logic ---
-        # Flash the lights continuously if the player is currently streaming music
         flash_lights_if_playing(player)
 
         time.sleep(CHECK_INTERVAL)
-
 
 if __name__ == '__main__':
     try:
