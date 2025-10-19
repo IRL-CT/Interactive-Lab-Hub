@@ -1,4 +1,5 @@
-import qwiic
+import adafruit_mpr121
+
 import time
 import random
 import pygame
