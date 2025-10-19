@@ -534,12 +534,13 @@ Take it togo with the handle!
 <img src="interactionmap.jpg" width=50%>
 
 - Written reflection: What did you learn about multi-input/multi-output interaction? What was fun, surprising, or challenging?
+  	- 
 
 **Questions to consider:**
 - What new types of interaction become possible when you combine two or more sensors or actuators?
-	- When combining two or more sensors or actuators new types of interactions arise such as the user having more control of their overall experience as well as an enhanced sense of the device's status and being. For example, with a rotary volume control, the user can control how loud they want their Freeze Dance party to be, rather than it being set on one level. The added lights provide an improved ambiance to the device, allowing the user to also know when it is powered/on.
+	- When combining two or more sensors or actuators new types of interactions arise such as the user having more control of their overall experience as well as an enhanced sense of the device's status and being. For example, the added lights provide an improved ambiance to the device, while additionally allowing the user to also know when it is powered on/working.
 - How does the physical arrangement of devices (e.g., where the encoder or sensor is placed) change the user experience?
-  	- Every sensor has to be physically arranged to provide the user with the easiest, most intuitive experience. We placed our motion sensor in a broad area that is able to capture the most motion without the user having to angle themselves in any particular way. The speaker was also placed on the same side so that the audio projection will be in the direction of the user. The handle and volume were placed at the top so that it can be lifted/modified in an area that doesn't interfere with the main actions of the device.
+  	- Every sensor has to be physically arranged to provide the user with the easiest, most intuitive experience. We placed our motion sensor in a broad area that is able to capture the most motion without the user having to angle themselves in any particular way. The speaker was also placed on the same side so that the audio projection will be in the direction of the user. The handle was placed at the top so that it can be lifted/modified in an area that doesn't interfere with the main actions of the device.
 - What happens if you use one device to control or modulate another (e.g., encoder sets a threshold, sensor triggers an action)?
 - How does the system feel if you swap which device is "primary" and which is "secondary"?
 
