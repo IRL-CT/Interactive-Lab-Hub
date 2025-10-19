@@ -503,7 +503,9 @@ Following exploration and reflection from Part 1, complete the "looks like," "wo
 
 
 ### Part E
-
+<details>
+<summary><strong>Guidance (Click to Expand)</strong></summary>
+	
 #### Chaining Devices and Exploring Interaction Effects
 
 For Part 2, you will design and build a fun interactive prototype using multiple inputs and outputs. This means chaining Qwiic and STEMMA QT devices (e.g., buttons, encoders, sensors, servos, displays) and/or combining with traditional breadboard prototyping (e.g., LEDs, buzzers, etc.).
@@ -665,12 +667,137 @@ A servo motor is a rotary actuator that allows for precise control of angular po
 
 ---
 
+</details>
+
 
 ### Part F
 
 ### Record
+<details>
+<summary><strong>Guidance (Click to Expand)</strong></summary>
 
 Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
+</details>
+
+
+## Looks Like
+
+### Picture 1: Prototype Overview
+<p align="center">
+  <img src="Prototype1.jpg" alt="Prototype1" width="70%">
+</p>
+
+### Picture 2: Switch Songs
+<p align="center">
+  <img src="Prototype1.jpg" alt="Prototype1" width="70%">
+</p>
+
+### Picture 3: Pause / Resume Songs
+<p align="center">
+  <img src="Prototype1.jpg" alt="Prototype1" width="70%">
+</p>
+
+### Picture 4: Adjust Volume & Lights
+<p align="center">
+  <img src="Prototype1.jpg" alt="Prototype1" width="70%">
+</p>
+
+
+[▶️ Watch Volume Adjustment & Lights Video](https://youtu.be/YH-1EWWbGyo)  
+[▶️ Watch Pause & Switch Songs Video](https://youtu.be/auJRVmpbO4I)
+
+---
+
+## Works Like
+
+### System Overview
+
+We built a **gesture-controlled music player** that combines multiple input and output devices through I²C chaining:
+
+**Inputs**
+- **APDS-9960 Gesture Sensor** — detects left/right hand swipes to switch songs, and near/far gestures to pause or resume playback.
+- **SparkFun Qwiic Button** — allows manual pause/play control as a backup input.
+- **Adafruit Seesaw Rotary Encoder** — adjusts music volume with smooth physical rotation.
+
+**Outputs**
+- **Qwiic GPIO Board + LEDs** — visual feedback showing current volume level.  
+  - More LEDs light up as volume increases.
+  - Fewer LEDs indicate lower volume.
+- **Speaker** — audio output from Raspberry Pi for real-time playback.
+
+
+---
+
+## Acts Like
+
+### Prototype Behavior
+
+- **Swipe Right:** Next song  
+- **Swipe Left:** Previous song  
+- **Near Gesture:** Pause playback  
+- **Far Gesture:** Resume playback  
+- **Press Qwiic Button:** Toggle play/pause manually  
+- **Rotate Encoder:** Adjust volume; LEDs dynamically show the loudness level  
+
+This prototype merges **gesture, tactile, and visual** interaction modes to make the music player feel more expressive and intuitive. The gestures handle “remote” control, while the button and knob support **direct, physical control** for precision and reliability.
+
+---
+
+## Physical Setup
+
+- The **APDS-9960 sensor** is centered on the top surface for consistent gesture detection within 5–10 cm.  
+- The **rotary encoder** and **Qwiic Button** are placed on the front edge for easy access.  
+- LEDs are arranged in a semicircle near the base, reinforcing the “turntable” look while providing visual feedback.  
+- All components are wired through the Qwiic I²C system to keep cabling neat and modular.  
+
+
+---
+
+## User Test & Feedback
+
+### Test Setup
+We conducted quick user testing with a few participants to observe:
+1. Whether gestures were detected reliably in typical lighting.  
+2. How intuitive users found the button and encoder controls.  
+3. How well LED brightness/quantity communicated volume levels.  
+
+### Feedback Highlights
+- **Gesture Recognition:**  
+  Most users could switch tracks easily with left/right swipes. However, near/far gestures for pause/play were sometimes missed under bright light or when the hand moved too fast.  
+- **Button Control:**  
+  The button was clear and reassuring. Many users liked having a “backup” tactile option when gestures failed.  
+- **Rotary Encoder:**  
+  Turning the knob to adjust volume felt natural and gave a sense of precision.  
+  Users quickly understood that LED count = volume level.  
+- **Overall Experience:**  
+  The combination of gesture and physical controls felt playful and interactive.  
+  The LED feedback was engaging and made the system’s state visible at a glance.  
+
+### Observations
+- The APDS-9960 worked best within ~8 cm and perpendicular hand motion.  
+- Adding a short LED flash or sound cue after a recognized gesture could help confirm input success.  
+- A larger LED diffusion area would make the volume feedback look smoother.
+
+### Improvements for Next Iteration
+- Optimize gesture detection thresholds in code for more stable recognition.  
+- Explore different LED color schemes (e.g., green to red gradient for volume).  
+- Miniaturize the prototype for better portability.
+
+---
+
+## Reflection
+
+Through this multi-input/multi-output prototype, we learned how chaining Qwiic devices enables rich, layered interactions:
+
+- **Integration Challenge:** Coordinating multiple I²C devices required careful address management and timing.  
+- **User Experience Insight:** Combining gestures with physical input greatly improved usability—gestures are expressive, but buttons and knobs ensure reliability.  
+- **Fun Discovery:** The LED feedback added an emotional and visual dimension to sound, turning volume control into a small “light performance.”  
+
+In short, the project showed how combining sensors, encoders, and LEDs can create **playful, multimodal experiences** that feel both modern and tangible.
+
+---
+
