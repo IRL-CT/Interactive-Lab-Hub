@@ -1,42 +1,33 @@
-### Pytorch
-For the use of Pytorch, you can create a new virtualenvironment
+Create a new virtualenvironment
 ``````
-python -m venv venv-pyt 
-source venv-pyt/bin/activate
+python -m venv .venv 
+source .venv/bin/activate
 ``````
 
 Install dependencies in it
 ``````
-(venv-pyt) pip install torch===1.10.2 torchaudio===0.10.2 torchvision===0.11.3 opencv-python
-(venv-pyt) pip install numpy --upgrade
+(.venv) pip install -r requirements.txt
 ``````
 
 ### Mediapipe
-For the media pipe example create a new virtualenvironment
-``````
-python -m venv venv-mp 
-source venv-mp/bin/activate
-``````
+For the media pipe example 
 
-Install dependencies in it
-
-In case you did not do last labs optional parts run this command: ```sudo apt-get install libasound2-dev```
+Run outside the .venv environment with ```sudo``
 
 ``````
-(venv-mp) pip install mediapipe pyalsaaudio opencv-python
+(.venv) deactivate
+sudo apt update
+sudo apt install -y libasound2-dev build-essential python3-dev
+Make the loop_audio shell script executable
+``````
+source back to your .venv
+
+``````
+source .venv/bin/activate
+python -m pip install --upgrade pip setuptools wheel
+pip install pyalsaaudio
 ``````
 Make the loop_audio shell script executable 
-
 ```
 sudo chmod +x ./loop_audio.sh
 ```
-### Teachable Machines
-Create another virtual machine for the teachable machines example
-``````
-python -m venv venv-tml
-source venv-tml/bin/activate
-``````
-Install dependencies in it
-``````
-(venv-tm) pip install teachable-machine-lite opencv-python
-``````
