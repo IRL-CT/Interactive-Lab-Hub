@@ -15,10 +15,6 @@ mpr121 = adafruit_mpr121.MPR121(i2c)
 
 # VL53L1X / VCNL4040 distance sensor
 vcnl4040 = qwiic.QwiicVL53L1X()
-if vcnl4040.sensor_init() != 0:
-    print("❌ VL53L1X not detected")
-    exit()
-print("✅ VL53L1X online")
 
 # --- Initialize pygame for music ---
 pygame.mixer.init()
