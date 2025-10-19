@@ -693,17 +693,17 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 
 ### Picture 2: Switch Songs
 <p align="center">
-  <img src="Prototype1.jpg" alt="Prototype1" width="70%">
+  <img src="Prototype2.jpg" alt="Prototype2" width="70%">
 </p>
 
 ### Picture 3: Pause / Resume Songs
 <p align="center">
-  <img src="Prototype1.jpg" alt="Prototype1" width="70%">
+  <img src="Prototype3.jpg" alt="Prototype3" width="70%">
 </p>
 
 ### Picture 4: Adjust Volume & Lights
 <p align="center">
-  <img src="Prototype1.jpg" alt="Prototype1" width="70%">
+  <img src="Prototype4.jpg" alt="Prototype4" width="70%">
 </p>
 
 
