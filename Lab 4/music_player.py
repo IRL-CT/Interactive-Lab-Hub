@@ -45,7 +45,8 @@ pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=4096)
 # Load music files
 # -------------------------------
 MUSIC_FOLDER = "./music"
-songs = [f for f in os.listdir(MUSIC_FOLDER) if f.lower().endswith(".wav")]
+songs = [f for f in os.listdir(MUSIC_FOLDER) 
+         if f.lower().endswith(".wav") and not f.lower().endswith("_pcm.wav")]
 songs.sort()
 
 if not songs:
