@@ -4,8 +4,12 @@ import qwiic
 import time
 import random
 import pygame
+import board
+import busio
 
 # --- Initialize sensors ---
+i2c = busio.I2C(board.SCL, board.SDA)
+
 vcnl4040 = qwiic.QwiicVL53L1X()
 mpr121 = adafruit_mpr121.MPR121(i2c)
 
