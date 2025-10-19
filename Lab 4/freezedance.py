@@ -13,7 +13,6 @@ music_folder = os.path.join(base_path, "music")
 
 # --- Build playlist dynamically ---
 playlist = [os.path.join(music_folder, f) for f in sorted(os.listdir(music_folder)) if f.endswith(".mp3")]
-
 if not playlist:
     print("No music files found in 'music' folder!")
     exit()
@@ -22,18 +21,25 @@ if not playlist:
 i2c = busio.I2C(board.SCL, board.SDA)
 
 # --- Initialize MPR121 capacitive touch sensor ---
-mpr121 = adafruit_mpr121.MPR121(i2c)
-
-# --- Initialize VL53L1X distance sensor ---
-time.sleep(0.05)
-vcnl4040 = qwiic.QwiicVL53L1X()
-  # Give sensor time to power up
-if not vcnl4040.begin():
-    print("VL53L1X not detected. Check wiring.")
+try:
+    mpr121 = adafruit_mpr121.MPR121(i2c)
+except ValueError:
+    print("MPR121 not detected. Check wiring.")
     exit()
-print("VL53L1X online")
 
-print("MPR121 online")
+# --- Initialize VL53L1X distance sensor safely ---
+vcnl4040 = qwiic.QwiicVL53L1X()
+time.sleep(0.05)  # give sensor time to power up
+try:
+    ret = vcnl4040.sensor_init()
+    if ret is not None and ret != 0:
+        print("VL53L1X not detected. Check wiring.")
+        exit()
+except OSError as e:
+    print("VL53L1X I2C error during init:", e)
+    exit()
+
+print("Both sensors detected. Ready to run.")
 
 # --- Initialize pygame for music ---
 pygame.mixer.init()
@@ -50,7 +56,7 @@ def shuffle_songs():
     random.shuffle(playlist)
     current_song = 0
     play_song(current_song)
-    print("🎵 Playlist shuffled")
+    print("Playlist shuffled")
 
 def change_volume(delta):
     global volume
@@ -70,11 +76,11 @@ while True:
     # --- Read distance / motion ---
     try:
         vcnl4040.start_ranging()
-        time.sleep(0.02)  # short delay to avoid I2C errors
+        time.sleep(0.02)  # allow sensor to settle
         distance = vcnl4040.get_distance()
         vcnl4040.stop_ranging()
         motion = distance > MOTION_THRESHOLD
-    except Exception as e:
+    except OSError as e:
         print("Distance sensor error:", e)
         motion = False
 
