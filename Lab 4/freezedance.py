@@ -7,7 +7,7 @@ import pygame
 
 # --- Initialize sensors ---
 vcnl4040 = qwiic.QwiicVL53L1X()
-mpr121 = qwiic_mpr121.QwiicMPR121()
+mpr121 = adafruit_mpr121.MPR121(i2c)
 
 if not vcnl4040.is_connected():
     print("VCNL4040 not connected. Check wiring.")
