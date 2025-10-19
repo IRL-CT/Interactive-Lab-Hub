@@ -43,17 +43,17 @@ def shuffle_songs():
     random.shuffle(playlist)
     current_song = 0
     play_song(current_song)
-    print("🎵 Playlist shuffled!")
+    print("Playlist shuffled!")
 
 def change_volume(delta):
     global volume
     volume = min(1.0, max(0.0, volume + delta))
     pygame.mixer.music.set_volume(volume)
-    print(f"🔊 Volume set to {volume:.2f}")
+    print(f"Volume set to {volume:.2f}")
 
 # --- Start playback ---
 play_song(current_song)
-print("🕺 Freeze Dance Machine ready!")
+print("Freeze Dance Machine ready!")
 
 # --- Main Loop ---
 MOTION_THRESHOLD = 2000  # Adjust based on environment
@@ -72,10 +72,10 @@ while True:
         motion = False
 
     if motion and not last_motion:
-        print("🟢 Movement detected: Music playing")
+        print("Movement detected: Music playing")
         pygame.mixer.music.unpause()
     elif not motion and last_motion:
-        print("🔴 No movement: Music paused")
+        print("No movement: Music paused")
         pygame.mixer.music.pause()
 
     last_motion = motion
