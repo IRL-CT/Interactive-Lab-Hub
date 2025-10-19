@@ -2,9 +2,18 @@ import os
 import time
 import board
 import pygame
-
 import subprocess
+from adafruit_apds9960.apds9960 import APDS9960
+from sparkfun_qwiic_button import QwiicButton
 
+# -------------------------------
+# SDL audio driver for Raspberry Pi
+# -------------------------------
+os.environ["SDL_AUDIODRIVER"] = "alsa"
+
+# -------------------------------
+# Helper: Ensure WAV is PCM format
+# -------------------------------
 def ensure_pcm_wav(filepath):
     """Convert WAV to standard PCM if pygame can't play it."""
     fixed_path = filepath.replace(".wav", "_pygame.wav")
@@ -21,13 +30,6 @@ def ensure_pcm_wav(filepath):
         print(f"Conversion failed for {filepath}: {e}")
         return filepath
 
-from adafruit_apds9960.apds9960 import APDS9960
-
-# -------------------------------
-# SDL audio driver for Raspberry Pi
-# -------------------------------
-os.environ["SDL_AUDIODRIVER"] = "alsa"
-
 # -------------------------------
 # Initialize APDS-9960 sensor
 # -------------------------------
@@ -35,6 +37,15 @@ i2c = board.I2C()
 apds = APDS9960(i2c)
 apds.enable_proximity = True
 apds.enable_gesture = True
+
+# -------------------------------
+# Initialize Qwiic Button
+# -------------------------------
+button = QwiicButton()
+if not button.begin():
+    print("Button not detected. Check wiring!")
+else:
+    print("Qwiic Button connected!")
 
 # -------------------------------
 # Initialize pygame mixer
@@ -58,12 +69,6 @@ if not songs:
 current_index = 0
 playback_state = "Playing"
 last_gesture = "None"
-
-# -------------------------------
-# Thresholds (adjust according to your environment)
-# -------------------------------
-PROXIMITY_CLOSE = 150  # 手靠近的数值
-PROXIMITY_FAR = 50     # 手远离的数值
 
 # -------------------------------
 # Helper functions
@@ -107,11 +112,8 @@ play_song(current_index)
 # -------------------------------
 while True:
     gesture = apds.gesture()
-    proximity = apds.proximity
 
-    # -------------------------------
     # Gesture control
-    # -------------------------------
     if gesture == 0x03:  # Left swipe
         current_index = (current_index - 1) % len(songs)
         last_gesture = "Left -> Previous Song"
@@ -122,19 +124,14 @@ while True:
         last_gesture = "Right -> Next Song"
         play_song(current_index)
 
-    # -------------------------------
-    # Proximity control
-    # -------------------------------
-    if proximity > PROXIMITY_CLOSE:
-        if playback_state != "Paused":
-            last_gesture = "Near -> Pause"
+    # Button control (pause/resume)
+    if button.is_button_pressed():
+        if playback_state == "Playing":
+            last_gesture = "Button -> Pause"
             pause_song()
-    elif proximity < PROXIMITY_FAR:
-        if playback_state != "Playing":
-            last_gesture = "Far -> Resume"
+        else:
+            last_gesture = "Button -> Resume"
             resume_song()
+        time.sleep(0.5)  
 
-    # Optional: print real-time distance for debugging
-    # print(f"Proximity: {proximity}")
-
-    time.sleep(0.2)
+    time.sleep(0.1)
