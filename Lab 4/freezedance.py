@@ -1,5 +1,5 @@
 import adafruit_mpr121
-
+from adafruit_apds9960.apds9960 import APDS9960
 import time
 import random
 import pygame
