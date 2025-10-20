@@ -291,8 +291,11 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 
 **\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
 
+![5 Design Sketches](./l4pc1.jpg)
 
-We created five sketches showing different ways sensors can be used and how each device would be physically shaped to make the sensor effective:
+![6 Design Sketches](./l4pc2.jpg)
+
+We created six sketches showing different ways sensors can be used and how each device would be physically shaped to make the sensor effective:
 
 1. **Distance Sensor**  
    - **Application:** Automatic trash bin lid  
