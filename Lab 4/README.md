@@ -1,10 +1,11 @@
 
 # Ph-UI!!!
 
+## Lab 4 Deliverables
+
 #### Collaborators: Charlotte Lin (hl2575), Zoe Tseng (yzt2), Le-En Huang (lh764) 
 #### Use of AI for this lab: Claude Sonnet4 for image creation and debugging instructions for the code.
 
-## Lab 4 Deliverables
 
 ### Part 1 (Week 1)
 **Submit the following for Part 1:**  
@@ -479,40 +480,100 @@ Color sensor: Could detect pill bottle colors to track which medication
 - informaiton content : is the order or hierarchy of information clear? Do users interpret icons, labels, and data the way we expect?
 - Feasibility / Technical Constraint : will performance (e.g., loading time, hardware constraints) affect usability?
 
-**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
-
-**\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
-
-Build a cardboard prototype of your design.
-
-
-**\*\*\*Document your rough prototype.\*\*\***
+### Design #1: Top Sensor Classic
+**Sensors Used:** APDS Gesture Sensor
 
 <img src="https://hackmd.io/_uploads/SJVRpdS6ge.png" width="400"/>
 
+&nbsp;  
+**Description:**
+- Users interact through simple hand gestures above the device — for example, swiping up to Feed or down to Play
+- The screen displays pet status (Hunger, Happiness) and visual reactions
+- Three buttons (A, B, C) below the screen support menu navigation and confirmations
+
+**Need to Prototype:**
+- Test gesture accuracy and false triggers with a top-mounted APDS in varied lighting and hand positions.
+
+### Design #2: Joystick Control
+**Sensors Used:** APDS Gesture Sensor + Analog Joystick
 
 <img src="https://hackmd.io/_uploads/S1bEZtrpee.png" width="400"/>
 
+&nbsp;  
+**Description:**
+- The joystick enables directional inputs for Feed, Play, Clean, and Pet, making it feel more game-like and interactive
+- The APDS sensor adds shortcut gestures for instant responses, enhancing speed and convenience
 
-### 🎨 Design #3: Twizzler Touch Edition (Capacitive Petting Pad)
+**Need to Prototype:**
+- Build a mock joystick setup to test comfort, accuracy, and how it integrates with gesture inputs.
+
+### Design #3: Twizzler Touch Edition (Capacitive Petting Pad)
 
 **Sensors Used:** Capacitive Sensor Board (MPR121) + Copper Tape or Twizzlers  
 
 <img src="https://hackmd.io/_uploads/H1itQCtTgx.png" width="400"/>
 
-### **Description**
-Four touch pads—🍖 Feed, 🎮 Play, 💊 Medicine, ❤️ Pet—are arranged around the central display.  
+&nbsp;  
+**Description:**
+- Four touch pads—🍖 Feed, 🎮 Play, 💊 Medicine, ❤️ Pet—are arranged around the central display
 
-### 🕹️ Design #4: Rotary Mood Dial + Distance Sensor
+**Need to Prototype:**
+- Create a touch-panel mockup with copper pads and test pad spacing, labeling, and sensitivity.
+
+### Design #4: Rotary Mood Dial + Distance Sensor
 
 **Sensors Used:** Rotary Encoder + Distance Sensor  
 
 <img src="https://hackmd.io/_uploads/rJI4NRYale.png" width="400"/>
 
-### **Description**
-- Combines **rotational input** for selecting pet actions with **distance sensing** to detect user presence. 
-- The rotary knob scrolls through actions like *Feed*, *Play*, *Clean*, and *Heal*.  
-- The distance sensor **wakes the pet** when the user approaches.
+&nbsp;  
+**Description:**
+- Combines **rotational input** for selecting pet actions with **distance sensing** to detect user presence
+- The rotary knob scrolls through actions like *Feed*, *Play*, *Clean*, and *Heal*
+- The distance sensor **wakes the pet** when the user approaches  
+
+**Need to Prototype:**
+- Assemble a tabletop model to test rotary precision and wake-on-approach reliability.
+
+### Design #5: Hybrid Playground (APDS + Joystick + Rotary Encoder)
+
+**Sensors Used:** APDS Gesture Sensor + Joystick + Rotary Encoder
+
+<img src="https://hackmd.io/_uploads/B1Re6qTTlg.png" width="400"/>
+
+&nbsp;  
+**Description:**
+- The APDS sensor at the top detects quick gestures
+- The joystick provides tactile input for Feed, Play, and Clean actions — giving users fine control and an arcade-like feel
+- The rotary dial adjusts secondary settings such as brightness, sound, or pet mood intensity
+
+**Need to Prototype:**
+- Build a hybrid cardboard rig to test simultaneous sensor inputs and multi-modal user behavior.
+
+&nbsp;  
+
+**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+
+**\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+
+**\*\*\*Document your rough prototype.\*\*\***
+
+## Joystick Control design (Design #2)
+
+We selected the **Joystick Control design**, which combines a top-mounted APDS gesture sensor with a front joystick. This hybrid setup allows both gesture shortcuts (for quick actions) and tactile control (for precision), allowing users to care for the digital pet in different ways — both physically and emotionally.
+
+## 🧭 Input Function Chart
+
+| Component | Function | Type of Interaction | Example Behavior | Purpose in Design |
+|------------|-----------|--------------------|------------------|-------------------|
+| 🕹️ **Joystick** | Controls **Feed**, **Play**, **Clean**, **Pet**, and **Drink Water** | Tactile / Directional | Move joystick up to Feed, down to Play, left/right for other actions | Provides **precise, game-like control** for core care actions |
+| 🔘 **Button** | Confirm selection / special action (in development) | Tactile / Confirm | Press to confirm feeding amount or start a mini-game | Adds **clear physical confirmation**; reduces accidental actions |
+| ✋ APDS Gesture Sensor | Proximity + simple gestures (affection/presence) | Contact-free / Ambient | Gesture up = wake up, gesture down = sleep, hand moving toward sensor = petting (affection) | Creates lifelike, emotional responses (petting, wake/sleep based on attention) |
+
+## Prototype
+
+<img src="https://hackmd.io/_uploads/Sy6AUtzAgl.jpg" width="400"/>
+
 
 
 # LAB PART 2
@@ -549,143 +610,75 @@ Try chaining different combinations and document what you discover!
 
 See encoder_accel_servo_dashboard.py in the Lab 4 folder for an example of chaining together three devices.
 
-**`Lab 4/encoder_accel_servo_dashboard.py`**
+#### How To Run This
 
-#### Using Multiple Qwiic Buttons: Changing I2C Address (Physically & Digitally)
+- make sure speaker is connected
+- make sure APDS and joystick sensors are connected
+- install requirements
 
-If you want to use more than one Qwiic Button in your project, you must give each button a unique I2C address. There are two ways to do this:
-
-##### 1. Physically: Soldering Address Jumpers
-
-On the back of the Qwiic Button, you'll find four solder jumpers labeled A0, A1, A2, and A3. By bridging these with solder, you change the I2C address. Only one button on the chain can use the default address (0x6F).
-
-**Address Table:**
-
-| A3 | A2 | A1 | A0 | Address (hex) |
-|----|----|----|----|---------------|
-|  0 |  0 |  0 |  0 |    0x6F       |
-|  0 |  0 |  0 |  1 |    0x6E       |
-|  0 |  0 |  1 |  0 |    0x6D       |
-|  0 |  0 |  1 |  1 |    0x6C       |
-|  0 |  1 |  0 |  0 |    0x6B       |
-|  0 |  1 |  0 |  1 |    0x6A       |
-|  0 |  1 |  1 |  0 |    0x69       |
-|  0 |  1 |  1 |  1 |    0x68       |
-|  1 |  0 |  0 |  0 |    0x67       |
-| ...| ...| ...| ... |     ...      |
-
-For example, if you solder A0 closed (leave A1, A2, A3 open), the address becomes 0x6E.
-
-**Soldering Tips:**
-- Use a small amount of solder to bridge the pads for the jumper you want to close.
-- Only one jumper needs to be closed for each address change (see table above).
-- Power cycle the button after changing the jumper.
-
-##### 2. Digitally: Using Software to Change Address
-
-You can also change the address in software (temporarily or permanently) using the example script `qwiic_button_ex6_changeI2CAddress.py` in the Lab 4 folder. This is useful if you want to reassign addresses without soldering.
-
-Run the script and follow the prompts:
-```bash
-python qwiic_button_ex6_changeI2CAddress.py
 ```
-Enter the new address (e.g., 5B for 0x5B) when prompted. Power cycle the button after changing the address.
-
-**Note:** The software method is less foolproof and you need to make sure to keep track of which button has which address!
-
-
-##### Using Multiple Buttons in Code
-
-After setting unique addresses, you can use multiple buttons in your script. See these example scripts in the Lab 4 folder:
-
-- **`qwiic_1_button.py`**: Basic example for reading a single Qwiic Button (default address 0x6F). Run with:
-	```bash
-	python qwiic_1_button.py
-	```
-
-- **`qwiic_button_led_demo.py`**: Demonstrates using two Qwiic Buttons at different addresses (e.g., 0x6F and 0x6E) and controlling their LEDs. Button 1 toggles its own LED; Button 2 toggles both LEDs. Run with:
-	```bash
-	python qwiic_button_led_demo.py
-	```
-
-Here is a minimal code example for two buttons:
-```python
-import qwiic_button
-
-# Default button (0x6F)
-button1 = qwiic_button.QwiicButton()
-# Button with A0 soldered (0x6E)
-button2 = qwiic_button.QwiicButton(0x6E)
-
-button1.begin()
-button2.begin()
-
-while True:
-		if button1.is_button_pressed():
-				print("Button 1 pressed!")
-		if button2.is_button_pressed():
-				print("Button 2 pressed!")
+(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4/tamagochi $ sudo systemctl stop piscreen.service --nowow
+(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 4/tamagochi $ python tamagotchi_pitft.py
+pygame 2.6.1 (SDL 2.28.4, Python 3.11.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Audio system initialized
+Joystick ready
+APDS init failed: No I2C device at address: 0x39
+Calibrating joystick... (release the stick)
+APDS worker skipped (no device)
+Center=(513,517)  Scale~1023
+...
 ```
 
-For more details, see the [Qwiic Button Hookup Guide](https://learn.sparkfun.com/tutorials/qwiic-button-hookup-guide/all#i2c-address).
+
+#### Interaction Diagram
+
+##### Data Flow
+![Screenshot 2025-10-19 at 11.27.58 AM](https://hackmd.io/_uploads/Bk5tQYzCge.png)
+
+
+##### input + output
+
+![image](https://hackmd.io/_uploads/ry_itKMCel.png)
+
+##### Multi-input + output
+
+![image](https://hackmd.io/_uploads/ryQTOFMCxg.png)
+
+##### Multi-input + Multi-output
+![image](https://hackmd.io/_uploads/HJqudtMRee.png)
+
+
+#### Interaction Design & Reflections
+
+##### 1. Interaction Complexity & Systems
+> Key Insight: 1 + 1 > 2
+
+Multi-input systems aren't just "more inputs" — they create a multiplication effect where interactions become richer than the sum of their parts. When we combined feeding (joystick) with petting (gesture), it created a "moment" that cannot be accomplished by either one action.
+
+
+Precise control (joystick navigation) + Spontaneous motion (gesture petting) ->  Emergent complexity
+
+Example from our prototype:
+Joystick Feed alone      = Dog eats (functional)
+Gesture Pet alone        = Dog feels loved (emotional)
+BOTH together            = Hand-feeding moment (intimate bonding)
+
+##### 2. How Emotions Are Created
+> Learned interactions, with proper rewarding mechanism, feel more natural and intuitive.
+
+After talking to users, we learned there's a high correlation between motivation/attachment in gameplay when there are more than one outputs involved. Simultaneous outputs make the interactions feel more **real**. Especially when there are more than one senses engaged (visual + audio). That is why we decided to use an audio output.
+
+##### 3. Managing Input Conflicts
+> Figure out what takes precedence is more important than we thought - it defines the system and the expected interaction.
+
+What happens when someone tries to pet and it tricked the light sensor into thinking it's night time? 
+
+**Short answer: iterations of feature design.** 
+
+We decided to redesign the gesture that will trigger a petting action, that will be compatible with the capability of the sen
 
 ---
-
-### PCF8574 GPIO Expander: Add More Pins Over I²C
-
-Sometimes your Pi’s header GPIO pins are already full (e.g., with a display or HAT). That’s where an I²C GPIO expander comes in handy.
-
-We use the Adafruit PCF8574 I²C GPIO Expander, which gives you 8 extra digital pins over I²C. It’s a great way to prototype with LEDs, buttons, or other components on the breadboard without worrying about pin conflicts—similar to how Arduino users often expand their pinouts when prototyping physical interactions.
-
-**Why is this useful?**
-- You only need two wires (I²C: SDA + SCL) to unlock 8 extra GPIOs.
-- It integrates smoothly with CircuitPython and Blinka.
-- It allows a clean prototyping workflow when the Pi’s 40-pin header is already occupied by displays, HATs, or sensors.
-- Makes breadboard setups feel more like an Arduino-style prototyping environment where it’s easy to wire up interaction elements.
-
-**Demo Script:** `Lab 4/gpio_expander.py`
-
-<p align="center">
-    <img src="gpio_leds.gif" alt="GPIO Expander LED Demo" width="400"/>
-</p>
-
-We connected 8 LEDs (through 220 Ω resistors) to the expander and ran a little light show. The script cycles through three patterns:
-- Chase (one LED at a time, left to right)
-- Knight Rider (back-and-forth sweep)
-- Disco (random blink chaos)
-
-Every few runs, the script swaps to the next pattern automatically:
-```bash
-python gpio_expander.py
-```
-
-This is a playful way to visualize how the expander works, but the same technique applies if you wanted to prototype buttons, switches, or other interaction elements. It’s a lightweight, flexible addition to your prototyping toolkit.
-
----
-
-### Servo Control with SparkFun Servo pHAT
-For this lab, you will use the **SparkFun Servo pHAT** to control a micro servo (such as the Miuzei MS18 or similar 9g servo). The Servo pHAT stacks directly on top of the Adafruit Mini PiTFT (135×240) display without pin conflicts:
-- The Mini PiTFT uses SPI (GPIO22, 23, 24, 25) for display and buttons ([SPI pinout](https://pinout.xyz/pinout/spi)).
-- The Servo pHAT uses I²C (GPIO2 & 3) for the PCA9685 servo driver ([I2C pinout](https://pinout.xyz/pinout/i2c)).
-- Since SPI and I²C are separate buses, you can use both boards together.
-**⚡ Power:**
-- Plug a USB-C cable into the Servo pHAT to provide enough current for the servos. The Pi itself should still be powered by its own USB-C supply. Do NOT power servos from the Pi’s 5V rail.
-
-<p align="center">
-    <img src="Servo_pHAT.gif" alt="Servo pHAT Demo" width="400"/>
-</p>
-
-**Basic Python Example:**
-We provide a simple example script: `Lab 4/pi_servo_hat_test.py` (requires the `pi_servo_hat` Python package).
-Run the example:
-```
-python pi_servo_hat_test.py
-```
-For more details and advanced usage, see the [official SparkFun Servo pHAT documentation](https://learn.sparkfun.com/tutorials/pi-servo-phat-v2-hookup-guide/all#resources-and-going-further).
-A servo motor is a rotary actuator that allows for precise control of angular position. The position is set by the width of an electrical pulse (PWM). You can read [this Adafruit guide](https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/servo-motors) to learn more about how servos work.
-
----
-
 
 ### Part F
 
@@ -695,4 +688,37 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
+#### screen prototypes - [looks like]
+
+> We want the device to look like a Tamagotchi, a traditional digital pet toy device.
+> Therefore, the screen design will feature a comic-like dog instead of a tech/realistic pet.
+> We chose Corgi because that's usually a dog that captures people's attention and they're really cute!
+
+- left: default screen the user will see without giving any interaction. There's also a scoreboard that nudges user to interact with the pet
+- right: interaction/response from the pet, along with '+1 :heart:' event effect
+
+<img src="https://hackmd.io/_uploads/B1JFQBmCgx.jpg" style="width: 50%; max-width: 600px;">
+
+<img src="https://hackmd.io/_uploads/Hy9BXSQCxe.jpg" style="width: 50%; max-width: 600px;">
+
+
+
+#### device demos - [works like]
+
+1.  video : [single input & single output](https://youtube.com/shorts/1MbfEf6G84s?feature=share)
+
+| Input  | Output (MiniPft Display)|
+|--------|--------|
+|Joystick - Left | Jump!   |
+|Joystick - Right | Move head left to right  |
+|Joystick - Up |Poop   |
+|Joystick - Down | Shake head (disappointedly) |
+|ADPS Proximity - Closer|  |
+
+2.  video : [double input & double output](https://youtube.com/shorts/LqYYOzuW0A4?feature=share)
+ 
+| Input1  | Input2  | Output1 (MiniPft Display)| Output2 (Sound)|
+|--------|----------|--------|--------|
+|Joystick - Left | ADPS sensor Proximity  | Celebrate! | Bark (Happily)
 
