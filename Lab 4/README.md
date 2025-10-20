@@ -15,7 +15,8 @@
 
 ---
 
-## Lab 4 Deliverables
+<details>
+<summary><h3><strong>Lab 4 Deliverables</strong></h3></summary>
 
 ### Part 1 (Week 1)
 **Submit the following for Part 1:**  
@@ -53,6 +54,7 @@
 	- Reflection on what you learned and next steps
 
 ---
+</details>
 
 ## Lab Overview
 **NAMES OF COLLABORATORS** Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx2185)
