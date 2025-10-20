@@ -577,6 +577,9 @@ To explore this, we’ll prototype boards at different scales and test them with
 <!-- <img src="image/physical_drawing1.jpg" height="400" /> -->
 
 <img src="image/physical_drawing2.jpg" height="400" />
+<img src="image/controllersketch-a.jpg" height="400" />
+<img src="image/controllersketch-b.jpg" height="400" />
+
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
