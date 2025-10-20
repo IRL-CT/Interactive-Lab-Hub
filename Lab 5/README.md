@@ -133,7 +133,7 @@ In an earlier version of this class students experimented with foundational comp
 ### Construct a simple interaction.
 
 * Pick one of the models you have tried, and experiment with prototyping an interaction.
-* This can be as simple as the boat detector showen in a previous lecture from Nikolas Matelaro.
+* This can be as simple as the boat detector shown in lecture.
 * Try out different interaction outputs and inputs.
 
 
