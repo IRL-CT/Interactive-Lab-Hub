@@ -790,6 +790,8 @@ Some users found the joystick slightly hard to tilt. One user with larger hands 
 
 [Video_of_demo](https://drive.google.com/file/d/1emJ2zIF4F7Sx4GhbfLyXz1QM-JCBCluI/view?usp=sharing)
 
+[Video_of_demo 2](https://drive.google.com/file/d/10IImIktT_0hoaUEwjL4Gq_JYpRLtyKwQ/view?usp=sharing)
+
 <!-- 
 Record
 Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
