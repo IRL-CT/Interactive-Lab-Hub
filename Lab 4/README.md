@@ -397,6 +397,10 @@ Think about how you want to present the information about what your sensor is se
 	
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
 
+![5 Design Sketches](./l4pc1.jpg)
+
+![6 Design Sketches](./l4pc2.jpg)
+
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
 The main questions raised were:
@@ -689,7 +693,9 @@ This prototype demonstrates a **complete, multi-modal interaction** — physical
 **Inputs:** Distance Sensor, Button  
 **Outputs:** Servo Motor, Speaker  
 
+
 This system shows how combining multiple sensors and actuators can create a playful, satisfying chain reaction.
+*[See Our Code](https://github.com/m-lmq/Interactive-Lab-Hub/blob/Fall2025/Lab%204/test.py)*
 
 ---
 
@@ -777,6 +783,26 @@ These improvements turned the prototype from a fun demo into a **stable, repeata
 ### Part F
 
 ### Record
+
+**Final video after change based on user test feedback**
+
+https://github.com/user-attachments/assets/f0019611-ec0c-43cb-9b13-cbb12069fa66
+
+**User Test - Front**
+
+https://github.com/user-attachments/assets/263396a2-07e9-4458-a1de-382da929ba52
+
+**User Test - Back**
+
+https://github.com/user-attachments/assets/6e91b77a-3fd1-476b-9f67-9b0e87c82efa
+
+**Interaction Diagram & Video**
+
+
+
+https://github.com/user-attachments/assets/d5a8fe73-324b-4ecc-a63c-5f30f3bdca4c
+
+
 
 Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
