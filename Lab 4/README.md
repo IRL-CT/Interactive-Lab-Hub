@@ -469,6 +469,10 @@ https://github.com/user-attachments/assets/e223fdb5-7397-4299-82b4-8f413ee8a039
 
 Following exploration and reflection from Part 1, complete the "looks like," "works like" and "acts like" prototypes for your design, reiterated below.
 
+Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
+* "Looks like": shows how the device should look, feel, sit, weigh, etc.
+* "Works like": shows what the device can do
+* "Acts like": shows how a person would interact with the device
 
 <details>
 <summary><h4><strong>Part E</strong></h4></summary>
@@ -808,9 +812,4 @@ https://github.com/user-attachments/assets/6e91b77a-3fd1-476b-9f67-9b0e87c82efa
 https://github.com/user-attachments/assets/d5a8fe73-324b-4ecc-a63c-5f30f3bdca4c
 
 
-
-Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
-* "Looks like": shows how the device should look, feel, sit, weigh, etc.
-* "Works like": shows what the device can do
-* "Acts like": shows how a person would interact with the device
 
