@@ -9,13 +9,13 @@ Lab 2. [Interactive Prototyping: The Clock of Pi](https://github.com/ChangXiang-
 
 [Lab 3. Chatterboxes](Lab%203/)
 
-Lab 4. Ph-UI!!!
+[Lab 4. Ph-UI!!!](Lab%204/)
 
 Lab 5. Observant Systems
 
 Lab 6. Little Interactions Everywhere
 
-Final Project
+[Final Project](https://github.com/IRL-CT/Developing-and-Designing-Interactive-Devices/blob/2025Fall/FinalProject.md)
 
 Online Repository
 
