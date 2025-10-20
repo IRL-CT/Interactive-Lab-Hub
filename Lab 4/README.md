@@ -638,12 +638,22 @@ The overall dimensions are based on the sensor modules’ actual sizes and ergon
 
 **\*\*\*Document your rough prototype.\*\*\***
 
+- We went through multiple iterations of cardboard prototype, starting very simple with just openings for the specific sensors we wanted. At first we mocked up the screen to be at the bottom of the controller and later incorporated it into the center for ease of use. We also started with rough cut outs before creating multiple svgs for the laser cutter to make. We asked Chatgpt to make the initial svg and then edited it as we fined tuned our design.
+![Svg_draft ChatGPT](image/gamepad_template_lasercut_220mm_panel_v1.svg)
+![Svg_draft Updated](image/controllerSnicket.svg)
+
+- The image below from left to right shows the general progression of our carboard protyping. Including smaller models that were made to understand how we might want to layout the sensors before cutting a larger version.
+
+<img src="image/draft_cutouts.jpg" height="200" />
+
 - We created an initial 3D model in TinkerCad to visualize the physical layout and dimensions.
 - The model was 3D printed to check how it feels in hand — whether it’s comfortable to hold and if all sensors fit properly.
 - Through multiple iterations, we refined the size and sensor placement based on user comfort and accessibility.
 - Initially, the prototype included six capacitive sensor buttons, but after testing, we realized this caused frequent accidental touches. We reduced the number to improve usability and control.
 
 <img src="image/3d_model2.png" height="200" />
+
+- We also chose to add a plastic acrylic cover to help protect the cardboard since constant handling would cause the cardboard to bend and lose integrity more quickly than we would have preferred. It also provided a sturdy base for the cardboad components to be adheared to.
 
 ## Part 2
 
@@ -731,16 +741,21 @@ At first, we thought the color sensor would just be a fun add-on. But when we co
 If the color sensor were placed separately or awkwardly, this smooth, color-flow experience would be lost.
 
 2. Accelerometer + Color Sensor → Gesture-Based Actions
-By combining the accelerometer and color sensor, we created playful, embodied interactions. Tilting or shaking the board can clear or recolor the canvas, connecting physical motion with visual change. These gestures make the experience feel more natural and alive—much more intuitive than pressing a button.
+By combining the accelerometer and color sensor, we created playful, embodied interactions. Tilting or shaking the board can clear or recolor the canvas, connecting physical motion with visual change. These gestures make the experience feel more natural and alive—much more intuitive than pressing a button. It is also a familiar action to any of those who had used an etch-a-sketch.
 
 3. Effect of Physical Arrangement on User Experience
 The physical layout of each component plays a major role in how natural the interaction feels:
 - The color sensor on the back encourages users to point the board toward real objects, making “color catching” feel similar to taking a photo.
 - The joystick at the bottom-right corner allows smooth, continuous control with the thumb while holding the board.
+- The right-side controls both protrude and are dedicated to brush basic functions: joystick for brush movement, rotary for brush size adjustment. 
+- The additional top left buttons provide access to a separate menu independent from the joystick and rotary controls, resembling the layout of the directional buttons on the switch controller. They house broader functions such as save, fill, erase, and rectangular brush selection. 
 
 4. Changing Primary and Secondary Devices
 When we experimented with swapping which device is “primary,” the experience changed dramatically.
 For example, if the color sensor became the main input (triggering actions based on brightness or hue) and the joystick became secondary (just adjusting direction), the experience shifted from intentional drawing to responsive painting. It felt more like the environment was guiding the artwork.
+
+5. Drawing and Erasing Sound
+We added sound effects for drawing and erasing to make the experience feel more immersive. We also found that audio feedback was helpful when users moved the joystick—it let them know their actions were being registered, even if the screen lagged or their movements weren’t clearly visible. This was especially useful when using the eraser before we added a visual pointer.
 
 #### Things We Learned from Asking others to play around. 
 ---
@@ -781,4 +796,4 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 "Acts like": shows how a person would interact with the device -->
 
 
-*I used the chatgpt to clean my sentences and codes.*
+*I used the chatgpt to clean my sentences and codes. We also asked chatgpt to create an initial svg for us to work with so we could use the laser cutter*
