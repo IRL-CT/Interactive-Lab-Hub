@@ -136,13 +136,10 @@ The _set_new_target() method:
 
 Hardware
 
-We began developing the hardware prototype, focusing on the following main considerations:
-
-The device should be handheld, with the joystick positioned in an ergonomic spot for comfortable use.
-
-The speaker should face the user to ensure clear audio output and prevent muffled sound.
-
-The Raspberry Pi should have proper ventilation to avoid overheating, along with space for a battery to power the system.
+* We began developing the hardware prototype, focusing on the following main considerations:
+* The device should be handheld, with the joystick positioned in an ergonomic spot for comfortable use.
+* The speaker should face the user to ensure clear audio output and prevent muffled sound.
+* The Raspberry Pi should have proper ventilation to avoid overheating, along with space for a battery to power the system.
 
 Most of these considerations were carried over from the cardboard prototype, though we made several design adjustments to improve ergonomics and overall usability.
 
