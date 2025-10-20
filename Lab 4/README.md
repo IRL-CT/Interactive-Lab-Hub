@@ -78,51 +78,37 @@ Following exploration and reflection from Part 1, complete the "looks like," "wo
 
 Software:
 
-We began prototyping the AstroClicker software, located in the astro_clicker_demo.py file.
-
-Our main design goal was to make the program user-friendly and intuitive, while avoiding an overwhelming or restrictive experience.
-
-After multiple rounds of prototyping and refinement, we finalized the following code structure:
+* We began prototyping the AstroClicker software, located in the astro_clicker_demo.py file.
+* Our main design goal was to make the program user-friendly and intuitive, while avoiding an overwhelming or restrictive experience.
+* After multiple rounds of prototyping and refinement, we finalized the following code structure:
 
 1. Initialization and Data Structure
 
-Imports essential libraries for hardware interaction, timing, subprocess execution, and argument parsing.
-
-The speak_text function handles text-to-speech using the external espeak program and logs all outputs to the console, regardless of the current OUTPUT_MODE (speaker or silent).
+* Imports essential libraries for hardware interaction, timing, subprocess execution, and argument parsing.
+* The speak_text function handles text-to-speech using the external espeak program and logs all outputs to the console, regardless of the current OUTPUT_MODE (speaker or silent).
 
 Celestial data is divided into three layers based on their distance from Earth:
 
-Layer 0 (Closest): CONSTELLATION_DATA
-
-Layer 1 (Intermediate): SOLAR_SYSTEM_DATA
-
-Layer 2 (Farthest): DEEP_SKY_DATA
+* Layer 0 (Closest): CONSTELLATION_DATA
+* Layer 1 (Intermediate): SOLAR_SYSTEM_DATA
+* Layer 2 (Farthest): DEEP_SKY_DATA
 
 ------------------------------------------------------------------------
 
 2. The SkyNavigator State Machine
 
-The SkyNavigator class manages the user’s state, tracking:
-
-The layer_index (starting at 1, representing the Solar System).
-
-Which objects have been viewed, using a list called unseen_targets.
+* The SkyNavigator class manages the user’s state, tracking:
+* The layer_index (starting at 1, representing the Solar System).
+* Which objects have been viewed, using a list called unseen_targets.
 
 The _set_new_target() method:
-
-Randomly selects an available object from the current layer.
-
-Resets that layer’s availability once all objects have been viewed.
-
-The move(direction) method updates the state based on joystick input:
-
-‘up’ / ‘down’: Adjusts layer_index to zoom in or out, switching between the three celestial layers.
-
-‘left’ / ‘right’: Keeps the user within the current layer and selects a new random target.
-
-Built-in boundary checks prevent movement beyond Layer 0 or Layer 2.
-
-After every successful movement, the new location or target is announced using the speak_text function.
+* Randomly selects an available object from the current layer.
+* Resets that layer’s availability once all objects have been viewed.
+* The move(direction) method updates the state based on joystick input:
+* ‘up’ / ‘down’: Adjusts layer_index to zoom in or out, switching between the three celestial layers.
+* ‘left’ / ‘right’: Keeps the user within the current layer and selects a new random target.
+* Built-in boundary checks prevent movement beyond Layer 0 or Layer 2.
+* After every successful movement, the new location or target is announced using the speak_text function.
 
 
 ------------------------------------------------------------------------
@@ -142,8 +128,11 @@ After every successful movement, the new location or target is announced using t
 
 ------------------------------------------------------------------------
 
-4. * The main()  function uses the argparse module to allow the user to optionally specify the output mode (mode speaker or mode silent) when running the script.
+4.
+* The main()  function uses the argparse module to allow the user to optionally specify the output mode (mode speaker or mode silent) when running the script.
 * The program can be cleanly exited by pressing **Ctrl+C**.
+
+<img width="531" height="532" alt="Screen Shot 2025-10-19 at 9 55 23 PM" src="https://github.com/user-attachments/assets/8f02c490-1c40-485b-93a1-1369a3db61a0" />
 
 Hardware
 
@@ -158,11 +147,16 @@ The Raspberry Pi should have proper ventilation to avoid overheating, along with
 Most of these considerations were carried over from the cardboard prototype, though we made several design adjustments to improve ergonomics and overall usability.
 
 Below are images of the updated hardware prototype.
-  
+
+<img width="479" height="640" alt="Screen Shot 2025-10-19 at 9 56 42 PM" src="https://github.com/user-attachments/assets/f4aa2577-038f-418c-946d-f8771ce6a0ca" />
+<img width="472" height="646" alt="Screen Shot 2025-10-19 at 9 56 48 PM" src="https://github.com/user-attachments/assets/85040e3b-4a8d-4f0f-9633-1a17303ec1b6" />
+<img width="475" height="587" alt="Screen Shot 2025-10-19 at 9 56 56 PM" src="https://github.com/user-attachments/assets/414f6460-9a2e-482d-8b35-5af652287d54" />
+
 
 ### Part F
 
-Here are our two final videos with a walkthrough of the AstroClicker prototype in both software and hardware:
+Here is our final video with a walkthrough of the AstroClicker prototype in both software and hardware:
+https://youtu.be/bRyzQZdn2rA
 
 
 ### AI Contributions 
