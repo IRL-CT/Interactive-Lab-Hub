@@ -1060,6 +1060,22 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
 
+#### screen prototypes - [looks like]
+
+> We want the device to look like a Tamagotchi, a traditional digital pet toy device.
+> Therefore, the screen design will feature a comic-like dog instead of a tech/realistic pet.
+> We chose Corgi because that's usually a dog that captures people's attention and they're really cute!
+
+- left: default screen the user will see without giving any interaction. There's also a scoreboard that nudges user to interact with the pet
+- right: interaction/response from the pet, along with '+1 :heart:' event effect
+
+<img src="https://hackmd.io/_uploads/B1JFQBmCgx.jpg" style="width: 50%; max-width: 600px;">
+
+<img src="https://hackmd.io/_uploads/Hy9BXSQCxe.jpg" style="width: 50%; max-width: 600px;">
+
+
+#### device demos - [works like]
+
 1.  video : [single input & single output](https://youtube.com/shorts/1MbfEf6G84s?feature=share)
 
 | Input  | Output (MiniPft Display)|
@@ -1070,16 +1086,11 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 |Joystick - Down | Shake head (disappointedly) |
 |ADPS Proximity - Closer|  |
 
-2.  video : [multi output & multi output]
+2.  video : [double input & double output](https://youtube.com/shorts/LqYYOzuW0A4?feature=share)
  
 | Input1  | Input2  | Output1 (MiniPft Display)| Output2 (Sound)|
 |--------|----------|--------|--------|
-|Joystick - Left | ADPS sensor Proximity  | Celebrate | Bark (Happily)
+|Joystick - Left | ADPS sensor Proximity  | Celebrate! | Bark (Happily)
 
-
-
-3. video : [multi input & multi output] 
-    -  input : 
-    -  output :
 
 
