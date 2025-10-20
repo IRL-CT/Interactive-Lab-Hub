@@ -69,6 +69,8 @@ Astroclicker Prototype Video Link: https://youtube.com/shorts/sQySwPO-nW0?featur
 
 
 # LAB PART 2
+** Refer to Nikhil Gangaram's Interactive Lab Hub for the code **
+https://github.com/NikhilGangaram/NG-Interactive-Lab-Hub/tree/Fall2025/Lab%204
 
 ### Part 2
 
