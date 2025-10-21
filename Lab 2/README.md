@@ -1,6 +1,8 @@
 # Interactive Prototyping: The Clock of Pi
 **NAMES OF COLLABORATORS HERE**
 
+Name: Maggie Liang(ml2927) Xueer Zhang(xz946) Xinwei Xie(xx2185)
+
 Does it feel like time is moving strangely during this semester?
 
 For our first Pi project, we will pay homage to the [timekeeping devices of old](https://en.wikipedia.org/wiki/History_of_timekeeping_devices) by making simple clocks.
@@ -208,10 +210,16 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
-Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
+Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
+![Verplank digram](./Verplank_digram.jpg)
+
+
+Our Piclock idea uses the metaphor of time flowing like sand in an hourglass. Instead of showing digital numbers, we display time through three hourglasses on the screen - one for hours, one for minutes, and one for seconds. When each time unit fills up, it triggers the next level, just like sand flowing from top to bottom. 
+
+Users can watch the sand move to understand how time passes. The buttons allow users to switch between timer mode and regular clock display.
 
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
@@ -220,6 +228,8 @@ Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+*[Video of PiClock](https://youtube.com/shorts/gtvHuZM5ic4)*
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 

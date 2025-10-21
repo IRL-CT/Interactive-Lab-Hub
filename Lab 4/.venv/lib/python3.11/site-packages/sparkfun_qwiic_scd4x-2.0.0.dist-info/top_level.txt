@@ -1,0 +1,1 @@
+qwiic_scd4x

@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: sparkfun-qwiic-adxl313
+Version: 0.0.7
+Summary: SparkFun Electronics Qwiic ADXL313
+Home-page: https://www.sparkfun.com/products/17241
+Author: SparkFun Electronics
+Author-email: info@sparkfun.com
+License: MIT
+Keywords: electronics,maker
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: sparkfun-qwiic-i2c
+
+Qwiic ADXL313
+==========================
+
+This package provides support to use the SparkFun Qwiic ADXL313.
+

@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: sparkfun_qwiic_otos
+Version: 0.0.1
+Summary: SparkFun Electronics qwiic otos package
+Home-page: https://www.sparkfun.com/products/24904
+Author: SparkFun Electronics
+Author-email: info@sparkfun.com
+License: MIT
+Keywords: electronics,maker
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+License-File: LICENSE
+Requires-Dist: sparkfun_qwiic_i2c
+
+Qwiic OTOS Py
+=============================================
+
+The Python Package for the Qwiic Optical Tracking Odometry Sensor. 
