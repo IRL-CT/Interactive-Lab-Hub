@@ -792,7 +792,7 @@ These improvements turned the prototype from a fun demo into a **stable, repeata
 
 **Final video after change based on user test feedback**
 
-https://github.com/user-attachments/assets/f0019611-ec0c-43cb-9b13-cbb12069fa66
+https://github.com/user-attachments/assets/e071ccdf-3325-4849-8d83-3c279bd54c86
 
 **User Test - Front**
 
