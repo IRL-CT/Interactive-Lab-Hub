@@ -514,181 +514,217 @@ Build a cardboard prototype of your design.
 
 # LAB PART 2
 
-### Part 2
-
 Following exploration and reflection from Part 1, complete the "looks like," "works like" and "acts like" prototypes for your design, reiterated below.
 
 
-
-### Part E
-
-#### Chaining Devices and Exploring Interaction Effects
-
-For Part 2, you will design and build a fun interactive prototype using multiple inputs and outputs. This means chaining Qwiic and STEMMA QT devices (e.g., buttons, encoders, sensors, servos, displays) and/or combining with traditional breadboard prototyping (e.g., LEDs, buzzers, etc.).
-
-**Your prototype should:**
-- Combine at least two different types of input and output devices, inspired by your physical considerations from Part 1.
-- Be playful, creative, and demonstrate multi-input/multi-output interaction.
-
-**Document your system with:**
-- Code for your multi-device demo
-- Photos and/or video of the working prototype in action
-- A simple interaction diagram or sketch showing how inputs and outputs are connected and interact
-- Written reflection: What did you learn about multi-input/multi-output interaction? What was fun, surprising, or challenging?
-
-**Questions to consider:**
-- What new types of interaction become possible when you combine two or more sensors or actuators?
-- How does the physical arrangement of devices (e.g., where the encoder or sensor is placed) change the user experience?
-- What happens if you use one device to control or modulate another (e.g., encoder sets a threshold, sensor triggers an action)?
-- How does the system feel if you swap which device is "primary" and which is "secondary"?
-
-Try chaining different combinations and document what you discover!
-
-See encoder_accel_servo_dashboard.py in the Lab 4 folder for an example of chaining together three devices.
-
-**`Lab 4/encoder_accel_servo_dashboard.py`**
-
-#### Using Multiple Qwiic Buttons: Changing I2C Address (Physically & Digitally)
-
-If you want to use more than one Qwiic Button in your project, you must give each button a unique I2C address. There are two ways to do this:
-
-##### 1. Physically: Soldering Address Jumpers
-
-On the back of the Qwiic Button, you'll find four solder jumpers labeled A0, A1, A2, and A3. By bridging these with solder, you change the I2C address. Only one button on the chain can use the default address (0x6F).
-
-**Address Table:**
-
-| A3 | A2 | A1 | A0 | Address (hex) |
-|----|----|----|----|---------------|
-|  0 |  0 |  0 |  0 |    0x6F       |
-|  0 |  0 |  0 |  1 |    0x6E       |
-|  0 |  0 |  1 |  0 |    0x6D       |
-|  0 |  0 |  1 |  1 |    0x6C       |
-|  0 |  1 |  0 |  0 |    0x6B       |
-|  0 |  1 |  0 |  1 |    0x6A       |
-|  0 |  1 |  1 |  0 |    0x69       |
-|  0 |  1 |  1 |  1 |    0x68       |
-|  1 |  0 |  0 |  0 |    0x67       |
-| ...| ...| ...| ... |     ...      |
-
-For example, if you solder A0 closed (leave A1, A2, A3 open), the address becomes 0x6E.
-
-**Soldering Tips:**
-- Use a small amount of solder to bridge the pads for the jumper you want to close.
-- Only one jumper needs to be closed for each address change (see table above).
-- Power cycle the button after changing the jumper.
-
-##### 2. Digitally: Using Software to Change Address
-
-You can also change the address in software (temporarily or permanently) using the example script `qwiic_button_ex6_changeI2CAddress.py` in the Lab 4 folder. This is useful if you want to reassign addresses without soldering.
-
-Run the script and follow the prompts:
-```bash
-python qwiic_button_ex6_changeI2CAddress.py
-```
-Enter the new address (e.g., 5B for 0x5B) when prompted. Power cycle the button after changing the address.
-
-**Note:** The software method is less foolproof and you need to make sure to keep track of which button has which address!
-
-
-##### Using Multiple Buttons in Code
-
-After setting unique addresses, you can use multiple buttons in your script. See these example scripts in the Lab 4 folder:
-
-- **`qwiic_1_button.py`**: Basic example for reading a single Qwiic Button (default address 0x6F). Run with:
-	```bash
-	python qwiic_1_button.py
-	```
-
-- **`qwiic_button_led_demo.py`**: Demonstrates using two Qwiic Buttons at different addresses (e.g., 0x6F and 0x6E) and controlling their LEDs. Button 1 toggles its own LED; Button 2 toggles both LEDs. Run with:
-	```bash
-	python qwiic_button_led_demo.py
-	```
-
-Here is a minimal code example for two buttons:
-```python
-import qwiic_button
-
-# Default button (0x6F)
-button1 = qwiic_button.QwiicButton()
-# Button with A0 soldered (0x6E)
-button2 = qwiic_button.QwiicButton(0x6E)
-
-button1.begin()
-button2.begin()
-
-while True:
-		if button1.is_button_pressed():
-				print("Button 1 pressed!")
-		if button2.is_button_pressed():
-				print("Button 2 pressed!")
-```
-
-For more details, see the [Qwiic Button Hookup Guide](https://learn.sparkfun.com/tutorials/qwiic-button-hookup-guide/all#i2c-address).
-
 ---
 
-### PCF8574 GPIO Expander: Add More Pins Over I²C
+### Part C: Chaining Devices and Exploring Interaction Effects
 
-Sometimes your Pi’s header GPIO pins are already full (e.g., with a display or HAT). That’s where an I²C GPIO expander comes in handy.
+For Part 2, We designed and built a fun interactive prototype using multiple inputs and outputs. We use two inputs and two outputs to give users hints about the distance between user's head and their computers.
 
-We use the Adafruit PCF8574 I²C GPIO Expander, which gives you 8 extra digital pins over I²C. It’s a great way to prototype with LEDs, buttons, or other components on the breadboard without worrying about pin conflicts—similar to how Arduino users often expand their pinouts when prototyping physical interactions.
+#### Detail Function:
 
-**Why is this useful?**
-- You only need two wires (I²C: SDA + SCL) to unlock 8 extra GPIOs.
-- It integrates smoothly with CircuitPython and Blinka.
-- It allows a clean prototyping workflow when the Pi’s 40-pin header is already occupied by displays, HATs, or sensors.
-- Makes breadboard setups feel more like an Arduino-style prototyping environment where it’s easy to wire up interaction elements.
+- Proximity Detection
+	- The sensor continuously measures the distance between the user’s head and the computer area.
+	- When the user gets too close, the system switches from the “normal” state to the “warning” state.
 
-**Demo Script:** `Lab 4/gpio_expander.py`
 
-<p align="center">
-	<img src="gpio_leds.gif" alt="GPIO Expander LED Demo" width="400"/>
-</p>
+- Visual Feedback (Screen)
+	- In the normal state, the screen displays a motivational or positive message to encourage healthy posture.
+	- In the warning state, the screen turns red and shows a clear alert message (“You are too close to the screen”) to draw attention.
 
-We connected 8 LEDs (through 220 Ω resistors) to the expander and ran a little light show. The script cycles through three patterns:
-- Chase (one LED at a time, left to right)
-- Knight Rider (back-and-forth sweep)
-- Disco (random blink chaos)
 
-Every few runs, the script swaps to the next pattern automatically:
-```bash
-python gpio_expander.py
+- Audio Feedback (Speaker)
+	- When the warning is triggered, the speaker plays a sound alert.
+	- This adds an additional layer of feedback that is harder to ignore than visuals alone.
+
+- User Control (Buttons)
+	- One button allows the user to start or activate the monitoring system.
+	- The second button lets the user silence the audio alert or stop the notification, giving the user agency.
+
+- Interaction Flow
+	- The sensor detects → screen and speaker react → user acknowledges with a button press → system resets.
+	- This creates a loop of detection, feedback, and user response.
+
+
+##### Input: 
+
+1. Proximity Sensor: The sensor is placed next to the computer (typically around 40 cm away). When it detects an object below it—usually the user’s head—it triggers the application to remind the user to maintain a proper distance from the screen.
+
+2. Two Led Button: Users can press one button to start the application, while the second button is used to stop notifications. For example, if the application plays a sound to warn the user that they are too close to the screen, pressing the second button will silence the alert.
+
+##### Output: 
+1. Screen: When the application is in a normal state (no warning is needed), the screen displays a motivational message to encourage the user to maintain good posture and continue working. When a warning is triggered, the screen switches to a red background and displays the message “You are too close to the screen” to alert the user.
+2. Speaker: When a warning is triggered, which indicates that the user is too close to the computer, the speaker plays an alert sound.
+
+
+**Hardware Block Diagram**
+
+```scss
+  ┌─────────────────────┐
+  │   Proximity Sensor  │
+  └─────────┬───────────┘
+            │  (distance data)
+            ▼
+  ┌─────────────────────┐
+  │     Raspberry Pi    │
+  └───────┬───────┬─────┘
+          │       │         │
+       (visual) (audio) (user input)
+          ▼       ▼         ▼
+      ┌──────┐  ┌───────┐  ┌───────┐
+      │Screen│  │Speaker│  │Buttons│
+      └──────┘  └───────┘  └───────┘
+
+
 ```
 
-This is a playful way to visualize how the expander works, but the same technique applies if you wanted to prototype buttons, switches, or other interaction elements. It’s a lightweight, flexible addition to your prototyping toolkit.
+**Interaction Flow Diagram**
 
----
+```pgsql
+           ┌────────────────────────┐
+           │ Sensor checks distance │
+           └─────────────┬──────────┘
+                         │
+        ┌────────────────┴─────────────────┐
+        │                                  │
+        ▼                                  ▼
+  (User at safe distance)          (User too close)
+        │                                  │
+        ▼                                  ▼
+Screen shows motivation          Screen turns red + alert text
+        │                                  │
+        ▼                                  ▼
+     No sound                       Speaker plays warning
+                                           │
+                                           ▼
+                          User presses button to silence alert
+                                           │
+                                           ▼
+                           System returns to normal state
 
-### Servo Control with SparkFun Servo pHAT
-For this lab, you will use the **SparkFun Servo pHAT** to control a micro servo (such as the Miuzei MS18 or similar 9g servo). The Servo pHAT stacks directly on top of the Adafruit Mini PiTFT (135×240) display without pin conflicts:
-- The Mini PiTFT uses SPI (GPIO22, 23, 24, 25) for display and buttons ([SPI pinout](https://pinout.xyz/pinout/spi)).
-- The Servo pHAT uses I²C (GPIO2 & 3) for the PCA9685 servo driver ([I2C pinout](https://pinout.xyz/pinout/i2c)).
-- Since SPI and I²C are separate buses, you can use both boards together.
-**⚡ Power:**
-- Plug a USB-C cable into the Servo pHAT to provide enough current for the servos. The Pi itself should still be powered by its own USB-C supply. Do NOT power servos from the Pi’s 5V rail.
-
-<p align="center">
-	<img src="Servo_pHAT.gif" alt="Servo pHAT Demo" width="400"/>
-</p>
-
-**Basic Python Example:**
-We provide a simple example script: `Lab 4/pi_servo_hat_test.py` (requires the `pi_servo_hat` Python package).
-Run the example:
 ```
-python pi_servo_hat_test.py
+
+**System Flowchart**
+
+```pgsql
+              ┌──────────────────────┐
+              │   System Started     │
+              │ (User presses start) │
+              └───────────┬──────────┘
+                          │
+                          ▼
+              ┌──────────────────────┐
+              │ Sensor reads distance│
+              └───────────┬──────────┘
+                          │
+            ┌─────────────┴─────────────┐
+            │                           │
+            ▼                           ▼
+   ┌───────────────────┐       ┌─────────────────────┐
+   │ User far enough   │ NO    │  User too close     │ YES
+   │ (safe distance)   │────── │  (below threshold)  │
+   └─────────┬─────────┘       └─────────┬───────────┘
+             │                           │
+             ▼                           ▼
+  ┌────────────────────┐      ┌────────────────────────┐
+  │ Show motivational  │      │  Turn screen red       │
+  │ text on screen     │      │  Display warning text  │
+  └─────────┬──────────┘      └─────────┬──────────────┘
+            │                           │
+            ▼                           ▼
+  ┌────────────────────┐      ┌────────────────────────┐
+  │   No sound played  │      │  Speaker plays sound   │
+  └─────────┬──────────┘      └─────────┬──────────────┘
+            │                           │
+            │              ┌────────────┴────────────┐
+            │              │  User presses stop btn  │
+            │              └────────────┬────────────┘
+            │                           ▼
+            │                ┌──────────────────────┐
+            └───────────────▶│   Sound is silenced  │
+                             │ System goes back to  │
+                             │     normal state     │
+                             └───────────┬──────────┘
+                                         │
+                                         ▼
+                                 (Loop continues)
+
 ```
-For more details and advanced usage, see the [official SparkFun Servo pHAT documentation](https://learn.sparkfun.com/tutorials/pi-servo-phat-v2-hookup-guide/all#resources-and-going-further).
-A servo motor is a rotary actuator that allows for precise control of angular position. The position is set by the width of an electrical pulse (PWM). You can read [this Adafruit guide](https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/servo-motors) to learn more about how servos work.
 
----
+#### System Architecture
+
+| Layer                   | Components                                                                            | Role                                                            |
+| ----------------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| **Sensors (Input)**     | APDS9960 proximity sensor, Qwiic Button #1 & #2, GPIO buttons                         | Detect user proximity and button interaction                    |
+| **Compute & Logic**     | Raspberry Pi running Python main loop                                                 | Coordinates all logic and state machine (NORMAL / WARNING mode) |
+| **Communication Buses** | I2C (APDS9960 + QWIIC buttons), SPI (TFT display), GPIO (backlight + onboard buttons) | Hardware communication backbone                                 |
+| **Output**              | ST7789 TFT screen, backlight, text-to-speech (espeak)                                 | Displays user feedback and audible warning                      |
 
 
-### Part F
 
-### Record
+#### Demo (Photos and/or video of the working prototype in action)
 
-Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
+Coding: look at [demo.py](https://github.com/JessicaDJ0807/Interactive-Lab-Hub/blob/Fall2025/Lab%204/demo.py)
+
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
+
+![img](./assets/looks_like.png)
+
 * "Works like": shows what the device can do
+
+![img](./assets/works_like.png)
+
 * "Acts like": shows how a person would interact with the device
+
+https://github.com/user-attachments/assets/16318d59-851d-438b-872a-084e3ad348d3
+
+
+#### Users Feedback
+* At first the sound surprised the user, but it was helpful because they sometimes don’t notice visual warnings when they're focused on the screen.
+* They like that they can press a button to stop the sound. It feels like they still have control, instead of being stuck with an alarm.
+* When the sensor was placed in front of them, it triggered too often and felt a bit annoying. But once you moved it to the side, it felt much smoother and more natural.
+
+---
+
+### Part D. Written Reflection
+
+- Learning about multi-input/multi-output interaction
+
+	- We learned that combining multiple sensors and actuators enables much richer and more meaningful interaction than using a single component. A proximity sensor alone can only detect that the user is too close, but it cannot communicate anything back. Once we added the screen, speaker, and buttons, the system could respond in multiple ways, including displaying a visual warning, playing a sound, or showing encouragement when the user maintained a healthy distance. This made the feedback intuitive and noticeable, transforming the system from a hidden measurement tool into an interactive assistant.
+
+- New types of interaction from combining components
+
+	- A proximity sensor alone only measures distance, but when paired with a screen and speaker, it becomes a behavioral feedback tool.
+
+	- Adding buttons introduces two-way interaction. The user can acknowledge or silence alerts, not just passively receive them.
+
+- Impact of physical arrangement
+
+	- We discovered that the placement, distance, and angle of the sensor significantly shaped the user experience. When the sensor was positioned directly in front of the user, it triggered constant alerts and felt intrusive, even though it was technically accurate. After moving it to the side and angling it downward, the detection became smoother and more reliable, and the feedback felt more natural and helpful rather than annoying. This showed us that hardware setup affects how the interaction feels, not just how well it measures.
+
+- Using one device to modulate another
+
+	- The sensor triggers the warning, but the button controls how the warning continues.
+
+	- This creates a feedback loop: sensor → system response → user action → system change.
+
+- Primary vs. secondary device roles
+
+	- When the sensor is “primary,” the system feels automatic and proactive.
+
+	- When the button is “primary,” the system feels more user-controlled and cooperative.
+
+	- Switching roles changes the tone of the interaction from “monitoring” to “assisting.”
+
+- Fun, surprising, and challenging aspects
+
+	- Fun: It was fun because we got to see something very simple, like a sensor, a screen, or a button, turn into a meaningful interaction once they were combined. Each component by itself felt basic, but when we connected them together, the system suddenly felt responsive. It was satisfying to watch a small physical change (like moving closer to the screen) trigger a chain of reactions that ended in useful feedback for the user. Building that kind of visible cause-and-effect interaction made the project feel rewarding rather than just technical.
+
+	- Surprising: It was surprising because at first we assumed the sensor’s code and detection range would matter most, but we later realized that the physical placement had an even bigger impact on usability than the technical settings. Just moving the sensor a few centimeters or changing the angle completely changed how the system “felt” to the user, either calm and supportive, or overly aggressive and annoying. We didn’t expect something so simple and low-level (hardware positioning) to influence the overall user experience more than the logic running in the software.
+
+	- Challenging: We found that one of the biggest challenges was choosing a physical location for the sensor that provided useful feedback without becoming annoying. When the sensor was placed too close or directly in front of the user, it triggered constant warnings, even small head movements caused alerts, which felt frustrating. But when we moved it slightly to the side and adjusted the angle, the feedback became much more natural and less intrusive. This showed us that where the hardware is physically positioned matters just as much as how the software detects distance.
+
+
+
