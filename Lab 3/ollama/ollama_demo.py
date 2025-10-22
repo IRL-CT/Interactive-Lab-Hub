@@ -31,24 +31,28 @@ def speak_text(text):
     print(f"Assistant: {clean_text}")
     subprocess.run(['espeak', f'"{clean_text}"'], shell=True, check=False)
 
-def query_ollama(prompt, model="phi3:mini"):
-    """Send a text prompt to Ollama and get response"""
+def query_ollama(prompt, model="qwen2.5:0.5b-instruct"):
+    """Send a text prompt to Ollama and stream response"""
     try:
-        response = requests.post(
+        with requests.post(
             "http://localhost:11434/api/generate",
             json={
                 "model": model,
                 "prompt": prompt,
-                "stream": False
+                "stream": True
             },
-            timeout=30
-        )
-        
-        if response.status_code == 200:
-            return response.json().get('response', 'No response')
-        else:
-            return f"Error: {response.status_code}"
-    
+            stream=True,
+            timeout=300
+        ) as r:
+            response_text = ""
+            for line in r.iter_lines():
+                if line:
+                    data = json.loads(line.decode("utf-8"))
+                    token = data.get("response", "")
+                    response_text += token
+                    print(token, end="", flush=True)
+            print()
+            return response_text
     except Exception as e:
         return f"Error: {e}"
 

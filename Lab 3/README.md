@@ -147,7 +147,7 @@ python faster_whisper_try.py
 ```
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
-### 🤖 NEW: AI-Powered Conversations with Ollama
+### AI-Powered Conversations with Ollama
 
 Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
 
@@ -159,7 +159,13 @@ Want to add intelligent conversation capabilities to your voice projects? **Olla
 curl -fsSL https://ollama.com/install.sh | sh
 
 # Download recommended model for Pi 5
-ollama pull phi3:mini
+# Option A: Faster, smaller Qwen2.5 0.5B Instruct model (recommended)
+ollama pull qwen2.5:0.5b-instruct
+# Option B: Even lighter quantized build (smallest RAM/VRAM use)
+ollama pull qwen2.5:0.5b-instruct-q4_0
+
+# Test the model (replace with your chosen model)
+ollama run qwen2.5:0.5b-instruct
 
 # Install system dependencies for audio (required for pyaudio)
 sudo apt-get update
@@ -198,16 +204,29 @@ python3 ollama_web_app.py
 Simple example to add AI to any project:
 ```python
 import requests
+import json
 
-def ask_ai(question):
-    response = requests.post(
-        "http://localhost:11434/api/generate",
-        json={"model": "phi3:mini", "prompt": question, "stream": False}
-    )
-    return response.json().get('response', 'No response')
+def ask_ai(question, model="qwen2.5:0.5b-instruct"):
+    """Ask AI with streaming response for better performance"""
+    try:
+        with requests.post(
+            "http://localhost:11434/api/generate",
+            json={"model": model, "prompt": question, "stream": True},
+            stream=True,
+            timeout=300
+        ) as r:
+            response_text = ""
+            for line in r.iter_lines():
+                if line:
+                    data = json.loads(line.decode("utf-8"))
+                    response_text += data.get("response", "")
+            return response_text
+    except Exception as e:
+        return f"Error: {e}"
 
 # Use it anywhere!
 answer = ask_ai("How should I greet users?")
+print(answer)
 ```
 
 **📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
