@@ -41,6 +41,9 @@ D) [Reflect](#part-d)
 ### Part A
 ### Play with different sense-making algorithms.
 
+<details>
+<summary>Show Instructions</summary>
+  
 #### Pytorch for object recognition
 
 For this first demo, you will be using PyTorch and running a MobileNet v2 classification model in real time (30 fps+) on the CPU. We will be following steps adapted from [this tutorial](https://pytorch.org/tutorials/intermediate/realtime_rpi.html).
@@ -128,6 +131,14 @@ Teachable machines provides an audio classifier too. If you want to use audio cl
 
 In an earlier version of this class students experimented with foundational computer vision techniques such as face and flow detection. Techniques like these can be sufficient, more performant, and allow non discrete classification. Find the material here:
 [CV_optional/cv.md](CV_optional/cv.md).
+</details>
+
+#### Pytorch for object recognition
+
+#### MediaPipe
+[Video](https://drive.google.com/file/d/183Ai6g_7RC0FEAljpmUj8FI_ZzhLRPVS/view?usp=sharing)
+
+#### Teachable Machines
 
 ### Part B
 ### Construct a simple interaction.
