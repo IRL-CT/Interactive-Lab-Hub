@@ -60,33 +60,41 @@ def ask_moondream(image_path, prompt="What do you see in this image? Describe it
     print(f"\nAsking Moondream: {prompt}")
     print("\nMoondream: ", end="", flush=True)
     
-    # Query Moondream with streaming
-    response = requests.post(
-        "http://localhost:11434/api/generate",
-        json={
-            "model": "moondream:latest",
-            "prompt": prompt,
-            "images": [image_data],
-            "stream": True
-        },
-        timeout=300,  # Increased timeout to 5 minutes
-        stream=True
-    )
-    
-    if response.status_code == 200:
-        full_response = ""
-        for line in response.iter_lines():
-            if line:
-                import json
-                chunk = json.loads(line)
-                token = chunk.get('response', '')
-                print(token, end="", flush=True)
-                full_response += token
+    try:
+        # Query Moondream with streaming
+        response = requests.post(
+            "http://localhost:11434/api/generate",
+            json={
+                "model": "moondream:latest",
+                "prompt": prompt,
+                "images": [image_data],
+                "stream": True
+            },
+            timeout=300,  # Increased timeout to 5 minutes
+            stream=True
+        )
         
-        print("\n")  # New line after response
-        return full_response
-    else:
-        print(f"Error: {response.status_code}")
+        if response.status_code == 200:
+            full_response = ""
+            for line in response.iter_lines():
+                if line:
+                    import json
+                    chunk = json.loads(line)
+                    token = chunk.get('response', '')
+                    print(token, end="", flush=True)
+                    full_response += token
+            
+            print("\n")  # New line after response
+            return full_response
+        else:
+            print(f"\nError: {response.status_code}")
+            return None
+    except requests.exceptions.Timeout:
+        print("\n[TIMEOUT] Moondream is taking too long. The model might be processing a large image.")
+        print("Tip: Try using a smaller image or wait for the model to finish loading.")
+        return None
+    except Exception as e:
+        print(f"\n[ERROR] {e}")
         return None
 
 def main():
@@ -109,7 +117,10 @@ def main():
         question = input("\nYou: ").strip()
         if question.lower() in ['quit', 'exit', 'q', '']:
             break
-        ask_moondream(image_path, question)
+        if question:
+            result = ask_moondream(image_path, question)
+            if result is None:
+                print("Error getting response. Try again or type 'quit' to exit.")
     
     print("Done!")
 
