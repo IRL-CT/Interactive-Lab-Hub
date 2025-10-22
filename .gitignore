@@ -1,5 +1,4 @@
 .DS_Store
-*.tflite
 *.scorer
 
 # Virtual environments
@@ -57,3 +56,6 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+__*
+.venv*
+.venv/
