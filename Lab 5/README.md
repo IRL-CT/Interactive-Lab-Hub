@@ -68,7 +68,7 @@ python infer.py
 
 The first 2 inferences will be slower. Now, you can try placing several objects in front of the camera.
 
-Read the `infer.py` script, and get familiar with the code. You can change the video resolution and frames per second (fps). You can also use the the weights of the larger pre-trained mobilenet_v3_large model as described [here](https://pytorch.org/tutorials/intermediate/realtime_rpi.html#model-choices).
+Read the `infer.py` script and become familiar with the code. You can change the video resolution and frames per second (FPS). You may also use the weights of the larger pre-trained mobilenet_v3_large model, as described [here](https://pytorch.org/tutorials/intermediate/realtime_rpi.html#model-choices).
 
 #### More classes
 
