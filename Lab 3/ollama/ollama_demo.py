@@ -165,7 +165,10 @@ def listen_microphone(duration=5):
         recognizer = KaldiRecognizer(model, 16000)
         recognizer.SetWords(True)
         
-        # Suppress stderr for PyAudio initialization (Jack server errors)
+        # Show message FIRST
+        print(f"🎤 Listening for {duration} seconds... Speak now!")
+        
+        # Suppress stderr for all PyAudio operations (Jack/ALSA errors)
         import sys
         original_stderr = sys.stderr
         sys.stderr = open(os.devnull, 'w')
@@ -185,11 +188,6 @@ def listen_microphone(duration=5):
         if webcam_index is None:
             webcam_index = 0  # Default to first device
         
-        # Restore stderr before user interaction
-        sys.stderr = original_stderr
-        
-        print(f"🎤 Listening for {duration} seconds... Speak now!")
-        
         stream = p.open(format=pyaudio.paInt16,
                        channels=1,
                        rate=16000,
@@ -198,6 +196,9 @@ def listen_microphone(duration=5):
                        frames_per_buffer=4096)
         
         stream.start_stream()
+        
+        # Restore stderr for user feedback
+        sys.stderr = original_stderr
         
         # Record for specified duration
         all_text = []
@@ -224,14 +225,23 @@ def listen_microphone(duration=5):
         # Combine all recognized text
         text = ' '.join(all_text).strip()
         
+        # Suppress stderr again for cleanup
+        sys.stderr = open(os.devnull, 'w')
+        
         # Cleanup
         stream.stop_stream()
         stream.close()
         p.terminate()
         
+        # Restore stderr
+        sys.stderr = original_stderr
+        
         return text if text else None
         
     except Exception as e:
+        # Make sure stderr is restored
+        import sys
+        sys.stderr = original_stderr
         print(f"Error during voice input: {e}")
         import traceback
         traceback.print_exc()

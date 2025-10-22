@@ -6,18 +6,40 @@ This folder contains example scripts demonstrating how to integrate Ollama AI mo
 
 ### 1. ollama_demo.py ✅ (Recommended)
 
-**Status:** Working and tested
+**Status:** Working and tested with Bluetooth speaker support and voice input
 
-Basic demo that shows how to interact with Ollama:
-- Text chat interface
-- Voice output option (text-to-speech)
-- Simple query testing
+Interactive demo with multiple modes:
+- **Text chat** - Type to Ollama, get text responses (no audio)
+- **Voice response** - Type messages, Ollama speaks through Bluetooth speaker
+- **Voice conversation** - Speak to Ollama via microphone, it speaks back (requires Vosk)
+- **Audio tests** - Verify Bluetooth speaker and microphone setup
+
+**Features:**
+- **Automatic Bluetooth Detection**: Detects and uses your Bluetooth speaker automatically
+- **Fallback Support**: Uses default audio if Bluetooth not available
+- **Vosk Integration**: Speech-to-text for voice conversations
+- **Multiple modes** to test different interaction types
+
+**Menu Options:**
+1. Text Chat - NO audio, text only
+2. Voice Response - You type, Ollama speaks
+3. Voice Conversation - You speak, Ollama speaks (requires Vosk + microphone)
+4. Test Ollama - Simple AI query
+5. Test Audio - Verify Bluetooth speaker
+6. Test Microphone - Verify voice input works
 
 **Usage:**
 ```bash
 source ollama_venv/bin/activate
 python3 ollama_demo.py
 ```
+
+**Requirements for Voice Conversation:**
+- Vosk and PyAudio installed: `pip install vosk pyaudio`
+- Vosk model (auto-downloaded when you run `vosk-transcriber`)
+- Working microphone (test with: `arecord -d 3 test.wav && aplay test.wav`)
+
+**Note:** You may see some "Jack server" or "ALSA" warning messages when using the microphone - these are normal and can be safely ignored. The voice features will work correctly despite these warnings.
 
 ### 2. ollama_voice_assistant.py 🚧 (Experimental)
 
