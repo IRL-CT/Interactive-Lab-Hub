@@ -15,6 +15,7 @@ import json
 import subprocess
 import sys
 import os
+import tempfile
 
 # Set UTF-8 encoding for output
 if sys.stdout.encoding != 'UTF-8':
@@ -24,12 +25,51 @@ if sys.stderr.encoding != 'UTF-8':
     import codecs
     sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
 
+def get_bluetooth_sink():
+    """Get the Bluetooth audio sink name"""
+    try:
+        result = subprocess.run(['pactl', 'list', 'short', 'sinks'], 
+                              capture_output=True, text=True, check=True)
+        for line in result.stdout.split('\n'):
+            if 'bluez' in line.lower():
+                parts = line.split()
+                if len(parts) >= 2:
+                    return parts[1]  # Return sink name
+    except Exception as e:
+        print(f"Warning: Could not detect Bluetooth sink: {e}")
+    return None
+
 def speak_text(text):
-    """Simple text-to-speech using espeak"""
+    """Text-to-speech using espeak with automatic Bluetooth speaker detection"""
     # Clean text to avoid encoding issues
     clean_text = text.encode('ascii', 'ignore').decode('ascii')
     print(f"Assistant: {clean_text}")
-    subprocess.run(['espeak', f'"{clean_text}"'], shell=True, check=False)
+    
+    # Get Bluetooth sink
+    bt_sink = get_bluetooth_sink()
+    
+    if bt_sink:
+        # Use espeak with paplay to route to Bluetooth
+        try:
+            # Generate speech to stdout, pipe to paplay with Bluetooth sink
+            espeak_process = subprocess.Popen(
+                ['espeak', '--stdout', clean_text],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.DEVNULL
+            )
+            subprocess.run(
+                ['paplay', '--device', bt_sink],
+                stdin=espeak_process.stdout,
+                stderr=subprocess.DEVNULL,
+                check=False
+            )
+            espeak_process.wait()
+        except Exception as e:
+            print(f"Bluetooth audio error: {e}, falling back to default")
+            subprocess.run(['espeak', clean_text], check=False)
+    else:
+        # Fallback to default audio output
+        subprocess.run(['espeak', clean_text], check=False)
 
 def query_ollama(prompt, model="qwen2.5:0.5b-instruct"):
     """Send a text prompt to Ollama and stream response"""
@@ -85,6 +125,21 @@ def voice_response_demo():
         response = query_ollama(user_input)
         speak_text(response)
 
+def test_audio():
+    """Test audio output and Bluetooth speaker"""
+    print("\n=== AUDIO TEST ===")
+    bt_sink = get_bluetooth_sink()
+    if bt_sink:
+        print(f"✓ Bluetooth speaker detected: {bt_sink}")
+        print("Testing audio output...")
+        speak_text("Audio test. If you hear this, your Bluetooth speaker is working.")
+        return True
+    else:
+        print("⚠ No Bluetooth speaker detected. Using default audio output.")
+        print("Testing audio output...")
+        speak_text("Audio test. Using default speaker.")
+        return True
+
 def check_ollama():
     """Check if Ollama is running and model is available"""
     try:
@@ -92,13 +147,13 @@ def check_ollama():
         if response.status_code == 200:
             models = response.json().get('models', [])
             model_names = [m['name'] for m in models]
-            print(f"Ollama is running. Available models: {model_names}")
+            print(f"✓ Ollama is running. Available models: {model_names}")
             return True
         else:
-            print("Ollama is not responding")
+            print("✗ Ollama is not responding")
             return False
     except Exception as e:
-        print(f"Cannot connect to Ollama: {e}")
+        print(f"✗ Cannot connect to Ollama: {e}")
         print("Make sure Ollama is running with: ollama serve")
         return False
 
@@ -116,9 +171,10 @@ def main():
         print("1. Text Chat (type to Ollama)")
         print("2. Voice Response (Ollama speaks responses)")
         print("3. Test Ollama (simple query)")
-        print("4. Exit")
+        print("4. Test Audio")
+        print("5. Exit")
         
-        choice = input("\nEnter choice (1-4): ")
+        choice = input("\nEnter choice (1-5): ")
         
         if choice == "1":
             text_chat_demo()
@@ -128,6 +184,8 @@ def main():
             response = query_ollama("Say hello and introduce yourself briefly")
             print(f"Ollama: {response}")
         elif choice == "4":
+            test_audio()
+        elif choice == "5":
             print("Goodbye!")
             break
         else:
