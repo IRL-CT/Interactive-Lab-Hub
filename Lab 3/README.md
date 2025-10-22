@@ -179,57 +179,23 @@ source ollama_venv/bin/activate
 # Install Python dependencies in separate environment
 pip install -r ollama_requirements.txt
 ```
-#### Ready-to-Use Scripts
 
-We've created three Ollama integration scripts for different use cases:
+#### Try the Demo
 
-**1. Basic Demo** - Learn how Ollama works:
+Test Ollama with the basic demo script:
+
 ```bash
+cd ollama/
+source ollama_venv/bin/activate
 python3 ollama_demo.py
 ```
 
-**2. Voice Assistant** - Full speech-to-text + AI + text-to-speech:
-```bash
-python3 ollama_voice_assistant.py
-```
+This demo lets you:
+- Chat with the AI via text input
+- Have the AI respond with voice output
+- Test the Ollama connection and available models
 
-**3. Web Interface** - Beautiful web-based chat with voice options:
-```bash
-python3 ollama_web_app.py
-# Then open: http://localhost:5000
-```
-
-#### Integration in Your Projects
-
-Simple example to add AI to any project:
-```python
-import requests
-import json
-
-def ask_ai(question, model="qwen2.5:0.5b-instruct"):
-    """Ask AI with streaming response for better performance"""
-    try:
-        with requests.post(
-            "http://localhost:11434/api/generate",
-            json={"model": model, "prompt": question, "stream": True},
-            stream=True,
-            timeout=300
-        ) as r:
-            response_text = ""
-            for line in r.iter_lines():
-                if line:
-                    data = json.loads(line.decode("utf-8"))
-                    response_text += data.get("response", "")
-            return response_text
-    except Exception as e:
-        return f"Error: {e}"
-
-# Use it anywhere!
-answer = ask_ai("How should I greet users?")
-print(answer)
-```
-
-**📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
+**For audio troubleshooting, code examples, and advanced scripts:** See `ollama/TROUBLESHOOTING.md`, `ollama/README.md`, and `ollama/OLLAMA_SETUP.md`
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
 

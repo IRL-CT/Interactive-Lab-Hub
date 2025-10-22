@@ -36,7 +36,7 @@ except ImportError:
     print("pyttsx3 not available, using espeak for TTS")
 
 class OllamaVoiceAssistant:
-    def __init__(self, model_name="phi3:mini", ollama_url="http://localhost:11434"):
+    def __init__(self, model_name="qwen2.5:0.5b-instruct", ollama_url="http://localhost:11434"):
         self.model_name = model_name
         self.ollama_url = ollama_url
         self.recognizer = sr.Recognizer()
@@ -115,28 +115,29 @@ class OllamaVoiceAssistant:
             return None
 
     def query_ollama(self, prompt, system_prompt=None):
-        """Send a query to Ollama and get response"""
+        """Send a query to Ollama and stream response"""
         try:
             data = {
                 "model": self.model_name,
                 "prompt": prompt,
-                "stream": False
+                "stream": True
             }
             
             if system_prompt:
                 data["system"] = system_prompt
             
-            response = requests.post(
+            with requests.post(
                 f"{self.ollama_url}/api/generate",
                 json=data,
-                timeout=30
-            )
-            
-            if response.status_code == 200:
-                result = response.json()
-                return result.get('response', 'Sorry, I could not generate a response.')
-            else:
-                return f"Error: Ollama API returned status {response.status_code}"
+                stream=True,
+                timeout=300
+            ) as r:
+                response_text = ""
+                for line in r.iter_lines():
+                    if line:
+                        chunk = json.loads(line.decode("utf-8"))
+                        response_text += chunk.get("response", "")
+                return response_text if response_text else "Sorry, I could not generate a response."
                 
         except requests.exceptions.Timeout:
             return "Sorry, the response took too long. Please try again."

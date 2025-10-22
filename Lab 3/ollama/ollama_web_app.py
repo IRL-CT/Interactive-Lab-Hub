@@ -21,25 +21,27 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Ollama configuration
 OLLAMA_URL = "http://localhost:11434"
-DEFAULT_MODEL = "phi3:mini"
+DEFAULT_MODEL = "qwen2.5:0.5b-instruct"
 
 def query_ollama(prompt, model=DEFAULT_MODEL):
-    """Query Ollama and return response"""
+    """Query Ollama and stream response"""
     try:
-        response = requests.post(
+        with requests.post(
             f"{OLLAMA_URL}/api/generate",
             json={
                 "model": model,
                 "prompt": prompt,
-                "stream": False
+                "stream": True
             },
-            timeout=30
-        )
-        
-        if response.status_code == 200:
-            return response.json().get('response', 'No response generated')
-        else:
-            return f"Error: Ollama returned status {response.status_code}"
+            stream=True,
+            timeout=300
+        ) as r:
+            response_text = ""
+            for line in r.iter_lines():
+                if line:
+                    data = json.loads(line.decode("utf-8"))
+                    response_text += data.get("response", "")
+            return response_text if response_text else "No response generated"
     
     except requests.exceptions.Timeout:
         return "Sorry, the response took too long. Please try again."
@@ -134,6 +136,6 @@ def status():
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
 if __name__ == '__main__':
-    print("🚀 Starting Ollama Flask Web Interface...")
+    print("Starting Ollama Flask Web Interface...")
     print("Open your browser to http://localhost:5000")
     socketio.run(app, host='0.0.0.0', port=5000, debug=True)
