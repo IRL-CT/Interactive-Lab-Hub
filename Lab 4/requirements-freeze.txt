@@ -11,7 +11,7 @@ adafruit-circuitpython-pixelbuf==2.0.3
 adafruit-circuitpython-register==1.9.17
 adafruit-circuitpython-requests==2.0.1
 adafruit-circuitpython-rgb-display==3.12.0
-adafruit-circuitpython-seesaw==1.15.1
+adafruit-circuitpython-seesaw==1.16.7
 adafruit-circuitpython-servokit==1.3.16
 adafruit-circuitpython-ssd1306==2.12.15
 adafruit-circuitpython-typing==1.9.4

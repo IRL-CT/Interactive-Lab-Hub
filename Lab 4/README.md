@@ -1,6 +1,89 @@
 
 # Ph-UI!!!
 
+Team Members: JUNXIONG CHEN (jc3828), Chiahsuan Chang (cc2952) 
+
+
+## Part 1
+**C. Physical Sensing Design**
+- 5 sketches of different ways to use your chosen sensor
+- Written reflection: questions raised, what to prototype
+- Pick one design to prototype and explain why
+	![eed8b497daff0d0dfb379a166a68d68d](https://github.com/user-attachments/assets/c49ca762-9313-4a61-b83e-e84d9570ae66)
+	![fa1d78fa387783a4802c4149ea772e10](https://github.com/user-attachments/assets/86ea7c25-36e7-49be-94aa-8180014b4e43)
+
+Sketch 1: I love to play old games, but it's not always goos using simulator on PC can be difficult because PC has no joysticks and keys are arranged different from gamepads. However, old game pads have various forms and buying all kinds of them can be time- and money-consuming. So I design this all-in-one gamepad that can reflect to 2-, 4- and 6-button old game pads at the same time.
+
+Sketch 2: As a fan of iM@s, I really want to create a machine that can summon my favorite idols whenever I want, so I design this "magic mirror". It is activated when I approach, and can broadcast different voices and songs subject to my manipulation.
+
+Sketch 3: Fighting games are hard to begin with, and I can not always live in an arcade and spend infinite money to the game box, so there should be a simulator that can train my combo at home.
+
+Sketch 4: I can't play piano well, and but most other common instruments have only one part. This is an easy keyboard that can play with two parts: when a key is pressed, the chord (determined by rotary encoder) and the melody (determined by twizzer touches) will be broadcast at the same time.
+
+Sketch 5: I want to play Taiko no Tatsujin at home. That's it.
+
+[Prototype Sketch2](https://drive.google.com/video/captions/edit?id=1lF1JMMllSmGIzXxutQTKquUQsPW7Cff6)
+
+ **D. Display & Housing**
+- 5 sketches for display/button/knob positioning
+- Written reflection: questions raised, what to prototype
+- Pick one display design to integrate
+- Rationale for design
+- Photos/videos of your cardboard prototype
+![7cea37049b2e1ca64f6724db852bdf66](https://github.com/user-attachments/assets/3b888171-1b8d-48bc-8418-62dc93fc4963)
+
+
+## Part 2
+Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
+* "Looks like": shows how the device should look, feel, sit, weigh, etc.
+* "Works like": shows what the device can do
+* "Acts like": shows how a person would interact with the device
+
+
+![game_rule.JPG](game_rule.JPG)
+![cardboard.jpg](cardboard.jpg)
+implementation: ./elemental_fury.py
+
+### Elemental Fury:
+#### Goal
+
+The Attacker (Player 1) tries to defeat the Defender (Player 2). The Defender's goal is to survive as long as possible.
+
+#### How to Play
+
+This is a 2-player attack and defend game.
+
+Player 1 chooses an attack (Fire, Lightning, Earthquake, or Slime).
+
+Player 2 must perform the correct defense action using the matching sensor in time.
+
+If Player 2 fails to defend, they lose 1 HP.
+
+The game continues until Player 2 is defeated.
+
+#### Attacks & Defenses
+
+* Attack: Fireball, Defense: Player 2 must push the Joystick to evade the fireball.
+
+* Attack: Earthquake, Defense: Player 2 must lift the "castle" piece off the Proximity Sensor.
+
+* Attack: Lightning, Defense: Player 2 must cover the Light Sensor (APDS-9960) to block the strike.
+
+* Attack: Slime, Defense: Player 2 must quickly turn the Rotary Encoder to shake off the slime.
+
+How to Win
+
+Player 1 (Attacker) wins when Player 2's HP reaches 0.
+
+Player 2 (Defender) loses when their HP reaches 0.
+
+
+
+[Video 1: Attacker & Deffense](https://drive.google.com/file/d/1CRKOgDtgnIum2S0XdNr4v78AApqGrhei/view?usp=sharing)
+
+
+[Video 2: Deffense](https://drive.google.com/file/d/1phGfNs0n2r9mEY8ZtBd8uP5Aua77Bdg_/view?usp=sharing)
+
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
   
@@ -12,6 +95,8 @@
   
 	This helps ensure your README.md is clear, professional, and uniquely yours!
 </details>
+
+<details>
 
 ---
 
@@ -31,13 +116,31 @@
 	- 5 sketches of different ways to use your chosen sensor
 	- Written reflection: questions raised, what to prototype
 	- Pick one design to prototype and explain why
+	![eed8b497daff0d0dfb379a166a68d68d](https://github.com/user-attachments/assets/c49ca762-9313-4a61-b83e-e84d9570ae66)
+	![fa1d78fa387783a4802c4149ea772e10](https://github.com/user-attachments/assets/86ea7c25-36e7-49be-94aa-8180014b4e43)
 
+Sketch 1: I love to play old games, but it's not always goos using simulator on PC can be difficult because PC has no joysticks and keys are arranged different from gamepads. However, old game pads have various forms and buying all kinds of them can be time- and money-consuming. So I design this all-in-one gamepad that can reflect to 2-, 4- and 6-button old game pads at the same time.
+
+Sketch 2: As a fan of iM@s, I really want to create a machine that can summon my favorite idols whenever I want, so I design this "magic mirror". It is activated when I approach, and can broadcast different voices and songs subject to my manipulation.
+
+Sketch 3: Fighting games are hard to begin with, and I can not always live in an arcade and spend infinite money to the game box, so there should be a simulator that can train my combo at home.
+
+Sketch 4: I can't play piano well, and but most other common instruments have only one part. This is an easy keyboard that can play with two parts: when a key is pressed, the chord (determined by rotary encoder) and the melody (determined by twizzer touches) will be broadcast at the same time.
+
+Sketch 5: I want to play Taiko no Tatsujin at home. That's it.
+
+[Prototype Sketch2](https://drive.google.com/video/captions/edit?id=1lF1JMMllSmGIzXxutQTKquUQsPW7Cff6)
+
+Reason for S2: Nobody should miss this tremendous iM@s Project. Besides, this includes various ways for interaction and remains much room for extension (eg. Twizzer buttons rearranged for body touch just like arcade iM@s games, oled for subtitle)
+
+	
 *️⃣ **D. Display & Housing**
 	- 5 sketches for display/button/knob positioning
 	- Written reflection: questions raised, what to prototype
 	- Pick one display design to integrate
 	- Rationale for design
 	- Photos/videos of your cardboard prototype
+![7cea37049b2e1ca64f6724db852bdf66](https://github.com/user-attachments/assets/3b888171-1b8d-48bc-8418-62dc93fc4963)
 
 ---
 
@@ -55,8 +158,7 @@
 ---
 
 ## Lab Overview
-**NAMES OF COLLABORATORS HERE**
-
+Collab: Jade Chang, Karl Muller
 
 For lab this week, we focus both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
 
@@ -246,8 +348,21 @@ Connect it to your pi with Qwiic connector and try running the example script to
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proximity_Py) to learn more about the sensor and see other examples
 
+### Part C
+### Physical considerations for sensing
 
-### Part C + D
+
+Usually, sensors need to be positioned in specific locations or orientations to make them useful for their application. Now that you've tried a bunch of the sensors, pick one that you would like to use, and an application where you use the output of that sensor for an interaction. For example, you can use a distance sensor to measure someone's height if you position it overhead and get them to stand under it.
+
+
+**\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
+
+**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+
+**\*\*\*Pick one of these designs to prototype.\*\*\***
+
+
+### Part D
 ### Physical considerations for displaying information and housing parts
 
 
@@ -288,19 +403,7 @@ Here is an example:
 
 Think about how you want to present the information about what your sensor is sensing! Design a paper display for your project that communicates the state of the Pi and a sensor. Ideally you should design it so that you can slide the Pi out to work on the circuit or programming, and then slide it back in and reattach a few wires to be back in operation.
  
-**\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
-
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
-
-<img src="IMG_3758.jpg" width="300">
-<img src="IMG_3759.jpg" width="300">
-<img src="IMG_3760.jpg" width="300">
-<img src="IMG_3761.jpg" width="300">
-<img src="IMG_3762.jpg" width="300">
-
-**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
-
-**\*\*\*Pick one of these designs to prototype.\*\*\***
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
@@ -494,4 +597,8 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
+
+
+</details>
 
