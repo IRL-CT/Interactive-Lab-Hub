@@ -140,6 +140,14 @@ In an earlier version of this class students experimented with foundational comp
 
 #### Teachable Machines
 
+<img width="1156" height="889" alt="Screenshot 2025-10-22 at 4 52 26 PM" src="https://github.com/user-attachments/assets/9863ae12-1f25-4bbd-997a-7ea0413d7f29" />
+
+<img width="1105" height="858" alt="Screenshot 2025-10-22 at 4 53 30 PM" src="https://github.com/user-attachments/assets/aa7236e5-9071-47ae-bbbe-24dc0549e0dd" />
+
+<img width="1101" height="857" alt="Screenshot 2025-10-22 at 5 03 19 PM" src="https://github.com/user-attachments/assets/d98fa3f9-e1c0-4517-ad97-43d6c2b9b356" />
+
+[Video](https://drive.google.com/file/d/1M_-BlMXl1Mv6m4IyMjAdZQcgdLIAejxe/view?usp=sharing)
+
 ### Part B
 ### Construct a simple interaction.
 
