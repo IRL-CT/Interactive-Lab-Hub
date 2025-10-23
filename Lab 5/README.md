@@ -39,7 +39,7 @@ D) [Reflect](#part-d)
 
 ---
 
-### Part A 
+### Part A ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Object Recognition
 <details><summary><strong>Expand</strong></summary>
@@ -161,7 +161,7 @@ In an earlier version of this class students experimented with foundational comp
 [CV_optional/cv.md](CV_optional/cv.md).
 </details>
 
-### Part B
+### Part B ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Construct a simple interaction.
 
 * Pick one of the models you have tried, and experiment with prototyping an interaction.
