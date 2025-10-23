@@ -1,8 +1,7 @@
 # Observant Systems
 
-**NAMES OF COLLABORATORS HERE**
-
-
+<details><summary>Prep</summary>
+  
 For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
 Your **observant device** could, for example, count items, find objects, recognize an event or continuously monitor a room.
 
@@ -19,6 +18,8 @@ This lab will help you think through the design of observant systems, particular
 1. Pull the new Github Repo
 1. Raspberry Pi
 1. Webcam 
+</details>
+
 
 ### Deliverables for this lab are:
 1. Show pictures, videos of the "sense-making" algorithms you tried.
@@ -39,6 +40,10 @@ D) [Reflect](#part-d)
 ---
 
 ### Part A
+
+### Object Recognition
+<details><summary><strong>Expand</strong></summary>
+  
 ### Play with different sense-making algorithms.
 
 #### Pytorch for object recognition
@@ -70,8 +75,16 @@ The first 2 inferences will be slower. Now, you can try placing several objects 
 
 Read the `infer.py` script, and get familiar with the code. You can change the video resolution and frames per second (fps). You can also easily use the weights of other pre-trained models. You can see examples of other models [here](https://pytorch.org/tutorials/intermediate/realtime_rpi.html#model-choices). 
 
+</details>
+
+### Infer.py
+<a href="https://drive.google.com/file/d/1Wc19oo6U5gZBWtoS2AaZ0H9Lis3aGAxa/view?usp=sharing">
+  <img src="appledetect.jpg" alt="Watch the video" width="50%"/>
+</a>
 
 ### Machine Vision With Other Tools
+<details><summary>Expand</summary>
+  
 The following sections describe tools ([MediaPipe](#mediapipe) and [Teachable Machines](#teachable-machines)).
 
 #### MediaPipe
@@ -96,8 +109,17 @@ Try the two main features of this script: 1) pinching for percentage control, an
 Consider how you might use this position based approach to create an interaction, and write how you might use it on either face, hand or body pose tracking.
 
 (You might also consider how this notion of percentage control with hand tracking might be used in some of the physical UI you may have experimented with in the last lab, for instance in controlling a servo or rotary encoder.)
+</details>
 
+### Quiet Coyote
+<a href="https://drive.google.com/file/d/16SciaAVm2LMVtIh_f_4XarKLgEfQMkag/view?usp=sharing">
+  <img src="quietcoyote.jpg" alt="Watch the video" width="50%"/>
+</a>
 
+### Pinch
+<a href="https://drive.google.com/file/d/1Z2WOuQ-_rirG95ZQxE_GQh2GR8UqEceX/view?usp=sharing">
+  <img src="pinchdistange.jpg" alt="Watch the video" width="50%"/>
+</a>
 
 #### Teachable Machines
 Google's [TeachableMachines](https://teachablemachine.withgoogle.com/train) is very useful for prototyping with the capabilities of machine learning. We are using [a python package](https://github.com/MeqdadDev/teachable-machine-lite) with tensorflow lite to simplify the deployment process.
