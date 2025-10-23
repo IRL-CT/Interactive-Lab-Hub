@@ -113,20 +113,14 @@ Consider how you might use this position based approach to create an interaction
 (You might also consider how this notion of percentage control with hand tracking might be used in some of the physical UI you may have experimented with in the last lab, for instance in controlling a servo or rotary encoder.)
 </details>
 
-#### ⭐🎥 Quiet Coyote Demo Video
+#### ⭐🎥 Quiet Coyote Demo Video   |  #### ⭐🎥 Pinch Demo Video
 *Click on the image to see the video*
-
+:-------------------------:|:-------------------------:
 <a href="https://drive.google.com/file/d/16SciaAVm2LMVtIh_f_4XarKLgEfQMkag/view?usp=sharing">
   <img src="quietcoyote.jpg" alt="Watch the video" width="30%"/>
-</a>
-
-#### ⭐🎥 Pinch Demo Video
-*Click on the image to see the video*
-
-<a href="https://drive.google.com/file/d/1Z2WOuQ-_rirG95ZQxE_GQh2GR8UqEceX/view?usp=sharing">
+</a> |  <a href="https://drive.google.com/file/d/1Z2WOuQ-_rirG95ZQxE_GQh2GR8UqEceX/view?usp=sharing">
   <img src="pinchdistance.jpg" alt="Watch the video" width="30%"/>
 </a>
-
 
 
 ### Teachable Machines
