@@ -39,7 +39,7 @@ D) [Reflect](#part-d)
 
 ---
 
-### Part A ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Part A ----------------------------------------------------------------------------------------------------------------------
 
 ### Object Recognition
 <details><summary><strong>Expand</strong></summary>
@@ -161,7 +161,7 @@ In an earlier version of this class students experimented with foundational comp
 [CV_optional/cv.md](CV_optional/cv.md).
 </details>
 
-### Part B ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Part B ----------------------------------------------------------------------------------------------------------------------
 ### Construct a simple interaction.
 
 * Pick one of the models you have tried, and experiment with prototyping an interaction.
@@ -171,7 +171,7 @@ In an earlier version of this class students experimented with foundational comp
 
 **\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
 
-### Part C
+### Part C ----------------------------------------------------------------------------------------------------------------------
 ### Test the interaction prototype
 
 Now flight test your interactive prototype and **note down your observations**:
@@ -187,7 +187,7 @@ For example:
 1. How could change your interactive system to address this?
 1. Are there optimizations you can try to do on your sense-making algorithm.
 
-### Part D
+### Part D ----------------------------------------------------------------------------------------------------------------------
 ### Characterize your own Observant system
 
 Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
