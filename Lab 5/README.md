@@ -118,7 +118,7 @@ Consider how you might use this position based approach to create an interaction
 
 ### Pinch
 <a href="https://drive.google.com/file/d/1Z2WOuQ-_rirG95ZQxE_GQh2GR8UqEceX/view?usp=sharing">
-  <img src="pinchdistange.jpg" alt="Watch the video" width="50%"/>
+  <img src="pinchdistance.jpg" alt="Watch the video" width="50%"/>
 </a>
 
 #### Teachable Machines
