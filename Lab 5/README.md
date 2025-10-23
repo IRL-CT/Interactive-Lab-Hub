@@ -121,7 +121,11 @@ Consider how you might use this position based approach to create an interaction
   <img src="pinchdistance.jpg" alt="Watch the video" width="50%"/>
 </a>
 
-#### Teachable Machines
+
+
+### Teachable Machines
+<details><summary>Expand</summary>
+  
 Google's [TeachableMachines](https://teachablemachine.withgoogle.com/train) is very useful for prototyping with the capabilities of machine learning. We are using [a python package](https://github.com/MeqdadDev/teachable-machine-lite) with tensorflow lite to simplify the deployment process.
 
 ![Tachable Machines Pi](Readme_files/tml_pi.gif)
@@ -150,6 +154,7 @@ Teachable machines provides an audio classifier too. If you want to use audio cl
 
 In an earlier version of this class students experimented with foundational computer vision techniques such as face and flow detection. Techniques like these can be sufficient, more performant, and allow non discrete classification. Find the material here:
 [CV_optional/cv.md](CV_optional/cv.md).
+</details>
 
 ### Part B
 ### Construct a simple interaction.
