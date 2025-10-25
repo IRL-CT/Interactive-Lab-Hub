@@ -1,7 +1,8 @@
 .DS_Store
-*.tflite
 *.scorer
 venv
 venv*
 __*
 ollama_venv/
+.venv*
+.venv/

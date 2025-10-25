@@ -1,0 +1,5 @@
+mediapipe==0.10.18
+opencv-python==4.11.0.86
+pip-chill==1.0.3
+teachable-machine-lite==1.2.0.2
+torchvision==0.24.0
