@@ -195,7 +195,7 @@ Flight test interactive prototype **observation notes**:
   
 2. When does it fail?
 
-  ![Line for Coffee FAULT GIF](lineforcoffee.gif)
+<img src="lineforcoffee.gif" alt="Line for Coffee FAULT GIF" width="120%"/>
 
   The detection fails when the barista is visible, even if there is no one actually in line. This can be observed in the GIF above. However, when there is no one visible on screen, or the barista is moving around and not standing by the cashier, then it accurately does not notify a line.
   
