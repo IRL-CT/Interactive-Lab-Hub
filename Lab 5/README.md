@@ -114,7 +114,35 @@ Consider how you might use this position based approach to create an interaction
 The image of interaction with MediaPipe Hand Pose Tracking:  
 <img src="MediaPipe.jpg" alt="MediaPipe Hand Pose Tracking" width="400"/>
 
-🎥 The video of the interaction demo: [Watch on YouTube](https://www.youtube.com/shorts/eNRD24geNUE)
+🎥 The video of the interaction demo: [Watch on YouTube](https://www.youtube.com/shorts/eNRD24geNUE)   
+#### **Concept:** Gesture-based media control  
+I experimented with using MediaPipe’s hand tracking to build a simple contactless media controller — something that lets users adjust playback or volume just by moving their hands in front of the camera.
+
+For example, raising an index finger upward could increase the volume, while pointing it downward could lower it.  
+Swiping the hand to the left or right would move to the previous or next track.  
+A closed fist would act as a play/pause toggle.  
+
+Each gesture is recognized by checking which fingers are extended and how the hand moves in space.  
+By tracking the 21 key points that MediaPipe provides, I can detect fingertip positions, calculate the relative distance to the palm center, and interpret movement direction over time.  
+
+This allows the system to respond naturally to gestures like pointing, swiping, or closing the hand.
+
+
+#### **Advantages:**  
+This approach feels natural and doesn’t require any physical buttons, which makes it especially useful in situations like cooking or exercising, when touching a screen isn’t convenient.  
+It’s intuitive, hygienic, and works smoothly for basic controls like volume and playback.  
+
+
+#### **Challenges:**  
+However, it can sometimes misinterpret casual hand motions as gestures, and lighting conditions strongly affect recognition accuracy.  
+
+Users also need to hold their hands at a comfortable distance — too close or too far and tracking becomes unstable.  
+
+
+#### **Future ideas:**  
+Adding a short delay before confirming gestures could reduce accidental triggers, and simple on-screen or audio feedback would make interactions clearer.  
+
+It could also be extended to recognize multiple hands or combined with face detection so the system only responds when someone is actually looking at the screen.
 
 
 <details>
