@@ -7,10 +7,12 @@ cap = cv.VideoCapture(0)
 # Paths to your model and labels
 model_path = 'model.tflite'
 labels_path = 'labels.txt'
-image_file_name = "baseframe.png"
+image_file_name = "frame.jpg"
 
 # Load Teachable Machine model
 tm_model = TeachableMachineLite(model_path=model_path, labels_file_path=labels_path)
+
+print("Model loaded. Starting camera...")
 
 while True:
     ret, frame = cap.read()
@@ -24,16 +26,20 @@ while True:
     results = tm_model.classify_image(image_file_name)
     print("results:", results)
 
-    # Extract top prediction
-    if results:
-        label, confidence = results[0]  # e.g. ('line for coffee', 0.95)
+    # Extract the predicted label and confidence from the dictionary
+    label = results.get("label", "").lower()
+    confidence = results.get("confidence", 0)
 
-        # Check if the detected label indicates a coffee line
-        if "line for coffee" in label.lower():
-            cv.putText(frame, "There's a line for coffee!", (50, 100),
-                       cv.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 3, cv.LINE_AA)
+    # Check if the prediction indicates a line for coffee
+    if "line for coffee" in label:
+        cv.putText(frame, "There's a line for coffee!", (50, 100),
+                   cv.FONT_HERSHEY_SIMPLEX, 1.2, (0, 255, 0), 3, cv.LINE_AA)
 
-    # Display camera feed
+        # Optionally display confidence
+        cv.putText(frame, f"{confidence:.2f}% sure", (50, 150),
+                   cv.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2, cv.LINE_AA)
+
+    # Show camera feed
     cv.imshow('Cam', frame)
 
     # Press ESC to exit
