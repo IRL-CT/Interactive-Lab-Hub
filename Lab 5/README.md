@@ -1,6 +1,6 @@
 # Observant Systems
 
-**NAMES OF COLLABORATORS HERE**
+**Huiying Zhan, Jiayi Sun**
 
 
 For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
@@ -8,7 +8,8 @@ Your **observant device** could, for example, count items, find objects, recogni
 
 This lab will help you think through the design of observant systems, particularly corner cases that the algorithms need to be aware of.
 
-## Prep
+<details>
+	<summary><h2> Prep </h2></summary>
 
 1.  Install VNC on your laptop if you have not yet done so. This lab will actually require you to run script on your Pi through VNC so that you can see the video stream. Please refer to the [prep for Lab 2](https://github.com/FAR-Lab/Interactive-Lab-Hub/blob/-/Lab%202/prep.md#using-vnc-to-see-your-pi-desktop).
 2.  Install the dependencies as described in the [prep document](prep.md). 
@@ -24,6 +25,7 @@ This lab will help you think through the design of observant systems, particular
 1. Show pictures, videos of the "sense-making" algorithms you tried.
 1. Show a video of how you embed one of these algorithms into your observant system.
 1. Test, characterize your interactive device. Show faults in the detection and how the system handled it.
+</details>
 
 ## Overview
 Building upon the paper-airplane metaphor (we're understanding the material of machine learning for design), here are the four sections of the lab activity:
@@ -37,11 +39,13 @@ C) [Flight test](#part-c)
 D) [Reflect](#part-d)
 
 ---
-
+<details>
+	<summary><h2>
+    
 ### Part A
 ### Play with different sense-making algorithms.
-
-#### Pytorch for object recognition
+<details>
+	<summary><h4>Pytorch for object recognition</h4></summary>
 
 For this first demo, you will be using PyTorch and running a MobileNet v2 classification model in real time (30 fps+) on the CPU. We will be following steps adapted from [this tutorial](https://pytorch.org/tutorials/intermediate/realtime_rpi.html).
 
@@ -69,17 +73,21 @@ python infer.py
 The first 2 inferences will be slower. Now, you can try placing several objects in front of the camera.
 
 Read the `infer.py` script and become familiar with the code. You can change the video resolution and frames per second (FPS). You may also use the weights of the larger pre-trained mobilenet_v3_large model, as described [here](https://pytorch.org/tutorials/intermediate/realtime_rpi.html#model-choices).
+</details>
 
-#### More classes
+<details>
+	<summary><h4> More classes </h4></summary>
 
 [PyTorch supports transfer learning](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html), so you can fine‑tune and transfer learn models to recognize your own objects. It requires extra steps, so we won't cover it here.
 
 For more details on transfer learning and deployment to embedded devices, see Deep Learning on Embedded Systems: A Hands‑On Approach Using Jetson Nano and Raspberry Pi (Tariq M. Arif). [Chapter 10](https://onlinelibrary.wiley.com/doi/10.1002/9781394269297.ch10) covers transfer learning for object detection on desktop, and [Chapter 15](https://onlinelibrary.wiley.com/doi/10.1002/9781394269297.ch15) describes moving models to the Pi using ONNX.
+</details>
 
 ### Machine Vision With Other Tools
 The following sections describe tools ([MediaPipe](#mediapipe) and [Teachable Machines](#teachable-machines)).
 
-#### MediaPipe
+<details>
+	<summary><h4> MediaPipe </h4></summary>
 
 A established open source and efficient method of extracting information from video streams comes out of Google's [MediaPipe](https://mediapipe.dev/), which offers state of the art face, face mesh, hand pose, and body pose detection.
 
@@ -101,10 +109,11 @@ Try the two main features of this script: 1) pinching for percentage control, an
 Consider how you might use this position based approach to create an interaction, and write how you might use it on either face, hand or body pose tracking.
 
 (You might also consider how this notion of percentage control with hand tracking might be used in some of the physical UI you may have experimented with in the last lab, for instance in controlling a servo or rotary encoder.)
+</details>
 
 
-
-#### Moondream Vision-Language Model
+<details>
+	<summary><h4> Moondream Vision-Language Model </h4></summary>
 
 [Moondream](https://www.ollama.com/library/moondream) is a lightweight vision-language model that can understand and answer questions about images. Unlike the classification models above, Moondream can describe images in natural language and answer specific questions about what it sees.
 
@@ -121,8 +130,10 @@ python moondream_simple.py
 This will capture an image from your webcam and let you ask questions about it in natural language. Note that vision-language models are slower than classification models (responses may take up to minutes on a Raspberry Pi). There are newer models like [LFM2-VL](https://huggingface.co/LiquidAI/LFM2-VL-450M-GGUF), but many are very recent and not yet optimized for embedded devices.
 
 **Design consideration**: Think about how slower response times change your interaction design. What kinds of observant systems benefit from thoughtful, delayed responses rather than real-time classification? Consider systems that monitor over longer time periods or provide periodic summaries rather than instant feedback.
+</details>
 
-#### Teachable Machines
+<details>
+	<summary><h4>Teachable Machines</h4></summary>
 Google's [TeachableMachines](https://teachablemachine.withgoogle.com/train) is very useful for prototyping with the capabilities of machine learning. We are using [a python package](https://github.com/MeqdadDev/teachable-machine-lite) with tensorflow lite to simplify the deployment process.
 
 ![Tachable Machines Pi](Readme_files/tml_pi.gif)
@@ -143,14 +154,17 @@ Next train your own model. Visit [TeachableMachines](https://teachablemachine.wi
 ![Tensorflow Lite Download](Readme_files/tml_download-model.png)
 
 Include screenshots of your use of Teachable Machines, and write how you might use this to create your own classifier. Include what different affordances this method brings, compared to the OpenCV or MediaPipe options.
+</details>
 
-#### (Optional) Legacy audio and computer vision observation approaches
+<details>
+	<summary><h4> (Optional) Legacy audio and computer vision observation approaches </h4></summary>
 In an earlier version of this class students experimented with observing through audio cues. Find the material here:
 [Audio_optional/audio.md](Audio_optional/audio.md). 
 Teachable machines provides an audio classifier too. If you want to use audio classification this is our suggested method. 
 
 In an earlier version of this class students experimented with foundational computer vision techniques such as face and flow detection. Techniques like these can be sufficient, more performant, and allow non discrete classification. Find the material here:
 [CV_optional/cv.md](CV_optional/cv.md).
+</details>
 
 ### Part B
 ### Construct a simple interaction.
