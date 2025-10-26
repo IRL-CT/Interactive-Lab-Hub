@@ -206,8 +206,44 @@ In an earlier version of this class students experimented with foundational comp
 * This can be as simple as the boat detector shown in lecture.
 * Try out different interaction outputs and inputs.
 
-
 **\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
+### Gesture-Based Music Controller; Model Used: MediaPipe Hand Tracking
+
+I experimented with MediaPipe’s hand pose detection to build a simple hands-free music controller.  
+The idea was to let users control playback and volume through natural hand movements — useful in situations like cooking or working out, when touching a screen isn’t convenient.
+
+#### Design Process
+
+At first, I tried basic one-finger gestures like pointing up or left, but they were too sensitive and often triggered by mistake.  
+
+After a few rounds of testing, I found that combining finger positions worked much better — for example, using both the index finger and thumb for navigation, and using open or closed hand poses for play/pause control.
+
+Here’s the final gesture set I settled on:
+- **Index finger up** → Volume up  
+- **Index finger down** → Volume down  
+- **Index + thumb in “7” shape pointing right** → Next track  
+- **Index + thumb in “7” shape pointing left** → Previous track  
+- **Open hand** → Play  
+- **Closed fist** → Stop  
+
+These gestures felt stable and distinct enough that they weren’t accidentally triggered, even when I moved naturally in front of the camera.
+
+#### Implementation
+
+I used a Python script called `gesture_remote.py` to handle the gesture detection and link it to simple playback functions.   
+
+The controller cycles through a small music library (four tracks from Lab 4) that loop automatically after finishing.
+
+#### Interaction Flow
+
+When the camera detects a recognized gesture, it sends a corresponding command to the music player.  
+The open and closed hand gestures act like a “play/stop switch,” while finger gestures provide finer control for volume and track navigation.
+
+This setup makes the interaction feel surprisingly natural — like conducting a small orchestra with your hands.
+
+#### Demo
+🎥 [Demo Video on YouTube](https://youtu.be/XQkTvs8Damo)
+
 
 ### Part C
 ### Test the interaction prototype
