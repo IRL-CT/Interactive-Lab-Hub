@@ -185,9 +185,10 @@ Using the Teachable Machine software, I am attempting to create a detector that 
 ## Part C
 ### Test the interaction prototype
 
+
 Now flight test your interactive prototype and **note down your observations**:
 For example:
-1. When does it what it is supposed to do?
+1. When does it do what it is supposed to do?
 1. When does it fail?
 1. When it fails, why does it fail?
 1. Based on the behavior you have seen, what other scenarios could cause problems?
