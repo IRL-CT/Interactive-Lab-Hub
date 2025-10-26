@@ -39,7 +39,7 @@ D) [Reflect](#part-d)
 
 ---
 
-### Part A ----------------------------------------------------------------------------------------------------------------------
+## Part A
 
 ### Object Recognition
 <details><summary><strong>Expand</strong></summary>
@@ -173,7 +173,7 @@ Teachable Machinge Files
 
 ![partially llama](partiallyllama.png)
 
-### Part B ----------------------------------------------------------------------------------------------------------------------
+## Part B
 ### Construct a simple interaction.
 #### There's a Line for Coffee!
 Using the Teachable Machine software, I am attempting to create a detector that notifies if there is a line to get coffee. Everytime there is at least one person ordering/in line, it notifies the user. The input is the camera video, spotting if there are people or not in the line area. The output is the notification that provides feedback on the situation. I am overall experimenting with the sensitivity of the machine learning, to see what thresehild it detects a line or does not. Ideally, if there is at least one person, it would.
@@ -182,7 +182,7 @@ Using the Teachable Machine software, I am attempting to create a detector that 
 |------------------|---------|
 | ![no line](lineexample.png) | ![no line](baseframe.png) |
 
-### Part C ----------------------------------------------------------------------------------------------------------------------
+## Part C
 ### Test the interaction prototype
 
 Now flight test your interactive prototype and **note down your observations**:
@@ -198,7 +198,7 @@ For example:
 1. How could change your interactive system to address this?
 1. Are there optimizations you can try to do on your sense-making algorithm.
 
-### Part D ----------------------------------------------------------------------------------------------------------------------
+## Part D
 ### Characterize your own Observant system
 
 Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
@@ -213,7 +213,7 @@ During the lecture, we mentioned questions to help characterize a material:
 
 **\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
 
-### Part 2.
+## Part 2.
 
 Following exploration and reflection from Part 1, finish building your interactive system, and demonstrate it in use with a video.
 
