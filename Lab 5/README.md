@@ -185,6 +185,13 @@ Using the Teachable Machine software, I am attempting to create a detector that 
 ## Part C
 ### Test the interaction prototype
 
+![Line for Coffee GIF](lineforcoffee.gif)
+
+![greentext](originalgreen.png)
+
+![errorcapture](errorcapture.png)
+
+![confirmed line](confirmedline.png)
 
 Now flight test your interactive prototype and **note down your observations**:
 For example:
