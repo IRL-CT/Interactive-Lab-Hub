@@ -183,28 +183,32 @@ Using the Teachable Machine software, I am attempting to create a detector that 
 | ![no line](lineexample.png) | ![no line](baseframe.png) |
 
 ## Part C
-### Test the interaction prototype
+### Testing the interaction prototype
 
-![Line for Coffee GIF](lineforcoffee.gif)
+![Line for Coffee GIF](confirmedline.gif)
 
-![greentext](originalgreen.png)
+Flight test interactive prototype **observation notes**:
 
-![errorcapture](errorcapture.png)
-
-![confirmed line](confirmedline.png)
-
-Now flight test your interactive prototype and **note down your observations**:
-For example:
 1. When does it do what it is supposed to do?
-1. When does it fail?
-1. When it fails, why does it fail?
-1. Based on the behavior you have seen, what other scenarios could cause problems?
+   The detection machine does exactly what its supposed to when there are people in the frame. When it detects even just one person in line, it flashes the confirmation message: "There's a Line for Coffee!" as well as displaying the confidence level. I coded it so that it only displays this message when the confidence is over 75% to avoid false alarms or flashing messages.
+2. When does it fail?
+  ![Line for Coffee FAULT GIF](lineforcoffee.gif)
+
+  The detection fails when the barista is visible, even if there is no one actually in line. This can be observed in the GIF above. However, when there is no one visible on screen, or the barista is moving around and not standing by the cashier, then it accurately does not notify a line.
+4. When it fails, why does it fail?
+  When it fails, it most likely fails because of the proximity of the cashier to where the people usually stand in line. Especially when it is only one person in line, they stand in the area covering the cashier. My guess is that the detection cannot differentiate whether the person is behind or in front of the kiosk, thus causing this issue.
+5. Based on the behavior you have seen, what other scenarios could cause problems?
+Other possible problems could occur if the lighting in the space changes significantly (for example, sunlight streaming through the window) or if someone walks in front of the line, therefore covering the line and triggering the detection. The system might also misinterpret people chatting near the counter or waiting for their coffee to be made as being “in line,” especially if they pause in the detection zone.
 
 **\*\*\*Think about someone using the system. Describe how you think this will work.\*\*\***
 1. Are they aware of the uncertainties in the system?
-1. How bad would they be impacted by a miss classification?
-1. How could change your interactive system to address this?
-1. Are there optimizations you can try to do on your sense-making algorithm.
+   Most users would not be aware of the system’s confidence threshold or its sensitivity to visual overlap. They would likely perceive the system as either “working” or “not working,” without realizing that the model makes probabilistic guesses based on what it sees.
+2. How bad would they be impacted by a miss classification?
+   In this context, the impact is low. A false positive might simply display “There’s a line for coffee!” when there isn’t one, which could be confusing but not harmful. However, in a more practical deployment (e.g., an automated notification system for staff), frequent false positives could lead to frustration or wasted effort if employees respond unnecessarily.
+3. How could change your interactive system to address this?
+   I could improve the system by training it with more diverse examples, especially ones that include baristas without customers, single-person lines, and different camera angles. Adding spatial awareness could also reduce confusion between the barista and customers.
+4. Are there optimizations you can try to do on your sense-making algorithm.
+  The algorithm could be improved by refining how it processes and interprets frames. For example, it could average predictions over several frames before deciding, to smooth out random fluctuations. I could also adjust the confidence threshold dynamically based on movement in the scene. Another optimization would be retraining or fine-tuning the model with better-balanced data to help it distinguish between similar visual patterns, like a barista and a customer. These changes would make the algorithm more stable and reliable in real-time detection.
 
 ## Part D
 ### Characterize your own Observant system
