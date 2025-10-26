@@ -161,6 +161,18 @@ In an earlier version of this class students experimented with foundational comp
 [CV_optional/cv.md](CV_optional/cv.md).
 </details>
 
+Teachable Machinge Files
+[labels.txt file](labels.txt)
+[model.tflite file](other_file.md)
+
+![Teachable Machines Browser](teachablemachinedemo.gif)
+
+![Justme](justme.png)
+
+![LLAMA](LLAMA.png)
+
+![partially llama](partiallyllama.png)
+
 ### Part B ----------------------------------------------------------------------------------------------------------------------
 ### Construct a simple interaction.
 
