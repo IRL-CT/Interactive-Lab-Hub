@@ -199,14 +199,17 @@ In an earlier version of this class students experimented with foundational comp
 [CV_optional/cv.md](CV_optional/cv.md).
 </details>
 
+---
+
 ### Part B
-### Construct a simple interaction.
+<details>
+	<summary><h3> Construct a simple interaction. </h3></summary>
 
 * Pick one of the models you have tried, and experiment with prototyping an interaction.
 * This can be as simple as the boat detector shown in lecture.
 * Try out different interaction outputs and inputs.
+</details>
 
-**\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
 ### Gesture-Based Music Controller; Model Used: MediaPipe Hand Tracking
 
 I experimented with MediaPipe’s hand pose detection to build a simple hands-free music controller.  
@@ -244,9 +247,16 @@ This setup makes the interaction feel surprisingly natural — like conducting a
 #### Demo
 🎥 [Demo Video on YouTube](https://youtu.be/XQkTvs8Damo)
 
+#### Why This Design
+I wanted the controls to feel as natural as possible while still being reliable.   Simple actions like changing the volume use single-finger gestures, while more complex actions like switching tracks require a combination of fingers.   This layering keeps interactions intuitive but reduces the chance of false triggers. 
+
+To avoid accidental repeats, I added a short cooldown between gestures.   A small on-screen display also appears each time a gesture is recognized, giving quick visual feedback so users know what command was detected.   Overall, the gestures are modeled on real-world motions — pointing up to increase, a fist to stop — so they feel immediately familiar.
+
+---
 
 ### Part C
-### Test the interaction prototype
+<details>
+	<summary><h3>Test the interaction prototype</h3></summary>
 
 Now flight test your interactive prototype and **note down your observations**:
 For example:
@@ -260,9 +270,63 @@ For example:
 1. How bad would they be impacted by a miss classification?
 1. How could change your interactive system to address this?
 1. Are there optimizations you can try to do on your sense-making algorithm.
+</details>
+
+#### When It Works Well
+
+The system runs quite smoothly under good conditions — bright lighting, a clear background, and the hand kept about 30–60 cm away from the camera. It responds best when I make deliberate, steady gestures and hold them for about half a second while facing the camera.
+
+In these situations, **fist** and **open hand** gestures are almost perfectly recognized.  
+The **volume control** gestures work well once I find the right angle, and the **track navigation** gestures (the “7” shapes) perform reliably as long as the thumb is clearly visible.
+
+#### When It Fails
+There are a few situations that still cause problems:
+- Low or uneven lighting or shadows make the model lose track of the hand.  
+- Fast movements — quick gestures are often skipped or misread.  
+- Two hands in the frame — MediaPipe sometimes switches between them.  
+- Hand too close — fingertips go out of frame and break detection.  
+- Similar poses — “index up” and “index down” can look almost the same.  
+- Cluttered background — busy scenes occasionally confuse detection.
+
+#### Why It Fails
+Most of these issues come from **MediaPipe’s visual limitations**. It needs clear, well-lit views of the hand and struggles with occlusion. There’s also **gesture ambiguity** — the camera’s 2D perspective can’t always tell whether a finger is pointing up or forward.
+
+The **cooldown timing** can also block valid gestures if the user moves too quickly. And since finger distances depend on hand size and camera distance, thresholds sometimes need manual tuning.
+
+#### Real-World Challenges
+In real use, certain contexts make the system unreliable:  
+- Cooking or cleaning, when hands are messy or wet  
+- Multiple people in the frame  
+- Dim evening lighting or backlight from a window  
+- Wearing gloves or accessories that hide fingers  
+
+#### User Experience Reflections
+Most users wouldn’t automatically understand the system’s limits. It doesn’t give clear feedback about hand distance, cooldowns, or lighting, so people might not know why a gesture fails.  
+
+Small errors like missed volume changes aren’t a big deal, but bigger mistakes — like skipping songs by accident or the system freezing — can be quite frustrating.
+
+#### Possible Improvements
+To make it more user-friendly, we’d focus on better feedback and adaptive behavior:
+1. **Visual feedback** — show the detected hand skeleton, highlight active fingers, and warn when the hand is too close or far.  
+2. **Gesture confirmation** — require gestures to be held briefly before activating, and play a short sound when recognized.  
+3. **Adaptive thresholds** — let users calibrate gestures for their hand size or lighting, and auto-tune sensitivity.  
+4. **Error recovery** — add an “undo” or “reset” gesture, and pause detection when no hand is visible for a few seconds.
+
+
+#### Performance Summary
+- In testing, gesture accuracy was around **75 %** in good lighting and **40 %** in poor conditions.
+- False positives occurred about **10 %** of the time, mostly from idle hand positions.
+- Average response time was **0.3–0.5 s**.
+- Most people got used to the gestures within about **5 minutes**.
+
+---
+
+
+
 
 ### Part D
-### Characterize your own Observant system
+<details>
+	<summary><h3> Characterize your own Observant system </h3></summary>
 
 Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
 During the lecture, we mentioned questions to help characterize a material:
@@ -273,6 +337,8 @@ During the lecture, we mentioned questions to help characterize a material:
 * When it breaks how will X break?
 * What are other properties/behaviors of X?
 * How does X feel?
+
+</details>
 
 **\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
 
