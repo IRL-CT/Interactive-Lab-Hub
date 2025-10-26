@@ -111,6 +111,11 @@ Consider how you might use this position based approach to create an interaction
 (You might also consider how this notion of percentage control with hand tracking might be used in some of the physical UI you may have experimented with in the last lab, for instance in controlling a servo or rotary encoder.)
 </details>
 
+The image of interaction with MediaPipe Hand Pose Tracking:  
+<img src="MediaPipe.jpg" alt="MediaPipe Hand Pose Tracking" width="400"/>
+
+🎥 The video of the interaction demo: [Watch on YouTube](https://www.youtube.com/shorts/eNRD24geNUE)
+
 
 <details>
 	<summary><h4> Moondream Vision-Language Model </h4></summary>
