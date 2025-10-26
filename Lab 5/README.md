@@ -163,7 +163,7 @@ In an earlier version of this class students experimented with foundational comp
 
 Teachable Machinge Files
 [labels.txt file](labels.txt)
-[model.tflite file](other_file.md)
+[model.tflite file](model.tflite)
 
 ![Teachable Machines Browser](teachablemachinedemo.gif)
 
