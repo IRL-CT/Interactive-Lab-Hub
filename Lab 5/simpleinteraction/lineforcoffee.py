@@ -30,14 +30,16 @@ while True:
     label = results.get("label", "").lower()
     confidence = results.get("confidence", 0)
 
-    # Check if the prediction indicates a line for coffee
-    if "line for coffee" in label:
-        cv.putText(frame, "There's a line for coffee!", (50, 100),
-                   cv.FONT_HERSHEY_SIMPLEX, 1.2, (0, 255, 0), 3, cv.LINE_AA)
+    # Define brown color (BGR format)
+    brown = (19, 69, 139)
 
-        # Optionally display confidence
+    # Display only if model detects a line for coffee with > 75% confidence
+    if "line for coffee" in label and confidence > 75:
+        cv.putText(frame, "There's a line for coffee!", (50, 100),
+                   cv.FONT_HERSHEY_SIMPLEX, 1.2, brown, 3, cv.LINE_AA)
+
         cv.putText(frame, f"{confidence:.2f}% sure", (50, 150),
-                   cv.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2, cv.LINE_AA)
+                   cv.FONT_HERSHEY_SIMPLEX, 0.8, brown, 2, cv.LINE_AA)
 
     # Show camera feed
     cv.imshow('Cam', frame)
