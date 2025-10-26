@@ -175,13 +175,8 @@ Teachable Machinge Files
 
 ### Part B ----------------------------------------------------------------------------------------------------------------------
 ### Construct a simple interaction.
-
-* Pick one of the models you have tried, and experiment with prototyping an interaction.
-* This can be as simple as the boat detector shown in lecture.
-* Try out different interaction outputs and inputs.
-
-
-**\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
+#### There's a Line for Coffee!
+Using the Teachable Machine software, I am attempting to create a detector that notifies if there is a line to get coffee. Everytime there is at least one person ordering/in line, it notifies the user. The input is the camera video, spotting if there are people or not in the line area. The output is the notification that provides feedback on the situation. I am overall experimenting with the sensitivity of the machine learning, to see what thresehild it detects a line or does not. Ideally, if there is at least one person, it would.
 
 ### Part C ----------------------------------------------------------------------------------------------------------------------
 ### Test the interaction prototype
