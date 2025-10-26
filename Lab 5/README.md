@@ -177,6 +177,13 @@ Teachable Machinge Files
 ### Construct a simple interaction.
 #### There's a Line for Coffee!
 Using the Teachable Machine software, I am attempting to create a detector that notifies if there is a line to get coffee. Everytime there is at least one person ordering/in line, it notifies the user. The input is the camera video, spotting if there are people or not in the line area. The output is the notification that provides feedback on the situation. I am overall experimenting with the sensitivity of the machine learning, to see what thresehild it detects a line or does not. Ideally, if there is at least one person, it would.
+#### Example frames
+No line frame:
+
+![no line](baseframe.png)
+There's a line for coffee!:
+
+![no line](lineexample.png)
 
 ### Part C ----------------------------------------------------------------------------------------------------------------------
 ### Test the interaction prototype
