@@ -75,6 +75,8 @@ The first 2 inferences will be slower. Now, you can try placing several objects 
 Read the `infer.py` script and become familiar with the code. You can change the video resolution and frames per second (FPS). You may also use the weights of the larger pre-trained mobilenet_v3_large model, as described [here](https://pytorch.org/tutorials/intermediate/realtime_rpi.html#model-choices).
 </details>
 
+[Video of testing PyTorch](https://youtu.be/nu0sheLPd38)
+
 <details>
 	<summary><h4> More classes </h4></summary>
 
@@ -84,7 +86,6 @@ For more details on transfer learning and deployment to embedded devices, see De
 </details>
 
 ### Machine Vision With Other Tools
-The following sections describe tools ([MediaPipe](#mediapipe) and [Teachable Machines](#teachable-machines)).
 
 <details>
 	<summary><h4> MediaPipe </h4></summary>
@@ -340,7 +341,53 @@ During the lecture, we mentioned questions to help characterize a material:
 
 </details>
 
-**\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
+[Demo Video of occasions not went well on YouTube](https://youtu.be/JEqSOrIqWyM)
+
+#### What It’s Good For
+
+From testing, MediaPipe hand tracking feels most suitable for casual, hands-free control tasks — things like playing music while cooking, navigating slides during a presentation, or controlling volume during a video call. It could also be extended to accessibility applications or simple interactive installations.
+
+As shown in the part B video it works best when:
+- Lighting is bright and even (natural daylight or good indoor lighting)  
+- The background is simple and uncluttered  
+- The user stays within 30–60 cm of the camera  
+- Only one hand is visible, moving deliberately  
+
+In these settings, it performs quite reliably — especially for gestures like “open hand” or “fist,” which are easy for the model to detect.
+
+#### What It’s Not Great At
+
+It’s less effective for anything that needs precision or speed, such as typing, fine adjustments, or real-time control (like gaming or drawing).  
+Because gestures can be misread, it’s not suited for situations where mistakes would have serious consequences.  
+Fast-paced environments or dim lighting quickly reduce accuracy.
+
+#### Good vs. Bad Environments
+**Good environments:**  
+Well-lit indoor spaces, plain backgrounds, stationary users — such as at a desk or kitchen counter.
+
+**Bad environments:**  
+Dim rooms, backlighting, cluttered scenes, or multiple people moving in frame.  
+Outdoors or crowded settings are especially challenging due to unpredictable lighting and background movement.
+
+#### When and Why It Breaks
+The system usually breaks down when:
+- The hand goes out of frame or gets partially covered  
+- Lighting drops below a usable level  
+- The camera resolution or frame rate can’t keep up  
+- Gestures are done too quickly or at awkward angles  
+
+When it fails, it tends to do so quietly — gestures just don’t register. Occasionally it misfires (like skipping tracks twice or adjusting the wrong control). Sometimes there’s a short lag, which makes users repeat gestures and accidentally trigger twice. In rare cases, it freezes until the hand leaves the frame and re-enters.
+
+#### How It Feels to Use
+
+When it works, the experience is surprisingly smooth and a bit magical — you can control music just by moving your hand. It feels novel and even empowering, especially because it’s touch-free.  
+
+But the reliability isn’t perfect, and that uncertainty can be tiring. Holding your arm up for too long causes fatigue, and users need to watch the screen closely to make sure the gesture was recognized. Small shifts in position or lighting can throw it off, which sometimes makes the interaction feel fragile.
+
+#### Overall Impression
+Compared with physical buttons, gesture control feels more dynamic and fun, but also more uncertain. It’s great for big, simple actions like “play,” “pause,” or “volume up,” but less practical for fine-tuned control. In short: engaging and futuristic, but not yet as dependable as traditional interfaces.
+
+
 
 ### Part 2.
 
