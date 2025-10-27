@@ -17,6 +17,7 @@ We decided to shift our approach and use MoonDream, which aligned more closely w
 5) This process can continue in a loop, allowing for repeated and interactive practice.
 
 Our prototype:
+
 <img width="754" height="674" alt="Screen Shot 2025-10-26 at 9 44 31 PM" src="https://github.com/user-attachments/assets/4b820e95-28e7-4e2f-ab3c-c33385c63d5f" />
 
 ### Part C
