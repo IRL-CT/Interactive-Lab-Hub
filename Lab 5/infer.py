@@ -1,106 +1,128 @@
 """
-AI Emotion Spectrum Filter - Large Display Version
+AI 情绪光谱（Emotion Spectrum）
+实时摄像头 + 物体识别 + 颜色滤镜艺术效果
 """
 
-import time
+import cv2
 import torch
+import json
+import time
 import numpy as np
 from torchvision import models, transforms
-import cv2
-import json
+from PIL import Image
 
-# -------------------------
-# Load label dictionary
-# -------------------------
+# ========================
+# 1. 加载标签文件
+# ========================
 with open('classes.json') as f:
     classes = json.load(f)
 
+# ========================
+# 2. 初始化模型
+# ========================
 torch.backends.quantized.engine = 'qnnpack'
+model = models.quantization.mobilenet_v2(pretrained=True, quantize=True)
+model.eval()
+model = torch.jit.script(model)
 
-# -------------------------
-# Video setup (higher resolution)
-# -------------------------
-cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)  # 显示分辨率大
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
-cap.set(cv2.CAP_PROP_FPS, 30)
+# ========================
+# 3. 摄像头设置
+# ========================
+cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+cap.set(cv2.CAP_PROP_FPS, 24)
 
-# -------------------------
-# Preprocess for model (fixed size 224)
-# -------------------------
+# ========================
+# 4. 预处理定义
+# ========================
 preprocess = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                         std=[0.229, 0.224, 0.225]),
+                         std=[0.229, 0.224, 0.225])
 ])
 
-# -------------------------
-# Load model
-# -------------------------
-net = models.quantization.mobilenet_v2(pretrained=True, quantize=True)
-net.eval()
+# ========================
+# 5. 滤镜映射（AI情绪色彩）
+# ========================
+colors = [
+    (255, 120, 120),  # 红：激情 / 强烈
+    (255, 200, 100),  # 橙：活力 / 创造
+    (255, 255, 150),  # 黄：愉悦 / 乐观
+    (150, 255, 150),  # 绿：平静 / 平衡
+    (150, 200, 255),  # 蓝：宁静 / 冷静
+    (200, 150, 255)   # 紫：神秘 / 梦幻
+]
 
-# -------------------------
-# Emotion color mapping
-# -------------------------
-emotion_colors = {
-    "person": (0, 180, 255),   # orange - warm
-    "book": (255, 100, 0),     # blue - calm
-    "cup": (0, 255, 200),      # aqua - refreshing
-    "box": (200, 0, 200),      # purple - mysterious
-    "mouse": (255, 255, 0),    # yellow - energetic
-    "default": (128, 128, 128)
-}
+# ========================
+# 6. 主循环
+# ========================
+last_logged = time.time()
+frame_count = 0
 
-# -------------------------
-# Start streaming
-# -------------------------
 with torch.no_grad():
     while True:
         ret, frame = cap.read()
         if not ret:
-            print("Failed to read frame.")
+            print("Can not read the scene")
             break
 
-        # make a small copy for model
-        small_frame = cv2.resize(frame, (224, 224))
-        rgb_small = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
-        input_tensor = preprocess(rgb_small)
+        # BGR → RGB (for PIL)
+        rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        pil_img = Image.fromarray(rgb)
+
+        # 预处理
+        input_tensor = preprocess(pil_img)
         input_batch = input_tensor.unsqueeze(0)
 
-        # inference
-        output = net(input_batch)
-        top = list(enumerate(output[0].softmax(dim=0)))
-        top.sort(key=lambda x: x[1], reverse=True)
-        top1_idx, top1_val = top[0]
-        label = classes[str(top1_idx)]
-        prob = top1_val.item() * 100
+        # 模型推理
+        output = model(input_batch)
+        probs = torch.nn.functional.softmax(output[0], dim=0)
+        top_prob, top_idx = torch.topk(probs, 1)
+        top_label = classes[str(top_idx.item())]
+        confidence = top_prob.item() * 100
 
-        # choose color
-        color = emotion_colors.get(label, emotion_colors["default"])
+        # FPS计算
+        frame_count += 1
+        now = time.time()
+        fps = frame_count / (now - last_logged) if now - last_logged > 0 else 0
+        if now - last_logged > 1:
+            last_logged = now
+            frame_count = 0
 
-        # overlay color filter
+        # ========================
+        # 7. 应用滤镜（根据置信度映射颜色）
+        # ========================
+        color_idx = int((confidence / 100) * (len(colors) - 1))
+        color = colors[color_idx]
         overlay = np.full(frame.shape, color, dtype=np.uint8)
-        alpha = 0.3
-        filtered_frame = cv2.addWeighted(frame, 1 - alpha, overlay, alpha, 0)
+        alpha = 0.25  # 滤镜透明度
+        blended = cv2.addWeighted(frame, 1 - alpha, overlay, alpha, 0)
 
-        # draw text (larger font and shadow)
-        text = f"{label} ({prob:.1f}%)"
-        cv2.putText(filtered_frame, text, (50, 100),
-                    cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 6, cv2.LINE_AA)
-        cv2.putText(filtered_frame, text, (50, 100),
-                    cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2, cv2.LINE_AA)
-        cv2.putText(filtered_frame, "Press 'q' to quit", (50, 170),
-                    cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 3, cv2.LINE_AA)
+        # ========================
+        # 8. 显示结果文字
+        # ========================
+        text = f"{top_label} ({confidence:.1f}%)"
+        cv2.putText(blended, text, (20, 40),
+                    cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255), 2)
+        cv2.putText(blended, f"FPS: {fps:.1f}", (20, 80),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (230, 230, 230), 2)
+        cv2.putText(blended, "Press 'q' to quit", (20, 460),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 1)
 
-        # show window (larger)
-        cv2.imshow("AI Emotion Spectrum", filtered_frame)
-        cv2.resizeWindow("AI Emotion Spectrum", 1280, 720)
+        # ========================
+        # 9. 展示画面
+        # ========================
+        cv2.imshow("AI Emotion Spectrum", blended)
 
+        # ========================
+        # 10. 退出条件
+        # ========================
         if cv2.waitKey(1) & 0xFF == ord('q'):
-            print("Exiting...")
+            print("exit")
             break
 
 cap.release()
 cv2.destroyAllWindows()
+
