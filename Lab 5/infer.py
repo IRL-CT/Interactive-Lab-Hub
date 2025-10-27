@@ -1,6 +1,7 @@
 """
 AI Emotion Spectrum
 Real-time camera + object recognition + color filter art effect
+(Special version for: coffee mug, projector, iPod, mouse)
 """
 
 import cv2
@@ -44,24 +45,33 @@ preprocess = transforms.Compose([
 ])
 
 # ========================
-# 5. Color filters (AI emotion palette)
+# 5. Define artistic colors
 # ========================
-colors = [
-    (255, 120, 120),  # Red: Passion / Intensity
-    (255, 200, 100),  # Orange: Energy / Creativity
-    (255, 255, 150),  # Yellow: Joy / Optimism
-    (150, 255, 150),  # Green: Calm / Balance
-    (150, 200, 255),  # Blue: Peace / Coolness
-    (200, 150, 255)   # Purple: Mystery / Dreamy
-]
+object_colors = {
+    "coffee mug": (255, 170, 100),   # Warm orange – cozy, morning vibes
+    "projector": (150, 200, 255),    # Cool blue – calm, digital aura
+    "iPod": (230, 160, 255),         # Dreamy purple – creative energy
+    "mouse": (190, 255, 150),        # Green-yellow – focus and inspiration
+    "default": (230, 230, 230)       # Neutral white-gray – idle state
+}
 
 # ========================
-# 6. Main loop
+# 6. Helper function for smooth transition
+# ========================
+def smooth_color_transition(current, target, rate=0.1):
+    return tuple([
+        int(current[i] + (target[i] - current[i]) * rate)
+        for i in range(3)
+    ])
+
+# ========================
+# 7. Main loop
 # ========================
 last_logged = time.time()
 frame_count = 0
 last_label = None
-current_color = colors[3]  # Start with green tone
+current_color = object_colors["default"]
+target_color = object_colors["default"]
 
 with torch.no_grad():
     while True:
@@ -94,21 +104,23 @@ with torch.no_grad():
             frame_count = 0
 
         # ========================
-        # 7. Apply color filter (based on class, not confidence)
+        # 8. Update color only if class changes
         # ========================
-        # Change color only when the detected object changes
         if top_label != last_label:
-            color_idx = hash(top_label) % len(colors)
-            current_color = colors[color_idx]
+            target_color = object_colors.get(top_label, object_colors["default"])
             print(f"Object changed to: {top_label}")
             last_label = top_label
 
+        # Gradually blend toward the target color
+        current_color = smooth_color_transition(current_color, target_color, rate=0.15)
+
+        # Apply overlay
         overlay = np.full(frame.shape, current_color, dtype=np.uint8)
-        alpha = 0.25  # Transparency
+        alpha = 0.3
         blended = cv2.addWeighted(frame, 1 - alpha, overlay, alpha, 0)
 
         # ========================
-        # 8. Display text info
+        # 9. Display text info
         # ========================
         text = f"{top_label} ({confidence:.1f}%)"
         cv2.putText(blended, text, (20, 40),
@@ -119,13 +131,13 @@ with torch.no_grad():
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 1)
 
         # ========================
-        # 9. Show the frame
+        # 10. Show the frame
         # ========================
         cv2.imshow("AI Emotion Spectrum", blended)
 
         # ========================
-        # 10. Exit condition
-# ========================
+        # 11. Exit condition
+        # ========================
         if cv2.waitKey(1) & 0xFF == ord('q'):
             print("Exiting.")
             break
