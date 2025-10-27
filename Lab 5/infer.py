@@ -51,7 +51,8 @@ object_colors = {
     "coffee mug": (255, 170, 100),   # Warm orange – cozy, morning vibes
     "projector": (150, 200, 255),    # Cool blue – calm, digital aura
     "iPod": (230, 160, 255),         # Dreamy purple – creative energy
-    "mouse": (190, 255, 150),        # Green-yellow – focus and inspiration
+    "mouse, computer mouse": (190, 255, 150),        # Green-yellow – focus and inspiration
+    "modem": (190, 255, 150),        # Green-yellow – focus and inspiration
     "default": (230, 230, 230)       # Neutral white-gray – idle state
 }
 
