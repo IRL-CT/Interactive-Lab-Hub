@@ -310,9 +310,7 @@ For example:
 1. Are there optimizations you can try to do on your sense-making algorithm.
 </details>
 
-### 1. Gesture-Based Music Controller <br>
-
-#### When It Works Well
+### 1. Gesture-Based Music Controller: When It Works Well
 
 The system runs quite smoothly under good conditions — bright lighting, a clear background, and the hand kept about 30–60 cm away from the camera. It responds best when I make deliberate, steady gestures and hold them for about half a second while facing the camera.
 
@@ -359,9 +357,7 @@ To make it more user-friendly, we’d focus on better feedback and adaptive beha
 - Average response time was **0.3–0.5 s**.
 - Most people got used to the gestures within about **5 minutes**.
 
-### 2. Object Recognition Interaction Testing    
-
-#### When It Works  
+### 2. Object Recognition Interaction Testing: When It Works Well   
 
 The system performs reliably when:
 - Objects are close and well-lit.  
