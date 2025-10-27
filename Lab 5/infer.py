@@ -67,7 +67,7 @@ with torch.no_grad():
     while True:
         ret, frame = cap.read()
         if not ret:
-            print("❌ Failed to read from camera.")
+            print("Failed to read from camera.")
             break
 
         # Convert BGR → RGB (for PIL)
@@ -100,7 +100,7 @@ with torch.no_grad():
         if top_label != last_label:
             color_idx = hash(top_label) % len(colors)
             current_color = colors[color_idx]
-            print(f"🌀 Object changed to: {top_label}")
+            print(f"Object changed to: {top_label}")
             last_label = top_label
 
         overlay = np.full(frame.shape, current_color, dtype=np.uint8)
@@ -127,7 +127,7 @@ with torch.no_grad():
         # 10. Exit condition
 # ========================
         if cv2.waitKey(1) & 0xFF == ord('q'):
-            print("👋 Exiting.")
+            print("Exiting.")
             break
 
 cap.release()
