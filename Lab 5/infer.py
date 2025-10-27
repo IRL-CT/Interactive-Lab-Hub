@@ -1,6 +1,6 @@
 """
 AI Emotion Spectrum
-Real-time camera + object recognition + color filter art effect
+Real-time camera + object recognition + artistic color glow
 (Special version for: coffee mug, projector, iPod, mouse)
 """
 
@@ -114,13 +114,26 @@ with torch.no_grad():
         # Gradually blend toward the target color
         current_color = smooth_color_transition(current_color, target_color, rate=0.15)
 
-        # Apply overlay
+        # ========================
+        # 9. Artistic glow filter
+        # ========================
+        # Create base color overlay
         overlay = np.full(frame.shape, current_color, dtype=np.uint8)
-        alpha = 0.3
-        blended = cv2.addWeighted(frame, 1 - alpha, overlay, alpha, 0)
+
+        # Slight Gaussian blur for soft glow
+        glow = cv2.GaussianBlur(overlay, (31, 31), 0)
+
+        # Increase color saturation for more vivid look
+        hsv = cv2.cvtColor(glow, cv2.COLOR_BGR2HSV)
+        hsv[:, :, 1] = np.clip(hsv[:, :, 1] * 1.5, 0, 255)
+        vivid_glow = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+
+        # Blend with stronger alpha for a visible artistic tone
+        alpha = 0.55
+        blended = cv2.addWeighted(frame, 1 - alpha, vivid_glow, alpha, 0)
 
         # ========================
-        # 9. Display text info
+        # 10. Display text info
         # ========================
         text = f"{top_label} ({confidence:.1f}%)"
         cv2.putText(blended, text, (20, 40),
@@ -131,12 +144,12 @@ with torch.no_grad():
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 1)
 
         # ========================
-        # 10. Show the frame
+        # 11. Show the frame
         # ========================
         cv2.imshow("AI Emotion Spectrum", blended)
 
         # ========================
-        # 11. Exit condition
+        # 12. Exit condition
         # ========================
         if cv2.waitKey(1) & 0xFF == ord('q'):
             print("Exiting.")
