@@ -211,7 +211,7 @@ In an earlier version of this class students experimented with foundational comp
 * Try out different interaction outputs and inputs.
 </details>
 
-### Gesture-Based Music Controller; Model Used: MediaPipe Hand Tracking
+### 1. Gesture-Based Music Controller; Model Used: MediaPipe Hand Tracking
 
 I experimented with MediaPipe’s hand pose detection to build a simple hands-free music controller.  
 The idea was to let users control playback and volume through natural hand movements — useful in situations like cooking or working out, when touching a screen isn’t convenient.
@@ -253,6 +253,43 @@ I wanted the controls to feel as natural as possible while still being reliable.
 
 To avoid accidental repeats, I added a short cooldown between gestures.   A small on-screen display also appears each time a gesture is recognized, giving quick visual feedback so users know what command was detected.   Overall, the gestures are modeled on real-world motions — pointing up to increase, a fist to stop — so they feel immediately familiar.
 
+### 2. Artistic Object Recognition Interaction; Model Used: YOLO Object Detection
+
+For my prototype, I created a real-time interactive system that combines object detection with artistic visual effects.
+The system uses a YOLO-based model to recognize objects through the webcam and overlays a color filter on the video feed depending on what it detects — turning machine perception into an expressive, dynamic art form.
+
+#### Design Process
+The project focuses on four stable and commonly detected categories: coffee mug, projector, iPod, and mouse.
+Each of these categories is mapped to a distinct visual filter:  
+
+- Coffee mug → Warm orange tone  
+- Projector → Cool blue tone  
+- iPod → Bright pink tone  
+- Mouse → Vibrant green tone  
+
+When the camera detects one of these objects, the corresponding artistic filter is applied across the frame, changing the mood of the screen.
+
+#### Implementation  
+Using Python and OpenCV, I connected YOLO detection results with a color overlay system.
+The overlay intensity and blending ratio were carefully tuned to ensure that the artistic effect was clear but not overwhelming, maintaining the realism of the background.
+
+To avoid flicker, color changes are triggered only when the detected class changes, not by continuous confidence fluctuations.
+
+#### Interaction Flow  
+1. The webcam captures the environment in real time.  
+2. The YOLO model detects visible objects.  
+3. When a recognized class is found, the filter color changes smoothly to match the detected object.  
+4. The video feed updates continuously, creating a living, color-shifting atmosphere that reacts to your surroundings.
+
+#### Demo  
+🎥 [Demo Video on YouTube](https://youtu.be/2pXC5KdWHKQ)
+
+#### Why This Design  
+I wanted to create a system that doesn’t just detect — but also expresses how AI perceives the world.
+Each color corresponds to a unique visual identity, turning everyday objects into sources of digital emotion.
+It’s a playful way to visualize how machines “see,” while maintaining a minimal, aesthetic output that feels artistic rather than technical.
+
+
 ---
 
 ### Part C
@@ -272,6 +309,8 @@ For example:
 1. How could change your interactive system to address this?
 1. Are there optimizations you can try to do on your sense-making algorithm.
 </details>
+
+### 1. Gesture-Based Music Controller <br>
 
 #### When It Works Well
 
@@ -320,6 +359,36 @@ To make it more user-friendly, we’d focus on better feedback and adaptive beha
 - Average response time was **0.3–0.5 s**.
 - Most people got used to the gestures within about **5 minutes**.
 
+### 2. Object Recognition Interaction Testing    
+
+#### When It Works  
+
+The system performs reliably when:
+- Objects are close and well-lit.  
+- Only one recognizable category (coffee mug, projector, iPod, or mouse) appears at a time.  
+- The object is centered in the camera’s field of view.  
+- Under these conditions, color transitions are smooth, stable, and visually expressive.
+
+#### When It Fails
+The system struggles when:
+- Lighting is poor or uneven, reducing YOLO’s confidence.  
+- Multiple recognizable objects appear together (e.g., mug + mouse), causing color flickering.  
+- The object is too small or partially blocked.  
+
+#### Why It Fails   
+Most failures occur due to detection confidence drops or rapid class switching between overlapping objects.
+YOLO’s bounding box jittering can also cause quick toggles, producing unwanted flashing effects.
+
+#### User Awareness
+Users can immediately notice when detection fails — the screen flickers or turns neutral.
+However, since this is an artistic visualization, misclassifications don’t cause real harm. Instead, they create a visible representation of the system’s uncertainty.
+
+#### How to Improve
+- Add a temporal smoothing algorithm to prevent quick color shifts.  
+- Implement majority voting across recent frames for stable classification.  
+- Fine-tune YOLO confidence thresholds per object class.  
+- Potentially expand to more visually distinct filters or blending styles.
+
 ---
 
 
@@ -340,6 +409,8 @@ During the lecture, we mentioned questions to help characterize a material:
 * How does X feel?
 
 </details>
+
+### 1. Gesture-Based Music Controller  
 
 [Demo Video of occasions not went well on YouTube](https://youtu.be/JEqSOrIqWyM)
 
@@ -387,6 +458,43 @@ But the reliability isn’t perfect, and that uncertainty can be tiring. Holding
 #### Overall Impression
 Compared with physical buttons, gesture control feels more dynamic and fun, but also more uncertain. It’s great for big, simple actions like “play,” “pause,” or “volume up,” but less practical for fine-tuned control. In short: engaging and futuristic, but not yet as dependable as traditional interfaces.
 
+### 2. Object Recognition System Characterization   
+
+
+#### What It’s Good For
+
+This system is ideal for interactive art installations, educational demos, or visual perception experiments.  
+It helps people intuitively understand how AI “sees” the world by turning detection results into expressive, colored feedback.
+
+#### Good Environments
+- Well-lit, stable indoor spaces  
+- Single-object scenes with clear visibility  
+- Matte or non-reflective surfaces  
+- Static camera placement  
+
+#### Bad Environments
+- Dark or flickering light conditions  
+- Multiple overlapping objects  
+- Shiny, transparent, or reflective surfaces  
+
+#### When It Breaks
+The system fails when no known object is present or the detected object is too far away.  
+It may also flicker when multiple classes compete for recognition.
+
+#### How It Breaks
+Instead of crashing, the system visually “shows” failure — by flickering, defaulting to a neutral tone, or freezing momentarily.  
+This transparency makes the system’s uncertainty visible rather than hidden.
+
+#### Other Properties
+- Behavior is expressive, dynamic, and reactive to real-world input.  
+- It creates an impression of machine mood — a color-based emotional mirror of detection.  
+- The feedback loop between recognition and display gives users a sense of the system’s “attention.”
+
+#### How It Feels
+The interaction feels alive and immersive, as if the system is “feeling” the presence of each object.  
+The gradual color shifts convey a kind of ambient intelligence — poetic rather than functional — which makes it both meditative and artistic.
+
+---
 
 
 ### Part 2.
