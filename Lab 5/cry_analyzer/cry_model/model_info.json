@@ -1,0 +1,13 @@
+{
+  "validation_accuracy": 0.39240506291389465,
+  "num_samples": 391,
+  "training_samples": 312,
+  "validation_samples": 79,
+  "feature_shape": [
+    40,
+    1
+  ],
+  "model_type": "Conv1D_simple",
+  "approach": "averaged_mfcc",
+  "tensorflow_version": "2.19.0"
+}
