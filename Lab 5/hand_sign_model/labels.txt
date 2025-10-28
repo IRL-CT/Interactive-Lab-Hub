@@ -1,0 +1,4 @@
+0 Background
+1 Thumbs Up
+2 OK Sign
+3 love
