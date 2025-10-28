@@ -13,7 +13,7 @@ import h5py
 try:
     import tensorflow as tf
     from tensorflow.keras import Sequential
-    from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, Dropout
+    from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, Dropout, BatchNormalization
     print(f"Using TensorFlow {tf.__version__}")
 except ImportError:
     raise ImportError("Please install: pip3 install tensorflow==2.15.0")
@@ -57,29 +57,29 @@ class SimpleCryAnalyzer:
             except Exception as e:
                 print(f"Failed to load model_weights.weights.h5: {e}")
         
-        # Try 2: Load from model_weights.h5 (old API)
-        if not weights_loaded:
-            weights_path = self.model_path / 'model_weights.h5'
-            if weights_path.exists():
-                try:
-                    print(f"Loading weights from {weights_path}...")
-                    self.model.load_weights(str(weights_path))
-                    print("✓ Loaded weights successfully!")
-                    weights_loaded = True
-                except Exception as e:
-                    print(f"Failed to load model_weights.h5: {e}")
+        # # Try 2: Load from model_weights.h5 (old API)
+        # if not weights_loaded:
+        #     weights_path = self.model_path / 'model_weights.h5'
+        #     if weights_path.exists():
+        #         try:
+        #             print(f"Loading weights from {weights_path}...")
+        #             self.model.load_weights(str(weights_path))
+        #             print("✓ Loaded weights successfully!")
+        #             weights_loaded = True
+        #         except Exception as e:
+        #             print(f"Failed to load model_weights.h5: {e}")
         
-        # Try 2: Extract weights from cry_model.h5 manually
-        if not weights_loaded:
-            h5_path = self.model_path / 'cry_model.h5'
-            if h5_path.exists():
-                try:
-                    print(f"Extracting weights from {h5_path}...")
-                    self._extract_and_load_weights(h5_path)
-                    print("Extracted weights successfully!")
-                    weights_loaded = True
-                except Exception as e:
-                    print(f"Failed to extract from cry_model.h5: {e}")
+        # # Try 2: Extract weights from cry_model.h5 manually
+        # if not weights_loaded:
+        #     h5_path = self.model_path / 'cry_model.h5'
+        #     if h5_path.exists():
+        #         try:
+        #             print(f"Extracting weights from {h5_path}...")
+        #             self._extract_and_load_weights(h5_path)
+        #             print("Extracted weights successfully!")
+        #             weights_loaded = True
+        #         except Exception as e:
+        #             print(f"Failed to extract from cry_model.h5: {e}")
         
         if not weights_loaded:
             raise ValueError(
@@ -105,16 +105,43 @@ class SimpleCryAnalyzer:
         """
         model = Sequential([
             Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(40, 1)),
+            BatchNormalization(),
             MaxPooling1D(pool_size=2),
             
             Conv1D(filters=64, kernel_size=3, activation='relu'),
+            BatchNormalization(),
+            MaxPooling1D(pool_size=2),
+
+            Conv1D(filters=128, kernel_size=3, activation='relu'),
+            BatchNormalization(),
             MaxPooling1D(pool_size=2),
             
             Flatten(),
             Dense(64, activation='relu'),
-            Dropout(0.3),
             Dense(len(self.labels), activation='softmax')
         ])
+
+#         model = Sequential([
+#     layers.Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(40, 1)),
+#     layers.BatchNormalization(),
+#     layers.MaxPooling1D(pool_size=2),
+#     layers.Dropout(0.2),
+
+#     layers.Conv1D(filters=64, kernel_size=3, activation='relu'),
+#     layers.BatchNormalization(),
+#     layers.MaxPooling1D(pool_size=2),
+#     layers.Dropout(0.2),
+
+#     layers.Conv1D(filters=128, kernel_size=3, activation='relu'),
+#     layers.BatchNormalization(),
+#     layers.MaxPooling1D(pool_size=2),
+#     layers.Dropout(0.2),
+
+#     layers.Flatten(),
+#     layers.Dense(64, activation='relu'),
+#     layers.Dropout(0.4),
+#     layers.Dense(len(CLASSES), activation='softmax')
+# ])
         
         # Compile (needed for some operations)
         model.compile(

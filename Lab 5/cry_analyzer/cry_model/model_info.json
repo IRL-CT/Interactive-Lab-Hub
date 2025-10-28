@@ -1,8 +1,8 @@
 {
-  "validation_accuracy": 0.39240506291389465,
-  "num_samples": 391,
-  "training_samples": 312,
-  "validation_samples": 79,
+  "validation_accuracy": 0.4000000059604645,
+  "num_samples": 699,
+  "training_samples": 559,
+  "validation_samples": 140,
   "feature_shape": [
     40,
     1
