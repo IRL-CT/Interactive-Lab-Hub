@@ -478,6 +478,7 @@ GestureTrack should feel intuitive and freeing, almost like a peek inside into t
 
 #### 🩻👁️'Ribs' to 🖤🎹'Back to Black'
 *Click on the image to see the video*
+
 *This video demonstrates the use of all the gestures, including skipping to the next song on Ribs by Lorde and Back to Black by Amy Winehouse*
 
 <a href="https://drive.google.com/file/d/1b3JwO9-rdfujm0LzS-xhmF3umqP59GZA/view?usp=sharing">
@@ -486,6 +487,7 @@ GestureTrack should feel intuitive and freeing, almost like a peek inside into t
 
 #### 🌀⭐'Borderline'
 *Click on the image to see the video*
+
 *This video demonstrates the use of all the gestures on Borderline by Tame Impala*
 
 <a href="https://drive.google.com/file/d/1LmGm7Aev2S92YzCOlDptKKa6L_vyB_KT/view?usp=sharing">
@@ -494,9 +496,11 @@ GestureTrack should feel intuitive and freeing, almost like a peek inside into t
 
 #### 💞🎧🌙'Affection'
 *Click on the image to see the video*
+
 *This video demonstrates the use of all the gestures on Affection by BETWEENFRIENDS*
 
 <a href="https://drive.google.com/file/d/10xfE4hFErZzkN3eCKbgRXW00fvjBBd6x/view?usp=sharing">
   <img src="AFFECTIONIMAGE.png" alt="Watch the video" width="50%"/>
 </a>
 
+Created by Nophar Shalom @ Cornell Tech in OCT 2025
