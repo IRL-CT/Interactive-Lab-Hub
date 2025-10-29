@@ -226,31 +226,47 @@ Flight test interactive prototype **observation notes**:
 
 ## Part D
 ### Characterize your own Observant system
-### GestureTrack
+
+![example](BACKTOBLACK.jpg)
+
+### GestureTrack👋🎚️🎶
 Inspired by Imogen Heap's music engineering glove [MiMU](https://www.mimugloves.com/), I decided to implement a version that relies on pre-existing songs and uses hand detection to activate one of the layered tracks of the song.
 
+![imogen](imogen.png)
+
 **Use**
+
 GestureTrack can be used to control and remix the aspects of each song (e.g. Bass, Voice, Melody, Drums) through hand gestures in real time. Each finger position manipulates different audio stems, while a fist gestures to skip to the next track. It allows for expressive and contactless interaction with music, while also enabling to listen to the bare bones that make up each song.
 
 **Good Environment**
+
 GestureTrack works best in well-lit spaces with minimal visual noise, where the camera can clearly detect hand positions. Controlled indoor environments like studios, labs, or performance spaces—help ensure consistent detection and stable performance.
 
 **Bad Environment**
+
 Poor lighting, cluttered backgrounds, or environments with excessive movement (like outdoors in bright sunlight or busy workspaces) interfere with hand tracking accuracy. Low-performance hardware or laggy cameras can also disrupt real-time response.
 
 **When it may break**
+
 It “breaks” when hand tracking fails. If the camera loses sight of the hand, lighting changes drastically, or gestures are too fast or subtle to detect is when this would happen. It may also break logically when gestures overlap or are ambiguous, leading to incorrect audio stem activation. When it breaks, It won’t crash dramatically but will likely misinterpret gestures like muting or unmuting the wrong stems, or failing to register a skip. The user might perceive a lag or loss of responsiveness. Audio may briefly cut or overlap incorrectly, breaking immersion.
 
 **Other properties/behaviors**
-  * It reacts continuously rather than in discrete steps—volume blending feels fluid.
+
+  * It reacts continuously rather than in discrete steps, continuing the song seamlessly as the user plays around.
   * It encourages physical expressiveness and play; gestures become part of the musical experience.
   * It is more performative than about precision, more about exploration.
 
 **How does it feel?**
+
 GestureTrack should feel intuitive and freeing, almost like a peek inside into the artist's studios as they are creating the songs. Controlling the music allows for discovery of details that haven't been previously noted, or unique combinations of the stems that can play with the music's overall feel and impact.
 
 
-**\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
+#### ⭐🎥 Infer.py Demo Video
+*Click on the image to see the video*
+
+<a href="https://drive.google.com/file/d/1Wc19oo6U5gZBWtoS2AaZ0H9Lis3aGAxa/view?usp=sharing">
+  <img src="appledetect.jpg" alt="Watch the video" width="30%"/>
+</a>
 
 ## Part 2.
 
