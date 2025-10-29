@@ -11,3 +11,5 @@ adafruit-circuitpython-rgb-display
 
 #Also install tensorflow lite
 #pip3 install --extra-index-url https://google-coral.github.io/py-repo/ tflite-runtime
+
+tensorflow-hub

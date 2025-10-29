@@ -7,8 +7,16 @@ pip install -r requirements.txt
 
 sudo systemctl stop piscreen.service --now
 
-python cry_analyzer_color.py
+#check if the microphone is running 
+arecord -l
+
+python baby_monitor.py
 
 # to test if the cry analyzer is working or not
-python cry_analyzer_model_only.py *"filename"*
+python test/cry_analyzer_model_only.py *"filename"*
 ```
+
+To test cry vs laugh: 
+
+laugh 
+[https://www.youtube.com/watch?v=IzNvuvgbBnU](https://www.youtube.com/watch?v=IzNvuvgbBnU)
