@@ -273,7 +273,7 @@ GestureTrack should feel intuitive and freeing, almost like a peek inside into t
 
 ## Final Product
 
-#### 'Ribs' to 'Back to Black'
+#### 🩻👁️'Ribs' to 🖤🎹'Back to Black'
 *Click on the image to see the video*
 *This video demonstrates the use of all the gestures, including skipping to the next song on Ribs by Lorde and Back to Black by Amy Winehouse*
 
@@ -281,7 +281,7 @@ GestureTrack should feel intuitive and freeing, almost like a peek inside into t
   <img src="RIBSIMAGE.png" alt="Watch the video" width="50%"/>
 </a>
 
-#### 'Borderline'
+#### 🌀⭐'Borderline'
 *Click on the image to see the video*
 *This video demonstrates the use of all the gestures on Borderline by Tame Impala*
 
@@ -289,7 +289,7 @@ GestureTrack should feel intuitive and freeing, almost like a peek inside into t
   <img src="BORDERLINEIMAGE.png" alt="Watch the video" width="50%"/>
 </a>
 
-#### 'Affection'
+#### 💞🎧🌙'Affection'
 *Click on the image to see the video*
 *This video demonstrates the use of all the gestures on Affection by BETWEENFRIENDS*
 
