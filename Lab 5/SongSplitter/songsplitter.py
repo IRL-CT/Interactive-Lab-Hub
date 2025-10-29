@@ -17,12 +17,12 @@ BASE_VOL = 0.5        # unmuted volume (50%)
 FIST_HOLD_TIME = 0.6  # seconds to hold fist to trigger skip
 SKIP_COOLDOWN = 1.5   # minimum seconds between skips
 
-# Initialize pygame mixer (pre-init optional if you need custom params)
+# Initialize pygame mixer
 pygame.mixer.init()
 channels = {}
 muted_states = {stem: True for stem in STEMS}
 
-# State for fist debounce
+# Fist debounce state
 fist_start_time = None
 last_skip_time = 0.0
 
@@ -30,11 +30,10 @@ last_skip_time = 0.0
 def load_song(song_folder):
     """Load all stems for the given song and start them once (not looped)."""
     global channels
-    print(f"Loading stems for: {song_folder}")
-    # stop and clear any existing channels
     stop_all()
     channels.clear()
 
+    print(f"Loading stems for: {song_folder}")
     for i, stem in enumerate(STEMS):
         path = os.path.join(song_folder, f"{stem}.mp3")
         if os.path.exists(path):
@@ -44,15 +43,14 @@ def load_song(song_folder):
                 print(f"Error loading {path}: {e}")
                 continue
             ch = pygame.mixer.Channel(i)
-            # play once so check_auto_next can detect end of song
-            ch.play(sound, loops=0)
-            ch.set_volume(0.0)  # start muted
+            ch.play(sound, loops=0)  # play once for auto-next detection
+            ch.set_volume(0.0)       # start muted
             channels[stem] = ch
         else:
             print(f"Missing file: {path}")
 
 def set_mute_state(stem, muted):
-    """Mute or unmute a specific stem (set volume to BASE_VOL when unmuted)."""
+    """Mute or unmute a specific stem."""
     if stem in channels:
         volume = 0.0 if muted else BASE_VOL
         try:
@@ -62,7 +60,7 @@ def set_mute_state(stem, muted):
             print(f"Error setting volume for {stem}: {e}")
 
 def stop_all():
-    """Stop all current sounds."""
+    """Stop all sounds."""
     for ch in list(channels.values()):
         try:
             ch.stop()
@@ -81,12 +79,10 @@ def next_song():
     print(f"Now playing: {current_song}")
 
 def check_auto_next():
-    """Auto-skip to next song when all stems have finished playing."""
-    # if channels is empty or any channel is busy, do nothing
+    """Auto-skip to next song when all stems have finished."""
     if not channels:
         return
     if not any(ch.get_busy() for ch in channels.values()):
-        # all channels finished => advance
         next_song()
 
 # ==== START FIRST SONG ====
@@ -106,14 +102,13 @@ try:
     while True:
         success, img = cap.read()
         if not success:
-            # small sleep to avoid busy loop if camera fails
             time.sleep(0.01)
             continue
 
         img = detector.findHands(img)
         lmList = detector.findPosition(img, draw=False)
 
-        # default: show current song title
+        # Show song title
         cv2.putText(img, f'{current_song}', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
         if len(lmList) != 0:
@@ -130,12 +125,15 @@ try:
 
             TOUCH_DIST = 40
             OPEN_DIST = 100
-            FIST_DIST = 50
+            FIST_DIST = 60  # more forgiving
 
             open_palm = all(d > OPEN_DIST for d in [d_index, d_middle, d_ring, d_pinky])
-            fist = all(d < FIST_DIST for d in [d_index, d_middle, d_ring, d_pinky])
 
-            # Muting logic: full plays only when open palm and mutes when any combo active
+            # --- forgiving fist detection ---
+            fingers_closed = sum(d < FIST_DIST for d in [d_index, d_middle, d_ring, d_pinky])
+            fist = fingers_closed >= 3  # count as fist if 3+ fingers near thumb
+
+            # --- stem muting logic ---
             if open_palm:
                 for s in STEMS:
                     set_mute_state(s, True)
@@ -148,23 +146,20 @@ try:
                     d_pinky < TOUCH_DIST
                 )
                 set_mute_state("full", any_combo)
-                # note: set_muted = True means muted; we want stem ON when finger is touching -> muted False
                 set_mute_state("vocals", not (d_index < TOUCH_DIST))
                 set_mute_state("drums", not (d_middle < TOUCH_DIST))
                 set_mute_state("bass",  not (d_ring < TOUCH_DIST))
                 set_mute_state("other", not (d_pinky < TOUCH_DIST))
 
-            # Fist skip: require hold + cooldown
+            # --- fist skip with hold + cooldown ---
             now = time.time()
             if fist:
                 if fist_start_time is None:
                     fist_start_time = now
                 else:
-                    # held long enough?
                     if (now - fist_start_time) >= FIST_HOLD_TIME and (now - last_skip_time) >= SKIP_COOLDOWN:
                         print("Fist held - skipping to next song.")
                         next_song()
-                        # reset fist start to avoid double skip in same hold
                         fist_start_time = None
             else:
                 fist_start_time = None
@@ -173,7 +168,7 @@ try:
             for id in [4, 8, 12, 16, 20]:
                 cv2.circle(img, (lmList[id][1], lmList[id][2]), 10, (255, 0, 255), cv2.FILLED)
 
-            # Display mute/unmute states
+            # Display stem states
             y = 100
             for stem, muted in muted_states.items():
                 color = (0, 255, 0) if not muted else (0, 0, 255)
@@ -189,7 +184,7 @@ try:
 
         cv2.imshow("Song Splitter", img)
 
-        # Auto-advance if song ended
+        # Auto-next if song finished
         check_auto_next()
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
