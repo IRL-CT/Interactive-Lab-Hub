@@ -227,12 +227,24 @@ Flight test interactive prototype **observation notes**:
 ## Part D
 ### Characterize your own Observant system
 
-![example](BACKTOBLACK.jpg)
+<img src="BACKTOBLACK.jpg" alt="GestureTrack" width="50%"/>
 
 ### GestureTrack👋🎚️🎶
 Inspired by Imogen Heap's music engineering glove [MiMU](https://www.mimugloves.com/), I decided to implement a version that relies on pre-existing songs and uses hand detection to activate one of the layered tracks of the song.
 
-![imogen](imogen.png)
+<img src="imogen.jpg" alt="imogen" width="50%"/>
+
+### Thought Process
+
+For the code, I built off of the provided code for the hand gesture tracking that portrayed 'quiet coyote' and finger distance. With this I assigned each finger a specific music track and coded its activation based on when it touches the thumb. For every chosen song, purposefully hand selected layered, complex songs, I split the mp3 files into stems using Bandlab. These stems included, full, which plays the entire song track, bass, which plays the bass sounds, vocals, which plays the singing portions, drums, which plays drums, and other, which plays all other musical melodies of the song.
+
+Here is a breakdown of the actions:
+  * 🖐️🎵 Open Palm: Plays the full mix (all stems muted except “full”).
+  * 🤏🎤 Thumb + Index Touch: Activates vocals stem.
+  * 👌🥁 Thumb + Middle Touch: Activates drums stem.
+  * 🤙🎸 Thumb + Ring Touch: Activates bass stem.
+  * 🤟🎹 Thumb + Pinky Touch: Activates other/instrumental stem.
+  * ✊⏭️ Fist: Skips to the next song.
 
 **Use**
 
