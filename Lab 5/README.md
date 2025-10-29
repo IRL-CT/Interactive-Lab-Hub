@@ -260,16 +260,29 @@ It “breaks” when hand tracking fails. If the camera loses sight of the hand,
 
 GestureTrack should feel intuitive and freeing, almost like a peek inside into the artist's studios as they are creating the songs. Controlling the music allows for discovery of details that haven't been previously noted, or unique combinations of the stems that can play with the music's overall feel and impact.
 
+## Final Product
 
-#### ⭐🎥 Infer.py Demo Video
+#### 'Ribs' to 'Back to Black'
 *Click on the image to see the video*
+*This video demonstrates the use of all the gestures, including skipping to the next song on Ribs by Lorde and Back to Black by Amy Winehouse*
 
-<a href="https://drive.google.com/file/d/1Wc19oo6U5gZBWtoS2AaZ0H9Lis3aGAxa/view?usp=sharing">
-  <img src="appledetect.jpg" alt="Watch the video" width="30%"/>
+<a href="https://drive.google.com/file/d/1b3JwO9-rdfujm0LzS-xhmF3umqP59GZA/view?usp=sharing">
+  <img src="RIBSIMAGE.png" alt="Watch the video" width="30%"/>
 </a>
 
-## Part 2.
+#### 'Borderline'
+*Click on the image to see the video*
+*This video demonstrates the use of all the gestures on Borderline by Tame Impala*
 
-Following exploration and reflection from Part 1, finish building your interactive system, and demonstrate it in use with a video.
+<a href="https://drive.google.com/file/d/1LmGm7Aev2S92YzCOlDptKKa6L_vyB_KT/view?usp=sharing">
+  <img src="BORDERLINEIMAGE.png" alt="Watch the video" width="30%"/>
+</a>
 
-**\*\*\*Include a short video demonstrating the finished result.\*\*\***
+#### 'Affection'
+*Click on the image to see the video*
+*This video demonstrates the use of all the gestures on Affection by BETWEENFRIENDS*
+
+<a href="https://drive.google.com/file/d/10xfE4hFErZzkN3eCKbgRXW00fvjBBd6x/view?usp=sharing">
+  <img src="AFFECTIONIMAGE.png" alt="Watch the video" width="30%"/>
+</a>
+
