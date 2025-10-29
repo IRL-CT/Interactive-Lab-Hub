@@ -207,7 +207,6 @@ Flight test interactive prototype **observation notes**:
    
   Other possible problems could occur if the lighting in the space changes significantly (for example, sunlight streaming through the window) or if someone walks in front of the line, therefore covering the line and triggering the detection. The system might also misinterpret people chatting near the counter or waiting for their coffee to be made as being “in line,” especially if they pause in the detection zone.
 
-**\*\*\*Think about someone using the system. Describe how you think this will work.\*\*\***
 1. Are they aware of the uncertainties in the system?
    
    Most users would not be aware of the system’s confidence threshold or its sensitivity to visual overlap. They would likely perceive the system as either “working” or “not working,” without realizing that the model makes probabilistic guesses based on what it sees.
@@ -225,14 +224,14 @@ Flight test interactive prototype **observation notes**:
   The algorithm could be improved by refining how it processes and interprets frames. For example, it could average predictions over several frames before deciding, to smooth out random fluctuations. I could also adjust the confidence threshold dynamically based on movement in the scene. Another optimization would be retraining or fine-tuning the model with better-balanced data to help it distinguish between similar visual patterns, like a barista and a customer. These changes would make the algorithm more stable and reliable in real-time detection.
 
 ## Part D
-### Characterize your own Observant system
-
-<img src="BACKTOBLACK.jpg" alt="GestureTrack" width="50%"/>
 
 ### GestureTrack👋🎚️🎶
+
+<img src="BACKTOBLACK.jpg" alt="GestureTrack" width="30%"/>
+
 Inspired by Imogen Heap's music engineering glove [MiMU](https://www.mimugloves.com/), I decided to implement a version that relies on pre-existing songs and uses hand detection to activate one of the layered tracks of the song.
 
-<img src="imogen.jpg" alt="imogen" width="50%"/>
+<img src="imogen.jpg" alt="imogen" width="30%"/>
 
 ### Thought Process
 
@@ -279,7 +278,7 @@ GestureTrack should feel intuitive and freeing, almost like a peek inside into t
 *This video demonstrates the use of all the gestures, including skipping to the next song on Ribs by Lorde and Back to Black by Amy Winehouse*
 
 <a href="https://drive.google.com/file/d/1b3JwO9-rdfujm0LzS-xhmF3umqP59GZA/view?usp=sharing">
-  <img src="RIBSIMAGE.png" alt="Watch the video" width="30%"/>
+  <img src="RIBSIMAGE.png" alt="Watch the video" width="50%"/>
 </a>
 
 #### 'Borderline'
@@ -287,7 +286,7 @@ GestureTrack should feel intuitive and freeing, almost like a peek inside into t
 *This video demonstrates the use of all the gestures on Borderline by Tame Impala*
 
 <a href="https://drive.google.com/file/d/1LmGm7Aev2S92YzCOlDptKKa6L_vyB_KT/view?usp=sharing">
-  <img src="BORDERLINEIMAGE.png" alt="Watch the video" width="30%"/>
+  <img src="BORDERLINEIMAGE.png" alt="Watch the video" width="50%"/>
 </a>
 
 #### 'Affection'
@@ -295,6 +294,6 @@ GestureTrack should feel intuitive and freeing, almost like a peek inside into t
 *This video demonstrates the use of all the gestures on Affection by BETWEENFRIENDS*
 
 <a href="https://drive.google.com/file/d/10xfE4hFErZzkN3eCKbgRXW00fvjBBd6x/view?usp=sharing">
-  <img src="AFFECTIONIMAGE.png" alt="Watch the video" width="30%"/>
+  <img src="AFFECTIONIMAGE.png" alt="Watch the video" width="50%"/>
 </a>
 
