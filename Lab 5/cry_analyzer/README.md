@@ -20,3 +20,10 @@ To test cry vs laugh:
 
 laugh 
 [https://www.youtube.com/watch?v=IzNvuvgbBnU](https://www.youtube.com/watch?v=IzNvuvgbBnU)
+
+How I trained the model: 
+
+[Github Repo for CryAnalyzer](https://github.com/eigenValue7/cry_analyzer)
+
+Videos: 
+[Folder](https://drive.google.com/drive/folders/1LjDBRH2nMtgujjL64DB2l8F2J6kqiYwR?usp=drive_link)
