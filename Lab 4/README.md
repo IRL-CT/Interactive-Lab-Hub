@@ -774,7 +774,7 @@ Users found it difficult to tell which color was being detected. Even after an e
 
 One user wanted the option to save favorite colors, while another enjoyed the spontaneous, constantly changing colors. This raised an interesting design question: should ColorCatcher allow users to store selected colors, or keep the experience immediate and dynamic?
 
-3. **Tilt-to-erase confusion**
+3. **Tilt-to-erasef confusion**
 
 One participant accidentally deleted their drawing while tilting the board to detect colors. They felt the erase gesture was too sensitive and wanted a more intentional action — such as a confirmation step or a separate erase button.
 
