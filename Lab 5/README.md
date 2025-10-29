@@ -447,6 +447,7 @@ Here is a breakdown of the actions:
         stop_all()
         pygame.mixer.quit()
 </details>
+
 **Use**
 
 GestureTrack can be used to control and remix the aspects of each song (e.g. Bass, Voice, Melody, Drums) through hand gestures in real time. Each finger position manipulates different audio stems, while a fist gestures to skip to the next track. It allows for expressive and contactless interaction with music, while also enabling to listen to the bare bones that make up each song.
