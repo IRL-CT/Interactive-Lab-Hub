@@ -1,4 +1,3 @@
-
 # Ph-UI!!!
 
 Team Members: JUNXIONG CHEN (jc3828), Chiahsuan Chang (cc2952) 
@@ -597,8 +596,4 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
-
-
-
-</details>
 

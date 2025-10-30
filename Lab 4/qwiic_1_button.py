@@ -1,4 +1,3 @@
-
 import qwiic_button 
 import time
 import sys
