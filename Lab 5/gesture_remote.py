@@ -104,20 +104,25 @@ def is_finger_extended(lmList, finger_tip, finger_pip):
 
 def count_fingers(lmList):
     if len(lmList) == 0:
-        return 0
-    fingers = 0
+        return 0, []
     
-    if lmList[4][1] < lmList[3][1]:
-        fingers += 1
+    fingers = []
     
+    # Thumb detection - use distance
+    thumb_tip_x = lmList[4][1]
+    thumb_base_x = lmList[2][1]
+    thumb_dist = abs(thumb_tip_x - thumb_base_x)
+    fingers.append(thumb_dist > 40)
+    
+    # Other fingers - check if tip is above knuckle
     for id in [8, 12, 16, 20]:
-        if lmList[id][2] < lmList[id-2][2]:
-            fingers += 1
+        fingers.append(lmList[id][2] < lmList[id-2][2] - 15)
     
-    return fingers
+    return sum(fingers), fingers
 
 def is_fist(lmList):
-    return count_fingers(lmList) == 0
+    count, _ = count_fingers(lmList)
+    return count == 0
 
 def get_hand_center(lmList):
     if len(lmList) == 0:
@@ -137,7 +142,7 @@ def get_finger_angle(point1, point2):
 
 def detect_gesture(lmList, prev_center):
     if len(lmList) == 0:
-        return None, None, 0  # Added confidence score
+        return None, None
     
     center_x, center_y = get_hand_center(lmList)
     
@@ -147,66 +152,42 @@ def detect_gesture(lmList, prev_center):
     ringX, ringY = lmList[16][1], lmList[16][2]
     pinkyX, pinkyY = lmList[20][1], lmList[20][2]
     wristX, wristY = lmList[0][1], lmList[0][2]
-    thumbBase = lmList[2]
     pointerBase = lmList[5]
     
-    confidence = 1.0  # Initialize confidence score
+    # Get finger states
+    finger_count, active_fingers = count_fingers(lmList)
     
-    dist_thumb_pointer = calculate_distance(thumbX, thumbY, pointerX, pointerY)
-    dist_pointer_middle = calculate_distance(pointerX, pointerY, middleX, middleY)
-    dist_middle_ring = calculate_distance(middleX, middleY, ringX, ringY)
-    dist_ring_pinky = calculate_distance(ringX, ringY, pinkyX, pinkyY)
+    # PRIORITY 1: "7" gesture (thumb + index) - CHECK FIRST to avoid false fist detection
+    thumb_and_index = (active_fingers == [True, True, False, False, False])
     
-    all_fingers_close = (dist_thumb_pointer < 50 and 
-                         dist_pointer_middle < 30 and 
-                         dist_middle_ring < 30 and 
-                         dist_ring_pinky < 30)
+    if thumb_and_index:
+        pointer_dx = pointerX - wristX
+        
+        # Just check horizontal direction - don't require thumb position
+        if pointer_dx > 60:  # Pointing RIGHT
+            return "next_track", (center_x, center_y)
+        elif pointer_dx < -60:  # Pointing LEFT
+            return "prev_track", (center_x, center_y)
     
-    all_fingers_open = (dist_thumb_pointer > 80 and 
-                        dist_pointer_middle > 50 and 
-                        dist_middle_ring > 50 and 
-                        dist_ring_pinky > 50)
-    
-    if all_fingers_close:
+    # PRIORITY 2: Fist - all fingers closed
+    if finger_count == 0:
         return "fist", (center_x, center_y)
     
-    if all_fingers_open:
+    # PRIORITY 3: Open hand - all fingers extended
+    if finger_count == 5:
         return "open_hand", (center_x, center_y)
     
-    pointer_extended = calculate_distance(pointerX, pointerY, pointerBase[1], pointerBase[2]) > 60
-    middle_folded = middleY > pointerBase[2]
-    ring_folded = ringY > pointerBase[2]
-    pinky_folded = pinkyY > pointerBase[2]
-    thumb_folded = thumbY > pointerBase[2] - 20
+    # PRIORITY 4: Volume control - only index finger extended
+    only_index = (active_fingers == [False, True, False, False, False])
     
-    only_index_up = pointer_extended and middle_folded and ring_folded and pinky_folded and thumb_folded
-    
-    if only_index_up:
-        pointer_dy = pointerY - wristY
-        pointer_dx = pointerX - wristX
+    if only_index:
+        pointer_base_y = pointerBase[2]
         
-        if pointer_dy < -50:
+        # Check if pointing UP or DOWN relative to base
+        if pointerY < pointer_base_y - 80:  # Pointing UP
             return "volume_up", (center_x, center_y)
-        elif pointer_dy > -20:
+        elif pointerY > pointer_base_y - 20:  # Pointing DOWN (relaxed threshold)
             return "volume_down", (center_x, center_y)
-    
-    thumb_extended = calculate_distance(thumbX, thumbY, thumbBase[1], thumbBase[2]) > 50
-    
-    if thumb_extended and pointer_extended and middle_folded and ring_folded:
-        
-        pointer_dy = pointerY - wristY
-        pointer_dx = pointerX - wristX
-        thumb_dy = thumbY - wristY
-        
-        thumb_up = thumb_dy < -20
-        pointer_right = pointer_dx > 40
-        pointer_left = pointer_dx < -40
-        
-        if pointer_right and thumb_up:
-            return "next_track", (center_x, center_y)
-        
-        elif pointer_left and thumb_up:
-            return "prev_track", (center_x, center_y)
     
     return None, (center_x, center_y)
 

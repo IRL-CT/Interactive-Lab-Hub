@@ -255,28 +255,26 @@ def detect_gesture(lmList):
     # DEBUG: Print finger detection
     # print(f"Fingers: {finger_count}, Active: {active_fingers}")
     
-    # Improved FIST detection - relaxed conditions
-    # Just check if no fingers are extended
-    if finger_count == 0:
-        return "fist", 0.9
-    
-    # Improved OPEN HAND detection
-    # Require ALL 5 fingers extended (more strict to avoid false positives)
-    if finger_count == 5:
-        return "open_hand", 0.9
-    
-    # NEXT/PREV TRACK - "7" gesture (thumb + index) - CHECK FIRST before volume
+    # NEXT/PREV TRACK - "7" gesture (thumb + index) - CHECK FIRST before fist/volume
     thumb_and_index = (active_fingers == [True, True, False, False, False])
     
     if thumb_and_index:
         pointer_dx = pointerX - wristX
-        thumb_dy = thumbY - wristY
         
         # Don't require thumb to be up - just check horizontal direction
         if pointer_dx > 60:  # Pointing RIGHT
             return "next_track", 0.85
         elif pointer_dx < -60:  # Pointing LEFT
             return "prev_track", 0.85
+    
+    # FIST detection - STRICT: require NO fingers extended
+    # Just check if no fingers are extended
+    if finger_count == 0:
+        return "fist", 0.9
+    
+    # OPEN HAND detection - require ALL 5 fingers extended
+    if finger_count == 5:
+        return "open_hand", 0.9
     
     # VOLUME UP/DOWN - only index finger extended
     only_index = (active_fingers == [False, True, False, False, False])
@@ -287,7 +285,7 @@ def detect_gesture(lmList):
         # Check if pointing UP or DOWN
         if pointerY < pointer_base_y - 80:  # Pointing clearly UP
             return "volume_up", 0.8
-        elif pointerY > pointer_base_y - 20:  # Pointing clearly DOWN
+        elif pointerY > pointer_base_y - 20:  # Pointing clearly DOWN (relaxed)
             return "volume_down", 0.8
     
     return None, 0
