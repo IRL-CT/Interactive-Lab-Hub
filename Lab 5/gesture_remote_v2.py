@@ -205,18 +205,22 @@ def count_fingers(lmList):
     
     fingers = []
     
-    # Thumb (check x-coordinate) - works for both left and right hand
-    thumb_tip = lmList[4][1]
-    thumb_ip = lmList[3][1]
-    # Check if thumb is extended by comparing with palm center
-    if abs(thumb_tip - thumb_ip) > 30:  # Thumb extended horizontally
+    # Thumb detection - compare thumb tip with thumb base
+    thumb_tip_x = lmList[4][1]
+    thumb_base_x = lmList[2][1]  # Thumb CMC joint
+    wrist_x = lmList[0][1]
+    
+    # Thumb is extended if tip is far from base (horizontally)
+    # Works for both left and right hand
+    thumb_dist = abs(thumb_tip_x - thumb_base_x)
+    if thumb_dist > 40:  # Thumb extended
         fingers.append(True)
     else:
         fingers.append(False)
     
     # Other fingers (check y-coordinate)
     for id in [8, 12, 16, 20]:
-        if lmList[id][2] < lmList[id-2][2] - 10:  # Extended (fingertip higher than knuckle)
+        if lmList[id][2] < lmList[id-2][2] - 15:  # Extended (fingertip higher than knuckle)
             fingers.append(True)
         else:
             fingers.append(False)
