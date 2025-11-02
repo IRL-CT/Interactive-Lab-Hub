@@ -252,6 +252,9 @@ def detect_gesture(lmList):
     # Count fingers for better detection
     finger_count, active_fingers = count_fingers(lmList)
     
+    # DEBUG: Print finger detection
+    # print(f"Fingers: {finger_count}, Active: {active_fingers}")
+    
     # Improved FIST detection - relaxed conditions
     # Just check if no fingers are extended
     if finger_count == 0:
@@ -262,33 +265,30 @@ def detect_gesture(lmList):
     if finger_count == 5:
         return "open_hand", 0.9
     
-    # VOLUME UP/DOWN - only index finger extended
-    only_index = (active_fingers == [False, True, False, False, False])
-    
-    if only_index:
-        # Use pointer position relative to wrist
-        pointer_dy = pointerY - wristY
-        pointer_base_y = lmList[5][2]  # Index finger base
-        
-        # Check if pointing UP or DOWN
-        if pointerY < pointer_base_y - 80:  # Pointing clearly UP (finger much higher than base)
-            return "volume_up", 0.8
-        elif pointerY > pointer_base_y - 20:  # Pointing clearly DOWN (finger at same level or below base)
-            return "volume_down", 0.8
-    
-    # NEXT/PREV TRACK - "7" gesture (thumb + index)
+    # NEXT/PREV TRACK - "7" gesture (thumb + index) - CHECK FIRST before volume
     thumb_and_index = (active_fingers == [True, True, False, False, False])
     
     if thumb_and_index:
         pointer_dx = pointerX - wristX
         thumb_dy = thumbY - wristY
         
-        thumb_up = thumb_dy < -20
-        
-        if pointer_dx > 60 and thumb_up:  # Clearly pointing RIGHT
+        # Don't require thumb to be up - just check horizontal direction
+        if pointer_dx > 60:  # Pointing RIGHT
             return "next_track", 0.85
-        elif pointer_dx < -60 and thumb_up:  # Clearly pointing LEFT
+        elif pointer_dx < -60:  # Pointing LEFT
             return "prev_track", 0.85
+    
+    # VOLUME UP/DOWN - only index finger extended
+    only_index = (active_fingers == [False, True, False, False, False])
+    
+    if only_index:
+        pointer_base_y = lmList[5][2]  # Index finger base
+        
+        # Check if pointing UP or DOWN
+        if pointerY < pointer_base_y - 80:  # Pointing clearly UP
+            return "volume_up", 0.8
+        elif pointerY > pointer_base_y - 20:  # Pointing clearly DOWN
+            return "volume_down", 0.8
     
     return None, 0
 
