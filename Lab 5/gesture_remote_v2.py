@@ -103,7 +103,7 @@ cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 set_volume(50)
 current_song = play_current_track()
 
-detector = htm.handDetector(detectionCon=0.7, minTrackCon=0.5)
+detector = htm.handDetector(detectionCon=0.7)
 
 # ========== Gesture State Variables ==========
 gesture_cooldown = 0
