@@ -39,6 +39,8 @@ D) [Reflect](#part-d)
 ---
 
 ### Part A
+<details>
+	<summary><strong> Part A Examples & Instructions </strong></summary>
 ### Play with different sense-making algorithms.
 
 #### Pytorch for object recognition
@@ -128,6 +130,7 @@ Teachable machines provides an audio classifier too. If you want to use audio cl
 
 In an earlier version of this class students experimented with foundational computer vision techniques such as face and flow detection. Techniques like these can be sufficient, more performant, and allow non discrete classification. Find the material here:
 [CV_optional/cv.md](CV_optional/cv.md).
+</details>
 
 ### Part B
 ### Construct a simple interaction.
