@@ -61,7 +61,7 @@ def play_current_track():
     command = ['aplay', '-D', 'pulse', music_path]
     audio_process = subprocess.Popen(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     track_name = music_path.split('/')[-1].replace('_fixed.wav', '').replace('-', ' ')
-    print(f'🎵 Playing: {track_name}')
+    print(f'[PLAY] {track_name}')
     return track_name
 
 def play_pause():
@@ -69,7 +69,7 @@ def play_pause():
     if audio_process and audio_process.poll() is None:
         audio_process.terminate()
         audio_process = None
-        print("⏸️  Music Stopped")
+        print("[PAUSE] Music Stopped")
         return "Stopped"
     else:
         return play_current_track()
@@ -90,11 +90,11 @@ wCam, hCam = 640, 480
 for camera_id in [0, 1, 2]:
     cap = cv2.VideoCapture(camera_id)
     if cap.isOpened():
-        print(f"📹 Camera found at /dev/video{camera_id}")
+        print(f"[OK] Camera found at /dev/video{camera_id}")
         break
     cap.release()
 else:
-    print("❌ Error: No camera found. Please check camera connection.")
+    print("[ERROR] No camera found. Please check camera connection.")
     exit(1)
 
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, wCam)
@@ -163,15 +163,22 @@ def count_fingers(lmList):
     
     fingers = []
     
-    # Thumb (check x-coordinate)
-    if lmList[4][1] < lmList[3][1]:
+    # Thumb detection - compare thumb tip with thumb base
+    thumb_tip_x = lmList[4][1]
+    thumb_base_x = lmList[2][1]  # Thumb CMC joint
+    wrist_x = lmList[0][1]
+    
+    # Thumb is extended if tip is far from base (horizontally)
+    # Works for both left and right hand
+    thumb_dist = abs(thumb_tip_x - thumb_base_x)
+    if thumb_dist > 40:  # Thumb extended
         fingers.append(True)
     else:
         fingers.append(False)
     
     # Other fingers (check y-coordinate)
     for id in [8, 12, 16, 20]:
-        if lmList[id][2] < lmList[id-2][2]:
+        if lmList[id][2] < lmList[id-2][2] - 15:  # Extended (fingertip higher than knuckle)
             fingers.append(True)
         else:
             fingers.append(False)
@@ -203,50 +210,38 @@ def detect_gesture(lmList):
     # Count fingers for better detection
     finger_count, active_fingers = count_fingers(lmList)
     
-    # Improved FIST detection
-    all_fingers_close = (dist_thumb_pointer < 50 and 
-                         dist_pointer_middle < 30 and 
-                         dist_middle_ring < 30 and 
-                         dist_ring_pinky < 30 and
-                         finger_count == 0)
+    # NEXT/PREV TRACK - "7" gesture (thumb + index) - CHECK FIRST before fist/volume
+    thumb_and_index = (active_fingers == [True, True, False, False, False])
     
-    if all_fingers_close:
+    if thumb_and_index:
+        pointer_dx = pointerX - wristX
+        
+        # Don't require thumb to be up - just check horizontal direction
+        if pointer_dx > 60:  # Pointing RIGHT
+            return "next_track", 0.85
+        elif pointer_dx < -60:  # Pointing LEFT
+            return "prev_track", 0.85
+    
+    # FIST detection - STRICT: require NO fingers extended
+    # Just check if no fingers are extended
+    if finger_count == 0:
         return "fist", 0.9
     
-    # Improved OPEN HAND detection
-    all_fingers_open = (dist_thumb_pointer > 80 and 
-                        dist_pointer_middle > 50 and 
-                        dist_middle_ring > 50 and 
-                        dist_ring_pinky > 50 and
-                        finger_count >= 4)
-    
-    if all_fingers_open:
+    # OPEN HAND detection - require ALL 5 fingers extended
+    if finger_count == 5:
         return "open_hand", 0.9
     
     # VOLUME UP/DOWN - only index finger extended
     only_index = (active_fingers == [False, True, False, False, False])
     
     if only_index:
-        pointer_dy = pointerY - wristY
+        pointer_base_y = lmList[5][2]  # Index finger base
         
-        if pointer_dy < -60:  # Pointing clearly UP
+        # Check if pointing UP or DOWN
+        if pointerY < pointer_base_y - 80:  # Pointing clearly UP
             return "volume_up", 0.8
-        elif pointer_dy > -10:  # Pointing clearly DOWN
+        elif pointerY > pointer_base_y - 20:  # Pointing clearly DOWN (relaxed)
             return "volume_down", 0.8
-    
-    # NEXT/PREV TRACK - "7" gesture (thumb + index)
-    thumb_and_index = (active_fingers == [True, True, False, False, False])
-    
-    if thumb_and_index:
-        pointer_dx = pointerX - wristX
-        thumb_dy = thumbY - wristY
-        
-        thumb_up = thumb_dy < -20
-        
-        if pointer_dx > 60 and thumb_up:  # Clearly pointing RIGHT
-            return "next_track", 0.85
-        elif pointer_dx < -60 and thumb_up:  # Clearly pointing LEFT
-            return "prev_track", 0.85
     
     return None, 0
 
@@ -255,57 +250,57 @@ def print_status(gesture, confidence, distance_status, fps, confirmation_progres
     os.system('clear' if os.name == 'posix' else 'cls')
     
     print("=" * 70)
-    print("🎮 GESTURE REMOTE CONTROL v2.0 - HEADLESS MODE")
+    print("GESTURE REMOTE CONTROL v2.0 - HEADLESS MODE")
     print("=" * 70)
     print()
     
     # Current gesture
     if gesture:
-        print(f"👉 Current Gesture: {gesture.upper()} (Confidence: {confidence:.0%})")
+        print(f">> Current Gesture: {gesture.upper()} (Confidence: {confidence:.0%})")
     else:
-        print("👉 Current Gesture: None detected")
+        print(">> Current Gesture: None detected")
     
     # Confirmation progress
     if confirmation_progress > 0:
         bar_length = 40
         filled = int(bar_length * confirmation_progress)
-        bar = "█" * filled + "░" * (bar_length - filled)
-        print(f"⏳ Hold Progress: [{bar}] {confirmation_progress:.0%}")
+        bar = "#" * filled + "-" * (bar_length - filled)
+        print(f"[HOLD] Progress: [{bar}] {confirmation_progress:.0%}")
     
     print()
     
     # Distance status
     if distance_status == "optimal":
-        print("✅ Hand Distance: OPTIMAL")
+        print("[OK] Hand Distance: OPTIMAL")
     elif distance_status == "too_close":
-        print("⚠️  Hand Distance: TOO CLOSE - Move back")
+        print("[WARN] Hand Distance: TOO CLOSE - Move back")
     elif distance_status == "too_far":
-        print("⚠️  Hand Distance: TOO FAR - Move closer")
+        print("[WARN] Hand Distance: TOO FAR - Move closer")
     else:
-        print("❌ Hand Distance: No hand detected")
+        print("[INFO] Hand Distance: No hand detected")
     
     print()
-    print(f"📊 FPS: {int(fps)}")
-    print(f"🎵 Playing: {current_song}")
+    print(f"[FPS] {int(fps)}")
+    print(f"[NOW PLAYING] {current_song}")
     print()
     print("-" * 70)
     print("GESTURE CONTROLS:")
     print("-" * 70)
-    print("👆 Index ↑ (others down)        = Volume Up")
-    print("👇 Index ↓ (others down)        = Volume Down")
-    print("👉 7 → (Index+Thumb right)      = Next Track")
-    print("👈 7 ← (Index+Thumb left)       = Previous Track")
-    print("✊ Fist (all fingers closed)    = Stop Music")
-    print("🖐️  Open Hand (all fingers open) = Play Music")
+    print("Index UP (others down)        = Volume Up")
+    print("Index DOWN (others down)      = Volume Down")
+    print("7 -> (Index+Thumb right)      = Next Track")
+    print("7 <- (Index+Thumb left)       = Previous Track")
+    print("Fist (all fingers closed)     = Stop Music")
+    print("Open Hand (all fingers open)  = Play Music")
     print("-" * 70)
     print("Press Ctrl+C to exit")
     print("=" * 70)
 
 # ========== Main Loop ==========
 print("\n" + "=" * 70)
-print("🚀 Starting Gesture Remote Control v2.0 - Headless Mode")
+print("Starting Gesture Remote Control v2.0 - Headless Mode")
 print("=" * 70)
-print("✨ Features: Terminal feedback, gesture confirmation, no GUI needed")
+print("Features: Terminal feedback, gesture confirmation, no GUI needed")
 print("=" * 70 + "\n")
 time.sleep(2)
 
@@ -366,35 +361,35 @@ try:
                             current_gesture = "Stop Music (Fist)"
                             current_song = play_pause()
                             gesture_cooldown = current_time + cooldown_time
-                            print(f"\n✅ Confirmed: {confirmed_gesture}\n")
+                            print(f"\n[OK] Confirmed: {confirmed_gesture}\n")
                         
                         elif confirmed_gesture == "open_hand":
                             current_gesture = "Play Music (Open Hand)"
                             current_song = play_pause()
                             gesture_cooldown = current_time + cooldown_time
-                            print(f"\n✅ Confirmed: {confirmed_gesture}\n")
+                            print(f"\n[OK] Confirmed: {confirmed_gesture}\n")
                             
                         elif confirmed_gesture == "volume_up":
-                            current_gesture = "Volume Up ↑"
+                            current_gesture = "Volume Up ^"
                             volume_up()
                             gesture_cooldown = current_time + 0.3
                             
                         elif confirmed_gesture == "volume_down":
-                            current_gesture = "Volume Down ↓"
+                            current_gesture = "Volume Down v"
                             volume_down()
                             gesture_cooldown = current_time + 0.3
                             
                         elif confirmed_gesture == "next_track":
-                            current_gesture = "Next Track ⏭"
+                            current_gesture = "Next Track >>"
                             current_song = next_track()
                             gesture_cooldown = current_time + cooldown_time
-                            print(f"\n✅ Confirmed: {confirmed_gesture}\n")
+                            print(f"\n[OK] Confirmed: {confirmed_gesture}\n")
                             
                         elif confirmed_gesture == "prev_track":
-                            current_gesture = "Previous Track ⏮"
+                            current_gesture = "Previous Track <<"
                             current_song = previous_track()
                             gesture_cooldown = current_time + cooldown_time
-                            print(f"\n✅ Confirmed: {confirmed_gesture}\n")
+                            print(f"\n[OK] Confirmed: {confirmed_gesture}\n")
         else:
             # No hand detected - clear history
             gesture_history.clear()
@@ -413,8 +408,8 @@ try:
                 print_status(gesture_name, confidence, distance_status, fps, confirmation_progress)
 
 except KeyboardInterrupt:
-    print("\n\n🛑 Stopping Gesture Remote Control...")
+    print("\n\n[STOP] Stopping Gesture Remote Control...")
     if audio_process:
         audio_process.terminate()
     cap.release()
-    print("✅ System terminated. Goodbye!\n")
+    print("[OK] System terminated. Goodbye!\n")
