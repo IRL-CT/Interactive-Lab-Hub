@@ -1,7 +1,6 @@
 """
-AI Emotion Spectrum
-Real-time camera + object recognition + artistic color glow
-(Special version for: coffee mug, projector, iPod, mouse)
+AI Emotion Spectrum + Sound Feedback
+Real-time camera + object recognition + artistic color glow + sound reaction
 """
 
 import cv2
@@ -9,6 +8,7 @@ import torch
 import json
 import time
 import numpy as np
+import pygame  # <-- for sound playback
 from torchvision import models, transforms
 from PIL import Image
 
@@ -27,7 +27,29 @@ model.eval()
 model = torch.jit.script(model)
 
 # ========================
-# 3. Camera setup
+# 3. Initialize sound system
+# ========================
+pygame.mixer.init()
+
+# Sound file mapping
+sound_files = {
+    "coffee mug": "sounds/warm.mp3",
+    "projector": "sounds/digital.mp3",
+    "iPod": "sounds/beat.mp3",
+    "mouse, computer mouse": "sounds/click.mp3"
+}
+
+# Function to play corresponding sound
+def play_sound_for_object(label):
+    if label in sound_files:
+        try:
+            pygame.mixer.music.load(sound_files[label])
+            pygame.mixer.music.play()
+        except Exception as e:
+            print(f"Error playing sound for {label}: {e}")
+
+# ========================
+# 4. Camera setup
 # ========================
 cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -35,7 +57,7 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 cap.set(cv2.CAP_PROP_FPS, 24)
 
 # ========================
-# 4. Preprocessing
+# 5. Preprocessing
 # ========================
 preprocess = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -45,19 +67,18 @@ preprocess = transforms.Compose([
 ])
 
 # ========================
-# 5. Define artistic colors
+# 6. Artistic color mapping
 # ========================
 object_colors = {
-    "coffee mug": (255, 170, 100),   # Warm orange – cozy, morning vibes
-    "projector": (150, 200, 255),    # Cool blue – calm, digital aura
+    "coffee mug": (255, 170, 100),   # Warm orange – cozy vibe
+    "projector": (150, 200, 255),    # Cool blue – digital calm
     "iPod": (230, 160, 255),         # Dreamy purple – creative energy
-    "mouse, computer mouse": (190, 255, 150),        # Green-yellow – focus and inspiration
-    "modem": (190, 255, 150),        # Green-yellow – focus and inspiration
-    "default": (230, 230, 230)       # Neutral white-gray – idle state
+    "mouse, computer mouse": (190, 255, 150),  # Green-yellow – focus
+    "default": (230, 230, 230)       # Neutral white-gray
 }
 
 # ========================
-# 6. Helper function for smooth transition
+# 7. Smooth transition helper
 # ========================
 def smooth_color_transition(current, target, rate=0.1):
     return tuple([
@@ -66,7 +87,7 @@ def smooth_color_transition(current, target, rate=0.1):
     ])
 
 # ========================
-# 7. Main loop
+# 8. Main loop
 # ========================
 last_logged = time.time()
 frame_count = 0
@@ -81,7 +102,7 @@ with torch.no_grad():
             print("Failed to read from camera.")
             break
 
-        # Convert BGR → RGB (for PIL)
+        # Convert BGR → RGB
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         pil_img = Image.fromarray(rgb)
 
@@ -104,38 +125,34 @@ with torch.no_grad():
             last_logged = now
             frame_count = 0
 
-        # ========================
-        # 8. Update color only if class changes
-        # ========================
+        # Update on label change
         if top_label != last_label:
             target_color = object_colors.get(top_label, object_colors["default"])
             print(f"Object changed to: {top_label}")
+
+            # Play corresponding sound (skip default)
+            if top_label in sound_files:
+                play_sound_for_object(top_label)
+
             last_label = top_label
 
-        # Gradually blend toward the target color
+        # Color blending
         current_color = smooth_color_transition(current_color, target_color, rate=0.15)
 
-        # ========================
-        # 9. Artistic glow filter
-        # ========================
-        # Create base color overlay
+        # Artistic glow filter
         overlay = np.full(frame.shape, current_color, dtype=np.uint8)
+        glow = cv2.GaussianBlur(overlay, (35, 35), 0)
 
-        # Slight Gaussian blur for soft glow
-        glow = cv2.GaussianBlur(overlay, (31, 31), 0)
-
-        # Increase color saturation for more vivid look
+        # Increase saturation
         hsv = cv2.cvtColor(glow, cv2.COLOR_BGR2HSV)
-        hsv[:, :, 1] = np.clip(hsv[:, :, 1] * 1.5, 0, 255)
+        hsv[:, :, 1] = np.clip(hsv[:, :, 1] * 1.6, 0, 255)
         vivid_glow = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
 
-        # Blend with stronger alpha for a visible artistic tone
-        alpha = 0.55
+        # Blend
+        alpha = 0.6
         blended = cv2.addWeighted(frame, 1 - alpha, vivid_glow, alpha, 0)
 
-        # ========================
-        # 10. Display text info
-        # ========================
+        # Add text overlay
         text = f"{top_label} ({confidence:.1f}%)"
         cv2.putText(blended, text, (20, 40),
                     cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255), 2)
@@ -144,17 +161,14 @@ with torch.no_grad():
         cv2.putText(blended, "Press 'q' to quit", (20, 460),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 1)
 
-        # ========================
-        # 11. Show the frame
-        # ========================
-        cv2.imshow("AI Emotion Spectrum", blended)
+        # Show result
+        cv2.imshow("AI Emotion Spectrum + Sound", blended)
 
-        # ========================
-        # 12. Exit condition
-        # ========================
+        # Exit
         if cv2.waitKey(1) & 0xFF == ord('q'):
             print("Exiting.")
             break
 
 cap.release()
 cv2.destroyAllWindows()
+pygame.mixer.quit()
