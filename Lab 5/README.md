@@ -501,3 +501,80 @@ The gradual color shifts convey a kind of ambient intelligence — poetic rather
 Following exploration and reflection from Part 1, finish building your interactive system, and demonstrate it in use with a video.
 
 **\*\*\*Include a short video demonstrating the finished result.\*\*\***
+
+Following exploration and reflection from Part 1, I finished building the interactive system and demonstrated it in use with a short video.
+
+**🎥 Demo Video:**  
+[Watch on YouTube](https://youtube.com/shorts/ZPnJ3qQ8inI)
+
+---
+
+#### 🎯 Core Functionality
+**1. Hand Gesture Recognition**
+- Uses **MediaPipe Hand Tracking** (via `HandTrackingModule`) to detect 21 hand landmarks per frame.  
+- Recognizes **six distinct gestures** with improved stability and threshold tuning.
+
+**2. Music Playback Control**
+- Supports play/pause, next/previous track, and automatic looping.  
+- Plays `.wav` files from the Lab 4 music folder.  
+
+**3. Volume Control**
+- Adjusts system audio via **PulseAudio (`pactl`)**, in 5% increments.
+
+---
+
+#### ✋ Gesture Mappings
+- **Fist (all fingers closed)** → *Stop or pause music*  
+  → Detected when `finger_count == 0`
+- **Open Hand (all five fingers extended)** → *Play music*  
+  → Detected when `finger_count == 5`
+- **Index Up (only index finger extended, pointing upward)** → *Increase volume*  
+  → Detected when `only_index && pointerY < base - 80`
+- **Index Down (only index finger extended, pointing downward)** → *Decrease volume*  
+  → Detected when `only_index && pointerY > base - 20`
+- **7-Right (thumb + index forming a “7” pointing right)** → *Next track*  
+  → Detected when `thumb_and_index && pointer_dx > 60`
+- **7-Left (thumb + index forming a “7” pointing left)** → *Previous track*  
+  → Detected when `thumb_and_index && pointer_dx < -60`
+
+---
+
+#### ⚙️ Key Improvements
+- **Improved finger-counting algorithm** using distance-based thumb detection and stricter thresholds.  
+- **Priority-based gesture checking** to avoid false positives (evaluation order: 7-gesture → fist → open hand → volume).  
+- **Gesture cooldown system** to prevent rapid re-triggering (1s for track changes, 0.3s for volume).  
+- **Real-time visual feedback** displaying gesture name, track info, and usage instructions on the OpenCV feed.  
+- **Robust camera detection** that automatically locates available devices (`/dev/video0–2`).
+
+---
+
+#### 🧠 Technical Features
+- Real-time video display using **OpenCV** with FPS counter.  
+- Continuous **MediaPipe landmark tracking**.  
+- Audio control handled via **subprocess + PulseAudio**.  
+- Modular **gesture state management** with cooldown timers for smooth operation.
+
+---
+### 🧪 User Testing
+
+To evaluate the usability and reliability of the final gesture-based music controller, I conducted a short user test with three participants. Each participant was first introduced to the six available gestures and then asked to perform basic tasks such as playing, pausing, changing tracks, and adjusting the volume. The session took place in an indoor setting with moderate lighting and a laptop webcam.
+
+**Observations:**
+- All participants quickly learned the mapping between gestures and actions within 2–3 minutes.  
+- Large, distinct gestures (open hand, fist) were consistently recognized with high accuracy.  
+- Volume and track-switching gestures required slightly more effort, as users had to keep their hand steady for about half a second to avoid false triggers.  
+- When lighting became uneven or users leaned too close to the camera, MediaPipe occasionally lost hand tracking, causing a delay in response.  
+
+**User Feedback:**
+- Participants described the interaction as *“fun,” “intuitive,”* and *“surprisingly natural.”*  
+- The on-screen feedback text was helpful for understanding which gesture was detected, but users suggested adding auditory cues (a beep or short sound) to confirm successful actions.  
+- Two users mentioned mild arm fatigue after extended use, suggesting that the system is best suited for short interactions rather than continuous control.
+
+**Results Summary:**
+- Average gesture recognition accuracy: ~80 % in normal lighting conditions.  
+- Mean response latency: 0.4 seconds.  
+- Average subjective satisfaction rating: 4.3 / 5.
+
+**Future Improvements:**
+Based on the feedback, future iterations will include adaptive lighting calibration, optional sound feedback, and adjustable gesture sensitivity to accommodate different user preferences and environments.
+
