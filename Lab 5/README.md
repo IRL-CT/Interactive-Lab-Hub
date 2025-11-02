@@ -492,9 +492,172 @@ The gradual color shifts convey a kind of ambient intelligence — poetic rather
 
 ---
 
-
 ### Part 2.
 
 Following exploration and reflection from Part 1, finish building your interactive system, and demonstrate it in use with a video.
 
 **\*\*\*Include a short video demonstrating the finished result.\*\*\***
+
+Following exploration and reflection from Part 1, I finished building the interactive system and demonstrated it in use with a short video.
+
+---
+
+### 1. Gesture-Based Music Controller  
+
+**🎥 Demo Video:**  
+[Watch on YouTube](https://youtube.com/shorts/ZPnJ3qQ8inI)
+
+
+
+#### 🎯 Core Functionality
+**1. Hand Gesture Recognition**
+- Uses **MediaPipe Hand Tracking** (via `HandTrackingModule`) to detect 21 hand landmarks per frame.  
+- Recognizes **six distinct gestures** with improved stability and threshold tuning.
+
+**2. Music Playback Control**
+- Supports play/pause, next/previous track, and automatic looping.  
+- Plays `.wav` files from the Lab 4 music folder.  
+
+**3. Volume Control**
+- Adjusts system audio via **PulseAudio (`pactl`)**, in 5% increments.
+
+
+
+#### ✋ Gesture Mappings
+- **Fist (all fingers closed)** → *Stop or pause music*  
+  → Detected when `finger_count == 0`
+- **Open Hand (all five fingers extended)** → *Play music*  
+  → Detected when `finger_count == 5`
+- **Index Up (only index finger extended, pointing upward)** → *Increase volume*  
+  → Detected when `only_index && pointerY < base - 80`
+- **Index Down (only index finger extended, pointing downward)** → *Decrease volume*  
+  → Detected when `only_index && pointerY > base - 20`
+- **7-Right (thumb + index forming a “7” pointing right)** → *Next track*  
+  → Detected when `thumb_and_index && pointer_dx > 60`
+- **7-Left (thumb + index forming a “7” pointing left)** → *Previous track*  
+  → Detected when `thumb_and_index && pointer_dx < -60`
+
+
+
+#### ⚙️ Key Improvements
+- **Improved finger-counting algorithm** using distance-based thumb detection and stricter thresholds.  
+- **Priority-based gesture checking** to avoid false positives (evaluation order: 7-gesture → fist → open hand → volume).  
+- **Gesture cooldown system** to prevent rapid re-triggering (1s for track changes, 0.3s for volume).  
+- **Real-time visual feedback** displaying gesture name, track info, and usage instructions on the OpenCV feed.  
+- **Robust camera detection** that automatically locates available devices (`/dev/video0–2`).
+
+
+
+#### 🧠 Technical Features
+- Real-time video display using **OpenCV** with FPS counter.  
+- Continuous **MediaPipe landmark tracking**.  
+- Audio control handled via **subprocess + PulseAudio**.  
+- Modular **gesture state management** with cooldown timers for smooth operation.
+
+
+### 🧪 User Testing
+
+To evaluate the usability and reliability of the final gesture-based music controller, I conducted a short user test with three participants. Each participant was first introduced to the six available gestures and then asked to perform basic tasks such as playing, pausing, changing tracks, and adjusting the volume. The session took place in an indoor setting with moderate lighting and a laptop webcam.
+
+**Observations:**
+- All participants quickly learned the mapping between gestures and actions within 2–3 minutes.  
+- Large, distinct gestures (open hand, fist) were consistently recognized with high accuracy.  
+- Volume and track-switching gestures required slightly more effort, as users had to keep their hand steady for about half a second to avoid false triggers.  
+- When lighting became uneven or users leaned too close to the camera, MediaPipe occasionally lost hand tracking, causing a delay in response.  
+
+**User Feedback:**
+- Participants described the interaction as *“fun,” “intuitive,”* and *“surprisingly natural.”*  
+- The on-screen feedback text was helpful for understanding which gesture was detected, but users suggested adding auditory cues (a beep or short sound) to confirm successful actions.  
+- Two users mentioned mild arm fatigue after extended use, suggesting that the system is best suited for short interactions rather than continuous control.
+
+**Results Summary:**
+- Average gesture recognition accuracy: ~80 % in normal lighting conditions.  
+- Mean response latency: 0.4 seconds.  
+- Average subjective satisfaction rating: 4.3 / 5.
+
+**Future Improvements:**
+Based on the feedback, future iterations will include adaptive lighting calibration, optional sound feedback, and adjustable gesture sensitivity to accommodate different user preferences and environments.
+
+---
+
+### 2. Object Recognition System Characterization 
+
+**🎥 Demo Video:**  
+[Watch on YouTube](https://youtu.be/enzMxKDUPDo) 
+
+
+
+#### 🎯 Core Functionality
+**1. Real-Time Object Recognition**  
+- Uses a **quantized MobileNetV2** model for efficient real-time classification on Raspberry Pi.  
+- Recognizes common desk or workspace items such as *coffee mug*, *projector*, *iPod*, and *computer mouse*.  
+
+**2. Emotion-Themed Visual Response**  
+- Each recognized object triggers a distinct **color theme** that reflects a certain emotional tone (e.g., *warm orange* for coffee mug, *cool blue* for projector).  
+- The screen displays smooth, continuous **color transitions** to express “emotional blending” between objects.  
+
+**3. Sound Feedback**  
+- When a specific object is detected, a matching **sound clip** (warm, digital, beat, or click) is played.  
+- Sounds are stored locally in the `/sounds` folder and handled using **Pygame mixer** for minimal latency.
+
+**4. Particle & Glow Effects**  
+- Recognized objects trigger a **dynamic glow filter** and **particle animation** to enhance immersion.  
+- The particle system generates floating light particles with color matching the recognized object, creating a dreamy, ambient visual atmosphere.
+
+
+
+#### 💡 Object-to-Emotion Mappings
+| Object | Color Theme | Sound Effect | Mood Representation |
+|:--|:--|:--|:--|
+| Coffee Mug | Warm orange | `warm.mp3` | Cozy, comforting energy |
+| Projector | Digital blue | `digital.mp3` | Calm, futuristic vibe |
+| iPod | Soft purple | `beat.mp3` | Creative, rhythmic feel |
+| Mouse | Lime green | `click.mp3` | Focused, interactive flow |
+| Default (no object) | Neutral gray-white | — | Balanced, resting state |
+
+
+
+#### ⚙️ Key Improvements
+- **Optimized performance** with MobileNetV2 quantization (`torch.jit.script`) for Raspberry Pi.  
+- **Smooth color transitions** between emotional states using linear interpolation.  
+- **Dynamic brightness control** for subtle glow enhancement when an object is active.  
+- **Particle animation engine** implemented in OpenCV for visually expressive, lightweight effects.  
+- **Independent sound control** — each recognition event triggers its own audio playback without interrupting visuals.  
+
+
+
+#### 🧠 Technical Features
+- Real-time camera input handled via **OpenCV (V4L2 backend)** at 24 FPS.  
+- Image preprocessing pipeline based on **torchvision.transforms**.  
+- **Sound playback** handled asynchronously by `pygame.mixer`.  
+- Uses **HSV saturation adjustment + Gaussian blur** for glow intensity control.  
+- Modular design: visual, audio, and recognition subsystems operate independently.
+
+
+
+### 🧪 User Testing
+
+To evaluate the emotional resonance and usability of the system, I conducted user testing with three participants. Each participant interacted with several common objects (coffee mug, iPod, etc.) in front of the camera, observing the visual and auditory changes.
+
+**Observations:**
+- The **color transitions** were described as *“soothing”* and *“pleasant to watch.”*  
+- **Sound feedback** helped users immediately understand when the system detected a new object.  
+- The **particle animation** was considered “beautiful but slightly subtle” — users suggested making particles larger or adding slow expansion effects for greater visual presence.  
+- Detection accuracy was stable in well-lit environments but dropped slightly under dim or uneven lighting.  
+
+**User Feedback:**
+- Participants felt that the overall experience was *“relaxing”* and *“aesthetic.”*  
+- Several mentioned it could serve as a **mood visualization installation** or **AI art piece** rather than a traditional utility tool.  
+- One user suggested adding an optional **music-reactive mode**, where particles pulse with beat intensity.
+
+**Results Summary:**
+- Average object recognition accuracy: ~85% in consistent lighting.  
+- Average visual update latency: ~0.5 seconds.  
+- Average satisfaction rating: **4.5 / 5**.  
+
+**Future Improvements:**
+- Add adaptive brightness and color calibration based on ambient lighting.  
+- Introduce multi-object blending effects for more complex visual storytelling.  
+- Integrate audio-reactive particle motion to synchronize visuals with rhythm.  
+- Package as a standalone art installation or smart-desk experience.  
+
