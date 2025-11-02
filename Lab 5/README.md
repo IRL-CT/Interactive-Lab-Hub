@@ -578,3 +578,86 @@ To evaluate the usability and reliability of the final gesture-based music contr
 **Future Improvements:**
 Based on the feedback, future iterations will include adaptive lighting calibration, optional sound feedback, and adjustable gesture sensitivity to accommodate different user preferences and environments.
 
+---
+
+### 2. Object Recognition System Characterization 
+
+**🎥 Demo Video:**  
+[Watch on YouTube](https://youtu.be/enzMxKDUPDo) 
+
+
+
+#### 🎯 Core Functionality
+**1. Real-Time Object Recognition**  
+- Uses a **quantized MobileNetV2** model for efficient real-time classification on Raspberry Pi.  
+- Recognizes common desk or workspace items such as *coffee mug*, *projector*, *iPod*, and *computer mouse*.  
+
+**2. Emotion-Themed Visual Response**  
+- Each recognized object triggers a distinct **color theme** that reflects a certain emotional tone (e.g., *warm orange* for coffee mug, *cool blue* for projector).  
+- The screen displays smooth, continuous **color transitions** to express “emotional blending” between objects.  
+
+**3. Sound Feedback**  
+- When a specific object is detected, a matching **sound clip** (warm, digital, beat, or click) is played.  
+- Sounds are stored locally in the `/sounds` folder and handled using **Pygame mixer** for minimal latency.
+
+**4. Particle & Glow Effects**  
+- Recognized objects trigger a **dynamic glow filter** and **particle animation** to enhance immersion.  
+- The particle system generates floating light particles with color matching the recognized object, creating a dreamy, ambient visual atmosphere.
+
+
+
+#### 💡 Object-to-Emotion Mappings
+| Object | Color Theme | Sound Effect | Mood Representation |
+|:--|:--|:--|:--|
+| Coffee Mug | Warm orange | `warm.mp3` | Cozy, comforting energy |
+| Projector | Digital blue | `digital.mp3` | Calm, futuristic vibe |
+| iPod | Soft purple | `beat.mp3` | Creative, rhythmic feel |
+| Mouse | Lime green | `click.mp3` | Focused, interactive flow |
+| Default (no object) | Neutral gray-white | — | Balanced, resting state |
+
+
+
+#### ⚙️ Key Improvements
+- **Optimized performance** with MobileNetV2 quantization (`torch.jit.script`) for Raspberry Pi.  
+- **Smooth color transitions** between emotional states using linear interpolation.  
+- **Dynamic brightness control** for subtle glow enhancement when an object is active.  
+- **Particle animation engine** implemented in OpenCV for visually expressive, lightweight effects.  
+- **Independent sound control** — each recognition event triggers its own audio playback without interrupting visuals.  
+
+
+
+#### 🧠 Technical Features
+- Real-time camera input handled via **OpenCV (V4L2 backend)** at 24 FPS.  
+- Image preprocessing pipeline based on **torchvision.transforms**.  
+- **Sound playback** handled asynchronously by `pygame.mixer`.  
+- Uses **HSV saturation adjustment + Gaussian blur** for glow intensity control.  
+- Modular design: visual, audio, and recognition subsystems operate independently.
+
+
+
+### 🧪 User Testing
+
+To evaluate the emotional resonance and usability of the system, I conducted user testing with three participants. Each participant interacted with several common objects (coffee mug, iPod, etc.) in front of the camera, observing the visual and auditory changes.
+
+**Observations:**
+- The **color transitions** were described as *“soothing”* and *“pleasant to watch.”*  
+- **Sound feedback** helped users immediately understand when the system detected a new object.  
+- The **particle animation** was considered “beautiful but slightly subtle” — users suggested making particles larger or adding slow expansion effects for greater visual presence.  
+- Detection accuracy was stable in well-lit environments but dropped slightly under dim or uneven lighting.  
+
+**User Feedback:**
+- Participants felt that the overall experience was *“relaxing”* and *“aesthetic.”*  
+- Several mentioned it could serve as a **mood visualization installation** or **AI art piece** rather than a traditional utility tool.  
+- One user suggested adding an optional **music-reactive mode**, where particles pulse with beat intensity.
+
+**Results Summary:**
+- Average object recognition accuracy: ~85% in consistent lighting.  
+- Average visual update latency: ~0.5 seconds.  
+- Average satisfaction rating: **4.5 / 5**.  
+
+**Future Improvements:**
+- Add adaptive brightness and color calibration based on ambient lighting.  
+- Introduce multi-object blending effects for more complex visual storytelling.  
+- Integrate audio-reactive particle motion to synchronize visuals with rhythm.  
+- Package as a standalone art installation or smart-desk experience.  
+
