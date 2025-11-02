@@ -205,15 +205,18 @@ def count_fingers(lmList):
     
     fingers = []
     
-    # Thumb (check x-coordinate)
-    if lmList[4][1] < lmList[3][1]:
+    # Thumb (check x-coordinate) - works for both left and right hand
+    thumb_tip = lmList[4][1]
+    thumb_ip = lmList[3][1]
+    # Check if thumb is extended by comparing with palm center
+    if abs(thumb_tip - thumb_ip) > 30:  # Thumb extended horizontally
         fingers.append(True)
     else:
         fingers.append(False)
     
     # Other fingers (check y-coordinate)
     for id in [8, 12, 16, 20]:
-        if lmList[id][2] < lmList[id-2][2]:
+        if lmList[id][2] < lmList[id-2][2] - 10:  # Extended (fingertip higher than knuckle)
             fingers.append(True)
         else:
             fingers.append(False)
@@ -245,36 +248,28 @@ def detect_gesture(lmList):
     # Count fingers for better detection
     finger_count, active_fingers = count_fingers(lmList)
     
-    # Improved FIST detection
-    all_fingers_close = (dist_thumb_pointer < 50 and 
-                         dist_pointer_middle < 30 and 
-                         dist_middle_ring < 30 and 
-                         dist_ring_pinky < 30 and
-                         finger_count == 0)
-    
-    if all_fingers_close:
+    # Improved FIST detection - relaxed conditions
+    # Just check if no fingers are extended
+    if finger_count == 0:
         return "fist", 0.9
     
     # Improved OPEN HAND detection
-    all_fingers_open = (dist_thumb_pointer > 80 and 
-                        dist_pointer_middle > 50 and 
-                        dist_middle_ring > 50 and 
-                        dist_ring_pinky > 50 and
-                        finger_count >= 4)
-    
-    if all_fingers_open:
+    # Require ALL 5 fingers extended (more strict to avoid false positives)
+    if finger_count == 5:
         return "open_hand", 0.9
     
     # VOLUME UP/DOWN - only index finger extended
     only_index = (active_fingers == [False, True, False, False, False])
     
     if only_index:
+        # Use pointer position relative to wrist
         pointer_dy = pointerY - wristY
+        pointer_base_y = lmList[5][2]  # Index finger base
         
-        # More distinct threshold to avoid confusion
-        if pointer_dy < -60:  # Pointing clearly UP
+        # Check if pointing UP or DOWN
+        if pointerY < pointer_base_y - 80:  # Pointing clearly UP (finger much higher than base)
             return "volume_up", 0.8
-        elif pointer_dy > -10:  # Pointing clearly DOWN
+        elif pointerY > pointer_base_y - 20:  # Pointing clearly DOWN (finger at same level or below base)
             return "volume_down", 0.8
     
     # NEXT/PREV TRACK - "7" gesture (thumb + index)
