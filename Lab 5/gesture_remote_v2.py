@@ -103,7 +103,7 @@ cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 set_volume(50)
 current_song = play_current_track()
 
-detector = htm.handDetector(detectionCon=0.7)
+detector = htm.handDetector(detectionCon=0.7, maxHands=1)  # Fixed: detectionCon as float is OK
 
 # ========== Gesture State Variables ==========
 gesture_cooldown = 0
@@ -359,35 +359,35 @@ while True:
                         current_gesture = "Stop Music (Fist)"
                         current_song = play_pause()
                         gesture_cooldown = current_time + cooldown_time
-                        print(f"✓ Confirmed: {confirmed_gesture}")
+                        print(f"[OK] Confirmed: {confirmed_gesture}")
                     
                     elif confirmed_gesture == "open_hand":
                         current_gesture = "Play Music (Open Hand)"
                         current_song = play_pause()
                         gesture_cooldown = current_time + cooldown_time
-                        print(f"✓ Confirmed: {confirmed_gesture}")
+                        print(f"[OK] Confirmed: {confirmed_gesture}")
                         
                     elif confirmed_gesture == "volume_up":
-                        current_gesture = "Volume Up ↑"
+                        current_gesture = "Volume Up ^"
                         volume_up()
                         gesture_cooldown = current_time + 0.3
                         
                     elif confirmed_gesture == "volume_down":
-                        current_gesture = "Volume Down ↓"
+                        current_gesture = "Volume Down v"
                         volume_down()
                         gesture_cooldown = current_time + 0.3
                         
                     elif confirmed_gesture == "next_track":
-                        current_gesture = "Next Track ⏭"
+                        current_gesture = "Next Track >>"
                         current_song = next_track()
                         gesture_cooldown = current_time + cooldown_time
-                        print(f"✓ Confirmed: {confirmed_gesture}")
+                        print(f"[OK] Confirmed: {confirmed_gesture}")
                         
                     elif confirmed_gesture == "prev_track":
-                        current_gesture = "Previous Track ⏮"
+                        current_gesture = "Previous Track <<"
                         current_song = previous_track()
                         gesture_cooldown = current_time + cooldown_time
-                        print(f"✓ Confirmed: {confirmed_gesture}")
+                        print(f"[OK] Confirmed: {confirmed_gesture}")
     else:
         # No hand detected - clear history
         gesture_history.clear()
@@ -419,13 +419,13 @@ while True:
     # Distance warning
     warning_color = (0, 255, 0) if distance_status == "optimal" else (0, 165, 255)
     if distance_status == "too_close":
-        warning_text = "⚠ Hand too close - move back"
+        warning_text = "! Hand too close - move back"
         warning_color = (0, 0, 255)
     elif distance_status == "too_far":
-        warning_text = "⚠ Hand too far - move closer"
+        warning_text = "! Hand too far - move closer"
         warning_color = (0, 165, 255)
     else:
-        warning_text = "✓ Hand distance optimal"
+        warning_text = "[OK] Hand distance optimal"
     
     cv2.rectangle(img, (10, 150), (630, 185), (40, 40, 40), -1)
     cv2.putText(img, warning_text, (20, 175), 
@@ -433,20 +433,20 @@ while True:
     
     # Brightness adjustment indicator
     if brightness_adjusted:
-        cv2.putText(img, '💡 Low light - auto-adjusted', (20, 205), 
+        cv2.putText(img, '[+] Low light - auto-adjusted', (20, 205), 
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 200, 255), 2)
     
     # Instructions panel
     cv2.rectangle(img, (10, 220), (630, 410), (50, 50, 50), -1)
     cv2.putText(img, 'Gesture Controls:', (20, 245), 
                 cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
-    cv2.putText(img, 'Index ↑ (others down) = Vol+', (30, 270), 
+    cv2.putText(img, 'Index ^ (others down) = Vol+', (30, 270), 
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-    cv2.putText(img, 'Index ↓ (others down) = Vol-', (30, 295), 
+    cv2.putText(img, 'Index v (others down) = Vol-', (30, 295), 
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-    cv2.putText(img, '7 → (Index+Thumb right) = Next', (30, 320), 
+    cv2.putText(img, '7 -> (Index+Thumb right) = Next', (30, 320), 
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-    cv2.putText(img, '7 ← (Index+Thumb left) = Prev', (30, 345), 
+    cv2.putText(img, '7 <- (Index+Thumb left) = Prev', (30, 345), 
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
     cv2.putText(img, 'Fist (all fingers closed) = Stop', (30, 370), 
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)

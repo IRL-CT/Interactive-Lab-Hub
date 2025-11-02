@@ -19,3 +19,17 @@ Lab 6. Little Interactions Everywhere
 
 Online Repository
 
+Host 10.56.130.15
+  HostName 10.56.130.15
+  User pi
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  XAuthLocation /opt/X11/bin/xauth
+
+Host 10.56.129.97
+  HostName 10.56.129.97
+  User pi
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  XAuthLocation /opt/X11/bin/xauth
+

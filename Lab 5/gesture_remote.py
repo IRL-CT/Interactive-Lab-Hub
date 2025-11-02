@@ -137,7 +137,7 @@ def get_finger_angle(point1, point2):
 
 def detect_gesture(lmList, prev_center):
     if len(lmList) == 0:
-        return None, None
+        return None, None, 0  # Added confidence score
     
     center_x, center_y = get_hand_center(lmList)
     
@@ -149,6 +149,8 @@ def detect_gesture(lmList, prev_center):
     wristX, wristY = lmList[0][1], lmList[0][2]
     thumbBase = lmList[2]
     pointerBase = lmList[5]
+    
+    confidence = 1.0  # Initialize confidence score
     
     dist_thumb_pointer = calculate_distance(thumbX, thumbY, pointerX, pointerY)
     dist_pointer_middle = calculate_distance(pointerX, pointerY, middleX, middleY)
