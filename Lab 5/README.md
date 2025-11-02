@@ -135,7 +135,18 @@ In an earlier version of this class students experimented with foundational comp
 * Pick one of the models you have tried, and experiment with prototyping an interaction.
 * This can be as simple as the boat detector shown in lecture.
 * Try out different interaction outputs and inputs.
+<img src="ollama_moondream_images/ollama-moondream1.jpg" height="400" />
+<img src="ollama_moondream_images/moondream-2.jpg" height="400" />
+<img src="ollama_moondream_images/moondream-3.jpg" height="400" />
 
+When testing Moondream’s object recognition, we found it challenging to verify what we were actually capturing, especially since Ollama took some time to generate responses. After each capture, the feedback often revealed that our target object wasn’t clearly visible, centered, or in focus. Additionally, the model tended to describe every element in the image rather than focusing on the main subject. For example, it would mention a backpack in the background or note that our bowl of clementines was on a wooden table (when it was actually on a wooden floor). In one case, we showed it a bowl of clementine slices and asked for an estimate of how many pieces were visible, but the model returned an empty response twice.
+
+[handposes1](https://drive.google.com/file/d/1FGjA3zXD-M4hODSVeRuCSNTlp-TrRu1F/view?usp=drive_link).
+[handposes2](https://drive.google.com/file/d/1CqSVaQJKrWMCyCA4WoSZFqAnkiVy7xy-/view?usp=drive_link)
+[handposes3](https://drive.google.com/file/d/1__EVslAZBcMr_7dW2-_4YkbENZJmwDfM/view?usp=drive_link)
+[handposes4] (https://drive.google.com/file/d/1D2A-eIvYE4Hi-TGWy7JowXizzbcxRCTS/view?usp=drive_link)
+
+The hand pose detection lagged noticeably and performed well only under good lighting conditions. When the hand was in shadow, tracking became unreliable. The program also crashed multiple times during attempts to capture hand poses. Even though the hand was visibly recognizable in shadow, similar to how one can still discern hand shapes in shadow puppets. It seemed like the system struggled to identify the general form, suggesting it should have been capable of detecting at least a basic hand outline.
 
 **\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
 
@@ -149,11 +160,18 @@ For example:
 1. When it fails, why does it fail?
 1. Based on the behavior you have seen, what other scenarios could cause problems?
 
+The model is designed to detect baby cries and identify the underlying reason the baby is upset.We experimented with several modeling platforms and initially attempted to use Teachable Machine. However, it did not support uploading our existing baby-cry dataset, so we transitioned to Edge Impulse Studio instead.
+Initially, the dataset contained a disproportionately high number of samples labeled as “hungry” cries, which caused the model to become biased toward that class. To address this imbalance, we reduced the number of hungry-cry samples to 80, bringing it closer to the range of other classes, which contained around 60–70 samples each. This adjustment improved the model’s overall performance, but the results were still suboptimal, yielding a validation accuracy of 38.0%.
+The model’s performance decreases when the cries are not sufficiently loud or when substantial background noise is present.
+
 **\*\*\*Think about someone using the system. Describe how you think this will work.\*\*\***
 1. Are they aware of the uncertainties in the system?
 1. How bad would they be impacted by a miss classification?
 1. How could change your interactive system to address this?
 1. Are there optimizations you can try to do on your sense-making algorithm.
+
+Users are likely to recognize that some uncertainty is natural, as no system is perfect and even parents can have difficulty identifying why a baby is crying. Since every baby is unique, with their own quirks and sensitivities, occasional misclassifications are expected. However, these errors would not significantly impact usability. For instance, if a “tired” cry were mistaken for “hungry,” the baby would still receive attention, and parents would quickly realize if the suggested cause was incorrect. In most cases, the baby’s behavior or physical cues (such as refusing to feed or showing signs of being wet) would guide the parent toward the correct action.
+To improve accuracy and personalization, the system could display a secondary suggestion based on the second most likely cause. It could also include a feedback feature, allowing parents to confirm or correct predictions so the model can gradually learn their baby’s unique cry patterns. Additional improvements could include gathering more diverse training data, enhancing noise filtering to handle background sounds, and optimizing microphone placement to better capture quieter or softer cries. Over time, these enhancements would help the system deliver more accurate, personalized, and reliable results.
 
 ### Part D
 ### Characterize your own Observant system
