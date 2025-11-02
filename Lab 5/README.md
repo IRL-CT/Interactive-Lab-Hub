@@ -148,6 +148,8 @@ When testing Moondream’s object recognition, we found it challenging to verify
 
 The hand pose detection lagged noticeably and performed well only under good lighting conditions. When the hand was in shadow, tracking became unreliable. The program also crashed multiple times during attempts to capture hand poses. Even though the hand was visibly recognizable in shadow, similar to how one can still discern hand shapes in shadow puppets. It seemed like the system struggled to identify the general form, suggesting it should have been capable of detecting at least a basic hand outline.
 
+Our final choice began with simple audio evaluation so we could build a baby cry detector that would detect baby cries and inform the user as to why the baby maybe upset.
+
 **\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
 
 ### Part C
@@ -160,18 +162,28 @@ For example:
 1. When it fails, why does it fail?
 1. Based on the behavior you have seen, what other scenarios could cause problems?
 
-The model is designed to detect baby cries and identify the underlying reason the baby is upset.We experimented with several modeling platforms and initially attempted to use Teachable Machine. However, it did not support uploading our existing baby-cry dataset, so we transitioned to Edge Impulse Studio instead.
-Initially, the dataset contained a disproportionately high number of samples labeled as “hungry” cries, which caused the model to become biased toward that class. To address this imbalance, we reduced the number of hungry-cry samples to 80, bringing it closer to the range of other classes, which contained around 60–70 samples each. This adjustment improved the model’s overall performance, but the results were still suboptimal, yielding a validation accuracy of 38.0%.
-The model’s performance decreases when the cries are not sufficiently loud or when substantial background noise is present.
+The model is designed to detect baby cries and identify the likely reason the baby is upset. It performs as expected when the cries are clearly audible and the surrounding environment is relatively quiet. Under these conditions, it can reliably recognize the presence of a cry and provide a reasonable classification of its cause (such as hunger, tiredness, or discomfort).
+
+The model tends to fail when the crying is too soft or when there is significant background noise. These environmental factors interfere with audio clarity and make it harder for the algorithm to distinguish between different types of cries.
+ 
+Some failures stem from limitations in both the dataset and the modeling platform. We initially experimented with Google’s Teachable Machine, but it did not support uploading our existing baby-cry dataset, so we transitioned to Edge Impulse Studio. During early testing, we discovered that the dataset had a disproportionate number of “hungry” samples, which caused the model to become biased toward that class. To fix this imbalance, we reduced the number of hungry-cry samples to 80, aligning it more closely with the 60–70 samples in other categories. While this adjustment improved the model’s balance, the overall validation accuracy remained relatively low at 38%, indicating that the model still struggles to generalize.
+
+Beyond noise and volume issues, the system may encounter difficulties when cries overlap with other baby sounds, such as cooing or babbling. It could also misclassify sounds if the microphone is positioned too far from the baby or if the device used has poor audio quality. In addition, variability in background environments—like music, television, or household conversations—may lead to false detections or missed cries.
 
 **\*\*\*Think about someone using the system. Describe how you think this will work.\*\*\***
 1. Are they aware of the uncertainties in the system?
-1. How bad would they be impacted by a miss classification?
-1. How could change your interactive system to address this?
-1. Are there optimizations you can try to do on your sense-making algorithm.
+2. How bad would they be impacted by a miss classification?
+3. How could change your interactive system to address this?
+4. Are there optimizations you can try to do on your sense-making algorithm.
 
-Users are likely to recognize that some uncertainty is natural, as no system is perfect and even parents can have difficulty identifying why a baby is crying. Since every baby is unique, with their own quirks and sensitivities, occasional misclassifications are expected. However, these errors would not significantly impact usability. For instance, if a “tired” cry were mistaken for “hungry,” the baby would still receive attention, and parents would quickly realize if the suggested cause was incorrect. In most cases, the baby’s behavior or physical cues (such as refusing to feed or showing signs of being wet) would guide the parent toward the correct action.
-To improve accuracy and personalization, the system could display a secondary suggestion based on the second most likely cause. It could also include a feedback feature, allowing parents to confirm or correct predictions so the model can gradually learn their baby’s unique cry patterns. Additional improvements could include gathering more diverse training data, enhancing noise filtering to handle background sounds, and optimizing microphone placement to better capture quieter or softer cries. Over time, these enhancements would help the system deliver more accurate, personalized, and reliable results.
+Users are likely aware that some level of uncertainty is unavoidable as no system is perfect and even experienced parents sometimes struggle to identify why a baby is crying. They understand that every baby has unique behaviors and sensitivities, so occasional misclassifications are expected and not surprising. 
+
+A misclassification would not have a major negative impact. Since every baby is unique, with their own quirks and sensitivities, occasional misclassifications are expected. If a “tired” cry were misidentified as “hungry,” the baby would still receive attention, and parents would quickly realize the suggestion was wrong through the baby’s reactions like refusing to feed or showing signs of being wet. These small errors may be mildly inconvenient but wouldn’t undermine trust in the system overall.
+[detection-during-silence](https://drive.google.com/file/d/1ZNj9anCrkcoXCRk6JLdvNibIv2hcEJAq/view?usp=sharing)
+
+To better support users, the interface could show a secondary or “next most likely” suggestion, giving parents alternative explanations when confidence is low. Adding a simple feedback option—like confirming or correcting the system’s guess—would also help users feel more in control and allow the model to adapt to each baby’s unique cry patterns over time.
+
+The sense-making algorithm could be improved by collecting more diverse training data, enhancing noise filtering to better handle background sounds, and optimizing microphone placement for clearer input. These steps would make detection more robust, reducing false positives such as the early issue where the system sometimes detected crying during silence. Over time, these refinements would improve both accuracy and personalization.
 
 ### Part D
 ### Characterize your own Observant system
@@ -187,6 +199,7 @@ During the lecture, we mentioned questions to help characterize a material:
 * How does X feel?
 
 **\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
+[working prototype](https://drive.google.com/file/d/1Ozcg7YShvg9VVkacQZsd3CqvtyLgxMEJ/view?usp=sharing)
 
 ### Part 2.
 
