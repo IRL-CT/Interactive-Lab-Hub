@@ -1,0 +1,30 @@
+Metadata-Version: 2.2
+Name: sparkfun_qwiic_lsm6dso
+Version: 2.0.0
+Summary: SparkFun Electronics qwiic LSM6DSO package
+Author-email: Sparkfun Electronics <info@sparkfun.com>
+Project-URL: homepage, https://www.sparkfun.com/sparkfun-6-degrees-of-freedom-breakout-lsm6dso-qwiic.html
+Keywords: electronics, maker
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Programming Language :: Python :: Implementation :: MicroPython
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: sparkfun_qwiic_i2c
+
+Qwiic LSM6DSO
+=============================================
+
+This package provides python support for the SparkFun qwiic 6 Degrees of Freedom Breakout - LSM6DSO.

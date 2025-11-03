@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: sparkfun-qwiic-eeprom
+Version: 0.0.1
+Summary: SparkFun Electronics qwiic EEPROM package
+Home-page: https://www.sparkfun.com/products/18355
+Author: SparkFun Electronics
+Author-email: info@sparkfun.com
+License: MIT
+Keywords: electronics,maker
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: sparkfun-qwiic-i2c
+
+Qwiic EEPROM Py
+=============================================
+
+Add some serious data storage to your latest project with this 512Kbit (64KB) EEPROM. 
+Some flash based microcontrollers (like the SAMD21) do not have EEPROM. Use the Qwiic 
+EEPROM for storing things like GPS waypoints and other user settings that need to be 
+maintained between sketch uploads. Qwiic EEPROM has 3 address jumpers, allowing for up 
+to 8 EEPROMs on one bus. 
+
+
