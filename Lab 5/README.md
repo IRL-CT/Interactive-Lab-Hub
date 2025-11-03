@@ -3,6 +3,8 @@
 **NAMES OF COLLABORATORS HERE**
 Celeste (Lianne) Bisch (lb854)
 
+<details>
+	<summary><strong> Assignment </strong></summary>
 For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
 Your **observant device** could, for example, count items, find objects, recognize an event or continuously monitor a room.
 
@@ -39,8 +41,6 @@ D) [Reflect](#part-d)
 ---
 
 ### Part A
-<details>
-	<summary><strong> Part A Examples & Instructions </strong></summary>
 ### Play with different sense-making algorithms.
 
 #### Pytorch for object recognition
@@ -130,14 +130,18 @@ Teachable machines provides an audio classifier too. If you want to use audio cl
 
 In an earlier version of this class students experimented with foundational computer vision techniques such as face and flow detection. Techniques like these can be sufficient, more performant, and allow non discrete classification. Find the material here:
 [CV_optional/cv.md](CV_optional/cv.md).
+
 </details>
 
 ### Part B
 ### Construct a simple interaction.
 
-* Pick one of the models you have tried, and experiment with prototyping an interaction.
+<!-- * Pick one of the models you have tried, and experiment with prototyping an interaction.
 * This can be as simple as the boat detector shown in lecture.
-* Try out different interaction outputs and inputs.
+* Try out different interaction outputs and inputs. -->
+
+**\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
+
 <img src="ollama_moondream_images/ollama-moondream1.jpg" height="400" />
 <img src="ollama_moondream_images/moondream-2.jpg" height="400" />
 <img src="ollama_moondream_images/moondream-3.jpg" height="400" />
@@ -153,17 +157,16 @@ The hand pose detection lagged noticeably and performed well only under good lig
 
 Our final choice began with simple audio evaluation so we could build a baby cry detector that would detect baby cries and inform the user as to why the baby maybe upset.
 
-**\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
 
 ### Part C
 ### Test the interaction prototype
 
-Now flight test your interactive prototype and **note down your observations**:
+<!-- Now flight test your interactive prototype and **note down your observations**:
 For example:
 1. When does it what it is supposed to do?
 1. When does it fail?
 1. When it fails, why does it fail?
-1. Based on the behavior you have seen, what other scenarios could cause problems?
+1. Based on the behavior you have seen, what other scenarios could cause problems? -->
 
 The model is designed to detect baby cries and identify the likely reason the baby is upset. It performs as expected when the cries are clearly audible and the surrounding environment is relatively quiet. Under these conditions, it can reliably recognize the presence of a cry and provide a reasonable classification of its cause (such as hunger, tiredness, or discomfort).
 
@@ -174,10 +177,10 @@ Some failures stem from limitations in both the dataset and the modeling platfor
 Beyond noise and volume issues, the system may encounter difficulties when cries overlap with other baby sounds, such as cooing or babbling. It could also misclassify sounds if the microphone is positioned too far from the baby or if the device used has poor audio quality. In addition, variability in background environments—like music, television, or household conversations—may lead to false detections or missed cries.
 
 **\*\*\*Think about someone using the system. Describe how you think this will work.\*\*\***
-1. Are they aware of the uncertainties in the system?
+<!-- 1. Are they aware of the uncertainties in the system?
 2. How bad would they be impacted by a miss classification?
 3. How could change your interactive system to address this?
-4. Are there optimizations you can try to do on your sense-making algorithm.
+4. Are there optimizations you can try to do on your sense-making algorithm. -->
 
 Users are likely aware that some level of uncertainty is unavoidable as no system is perfect and even experienced parents sometimes struggle to identify why a baby is crying. They understand that every baby has unique behaviors and sensitivities, so occasional misclassifications are expected and not surprising. 
 
@@ -191,8 +194,8 @@ The sense-making algorithm could be improved by collecting more diverse training
 ### Part D
 ### Characterize your own Observant system
 
-Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
-During the lecture, we mentioned questions to help characterize a material:
+<!-- Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
+During the lecture, we mentioned questions to help characterize a material: -->
 
 * What can you use X for?
 
@@ -228,8 +231,8 @@ In future iterations, we plan to integrate a gentle light that changes color bas
 
 The Cry Analyzer evokes a sense of empathy and calm. Its behavior feels gentle and observant—like a sympathetic companion that listens quietly and supports both the baby and the caregiver.
 
-**\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
-[working prototype](https://drive.google.com/file/d/1Ozcg7YShvg9VVkacQZsd3CqvtyLgxMEJ/view?usp=sharing)
+<!-- **\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
+[working prototype](https://drive.google.com/file/d/1Ozcg7YShvg9VVkacQZsd3CqvtyLgxMEJ/view?usp=sharing) -->
 
 ### Part 2.
 
