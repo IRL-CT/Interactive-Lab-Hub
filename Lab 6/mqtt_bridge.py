@@ -33,9 +33,9 @@ def on_message(client, userdata, msg):
     try:
         data = json.loads(msg.payload.decode('UTF-8'))
         
-        # Forward to WebSocket
+        # Forward to WebSocket with pixel_update event (matches what frontend expects)
         socketio = userdata['socketio']
-        socketio.emit('color_update', {
+        socketio.emit('pixel_update', {
             'mac': data.get('mac'),
             'r': data.get('r', 0),
             'g': data.get('g', 0),
