@@ -1,5 +1,7 @@
 # Observant Systems
 
+
+Refer to Nikhil Gangaram's Lab Hub for the code
 Sachin Jojode, Nikhil Gangaram, and Arya Prasad
 
 ### Part B
@@ -57,10 +59,12 @@ It is sensitive to lighting and angles, consistent in stable conditions, and qui
 * How does X feel?
 It feels experimental and it is encouraging when it works but frustrating when it fails. The interaction feels mechanical but shows potential to become a supportive learning tool for sign language practice.
 
-Video Link: 
+Video Link: https://youtu.be/ZU5NM-oH540
 
 ### Part 2.
 
 Following exploration and reflection from Part 1, finish building your interactive system, and demonstrate it in use with a video.
 
 **\*\*\*Include a short video demonstrating the finished result.\*\*\***
+h
+ttps://youtu.be/bRyzQZdn2rA
