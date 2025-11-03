@@ -37,14 +37,27 @@ Video: https://youtu.be/puvYo5_OJCY
 Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
 During the lecture, we mentioned questions to help characterize a material:
 * What can you use X for?
-* What is a good environment for X?
-* What is a bad environment for X?
-* When will X break?
-* When it breaks how will X break?
-* What are other properties/behaviors of X?
-* How does X feel?
+Our device can be used to recognize and interpret ASL hand gestures. It helps non-signers learn basic signs by giving real-time feedback and using text to speech to make the interaction more accessible and engaging.
 
-**\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
+* What is a good environment for X?
+A good environment is one with bright, even lighting, a plain background, and a stable camera. The user should be in front of the camera with their hands fully visible and minimal movement in the background.
+
+* What is a bad environment for X?
+A bad environment includes dim or uneven lighting, cluttered backgrounds, or multiple people in view. It also struggles with poor camera quality, motion blur, or when the internet connection is unstable.
+  
+* When will X break?
+It will break when gestures are done too quickly, when part of the hand is out of frame, or when lighting suddenly changes. Timing issues, like capturing a frame too early or too late, also cause errors.
+  
+* When it breaks how will X break?
+When it breaks, our device may misclassify the gesture, fail to respond, or repeat incorrect feedback. Sometimes it freezes or outputs random labels, confusing the user.
+  
+* What are other properties/behaviors of X?
+It is sensitive to lighting and angles, consistent in stable conditions, and quick to respond when inputs are clear. However, it doesn’t adapt to individual users yet and can’t recognize complex or blended gestures.
+  
+* How does X feel?
+It feels experimental and it is encouraging when it works but frustrating when it fails. The interaction feels mechanical but shows potential to become a supportive learning tool for sign language practice.
+
+Video Link: 
 
 ### Part 2.
 
