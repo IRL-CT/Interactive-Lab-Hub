@@ -1,5 +1,6 @@
 Create a new virtualenvironment
 ``````
+cd Lab\ 5
 python -m venv .venv 
 source .venv/bin/activate
 ``````
