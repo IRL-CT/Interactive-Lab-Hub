@@ -4,6 +4,7 @@
 venv
 venv*
 __*
+.venv
 
 # Lab 3 Speech/Audio temporary files
 Lab\ 3/speech-scripts/test.txt
