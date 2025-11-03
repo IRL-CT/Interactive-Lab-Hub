@@ -79,8 +79,9 @@ def setup_display():
     
     try:
         # Configuration for CS and DC pins
-        cs_pin = digitalio.DigitalInOut(board.CE0)
-        dc_pin = digitalio.DigitalInOut(board.D25)
+        # Use GPIO5 instead of CE0 to avoid SPI conflicts
+        cs_pin = digitalio.DigitalInOut(board.D5)   # GPIO5 (PIN 29)
+        dc_pin = digitalio.DigitalInOut(board.D25)  # GPIO25 (PIN 22)
         reset_pin = None
 
         # Config for display baudrate
@@ -90,10 +91,11 @@ def setup_display():
         backlight.switch_to_output()
         backlight.value = True
         
+        # Buttons with pull-ups (active LOW when pressed)
         buttonA = digitalio.DigitalInOut(board.D23)
         buttonB = digitalio.DigitalInOut(board.D24)
-        buttonA.switch_to_input()
-        buttonB.switch_to_input()
+        buttonA.switch_to_input(pull=digitalio.Pull.UP)
+        buttonB.switch_to_input(pull=digitalio.Pull.UP)
 
         # Setup SPI bus using hardware SPI
         spi = board.SPI()
@@ -115,6 +117,8 @@ def setup_display():
         width = disp.width
         image = Image.new("RGB", (width, height))
         draw = ImageDraw.Draw(image)
+        
+        print("[OK] Display initialized")
 
         return disp, draw, image, buttonA, buttonB
     except Exception as e:
@@ -123,11 +127,11 @@ def setup_display():
 
 
 def on_connect(client, userdata, flags, rc):
-    """Callback when MQTT client connects"""
+    """Callback when connected to MQTT broker"""
     if rc == 0:
-        print(f"✓ Connected to MQTT broker: {MQTT_BROKER}")
+        print(f"[OK] Connected to MQTT broker: {MQTT_BROKER}")
     else:
-        print(f"✗ Connection failed with code {rc}")
+        print(f"[ERROR] Connection failed with code {rc}")
 
 
 def main():
@@ -152,7 +156,7 @@ def main():
     i2c = busio.I2C(board.SCL, board.SDA)
     sensor = adafruit_apds9960.apds9960.APDS9960(i2c)
     sensor.enable_color = True
-    print("✓ Color sensor ready")
+    print("[OK] Color sensor ready")
     
     # Setup MQTT client
     print("Connecting to MQTT broker...")
@@ -165,8 +169,16 @@ def main():
     try:
         client.connect(MQTT_BROKER, port=MQTT_PORT, keepalive=60)
         client.loop_start()
+        # Wait a bit for connection to establish
+        time.sleep(2)
+        
+        # Check if connected
+        if client.is_connected():
+            print(f"[OK] MQTT connected and ready")
+        else:
+            print("[WARNING] MQTT connection pending...")
     except Exception as e:
-        print(f"✗ Failed to connect to MQTT broker: {e}")
+        print(f"[ERROR] Failed to connect to MQTT broker: {e}")
         return
     
     # Graceful exit handler
@@ -201,21 +213,10 @@ def main():
             else:
                 r = g = b = 0
             
-            # Update display if available
+            # Update display if available - show fullscreen solid color
             if draw and image and disp:
+                # Fill entire screen with the sensor color
                 draw.rectangle((0, 0, image.width, image.height), fill=(r, g, b))
-                
-                # Add text overlay
-                try:
-                    font = ImageFont.load_default()
-                    text_color = (255, 255, 255) if (r + g + b) < 384 else (0, 0, 0)
-                    draw.text((10, 10), f"R:{r}", font=font, fill=text_color)
-                    draw.text((10, 30), f"G:{g}", font=font, fill=text_color)
-                    draw.text((10, 50), f"B:{b}", font=font, fill=text_color)
-                    draw.text((10, 80), "Publishing...", font=font, fill=text_color)
-                except:
-                    pass
-                
                 disp.image(image)
             
             # Publish to MQTT at specified interval
@@ -235,9 +236,15 @@ def main():
                 result = client.publish(MQTT_TOPIC, payload)
                 
                 if result.rc == mqtt.MQTT_ERR_SUCCESS:
-                    print(f"✓ Streaming: RGB({r:3d}, {g:3d}, {b:3d}) | {mac_address[:17]}")
+                    print(f"[OK] Streaming: RGB({r:3d}, {g:3d}, {b:3d}) | {mac_address[:17]} | rc:{result.rc} mid:{result.mid}")
                 else:
-                    print(f"✗ Publish failed: {result.rc}")
+                    print(f"[ERROR] Publish failed: rc={result.rc}")
+                    if not client.is_connected():
+                        print("[ERROR] MQTT client disconnected! Attempting to reconnect...")
+                        try:
+                            client.reconnect()
+                        except Exception as e:
+                            print(f"[ERROR] Reconnect failed: {e}")
                 
                 last_publish_time = current_time
             

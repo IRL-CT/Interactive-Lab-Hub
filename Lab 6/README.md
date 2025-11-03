@@ -69,7 +69,7 @@ Once connected, you should be able to see all the messages under the IDD topic. 
 * Install the packages from `requirements.txt` under a virtual environment:
 
   ```
-  pi@raspberrypi:~/Interactive-Lab-Hub $ source circuitpython/bin/activate
+  pi@raspberrypi:~/Interactive-Lab-Hub $ source .venv/bin/activate
   (circuitpython) pi@raspberrypi:~/Interactive-Lab-Hub $ cd Lab\ 6
   (circuitpython) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 6 $ pip install -r requirements.txt
   ...
