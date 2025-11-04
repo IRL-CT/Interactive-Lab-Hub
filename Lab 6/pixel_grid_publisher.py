@@ -36,7 +36,7 @@ MQTT_USERNAME = 'idd'
 MQTT_PASSWORD = 'device@theFarm'
 
 # Publishing interval (seconds)
-PUBLISH_INTERVAL = 2.0
+PUBLISH_INTERVAL = 0.1
 
 
 def get_mac_address():
@@ -111,14 +111,16 @@ def setup_display():
             height=240,
             x_offset=53,
             y_offset=40,
+            rotation=90  # Rotate 90 degrees for vertical orientation
         )
 
-        height = disp.height
-        width = disp.width
+        # After rotation, width and height are swapped
+        width = 240
+        height = 135
         image = Image.new("RGB", (width, height))
         draw = ImageDraw.Draw(image)
         
-        print("[OK] Display initialized")
+        print("[OK] Display initialized (240x135 rotated)")
 
         return disp, draw, image, buttonA, buttonB
     except Exception as e:
@@ -156,7 +158,15 @@ def main():
     i2c = busio.I2C(board.SCL, board.SDA)
     sensor = adafruit_apds9960.apds9960.APDS9960(i2c)
     sensor.enable_color = True
-    print("[OK] Color sensor ready")
+    
+    # Adjust integration time and gain for better color detection
+    # Lower gain = better for bright colors, higher gain = better for dim colors
+    try:
+        sensor.color_gain = 1  # Try 1x gain first (options: 1, 4, 16, 64)
+        sensor.integration_time = 10  # milliseconds (range: 2.78 - 712ms)
+        print("[OK] Color sensor ready (gain=1x, integration=10ms)")
+    except:
+        print("[OK] Color sensor ready (default settings)")
     
     # Setup MQTT client
     print("Connecting to MQTT broker...")
@@ -204,26 +214,66 @@ def main():
             # Read color sensor
             r, g, b, a = sensor.color_data
             
-            # Convert from 16-bit to 8-bit color
-            # Normalize by ambient light (alpha channel)
-            if a > 0:
-                r = int(min(255, (r * 255) // a))
-                g = int(min(255, (g * 255) // a))
-                b = int(min(255, (b * 255) // a))
+            # Blue boost - APDS9960 sensors often underreport blue
+            b = int(b * 1.3)  # Boost blue by 30%
+            
+            # Convert from 16-bit to 8-bit color with better scaling
+            # Use a different normalization approach
+            if r > 0 or g > 0 or b > 0:
+                # Find max value to scale proportionally
+                max_val = max(r, g, b)
+                if max_val > 0:
+                    # Scale to 8-bit range while preserving ratios
+                    scale = 255.0 / max_val
+                    r = int(min(255, r * scale))
+                    g = int(min(255, g * scale))
+                    b = int(min(255, b * scale))
+                else:
+                    r = g = b = 0
             else:
                 r = g = b = 0
             
-            # Update display if available - show fullscreen solid color
+            # Create JSON payload for display and MQTT
+            payload = json.dumps({
+                'mac': mac_address,
+                'ip': ip_address,
+                'r': r,
+                'g': g,
+                'b': b,
+                'timestamp': int(time.time())
+            }, indent=2)
+            
+            # Update display if available - show color + payload
             if draw and image and disp:
                 # Fill entire screen with the sensor color
                 draw.rectangle((0, 0, image.width, image.height), fill=(r, g, b))
+                
+                # Add payload text overlay
+                try:
+                    # Use larger font - try truetype, fall back to default
+                    try:
+                        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", 14)
+                    except:
+                        font = ImageFont.load_default()
+                    
+                    # Choose text color based on background brightness
+                    text_color = (255, 255, 255) if (r + g + b) < 384 else (0, 0, 0)
+                    
+                    # Display payload on screen with line breaks
+                    y_offset = 5
+                    for line in payload.split('\n'):
+                        draw.text((5, y_offset), line, font=font, fill=text_color)
+                        y_offset += 16  # Increased spacing for larger font
+                except Exception as e:
+                    pass
+                
                 disp.image(image)
             
             # Publish to MQTT at specified interval
             current_time = time.time()
             if current_time - last_publish_time >= PUBLISH_INTERVAL:
-                # Create JSON payload
-                payload = json.dumps({
+                # Re-create compact payload for MQTT (without indentation)
+                mqtt_payload = json.dumps({
                     'mac': mac_address,
                     'ip': ip_address,
                     'r': r,
@@ -233,10 +283,11 @@ def main():
                 })
                 
                 # Publish to MQTT
-                result = client.publish(MQTT_TOPIC, payload)
+                result = client.publish(MQTT_TOPIC, mqtt_payload)
                 
                 if result.rc == mqtt.MQTT_ERR_SUCCESS:
                     print(f"[OK] Streaming: RGB({r:3d}, {g:3d}, {b:3d}) | {mac_address[:17]} | rc:{result.rc} mid:{result.mid}")
+                    print(f"     Payload: {mqtt_payload}")
                 else:
                     print(f"[ERROR] Publish failed: rc={result.rc}")
                     if not client.is_connected():
