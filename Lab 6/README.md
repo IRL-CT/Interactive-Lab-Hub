@@ -32,15 +32,22 @@ MQTT = lightweight messaging for IoT. Publish/subscribe model with central broke
 - **Publish/Subscribe**: Send and receive messages
 
 **Test it:**
+**Subscribe to messages (listener):**
 ```bash
-# Listen to messages
 mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device@theFarm"
-
-# Send a message
-mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/test/yourname" -m "Hello!" -u idd -P "device@theFarm"
 ```
 
-**� Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
+**Publish a message (sender):**
+```bash
+mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 \
+  -t "IDD/test/yourname" \
+  -m "Hello!" \
+  -u idd \
+  -P "device@theFarm"
+```
+> **💡 Tip:** Replace `yourname` with your actual name in the topic!
+
+**🔧 Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
 
 **�💡 Brainstorm 5 ideas for messaging between devices**
 
