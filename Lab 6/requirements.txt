@@ -16,7 +16,7 @@ sysv-ipc>=1.1.0
 lgpio>=0.2.2.0
 
 # MQTT Communication
-paho-mqtt>=1.6.1
+paho-mqtt<2.0
 
 # Image Processing
 Pillow>=10.0.0
@@ -27,3 +27,4 @@ Flask-SocketIO>=5.3.5
 python-socketio>=5.10.0
 python-engineio>=4.8.0
 eventlet>=0.33.3
+
