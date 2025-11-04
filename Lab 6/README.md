@@ -46,7 +46,7 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/test/yourname" -m "H
 
 **🔧 Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
 
-**�💡 Brainstorm 5 ideas for messaging between devices**
+**💡 Brainstorm 5 ideas for messaging between devices**
 
 ---
 
