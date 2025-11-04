@@ -40,7 +40,9 @@ mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device
 mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/test/yourname" -m "Hello!" -u idd -P "device@theFarm"
 ```
 
-**💡 Brainstorm 5 ideas for messaging between devices**
+**� Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
+
+**�💡 Brainstorm 5 ideas for messaging between devices**
 
 ---
 
@@ -52,11 +54,11 @@ Each Pi = one pixel, controlled by RGB sensor, displayed in real-time grid.
 
 **Setup:**
 
-1. **Server** (one person):
+1. **Server** (one person on laptop):
 ```bash
 cd "Lab 6"  
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-server.txt
 python app.py
 ```
 
@@ -64,8 +66,15 @@ python app.py
    - Grid: `http://farlab.infosci.cornell.edu:5000`
    - Controller: `http://farlab.infosci.cornell.edu:5000/controller`
 
-3. **Pi publisher** (everyone):
+3. **Pi publisher** (everyone on their Pi):
 ```bash
+# First time setup - create virtual environment
+cd "Lab 6"
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-pi.txt
+
+# Run the publisher
 python pixel_grid_publisher.py
 ```
 
@@ -131,10 +140,35 @@ Replace this README with your documentation:
 
 ## Code Files
 
-- `app.py` - Server (Flask + WebSocket + MQTT)
+**Server files:**
+- `app.py` - Pixel grid server (Flask + WebSocket + MQTT)
+- `mqtt_viewer.py` - MQTT message viewer for debugging
 - `mqtt_bridge.py` - MQTT → WebSocket bridge
+- `requirements-server.txt` - Server dependencies
+
+**Pi files:**
 - `pixel_grid_publisher.py` - Example (RGB sensor → MQTT)
-- `templates/` - Web interface
+- `requirements-pi.txt` - Pi dependencies
+
+**Web interface:**
+- `templates/grid.html` - Pixel grid display
+- `templates/controller.html` - Color picker
+- `templates/mqtt_viewer.html` - Message viewer
+
+---
+
+## Debugging Tools
+
+**MQTT Message Viewer:** `http://farlab.infosci.cornell.edu:5001`
+- See all MQTT messages in real-time
+- View topics and payloads
+- Helpful for debugging your own projects
+
+**Command line:**
+```bash
+# See all IDD messages
+mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device@theFarm"
+```
 
 ---
 
@@ -145,6 +179,8 @@ Replace this README with your documentation:
 **Sensor:** Check `i2cdetect -y 1`, APDS-9960 at `0x39`
 
 **Grid:** Verify server running, check MQTT in console, test with web controller
+
+**Pi venv:** Make sure to activate: `source .venv/bin/activate`
 
 ---
 
