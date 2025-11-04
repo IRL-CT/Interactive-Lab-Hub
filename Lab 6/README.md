@@ -30,6 +30,17 @@ MQTT = lightweight messaging for IoT. Publish/subscribe model with central broke
 - **Broker**: `farlab.infosci.cornell.edu:1883`
 - **Topic**: Like `IDD/bedroom/temperature` (use `#` wildcard)
 - **Publish/Subscribe**: Send and receive messages
+- 
+**Install it:**
+```bash
+sudo apt install -y mosquitto mosquitto-clients
+
+# Make Mosquitto auto start when the Raspberry Pi boots
+sudo systemctl enable mosquitto.service
+
+# Vertify
+mosquitto -v
+```
 
 **Test it:**
 ```bash
@@ -66,7 +77,19 @@ python app.py
    - Grid: `http://farlab.infosci.cornell.edu:5000`
    - Controller: `http://farlab.infosci.cornell.edu:5000/controller`
 
-3. **Pi publisher** (everyone on their Pi):
+3. **Stop Screen service (make your screen available again):**
+```bash
+# stop the screen service
+sudo systemctl stop piscreen.service
+```
+
+if you want to restart the screen service
+```bash
+# start the screen service
+sudo systemctl start piscreen.service
+```
+
+4. **Pi publisher** (everyone on their Pi):
 ```bash
 # First time setup - create virtual environment
 cd "Lab 6"
@@ -198,4 +221,4 @@ Before submitting:
 
 ---
 
-Resources: [MQTT Guide](https://www.hivemq.com/mqtt-essentials/) | [Paho Python](https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php) | [Flask-SocketIO](https://flask-socketio.readthedocs.io/)
+Resources: [MQTT Guide](https://www.hivemq.com/mqtt-essentials/) |[MQTT on Raspberry Pi](https://randomnerdtutorials.com/how-to-install-mosquitto-broker-on-raspberry-pi/)| [Paho Python](https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php) | [Flask-SocketIO](https://flask-socketio.readthedocs.io/)
