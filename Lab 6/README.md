@@ -52,6 +52,8 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/test/yourname" -m "H
 
 **🔧 Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
 
+![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
+
 **💡 Brainstorm 5 ideas for messaging between devices**
 
 ---
@@ -89,6 +91,8 @@ python pixel_grid_publisher.py
 ```
 
 Hold colored objects near sensor to change your pixel!
+
+![Pixel grid with two devices](imgs/two-devices-grid.png)
 
 **📸 Include: Screenshot of grid + photo of your Pi setup**
 
