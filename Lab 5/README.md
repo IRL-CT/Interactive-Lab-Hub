@@ -370,6 +370,11 @@ Final look:
 
 <img src="img/final_prototype.png" width="500"/>
 
+With leds: 
+
+<img src="img/light-up-whale.jpg" width="500"/>
+
+
 ### 5. Code on Rasberry Pi
 
 We initially asked the user to press the button when they want to analyze; however, I got feedback that when the baby is crying, they don't have calm to press the button, so I modified to check continuously. 
@@ -417,13 +422,9 @@ python test/cry_analyzer_model_only.py *"test.wav"*
 ### 6. Video
 
 [video](https://drive.google.com/file/d/1Ozcg7YShvg9VVkacQZsd3CqvtyLgxMEJ/view?usp=drive_link)
-
-### 7. End Note
-
-We planned to test the system with the LED light, but it didn’t arrive in time.
-Once it arrives, we’ll upload a new video!
+[video use with LEDs](https://drive.google.com/file/d/1GiXaCTWlSsBBD_2j9Tm8L7bJ9pBpZ7yy/view?usp=drive_link)
 
 ### How we divided our work. 
 
-Nana Takada mainly worked on coding part, and Celeste worked on phtsical prototype part and documentation!
+Nana Takada mainly worked on coding part, and Celeste worked on physical prototype part, documentation, and added code for Leds!
 We think we equally contributed to this project!
