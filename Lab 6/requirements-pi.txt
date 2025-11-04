@@ -19,7 +19,7 @@ sysv-ipc>=1.1.0
 lgpio>=0.2.2.0
 
 # MQTT Communication
-paho-mqtt>=1.6.1
+paho-mqtt<2.0
 
 # Image Processing (for display)
 Pillow>=10.0.0
