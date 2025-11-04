@@ -214,8 +214,10 @@ def main():
             # Read color sensor
             r, g, b, a = sensor.color_data
             
-            # Blue boost - APDS9960 sensors often underreport blue
-            b = int(b * 1.3)  # Boost blue by 30%
+            # Color boost - APDS9960 sensors need calibration
+            r = int(r * 1.2)  # Boost red by 20% for better yellows/oranges
+            g = int(g * 1.2)  # Boost green by 20% for better yellows
+            b = int(b * 1.7)  # Boost blue by 70% (blue is most underreported)
             
             # Convert from 16-bit to 8-bit color with better scaling
             # Use a different normalization approach
