@@ -125,7 +125,7 @@ if __name__ == '__main__':
     # Uncomment to enable MQTT -> WebSocket forwarding
     try:
         from mqtt_bridge import start_mqtt_bridge
-        start_mqtt_bridge(socketio)
+        start_mqtt_bridge(socketio, pixels)
     except ImportError:
         print("  MQTT bridge not available (install paho-mqtt)")
     except Exception as e:

@@ -32,23 +32,53 @@ def on_message(client, userdata, msg):
     """MQTT message received - forward to WebSocket"""
     try:
         data = json.loads(msg.payload.decode('UTF-8'))
-        
-        # Forward to WebSocket with pixel_update event (matches what frontend expects)
         socketio = userdata['socketio']
-        socketio.emit('pixel_update', {
-            'mac': data.get('mac'),
-            'r': data.get('r', 0),
-            'g': data.get('g', 0),
-            'b': data.get('b', 0)
-        })
+        pixels = userdata['pixels']
         
-        print(f'MQTT → WS: {data.get("mac", "unknown")[:17]}')
+        mac = data.get('mac')
+        r = int(data.get('r', 0))
+        g = int(data.get('g', 0))
+        b = int(data.get('b', 0))
+        
+        # Validate
+        r = max(0, min(255, r))
+        g = max(0, min(255, g))
+        b = max(0, min(255, b))
+        
+        # Check if new pixel
+        is_new = mac not in pixels
+        
+        if is_new:
+            # Import here to avoid circular dependency
+            from datetime import datetime
+            # Assign next available position
+            position = len(pixels)
+            pixels[mac] = {
+                'color': [r, g, b],
+                'position': position,
+                'last_update': datetime.now()
+            }
+            print(f'✓ MQTT pixel: {mac[:17]} at position {position} RGB({r},{g},{b})')
+        else:
+            from datetime import datetime
+            # Update existing pixel
+            pixels[mac]['color'] = [r, g, b]
+            pixels[mac]['last_update'] = datetime.now()
+        
+        # Broadcast to all clients
+        socketio.emit('pixel_update', {
+            'mac': mac,
+            'color': [r, g, b],
+            'position': pixels[mac]['position'],
+            'is_new': is_new,
+            'total': len(pixels)
+        }, namespace='/')
         
     except Exception as e:
         print(f'Error processing MQTT message: {e}')
 
 
-def start_mqtt_bridge(socketio_instance):
+def start_mqtt_bridge(socketio_instance, pixels_dict):
     """Start MQTT client that forwards to WebSocket"""
     global mqtt_client
     
@@ -63,7 +93,7 @@ def start_mqtt_bridge(socketio_instance):
         mqtt_client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
         mqtt_client.on_connect = on_connect
         mqtt_client.on_message = on_message
-        mqtt_client.user_data_set({'socketio': socketio_instance})
+        mqtt_client.user_data_set({'socketio': socketio_instance, 'pixels': pixels_dict})
         
         mqtt_client.connect(MQTT_BROKER, port=MQTT_PORT, keepalive=60)
         mqtt_client.loop_start()
