@@ -57,6 +57,45 @@
             margin-bottom: 20px;
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-section {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #2d2d30;
+            padding: 10px 15px;
+            border-radius: 4px;
+            flex-grow: 1;
+        }
+        
+        .filter-section label {
+            font-size: 12px;
+            color: #858585;
+            white-space: nowrap;
+        }
+        
+        .filter-section input {
+            background: #1e1e1e;
+            border: 1px solid #3e3e42;
+            color: #d4d4d4;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 13px;
+            flex-grow: 1;
+            min-width: 150px;
+        }
+        
+        .filter-section input:focus {
+            outline: none;
+            border-color: #0e639c;
+        }
+        
+        .filter-section input::placeholder {
+            color: #858585;
         }
         
         button {
@@ -104,6 +143,10 @@
             margin-bottom: 15px;
             border-radius: 4px;
             animation: slideIn 0.3s ease-out;
+        }
+        
+        .message.filtered {
+            display: none;
         }
         
         @keyframes slideIn {
@@ -196,7 +239,19 @@
         <button onclick="toggleAutoscroll()">
             <span id="autoscrollText">Autoscroll: ON</span>
         </button>
-        <div id="messageCount">Messages: 0</div>
+        <div id="messageCount">Messages: 0 (0 filtered)</div>
+        
+        <div class="filter-section">
+            <label>Show only:</label>
+            <input type="text" id="includeFilter" placeholder="e.g., IDD/test (leave empty for all)" 
+                   oninput="applyFilters()">
+        </div>
+        
+        <div class="filter-section">
+            <label>Hide:</label>
+            <input type="text" id="excludeFilter" placeholder="e.g., IDD/pixelgrid/colors" 
+                   oninput="applyFilters()">
+        </div>
     </div>
     
     <div class="messages-container" id="messagesContainer">
@@ -213,6 +268,7 @@
     <script>
         const socket = io();
         let messageCount = 0;
+        let filteredCount = 0;
         let autoscroll = true;
         
         socket.on('connect', () => {
@@ -226,6 +282,7 @@
         socket.on('messages_cleared', () => {
             document.getElementById('messagesContainer').innerHTML = '';
             messageCount = 0;
+            filteredCount = 0;
             updateMessageCount();
         });
         
@@ -241,6 +298,7 @@
             // Create message element
             const messageDiv = document.createElement('div');
             messageDiv.className = 'message';
+            messageDiv.dataset.topic = data.topic;
             
             const payloadClass = data.is_json ? 'json' : 'text';
             
@@ -257,7 +315,9 @@
             
             // Update count
             messageCount++;
-            updateMessageCount();
+            
+            // Apply filters to new message
+            applyFiltersToMessage(messageDiv);
             
             // Limit messages in DOM
             const messages = container.querySelectorAll('.message');
@@ -271,6 +331,45 @@
             }
         }
         
+        function applyFiltersToMessage(messageDiv) {
+            const topic = messageDiv.dataset.topic;
+            const includeFilter = document.getElementById('includeFilter').value.trim();
+            const excludeFilter = document.getElementById('excludeFilter').value.trim();
+            
+            let shouldShow = true;
+            
+            // Apply include filter (show only matching topics)
+            if (includeFilter) {
+                shouldShow = topic.includes(includeFilter);
+            }
+            
+            // Apply exclude filter (hide matching topics)
+            if (shouldShow && excludeFilter) {
+                shouldShow = !topic.includes(excludeFilter);
+            }
+            
+            if (shouldShow) {
+                messageDiv.classList.remove('filtered');
+            } else {
+                messageDiv.classList.add('filtered');
+            }
+            
+            return shouldShow;
+        }
+        
+        function applyFilters() {
+            const container = document.getElementById('messagesContainer');
+            const messages = container.querySelectorAll('.message');
+            
+            filteredCount = 0;
+            messages.forEach(msg => {
+                const visible = applyFiltersToMessage(msg);
+                if (!visible) filteredCount++;
+            });
+            
+            updateMessageCount();
+        }
+        
         function clearMessages() {
             socket.emit('clear_messages');
         }
@@ -282,7 +381,10 @@
         }
         
         function updateMessageCount() {
-            document.getElementById('messageCount').textContent = `Messages: ${messageCount}`;
+            const text = filteredCount > 0 
+                ? `Messages: ${messageCount} (${filteredCount} filtered)`
+                : `Messages: ${messageCount}`;
+            document.getElementById('messageCount').textContent = text;
         }
         
         function escapeHtml(text) {

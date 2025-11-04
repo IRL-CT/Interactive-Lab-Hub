@@ -119,6 +119,14 @@ def handle_clear():
     print('Messages cleared')
 
 
+@socketio.on('update_filter')
+def handle_filter(data):
+    """Update topic filter settings"""
+    # Just acknowledge - filtering happens client-side
+    print(f'Filter updated: {data}')
+    emit('filter_updated', data)
+
+
 if __name__ == '__main__':
     print("=" * 60)
     print("  MQTT Message Viewer")
