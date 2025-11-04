@@ -49,30 +49,9 @@ mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/#' -u idd -P 'device
 mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'Hello!' -u idd -P 'device@theFarm'
 ```
 
-> **💡 Tips:** 
+> **💡 Tips:**
 > - Replace `yourname` with your actual name in the topic
-> - **Important:** Use single quotes `'device@theFarm'` around the password (not double quotes)
-> - Or set password as variable first: `export MQTT_PASS='device@theFarm'` then use `-P "$MQTT_PASS"`
-
-### Troubleshooting MQTT CLI
-
-- Stuck at `dquote>` or see `event not found`? Your shell is waiting for a closing quote or tried to expand the `!` character.
-   - Use single quotes for topic/message/password as shown above (prevents `!` history expansion in zsh).
-   - Or escape the exclamation: `-m Hello\!`
-   - Cancel a stuck prompt with `Ctrl+C`, then retype the command.
-- On zsh specifically, `!` triggers history expansion. You can temporarily disable it for your session:
-   - `setopt NO_BANG_HIST`  # disable
-   - `setopt BANG_HIST`     # re-enable later
-- Alternative ways to send a message without worrying about quotes:
-   - From stdin (sends one line then exits):
-      ```bash
-      echo 'Hello!' | mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -u idd -P 'device@theFarm' -l
-      ```
-   - From a file:
-      ```bash
-      printf 'Hello!\n' > msg.txt
-      mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -f msg.txt -u idd -P 'device@theFarm'
-      ```
+> - Use single quotes around the password: `'device@theFarm'`
 
 **🔧 Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
 
