@@ -34,12 +34,6 @@ MQTT = lightweight messaging for IoT. Publish/subscribe model with central broke
 **Install it:**
 ```bash
 sudo apt install -y mosquitto mosquitto-clients
-
-# Make Mosquitto auto start when the Raspberry Pi boots
-sudo systemctl enable mosquitto.service
-
-# Vertify
-mosquitto -v
 ```
 
 **Test it:**
