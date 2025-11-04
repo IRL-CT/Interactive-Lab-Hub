@@ -78,7 +78,9 @@ We uses this sensor [Adafruit APDS-9960](https://www.adafruit.com/product/3595) 
 
 Connect it to your pi with Qwiic connector
 
-![Qwiic connector](imgs/IMG_0270.jpg)
+
+<img src="imgs/IMG_0270.jpg" height="200" />
+
  
 2. **Server** (one person on laptop):
 ```bash
