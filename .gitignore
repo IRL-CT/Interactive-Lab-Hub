@@ -5,3 +5,4 @@ venv*
 __*
 .venv*
 .venv/
+.*venv*

@@ -428,3 +428,7 @@ python test/cry_analyzer_model_only.py *"test.wav"*
 
 Nana Takada mainly worked on coding part, and Celeste worked on physical prototype part, documentation, and added code for Leds!
 We think we equally contributed to this project!
+
+
+### Note
+	I used Claude ai to help me tinker the code to make the LEDS work, I gave it Nana's code and asked to help me set it up with the prompt: "can you help me change this code to use the neopixel ring instead but without an energy adaptor so i dont want to burn anything out"- Celeste
