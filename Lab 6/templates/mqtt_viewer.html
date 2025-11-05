@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQTT Message Viewer</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Monaco', 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+        }
+        
+        .header {
+            background: #2d2d30;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #4ec9b0;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4ec9b0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-section {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #2d2d30;
+            padding: 10px 15px;
+            border-radius: 4px;
+            flex-grow: 1;
+        }
+        
+        .filter-section label {
+            font-size: 12px;
+            color: #858585;
+            white-space: nowrap;
+        }
+        
+        .filter-section input {
+            background: #1e1e1e;
+            border: 1px solid #3e3e42;
+            color: #d4d4d4;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 13px;
+            flex-grow: 1;
+            min-width: 150px;
+        }
+        
+        .filter-section input:focus {
+            outline: none;
+            border-color: #0e639c;
+        }
+        
+        .filter-section input::placeholder {
+            color: #858585;
+        }
+        
+        button {
+            background: #0e639c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+        
+        button:hover {
+            background: #1177bb;
+        }
+        
+        button:active {
+            background: #0d5a8f;
+        }
+        
+        #messageCount {
+            background: #2d2d30;
+            padding: 10px 20px;
+            border-radius: 4px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .messages-container {
+            background: #252526;
+            border-radius: 8px;
+            padding: 20px;
+            max-height: calc(100vh - 250px);
+            overflow-y: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .message {
+            background: #2d2d30;
+            border-left: 3px solid #4ec9b0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        .message.filtered {
+            display: none;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+        
+        .timestamp {
+            color: #858585;
+        }
+        
+        .topic {
+            color: #4ec9b0;
+            font-weight: bold;
+        }
+        
+        .payload {
+            background: #1e1e1e;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+        
+        .payload.json {
+            color: #ce9178;
+        }
+        
+        .payload.text {
+            color: #d4d4d4;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #858585;
+        }
+        
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #424242;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4e4e4e;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MQTT Message Viewer</h1>
+        <div class="status">
+            <div class="status-dot"></div>
+            <span>Connected to IDD/# on farlab.infosci.cornell.edu:1883</span>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button onclick="clearMessages()">Clear Messages</button>
+        <button onclick="toggleAutoscroll()">
+            <span id="autoscrollText">Autoscroll: ON</span>
+        </button>
+        <div id="messageCount">Messages: 0 (0 filtered)</div>
+        
+        <div class="filter-section">
+            <label>Show only:</label>
+            <input type="text" id="includeFilter" placeholder="e.g., IDD/test (leave empty for all)" 
+                   oninput="applyFilters()">
+        </div>
+        
+        <div class="filter-section">
+            <label>Hide:</label>
+            <input type="text" id="excludeFilter" placeholder="e.g., IDD/pixelgrid/colors" 
+                   oninput="applyFilters()">
+        </div>
+    </div>
+    
+    <div class="messages-container" id="messagesContainer">
+        <div class="empty-state">
+            <svg fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
+            </svg>
+            <div>Waiting for MQTT messages...</div>
+            <div style="font-size: 12px; margin-top: 10px;">Publish to any IDD/* topic to see messages here</div>
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+        let messageCount = 0;
+        let filteredCount = 0;
+        let autoscroll = true;
+        
+        socket.on('connect', () => {
+            console.log('Connected to viewer');
+        });
+        
+        socket.on('mqtt_message', (data) => {
+            addMessage(data);
+        });
+        
+        socket.on('messages_cleared', () => {
+            document.getElementById('messagesContainer').innerHTML = '';
+            messageCount = 0;
+            filteredCount = 0;
+            updateMessageCount();
+        });
+        
+        function addMessage(data) {
+            const container = document.getElementById('messagesContainer');
+            
+            // Remove empty state if present
+            const emptyState = container.querySelector('.empty-state');
+            if (emptyState) {
+                emptyState.remove();
+            }
+            
+            // Create message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            messageDiv.dataset.topic = data.topic;
+            
+            const payloadClass = data.is_json ? 'json' : 'text';
+            
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <span class="topic">${escapeHtml(data.topic)}</span>
+                    <span class="timestamp">${escapeHtml(data.timestamp)}</span>
+                </div>
+                <div class="payload ${payloadClass}">${escapeHtml(data.payload)}</div>
+            `;
+            
+            // Add to top of container
+            container.insertBefore(messageDiv, container.firstChild);
+            
+            // Update count
+            messageCount++;
+            
+            // Apply filters to new message
+            applyFiltersToMessage(messageDiv);
+            
+            // Limit messages in DOM
+            const messages = container.querySelectorAll('.message');
+            if (messages.length > 100) {
+                messages[messages.length - 1].remove();
+            }
+            
+            // Autoscroll to top
+            if (autoscroll) {
+                container.scrollTop = 0;
+            }
+        }
+        
+        function applyFiltersToMessage(messageDiv) {
+            const topic = messageDiv.dataset.topic;
+            const includeFilter = document.getElementById('includeFilter').value.trim();
+            const excludeFilter = document.getElementById('excludeFilter').value.trim();
+            
+            let shouldShow = true;
+            
+            // Apply include filter (show only matching topics)
+            if (includeFilter) {
+                shouldShow = topic.includes(includeFilter);
+            }
+            
+            // Apply exclude filter (hide matching topics)
+            if (shouldShow && excludeFilter) {
+                shouldShow = !topic.includes(excludeFilter);
+            }
+            
+            if (shouldShow) {
+                messageDiv.classList.remove('filtered');
+            } else {
+                messageDiv.classList.add('filtered');
+            }
+            
+            return shouldShow;
+        }
+        
+        function applyFilters() {
+            const container = document.getElementById('messagesContainer');
+            const messages = container.querySelectorAll('.message');
+            
+            filteredCount = 0;
+            messages.forEach(msg => {
+                const visible = applyFiltersToMessage(msg);
+                if (!visible) filteredCount++;
+            });
+            
+            updateMessageCount();
+        }
+        
+        function clearMessages() {
+            socket.emit('clear_messages');
+        }
+        
+        function toggleAutoscroll() {
+            autoscroll = !autoscroll;
+            document.getElementById('autoscrollText').textContent = 
+                `Autoscroll: ${autoscroll ? 'ON' : 'OFF'}`;
+        }
+        
+        function updateMessageCount() {
+            const text = filteredCount > 0 
+                ? `Messages: ${messageCount} (${filteredCount} filtered)`
+                : `Messages: ${messageCount}`;
+            document.getElementById('messageCount').textContent = text;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
