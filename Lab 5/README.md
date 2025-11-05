@@ -6,39 +6,50 @@ They show hand gestures to a camera, the system detects the letter via the sign-
 
 
 Observed Behavior
-	1.	When does the system work as intended?
-	•	Works well when the user holds their hand steady and toward the camera.
-	•	Performs best in good lighting conditions. 
-	•	Frequently correct for letters with distinct shapes (e.g., A, L, V, Y).
-	2.	When does the system fail?
-	•	When the user moves too fast.
-	•	For letters with similar hand shapes (e.g., M, N, T).
-	3.	Why does it fail?
-	•	The landmark detection becomes unstable when the hand is not in frame or moves.
-	•	Some letters share very similar finger positions → insufficient feature separation.
-	•	Small camera resolution and model trained on limited dataset.
-	4.	Possible additional failure scenarios
-	•	Multiple hands in the frame.
-	•	Very different hand sizes or orientations than training data.
 
-⸻
+1.	When does the system work as intended?
+	
+ Works well when the user holds their hand steady and toward the camera.
+	
+Performs best in good lighting conditions. 
+	
+Frequently correct for letters with distinct shapes (e.g., A, L, V, Y).
+
+2.	When does the system fail?
+	When the user moves too fast.
+	For letters with similar hand shapes (e.g., M, N, T).
+4.	Why does it fail?
+   The landmark detection becomes unstable when the hand is not in frame or moves.
+   Some letters share very similar finger positions → insufficient feature separation.
+   Small camera resolution and model trained on limited dataset.
+
+5.	Possible additional failure scenarios
+   Multiple hands in the frame.
+   Very different hand sizes or orientations than training data.
+
 
 User Experience Reflection
-	1.	Are users aware of uncertainties?
-	•	Only partially. They see misclassifications but may not know the cause (lighting, angle, etc.).
-	2.	How bad is a misclassification?
-	•	Mild frustration during gameplay.
-	•	Does not prevent using the system — users can re-attempt gestures.
-	3.	How to address this?
-	•	Add a “confirm letter” gesture (e.g., hold the sign for 1.5 seconds).
-	•	Display a small indicator when the model is “confident.”
-	•	Improve training data or add personalized calibration.
-	4.	Sense-Making Optimizations
-	•	Smooth predictions over time (majority vote).
-	•	Track hand bounding box to normalize scale better.
-	•	Use a lightweight deep model trained on more representative data.
+1.	Are users aware of uncertainties?
+	    
+	Only partially. They see misclassifications but may not know the cause (lighting, angle, etc.).
+		
+2.	How bad is a misclassification?
+	
+	Mild frustration during gameplay.
+	    
+	Does not prevent using the system — users can re-attempt gestures.
 
-⸻
+3.	How to address this?
+	
+	Add a “confirm letter” gesture (e.g., hold the sign for 1.5 seconds).
+	Display a small indicator when the model is “confident.”
+	Improve training data or add personalized calibration.
+		
+4.	Sense-Making Optimizations
+   	Smooth predictions over time (majority vote).
+   	Track hand bounding box to normalize scale better.
+   	Use a lightweight deep model trained on more representative data.
+
 
 # Part D — Characterizing the Observant System
 
@@ -46,25 +57,45 @@ System Being Characterized:
 
 Sign language camera recognition + word guessing interaction.
 
-Question	Answer
-What can the system be used for?	Non-verbal input, accessibility tools, small games.
-Good environment?	Well-lit room, stable camera, single hand clearly visible.
-Bad environment?	Dim light, cluttered background, fast movement, multiple hands.
-When will it break?	When gestures look too similar or hand tracking fails.
-How will it break?	It outputs the wrong letter or no detection at all.
-Other behaviors?	Encourages slower, intentional hand movement.
-How does it feel to use?	Playful, a bit slow, body-involved, requires patience.
+What can the system be used for?	
+
+Non-verbal input, accessibility tools, small games.
+Good environment?	
+
+Well-lit room, stable camera, single hand clearly visible.
+Bad environment?	
+
+Dim light, cluttered background, fast movement, multiple hands.
+When will it break?	
+
+When gestures look too similar or hand tracking fails.
+
+How will it break?	
+
+It outputs the wrong letter or no detection at all.
+
+Other behaviors?	
+
+Encourages slower, intentional hand movement.
+
+How does it feel to use?	
+
+Playful, a bit slow, body-involved, requires patience.
 
 
-⸻
+
 
 User Feedback (Summary)
-	•	Users found the concept fun and novel, especially seeing the guessed letters and hangman displayed on the small OLED.
-	•	Users reported that accuracy could be improved, especially for similar letter forms.
-	•	Holding the hand steady for correct detection required practice, which some found slightly slow.
-	•	Overall reaction: “It works and it’s cute, but could be smoother and more accurate.”
 
-⸻
+Users found the concept fun and novel, especially seeing the guessed letters and hangman displayed on the small OLED.
+
+Users reported that accuracy could be improved, especially for similar letter forms.
+
+Holding the hand steady for correct detection required practice, which some found slightly slow.
+
+Overall reaction: “It works and it’s cute, but could be smoother and more accurate.”
+
+
 
 # Implementation Details (code under `./word_guessing_with_sign/`)
 1. Download the dataset from Kaggle `get_dataset.py`
