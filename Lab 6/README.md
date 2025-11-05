@@ -1,11 +1,10 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+Nophar Shalom, Jesse Iriah, Angela Bi, Kyle Li
 
-For submission, replace this section with your documentation!
-
----
-
+<details>
+ <summary><strong>Lab Preparation</strong>
+  
 ## Prep
 
 1. Pull the new changes
@@ -21,9 +20,11 @@ Build interactive systems where **multiple devices communicate over a network** 
 - C: Build your own distributed system
 
 ---
+</summary>
+</details>
 
-## Part A: MQTT Messaging
-
+<details><summary><strong>Part A: MQTT Messaging</strong>
+ 
 MQTT = lightweight messaging for IoT. Publish/subscribe model with central broker.
 
 **Concepts:**
@@ -60,6 +61,9 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'H
 **💡 Brainstorm 5 ideas for messaging between devices**
 
 ---
+</summary>
+</details>
+
 
 ## Part B: Collaborative Pixel Grid
 
@@ -150,10 +154,11 @@ Hold colored objects near sensor to change your pixel!
 
 ### Deliverables
 
-Replace this README with your documentation:
+🧑‍💻 Student Attendance Counter Game 🧑‍💻�
 
 **1. Project Description**
 - What does it do? Why interesting? User experience?
+-  Our 
 
 **2. Architecture Diagram**
 - Hardware, connections, data flow
