@@ -218,7 +218,7 @@
         const SCREEN_HEIGHT = 600;
         const FPS = 60;
         const MAX_HITS = 3;
-        const PLAYER_SPEED = 5;
+        const PLAYER_SPEED = 2;
         const BULLET_SPEED = 10;
         const BULLET_SIZE = 8;
         const PLAYER_SIZE = 50;
@@ -265,6 +265,11 @@
             }
 
             setTargetFromJoystick(joyX, joyY) {
+                console.log(`Joystick Input for ${this.side} player: X=${joyX}, Y=${joyY}`);
+                if (joyX == 0.0 && joyY == 0.0) {
+                    console.log('Joystick centered, no movement');
+                    return;
+                }
                 if (this.side === 'left') {
                     this.targetX = (joyX + 1) / 2 * (SCREEN_WIDTH / 2 - this.width);
                 } else {
@@ -371,7 +376,7 @@
         });
 
         socket.on('mqtt_message', (data) => {
-            console.log('MQTT message:', data);
+            // console.log('MQTT message:', data);
             handleMQTTMessage(data.topic, data.payload);
         });
 
@@ -388,10 +393,14 @@
             } else {
                 return;
             }
-
+        
             // Handle movement
             if ('joy_x' in payload && 'joy_y' in payload) {
-                player.setTargetFromJoystick(payload.joy_x, payload.joy_y);
+                if (payload.joy_x == 0.0 && payload.joy_y == 0.0) {
+                    console.log('Joystick centered, no movement');
+                }else{
+                    player.setTargetFromJoystick(payload.joy_x, payload.joy_y);
+                }
             }
 
             // Handle shooting

@@ -124,7 +124,12 @@ def handle_disconnect():
     """Client disconnected"""
     print('Web client disconnected')
 
-
+@socketio.on('mqtt_publish')
+def handle_mqtt_publish(data):
+    topic = data['topic']
+    message = data['message']
+    mqtt_client.publish(topic, message)
+    
 @socketio.on('restart_game')
 def handle_restart():
     """Reset game state"""
