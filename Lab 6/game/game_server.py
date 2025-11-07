@@ -2,11 +2,14 @@
 MQTT Shooting Game Server
 Backend server that bridges MQTT messages to web clients via Socket.IO
 """
-
+import time
+import threading
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 import paho.mqtt.client as mqtt
 from datetime import datetime
+from joystick import JoystickEvent
+
 import json
 import uuid
 
@@ -49,6 +52,17 @@ game_state = {
     'winner': None
 }
 
+# ========== JOYSTICK INTEGRATION ==========
+
+def start_joystick_controller(player_number):
+    """Start joystick controller in background thread"""
+    try:
+        joystick = JoystickEvent(player_number=player_number)
+        joystick.run()  # This will continuously read hardware and publish
+    except Exception as e:
+        print(f"Joystick controller error: {e}")
+
+# ========== MQTT FUNCTIONS ==========
 
 def on_connect(client, userdata, flags, rc):
     """MQTT connected"""
@@ -95,7 +109,7 @@ def start_mqtt_client():
         return True
         
     except Exception as e:
-        print(f'⚠️  MQTT client failed: {e}')
+        print(f'MQTT client failed: {e}')
         return False
 
 
@@ -183,6 +197,13 @@ if __name__ == '__main__':
     
     # Start MQTT client
     start_mqtt_client()
+    
+    joystick1_thread = threading.Thread(
+        target=start_joystick_controller,
+        args=(1,),
+        daemon=True
+    )
+    joystick1_thread.start()
     
     print("=" * 60)
     print()
