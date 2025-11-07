@@ -59,6 +59,15 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'H
 
 **💡 Brainstorm 5 ideas for messaging between devices**
 
+### Part A – MQTT Messaging Test
+
+Published a test message from my Raspberry Pi to the FARLab MQTT broker to verify successful communication between devices.
+
+```bash
+mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/huiying' \
+-m '🎉🎉🎉 HUIYING IS HERE! 🎉🎉🎉' -u idd -P 'device@theFarm'
+
+
 ---
 
 ## Part B: Collaborative Pixel Grid
