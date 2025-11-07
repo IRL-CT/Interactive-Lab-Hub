@@ -116,7 +116,7 @@ class JoystickEvent:
                     # Check for shoot
                     shoot = self.check_shoot()
                     # Check if joystick is moved away from center
-                        is_moved = abs(self.x) > center_deadzone or abs(self.y) > center_deadzone
+                    is_moved = abs(self.x) > center_deadzone or abs(self.y) > center_deadzone
                
                     position_changed = (
                         last_x is None or 
