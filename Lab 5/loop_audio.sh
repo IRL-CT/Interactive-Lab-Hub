@@ -10,7 +10,8 @@ trap cleanup TERM INT  # Set up signal handlers
 
 while :
 do
-    aplay -D pulse ../Lab\ 4/music/spring-mood-wav-212731_fixed.wav &
-    APLAY_PID=$!
-    wait $APLAY_PID
+    aplay -D pulse Peaceful_Mind.wav &
+    APLAY_PID=$!  # Store the PID of the aplay process
+    wait $APLAY_PID  # Wait for the aplay process to complete
+    # aplay -D pulse Peaceful_Mind.wav
 done

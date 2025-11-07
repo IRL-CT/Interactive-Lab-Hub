@@ -3,11 +3,5 @@
 venv
 venv*
 __*
-Lab 3/data/
-Lab 3/speech-scripts/test.txt
-*.wav
-*.txt
-
-!Lab 4/music/*.wav
 .venv*
 .venv/
