@@ -2,8 +2,11 @@ import random
 import time
 import paho.mqtt.client as mqtt
 
-BROKER = "test.mosquitto.org"   
+BROKER = "farlab.infosci.cornell.edu"
 PORT = 1883
+USERNAME = "idd"
+PASSWORD = "device@theFarm"
+
 
 # define player and MQTT topic
 players = [
