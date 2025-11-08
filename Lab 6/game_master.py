@@ -82,8 +82,10 @@ def play_game():
 
 # MQTT Setup
 client = mqtt.Client()
+client.username_pw_set(USERNAME, PASSWORD)  
 client.on_message = on_message
 client.connect(BROKER, PORT, 60)
+
 
 for p in players:
     client.subscribe(p["result_topic"])
