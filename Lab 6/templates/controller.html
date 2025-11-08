@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Controller</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .mac-address {
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .color-picker-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .status.connected {
+            background: rgba(76, 175, 80, 0.1);
+            color: #2e7d32;
+        }
+        
+        .status.disconnected {
+            background: rgba(244, 67, 54, 0.1);
+            color: #c62828;
+        }
+        
+        .rgb-display {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .info {
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(33, 150, 243, 0.1);
+            border-radius: 10px;
+            font-size: 13px;
+            color: #1976d2;
+            text-align: center;
+        }
+        
+        /* Pickr customization */
+        .pickr {
+            display: inline-block;
+        }
+        
+        .pickr .pcr-button {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Pixel Controller</h1>
+        <div class="mac-address" id="macAddress">MAC: Generating...</div>
+        
+        <div class="color-picker-container">
+            <div class="color-picker"></div>
+        </div>
+        
+        <div class="rgb-display" id="rgbDisplay">RGB(128, 128, 128)</div>
+        
+        <div class="status disconnected" id="status">
+            Connecting...
+        </div>
+        
+        <div class="controls">
+            <button onclick="clearGrid()">Clear Grid</button>
+            <button onclick="openGrid()">Open Grid →</button>
+        </div>
+        
+        <div class="info">
+            💡 <strong>Tip:</strong> Open multiple tabs to simulate multiple Pis!<br>
+            Each tab gets a unique MAC address.
+        </div>
+    </div>
+    
+    <script>
+        // Generate unique MAC address for this tab/session
+        function generateMacAddress() {
+            const stored = sessionStorage.getItem('mac_address');
+            if (stored) return stored;
+            
+            // Generate random MAC address
+            const hex = () => Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+            const mac = `b8:27:eb:${hex()}:${hex()}:${hex()}`;
+            sessionStorage.setItem('mac_address', mac);
+            return mac;
+        }
+        
+        const MAC_ADDRESS = generateMacAddress();
+        document.getElementById('macAddress').textContent = `MAC: ${MAC_ADDRESS}`;
+        
+        // Connect to WebSocket
+        const socket = io();
+        let currentColor = { r: 128, g: 128, b: 128 };
+        
+        socket.on('connect', () => {
+            console.log('Connected');
+            document.getElementById('status').textContent = '✓ Connected';
+            document.getElementById('status').className = 'status connected';
+        });
+        
+        socket.on('disconnect', () => {
+            console.log('Disconnected');
+            document.getElementById('status').textContent = '✗ Disconnected';
+            document.getElementById('status').className = 'status disconnected';
+        });
+        
+        // Initialize color picker (Pickr)
+        const pickr = Pickr.create({
+            el: '.color-picker',
+            theme: 'nano',
+            default: 'rgb(128, 128, 128)',
+            
+            swatches: [
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 128, 0, 1)',
+                'rgba(255, 255, 0, 1)',
+                'rgba(128, 255, 0, 1)',
+                'rgba(0, 255, 0, 1)',
+                'rgba(0, 255, 128, 1)',
+                'rgba(0, 255, 255, 1)',
+                'rgba(0, 128, 255, 1)',
+                'rgba(0, 0, 255, 1)',
+                'rgba(128, 0, 255, 1)',
+                'rgba(255, 0, 255, 1)',
+                'rgba(255, 0, 128, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(128, 128, 128, 1)',
+                'rgba(0, 0, 0, 1)',
+            ],
+            
+            components: {
+                preview: true,
+                opacity: false,
+                hue: true,
+                
+                interaction: {
+                    hex: false,
+                    rgba: true,
+                    hsla: false,
+                    hsva: false,
+                    cmyk: false,
+                    input: true,
+                    clear: false,
+                    save: false
+                }
+            }
+        });
+        
+        // Handle color change
+        pickr.on('change', (color) => {
+            const rgba = color.toRGBA();
+            currentColor = {
+                r: Math.round(rgba[0]),
+                g: Math.round(rgba[1]),
+                b: Math.round(rgba[2])
+            };
+            
+            // Update display
+            document.getElementById('rgbDisplay').textContent = 
+                `RGB(${currentColor.r}, ${currentColor.g}, ${currentColor.b})`;
+            
+            // Update background
+            document.body.style.background = 
+                `linear-gradient(135deg, rgb(${currentColor.r}, ${currentColor.g}, ${currentColor.b}) 0%, ` +
+                `rgb(${Math.max(0, currentColor.r - 50)}, ${Math.max(0, currentColor.g - 50)}, ${Math.max(0, currentColor.b - 50)}) 100%)`;
+            
+            // Send to server
+            sendColor();
+        });
+        
+        // Send color update
+        function sendColor() {
+            socket.emit('color_update', {
+                mac: MAC_ADDRESS,
+                r: currentColor.r,
+                g: currentColor.g,
+                b: currentColor.b
+            });
+        }
+        
+        // Clear grid
+        function clearGrid() {
+            if (confirm('Clear all pixels from the grid?')) {
+                socket.emit('clear_grid');
+            }
+        }
+        
+        // Open grid view
+        function openGrid() {
+            window.open('/', '_blank');
+        }
+        
+        // Send initial color after connection
+        socket.on('connect', () => {
+            setTimeout(sendColor, 500);
+        });
+    </script>
+</body>
+</html>
