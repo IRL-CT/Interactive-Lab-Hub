@@ -215,9 +215,25 @@ Hold colored objects near sensor to change your pixel!
 **📸 Include: Screenshot of grid + photo of your Pi setup**
 </details>
 
+We built a distributed pixel grid where each Raspberry Pi represents one pixel that changes color based on the RGB sensor input.
+
+🎥 **Demo Video:** [Watch on YouTube](https://youtu.be/HpCUQ5m_lUI)
+
+Each Pi publishes its color data through MQTT to a shared server that displays all pixels in real time.
+
+![Pixel Grid Result](imgs/two-devices-grid.png)
+![Pi Setup](imgs/IMG_0270.jpg)
+
+**Reflection:**  
+We successfully visualized real-time color detection from multiple devices.  
+The hardest part was coordinating MQTT topics and maintaining connection stability.  
+This exercise helped us understand distributed interaction between hardware systems.
+
+
 ---
 
-## Part C: Make Your Own
+<details>
+	<summary><h2> Part C: Make Your Own </h2></summary>
 
 **Requirements:**
 - 3+ people, 3+ Pis
@@ -268,6 +284,8 @@ Replace this README with your documentation:
 - Challenges with distributed interaction?
 - How did sensor events work?
 - What would you improve?
+
+</details>
 
 ---
 
