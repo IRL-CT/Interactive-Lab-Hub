@@ -4,12 +4,14 @@ import busio
 import paho.mqtt.client as mqtt
 import adafruit_mpr121
 
-BROKER = "test.mosquitto.org"   
+BROKER = "farlab.infosci.cornell.edu"
 PORT = 1883
-
+USERNAME = "idd"
+PASSWORD = "device@theFarm"
 
 TASK_TOPIC = "game/joy/task"
 RESULT_TOPIC = "game/joy/result"
+
 
 i2c = busio.I2C(board.SCL, board.SDA)
 touch_sensor = adafruit_mpr121.MPR121(i2c)
