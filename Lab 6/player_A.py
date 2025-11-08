@@ -4,10 +4,8 @@ import busio
 import paho.mqtt.client as mqtt
 import adafruit_mpr121
 
-BROKER = "farlab.infosci.cornell.edu"
+BROKER = "test.mosquitto.org"   
 PORT = 1883
-USERNAME = "idd"
-PASSWORD = "device@theFarm"
 
 TASK_TOPIC = "game/joy/task"
 RESULT_TOPIC = "game/joy/result"
