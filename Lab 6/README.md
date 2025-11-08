@@ -1,63 +1,31 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
-
-For submission, replace this section with your documentation!
+**Sean Hardesty Lewis**
 
 ---
 
 ## Prep
 
-1. Pull the new changes
-2. Read: [The Presence Table](https://dl.acm.org/doi/10.1145/1935701.1935800) ([video](https://vimeo.com/15932020))
-
-## Overview
-
-Build interactive systems where **multiple devices communicate over a network** using MQTT messaging. Work in teams of 3+ with Raspberry Pis.
-
-**Parts:**
-- A: Learn MQTT messaging
-- B: Try collaborative pixel grid demo  
-- C: Build your own distributed system
-
----
+Done!
 
 ## Part A: MQTT Messaging
 
-MQTT = lightweight messaging for IoT. Publish/subscribe model with central broker.
+Done!
 
-**Concepts:**
-- **Broker**: `farlab.infosci.cornell.edu:1883`
-- **Topic**: Like `IDD/bedroom/temperature` (use `#` wildcard)
-- **Publish/Subscribe**: Send and receive messages
+Here is a picture of it working:
+<img width="956" height="366" alt="image" src="https://github.com/user-attachments/assets/2c382d5b-17ae-4479-8239-b23e901227b9" />
 
-**Install MQTT tools on your Pi:**
-```bash
-sudo apt-get update
-sudo apt-get install -y mosquitto-clients
-```
+**💡 My 5 ideas for messaging between devices**
 
-**Test it:**
+1.) The first idea I had was an **LLM telephone game**, where one RPI tells the next RPI something but we either a.) mask b.) translate c.) add noise/permute etc. and see what the end message becomes. (Update 11/05/2025: Hauke presented this idea in class, so it is very low-hanging fruit and obvious!)
 
-**Subscribe to messages (listener):**
-```bash
-mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/#' -u idd -P 'device@theFarm'
-```
+2.) Another idea I had was **3 pt reconstruction of a scene**. We know that one-shot / multi-view NeRF has come a long way, but I think having three RPIs with different angles of the same area then reconstructing that might be interesting. Obviously this has been done time and time again (not with RPIs, but generally).
 
-**Publish a message (sender):**
-```bash
-mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'Hello!' -u idd -P 'device@theFarm'
-```
+3.) Another idea that piggybacks on the aforementioned one is using the sensors of the RPI instead of just camera. For example, we could have one RPI with a depth sensor, and one RPI with a VLM that are both running in real-time for a **semantic depth interpretation of the scene**. Could we get a decent translation of our environment, and a sense of depth? (There is really no reason to have multiple RPIs for this besides just splitting the computational demand of potential running a depth sensor and VLM at same time).
 
-> **💡 Tips:**
-> - Replace `yourname` with your actual name in the topic
-> - Use single quotes around the password: `'device@theFarm'`
+4.) Another idea I had was another extremely low-hanging fruit of you clicking a button on one RPI and it makes the other RPIs light turn on and vice versa. This has been time and time again with **"long distance relationship touch lamps"** which are pretty much the same concept.
 
-**🔧 Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
-
-![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
-
-**💡 Brainstorm 5 ideas for messaging between devices**
+5.) Another idea was using the RPI as a **visual transformation game** that uses the camera of your RPI (faced towards your opponent with another RPI and exact same setup). The RPI will then detect using object detection or VLM your opponent and anything else in the scene. It then transforms the scene (with filters, replacement, or slow image generation) on your RPI display with a fantastical version of your opponent in the game (think regular human in work clothes -> medieval knight with greatsword). It would play out like a normal Pokemon battle or 1v1 game, just with this "Ready Player One" interpretation of your opponent. The person you see in front of you is completely different from what you see on the RPI screen, and vice versa for them. You could have the RPIs connect and synthesize a concurrent theme, local game states of attack/defend, and really sell the entire transformation.
 
 ---
 
