@@ -7,6 +7,7 @@ import adafruit_mpr121
 BROKER = "test.mosquitto.org"   
 PORT = 1883
 
+
 TASK_TOPIC = "game/joy/task"
 RESULT_TOPIC = "game/joy/result"
 
