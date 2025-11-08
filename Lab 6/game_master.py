@@ -11,15 +11,16 @@ PASSWORD = "device@theFarm"
 # define player and MQTT topic
 players = [
     {"name": "joy", "task_topic": "game/joy/task", "result_topic": "game/joy/result"},
-    {"name": "hester", "task_topic": "game/hester/task", "result_topic": "game/hester/result"},
-    {"name": "sandy", "task_topic": "game/sandy/task", "result_topic": "game/sandy/result"}
+    {"name": "sandy", "task_topic": "game/sandy/task", "result_topic": "game/sandy/result"},
+    {"name": "hester", "task_topic": "game/hester/task", "result_topic": "game/hester/result"}
 ]
 
 # task instance
 task_bank = {
     "joy": ["touch_1", "touch_3", "touch_5"],
-    "hester": ["joystick_up", "joystick_down", "joystick_left", "joystick_right", "joystick_press"],
-    "sandy": ["color_red", "color_green", "color_blue"]
+    "sandy": ["color_red", "color_green", "color_blue"],
+    "hester": ["joystick_up", "joystick_down", "joystick_left", "joystick_right", "joystick_press"]
+    
 }
 
 # condition
