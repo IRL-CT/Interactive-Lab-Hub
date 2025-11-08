@@ -151,7 +151,8 @@ These distributed messaging patterns could be used for:
 
 
 
-## Part B: Collaborative Pixel Grid
+<details>
+	<summary><h2> Part B: Collaborative Pixel Grid </h2></summary>
 
 Each Pi = one pixel, controlled by RGB sensor, displayed in real-time grid.
 
@@ -212,6 +213,7 @@ Hold colored objects near sensor to change your pixel!
 ![Pixel grid with two devices](imgs/two-devices-grid.png)
 
 **📸 Include: Screenshot of grid + photo of your Pi setup**
+</details>
 
 ---
 
