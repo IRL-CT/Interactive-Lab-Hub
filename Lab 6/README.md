@@ -289,7 +289,8 @@ Replace this README with your documentation:
 
 ---
 
-## Code Files
+<details>
+	<summary><h2> Code Files </h2></summary>
 
 **Server files:**
 - `app.py` - Pixel grid server (Flask + WebSocket + MQTT)
@@ -305,10 +306,12 @@ Replace this README with your documentation:
 - `templates/grid.html` - Pixel grid display
 - `templates/controller.html` - Color picker
 - `templates/mqtt_viewer.html` - Message viewer
+</details>
 
 ---
 
-## Debugging Tools
+<details>
+	<summary><h2> Debugging Tools </h2></summary>
 
 **MQTT Message Viewer:** `http://farlab.infosci.cornell.edu:5001`
 - See all MQTT messages in real-time
@@ -320,10 +323,12 @@ Replace this README with your documentation:
 # See all IDD messages
 mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device@theFarm"
 ```
+</details>
 
 ---
 
-## Troubleshooting
+<details>
+	<summary><h2> Troubleshooting </h2></summary>
 
 **MQTT:** Broker `farlab.infosci.cornell.edu:1883`, user `idd`, pass `device@theFarm`
 
@@ -332,11 +337,12 @@ mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device
 **Grid:** Verify server running, check MQTT in console, test with web controller
 
 **Pi venv:** Make sure to activate: `source .venv/bin/activate`
-
+</details>
 
 ---
 
-## Submission Checklist
+<details>
+	<summary><h2> Submission Checklist </h2></summary>
 
 Before submitting:
 - [ ] Delete prep/instructions above
@@ -347,6 +353,8 @@ Before submitting:
 - [ ] List team names at top
 
 **Your README = story of what YOU built!**
+
+</details>
 
 ---
 
