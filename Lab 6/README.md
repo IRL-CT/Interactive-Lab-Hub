@@ -1,10 +1,7 @@
 # Distributed Interaction
 
-Huiying Zhan(hz764), 
+**Huiying Zhan, Jiayi Sun, Qinrui Li**
 
-For submission, replace this section with your documentation!
-
----
 
 <details>
 	<summary><h2> Prep </h2></summary>
@@ -302,6 +299,7 @@ The interaction becomes meaningful because:
 
 The story framework turns simple sensor actions into dramatic “temple mechanisms” that must be activated to progress.
 
+
 ### **2. Architecture Diagram**  
 
 Three Raspberry Pis act as players:
@@ -318,15 +316,10 @@ A central Game Master coordinates the game:
 4. Determines whether the group continues or the adventure ends.
 
 <p align="center">
-  <img src="storyboard.png" width="600" />
+  <img src="diagram.jpeg" width="600" />
 </p>
 
 ### **3. Build Documentation**  
-<p align="left">
-  <a href="https://youtu.be/X49TW9GbIAs?si=_uI-3xRdj2L-BlTg" target="_blank">
-    ▶️ <strong>Watch our Prototype Demo on YouTube</strong>
-  </a>
-</p>
 
 #### - **Hardware Setup**  
 
@@ -383,6 +376,17 @@ Tonight, you infiltrate the ancient Temple of the Sleeping Star, a place rumored
 
 The temple is protected by layered traps, intricate puzzles, and arcane barriers.
 Only perfect coordination will allow you to survive… and escape with the treasure.
+
+<p align="center">
+  <img src="storyboard.png" width="600" />
+</p>
+
+### Prototype Demo
+<p align="left">
+  <a href="https://youtu.be/X49TW9GbIAs?si=_uI-3xRdj2L-BlTg" target="_blank">
+    ▶️ <strong>Watch our Prototype Demo on YouTube</strong>
+  </a>
+</p>
 
 ### Challenges
 #### - Challenge 1 — The Shifting Pathway
@@ -478,6 +482,12 @@ Future improvements:
 - `templates/controller.html` - Color picker
 - `templates/mqtt_viewer.html` - Message viewer
 </details>
+
+- [`game_master.py`](./final_code/game_master.py) | Central controller that sends narration, assigns tasks, and evaluates results via MQTT.
+- [`Joy_Client.py`](./final_code/Joy_Client.py) | Player A’s client code (Touch sensor).
+- [`Hester_Client.py`](./final_code/Hester_Client.py) | Player B’s client code (Joystick control).
+- [`Sandy_Client.py`](./final_code/Sandy_Cilent.py) | Player C’s client code (Color sensor).
+
 
 ---
 
