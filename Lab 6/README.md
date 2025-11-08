@@ -1,17 +1,20 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+Huiying Zhan(hz764), 
 
 For submission, replace this section with your documentation!
 
 ---
 
-## Prep
+<details>
+	<summary><h2> Prep </h2></summary>
 
 1. Pull the new changes
 2. Read: [The Presence Table](https://dl.acm.org/doi/10.1145/1935701.1935800) ([video](https://vimeo.com/15932020))
+</details>
 
-## Overview
+<details>
+	<summary><h2> Overview </h2></summary>
 
 Build interactive systems where **multiple devices communicate over a network** using MQTT messaging. Work in teams of 3+ with Raspberry Pis.
 
@@ -19,10 +22,12 @@ Build interactive systems where **multiple devices communicate over a network** 
 - A: Learn MQTT messaging
 - B: Try collaborative pixel grid demo  
 - C: Build your own distributed system
+</details>
 
 ---
 
-## Part A: MQTT Messaging
+<details>
+	<summary><h2> Part A: MQTT Messaging </h2></summary>
 
 MQTT = lightweight messaging for IoT. Publish/subscribe model with central broker.
 
@@ -57,7 +62,10 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'H
 
 ![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
 
-### Part A – MQTT Messaging Test
+</details>
+
+**💡 Brainstorm 5 ideas for messaging between devices**
+
 ### 1. MQTT Setup & Testing
 **Result:** ✅ Successfully received messages from other devices, including:
 - Real-time RGB sensor data from classmates
@@ -72,7 +80,6 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/huiying' -m 'He
 
 **Result:** ✅ Successfully sent and received my own message "Hello!" in the subscriber window.
 
----
 
 ### 2. 💡 Five Ideas for Distributed Device Messaging
 
@@ -119,7 +126,6 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/huiying' -m 'He
   - Topic: `IDD/story/narrative` - assembled story segments
 - **Why Interesting:** Turns random sensor inputs into creative storytelling, unpredictable and fun
 
----
 
 ### 3. Reflections on MQTT
 
@@ -142,9 +148,6 @@ These distributed messaging patterns could be used for:
 - Real-time monitoring systems
 
 ---
-
-
-**💡 Brainstorm 5 ideas for messaging between devices**
 
 
 
