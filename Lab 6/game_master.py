@@ -33,7 +33,7 @@ def on_message(client, userdata, msg):
         return
     
     payload = msg.payload.decode()
-    print(f"[RECV] {msg.topic} → {payload}")
+    print(f"[RECV] {msg.topic} to {payload}")
 
     if payload == "success":
         waiting_for = None  
