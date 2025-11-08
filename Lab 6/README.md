@@ -27,6 +27,12 @@ Here is a picture of it working:
 
 5.) Another idea was using the RPI as a **visual transformation game** that uses the camera of your RPI (faced towards your opponent with another RPI and exact same setup). The RPI will then detect using object detection or VLM your opponent and anything else in the scene. It then transforms the scene (with filters, replacement, or slow image generation) on your RPI display with a fantastical version of your opponent in the game (think regular human in work clothes -> medieval knight with greatsword). It would play out like a normal Pokemon battle or 1v1 game, just with this "Ready Player One" interpretation of your opponent. The person you see in front of you is completely different from what you see on the RPI screen, and vice versa for them. You could have the RPIs connect and synthesize a concurrent theme, local game states of attack/defend, and really sell the entire transformation.
 
+Here are some sketches of my ideas:
+
+<img width="1132" height="845" alt="image" src="https://github.com/user-attachments/assets/c658dcc4-641d-43f6-8a7f-b50c087290fc" />
+<img width="1055" height="726" alt="image" src="https://github.com/user-attachments/assets/a5233cd0-941f-48fc-bc8a-c326ab892d1f" />
+
+
 ---
 
 ## Part B: Collaborative Pixel Grid
