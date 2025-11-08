@@ -67,9 +67,9 @@ def play_game():
 
         waiting_for = p["name"]
 
-        # time waiting 8s
+        # time waiting 15s
         t = time.time()
-        while waiting_for is not None and time.time() - t < 8:
+        while waiting_for is not None and time.time() - t < 15:
             time.sleep(0.1)
 
         if waiting_for is not None:
