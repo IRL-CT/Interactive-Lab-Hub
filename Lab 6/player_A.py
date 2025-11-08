@@ -51,7 +51,7 @@ while True:
 
         # monitor touch
         if touch_sensor[current_task].value:
-            print(f" Touch {current_task} detected → SUCCESS")
+            print(f" Touch {current_task} detected, SUCCESS")
             client.publish(RESULT_TOPIC, "success")
             current_task = None
 
