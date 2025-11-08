@@ -19,7 +19,7 @@ players = [
 task_bank = {
     "joy": ["touch_1", "touch_3", "touch_5"],
     "hester": ["joystick_up", "joystick_down", "joystick_left", "joystick_right", "joystick_press"],
-    "sandy": ["color_red", "color_green", "color_blue"]
+    "sandy": ["color_red"]
     
 }
 
