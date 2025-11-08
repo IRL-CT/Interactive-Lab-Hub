@@ -51,7 +51,7 @@ def play_game():
 
     print("\n Generated Tasks:")
     for p in players:
-        print(f"  {p['name']} → {assigned_tasks[p['name']]}")
+        print(f"  {p['name']} has {assigned_tasks[p['name']]}")
 
     for p in players:
         if game_over:
