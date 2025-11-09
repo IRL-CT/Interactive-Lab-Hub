@@ -47,15 +47,17 @@ https://github.com/user-attachments/assets/0f6dcfd1-2ecd-4f9b-86b2-35c0f42ef667
 
 To describe my setup again, I used a PC webcam and my location and size on the webcam defined how the robot would accelerate, decelerate, and rotate. This made debugging a very interesting process of having to pick up the Sphero, take it to the end of the room, then face the camera and watch how my location/size on camera would affect the Sphero's movement in each iteration of the script. I realized that this setup worked best with plain bright indoor environments (with flat ground) and was bad with backlit hallways, dark lighting. When it breaks (and it broke often), it was often due to detection failing or my programming of the robot's behavior was not great. Most failures were recoverable by adjusting the code for its behavior, but detection being reliable was much more-so lighting conditions. Biggest fixes for this part were adding smoothing to speed and dead-zones for human being in center of frame so that the robot comes directly towards you and slightly rotates if you are off to one side. It felt kind of personable and the first time it did it I felt really happy when I saw the arc that it curved in to get to me- realizing that it could sort of navigate autonomouslyish.
 
-* What can you use X for?
-* What is a good environment for X?
-* What is a bad environment for X?
-* When will X break?
-* When it breaks how will X break?
-* What are other properties/behaviors of X?
-* How does X feel?
+| **Question** | **Answer** |
+|---------------|------------|
+| **What can you use X for?** | We can use our pet robot to provide companionship. We do not need to feed it or worry about taking care of it, and can enjoy a socio-affective relationship. |
+| **What is a good environment for X?** | Good environments for the pet robot are generally well-lit areas for vision with non-slip surfaces for navigation, and only one human actor visible. |
+| **What is a bad environment for X?** | Bad environments are dark areas, slippery floors, or have many human actors to detect and follow. |
+| **When will X break?** | The pet robot will break when it gets stuck underneath chairs, beds, cabinets, etc. and needs to be retrieved. It also breaks in all of the bad environments described above, and especially breaks with high-latency instructions. |
+| **When it breaks how will X break?** | When it breaks, the pet robot will be immobile (unable to escape a stuck position), will hop from person to person in a crowd, or will generally just not be responsive enough for a quality interaction (in high-latency settings). |
+| **What are other properties/behaviors of X?** | The pet robot's behaviors need to be explicitly programmed. The width of the dead-zone for how much it rotates to keep a human centered in its vision, the speed and acceleration it uses, its stopping distance from the human, and its default mode (searching by rotating in circles) are all adjustable settings that make the robot interactable and animated. |
+| **How does X feel?** | The pet robot, under low-latency settings, feels like a puppy that chases you around. It constantly nips at your feet and follows you everywhere you go. It is quite an adorable experience with the Sphero frames being designed to appear friendly to even children, so it following you isn’t anything scary. |
 
-**\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
+I believe that there are quite a few videos to refer to for this section: namely the working demo below, and the breaking demo above.
 
 ### Part 2.
 
