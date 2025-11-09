@@ -3,9 +3,9 @@ import cv2 as cv
 
 cap = cv.VideoCapture(0)
 
-model_path = 'model.tflite'
+model_path = 'my_model.tflite'
 image_file_name = "frame.jpg"
-labels_path = "labels.txt"
+labels_path = "my_labels.txt"
 
 tm_model = TeachableMachineLite(model_path=model_path, labels_file_path=labels_path)
 
