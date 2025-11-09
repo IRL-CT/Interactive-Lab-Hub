@@ -23,37 +23,36 @@ The distributed guessing game enables multiple players to use Raspberry Pis to g
 ---
 # Part A: MQTT Messaging Setup
 
-### MQTT Installation & Configuration
-- **Installation Commands:**
-  - **On Raspberry Pi:**
-```bash
-    sudo apt-get update
-    sudo apt-get install -y mosquitto-clients
-```
-  - **On macOS:**
-```bash
-    brew install mosquitto
-```
-- **Broker Configuration:** `farlab.infosci.cornell.edu:1883`
-- **Authentication:** User: `idd`, Password: `device@theFarm`
-
-### MQTT Testing
-- **Subscribe Test:**
-```bash
-  mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/#' -u idd -P 'device@theFarm'
-```
-  Successfully subscribed to all IDD topics and received published messages.
-
-- **Publish Test:**
-```bash
-  mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/jesse' -m 'Testing Lab 6 MQTT from Jesse' -u idd -P 'device@theFarm'
-```
-  ![MQTT Publish/Subscribe Test](Deliverables/mqtt_pub_sub_test.png)
-  *Screenshot showing successful message publication and reception between terminals*
+<details><summary><strong>MQTT Installation & Configuration</strong></summary>
+    - **Installation Commands:**
+    - **On Raspberry Pi:**
+  ```bash
+      sudo apt-get update
+      sudo apt-get install -y mosquitto-clients
+  ```
+    - **On macOS:**
+  ```bash
+      brew install mosquitto
+  ```
+  - **Broker Configuration:** `farlab.infosci.cornell.edu:1883`
+  - **Authentication:** User: `idd`, Password: `device@theFarm`
+  
+  ### MQTT Testing
+  - **Subscribe Test:**
+  ```bash
+    mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/#' -u idd -P 'device@theFarm'
+  ```
+    Successfully subscribed to all IDD topics and received published messages.
+  
+  - **Publish Test:**
+  ```bash
+    mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/nophar' -m 'Testing Lab 6 MQTT from Nophar' -u idd -P 'device@theFarm'
+  ```
+</details>
 
 - **Debug Tool Results:**
-  ![MQTT Message Viewer](Deliverables/mqtt_viewer_screenshot.png)
-  *Web-based MQTT viewer at http://farlab.infosci.cornell.edu:5001 showing birdgame messages with MAC addresses and guess values*
+  ![MQTT Message Viewer](mqtt.png)
+  *Web-based MQTT viewer at http://farlab.infosci.cornell.edu:5001 showing Hello! message*
 
 
 ### Brainstormed Ideas
@@ -67,8 +66,8 @@ The distributed guessing game enables multiple players to use Raspberry Pis to g
 ---
 
 # Part B: Collaborative Pixel Grid
-
-### Hardware Setup
+<details><summary><strong>Setup</strong></summary>
+  ### Hardware Setup
 - **Sensor Configuration:** The **Adafruit APDS-9960 RGB Sensor** was used to capture color input.
 - **Wiring:** The sensor was connected directly to the Raspberry Pi's I2C port using a **Qwiic connector cable**. The connection was verified using the diagnostic tool `sudo i2cdetect -y 1`.
 - **Pi Setup:** [Photo of Pi Setup: Deliverables/pi_with_sensor.jpg]  
@@ -90,31 +89,24 @@ The application was run on port 5002 after editing the `socketio.run()` line in 
  python pixel_grid_publisher.py
  ```
 - **Virtual Environment:** Created/ activated with `python -m venv .venv` 
-
+</details>
 
 ### Grid Testing
 Testing confirmed successful data flow:
 
 - **Pi Sensor → MQTT Broker → Server → Web Grid (Port 5002)**
-  
-- **Grid Display:** The collaborative grid displayed pixels correctly on the custom port.  
-![Grid Display](/Deliverables/grid_screenshot.png)
-
-- **Controller Interface:** The manual control interface was accessible and functional.  
-![Controller Interface](Deliverables/controller_screenshot.png)
 
 - **Multi-Device Grid:** Tested 2 devices, each creating different colored pixels simultaneously. The terminal output below confirms the simultaneous operation of the Mac Server (top window) and the Pi Publisher (bottom window), demonstrating the end-to-end distributed system flow.
-![Controller Interface](Deliverables/app.py_terminal_screenshot.png)
+![Controller Interface](terminalandcolor.png)
   
 - **Sensor Interaction:** Color detection worked by holding colored objects near APDS-9960.  
-
+![Controller Interface](colortest1.jpg)
 
 ### Video Demonstration
 
 | Component        | Description                                                                                 | Link                          |
 |-----------------------------|---------------------------------------------------------------------------------------------|-------------------------------|
-| System flow validation       | Desktop capture showing Pi client streaming RGB data alongside Server terminal live logs.  | [Google Drive Video 1](https://drive.google.com/file/d/1pDL850c50MaX1JIEoRUXx_oP8wkOPZGd/view?usp=sharing) |
-| Real-time sensor input       | Video of physical movement of the APDS-9960 sensor over colors with continuous pixel updates. | [Google Drive Video 2](https://drive.google.com/file/d/1Vhx3nXq7486Ub1F0ruDMzmqhW4JNtqaQ/view?usp=sharing) |
+| Real-time sensor input       | Video of physical movement of the APDS-9960 sensor over colors with continuous pixel updates. | [Google Drive Video](https://drive.google.com/file/d/1i7xPzXFjYEbPrV4tQO05pbcccJPpa58D/view?usp=sharing) |
 
 
 
@@ -126,7 +118,7 @@ Testing confirmed successful data flow:
 
 ### Initial Concept Sketch/Storyboard
 
-<img width="1536" height="1024" alt="concept_storyboard" src="https://github.com/user-attachments/assets/2304c968-bbed-4d30-932c-89859e68fb49" />
+<img width="50%" alt="concept_storyboard" src="concept_storyboard.png" />
 
 1. **Scene 1:** Players connect their Raspberry Pis to the central server.
 2. **Scene 2:** A new round begins — the central display shows a group of birds, and a 30-second timer starts.
@@ -278,7 +270,7 @@ The server manages all game state transitions and result aggregation, relying en
 
 ### Live MQTT Data Flow Proof
 
-<img width="2252" height="1670" alt="mqtt_3_client_guess" src="https://github.com/user-attachments/assets/9c9f134b-9e97-4e02-9285-3dbf0f2aa1b0" />
+<img width="50%" alt="mqtt_3_client_guess" src="mqttgame.png" />
 
 *This screenshot from the central MQTT Message Viewer confirms the successful distributed communication for a single round of the game. It shows three unique Pi clients (Player 1, Kyle, and Nophar) submitting their final guesses immediately following the game state broadcast.*
 
@@ -296,7 +288,7 @@ To validate the **Distributed Number Guessing Game** and gather feedback on its 
 
 - **Testers:** Iqra and Akash (Non-team members)
 - **Testing Videos:**
-  [User Testing Video 1](https://drive.google.com/file/d/1eUeII8ihZlDEZK7p8lxVowyuN6yJcOaU/view?usp=sharing)
+  [User Testing Video 1](https://drive.google.com/file/d/1qtUELGBDMRiwQ6vayPfnQEflKtKRF2uB/view?usp=sharing)
   [User Testing Video 2](https://drive.google.com/file/d/1hRcG17_nF7vg5Su6h5w8Pa4PZYicviEh/view?usp=sharing)
 
 
@@ -358,30 +350,6 @@ The button-based interaction proved very for this fast-paced game. The physical 
   - adafruit-circuitpython-rgb-display
   - paho-mqtt
   - Pillow (PIL)
-
-### File Structure
-```
-Lab 6/
-├── app.py                   # Original pixel grid server (Used for Part B base)
-├── bird_client.py           # Custom pi client code (Input/sisplay/MQTT)
-├── game_server.py           # Custom central game server (part C game logic)
-├── templates/
-│   ├── grid.html             # Main game display interface (used by app.py/game_server.py)
-│   └── controller.html       # Game master controls (used by app.py/game_server.py)
-└── Deliverables/
-    ├── concept_storyboard.png # Concept storyboard for the game
-    ├── app.py_terminal_screenshot.png # proof of Part B live collaboration
-    ├── controller_screenshot.png
-    ├── grid_screenshot.png
-    ├── mqtt_pub_sub_test.png
-    ├── mqtt_viewer_screenshot.png
-    ├── pi_with_sensor.jpg     # Pi setup photo
-    ├── pi1_setup.jpg        # Pi #1 Setup Photo (Jesse)
-    ├── pi2_setup.jpg        # Pi #2 Setup Photo (Kyle)
-    ├── pi3_setup.jpg        # Pi #3 Setup Photo (Angela)
-    ├── pi4_setup.jpg        # Pi #4 Setup Photo (Nophar)
-    └── **VIDEO_LINKS.md** # Links to user testing and system validation videos
-```
 
 ### Debugging Process
 
