@@ -111,6 +111,152 @@ https://github.com/user-attachments/assets/9f486826-e751-48cc-834f-3b95a3daea65
 | **Benthan Vu** | Loves the concept and the playfulness, but says the interaction “feels awful” when latency is high. On poor Wi-Fi, he experienced delayed updates that made following unreliable and unsatisfying. He still imagines future toys shipping with similar capabilities, maybe with less invasive sensing than cameras, so long as responsiveness stays consistently snappy. |
 | **Anonymous** | Loves the idea and draws a connection to Daniela Rus’s vision of “turning anything into robots” (ex. “Maybe your chair or table could be robots. You could say, ‘Chair, come over here.’ Or ‘Table, bring me my cookies.’”). She was impressed that a manual toy became autonomous and that it could follow people even with heavy occlusion in the Maker Lab. Overall, she found it a compelling demonstration of adding intelligence to a simple, friendly form factor. |
 
+## Code Pipeline
+
+```
+FPV Cam ──(5.8GHz RF)──> Skydroid USB Receiver
+          └─> [camera_live.py]  : captures locally & re-broadcasts over HTTP (MJPEG/JPEG)
+                     │
+                     └─HTTP→  http://<cam-host>:7965/mjpeg/<index>  (or /snapshot/<index>.jpg)
+                               │
+                               v
+                   [computeranalyze.py]  : YOLOv8 on GPU, outputs control
+                     ├─ SSE → http://<pc>:7966/events  (control stream)
+                     └─ UDP → <raspberrypi>:7970       (fast-path control, optional)
+                                            │
+                                            v
+                   [raspberrypicontroller.py] : BLE driver @ ~66 Hz → Sphero Ollie/BB-8
+```
+
+## Components
+
+### 1) `camera_live.py`  : low-latency camera rebroadcaster
+
+- **Run on**: **PC or Raspberry Pi** (whichever has the Skydroid/USB receiver plugged in).  
+  Keep this host physically **close to the FPV camera** for a clean RF link.
+- **Purpose**: Capture frames from a local video device (`DEVICE_INDEX`, default `0`), keep **only the newest** frame, and **serve** it as:
+  - `GET /` : minimal web UI (switch camera index, view stream)
+  - `GET /mjpeg` : MJPEG of the **current** camera
+  - `GET /mjpeg/{index}` : MJPEG for a **specific** device index
+  - `GET /snapshot.jpg` and `/snapshot/{index}.jpg` : a single JPEG frame
+  - `GET /raw`, `/raw/{index}` : chrome-less viewer pages
+  - `GET /current` : JSON status (index, resolution, fps, last_error)
+  - `POST /switch` : switch the **current** camera index
+- **Defaults**:
+  - Binds `HOST=127.0.0.1`, `PORT=7965`
+  - Resolution `1280x720` @ `30fps` (override via env)
+- **Notes**:
+  - Uses a tiny, lock-free latest-frame buffer to minimize latency.
+  - Auto-reaps idle per-index sources (`RAW_IDLE_SECONDS`).
+
+**Example run**
+```
+HOST=0.0.0.0 PORT=7965 DEVICE_INDEX=1 VIDEO_WIDTH=1280 VIDEO_HEIGHT=720 VIDEO_FPS=30 \
+python3 camera_live.py
+# Preview: http://<cam-host>:7965/
+# Stream:  http://<cam-host>:7965/mjpeg/1
+```
+
+### 2) `computeranalyze.py`  : vision + decision “brain” (GPU)
+
+- **Run on**: **PC with GPU** (e.g., RTX 3090).
+- **Purpose**:
+  - Ingest the camera feed (`--kind udp|mjpeg|snapshot`).
+  - Run **YOLOv8-nano** person detection, smooth/track target, compute **relative heading** + **speed**.
+  - Broadcast **control** via:
+    - **SSE** at `http://<pc>:7966/events` (latest-only),
+    - **UDP** to the Pi (optional fast path) `--udp-host <pi_ip> --udp-port 7970`.
+  - Serve a live **overlay**:
+    - `GET /video` (HTML), `/video.mjpeg` (MJPEG), `/video.jpg` (snapshot), `/status` (JSON).
+- **Defaults**:
+  - Binds `0.0.0.0:7966`.
+  - **UDP video ingest (default)**: `--video-base 'udp://@:7971?fifo_size=5000000&overrun_nonfatal=1'`
+  - Metrics file `computer_metrics.jsonl` (10s rolling averages).
+- **Behavior highlights**:
+  - Search mode (forward + continuous spin) after brief holdoff.
+  - “Stuck” detection (frame-diff) with timed reverse escape.
+  - Stop at close distance (with tiny pivot speed to keep heading updates flowing).
+  - Smoothed speeds, yaw slew limiting, dead-zone centering.
+
+**Example run (MJPEG ingest from camera_live)**
+```
+python3 computeranalyze.py \
+  --kind mjpeg \
+  --video-base "http://<cam-host>:7965" \
+  --index 1 \
+  --host 0.0.0.0 \
+  --port 7966 \
+  --udp-host <raspberrypi> --udp-port 7970
+# Control SSE: http://<pc>:7966/events
+# Overlay MJPEG: http://<pc>:7966/video.mjpeg
+```
+
+**Example run (UDP video ingest)**
+```
+python3 computeranalyze.py \
+  --kind udp \
+  --video-base "udp://@:7971?fifo_size=5000000&overrun_nonfatal=1" \
+  --host 0.0.0.0 --port 7966 \
+  --udp-host <raspberrypi> --udp-port 7970
+```
+
+### 3) `raspberrypicontroller.py`  : robot motor controller (BLE)
+
+- **Run on**: **Raspberry Pi 5** (near the Sphero for strong BLE).
+- **Purpose**:
+  - Maintain **BLE** to Sphero Ollie/BB-8; apply relative-heading + speed at ~**66 Hz** (40 Hz internal tick).
+  - Receive control via:
+    - **SSE client** → `http://<pc>:7966/events`
+    - **UDP listener** (default **port 7970**) : ultra-low latency path
+  - Provide a **GUI** (Tkinter): manual joystick, Manual/Autonomous switch, reverse mode, rotate helpers, connect/disconnect.
+  - Record end-to-end **metrics** (PC→Pi network, recv→apply, apply→BLE) to `controller_metrics.jsonl`.
+- **Notes**:
+  - Auto collision recovery (brief back-up + turn).
+  - Caps autonomous max speed via GUI slider.
+  - Optional LED/stabilization setup on connect.
+
+**Run**
+```
+python3 raspberrypicontroller.py
+# In the GUI:
+# 1) Connect Ollie/BB-8 (optionally filter by name)
+# 2) (Optional) Connect SSE to http://<pc>:7966
+# 3) Start UDP (default listen port 7970)
+# 4) Switch to "Autonomous"
+```
+
+## Default Ports & Addresses
+
+- **camera_live.py** : HTTP UI/stream on **7965** (`HOST` defaults to `127.0.0.1`)
+- **computeranalyze.py** : HTTP/SSE on **7966**; **UDP control out** to Pi **7970**; **UDP video in** on **7971** (when `--kind udp`)
+- **raspberrypicontroller.py** : **UDP control in** on **7970**; **SSE client** to `http://<pc>:7966/events`
+
+*Please make sure to adjust hosts/ports as needed for your network (or expose via Tailscale/Cloudflare tunnel)!*
+
+## Environment & Flags (quick reference)
+
+- `camera_live.py`:
+  - `HOST`, `PORT`, `DEVICE_INDEX`, `VIDEO_WIDTH`, `VIDEO_HEIGHT`, `VIDEO_FPS`, `RAW_IDLE_SECONDS`
+- `computeranalyze.py`:
+  - `--kind udp|mjpeg|snapshot`
+  - `--video-base` (FFmpeg URL for UDP, or `http://<cam-host>:7965` for HTTP kinds)
+  - `--index` (for HTTP kinds)
+  - `--udp-host <pi_ip> --udp-port 7970`
+  - Metrics file: `COMPUTER_METRICS_FILE`
+- `raspberrypicontroller.py`:
+  - GUI field for SSE base (default `http://localhost:7966`)
+  - GUI control for UDP listen port (default `7970`)
+  - Metrics file: `CONTROLLER_METRICS_FILE`
+
+## Notes on Placement
+
+- **Run `camera_live.py` on whichever machine has the Skydroid receiver.**  
+  This script should be **physically near the FPV camera** (short RF path). Everything else can subscribe to its HTTP stream from elsewhere.
+
+## AI Disclaimer
+
+I used AI coding assistance (like GitHub Copilot) while building these scripts, especially for the Sphero v2 API, which I hadn’t used before. ChatGPT also nudged me to prefer UDP over HTTP for the control loop and helped with the UDP implementation. I originally tried to manually implement the behavior of the robot, but found Copilot to be quite intelligent when I formalized what I wanted in words (i.e. when the bounding box for human is 2/3 the screen, we should stop the robot's movement using Spherov2 API's stop movement command), and was able to iterate quickly with it on behavior.
+
 ## Credits
 
 Thanks to **Niti Parikh** for letting me experiment with her Sphero Ollie and to **Sebastian Bidigain** for performing surgery on the BB-8 head to shove the camera inside. Even though I didn't end up using the BB-8, I'd love to pick it up and figure out how to perfectly calibrate the weight (maybe a smaller battery or custom 3d printed head or stronger magnets) so that we can get the BB-8 to be an intelligent following pet as well. 
