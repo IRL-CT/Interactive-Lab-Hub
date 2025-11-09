@@ -81,48 +81,61 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/huiying' -m 'He
 
 ### 2. 💡 Five Ideas for Distributed Device Messaging
 
-#### Idea 1: **Collaborative Music Ensemble**
-- **Description:** Each Pi controls one instrument/sound parameter (melody, rhythm, bass, harmony)
-- **Interaction:** Sensors detect gestures or movements to trigger notes. All devices must play together to create harmonious music
-- **MQTT Usage:** Each Pi publishes its current note/beat to a topic. A central controller synchronizes timing
-- **Why Interesting:** Only works as a team - teaches coordination and creates something beautiful together
-
-#### Idea 2: **Distributed Memory Game**
-- **Description:** Like Simon Says but across multiple devices - each Pi displays a color sequence
-- **Interaction:** Players must remember and repeat the pattern across all devices in correct order
-- **MQTT Usage:** 
-  - Topic: `IDD/game/sequence` - broadcasts the pattern
-  - Topic: `IDD/game/player/[name]` - player responses
-- **Why Interesting:** Classic game reimagined for distributed systems, tests memory and reaction time
-
-#### Idea 3: **Virtual Plant Growth System**
-- **Description:** Each Pi "waters" a shared virtual plant with different nutrients (light, water, temperature)
-- **Interaction:** Distance sensors detect when someone approaches, contributing their "nutrient". Plant grows only when all nutrients are balanced
+#### Idea 1: **Team-Based Escape Room Timer**
+- **Description:** Each Raspberry Pi is responsible for solving a different sensor-based puzzle. Only when all players complete their tasks simultaneously does the next stage unlock.
+- **Interaction:**
+  - Pi A: Press and hold a button when the light level is low.
+  - Pi B: Tilt a joystick to match a displayed direction cue.
+  - Pi C: Match a target color using a color sensor.
 - **MQTT Usage:**
-  - Topic: `IDD/plant/light` - light contribution
-  - Topic: `IDD/plant/water` - water contribution  
-  - Topic: `IDD/plant/growth` - overall growth status
-- **Why Interesting:** Encourages collaboration and teaches about balanced ecosystems
+  - Each device publishes status: `IDD/escape/[player]/status`
+  - Game master broadcasts puzzle progress: `IDD/escape/progress`
+- **Why Interesting:** Requires real-time coordination under time pressure, similar to physical escape rooms.
 
-#### Idea 4: **Emotion Wave Visualizer**
-- **Description:** Detects group emotion through color/gesture sensors and creates a collective "mood wave" visualization
-- **Interaction:** Each person's Pi reads their input (e.g., red object = excited, blue = calm). System combines all emotions into a flowing pattern displayed on all screens
+#### Idea 2: **Distributed Heartbeat Synchronizer**
+- **Description:** Each device tracks tapping or movement intensity to generate a “heartbeat” rhythm. The group must synchronize all rhythms to match.
+- **Interaction:**
+  - Players tap or shake their Pis to generate rhythm.
+  - LEDs on each Pi pulse to show individual rhythm.
+  - Goal is to align all rhythms into one synchronized pulse.
 - **MQTT Usage:**
-  - Topic: `IDD/emotion/[username]` - individual emotion data (RGB values)
-  - Topic: `IDD/emotion/collective` - aggregated visualization data
-- **Why Interesting:** Makes abstract emotions visible and shows how individual feelings contribute to group atmosphere
+  - Individual rhythm: `IDD/heartbeat/[player]`
+  - Group averaged rhythm: `IDD/heartbeat/group`
+- **Why Interesting:** Encourages collective awareness and calm group synchronization.
 
-#### Idea 5: **Distributed Story Generator**
-- **Description:** Sensor events trigger story elements that build a collaborative narrative
-- **Interaction:** 
-  - Distance sensor < 10cm = "suddenly"
-  - Red color detected = "danger appeared"
-  - Gesture up = "climbed higher"
-  - Proximity increases = "came closer"
+#### Idea 3: **The Lighthouse and the Sailors**
+- **Description:** One Pi acts as a lighthouse broadcasting a direction. Other Pis are sailors who must orient themselves to match it.
+- **Interaction:**
+  - Lighthouse Pi updates direction periodically.
+  - Sailors rotate/tilt their devices to align heading.
+  - Accuracy can translate into success or score.
 - **MQTT Usage:**
-  - Topic: `IDD/story/events` - sensor triggers
-  - Topic: `IDD/story/narrative` - assembled story segments
-- **Why Interesting:** Turns random sensor inputs into creative storytelling, unpredictable and fun
+  - Lighthouse direction: `IDD/lighthouse/direction`
+  - Sailor heading: `IDD/sailor/[name]/heading`
+- **Why Interesting:** A spatial coordination game requiring real-time reaction to a shared signal.
+
+#### Idea 4: **Distributed Mood Lanterns**
+- **Description:** Each Pi selects and displays a “mood” color. All moods blend into a shared ambient color visible on every device.
+- **Interaction:**
+  - Players choose mood → device displays corresponding color.
+  - Group mood = averaged RGB values.
+  - Colors transition smoothly for ambient visual effect.
+- **MQTT Usage:**
+  - Individual mood: `IDD/mood/[player]`
+  - Group blended mood: `IDD/mood/group`
+- **Why Interesting:** Creates a shared atmospheric visual experience representing collective emotional tone.
+
+#### Idea 5: **Competitive Signal Jammer**
+- **Description:** Each Pi influences a shared global signal differently. Players compete for control without destabilizing the shared signal.
+- **Interaction:**
+  - Pi A increases signal intensity.
+  - Pi B dampens or stabilizes the signal.
+  - Pi C modulates the rhythm or pattern.
+- **MQTT Usage:**
+  - Raw player input: `IDD/signal/raw/[player]`
+  - Shared signal state: `IDD/signal/state`
+- **Why Interesting:** Encourages strategy and sensing how each player affects the collective environment.
+
 
 
 ### 3. Reflections on MQTT
