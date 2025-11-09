@@ -105,7 +105,11 @@ https://github.com/user-attachments/assets/9f486826-e751-48cc-834f-3b95a3daea65
 
 ## Discussion
 
-TBD
+| Person | Viewpoint |
+|---|---|
+| **Sebastian Bidigain** | Thinks it’s “super cool” but also “super scary.” His initial reaction framed it as a potential “murder robot,” noting the same detection/tracking technologies appear in defense contexts (ex. government contractors like Palantir and Anduril outfitting drones to identify humans in active conflicts such as the Russia Ukraine war). After I clarified that this project detects humans only to follow them and provide socio-affective companionship, more like a friendly pet, he was relieved and appreciated the benign intent. |
+| **Benthan Vu** | Loves the concept and the playfulness, but says the interaction “feels awful” when latency is high. On poor Wi-Fi, he experienced delayed updates that made following unreliable and unsatisfying. He still imagines future toys shipping with similar capabilities, maybe with less invasive sensing than cameras, so long as responsiveness stays consistently snappy. |
+| **Anonmyous** | Loves the idea and draws a connection to Daniela Rus’s vision of “turning anything into robots” (ex. “Maybe your chair or table could be robots. You could say, ‘Chair, come over here.’ Or ‘Table, bring me my cookies.’”). She was impressed that a manual toy became autonomous and that it could follow people even with heavy occlusion in the Maker Lab. Overall, she found it a compelling demonstration of adding intelligence to a simple, friendly form factor. |
 
 ## Credits
 
