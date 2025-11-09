@@ -257,6 +257,27 @@ python3 raspberrypicontroller.py
 
 I used AI coding assistance (like GitHub Copilot) while building these scripts, especially for the Sphero v2 API, which I hadn’t used before. ChatGPT also nudged me to prefer UDP over HTTP for the control loop and helped with the UDP implementation. I originally tried to manually implement the behavior of the robot, but found Copilot to be quite intelligent when I formalized what I wanted in words (i.e. when the bounding box for human is 2/3 the screen, we should stop the robot's movement using Spherov2 API's stop movement command), and was able to iterate quickly with it on behavior.
 
+## Pictures of the robot
+
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/3f095ea5-4396-4ae5-8052-7402fe28fc14" alt="1_finished_IMG_5726" width="100%"/>
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/d16ea9d6-74cd-4e93-91cd-1c52610657d0" alt="2_finished_IMG_5726" width="100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/2e707e09-8f39-4ee3-a217-b9e7d04e1a3c" alt="3_finished_IMG_5726" width="100%"/>
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/bed0d4a0-06fc-47d0-91f0-a618bf0823fd" alt="4_finished_IMG_5726" width="100%"/>
+    </td>
+  </tr>
+</table>
+
 ## Credits
 
 Thanks to **Niti Parikh** for letting me experiment with her Sphero Ollie and to **Sebastian Bidigain** for performing surgery on the BB-8 head to shove the camera inside. Even though I didn't end up using the BB-8, I'd love to pick it up and figure out how to perfectly calibrate the weight (maybe a smaller battery or custom 3d printed head or stronger magnets) so that we can get the BB-8 to be an intelligent following pet as well. 
