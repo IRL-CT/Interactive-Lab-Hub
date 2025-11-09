@@ -51,7 +51,7 @@ The distributed guessing game enables multiple players to use Raspberry Pis to g
 </details>
 
 - **Debug Tool Results:**
-  ![MQTT Message Viewer](mqtt.png)
+  <img width="50%" alt="MQTT Message Viewer" src="mqtt.png" />
   *Web-based MQTT viewer at http://farlab.infosci.cornell.edu:5001 showing Hello! message*
 
 
