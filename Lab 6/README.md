@@ -100,7 +100,7 @@ Testing confirmed successful data flow:
 ![Controller Interface](terminalandcolor.png)
   
 - **Sensor Interaction:** Color detection worked by holding colored objects near APDS-9960.  
-![Controller Interface](colortest1.png)
+![Controller Interface](colortest1.jpg)
 
 ### Video Demonstration
 
@@ -254,10 +254,10 @@ The core difference between clients is the MAC address that serves as the Player
 
 | Device | Collaborator | Hardware                    | Setup Photo                            |
 |--------|--------------|---------------------------------|--------------------------------------|
-| Pi #1  | Jesse        | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 1 Setup](Deliverables/pi1_setup.jpg) |
-| Pi #2  | Kyle         | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 2 Setup](Deliverables/pi2_setup.jpg) |
-| Pi #3  | Angela       | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 3 Setup](Deliverables/pi3_setup.jpg) |
-| Pi #4  | Nophar       | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 4 Setup](Deliverables/pi4_setup.jpg) |
+| Pi #1  | Jesse        | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 1 Setup](pi1_setup.jpg) |
+| Pi #2  | Kyle         | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 2 Setup](pi2_setup.jpg) |
+| Pi #3  | Angela       | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 3 Setup](pi3_setup.jpg) |
+| Pi #4  | Nophar       | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 4 Setup](pi4_setup.jpg) |
 
 ### Server/Central Processing (Computation)
 
