@@ -20,6 +20,9 @@ I realized that while playing around with MobileNet and MediaPipe that I might j
 
 ### Part B
 
+Here is what the Sphero EDU app looks like for manually controlling the robot via the phone (wizard of oz!).
+<img width="1474" height="856" alt="spheroedu_ui" src="https://github.com/user-attachments/assets/917af14c-ed2d-4058-93d2-34824c180e79" />
+
 For this part, I first used Sphero EDU app which allowed me to control the robot manually with my phone. I figured out how the interaction would work by thinking about where the camera would be in the scene: would it be from a static third person perspective, top-down, would the human be wearing the camera, would the robot be wearing the camera? Some of these ideas I quickly dropped because I felt like I wanted the robot to be as "autonomous" and as "intelligent" as it could possibly be. To test, I designed essentially what I wanted without any "turning" complexity. So, using my PC webcam and myself as the object to be recognized, I wrote a simple script that was basically "Move forward if there is a human object detected on the video feed", and used Sphero v2 Python API to do this. I had quite a few issues with Bluetooth and trying to connect the robot to the PC via Python, but after figuring that out, and consulting the [Sphero v2 API docs](https://spherov2.readthedocs.io/en/latest/sphero_edu.html), I was able to set it up so that it would accelerate when I walk in the frame. Please not that for Part A, B, C, I was using my Sphero BB-8 as opposed to the Ollie, and no camera was attached yet to the robot itself- I was using my PC webcam with a bluetooth connection to the robot and controlling via Python. 
 
 Here is a picture showcasing the **Sphero Ollie (left)** and **Sphero BB-8 (right)**, both robots can be controlled manually via the smartphone app 'Sphero EDU'. Neither have any sort of autonomous capabilities or cameras, that's what I wanted to add.
