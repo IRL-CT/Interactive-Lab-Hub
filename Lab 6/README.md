@@ -258,7 +258,7 @@ The core difference between clients is the MAC address that serves as the Player
 |--------|--------------|---------------------------------|--------------------------------------|
 | Pi #1  | Jesse        | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 1 Setup](pi1_setup.jpg) |
 | Pi #2  | Kyle         | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 2 Setup](pi2_setup.jpg) |
-| Pi #3  | Angela       | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 3 Setup](pi3_setup.jpg) |
+| Pi #3  | Angela       | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 3 Setup](pi3_setup.png) |
 | Pi #4  | Nophar       | ST7789 Display, GPIO Buttons (Pins 23, 24) | ![Pi 4 Setup](pi4_setup.jpg) |
 
 ### Server/Central Processing (Computation)
