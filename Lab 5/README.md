@@ -2,6 +2,8 @@
 
 **Sean Hardesty Lewis (solo)**
 
+<img width="4800" height="1200" alt="observable_header" src="https://github.com/user-attachments/assets/b3bce61d-7434-4eac-a0a3-8c6d45211e3f" />
+
 I built a small "Pet Robot" that follows people around. The body is a Sphero Ollie carrying a tiny FPV camera and a single-cell battery. A Raspberry Pi 5 is the controller with local Bluetooth driver. The camera’s video stream leaves the robot over UDP via Tailscale and lands on my PC (RTX 3090), where I run real-time person detection at >30 fps. The desktop sends back steering and accel/decel instructions, the Pi applies it, and the Ollie "becomes intelligent". End to end, the pipeline sits around 50-60ms when Wi-Fi is strong (from camera -> RPI -> PC -> RPI -> robot movement). 
 
 ## Prep
