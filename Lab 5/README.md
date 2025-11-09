@@ -16,9 +16,15 @@ I tried a handful of sense-making paths to understand what would actually hold u
 
 I realized that while playing around with MobileNet and MediaPipe that I might just be "overengineering" the solution. While I did leave some MediaPipe code in my final version, spending lots of time on trying to get a robot that is currently accelerating to "stop" when it sees my hand up in a stop-handsign took much more time and effort and did not pay off that well. I realized that some of these tools are super cool to use, but knowing which ones to use for what situations is important. I knew that I did not need MediaPipe, MobileNet, or even MoonDream for what I wanted to do, even though these could help with various aspects, since I had already seen how useful and fast a YOLOv8 nano model could be on my PC. I will add that MoonDream was super interesting, and it is one of my inspirations for robotics that semantically defined maps from VLMs + depth maps will allow robots to navigate, memorize a scene, and re-navigate through it in the future. Something similar to [this paper](https://vlmaps.github.io/).
 
+<img width="903" height="531" alt="image" src="https://github.com/user-attachments/assets/3666e5a3-6140-4225-a601-f027493779c1" />
+
 ### Part B
 
 For this part, I first used Sphero EDU app which allowed me to control the robot manually with my phone. I figured out how the interaction would work by thinking about where the camera would be in the scene: would it be from a static third person perspective, top-down, would the human be wearing the camera, would the robot be wearing the camera? Some of these ideas I quickly dropped because I felt like I wanted the robot to be as "autonomous" and as "intelligent" as it could possibly be. To test, I designed essentially what I wanted without any "turning" complexity. So, using my PC webcam and myself as the object to be recognized, I wrote a simple script that was basically "Move forward if there is a human object detected on the video feed", and used Sphero v2 Python API to do this. I had quite a few issues with Bluetooth and trying to connect the robot to the PC via Python, but after figuring that out, and consulting the [Sphero v2 API docs](https://spherov2.readthedocs.io/en/latest/sphero_edu.html), I was able to set it up so that it would accelerate when I walk in the frame. Please not that for Part A, B, C, I was using my Sphero BB-8 as opposed to the Ollie, and no camera was attached yet to the robot itself- I was using my PC webcam with a bluetooth connection to the robot and controlling via Python. 
+
+Here is a picture showcasing the **Sphero Ollie (left)** and **Sphero BB-8 (right)**, both robots can be controlled manually via the smartphone app 'Sphero EDU'. Neither have any sort of autonomous capabilities or cameras, that's what I wanted to add.
+
+![IMG_5722](https://github.com/user-attachments/assets/6af0b38b-35bc-4eb6-aa50-4afcba365ad2)
 
 ### Part C
 
@@ -29,6 +35,10 @@ Where the system shines is the most common case: indoor lighting that isnt ridic
 Users
 
 Thinking like a user, I realized very few people are aware theyre interacting with a probability distribution and not a robot. If the robot stops randomly, they dont see "low confidence", they just see weird behavior. I thought about using Sphero v2 API and potentially adding LED cues to make state legible (i.e. blue when it’s confidently tracking you, yellow when it’s searching, red when it stops for safety) but realized that this didn't transfer well across different Sphero models and I sort of wanted to make a "model-agnostic" camera/robot control code. I also realized that the starting and stopping were way too violent for users, and ended up softening behavior to be a lerp between accel and decel when it loses track of human/gains sight, instead of just an immediate stop or start. Finally, I replaced my naive "always correct to perfect center of camera" approach with bigger and more friendly dead-zone. If you’re approximately centered in the shot, it holds its course so it doesnt feel like its constantly hunting for a pixel-perfect alignment (rotating left and right and left and right...).
+
+Here are some of the failures of the robot (Please note, this is after the FPV camera was attached for part 2. This is just to showcase some of the failures that are described above, like overrotating, glossy floors, accelerating into walls, and the like)
+
+https://github.com/user-attachments/assets/0f6dcfd1-2ecd-4f9b-86b2-35c0f42ef667
 
 ### Part D
 
@@ -47,6 +57,10 @@ To describe my setup again, I used a PC webcam and my location and size on the w
 ### Part 2.
 
 For Part 2 I wanted to take what I had managed to do: a proof of concept/prototype on the PC using its webcam and the Sphero, to a real usable autonomous robot. Thankfully, I had some of the materials for the job already in my closet. I had a tiny FPV camera, a 5.8G OTG Skydroid Receiver, and a set of 6 200mW batteries, as well as some scotch tape. 
+
+Here is a diagram of how I envisioned my robot to work after I switch from a PC webcam to a small FPV camera that goes on the robot.
+
+<img width="1123" height="813" alt="image" src="https://github.com/user-attachments/assets/602d3eb7-2524-46c5-ba10-7cf64f3c2f3a" />
 
 So the first thing I did was test out the FPV camera by plugging it into one of the batteries, then plugging in the receiver to my PC, and loading up VLC's Media > Open Capture Device to see if the receiver was getting anything. A "USB 2.0 Camera" showed up in the dropdown and when I clicked on it: total static and a completely unusable video feed! This is completely normal. I remember from the last time that I used this FPV camera that I had to tune it to a specific channel for the sender (camera) and receiver (PC) to be able to operate on the same wavelengths. After debugging for about an hour with many static and half-static video feeds being shown on my screen, I realized that half of my problem was really the connection signal from the receiver to the camera itself. FPV cameras are built with antennas meant for large open-space environments (to be retrofitted onto drones). So, using it indoors where there is lots of metal and other interferences gave a bunch of static noise to the video feed (and especially for me, since my PC was directly underneath a metal desk!). To fix this, I cleared the area around the camera and moved my PC out from underneath the metal desk. Suddenly, more channels started working with less noise and glitches. I found channel F4 to work the best for the camera and receiver to be able to communicate a smooth video on that VLC was able to receive.
 
