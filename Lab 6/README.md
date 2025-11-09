@@ -100,7 +100,7 @@ Testing confirmed successful data flow:
 ![Controller Interface](terminalandcolor.png)
   
 - **Sensor Interaction:** Color detection worked by holding colored objects near APDS-9960.  
-![Controller Interface](colortest1.jpg)
+![Controller Interface](colortest1.png)
 
 ### Video Demonstration
 
@@ -233,7 +233,7 @@ The client application is contained within the **`bird_client.py`** script (or i
 
 - **Hardware:** **ST7789 Display** (Output), **GPIO Buttons** (Pins 23/24 for Input).
 - **MQTT Role:** Publisher/Subscriber (Both).
-- **Code Reference:**  [Common Client Code](/Deliverables/bird_client.py)
+- **Code Reference:**  [Common Client Code](StudentCounterGame.py)
 
 #### Key Code Snippet: Input Logic
 This function, executed identically on all Pi devices, handles player input to increment or decrement the guess.  
