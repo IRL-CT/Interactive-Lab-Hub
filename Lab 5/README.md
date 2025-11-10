@@ -1,6 +1,6 @@
 # Observant Systems
 
-**NAMES OF COLLABORATORS HERE**
+**Dingran Dai, Xiang Chang, Melody Huang**
 
 
 For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
@@ -144,6 +144,32 @@ Next train your own model. Visit [TeachableMachines](https://teachablemachine.wi
 
 Include screenshots of your use of Teachable Machines, and write how you might use this to create your own classifier. Include what different affordances this method brings, compared to the OpenCV or MediaPipe options.
 
+**First Attempt:** [with](https://teachablemachine.withgoogle.com/models/EKmkwjUou/)
+
+<img width="1185" height="885" alt="image" src="https://github.com/user-attachments/assets/b92deb6e-2079-4ac3-88fa-ab5de0827383" />
+
+I initially trained a Pose Project model to classify six actions — typing, writing, using phone, eating/drinking, daydreaming, and focused. However, the accuracy was poor. Two main issues emerged:
+
+- The dataset was unbalanced, with different numbers of samples per class.
+
+- The pose landmarks of these actions were very similar, since most of them involve sitting at a desk with small upper-body movements.
+As a result, the model often confused actions like typing and writing.
+
+**Second Attempt:** https://teachablemachine.withgoogle.com/models/ppuu4fin_/
+
+To improve performance, I switched to an **Image Project**, allowing the model to use contextual cues such as objects (keyboard, pen, phone, cup) and background differences.
+I also ensured that each class had a similar number of images (around 150–200 per class) and included a neutral “idle/background” class.
+This change significantly improved classification stability and reduced confusion between similar actions.
+
+<img width="1198" height="793" alt="image" src="https://github.com/user-attachments/assets/fea9a3c2-0586-4abc-93c9-ced4716afb28" />
+
+video：
+
+
+https://github.com/user-attachments/assets/f37626c5-9797-4601-b509-da71170144ab
+
+
+
 #### (Optional) Legacy audio and computer vision observation approaches
 In an earlier version of this class students experimented with observing through audio cues. Find the material here:
 [Audio_optional/audio.md](Audio_optional/audio.md). 
@@ -161,6 +187,54 @@ In an earlier version of this class students experimented with foundational comp
 
 
 **\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
+
+**Interaction Concept**
+
+The prototype functions as a personal focus-feedback system running fully on the Raspberry Pi.
+Using the on-board camera, the system continuously classifies the user’s activity among five states(typing ⌨️, writing ✍️, drinking 🥤, phone 📱, and idle 💭), through the trained Teachable Machine image model.
+
+Each user’s current action state is detected by the camera (typing, writing, drinking, phone, idle) and represented by a distinct icon on screen:
+| State   | Icon| Meaning                  |
+| :------ | :-- | :----------------------- |
+| Typing  | ⌨️  | actively working         |
+| Writing | ✍️  | note-taking / study      |
+| Drink   | 🥤  | short physical break     |
+| Phone   | 📱  | distracted by device     |
+| Idle    | 💭  | not engaged              |
+
+To reduce flickering and reflect longer-term behavior:
+- The system evaluates the dominant state within every 5-minute window (the state that appears for the longest duration).
+- Every 5 minutes, a new summary icon is appended to the right side of the screen, forming a timeline of focus trends throughout the session.
+
+**Real-Time Feedback Logic:**
+- A color ring at the center gives immediate feedback:
+
+  🟢 Focused – shown when the current state ∈ {typing, writing}.
+
+  🟠 Break – shown when the current state ∈ {idle, phone, drink}.
+- A small speaker connected to the Pi provides auditory feedback:
+
+  🔔 Reward sound plays when five consecutive focused icons (typing or writing) are detected — indicating sustained attention.
+
+  ⚠️ Reminder tone plays when three consecutive non-focused states are detected (idle, phone, or drink) — encouraging the user to re-engage.
+
+**User Flow:**
+
+1. User starts the session → camera begins recognition.
+
+2. Detected typing → icon ⌨️ + green ring 🟢 Focused on TFT screen.
+
+3. After five consecutive focused detections → Raspberry Pi plays a positive “ding” reward sound (via aplay).
+
+4. If the user is idle or on the phone for three successive predictions → a gentle alert sound is played.
+
+5. Every five minutes, the system adds a new icon summarizing the dominant state of that period.
+
+
+**referance**
+
+https://dl.acm.org/doi/10.1145/3689648?utm_source=chatgpt.com
+
 
 ### Part C
 ### Test the interaction prototype
