@@ -384,6 +384,8 @@ The system classifies each camera frame and overlays a small text label (with co
 
 **\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
 
+Lab 5/fe50a0c817249c7b1928fe79615d706d.mp4
+
 ### Part 2.
 
 Following exploration and reflection from Part 1, finish building your interactive system, and demonstrate it in use with a video.
