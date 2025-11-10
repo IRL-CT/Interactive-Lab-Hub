@@ -291,131 +291,96 @@ Future extensions: add simple beep on label change or mirror video to a small TF
 
 Now flight test your interactive prototype and **note down your observations**:
 For example:
-1. When does it what it is supposed to do?
-1. When does it fail?
-1. When it fails, why does it fail?
-1. Based on the behavior you have seen, what other scenarios could cause problems?
+
+1. **When does it do what it is supposed to do?**
+   - Good, even lighting; user centered ~0.5–1 m from camera.
+   - Clear poses/objects visible: typing/writing, phone at face/chest, cup near face, neutral idle.
+   - Minimal background motion; single person in frame.
+
+2. **When does it fail?**
+   - Lighting extremes (backlight, low light, glare).
+   - Fast motions or occlusion (hands cover the object).
+   - Atypical angles/shapes not seen in training (side-typing, unusual cups).
+   - Multiple people or moving backgrounds.
+
+3. **When it fails, why does it fail?**
+   - Domain shift between training images and live scenes.
+   - Per-frame classification → transient flicker during transitions.
+   - Visually confusable items (dark mug vs. phone).
+
+4. **Based on the behavior you have seen, what other scenarios could cause problems?**
+   - Mirrors/monitor reflections; partial crops at frame edges.
+   - Doing two actions at once (holding a cup while typing).
+   - Similar desk objects (TV remote ≈ phone).
 
 **\*\*\*Think about someone using the system. Describe how you think this will work.\*\*\***
-1. Are they aware of the uncertainties in the system?
-1. How bad would they be impacted by a miss classification?
-1. How could change your interactive system to address this?
-1. Are there optimizations you can try to do on your sense-making algorithm.
+
+1. **Are they aware of the uncertainties in the system?**
+   - Partly. They see a confidence %, but it’s not strongly communicated; users may not interpret what “62%” means.
+
+2. **How bad would they be impacted by a misclassification?**
+   - Low risk for this ambient feedback; main downside is brief mistrust/ignoring the display if flicker is frequent.
+
+3. **How could you change your interactive system to address this?**
+   - Add an **Unknown** state below a confidence threshold (e.g., 60–70%).
+   - Add **stickiness**: update label only after a short dwell or **k-of-N** consistent frames (e.g., 3/5).
+   - Replace raw % with **Low / Medium / High** badges for clarity.
+
+4. **Are there optimizations you can try to do on your sense-making algorithm?**
+   - **Temporal smoothing:** k-of-N majority; short dwell (200–300 ms).
+   - **Hysteresis:** higher threshold to enter a new class than to stay.
+   - **Top-2 margin:** switch only if `p_top − p_second > δ` (e.g., 0.15).
+   - **Input hygiene:** lock exposure/white balance; optional center ROI; expand training with hard negatives and varied lighting.
 
 
-Part C — Test the Interaction Prototype
-✅ When does it do what it’s supposed to do?
 
-Stable, front-facing view: Subject centered ~0.5–1.0 m from the camera with good lighting.
-
-Canonical poses/objects:
-
-Typing/writing with clear keyboard/notebook in view → typing / writing
-
-Holding a cup clearly → drink
-
-Phone visible at chest/face level → phone
-
-Hands off devices, neutral posture → idle
-
-Low background clutter: Few moving objects; single user in frame.
-
-❌ When does it fail?
-
-Lighting extremes: Backlight, low light, or strong glare (glossy phone/cup).
-
-Fast motion/occlusion: Hand blocks the object; quick transitions between classes.
-
-Atypical objects/angles: New bottle shapes not in training; side-angle typing.
-
-Multiple people: Another person or moving background enters the frame.
-
-🤔 Why does it fail?
-
-Domain shift: Live scene differs from the training set (object shapes, colors, angles).
-
-Per-frame classification: No temporal smoothing → transient frames flicker.
-
-Confusable features: Phone vs. dark cup; writing posture vs. idle with pen in hand.
-
-🧪 Other scenarios likely to cause problems
-
-Wearables or desk props similar to trained objects (e.g., black TV remote ≈ phone).
-
-Mirrors/monitors reflecting hands/objects.
-
-Partial crops when the object is at the edge of the frame.
-
-Multiple simultaneous cues (holding a cup while typing).
-
-👤 Think about someone using the system
-
-Are they aware of uncertainties?
-
-Partially. They see the label text and ring color, but not a clear uncertainty cue. Confidence is shown as a percent, yet users may not know what “62%” means.
-
-How bad is a misclassification?
-
-Low-risk for this use case (ambient feedback). A wrong color/label is a minor nuisance, but frequent flicker can reduce trust and make users ignore the system.
-
-How could we change the interaction to address this?
-
-Graceful “Unknown” state: If confidence < threshold (e.g., 60–70%), show Unknown (gray ring) instead of guessing.
-
-Hysteresis (“stickiness”): Require higher confidence to switch states than to stay, reducing flip-flop.
-
-Change-on-commit: Update the label only after k consistent frames (e.g., 3) or a short 200–300 ms dwell.
-
-Contextual phrasing: Replace raw % with Low/Med/High confidence badges or a tiny bar to make uncertainty legible.
-
-User calibration tip: One-time prompt to center themselves and check lighting.
-
-⚙️ Optimizations to try (sense-making algorithm)
-
-Temporal smoothing
-
-k-of-N majority: Update state when ≥k of last N frames agree (e.g., 3/5).
-
-Exponential moving average on class probabilities; pick the argmax of smoothed scores.
-
-Top-2 margin: Switch only if p_top − p_second > δ (e.g., 0.15).
-
-Decision policy
-
-Confidence threshold: Below τ → Unknown; above τ → commit.
-
-Class-specific τ: Stricter for easily confused classes (e.g., phone).
-
-Hysteresis: Enter distracted at τ_hi, leave at τ_lo (τ_hi > τ_lo).
-
-Input preprocessing
-
-Resolution control: Inference on a downscaled copy (e.g., 320×240) for speed, but keep overlay at full res.
-
-Exposure/white balance lock: Reduce frame-to-frame brightness shifts.
-
-ROI crop: Favor center/lower-center where hands/objects usually appear.
-
-Model/data
-
-Augment with lighting/angle variations; add hard negatives (remote, dark mug vs. phone).
-
-Balance classes and include “empty desk/idle” variants.
-
-Quantized TFLite (already typical with TM); set num_threads for tflite runtime if available.
 
 ### Part D
 ### Characterize your own Observant system
 
 Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
 During the lecture, we mentioned questions to help characterize a material:
-* What can you use X for?
-* What is a good environment for X?
-* What is a bad environment for X?
-* When will X break?
-* When it breaks how will X break?
-* What are other properties/behaviors of X?
-* How does X feel?
+**X = Raspberry Pi + Teachable Machine image classifier (live label + colored ring).**  
+The system classifies each camera frame and overlays a small text label (with confidence) and a colored ring indicating the class category.
+
+---
+
+**What can you use X for?**
+- Ambient, **glanceable awareness** of current activity (typing/writing/phone/drink/idle).
+- Lightweight **focus/distractor indicators** for personal productivity or demo kiosks.
+- A teaching scaffold for **edge AI** (camera → classify → visual feedback).
+
+**What is a good environment for X?**
+- **Even, front-facing lighting** (no strong backlight).
+- **Single user**, centered ~0.5–1 m from camera; clear view of hands/objects.
+- **Calm background** (few moving distractors; simple textures).
+
+**What is a bad environment for X?**
+- **Low light / backlight / glare** (e.g., glossy phone, reflective mugs).
+- **Busy scenes** (multiple people, mirrors/monitors, fast passerby).
+- **Extreme angles/partial crops** (object at frame edge; side-typing).
+
+**When will X break?**
+- **Domain shift**: objects/poses unseen in training (new cup shape; phone with thick case).
+- **Occlusion & fast motion**: hands block object; rapid switching between activities.
+- **Resource issues**: camera fails to open; disk I/O slowdown (saving frames); high CPU load.
+
+**When it breaks how will X break?**
+- **Flicker/mislabels** (per-frame ambiguity) → ring/color flips rapidly.
+- **Default/gray ring** when label mapping fails or confidence is very low.
+- **Laggy preview** if I/O or CPU is saturated; window may stutter.
+
+**What are other properties/behaviors of X?**
+- **Local & private**: runs fully on-device; no network needed.
+- **Immediate**: per-frame overlay feels responsive; no history by default.
+- **Tunable**: behavior changes a lot with small policy tweaks (confidence threshold, k-of-N, ROI).
+- **Data-bound**: accuracy follows training coverage (lighting, angles, object diversity).
+
+**How does X feel?**
+- **Glanceable and playful**—the colored ring communicates state instantly.
+- **Occasionally twitchy** in edge cases (motion/lighting), reminding you it’s probabilistic.
+- **Trustworthy enough** for ambient cues, not for high-stakes automation.
+
 
 **\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
 
