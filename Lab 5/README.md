@@ -191,91 +191,108 @@ In an earlier version of this class students experimented with foundational comp
 **\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
 
 Part B — Construct a Simple Interaction
-Interaction concept
+Part B — Construct a Simple Interaction
+🧠 Interaction Concept
 
-I prototyped a live, on-device activity indicator on Raspberry Pi using a Teachable Machine image model. The Pi camera captures frames continuously; each frame is classified, and the result is shown directly on the video as:
+This prototype is a live, on-device activity indicator running entirely on the Raspberry Pi.
+Using a Teachable Machine image model, the Pi camera continuously classifies the user’s current activity and overlays two forms of visual feedback directly on the video:
 
-Small label text in the top-left (e.g., drink 88%).
+Label text (top-left) — shows the detected class and confidence (e.g., drink 88 %)
 
-A colored ring centered on the image that encodes the class category for quick, at-a-glance feedback.
+Colored ring (center) — encodes the current category for at-a-glance awareness
 
 Color mapping (BGR):
 
-typing, writing → green (focused work)
+State	Color	Meaning
+typing, writing	🟢 Green	Focused work
+phone	🟠 Orange	Distracted by device
+drink	🔵 Light blue	Short physical break
+idle	⚪ Gray	Not engaged
+other	⚫ Gray	Unmapped / default
 
-phone → orange (distracted)
+This mirrors the “boat-detector” example from lecture—minimal logic, immediate visual feedback, and runs smoothly on the Pi.
 
-drink → light blue (short break)
+⚙️ How It Works
 
-idle → gray (not engaged)
+The Pi camera captures frames continuously (cv2.VideoCapture(0)).
 
-Any unmapped label → default gray
+Each frame is saved as frame.jpg and classified with teachable_machine_lite.
 
-This mirrors the “boat detector” style from lecture: immediate classification + minimal visual cue.
+The script parses results like
+{'label': '2 drink', 'confidence': 87.66} → drink 87 %.
 
-Inputs and outputs
+The label and confidence are drawn on the video (cv.putText).
 
-Input: Live camera frame → model.tflite (Teachable Machine) via teachable_machine_lite.classify_image("frame.jpg").
-The model returns a dict like {'label': '2 drink', 'confidence': 87.66, ...}; I strip numeric prefixes (e.g., 2 drink → drink) before display.
+A colored ring (cv.circle) is drawn at the center to represent the class category.
 
-Output (visual):
+The video window is displayed live on the Pi screen. Press ESC to exit.
 
-Label text: <class> <confidence%> (small font, top-left).
+🧪 Experimentation and Tuning
 
-Colored ring: center overlay; color chosen by the class mapping above.
+Parsing labels: The model returns numeric prefixes (e.g., 2 drink); the script removes the number to match the color map.
 
-What I experimented with
+Overlay design: Font size 0.6 and thin stroke (1 px) keep text readable without blocking the view.
 
-Parsing labels: The model includes numeric prefixes in label (e.g., 2 drink). I split by the first space and normalize to lowercase so the color map is robust.
+Ring size: Dynamic radius min(w, h)//5 fits different resolutions.
 
-Overlay tuning: Small font (0.6, thickness 1) to avoid obscuring the view; ring radius scales with frame size (min(w, h) // 5) and uses anti-aliased strokes for clarity.
+Classification loop: Kept simple (save → classify → draw) for real-time responsiveness.
 
-Frame-by-frame loop: Kept the loop simple (save → classify → draw) to ensure the interaction feels immediate and mirrors the lecture demo.
-
-How to run
-
-Place these files together in Lab 5/: partB_demo.py, model.tflite, labels.txt.
-
-From a Pi desktop session (local monitor or VNC), run:
-
+▶️ Run Instructions
+# In the Lab 5 directory
 python3 partB_demo.py
 
 
-Press ESC to quit.
-If the camera window doesn’t appear, try cv.VideoCapture(1) or verify the camera:
-USB cam → ls -l /dev/video* • Pi cam → libcamera-hello -t 3000.
+If no window appears, run from the Pi desktop or VNC session (not SSH).
+If the camera fails, try cv.VideoCapture(1) or test with libcamera-hello -t 3000.
 
-Observations
+Dependencies
 
-The ring gives instant, glanceable state without reading text.
+pip3 install teachable-machine-lite opencv-python
 
-Confidence is stable when subjects are centered and lighting is reasonable.
+🎨 Inputs and Outputs
+Type	Description
+Input	Live camera feed classified by Teachable Machine model (model.tflite, labels.txt)
+Output	Visual overlay (label text + colored ring) on video stream
+👀 What to Expect
 
-Without smoothing, very rapid transitions can briefly flicker—expected for a per-frame demo.
+Typing / Writing → label typing or writing, ring turns 🟢 green.
 
-Design choices
+Using phone → label phone, ring turns 🟠 orange.
 
-Simplicity first: Kept only the elements that are visually useful in real time (label + color).
+Drinking → label drink, ring turns 🔵 light blue.
 
-Edge-friendly: Uses teachable_machine_lite and OpenCV; no additional runtime services.
+Idle → label idle, ring turns ⚪ gray.
 
-Human-readable mapping: Semantic color mapping makes the class meaning obvious.
+🧩 Observations
 
-Limitations and next steps
+The colored ring provides immediate, non-verbal feedback.
 
-No debouncing or history: Flicker can occur when frames are ambiguous; adding a 3-frame commit would reduce this.
+Confidence remains stable with good lighting and frontal camera angles.
 
-No audio/TFT mirroring: This version avoids extra dependencies; a tiny beep on class change or a framebuffer mirror to a small TFT (/dev/fb1) could be added later.
+Frame-level classification can flicker slightly during motion transitions.
 
-Model quality bound: Mislabels are mostly due to training data, lighting, and camera angle; improving the dataset would help.
+💡 Design Choices
 
-Files (for reproducibility)
+Clarity over complexity: Only two visual elements—text and ring.
 
-partB_demo.py — the script (live label + colored ring).
+Edge friendly: No external libraries beyond OpenCV and TM Lite.
 
-model.tflite — Teachable Machine image model used.
+Intuitive colors: Immediate semantic mapping of behavioral state.
 
-labels.txt — class labels for the model.
+⚠️ Limitations and Next Steps
+
+No temporal smoothing → minor flicker possible.
+
+Lighting conditions affect classification confidence.
+
+Future extensions: add simple beep on label change or mirror video to a small TFT (/dev/fb1) display.
+
+📁 Files
+Lab 5/
+ ├─ partB_demo.py        # live label + colored ring script
+ ├─ model.tflite         # trained Teachable Machine model
+ ├─ labels.txt           # class labels
+ └─ README.md            # this documentation
 
 ### Part C
 ### Test the interaction prototype
