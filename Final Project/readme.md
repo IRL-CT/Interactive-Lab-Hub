@@ -25,8 +25,10 @@ When a participant begins, they choose one of six symbolic elements — Fire �
 
 A computer screen displays the animation blended with a live camera feed of the user, allowing them to see both their reflection and their personalized constellation at the same time. As they move their hands or adjust their posture, gesture and touch sensors detect these actions and feed them back into the system. The constellation reacts instantly — expanding, contracting, or changing colors — as if breathing together with the user.
 
-Through these visual and sensory responses, Inner Constellation transforms abstract emotions into tangible experiences. It connects technology and self-awareness in a poetic way, turning each participant’s reflection on the screen into a unique portrait of their energy and mood in that moment.   
-<img src="prototype.png" alt="Inner Constellation concept image" width="500">
+Through these visual and sensory responses, Inner Constellation transforms abstract emotions into tangible experiences. It connects technology and self-awareness in a poetic way, turning each participant’s reflection on the screen into a unique portrait of their energy and mood in that moment. 
+
+### Picture: Initial Prototpye
+<img src="prototype.png" alt="Inner Constellation concept image" width="800">
 
 ### Timeline
 | **Milestone** | **Date** | **Notes / Details** |
