@@ -47,7 +47,9 @@ For our final project, we’re developing gesture-controlled modules that serve 
 3. Build Documentation
 We broke our process down into 3 steps:
 pi-pi communication: https://www.youtube.com/watch?v=l3sK-Un6r_g
-gesture control: youtube.com/shorts/ilUMCtHcV4I?feature=share
+
+gesture control: https://www.youtube.com/shorts/ilUMCtHcV4I?feature=share
+
 integration: https://www.youtube.com/shorts/WWuHhcyBsaM?feature=share
 
 4. User Testing
