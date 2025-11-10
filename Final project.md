@@ -56,3 +56,27 @@ Through these visual and sensory responses, Inner Constellation transforms abstr
 - 1× Projector *(for large-scale projection display)*  
 - 1× Tripod or Mounting Stand  
 - 1× External Light Diffuser or Frame *(for aesthetic setup)*
+
+### Fallback Plan
+
+If any hardware or sensor components fail, the system can still demonstrate the core experience through simplified input and display modes.
+
+- **Gesture Sensor Fails:**  
+  Use keyboard or mouse input to manually trigger expansion/contraction of the energy circle.
+
+- **NFC Reader Malfunction:**  
+  Replace NFC element selection with on-screen buttons for choosing Fire, Water, Wind, Earth, Light, or Shadow.
+
+- **Camera Not Working:**  
+  Run the visualization without live reflection mode — display only the animated energy field on screen.
+
+- **Projector Unavailable:**  
+  Switch to a standard monitor or laptop display for demonstration.
+
+- **Performance or Frame Rate Issues:**  
+  Lower the resolution or particle density in the animation to maintain smooth real-time rendering.
+
+- **Sound Output Problem:**  
+  Disable audio feedback and rely on visual responses only.
+
+💡 *These fallback modes ensure the installation remains functional and visually expressive, even if some hardware components are unavailable.*
