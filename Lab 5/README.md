@@ -384,7 +384,7 @@ The system classifies each camera frame and overlays a small text label (with co
 
 **\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
 
-Lab 5/fe50a0c817249c7b1928fe79615d706d.mp4
+[Lab 5/fe50a0c817249c7b1928fe79615d706d.mp4](https://github.com/ChangXiang-SCU/Interactive-Lab-Hub/blob/Fall2025/Lab%205/fe50a0c817249c7b1928fe79615d706d.mp4)
 
 ### Part 2.
 
