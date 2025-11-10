@@ -264,18 +264,35 @@
                 }
             }
 
+            // setTargetFromJoystick(joyX, joyY) {
+            //     if (this.side === 'left') {
+            //         this.targetX = (joyX + 1) / 2 * (SCREEN_WIDTH / 2 - this.width);
+            //     } else {
+            //         this.targetX = SCREEN_WIDTH / 2 + (joyX + 1) / 2 * (SCREEN_WIDTH / 2 - this.width);
+            //     }
+
+            //     this.targetY = (joyY + 1) / 2 * (SCREEN_HEIGHT - this.height);
+
+            //     // Clamp values
+            //     this.targetX = Math.max(0, Math.min(this.targetX, SCREEN_WIDTH - this.width));
+            //     this.targetY = Math.max(0, Math.min(this.targetY, SCREEN_HEIGHT - this.height));
+            // }
             setTargetFromJoystick(joyX, joyY) {
-                if (this.side === 'left') {
-                    this.targetX = (joyX + 1) / 2 * (SCREEN_WIDTH / 2 - this.width);
-                } else {
-                    this.targetX = SCREEN_WIDTH / 2 + (joyX + 1) / 2 * (SCREEN_WIDTH / 2 - this.width);
-                }
+                const DEADZONE = 1.0;
+                if (Math.abs(joyX) < DEADZONE) joyX = 0;
+                if (Math.abs(joyY) < DEADZONE) joyY = 0;
 
-                this.targetY = (joyY + 1) / 2 * (SCREEN_HEIGHT - this.height);
+                // Treat joystick as velocity
+                this.x += joyX * PLAYER_SPEED;
+                this.y += joyY * PLAYER_SPEED;
 
-                // Clamp values
-                this.targetX = Math.max(0, Math.min(this.targetX, SCREEN_WIDTH - this.width));
-                this.targetY = Math.max(0, Math.min(this.targetY, SCREEN_HEIGHT - this.height));
+                // Clamp to bounds
+                this.x = Math.max(0, Math.min(this.x, SCREEN_WIDTH - this.width));
+                this.y = Math.max(0, Math.min(this.y, SCREEN_HEIGHT - this.height));
+
+                // Keep target equal to current so moveToTarget() does nothing
+                this.targetX = this.x;
+                this.targetY = this.y;
             }
 
             getHit() {

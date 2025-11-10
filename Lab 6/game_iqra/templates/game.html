@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQTT Shooting Game (4-Player)</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .status {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff0000;
+            margin-right: 5px;
+        }
+        .status-dot.connected {
+            background: #00ff00;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .game-container {
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        #gameCanvas {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            display: block;
+            background: #000;
+        }
+
+        .game-over-overlay {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .game-over-overlay.show {
+            display: block;
+        }
+
+        .winner-text {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .player-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+            width: 1220px; /* Match canvas width */
+        }
+
+        .player-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .player-card h3 {
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .health-bars {
+            display: flex;
+            justify-content: center;
+            gap: 3px;
+            margin-top: 5px;
+        }
+
+        .health-bar {
+            width: 20px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        .health-bar.active {
+            background: #00ff00;
+        }
+
+        .health-bar.hit {
+            background: #ff0000;
+        }
+
+        .topic-info {
+            margin-top: 5px;
+            font-size: 11px;
+            opacity: 0.6;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎮 MQTT Shooting Game (4-Player)</h1>
+        <div class="status">
+            <span class="status-dot" id="socket-status"></span>
+            <span id="socket-status-text">Connecting to server...</span>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <canvas id="gameCanvas" width="1200" height="600"></canvas>
+        <div class="game-over-overlay" id="gameOverOverlay">
+            <div class="winner-text" id="winnerText"></div>
+            <button onclick="restartGame()">Play Again</button>
+        </div>
+    </div>
+
+    <div class="player-info">
+        <div class="player-card" style="border-bottom: 4px solid #007BFF;">
+            <h3><span id="p1-name">🔵 Player 1</span></h3>
+            <div>Hits: <span id="p1Hits">0</span> / 3</div>
+            <div class="health-bars" id="p1Health">
+                <div class="health-bar active"></div>
+                <div class="health-bar active"></div>
+                <div class="health-bar active"></div>
+            </div>
+            <div class="topic-info">IDD/game/player1</div>
+        </div>
+        <div class="player-card" style="border-bottom: 4px solid #FF0000;">
+            <h3><span id="p2-name">🔴 Player 2</span></h3>
+            <div>Hits: <span id="p2Hits">0</span> / 3</div>
+            <div class="health-bars" id="p2Health">
+                <div class="health-bar active"></div>
+                <div class="health-bar active"></div>
+                <div class="health-bar active"></div>
+            </div>
+            <div class="topic-info">IDD/game/player2</div>
+        </div>
+        <div class="player-card" style="border-bottom: 4px solid #00FF00;">
+            <h3><span id="p3-name">🟢 Player 3</span></h3>
+            <div>Hits: <span id="p3Hits">0</span> / 3</div>
+            <div class="health-bars" id="p3Health">
+                <div class="health-bar active"></div>
+                <div class="health-bar active"></div>
+                <div class="health-bar active"></div>
+            </div>
+            <div class="topic-info">IDD/game/player3</div>
+        </div>
+        <div class="player-card" style="border-bottom: 4px solid #FFFF00;">
+            <h3><span id="p4-name">🟡 Player 4</span></h3>
+            <div>Hits: <span id="p4Hits">0</span> / 3</div>
+            <div class="health-bars" id="p4Health">
+                <div class="health-bar active"></div>
+                <div class="health-bar active"></div>
+                <div class="health-bar active"></div>
+            </div>
+            <div class="topic-info">IDD/game/player4</div>
+        </div>
+    </div>
+
+    <script>
+        // Game Configuration
+        const SCREEN_WIDTH = 1200;
+        const SCREEN_HEIGHT = 600;
+        const FPS = 60;
+        const MAX_HITS = 3;
+        const PLAYER_SPEED = 3;
+        const BULLET_SPEED = 10;
+        const BULLET_SIZE = 8;
+        const PLAYER_SIZE = 40;
+
+        // Get canvas and context
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Socket.IO connection
+        const socket = io();
+        const socketStatus = document.getElementById('socket-status');
+        const socketStatusText = document.getElementById('socket-status-text');
+
+        // Game State
+        let gameOver = false;
+        let players = [];
+
+        // Player class
+        class Player {
+            constructor(id, x, y, color, name) {
+                this.id = id;
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.name = name;
+                this.width = PLAYER_SIZE;
+                this.height = PLAYER_SIZE;
+                this.hits = 0;
+                this.alive = true;
+                this.targetX = x;
+                this.targetY = y;
+            }
+
+            moveToTarget() {
+                if (!this.alive) return;
+                
+                // Simple linear interpolation (lerp) for smooth movement
+                // We changed 0.1 to 0.05 to make it slower and smoother
+                this.x += (this.targetX - this.x) * 0.05;
+                this.y += (this.targetY - this.y) * 0.05;
+            }
+            
+            setTargetFromJoystick(joyX, joyY) {
+                if (!this.alive) return;
+                
+                const bufferX = this.width / 2;
+                const bufferY = this.height / 2;
+                const halfWidth = SCREEN_WIDTH / 2;
+
+                // Map Y to the full height (same for all players)
+                let newTargetY = (SCREEN_HEIGHT / 2) + (joyY * (SCREEN_HEIGHT / 2 - bufferY));
+                this.targetY = Math.max(bufferY, Math.min(newTargetY, SCREEN_HEIGHT - bufferY));
+
+                // Map X based on player ID
+                let newTargetX;
+                if (this.id === 1 || this.id === 3) {
+                    // Player 1 & 3 (Left Side)
+                    // Map -1 to 1 joystick X to 0 to halfWidth
+                    newTargetX = (halfWidth / 2) + (joyX * (halfWidth / 2 - bufferX));
+                    // Clamp to left side
+                    this.targetX = Math.max(bufferX, Math.min(newTargetX, halfWidth - bufferX));
+                } else {
+                    // Player 2 & 4 (Right Side)
+                    // Map -1 to 1 joystick X to halfWidth to SCREEN_WIDTH
+                    newTargetX = halfWidth + (halfWidth / 2) + (joyX * (halfWidth / 2 - bufferX));
+                    // Clamp to right side
+                    this.targetX = Math.max(halfWidth + bufferX, Math.min(newTargetX, SCREEN_WIDTH - bufferX));
+                }
+            }
+            
+            getHit() {
+                if (this.alive) {
+                    this.hits++;
+                    if (this.hits >= MAX_HITS) {
+                        this.alive = false;
+                        checkWinner(); // Check if the game is over
+                    }
+                }
+            }
+
+            collidesWith(bullet) {
+                // Basic AABB collision
+                return (
+                    bullet.x < this.x + this.width / 2 &&
+                    bullet.x + BULLET_SIZE > this.x - this.width / 2 &&
+                    bullet.y < this.y + this.height / 2 &&
+                    bullet.y + BULLET_SIZE > this.y - this.height / 2
+                );
+            }
+
+            draw() {
+                if (this.alive) {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.width / 2, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Draw name
+                    ctx.fillStyle = "white";
+                    ctx.font = "12px Arial";
+                    ctx.textAlign = "center";
+                    ctx.fillText(this.name, this.x, this.y - this.width / 2 - 10);
+
+                } else {
+                    // Draw X for dead player
+                    ctx.strokeStyle = '#888';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(this.x - this.width/2, this.y - this.height/2);
+                    ctx.lineTo(this.x + this.width/2, this.y + this.height/2);
+                    ctx.moveTo(this.x + this.width/2, this.y - this.height/2);
+                    ctx.lineTo(this.x - this.width/2, this.y + this.height/2);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Bullet class
+        class Bullet {
+            constructor(x, y, direction, owner) {
+                this.x = x;
+                this.y = y;
+                this.direction = direction;
+                this.owner = owner; // The player who shot it
+                this.size = BULLET_SIZE;
+                this.active = true;
+            }
+
+            update() {
+                this.x += BULLET_SPEED * this.direction;
+                if (this.x < 0 || this.x > SCREEN_WIDTH) {
+                    this.active = false;
+                }
+            }
+
+            draw() {
+                if (this.active) {
+                    ctx.fillStyle = this.owner.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        let bullets = [];
+
+        // Initialize players
+        function initGame() {
+            players = [
+                new Player(1, 100, 100, '#007BFF', 'Player 1'),
+                new Player(2, SCREEN_WIDTH - 100, 100, '#FF0000', 'Player 2'),
+                new Player(3, 100, SCREEN_HEIGHT - 100, '#00FF00', 'Player 3'),
+                new Player(4, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 100, '#FFFF00', 'Player 4')
+            ];
+            bullets = [];
+            gameOver = false;
+            document.getElementById('gameOverOverlay').classList.remove('show');
+            updateAllHealthDisplays();
+        }
+
+        // Socket.IO event handlers
+        socket.on('connect', () => {
+            console.log('Connected to server');
+            socketStatus.classList.add('connected');
+            socketStatusText.textContent = 'Connected to Game Server';
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+            socketStatus.classList.remove('connected');
+            socketStatusText.textContent = 'Disconnected from Game Server';
+        });
+
+        socket.on('mqtt_message', (data) => {
+            handleMQTTMessage(data.topic, data.payload);
+        });
+        
+        // Handle bot status (new)
+        socket.on('bot_status', (data) => {
+            // data = { player: 'player1', active: true }
+            const player = players[data.player.slice(-1) - 1];
+            if (player) {
+                const nameEl = document.getElementById(`p${player.id}-name`);
+                if (data.active) {
+                    player.name = `Player ${player.id} (AI)`;
+                    nameEl.textContent = `🤖 ${player.name}`;
+                } else {
+                    player.name = `Player ${player.id}`;
+                    nameEl.textContent = `${player.color === '#007BFF' ? '🔵' : player.color === '#FF0000' ? '🔴' : player.color === '#00FF00' ? '🟢' : '🟡'} ${player.name}`;
+                }
+            }
+        });
+
+
+        // Handle MQTT messages
+        function handleMQTTMessage(topic, payload) {
+            let player, bulletDirection;
+
+            if (topic === 'IDD/game/player1') {
+                player = players[0];
+                bulletDirection = 1; // Shoots right
+            } else if (topic === 'IDD/game/player2') {
+                player = players[1];
+                bulletDirection = -1; // Shoots left
+            } else if (topic === 'IDD/game/player3') {
+                player = players[2];
+                bulletDirection = 1; // Shoots right
+            } else if (topic === 'IDD/game/player4') {
+                player = players[3];
+                bulletDirection = -1; // Shoots left
+            } else {
+                return;
+            }
+        
+            if (player.alive) {
+                // Handle movement
+                if ('joy_x' in payload && 'joy_y' in payload) {
+                    player.setTargetFromJoystick(payload.joy_x, payload.joy_y);
+                }
+
+                // Handle shooting
+                if (payload.shoot) {
+                    shoot(player, bulletDirection);
+                }
+            }
+        }
+
+        // Shoot function
+        function shoot(player, direction) {
+            if (player.alive) {
+                const bulletX = (direction === 1) ? player.x + player.width / 2 : player.x - player.width / 2;
+                const bulletY = player.y;
+                bullets.push(new Bullet(bulletX, bulletY, direction, player));
+            }
+        }
+
+        // Check collisions
+        function checkCollisions() {
+            bullets.forEach(bullet => {
+                if (!bullet.active) return;
+
+                players.forEach(player => {
+                    if (!player.alive || player === bullet.owner) return;
+
+                    if (player.collidesWith(bullet)) {
+                        bullet.active = false;
+                        player.getHit();
+                        updateHealthDisplay(player);
+                    }
+                });
+            });
+        }
+        
+        // Check for winner
+        function checkWinner() {
+            if (gameOver) return;
+            
+            const alivePlayers = players.filter(p => p.alive);
+            if (alivePlayers.length === 1) {
+                endGame(alivePlayers[0]);
+            } else if (alivePlayers.length === 0) {
+                endGame(null); // Draw
+            }
+        }
+
+
+        // Update health display
+        function updateHealthDisplay(player) {
+            document.getElementById(`p${player.id}Hits`).textContent = player.hits;
+            const pHealthBars = document.getElementById(`p${player.id}Health`).children;
+
+            for (let i = 0; i < MAX_HITS; i++) {
+                pHealthBars[i].className = i < player.hits ? 'health-bar hit' : 'health-bar active';
+            }
+        }
+        
+        function updateAllHealthDisplays() {
+            players.forEach(updateHealthDisplay);
+        }
+
+        // End game
+        function endGame(winnerPlayer) {
+            gameOver = true;
+            const winnerText = document.getElementById('winnerText');
+            if (winnerPlayer) {
+                winnerText.textContent = `${winnerPlayer.name} WINS! 🏆`;
+                winnerText.style.color = winnerPlayer.color;
+            } else {
+                winnerText.textContent = `IT'S A DRAW!`;
+                winnerText.style.color = '#FFFFFF';
+            }
+            document.getElementById('gameOverOverlay').classList.add('show');
+        }
+
+        // Restart game
+        function restartGame() {
+            initGame();
+            // Notify server
+            socket.emit('restart_game');
+        }
+
+        // Game loop
+        function gameLoop() {
+            if (!gameOver) {
+                // Update
+                players.forEach(p => p.moveToTarget());
+                bullets.forEach(b => b.update());
+                bullets = bullets.filter(b => b.active);
+                checkCollisions();
+            }
+
+            // Draw
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+            // Draw players
+            players.forEach(p => p.draw());
+
+            // Draw bullets
+            bullets.forEach(b => b.draw());
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Start game loop
+        initGame();
+        gameLoop();
+    </script>
+</body>
+</html>
