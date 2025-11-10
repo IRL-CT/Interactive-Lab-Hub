@@ -122,6 +122,8 @@ This will capture an image from your webcam and let you ask questions about it i
 
 **Design consideration**: Think about how slower response times change your interaction design. What kinds of observant systems benefit from thoughtful, delayed responses rather than real-time classification? Consider systems that monitor over longer time periods or provide periodic summaries rather than instant feedback.
 
+With slower VLMs like Moondream, design for windows, not frames: take periodic snapshots (e.g., every 5–10 minutes), aggregate results, then deliver a short summary or gentle prompt instead of real-time pop-ups. This suits observant systems that track longer trends—focus/attention coaching (dominant activity in the last window), posture/ergonomics (slouch ratio per hour), noise exposure (minutes above a dB threshold), or hydration/break reminders (no drink events for ≥45 min). The delayed, batched feedback reduces false alarms, respects attention, and matches the model’s latency.
+
 #### Teachable Machines
 Google's [TeachableMachines](https://teachablemachine.withgoogle.com/train) is very useful for prototyping with the capabilities of machine learning. We are using [a python package](https://github.com/MeqdadDev/teachable-machine-lite) with tensorflow lite to simplify the deployment process.
 
