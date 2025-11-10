@@ -190,8 +190,6 @@ In an earlier version of this class students experimented with foundational comp
 
 **\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
 
-Part B — Construct a Simple Interaction
-Part B — Construct a Simple Interaction
 🧠 Interaction Concept
 
 This prototype is a live, on-device activity indicator running entirely on the Raspberry Pi.
