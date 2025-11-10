@@ -274,12 +274,12 @@ Each Raspberry Pi has a unique label (e.g., game/player1) and transmits its tilt
    - [Video of prototype](https://drive.google.com/file/d/1q2kW2iP4jFZXachqrEmqX1LXDZw4-zAk/view?usp=drive_link)
    - [Video of prototpe with joystick](https://drive.google.com/file/d/1gfdvAMW0J8bkEe9sS9Wu_g4WxeiCa-Uz/view?usp=drive_link)
 
-- MQTT topics used: game/player1, game/player2
+- MQTT topics used: game/player1, game/player2, game/player3, game/player4
 <!-- - Code snippets with explanations: -->
 
 ### How it works on the server side
 
-A canvas game for two players. 
+A canvas game for 4 people. 
 The browser listens to joystick updates coming from MQTT (relayed via Socket.IO) and moves/shoots accordingly. First to hit the other 3 times wins.
 
 - Setup
@@ -342,17 +342,21 @@ mosquitto_pub -h farlab.infosci.cornell.edu   -u idd -P 'device@theFarm'   -t ID
 ### How to Run The Shooting Game
 
 ```bash
+cd game_final
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
+#On one terminal
 python game_server.py
+
+#On the other terminal 
+python joystick.py 'player#'
 ```
 
 Then, access to the 
 
 - Game URL:     http://0.0.0.0:5002
-- Controller:   http://0.0.0.0:5002/controller
 
 **4. User Testing**
 - **Test with 2+ people NOT on your team**
@@ -366,3 +370,8 @@ Then, access to the
 - Challenges with distributed interaction?
 - How did sensor events work?
 - What would you improve?
+
+**6. Distribution of Work**
+- Nana worked on the initial server code on game folder for two players game
+- Celest worked on the intial controller code on game folder
+- Iqra worked on modifying the server code to the multiple players game
