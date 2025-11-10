@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # """
 # MQTT Shooting Game Server
 # Backend server that bridges MQTT messages to web clients via Socket.IO
@@ -198,6 +199,22 @@ import random
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 import paho.mqtt.client as mqtt
+=======
+"""
+MQTT Shooting Game Server
+Backend server that bridges MQTT messages to web clients via Socket.IO
+"""
+import time
+import threading
+from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
+import paho.mqtt.client as mqtt
+from datetime import datetime
+from joystick import JoystickEvent
+
+import json
+import uuid
+>>>>>>> 48132c82157033a2a75186a415cb6ffe02878d3c
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'shooting-game-2025'
@@ -229,12 +246,24 @@ game_state = {
     'player4': {'last_message_time': 0, 'bot_active': False},
 }
 
+<<<<<<< HEAD
 # Lock for thread-safe game state updates
 game_state_lock = threading.Lock()
 
 # Bot Configuration
 PLAYER_TIMEOUT = 5.0  # Seconds of inactivity before bot takes over
 BOT_TICK_RATE = 0.5   # How often the bot makes a decision
+=======
+# ========== JOYSTICK INTEGRATION ==========
+
+def start_joystick_controller(player_number):
+    """Start joystick controller in background thread"""
+    try:
+        joystick = JoystickEvent(player_number=player_number)
+        joystick.run()  # This will continuously read hardware and publish
+    except Exception as e:
+        print(f"Joystick controller error: {e}")
+>>>>>>> 48132c82157033a2a75186a415cb6ffe02878d3c
 
 # ========== MQTT FUNCTIONS ==========
 
@@ -306,7 +335,11 @@ def start_mqtt_client():
         print('[OK] MQTT client started')
         return True
     except Exception as e:
+<<<<<<< HEAD
         print(f'[FAIL] MQTT client failed: {e}')
+=======
+        print(f'MQTT client failed: {e}')
+>>>>>>> 48132c82157033a2a75186a415cb6ffe02878d3c
         return False
 
 # ========== BOT CONTROLLER ==========
@@ -393,8 +426,19 @@ def handle_connect():
 @socketio.on('disconnect')
 def handle_disconnect():
     """Client disconnected"""
+<<<<<<< HEAD
     print('[IO] Web client disconnected')
 
+=======
+    print('Web client disconnected')
+
+@socketio.on('mqtt_publish')
+def handle_mqtt_publish(data):
+    topic = data['topic']
+    message = data['message']
+    mqtt_client.publish(topic, message)
+    
+>>>>>>> 48132c82157033a2a75186a415cb6ffe02878d3c
 @socketio.on('restart_game')
 def handle_restart():
     """Reset bot timers"""
@@ -423,6 +467,7 @@ if __name__ == '__main__':
         print("[WARN] MQTT failed to start, exiting...")
         exit(1)
     
+<<<<<<< HEAD
     # Start bot controller thread
     bot_thread = threading.Thread(
         target=bot_controller,
@@ -432,6 +477,15 @@ if __name__ == '__main__':
     bot_thread.start()
     
     print("[OK] All systems started. Running Flask server.")
+=======
+    joystick1_thread = threading.Thread(
+        target=start_joystick_controller,
+        args=(1,),
+        daemon=True
+    )
+    joystick1_thread.start()
+    
+>>>>>>> 48132c82157033a2a75186a415cb6ffe02878d3c
     print("=" * 60)
     
     # Run Flask app

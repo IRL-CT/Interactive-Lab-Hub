@@ -214,7 +214,7 @@
 
     <script>
         // MQTT Configuration
-        const MQTT_BROKER = 'ws://farlab.infosci.cornell.edu:1884';
+        const MQTT_BROKER = 'wss://farlab.infosci.cornell.edu:1884/mqtt';
         const MQTT_USERNAME = 'idd';
         const MQTT_PASSWORD = 'device@theFarm';
         
@@ -222,30 +222,45 @@
         let mqttClient = null;
         let joystickPosition = { x: 0, y: 0 };
         let isDragging = false;
+        const socket = io();
         
         // Initialize MQTT
         function initMQTT() {
             const clientId = 'game_controller_' + Math.random().toString(16).substr(2, 8);
             
-            mqttClient = mqtt.connect(MQTT_BROKER, {
-                clientId: clientId,
-                username: MQTT_USERNAME,
-                password: MQTT_PASSWORD,
-                keepalive: 60,
-                clean: true
+            // mqttClient = mqtt.connect(MQTT_BROKER, {
+            //     clientId: clientId,
+            //     username: MQTT_USERNAME,
+            //     password: MQTT_PASSWORD,
+            //     keepalive: 60,
+            //     clean: true
+            // });
+            // const socket = io();
+            console.log('Connecting to MQTT...');
+            
+            socket.on('connect', () => {
+            console.log('Connected');
+            document.getElementById('status').textContent = '✓ Connected';
+            document.getElementById('status').className = 'status connected';
             });
             
-            mqttClient.on('connect', () => {
-                console.log('Connected to MQTT');
-                document.getElementById('status').textContent = '✓ Connected to MQTT';
-                document.getElementById('status').className = 'status connected';
+            socket.on('disconnect', () => {
+                console.log('Disconnected');
+                document.getElementById('status').textContent = '✗ Disconnected';
+                document.getElementById('status').className = 'status disconnected';
             });
+
+            // mqttClient.on('connect', () => {
+            //     console.log('!!Connected to MQTT');
+            //     document.getElementById('status').textContent = 'Connected to MQTT';
+            //     document.getElementById('status').className = 'status connected';
+            // });
             
-            mqttClient.on('error', (err) => {
-                console.error('MQTT error:', err);
-                document.getElementById('status').textContent = '✗ MQTT Error';
-                document.getElementById('status').className = 'status';
-            });
+            // mqttClient.on('error', (err) => {
+            //     console.error('MQTT error:', err);
+            //     document.getElementById('status').textContent = 'MQTT Error';
+            //     document.getElementById('status').className = 'status';
+            // });
         }
         
         // Select player
@@ -259,10 +274,10 @@
         
         // Send MQTT message
         function sendMessage(shoot = false) {
-            if (!mqttClient || !mqttClient.connected) {
-                console.log('MQTT not connected');
-                return;
-            }
+            // if (!mqttClient || !mqttClient.connected) {
+            //     console.log('MQTT not connected');
+            //     return;
+            // }
             
             const topic = `IDD/game/player${selectedPlayer}`;
             const payload = {
@@ -271,8 +286,9 @@
                 shoot: shoot
             };
             
-            mqttClient.publish(topic, JSON.stringify(payload));
-            
+            // mqttClient.publish(topic, JSON.stringify(payload));
+            socket.emit('mqtt_publish', { topic: topic, message: JSON.stringify(payload) });
+            console.log('Published to', topic, payload);
             if (shoot) {
                 console.log('SHOOT!', payload);
             }
