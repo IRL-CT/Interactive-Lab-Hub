@@ -31,8 +31,8 @@ Build interactive systems where **multiple devices communicate over a network** 
 5. Fortune Machine: Each Pi sends a random value that combines into one group-generated “fortune” message.
 
 ## Part B: Collaborative Pixel Grid
-<img width="565" height="600" alt="Screen Shot 2025-11-10 at 9 37 07 AM" src="https://github.com/user-att<img width="517" height="649" alt="Screen Shot 2025-11-10 at 9 37 19 AM" src="https://github.com/user-attachments/assets/cc91c1be-276d-4ea1-b71b-4cfdb742cc1e" />
-achments/assets/4a831f06-049b-453e-a9f7-40afd422a417" />
+![IMG_7852](https://github.com/user-attachments/assets/8ef8b5a9-216d-4727-a011-1c21fc465287)
+![IMG_7853](https://github.com/user-attachments/assets/2648c689-1285-4f56-8af0-898bd2f2f76f)
 
 ## Part C: Make Your Own
 
