@@ -340,11 +340,11 @@ For example:
 
 Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
 During the lecture, we mentioned questions to help characterize a material:
-**X = Raspberry Pi + Teachable Machine image classifier (live label + colored ring).**  
-The system classifies each camera frame and overlays a small text label (with confidence) and a colored ring indicating the class category.
+
 
 ---
-
+**X = Raspberry Pi + Teachable Machine image classifier (live label + colored ring).**  
+The system classifies each camera frame and overlays a small text label (with confidence) and a colored ring indicating the class category.
 **What can you use X for?**
 - Ambient, **glanceable awareness** of current activity (typing/writing/phone/drink/idle).
 - Lightweight **focus/distractor indicators** for personal productivity or demo kiosks.
