@@ -302,6 +302,108 @@ For example:
 1. How could change your interactive system to address this?
 1. Are there optimizations you can try to do on your sense-making algorithm.
 
+
+Part C — Test the Interaction Prototype
+✅ When does it do what it’s supposed to do?
+
+Stable, front-facing view: Subject centered ~0.5–1.0 m from the camera with good lighting.
+
+Canonical poses/objects:
+
+Typing/writing with clear keyboard/notebook in view → typing / writing
+
+Holding a cup clearly → drink
+
+Phone visible at chest/face level → phone
+
+Hands off devices, neutral posture → idle
+
+Low background clutter: Few moving objects; single user in frame.
+
+❌ When does it fail?
+
+Lighting extremes: Backlight, low light, or strong glare (glossy phone/cup).
+
+Fast motion/occlusion: Hand blocks the object; quick transitions between classes.
+
+Atypical objects/angles: New bottle shapes not in training; side-angle typing.
+
+Multiple people: Another person or moving background enters the frame.
+
+🤔 Why does it fail?
+
+Domain shift: Live scene differs from the training set (object shapes, colors, angles).
+
+Per-frame classification: No temporal smoothing → transient frames flicker.
+
+Confusable features: Phone vs. dark cup; writing posture vs. idle with pen in hand.
+
+🧪 Other scenarios likely to cause problems
+
+Wearables or desk props similar to trained objects (e.g., black TV remote ≈ phone).
+
+Mirrors/monitors reflecting hands/objects.
+
+Partial crops when the object is at the edge of the frame.
+
+Multiple simultaneous cues (holding a cup while typing).
+
+👤 Think about someone using the system
+
+Are they aware of uncertainties?
+
+Partially. They see the label text and ring color, but not a clear uncertainty cue. Confidence is shown as a percent, yet users may not know what “62%” means.
+
+How bad is a misclassification?
+
+Low-risk for this use case (ambient feedback). A wrong color/label is a minor nuisance, but frequent flicker can reduce trust and make users ignore the system.
+
+How could we change the interaction to address this?
+
+Graceful “Unknown” state: If confidence < threshold (e.g., 60–70%), show Unknown (gray ring) instead of guessing.
+
+Hysteresis (“stickiness”): Require higher confidence to switch states than to stay, reducing flip-flop.
+
+Change-on-commit: Update the label only after k consistent frames (e.g., 3) or a short 200–300 ms dwell.
+
+Contextual phrasing: Replace raw % with Low/Med/High confidence badges or a tiny bar to make uncertainty legible.
+
+User calibration tip: One-time prompt to center themselves and check lighting.
+
+⚙️ Optimizations to try (sense-making algorithm)
+
+Temporal smoothing
+
+k-of-N majority: Update state when ≥k of last N frames agree (e.g., 3/5).
+
+Exponential moving average on class probabilities; pick the argmax of smoothed scores.
+
+Top-2 margin: Switch only if p_top − p_second > δ (e.g., 0.15).
+
+Decision policy
+
+Confidence threshold: Below τ → Unknown; above τ → commit.
+
+Class-specific τ: Stricter for easily confused classes (e.g., phone).
+
+Hysteresis: Enter distracted at τ_hi, leave at τ_lo (τ_hi > τ_lo).
+
+Input preprocessing
+
+Resolution control: Inference on a downscaled copy (e.g., 320×240) for speed, but keep overlay at full res.
+
+Exposure/white balance lock: Reduce frame-to-frame brightness shifts.
+
+ROI crop: Favor center/lower-center where hands/objects usually appear.
+
+Model/data
+
+Augment with lighting/angle variations; add hard negatives (remote, dark mug vs. phone).
+
+Balance classes and include “empty desk/idle” variants.
+
+Quantized TFLite (already typical with TM); set num_threads for tflite runtime if available.
+
 ### Part D
 ### Characterize your own Observant system
 
