@@ -190,49 +190,92 @@ In an earlier version of this class students experimented with foundational comp
 
 **\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
 
-**Interaction Concept**
+Part B — Construct a Simple Interaction
+Interaction concept
 
-The prototype functions as a personal focus-feedback system running fully on the Raspberry Pi.
-Using the on-board camera, the system continuously classifies the user’s activity among five states(typing ⌨️, writing ✍️, drinking 🥤, phone 📱, and idle 💭), through the trained Teachable Machine image model.
+I prototyped a live, on-device activity indicator on Raspberry Pi using a Teachable Machine image model. The Pi camera captures frames continuously; each frame is classified, and the result is shown directly on the video as:
 
-Each user’s current action state is detected by the camera (typing, writing, drinking, phone, idle) and represented by a distinct icon on screen:
-| State   | Icon| Meaning                  |
-| :------ | :-- | :----------------------- |
-| Typing  | ⌨️  | actively working         |
-| Writing | ✍️  | note-taking / study      |
-| Drink   | 🥤  | short physical break     |
-| Phone   | 📱  | distracted by device     |
-| Idle    | 💭  | not engaged              |
+Small label text in the top-left (e.g., drink 88%).
 
-To reduce flickering and reflect longer-term behavior:
-- The system evaluates the dominant state within every 5-minute window (the state that appears for the longest duration).
-- Every 5 minutes, a new summary icon is appended to the right side of the screen, forming a timeline of focus trends throughout the session.
+A colored ring centered on the image that encodes the class category for quick, at-a-glance feedback.
 
-**Real-Time Feedback Logic:**
-- A color ring at the center gives immediate feedback:
+Color mapping (BGR):
 
-  🟢 Focused – shown when the current state ∈ {typing, writing}.
+typing, writing → green (focused work)
 
-  🟠 Break – shown when the current state ∈ {idle, phone, drink}.
-- A small speaker connected to the Pi provides auditory feedback:
+phone → orange (distracted)
 
-  🔔 Reward sound plays when five consecutive focused icons (typing or writing) are detected — indicating sustained attention.
+drink → light blue (short break)
 
-  ⚠️ Reminder tone plays when three consecutive non-focused states are detected (idle, phone, or drink) — encouraging the user to re-engage.
+idle → gray (not engaged)
 
-**User Flow:**
+Any unmapped label → default gray
 
-1. User starts the session → camera begins recognition.
+This mirrors the “boat detector” style from lecture: immediate classification + minimal visual cue.
 
-2. Detected typing → icon ⌨️ + green ring 🟢 Focused on TFT screen.
+Inputs and outputs
 
-3. After five consecutive focused detections → Raspberry Pi plays a positive “ding” reward sound (via aplay).
+Input: Live camera frame → model.tflite (Teachable Machine) via teachable_machine_lite.classify_image("frame.jpg").
+The model returns a dict like {'label': '2 drink', 'confidence': 87.66, ...}; I strip numeric prefixes (e.g., 2 drink → drink) before display.
 
-4. If the user is idle or on the phone for three successive predictions → a gentle alert sound is played.
+Output (visual):
 
-5. Every five minutes, the system adds a new icon summarizing the dominant state of that period.
+Label text: <class> <confidence%> (small font, top-left).
+
+Colored ring: center overlay; color chosen by the class mapping above.
+
+What I experimented with
+
+Parsing labels: The model includes numeric prefixes in label (e.g., 2 drink). I split by the first space and normalize to lowercase so the color map is robust.
+
+Overlay tuning: Small font (0.6, thickness 1) to avoid obscuring the view; ring radius scales with frame size (min(w, h) // 5) and uses anti-aliased strokes for clarity.
+
+Frame-by-frame loop: Kept the loop simple (save → classify → draw) to ensure the interaction feels immediate and mirrors the lecture demo.
+
+How to run
+
+Place these files together in Lab 5/: partB_demo.py, model.tflite, labels.txt.
+
+From a Pi desktop session (local monitor or VNC), run:
+
+python3 partB_demo.py
 
 
+Press ESC to quit.
+If the camera window doesn’t appear, try cv.VideoCapture(1) or verify the camera:
+USB cam → ls -l /dev/video* • Pi cam → libcamera-hello -t 3000.
+
+Observations
+
+The ring gives instant, glanceable state without reading text.
+
+Confidence is stable when subjects are centered and lighting is reasonable.
+
+Without smoothing, very rapid transitions can briefly flicker—expected for a per-frame demo.
+
+Design choices
+
+Simplicity first: Kept only the elements that are visually useful in real time (label + color).
+
+Edge-friendly: Uses teachable_machine_lite and OpenCV; no additional runtime services.
+
+Human-readable mapping: Semantic color mapping makes the class meaning obvious.
+
+Limitations and next steps
+
+No debouncing or history: Flicker can occur when frames are ambiguous; adding a 3-frame commit would reduce this.
+
+No audio/TFT mirroring: This version avoids extra dependencies; a tiny beep on class change or a framebuffer mirror to a small TFT (/dev/fb1) could be added later.
+
+Model quality bound: Mislabels are mostly due to training data, lighting, and camera angle; improving the dataset would help.
+
+Files (for reproducibility)
+
+partB_demo.py — the script (live label + colored ring).
+
+model.tflite — Teachable Machine image model used.
+
+labels.txt — class labels for the model.
 
 ### Part C
 ### Test the interaction prototype
