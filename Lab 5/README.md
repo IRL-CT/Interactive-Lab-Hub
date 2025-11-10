@@ -102,7 +102,7 @@ Consider how you might use this position based approach to create an interaction
 
 (You might also consider how this notion of percentage control with hand tracking might be used in some of the physical UI you may have experimented with in the last lab, for instance in controlling a servo or rotary encoder.)
 
-
+I’ll use a position-to-percentage idea and map pose geometry to a 0–100% control. With hand tracking, take the distance between the thumb tip and index tip, divide by hand size (e.g., palm width) to normalize, then smooth it slightly. That percentage can directly drive the Lab 4 servo (0% → 0°, 100% → 180°) or step a rotary encoder value. Simple thresholds make quick commands: <15% = mute, >85% = max; the middle range gives continuous control (volume/brightness/scroll). The same approach also works with face (face box height ≈ distance → screen brightness) or body (torso lean angle → scroll speed). Do a quick min/max calibration and show the live percent on screen so users see “move a little → change a little,” matching the Lab 4 hardware loop.
 
 #### Moondream Vision-Language Model
 
