@@ -285,12 +285,6 @@ Lighting conditions affect classification confidence.
 
 Future extensions: add simple beep on label change or mirror video to a small TFT (/dev/fb1) display.
 
-📁 Files
-Lab 5/
- ├─ partB_demo.py        # live label + colored ring script
- ├─ model.tflite         # trained Teachable Machine model
- ├─ labels.txt           # class labels
- └─ README.md            # this documentation
 
 ### Part C
 ### Test the interaction prototype
