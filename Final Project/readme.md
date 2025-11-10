@@ -26,7 +26,7 @@ When a participant begins, they choose one of six symbolic elements — Fire �
 A computer screen displays the animation blended with a live camera feed of the user, allowing them to see both their reflection and their personalized constellation at the same time. As they move their hands or adjust their posture, gesture and touch sensors detect these actions and feed them back into the system. The constellation reacts instantly — expanding, contracting, or changing colors — as if breathing together with the user.
 
 Through these visual and sensory responses, Inner Constellation transforms abstract emotions into tangible experiences. It connects technology and self-awareness in a poetic way, turning each participant’s reflection on the screen into a unique portrait of their energy and mood in that moment.   
-<img src="16651762814138_.pic_hd.jpg" alt="Inner Constellation concept image" width="500">
+<img src="prototype.png" alt="Inner Constellation concept image" width="500">
 
 ### Timeline
 | **Milestone** | **Date** | **Notes / Details** |
@@ -63,23 +63,17 @@ Through these visual and sensory responses, Inner Constellation transforms abstr
 
 If any hardware or sensor components fail, the system can still demonstrate the core experience through simplified input and display modes.
 
-- **Gesture Sensor Fails:**  
-  Use keyboard or mouse input to manually trigger expansion/contraction of the energy circle.
+### Challenges & Fall Back Plans
 
-- **NFC Reader Malfunction:**  
-  Replace NFC element selection with on-screen buttons for choosing Fire, Water, Wind, Earth, Light, or Shadow.
+| Category | Risk / Challenge | Mitigation |
+|-----------|------------------|-------------|
+| **Hardware** | Sensor or camera failure due to wiring or power issues. | Test components early; add keyboard/mouse fallback. |
+| **Gesture Detection** | Inaccurate or unstable hand tracking under different lighting. | Calibrate thresholds; add on-screen feedback. |
+| **Performance** | Rendering + live camera feed may overload Raspberry Pi. | Lower resolution / particle count; optimize code. |
+| **Integration** | Combining gesture, NFC, and camera may cause conflicts. | Build modular code; integrate step-by-step. |
+| **Lighting / Projection** | Bright rooms may wash out visuals. | Adjust brightness; use diffuser or darker backdrop. |
+| **User Experience** | Users may not understand how to interact. | Add quick on-screen hints; ensure immediate feedback. |
+| **Timeline** | Tight schedule for testing and polishing. | Lock MVP early; layer extra features gradually. |
 
-- **Camera Not Working:**  
-  Run the visualization without live reflection mode — display only the animated energy field on screen.
-
-- **Projector Unavailable:**  
-  Switch to a standard monitor or laptop display for demonstration.
-
-- **Performance or Frame Rate Issues:**  
-  Lower the resolution or particle density in the animation to maintain smooth real-time rendering.
-
-- **Sound Output Problem:**  
-  Disable audio feedback and rely on visual responses only.
-
-💡 *These fallback modes ensure the installation remains functional and visually expressive, even if some hardware components are unavailable.*
+*These fallback modes ensure the installation remains functional and visually expressive, even if some hardware components are unavailable.*
 
