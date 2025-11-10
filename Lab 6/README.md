@@ -23,8 +23,8 @@ Build interactive systems where **multiple devices communicate over a network** 
 ---
 
 ## Part A: MQTT Messaging
-
-1. **Party Lights:** Each Pi senses sound or light and sends colorful flashes to a shared web grid that reacts like a disco.
+Brainstormed Ideas:
+1. Party Lights: Each Pi senses sound or light and sends colorful flashes to a shared web grid that reacts like a disco.
 2. Mood Wall: Each Pi sends a color based on room lighting or emotion, forming a shared “mood board.”
 3. Distributed Band: Each Pi plays a different sound when triggered, together they form live music.
 4. Presence Mirror: Each Pi lights up when someone is nearby, showing who’s “present” across locations.
