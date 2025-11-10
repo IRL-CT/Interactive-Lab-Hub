@@ -2,7 +2,9 @@
 
 **NAMES OF COLLABORATORS HERE**
 
-For submission, replace this section with your documentation!
+Celeste (Lianne) Bisch (lb854)
+
+<!-- For submission, replace this section with your documentation!
 
 ---
 
@@ -234,10 +236,133 @@ Before submitting:
 - [ ] Include photos/videos/diagrams  
 - [ ] Document user testing with non-team members
 - [ ] Add reflection on learnings
-- [ ] List team names at top
+- [ ] List team names at top -->
 
-**Your README = story of what YOU built!**
+<!-- **Your README = story of what YOU built!**
 
 ---
 
-Resources: [MQTT Guide](https://www.hivemq.com/mqtt-essentials/) | [Paho Python](https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php) | [Flask-SocketIO](https://flask-socketio.readthedocs.io/)
+Resources: [MQTT Guide](https://www.hivemq.com/mqtt-essentials/) | [Paho Python](https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php) | [Flask-SocketIO](https://flask-socketio.readthedocs.io/) -->
+
+
+## Part B
+
+**📸 Include: Screenshot of grid + photo of your Pi setup**
+
+<img src="imgs/grid.png" width="300"/>
+
+[Video of tesitng](https://drive.google.com/file/d/1_v4XIgpmq1ViQQwSpHEUpifqzHxQ4F5R/view?usp=drive_link)
+
+
+
+## Part C: Make Your Own
+
+**1. Project Description**
+<!-- - What does it do? Why interesting? User experience? -->
+Our project is a shooting game where each Raspberry Pi is connected to a joystick. There are two teams—left and right—and multiple players can join either team. Each player starts with three lives; once a player is hit three times, they are eliminated. When all players on a team are eliminated, the game is over. Players can move freely within their team’s area.
+
+Each Raspberry Pi has a unique label (e.g., game/player1) and transmits its tilt movements and shooting actions (based on joystick clicks) via MQTT. The server receives and processes each player’s movement and shooting data.
+
+**2. Architecture Diagram**
+<!-- - Hardware, connections, data flow
+- Label input/computation/output -->
+
+<img src="imgs/Rasberry Pi.png" width="800"/>
+
+**3. Build Documentation**
+- Photos of each Pi + sensors
+   - [Video of prototype](https://drive.google.com/file/d/1q2kW2iP4jFZXachqrEmqX1LXDZw4-zAk/view?usp=drive_link)
+   - [Video of prototpe with joystick](https://drive.google.com/file/d/1gfdvAMW0J8bkEe9sS9Wu_g4WxeiCa-Uz/view?usp=drive_link)
+
+- MQTT topics used: game/player1, game/player2
+<!-- - Code snippets with explanations: -->
+
+### How it works on the server side
+
+A canvas game for two players. 
+The browser listens to joystick updates coming from MQTT (relayed via Socket.IO) and moves/shoots accordingly. First to hit the other 3 times wins.
+
+- Setup
+   - Get the canvas and 2D context: const ctx = canvas.getContext('2d');
+   - Open a Socket.IO connection: const socket = io();
+- Players
+   - Two Player objects (blue = left, red = right):
+```bash
+class Player { /* x,y,color,side,hits,alive; draw(); collidesWith(); getHit(); */ }
+```
+   - Each player has a target position and moves smoothly toward it in moveToTarget().
+- Joystick → Position
+   - MQTT payload includes joy_x, joy_y in [-1, 1].
+   - setTargetFromJoystick(x, y) maps these to screen coordinates:
+   - Left player stays in left half, right player in right half.
+   - Values are clamped to canvas bounds.
+- Shooting
+   - When payload has shoot: true, spawn a Bullet heading toward the opponent:
+   - class Bullet { /* x,y,direction,active; update(); draw(); */ }
+   - Direction: player1 → +1 (right), player2 → -1 (left).
+
+- Collisions & Hits
+   - Each frame, bullets update() and are checked with player.collidesWith(bullet).
+   - On hit: player.getHit() increments hits; 3 hits sets alive = false and ends the game.
+
+- Game loop
+   - requestAnimationFrame(gameLoop) updates positions, filters inactive bullets, checks collisions, and draws the scene (players, bullets, midline, HUD).
+
+- Minimal DOM updates
+   - updateHealthDisplay() updates the hit counters and small health bars under each player card.
+- Game over / restart
+   - endGame(winnerName) shows an overlay.
+   - restartGame() resets players/bullets and emits socket.emit('restart_game').
+
+### Socket/Message contract
+- Server → Client (via Socket.IO):
+```bash
+socket.emit('mqtt_message', {
+  topic: 'IDD/game/player1',   // or 'IDD/game/player2'
+  payload: { joy_x: 0.4, joy_y: -0.2, shoot: false }
+});
+```
+- Client → Server:
+```bash
+socket.emit('restart_game');
+```
+
+- Example payload
+```bash
+{ "joy_x": -1.0, "joy_y": 0.6, "shoot": true }
+```
+   - Move target left/right with joy_x, up/down with joy_y.
+   - When shoot is true, a bullet spawns from that player.
+
+- Example code: 
+```bash
+mosquitto_pub -h farlab.infosci.cornell.edu   -u idd -P 'device@theFarm'   -t IDD/game/player1   -m '{"joy_x":0.3,"joy_y":0.6,"shoot"false}'
+```
+
+### How to Run The Shooting Game
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+python game_server.py
+```
+
+Then, access to the 
+
+- Game URL:     http://0.0.0.0:5002
+- Controller:   http://0.0.0.0:5002/controller
+
+**4. User Testing**
+- **Test with 2+ people NOT on your team**
+- Photos/video of use
+- What did they think before trying?
+- What surprised them?
+- What would they change?
+
+**5. Reflection**
+- What worked well?
+- Challenges with distributed interaction?
+- How did sensor events work?
+- What would you improve?

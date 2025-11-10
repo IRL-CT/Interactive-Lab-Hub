@@ -1,4 +1,4 @@
-# How to run this game
+# How to Run The Shooting Game
 
 ```bash
 python3 -m venv .venv
