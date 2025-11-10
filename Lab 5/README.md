@@ -231,10 +231,6 @@ To reduce flickering and reflect longer-term behavior:
 5. Every five minutes, the system adds a new icon summarizing the dominant state of that period.
 
 
-**referance**
-
-https://dl.acm.org/doi/10.1145/3689648?utm_source=chatgpt.com
-
 
 ### Part C
 ### Test the interaction prototype
