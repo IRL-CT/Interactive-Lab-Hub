@@ -1,0 +1,18 @@
+[Unit]
+Description=Pixel Grid Server - Interactive Device Design Lab 6
+After=network.target
+
+[Service]
+Type=simple
+User=farlab
+WorkingDirectory=/home/farlab/Interactive-Lab-Hub/Lab 6
+Environment="PATH=/home/farlab/Interactive-Lab-Hub/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ExecStart=/home/farlab/Interactive-Lab-Hub/.venv/bin/python3 app.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=pixel_grid
+
+[Install]
+WantedBy=multi-user.target
