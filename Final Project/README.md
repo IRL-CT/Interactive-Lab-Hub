@@ -2,6 +2,8 @@
 
 Using the tools and techniques you learned in this class, design, prototype and test an interactive device.
 
+<details><summary><strong>Instruction</strong></summary>
+
 Project plan - November 10  (updated documentation due in Canvas November 11)
 
 ** Peer feedback on Project plans: November 13 ** <-- this is part of class participation!
@@ -29,8 +31,9 @@ Your project is to design and build an interactive device to suit a specific app
 4. Archive of all code, design patterns, etc. used in the final design. (As with labs, the standard should be that the documentation would allow you to recreate your project if you woke up with amnesia.)
 5. Video of someone using your project
 6. Reflections on process (What have you learned or wish you knew at the start?)
-
 7. Group work distribution questionnaire
+
+
 
 ## Change of Design
 
@@ -55,4 +58,161 @@ You can and are not required to work in teams. Be clear in documentation who con
 ## Examples
 
 [Here is a list of good final projects from previous classes.](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/wiki/Previous-Final-Projects)
+
+</details>
+
+
+# The Museum of Lost Sound
+
+
+## 🎯 Big Idea
+
+This project creates a **physical, touch-based interactive exhibit** where visitors can explore “lost sounds” of retro technologies—typewriters, rotary phones, cassette players, and more.
+
+When a visitor touches or lifts a physical object:
+
+* 🎵 A corresponding nostalgic sound plays through a Bluetooth speaker
+* 🖥️ The Mini PiTFT displays historical information, images, or fun facts
+* ✨ LEDs provide immediate visual feedback
+* 🔧 *(Optional)* A small servo animates the object for added immersion
+
+The goal is to offer a **tangible, multisensory experience** that teaches, entertains, and invites curiosity about past technologies.
+
+---
+
+## 🧩 Interaction Design
+
+### ▶️ **Input**
+
+| Action                  | Sensor                             | Purpose                                                 |
+| ----------------------- | ---------------------------------- | ------------------------------------------------------- |
+| Touch object            | **MPR121 Capacitive Touch Sensor** | Identifies which item was touched                       |
+| Hand approach / gesture | **APDS9960**                       | Pre-trigger reaction when a hand gets close             |
+| Rotary selection        | **Rotary Encoder**                 | Switch between multiple sounds/info for the same object |
+| Button input            | **Qwiic Buttons (Red / Green)**    | “Next sound,” “Replay,” or “Mode switch”                |
+
+---
+
+### ▶️ **Output**
+
+| Output Type           | Component                 | Purpose                                          |
+| --------------------- | ------------------------- | ------------------------------------------------ |
+| Audio                 | **Bluetooth Speaker**     | Plays the corresponding nostalgic sound          |
+| Visual                | **Mini PiTFT**            | Displays text, images, or facts                  |
+| Light                 | **PCF8574 + LEDs**        | Light feedback when interacting                  |
+| Movement *(optional)* | **9G Servo + Servo pHAT** | Small animations (e.g., typewriter arm movement) |
+
+---
+
+## 🛠️ Hardware Mapping
+
+### **Input → Output Flow**
+
+```
+User touches object → MPR121 triggers →
+Raspberry Pi identifies item →
+Bluetooth speaker plays sound +
+Mini PiTFT shows content +
+LEDs light up →
+(Optional) Servo animates object
+```
+
+### **Overall Mapping**
+
+| Input Component                | Function          | Output Component  | Function           |
+| ------------------------------ | ----------------- | ----------------- | ------------------ |
+| MPR121                         | Touch detection   | Bluetooth Speaker | Audio playback     |
+| APDS9960                       | Gesture/proximity | Mini PiTFT        | Display content    |
+| Rotary Encoder / Qwiic Buttons | User navigation   | PCF8574 + LEDs    | Light feedback     |
+| —                              | —                 | Servo Motor       | Optional animation |
+
+---
+
+## 📦 Materials List
+
+| Component                      | Purpose                          |
+| ------------------------------ | -------------------------------- |
+| Raspberry Pi 5 Model B         | Main controller                  |
+| Pi Power Supply                | Power                            |
+| 64GB MicroSD                   | Operating system & project files |
+| Mini PiTFT                     | Visual display                   |
+| MPR121 Capacitive Sensor       | Touch detection                  |
+| APDS9960                       | Gesture & proximity detection    |
+| Rotary Encoder + Qwiic Buttons | Navigation & control             |
+| PCF8574 GPIO Expander + LEDs   | Light feedback                   |
+| 9G Servo + Servo pHAT          | Optional object animation        |
+| Bluetooth Speaker              | High-quality audio output        |
+| Breadboard, wires, copper tape | Prototyping, touch connection    |
+
+---
+
+## 🗂️ Project Timeline
+
+| Milestone                          | Date   | Notes                                                  |
+| ---------------------------------- | ------ | ------------------------------------------------------ |
+| **Hardware Setup**                 | Nov 15 | Set up Pi, PiTFT, sensors, audio; verify components    |
+| **Module Development**             | Nov 18 | Build: touch detection → audio → display pipeline      |
+| **Module Testing**                 | Nov 20 | Test each object individually                          |
+| **System Integration**             | Dec 1  | Combine all objects, sensors, LEDs, audio              |
+| **User Interaction Testing**       | Dec 5  | Observe behavior; tune sensitivity & feedback          |
+| **Final Assembly & Documentation** | Dec 14 | Assemble final exhibit, record demo, finalize write-up |
+
+---
+
+## 🔍 Testing Plan
+
+### ✔ Module Testing
+
+* Each MPR121 touch point triggers correctly
+* Audio playback has correct mapping
+* PiTFT displays the proper text/images
+* Gesture detection triggers pre-animations or light cues
+
+### ✔ Integration Testing
+
+* Switching between objects works reliably
+* LED + audio + display timing is synchronized
+* Servo movement (if used) is stable and safe
+
+### ✔ User Testing
+
+Focus on:
+
+* Is it intuitive where to touch?
+* Are visuals readable on the PiTFT?
+* Do sounds feel meaningful and nostalgic?
+* Do LEDs improve discoverability?
+
+User testing data includes:
+
+* Time to understand interaction
+* Behavioral observations
+* Confusion points
+* Suggested improvements
+
+---
+
+## 🧯 Fallback Plan
+
+| Situation              | Backup Plan                                                    |
+| ---------------------- | -------------------------------------------------------------- |
+| **MPR121 fails**       | Trigger audio manually using Qwiic buttons (Wizard-of-Oz mode) |
+| **PiTFT malfunctions** | Output simplified info via terminal or LED blink codes         |
+| **Bluetooth issues**   | Switch to wired speaker or piezo buzzer                        |
+| **Time constraints**   | Build with 3–5 core objects instead of full set                |
+
+---
+
+## 📁 Final Documentation (to be completed at project submission)
+
+The final submission will include:
+
+* Design process documentation
+* Wiring diagrams, flowcharts, and hardware layout
+* Full source code with comments
+* Photos of prototype, testing, and final build
+* Demo video of user interaction
+* Reflection & lessons learned
+
+---
 
