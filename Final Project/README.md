@@ -228,14 +228,9 @@ We have successfully created a system where:
 5.  It loads the corresponding `.txt` file and tells the `display.py` class to show the object's name and its description on the **PiTFT screen**.
 6.  The `display.py` class correctly wraps the text to fit the screen.
 
----
-
 **Video Showcase**
 
 https://github.com/user-attachments/assets/73619182-87a8-4e3f-9667-aa8d750fe627
-
-
----
 
 **Next Steps**
 
