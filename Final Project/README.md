@@ -216,3 +216,27 @@ The final submission will include:
 
 ---
 
+### 11/15 Log
+
+**What We've Built So Far**
+
+We have successfully created a system where:
+1.  A user touches a sensor pad (connected to the **MPR121**).
+2.  The `main.py` script detects this touch.
+3.  It looks up the pad number in the `config.py` file.
+4.  It tells the `audio_player.py` to play the correct `.mp3` sound.
+5.  It loads the corresponding `.txt` file and tells the `display.py` class to show the object's name and its description on the **PiTFT screen**.
+6.  The `display.py` class correctly wraps the text to fit the screen.
+
+---
+
+**Video Showcase**
+
+https://github.com/user-attachments/assets/73619182-87a8-4e3f-9667-aa8d750fe627
+
+
+---
+
+**Next Steps**
+
+The core loop works, but the user experience can be improved. Right now, a user can press multiple buttons rapidly, causing sounds to interrupt each other and the display to flash. Our next step is to manage the "state" of the exhibit and change the interaction to when users pick up the object, the device will play the sound.
