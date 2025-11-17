@@ -267,7 +267,7 @@ Each Raspberry Pi has a unique label (e.g., `game/player1`) and transmits its ti
 
 ## 2. Architecture Diagram
 
-![Architecture Diagram](image-2.png)
+![Architecture Diagram](imgs/image-2.png)
 
 ## 3. Build Documentation
 
