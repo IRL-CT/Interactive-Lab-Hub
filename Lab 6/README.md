@@ -1,3 +1,115 @@
+Team Members: jc3828 Junxiong Chen, cc2952 Chiahsuan Chang
+
+# Project Documentation
+
+Our project connects two Raspberry Pis to play a simple battleship game using MQTT for communication. Each Pi acts as a player — one host and one client. Players take turns selecting grid cells, and messages like “hit,” “miss,” or “end” are sent between the Pis through the MQTT broker. We used small image displays and touch input to make the game interactive. The main focus was on designing reliable communication and keeping both devices synchronized during gameplay.
+
+
+When it’s the opponent’s turn, the game blocks and waits on an event or message from MQTT, effectively pausing the local player until a “turn” or “action” message is received. This ensures that each player can only make a move when it’s their turn, keeping both Pis synchronized without busy-waiting.
+
+## How to play the game
+
+
+```
+Battleship Game Flow (Compact 3×4 Grid)
+
+Turn	Player Action	Grid State
+0	Initial state	
+
+     1   2   3   4
+   ┌───┬───┬───┬───┐
+ A │   │   │   │   │
+   ├───┼───┼───┼───┤
+ B │   │   │   │   │
+   ├───┼───┼───┼───┤
+ C │   │   │   │   │
+   └───┴───┴───┴───┘
+
+| 1    | Player 1 hits A1 (Battleship) | Map of Player 2
+
+     1   2   3   4
+   ┌───┬───┬───┬───┐
+ A │ B │   │   │   │
+   ├───┼───┼───┼───┤
+ B │   │   │   │   │
+   ├───┼───┼───┼───┤
+ C │   │   │   │   │
+   └───┴───┴───┴───┘
+
+| 2    | Player 2 misses C2 | Map of Player 1
+
+     1   2   3   4
+   ┌───┬───┬───┬───┐
+ A │   │   │   │   │
+   ├───┼───┼───┼───┤
+ B │   │   │   │   │
+   ├───┼───┼───┼───┤
+ C │   │ X │   │   │
+   └───┴───┴───┴───┘
+
+| 3    | Player 1 hits B3 (Destroyer) | Map of Player 2
+
+     1   2   3   4
+   ┌───┬───┬───┬───┐
+ A │ B │   │   │   │
+   ├───┼───┼───┼───┤
+ B │   │   │ D │   │
+   ├───┼───┼───┼───┤
+ C │   │   │   │   │
+   └───┴───┴───┴───┘
+
+| 4    | Player 2 hits C4 (Submarine) | Map of Player 1
+
+     1   2   3   4
+   ┌───┬───┬───┬───┐
+ A │   │   │   │   │
+   ├───┼───┼───┼───┤
+ B │   │   │   │   │
+   ├───┼───┼───┼───┤
+ C │   │ X │   │ S │
+   └───┴───┴───┴───┘
+
+| 5    | Player 1 finishes all ships → game ends | Map of Player 2
+
+     1   2   3   4
+   ┌───┬───┬───┬───┐
+ A │ B │ B │   │   │
+   ├───┼───┼───┼───┤
+ B │   │   │ D │   │
+   ├───┼───┼───┼───┤
+ C │   │   │   │   │
+   └───┴───┴───┴───┘
+
+Legend:
+	•	B → Battleship hit
+	•	D → Destroyer hit
+	•	S → Submarine hit
+	•	X → Miss
+```
+
+## Videos
+[Waiting for event](https://drive.google.com/file/d/1caxutPKolDBzbmR787EIQ7XXxEGbfHXk/view?usp=sharing)
+
+[Victory, all ships taken down](https://drive.google.com/file/d/1caxutPKolDBzbmR787EIQ7XXxEGbfHXk/view?usp=sharing)
+
+<img src="./grid.jpg" alt="Grid Screen" width="200">
+
+
+# Reflection on Learnings
+
+Through this project, we got hands-on experience building a multiplayer game across two Raspberry Pis using MQTT. We learned how messages are sent and received, how to keep both devices in sync, and how even small delays or missed messages can confuse the players. We also realized how important it is to give clear feedback on the display, so players know what’s happening
+
+
+One thing to note is that because this is a two-player game, the setup cannot be completely symmetric. If both Pis try to start as “host” or “client” at the same time, the game will hang or fail to start. To handle this, we use an environment variable (or a simple configuration flag) to decide which Pi is the host and who takes the first turn. This ensures the game always starts correctly and both devices stay in sync.
+
+# User Feedback
+We did not test the game with people outside our team, so we only have our own impressions. Playing it ourselves, we found the turn synchronization mostly worked, but sometimes the display updates were slow or confusing. We also noticed that hitting the wrong cells felt a bit unclear without better visual feedback. Overall, it was a useful experience in managing two devices, using MQTT, and designing a playable interface, but external testing would help identify real usability issues.
+
+
+
+<details>
+  <summary><strong>Instructions (Click to Expand)</strong></summary>
+
 # Distributed Interaction
 
 **NAMES OF COLLABORATORS HERE**
@@ -241,3 +353,5 @@ Before submitting:
 ---
 
 Resources: [MQTT Guide](https://www.hivemq.com/mqtt-essentials/) | [Paho Python](https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php) | [Flask-SocketIO](https://flask-socketio.readthedocs.io/)
+</details>
+

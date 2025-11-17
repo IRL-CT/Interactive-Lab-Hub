@@ -76,3 +76,4 @@ while True:
     print(f"Servo angle: {servo_angle}")
     print(f"\n[Encoder sets base, Accel tilts needle, Combined = both]")
     time.sleep(0.07)
+

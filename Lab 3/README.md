@@ -1,40 +1,10 @@
 # Chatterboxes
-**NAMES OF COLLABORATORS HERE**
-[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
-
-In this lab, we want you to design interaction with a speech-enabled device--something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1).  First, we want you first to storyboard what you imagine the conversational interaction to be like. Then, you will use wizarding techniques to elicit examples of what people might say, ask, or respond.  We then want you to use the examples collected from at least two other people to inform the redesign of the device.
-
-We will focus on **audio** as the main modality for interaction to start; these general techniques can be extended to **video**, **haptics** or other interactive mechanisms in the second part of the Lab.
-
-## Prep for Part 1: Get the Latest Content and Pick up Additional Parts 
-
-Please check instructions in [prep.md](prep.md) and complete the setup before class on Wednesday, Sept 23rd.
-
-### Pick up Web Camera If You Don't Have One
-
-Students who have not already received a web camera will receive their [Logitech C270 Webcam](https://www.amazon.com/Logitech-Desktop-Widescreen-Calling-Recording/dp/B004FHO5Y6/ref=sr_1_3?crid=W5QN79TK8JM7&dib=eyJ2IjoiMSJ9.FB-davgIQ_ciWNvY6RK4yckjgOCrvOWOGAG4IFaH0fczv-OIDHpR7rVTU8xj1iIbn_Aiowl9xMdeQxceQ6AT0Z8Rr5ZP1RocU6X8QSbkeJ4Zs5TYqa4a3C_cnfhZ7_ViooQU20IWibZqkBroF2Hja2xZXoTqZFI8e5YnF_2C0Bn7vtBGpapOYIGCeQoXqnV81r2HypQNUzFQbGPh7VqjqDbzmUoloFA2-QPLa5lOctA.L5ztl0wO7LqzxrIqDku9f96L9QrzYCMftU_YeTEJpGA&dib_tag=se&keywords=webcam%2Bc270&qid=1758416854&sprefix=webcam%2Bc270%2Caps%2C125&sr=8-3&th=1) and bluetooth speaker on Wednesday at the beginning of lab. If you cannot make it to class this week, please contact the TAs to ensure you get these. 
-
-### Get the Latest Content
-
-As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. There are 2 ways you can do so:
-
-**\[recommended\]**Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the *personal access token* for this.
-
-```
-pi@ixe00:~$ cd Interactive-Lab-Hub
-pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2025
-pi@ixe00:~/Interactive-Lab-Hub $ git add .
-pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab3 updates"
-pi@ixe00:~/Interactive-Lab-Hub $ git push
-```
-
-Option 2: On your your own GitHub repo, [create pull request](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2022Fall/readings/Submitting%20Labs.md) to get updates from the class Interactive-Lab-Hub. After you have latest updates online, go on your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull` to get updates from your own GitHub repo.
+Cast of the video: (poor guys tortured by the aferMATH deployer)
+Estelle Zhang, Zirui Han
 
 ## Part 1.
 ### Setup 
-
-Activate your virtual environment
-
+Activate your virtual environment. (I retain this because I will always use it)
 ```
 pi@ixe00:~$ cd Interactive-Lab-Hub
 pi@ixe00:~/Interactive-Lab-Hub $ cd Lab\ 3
@@ -42,220 +12,133 @@ pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python3 -m venv .venv
 pi@ixe00:~/Interactive-Lab-Hub $ source .venv/bin/activate
 (.venv)pi@ixe00:~/Interactive-Lab-Hub $ 
 ```
-
-Run the setup script
-```(.venv)pi@ixe00:~/Interactive-Lab-Hub $ pip install -r requirements.txt  ```
-
-Next, run the setup script to install additional text-to-speech dependencies:
-```
-(.venv)pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ ./setup.sh
-```
-
 ### Text to Speech 
-
-In this part of lab, we are going to start peeking into the world of audio on your Pi! 
-
-We will be using the microphone and speaker on your webcamera. In the directory is a folder called `speech-scripts` containing several shell scripts. `cd` to the folder and list out all the files by `ls`:
-
-```
-pi@ixe00:~/speech-scripts $ ls
-Download        festival_demo.sh  GoogleTTS_demo.sh  pico2text_demo.sh
-espeak_demo.sh  flite_demo.sh     lookdave.wav
-```
-
-You can run these shell files `.sh` by typing `./filename`, for example, typing `./espeak_demo.sh` and see what happens. Take some time to look at each script and see how it works. You can see a script by typing `cat filename`. For instance:
-
-```
-pi@ixe00:~/speech-scripts $ cat festival_demo.sh 
-#from: https://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)#Festival_Text_to_Speech
-```
-You can test the commands by running
-```
-echo "Just what do you think you're doing, Dave?" | festival --tts
-```
-
-Now, you might wonder what exactly is a `.sh` file? 
-Typically, a `.sh` file is a shell script which you can execute in a terminal. The example files we offer here are for you to figure out the ways to play with audio on your Pi!
-
-You can also play audio files directly with `aplay filename`. Try typing `aplay lookdave.wav`.
-
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
-(This shell file should be saved to your own repo for this lab.)
-
+```
+#from: https://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)#Festival_Text_to_Speech
+echo "Good morning, oharyo, Zao Shang Hao, Gootten morgen, Eric Chen" | festival --tts
+```
 ---
-Bonus:
-[Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspberry pi which can be installed easily through python with:
-```
-pip install piper-tts
-```
-and used from the command line. Running the command below the first time will download the model, concurrent runs will be faster. 
-```
-echo 'Welcome to the world of speech synthesis!' | piper \
-  --model en_US-lessac-medium \
-  --output_file welcome.wav
-```
-Check the file that was created by running `aplay welcome.wav`. Many more languages are supported and audio can be streamed dirctly to an audio output, rather than into an file by:
 
-```
-echo 'This sentence is spoken first. This sentence is synthesized while the first sentence is spoken.' | \
-  piper --model en_US-lessac-medium --output-raw | \
-  aplay -r 22050 -f S16_LE -t raw -
-```
   
 ### Speech to Text
-
-Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
-
-Make sure you're running in your virtual environment with the dependencies already installed:
-```
-source .venv/bin/activate
-```
-
-Test if vosk works by transcribing text:
-
-```
-vosk-transcriber -i recorded_mono.wav -o test.txt
-```
-
-You can use vosk with the microphone by running 
-```
-python test_microphone.py -m en
-```
-
----
-Bonus:
-[Whisper](https://openai.com/index/whisper/) is a neural network–based speech-to-text (STT) model developed and open-sourced by OpenAI. Compared to Vosk, Whisper generally achieves higher accuracy, particularly on noisy audio and diverse accents. It is available in multiple model sizes; for edge devices such as the Raspberry Pi 5 used in this class, the tiny.en model runs with reasonable latency even without a GPU.
-
-By contrast, Vosk is more lightweight and optimized for running efficiently on low-power devices like the Raspberry Pi. The choice between Whisper and Vosk depends on your scenario: if you need higher accuracy and can afford slightly more compute, Whisper is preferable; if your priority is minimal resource usage, Vosk may be a better fit.
-
-In this class, we provide two Whisper options: A quantized 8-bit faster-whisper model for speed, and the standard Whisper model. Try them out and compare the trade-offs.
-
-Make sure you're in the Lab 3 directory with your virtual environment activated:
-```
-cd ~/Interactive-Lab-Hub/Lab\ 3/speech-scripts
-source ../.venv/bin/activate
-```
-
-Then test the Whisper models:
-```
-python whisper_try.py
-```
-and
-
-```
-python faster_whisper_try.py
-```
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
+```
+#!/bin/bash
+# ask_number_vosk.sh
+# Ask a number, record it, and transcribe with Vosk
+
+QUESTION="Please say a number, such as your phone number or zipcode."
+DURATION=5               # seconds to record
+OUTFILE="answer.wav"
+RESULT="result.txt"
+
+# Speak the question
+espeak "$QUESTION"
+
+echo "Recording for $DURATION seconds..."
+arecord -d $DURATION -f cd -t wav "$OUTFILE"
+
+echo "Transcribing with Vosk..."
+vosk-transcriber -i "$OUTFILE" -o "$RESULT"
+
+echo "Transcription saved to $RESULT"
+echo "Detected text:"
+cat "$RESULT"
+```
+
 
 ### 🤖 NEW: AI-Powered Conversations with Ollama
-
-Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
-
 #### Quick Start with Ollama
-
-**Installation** (takes ~5 minutes):
-```bash
-# Install Ollama
-curl -fsSL https://ollama.com/install.sh | sh
-
-# Download recommended model for Pi 5
-ollama pull phi3:mini
-
-# Install system dependencies for audio (required for pyaudio)
-sudo apt-get update
-sudo apt-get install -y portaudio19-dev python3-dev
-
-# Create separate virtual environment for Ollama (due to pyaudio conflicts)
-cd ollama/
-python3 -m venv ollama_venv
-source ollama_venv/bin/activate
-
-# Install Python dependencies in separate environment
-pip install -r ollama_requirements.txt
-```
 #### Ready-to-Use Scripts
 
-We've created three Ollama integration scripts for different use cases:
-
-**1. Basic Demo** - Learn how Ollama works:
-```bash
-python3 ollama_demo.py
-```
-
-**2. Voice Assistant** - Full speech-to-text + AI + text-to-speech:
-```bash
-python3 ollama_voice_assistant.py
-```
-
-**3. Web Interface** - Beautiful web-based chat with voice options:
-```bash
-python3 ollama_web_app.py
-# Then open: http://localhost:5000
-```
-
 #### Integration in Your Projects
-
-Simple example to add AI to any project:
-```python
-import requests
-
-def ask_ai(question):
-    response = requests.post(
-        "http://localhost:11434/api/generate",
-        json={"model": "phi3:mini", "prompt": question, "stream": False}
-    )
-    return response.json().get('response', 'No response')
-
-# Use it anywhere!
-answer = ask_ai("How should I greet users?")
-```
-
-**📖 Complete Setup Guide**: See `OLLAMA_SETUP.md` for detailed instructions, troubleshooting, and advanced usage!
-
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
-
-### Serving Pages
-
-In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
-
 ```
-pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
- * Serving Flask app "server" (lazy loading)
- * Environment: production
-   WARNING: This is a development server. Do not use it in a production deployment.
-   Use a production WSGI server instead.
- * Debug mode: on
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 162-573-883
+import speech_recognition as sr
+import requests
+import pyttsx3
+
+# URL of the local Ollama API
+OLLAMA_URL = "http://localhost:11434/api/generate"
+# Name of the model you have pulled (change if needed)
+MODEL      = "llama3"
+
+def listen():
+    """Capture microphone input and convert to text using Google Speech Recognition."""
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Speak now...")
+        r.adjust_for_ambient_noise(source)  # reduce background noise
+        audio = r.listen(source)
+    try:
+        text = r.recognize_google(audio)
+        print("You said:", text)
+        return text
+    except Exception as e:
+        print("Speech recognition failed:", e)
+        return ""
+
+def query_ollama(prompt):
+    """Send the recognized text to Ollama and collect the streamed response."""
+    data = {"model": MODEL, "prompt": prompt}
+    resp = requests.post(OLLAMA_URL, json=data, stream=True)
+    reply = ""
+    for line in resp.iter_lines():
+        if not line:
+            continue
+        part = line.decode("utf-8")
+        # Ollama streams JSON lines; extract the "response" field
+        if '"response":"' in part:
+            reply += part.split('"response":"')[1].split('"')[0]
+    print("Ollama:", reply)
+    return reply
+
+def speak(text):
+    """Speak the response aloud using offline TTS."""
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
+
+# Main loop: continuously listen → process → speak
+print("Start talking (say 'exit' or 'quit' to stop)")
+while True:
+    user_text = listen()
+    if not user_text:
+        continue
+    if user_text.lower() in ["exit", "quit", "stop"]:
+        break
+    answer = query_ollama(user_text)
+    speak(answer)
 ```
-From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
 
 ### Storyboard
 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
 
 \*\***Post your storyboard and diagram here.**\*\*
+![633ed1c52f3e6f34551f16214cfc09c1](https://github.com/user-attachments/assets/82466cbe-d8f7-40f5-9147-08a31e8b3b93)
+
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
 \*\***Please describe and document your process.**\*\*
+![95918264d08586473d2e751919934381](https://github.com/user-attachments/assets/54358e9c-3650-4f6b-a449-78afd5768293)
+
 
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
-
+[Acting out](https://drive.google.com/video/captions/edit?id=1U9JBEsrq14Mv1NO6AZO3RXu17p5BgyGX)
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+The participant seems not to enjoy the arithmetics (that's their problems >:( ) and they some times will react with a mixture of words and numbers, because they are calculating, or they are initially confused by the question.
 
-### Wizarding with the Pi (optional)
-In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
-
-\*\***Describe if the dialogue seemed different than what you imagined, or when acted out, when it was wizarded, and how.**\*\*
 
 # Lab 3 Part 2
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
+![ceddb4077bf1370bf7647e50cdba6596](https://github.com/user-attachments/assets/6795ee23-605c-4058-b945-5428bea37b84)
+
 
 ## Prep for Part 2
 
@@ -263,49 +146,202 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
 3. Make a new storyboard, diagram and/or script based on these reflections.
 
+```
+# -*- coding: utf-8 -*-
+import sounddevice as sd
+import numpy as np
+import json
+from vosk import Model, KaldiRecognizer
+import re
+import time
+import random
+import pandas as pd
+import subprocess
+import os
+from gtts import gTTS
+import warnings
+from word2number import w2n
+
+warnings.filterwarnings("ignore", message="FP16 is not supported on CPU")
+
+digits_vocab = [
+    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", 
+    "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", 
+    "sixty", "seventy", "eighty", "ninety"]     # The stt models are all so bad that I have to use a limited word list
+
+# Settings
+SAMPLE_RATE = 16000   # Whisper recommended sample rate
+ANSWER_DURATION = 30  # max recording time in seconds
+
+# load vosk model once
+model = Model("model")
+rec = KaldiRecognizer(model, 16000, json.dumps(digits_vocab))
+
+# Load CSV (must have 2 columns: Question, Answer)
+questions = pd.read_csv("questions.csv")
+
+# Counters
+count = 0
+win = 0
+
+def record_audio(duration=ANSWER_DURATION):
+    # Record audio for a fixed duration
+    print(f"Recording for {duration} seconds...")
+    audio = sd.rec(int(duration * SAMPLE_RATE), 
+                   samplerate=SAMPLE_RATE, 
+                   channels=1, 
+                   dtype='int16')
+    sd.wait()
+    print("Recording finished.")
+    return np.squeeze(audio)
+
+def transcribe_and_extract_numbers(audio):
+    # Transcribe speech to text and extract numbers
+    print("Transcribing with Vosk...")
+
+    # Ensure audio is PCM bytes (int16)
+    audio_bytes = audio.tobytes()
+
+    if rec.AcceptWaveform(audio_bytes):
+        result = json.loads(rec.Result())
+    else:
+        result = json.loads(rec.PartialResult())
+
+    text = result.get("text", "")
+    # Extract integers from the text
+    try:
+        number = w2n.word_to_num(text)
+        return number
+    except:
+        return None
+
+def ask_question(count):
+    """Select a random question and return index, question text, correct answer"""
+    if count < 6:
+        i = random.randint(0, 50)
+        d = 10
+    elif count < 10:
+        i = random.randint(51, 99)
+        d= 15
+    else:
+        i = 99
+        d = 25
+    q = questions.iloc[i, 0]   # Question text
+    a = questions.iloc[i, 1]  # Correct answer (as string)
+    return i, q, a, d
+
+def speak(text, filename="output_padded.mp3"):
+    """Speak text using gTTS, prepend 0.3s silence with ffmpeg, and play with mpg123"""
+    # Save raw mp3
+    tts = gTTS(text=text, lang="en")
+    tts.save("output_raw.mp3")
+
+    # Prepend 2s silence
+    subprocess.run([
+        "ffmpeg", "-y",
+        "-f", "lavfi", "-i", "anullsrc=r=16000:cl=mono:d=2",
+        "-i", "output_raw.mp3",
+        "-filter_complex", "[0:a][1:a]concat=n=2:v=0:a=1[out]",
+        "-map", "[out]",
+        filename
+    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    # Play with mpg123
+    subprocess.run(["mpg123", filename], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+def main():
+    global count, win
+    speak("Hahahaha, I am After Math Deployer! Now torture begins!")
+    while True:
+        count += 1
+        # Select a question
+        i, q, a, d= ask_question(count)
+
+        # Speak the question
+        print(f"Question: {q}")
+        speak(q)
+
+        # Record answer
+        audio = record_audio(d)
+        nums = transcribe_and_extract_numbers(audio)
+
+        # Evaluate
+        print(nums)
+        if nums == a:   # compare the extracted number
+            win += 1
+            print("Correct!")
+            speak("Oh Pity! You made it right.")
+        else:
+            print(f"Wrong. Correct answer was: {a}")
+            speak("Heeheehee, Booboo! Wrong Answer, Hahaha!")
+
+        print(f"Score: {win}/{count}")
+
+        if count == 10:
+            print("Game over.")
+            speak("Enough for today!")
+            break
+
+if __name__ == "__main__":
+    main()
+```
+
 ## Prototype your system
 
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
-
-*Document how the system works*
-
-*Include videos or screencaptures of both the system and the controller.*
-
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
+[Myself testing the prototype](https://drive.google.com/video/captions/edit?id=1auHtaVb_D5dP7Y4rtOu4LpyDfaS5jWwF)
   
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-  This helps ensure your README.md is clear professional and uniquely yours!
-</details>
 
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
 
+[Test Video, starred by Estelle](https://drive.google.com/video/captions/edit?id=1HtOWd5qiqxzV8Nk49G2B0hetfA2mPaQ_)
+
+[Test Video, starred by Zirui](https://drive.google.com/video/captions/edit?id=1pMhvXTp2bB1YKboAv1vLF-kOwPaE2E9H)
+
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+√ The questions are broadcast well out.
+
+√ The numbers are abstracted from complicated sentences.
+
+X The numbers are misrecognized when the participant does not stay close to the mic.
+
+X Some initial words are not completely spoken by the tts.
+
 
 ### What worked well about the controller and what didn't?
+√ Everything goes automatically well, according to the difficulty level.
 
-\*\**your answer here*\*\*
+X Sometimes the final question show up earlier, and sometimes the question repeats.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
-
+There could be more interactions like inserted dialogues. eg. "Pardon?", "What's the correct answer?"
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
+answer : video and audio abstract
 
-\*\**your answer here*\*\*
+action : continue, stop, repeat, give correct answers...
+
+mood analysis : freq analysis of audio...
+
+A video camera can be used to read the answer, since sometimes participants read when they valculate and may affect the stt process. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

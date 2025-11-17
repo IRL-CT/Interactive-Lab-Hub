@@ -2,7 +2,7 @@
 
 # Staging Interaction
 
-\*\***NAME OF COLLABORATOR HERE**\*\*
+
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -64,32 +64,59 @@ To stage an interaction with your interactive device, think about:
 
 _Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
 
+In a workplace.
+
 _Players:_ Who is involved in the interaction? Who else is there? If you reflect on the design of current day interactive devices like the Amazon Alexa, it’s clear they didn’t take into account people who had roommates, or the presence of children. Think through all the people who are in the setting.
+
+A poor student with too much work to do.
 
 _Activity:_ What is happening between the actors?
 
+The device reminds the student to drink certain amount of water.
+
 _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
+
+To drink enough water and prepare enough water for the next round
 
 The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
+When a poor student is too addicted to school work, he or she may forget to take in enough water. The device will measure the remaining amount of water and order the student to drink periodically and refill the bottle for future drinking.
+
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
 
+![4a2a7bd6bb5ce869a0873717aeff236f](https://github.com/user-attachments/assets/863c91d3-744b-441c-9d8b-4128a125dba2)
+
+
+
+
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
+Jade: Sounds healthy
+Karl: Cool idea
 
 
 ## Part B. Act out the Interaction
 
+
+https://github.com/user-attachments/assets/6046a4f5-557a-473f-9951-0a82c72dda10
+
+
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
+
+
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
 
+It is more eye-catching than I thought.
+
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+
+Maybe the color should change by stages not gradually to emphasize on periods.
 
 
 ## Part C. Prototype the device
@@ -104,11 +131,19 @@ If you run into technical issues with this tool, you can also use a light switch
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
 
+Really cool! I have never tried to control one computing device with another!
+
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
+
+
+
+https://github.com/user-attachments/assets/295cf934-57ba-4f47-859c-d50ff5eb5c85
+
+
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
@@ -123,16 +158,30 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 
+![1676fa1c4f0087b5c68cc6720bea3847](https://github.com/user-attachments/assets/85ab013b-9665-404a-a125-bd2a03416f80)
+![a02b364798ecfefda73321d87ee4d666](https://github.com/user-attachments/assets/5ef2f0b5-946f-477a-839d-1292a179f2df)
+
+
+
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+
+The device can be easily exposed to water. I have two plans to issue this. First, use a light sensor to sense the water volume from the outside of a transparent bottle. Second, craft a bottle with a built-in force sensor to sense the gravity of the water, thus estimating the volume.
 
 
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
 
+
+
+https://github.com/user-attachments/assets/65811893-f958-42ce-81ed-7dbb2a9288cf
+
+
+
+
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
-
+No one. I may find a helper later.
 
 
 # Staging Interaction, Part 2 
@@ -145,6 +194,9 @@ This describes the second week's work for this lab activity.
 You will be assigned three partners from other groups. Go to their github pages, view their videos, and provide them with reactions, suggestions & feedback: explain to them what you saw happening in their video. Guess the scene and the goals of the character. Ask them about anything that wasn’t clear. 
 
 \*\***Summarize feedback from your partners here.**\*\*
+Karl: what if I take alcohol
+Jade: you really love drinking water
+
 
 ## Make it your own
 
@@ -154,3 +206,11 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+![55908a4ca247093ce42e62f5f445d605](https://github.com/user-attachments/assets/2303d6c5-1523-4fb0-a5a3-c4e3f9bec1b4)
+
+
+https://github.com/user-attachments/assets/326198fe-f96e-4ca9-b4b9-cc287deb8fd8
+
+
+
+

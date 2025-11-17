@@ -1,0 +1,4 @@
+type,cells
+battleship,"A1,A2,A3,A4"
+destroyer,"B1,B2,B3"
+submarine,"C2,C3"

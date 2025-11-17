@@ -1,3 +1,118 @@
+Team Members: jc3828 Junxiong Chen, cc2952 Chiahsuan Chang
+# Part C
+
+The user plays a word-guessing game (hangman) on the Raspberry Pi.
+They show hand gestures to a camera, the system detects the letter via the sign-language classifier, and the guessed letter is shown on display. Small oled shows the hangman state.
+
+
+Observed Behavior
+
+1.	When does the system work as intended?
+	
+ Works well when the user holds their hand steady and toward the camera.
+	
+Performs best in good lighting conditions. 
+	
+Frequently correct for letters with distinct shapes (e.g., A, L, V, Y).
+
+2.	When does the system fail?
+	When the user moves too fast.
+	For letters with similar hand shapes (e.g., M, N, T).
+4.	Why does it fail?
+   The landmark detection becomes unstable when the hand is not in frame or moves.
+   Some letters share very similar finger positions → insufficient feature separation.
+   Small camera resolution and model trained on limited dataset.
+
+5.	Possible additional failure scenarios
+   Multiple hands in the frame.
+   Very different hand sizes or orientations than training data.
+
+
+User Experience Reflection
+1.	Are users aware of uncertainties?
+	    
+	Only partially. They see misclassifications but may not know the cause (lighting, angle, etc.).
+		
+2.	How bad is a misclassification?
+	
+	Mild frustration during gameplay.
+	    
+	Does not prevent using the system — users can re-attempt gestures.
+
+3.	How to address this?
+	
+	Add a “confirm letter” gesture (e.g., hold the sign for 1.5 seconds).
+	Display a small indicator when the model is “confident.”
+	Improve training data or add personalized calibration.
+		
+4.	Sense-Making Optimizations
+   	Smooth predictions over time (majority vote).
+   	Track hand bounding box to normalize scale better.
+   	Use a lightweight deep model trained on more representative data.
+
+
+# Part D — Characterizing the Observant System
+
+System Being Characterized:
+
+Sign language camera recognition + word guessing interaction.
+
+What can the system be used for?	
+
+Non-verbal input, accessibility tools, small games.
+Good environment?	
+
+Well-lit room, stable camera, single hand clearly visible.
+Bad environment?	
+
+Dim light, cluttered background, fast movement, multiple hands.
+When will it break?	
+
+When gestures look too similar or hand tracking fails.
+
+How will it break?	
+
+It outputs the wrong letter or no detection at all.
+
+Other behaviors?	
+
+Encourages slower, intentional hand movement.
+
+How does it feel to use?	
+
+Playful, a bit slow, body-involved, requires patience.
+
+
+
+
+User Feedback (Summary)
+
+Users found the concept fun and novel, especially seeing the guessed letters and hangman displayed on the small OLED.
+
+Users reported that accuracy could be improved, especially for similar letter forms.
+
+Holding the hand steady for correct detection required practice, which some found slightly slow.
+
+Overall reaction: “It works and it’s cute, but could be smoother and more accurate.”
+
+
+
+# Implementation Details (code under `./word_guessing_with_sign/`)
+1. Download the dataset from Kaggle `get_dataset.py`
+2. Extract landmark features using MediaPipe `create_datasets.py`
+3. Train the model using `train_classifier.py`, dump model to `model.p`
+4. Run the main application `main.py`
+   Game logic in `main.py`, sign detection in `sign_detector.py`
+
+References:
+https://github.com/computervisioneng/sign-language-detector-python
+Video Demos:
+https://drive.google.com/file/d/1SW5_jm0X6H_66JZrcg_LkmduQ3dNAiSn/view?usp=sharing
+https://drive.google.com/file/d/1n7s3EWm2OHqjuYbMLcpwIdFZQUA4my1I/view?usp=sharing
+
+<details>
+	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
+  
 # Observant Systems
 
 **NAMES OF COLLABORATORS HERE**
@@ -198,3 +313,4 @@ During the lecture, we mentioned questions to help characterize a material:
 Following exploration and reflection from Part 1, finish building your interactive system, and demonstrate it in use with a video.
 
 **\*\*\*Include a short video demonstrating the finished result.\*\*\***
+</details>
