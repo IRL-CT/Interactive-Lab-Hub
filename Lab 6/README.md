@@ -30,7 +30,6 @@ Here is a picture of it working:
 Here are some sketches of my ideas:
 
 <img width="1132" height="845" alt="image" src="https://github.com/user-attachments/assets/c658dcc4-641d-43f6-8a7f-b50c087290fc" />
-<img width="1055" height="726" alt="image" src="https://github.com/user-attachments/assets/a5233cd0-941f-48fc-bc8a-c326ab892d1f" />
 
 
 ---
@@ -54,6 +53,11 @@ My streamed color is the blue one on bottom left, detected by putting the sensor
 **1. Project Description**
 
 I decided to do my idea (#5 above) of a **visual transformation game** since I found out that SDXL Turbo could generate 1 image every 0.3s on my PC. So, I could have 3fps videos essentially as long as I had some kind of prompt. I believe this would be interesting since as image generation improves and gets faster, we could get live filters for what we see around us. We could have a VLM that identifies the basics of actors, environments, actions within a scene. Then, we could keep that caption the same or use an LLM to transform it with some theme we choose. Then, we can generate a plausible real-time image (or low-fps video) with the caption. The user experience I propose would be a game of sorts where two players both have RPIs with screens and cameras. The cameras are faced towards the other player, and the screens are what each player is looking at. With a background prompt, we can transform what the VLM sees of the other player to "an alien world" or to "a medieval scene" and the player will be able to see the other player as an alien or a knight almost instantaneously. This will make interaction fun especially for children who may always be reading fiction, getting to see the real world transformed into their favorite fiction universes through just a screen and camera, and in near real-time.
+
+Here is what I think it would look like:
+
+<img width="1055" height="726" alt="image" src="https://github.com/user-attachments/assets/a5233cd0-941f-48fc-bc8a-c326ab892d1f" />
+
 
 **2. Architecture Diagram**
 
