@@ -75,10 +75,15 @@ WS :9001 (local) → Cloudflare → WSS URL
 Effectively, each RPI captions an image it takes with its webcam, then optionally sends that to local Ollama for style transformation, then sends the caption to the SDXL API on the PC. The PC reads the caption and uses SDXL Turbo to generate JPEG frames which the base64s are published on the MQTT server under a video uid. Each RPI can read from a different video uid that is unique to them and will receive base64 images which they can display on their own screens.
 
 **3. Build Documentation**
-- Photos of each Pi + sensors
-- Code snippets with explanations
 
-In my game, MQTT is mostly used as a way to distribute the streams of generated jpegs. Each RPI can subscribe to a stream of generated 512x512 jpegs from the PC and effectively get a 3fps "video". 
+<p align=center>
+<img width="400" src="https://github.com/user-attachments/assets/4ff7f9fa-bedb-46e6-b6df-bafd0576d7aa" />
+<img width="400" src="https://github.com/user-attachments/assets/8a7d48af-c1e1-48a2-889c-b502ee844a8a" />
+</p>
+
+Each player in the game is comprised up of their RPI itself, the webcam attached to their device, and their PiTFT screen. The webcam is the only sensor we are using to get pictures of the world, actors, and actions happening within it. The RPI and remote server PC are able to interpret this world from the camera and transform it into a newly generated image which appears on the screen. These images appear at about a rate of 2 frames per second with 2 users, and less as more users join in on the game.
+
+In my game, MQTT is mostly used as a way to distribute the streams of generated jpegs. Each RPI can subscribe to a unique stream of generated 512x512 jpegs from the PC and effectively get a 3fps "video". 
 
 Here is the code that we use to receive and display the image from the MQTT stream. We read the base64 from the decoded MQTT subscription, use pillow to convert it from base64 bytes to RGB and render it to the RPI display. All of this happens multiple times per second since the PC churns generating images with the prompt, puts the base64 on the MQTT server, which the subscribed RPIs read and can immediately display on their screens.
 ```
@@ -100,16 +105,16 @@ Here is an example of our setup SDXL Turbo API which runs at 3fps, we caption it
 
 https://github.com/user-attachments/assets/4fbcb262-8078-405a-9c5a-9665f5281116
 
-
-
 **4. User Testing**
-- **Test with 2+ people NOT on your team**
-- Photos/video of use
-- What did they think before trying?
-- What surprised them?
-- What would they change?
 
+I tested the system with two people outside my team using the full pipeline (webcam → caption → optional style transform → SDXL Turbo → MQTT → PiTFT display). Both players stood across from each other with the RPIs facing them. Before trying the game, both testers assumed it would feel like a "Snapchat filter but slower." Neither expected that the scene would be fully regenerated rather than layered with filters. He thought it would probably just tint the colors or put a cartoon overlay and was surprised when I explained it was actually re-rendering the whole frame with a caption.
 
+What surprised them most was how quickly the world transformed. Even at ~2–3 fps, the SDXL video felt alive. He laughed immediately when he appeared as a Cyberpunk 2047 Keanu Reeves style character. There were erratic but funny hallucinations. Objects would spontaneously morph such as chairs became thrones, a cup became glowing for no reason, etc. The experience was just in seeing each other differently. Both said the fact that each person sees a different transformed version of the other made it feel like sort of a VR without the headset. They also loved experimenting with poses or holding items to see how the VLM would reinterpret them. He found he could intentionally trick it into making cooler images by raising his arms or leaning into the frame.
+
+Some fixes they suggested were:
+* Faster style transformation. The Ollama step running on-device added noticeable lag (~10s). They said that when the style transform froze for a few seconds, it broke immersion, even with the constant running stream from the previous caption.
+* Higher loyalty to original actors/scene. The model often changed the character or scene between frames. They wanted it to be more consistent so the generated characters / scenes stayed coherent somewhat with the real world.
+* Reducing the camera zoom. They had trouble framing themselves without backing far away from the camera since the automatic zoom levels are pretty zoomed in.
 
 Here is the demo for the interaction without any style transformation (default VLM caption used for SDXL):
 
@@ -119,16 +124,9 @@ Here is the demo for the interaction with style transformation (VLM caption is p
 
 https://github.com/user-attachments/assets/bf5acedc-26b1-424d-ad25-540dff906d64
 
-
-
-
 **5. Reflection**
-- What worked well?  
-- Challenges with distributed interaction?
-- How did sensor events work?
-- What would you improve?
 
-The best part off the experience is definitely the initial reaction when the players realize that the world around them is being transformed into something that the computer is generating. A person in view becomes a medieval knight or a cyborg, a dog becomes a hippogriff, etc.
+The best part off the experience (what worked well) is definitely the initial reaction when the players realize that the world around them is being transformed into something that the computer is generating. A person in view becomes a medieval knight or a cyborg, a dog becomes a hippogriff, etc.
 Once players catch on to what is happening, the experience becomes a light-hearted "Who can get the AI to generate something crazier?" with different objects, poses, etc. to try to get the VLM (and for style transforms, the LLM) to describe a scene that would convert to a great generated image/video.
 
 The biggest challenges with distributed interaction was definitely the server load. One RPI could subscribe to an image generation feed and the PC could reliably pump out 3fps. However, as soon as there are two image generation feeds, it might only be 1.5fps as the server has to generate 2 different captioned image as fast as it can.
@@ -139,6 +137,12 @@ For the purposes of my experiment, I am using the following servers and location
 * FastVLM Server for Captioning Images **(PC, ~0.5s)** vs (RPI, ~30s)
 * SDXL Server for Generating Images **(PC, ~0.3s)** vs (RPI, 1-3mins)
 * Ollama QWEN2.5 0.5b Instruct LLM for Optional Style Transfer of Caption (PC, 0.2s) vs **(RPI, ~15s)**
+
+Sensor events worked well for the most part. The webcams are zoomed in by default which is a bit tricky when a user is standing extremely close to their webcam as it does not comprehend any scene. The MQTT server with seperate streams for each RPI webcam captioning flow was extremely useful and made it possible for different users to get unique streams of images that pertained to their own camera, even with a centralized image generation server.
+
+For improvements, the first thing I would definitely fix would be the style transfer in two ways. One, I would move it to the server PC to be much faster. Second, I would modify the Ollama style transform prompts to stay more loyal to the original caption. I noticed that the style transformations that the LLM did often reduced the caption to meaningless scenes or actors that weren't that relevant to what the original caption had.
+
+In terms of other improvements, I would definitely compress SDXL Turbo to generate maybe 100x100 images or even smaller. I noticed that the PiTFT screens couldn't even render the full 512x512 image, so I was wasting image quality as well as time in generating them for such a small screen. I could get faster image generation for all players, as well as better end-to-end latency by compressing the sizes of images being generated. I would also switch out my bespoke server to the official StreamDiffusion server which is optimized to render at nearly 100fps, dwarfing this server.
 
 ## Code Files
 
@@ -154,10 +158,6 @@ For the purposes of my experiment, I am using the following servers and location
 **Misc:**
 - `wss_sub_test.py` - Testing local + cloudflare MQTT stream
 
-I used Cloudflared tunneling to make my localhost servers from PC available to the RPI to use. I also used it (with its websocket support) to let the RPI subscribe to the MQTT websockets server.
+I acknowledge the use of Copilot to create these scripts as well as helpful guidance from ChatGPT, especially with the RPI Pipeline script where I mishmashed several disparate components I had. The FastVLM server is converted from their [template](https://github.com/apple/ml-fastvlm) for querying, and also has some unused endpoints (ex. /caption_batch that I use in other offline applications). The SDXL Turbo server was heavily inspired from [StreamDiffusion](https://github.com/cumulo-autumn/StreamDiffusion), although my implementation is a bit heavier and not quite as robust as theirs.
 
-Before submitting:
-- [ ] Include photos/videos/diagrams  
-- [ ] Document user testing with non-team members
-- [ ] Add reflection on learnings
-- [ ] List team names at top
+I used Cloudflared tunneling to make my localhost servers from PC available to the RPI to use. I also used it (with its websocket support) to let the RPI subscribe to the MQTT websockets server.
