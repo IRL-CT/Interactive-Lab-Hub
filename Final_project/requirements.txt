@@ -1,0 +1,2 @@
+adafruit-circuitpython-drv2605
+adafruit-blinka
