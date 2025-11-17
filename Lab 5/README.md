@@ -235,7 +235,7 @@ Inspired by Imogen Heap's music engineering glove [MiMU](https://www.mimugloves.
 
 ### Thought Process
 
-For the code, I built off of the provided code for the hand gesture tracking that portrayed 'quiet coyote' and finger distance. With this I assigned each finger a specific music track and coded its activation based on when it touches the thumb. For every chosen song, purposefully hand selected layered, complex songs, I split the mp3 files into stems using Bandlab. These stems included, full, which plays the entire song track, bass, which plays the bass sounds, vocals, which plays the singing portions, drums, which plays drums, and other, which plays all other musical melodies of the song. I used ChatGPT to help speedrun the coding process in order to make it more efficient.
+For the code, I built off of the provided code for the hand gesture tracking that portrayed 'quiet coyote' and finger distance. With this I assigned each finger a specific music track and coded its activation based on when it touches the thumb. For every chosen song, purposefully hand selected layered, complex songs, I split the mp3 files into stems using Bandlab. These stems included, full, which plays the entire song track, bass, which plays the bass sounds, vocals, which plays the singing portions, drums, which plays drums, and other, which plays all other musical melodies of the song.
 
 Here is a breakdown of the actions:
   * 🖐️🎵 Open Palm: Plays the full mix (all stems muted except “full”).
