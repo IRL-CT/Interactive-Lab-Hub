@@ -81,3 +81,45 @@ If any hardware or sensor components fail, the system can still demonstrate the 
   Disable audio feedback and rely on visual responses only.
 
 💡 *These fallback modes ensure the installation remains functional and visually expressive, even if some hardware components are unavailable.*
+
+### 分工
+
+#### Joy
+
+主要负责：
+- 设计 6 种元素的视觉语言（颜色、纹理、粒子风格）
+- 调试元素pattern（Python/Pygame/Processing/P5.py/OpenGL）（光点/pattern）
+- Mood Board展示海报与最终视觉呈现
+- 设计并制作“能量元素卡片” * 10
+
+交付物：
+- animation_engine.py + 
+- 能量元素卡片
+- 元素视觉设定图
+- 最终展示海报
+  
+#### Hester
+
+主要负责：
+- 选择元素sensor（或者是点击图标）
+- 实现图案动态变化（手势，声音，距离）
+- 投影仪/显示器连接
+- 设计并制作“能量元素卡片” * 10
+- Mood Board展示海报与最终视觉呈现
+
+交付物：
+- sensor.py
+- 能量元素卡片
+  
+#### Sandy
+
+主要负责：
+- 借投影仪 + 背景板（待定）+ 准备装饰材料
+- Mood Board展示海报与最终视觉呈现
+- 用户测试（引导/观察/访谈）
+- README 所有需要交付的图像
+- README 展示材料
+- 录制展示视频
+
+交付物：
+- README.md
