@@ -80,7 +80,12 @@ If any hardware or sensor components fail, the system can still demonstrate the 
 - **Sound Output Problem:**  
   Disable audio feedback and rely on visual responses only.
 
-💡 *These fallback modes ensure the installation remains functional and visually expressive, even if some hardware components are unavailable.*
+*These fallback modes ensure the installation remains functional and visually expressive, even if some hardware components are unavailable.*
+
+## Functioning Project 左边外观图，右边内部结构图
+
+## Documentation of Design Process
+### Verplank Diagram
 
 ### 分工
 
