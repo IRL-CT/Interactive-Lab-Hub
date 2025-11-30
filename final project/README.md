@@ -82,10 +82,78 @@ If any hardware or sensor components fail, the system can still demonstrate the 
 
 *These fallback modes ensure the installation remains functional and visually expressive, even if some hardware components are unavailable.*
 
-## Functioning Project 左边外观图，右边内部结构图
+## Functioning Project
+左边外观图，右边内部结构图
 
 ## Documentation of Design Process
 ### Verplank Diagram
+
+![Verplank Diagram](images/Verplank_Diagram.jpg)
+
+
+### Storyboards
+
+#### Scenario 1
+![Scenario 1](images/Scenario_1.jpg)
+
+
+#### Scenario 2
+![Scenario 2](images/Scenario_2.jpg)
+
+
+#### Scenario 3
+![Scenario 3](images/Scenario_3.jpg)
+
+### Wiring Diagram 线怎么连接的
+
+### Inner Constellation Design 外观的画
+
+
+## Archive of All Code and Design Patterns
+
+#### Please view my source code（代码链接）
+
+#### Connect Parts & Sensors 怎么连接的
+
+#### Tech Demo (Functional Checkoff) 功能测试视频
+
+#### Make the the mood board and construct device （mood board制作过程以及连接设备）
+
+
+
+## Video Demo
+最终展示视频
+
+## Reflections on Process
+
+
+## Group Work Distribution
+### Joy
+Joy focused primarily on the visual language and aesthetic foundation of the project. She designed the color schemes, textures, and particle styles for all six elemental themes, and iterated extensively on the visual patterns using Python, Pygame, Processing, p5.py, and OpenGL-based tools. She also created the full mood board, final visual poster, and produced a set of ten physical “Energy Element Cards.”  
+
+**Deliverables:**
+- `animation_engine.py`
+- Energy Element Cards (×10)
+- Element Visual Style Sheets
+- Final Exhibition Poster
+
+
+### Hester
+Hester was responsible for the interaction logic and sensing pipeline. This included selecting and integrating the elemental sensor (or icon-based interaction), implementing dynamic pattern transitions based on gestures, sound volume, and distance inputs, and setting up the projector/monitor display system. She also contributed to the creation of ten physical “Energy Element Cards” and participated in the visual presentation materials.  
+
+**Deliverables:**
+- `sensor.py`
+- Energy Element Cards (×10)
+
+
+### Sandy
+Sandy managed logistics, documentation, and user-facing presentation. She coordinated equipment (projector, backdrop, and decorative materials), prepared the mood board and final visual layout, conducted user testing (facilitation, observation, and interviews), and collected all required images and materials for the README. She also recorded and edited the final demo video and compiled the full project README.  
+
+**Deliverables:**
+- `README.md`
+- User testing notes and documentation
+- Demo video
+
 
 ### 分工
 
