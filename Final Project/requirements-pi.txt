@@ -1,0 +1,19 @@
+# Core hardware control
+adafruit-blinka
+adafruit-circuitpython-busdevice
+adafruit-circuitpython-mpr121
+adafruit-circuitpython-apds9960
+adafruit-circuitpython-rgb-display
+
+# Display & graphics
+Pillow
+pygame
+
+# Camera
+opencv-python-headless
+
+# Numeric / utils
+numpy
+
+# Optional: debugging & MQTT communication
+paho-mqtt
