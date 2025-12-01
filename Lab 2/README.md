@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+**Xiang Chang (xc529) & Dingran Dai (dd699)**
 
 Does it feel like time is moving strangely during this semester?
 
@@ -163,7 +163,94 @@ You can look in `image.py` for an example of how to display an image on the scre
 ## Part D. 
 ### Set up the Display Clock Demo
 Work on `screen_clock.py`, try to show the time by filling in the while loop (at the bottom of the script where we noted "TODO" for you). You can use the code in `cli_clock.py` and `stats.py` to figure this out.
+```
+import time
+import subprocess
+import digitalio
+import board
+from PIL import Image, ImageDraw, ImageFont
+import adafruit_rgb_display.st7789 as st7789
+from time import strftime
 
+# Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
+cs_pin = digitalio.DigitalInOut(board.D5) 
+dc_pin = digitalio.DigitalInOut(board.D25)
+reset_pin = None
+
+# Config for display baudrate (default max is 24mhz):
+BAUDRATE = 64000000
+
+# Setup SPI bus using hardware SPI:
+spi = board.SPI()
+
+# Create the ST7789 display:
+disp = st7789.ST7789(
+    spi,
+    cs=cs_pin,
+    dc=dc_pin,
+    rst=reset_pin,
+    baudrate=BAUDRATE,
+    width=135,
+    height=240,
+    x_offset=53,
+    y_offset=40,
+)
+
+# Create blank image for drawing.
+# Make sure to create image with mode 'RGB' for full color.
+height = disp.width  # we swap height/width to rotate it to landscape!
+width = disp.height
+image = Image.new("RGB", (width, height))
+rotation = 90
+
+# Get drawing object to draw on image.
+draw = ImageDraw.Draw(image)
+
+# Draw a black filled box to clear the image.
+draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
+disp.image(image, rotation)
+# Draw some shapes.
+# First define some constants to allow easy resizing of shapes.
+padding = -2
+top = padding
+bottom = height - padding
+# Move left to right keeping track of the current x position for drawing shapes.
+x = 0
+
+# Alternatively load a TTF font.  Make sure the .ttf font file is in the
+# same directory as the python script!
+# Some other nice fonts to try: http://www.dafont.com/bitmap.php
+font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
+
+# Turn on the backlight
+backlight = digitalio.DigitalInOut(board.D22)
+backlight.switch_to_output()
+backlight.value = True
+
+while True:
+    # Draw a black filled box to clear the image.
+    draw.rectangle((0, 0, width, height), outline=0, fill=400)
+
+    #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
+
+        # Get current time
+    now = strftime("%m/%d/%Y %H:%M:%S")
+
+    # Center text roughly on screen
+    bbox = draw.textbbox((0, 0), now, font=font)
+    text_width = bbox[2] - bbox[0]
+    text_height = bbox[3] - bbox[1]
+    x = (width - text_width) // 2
+    y = (height - text_height) // 2
+
+    # Draw white text
+    draw.text((x, y), now, font=font, fill="#FFFFFF")
+
+
+    # Display image.
+    disp.image(image, rotation)
+    time.sleep(1)
+```
 ### How to Edit Scripts on Pi
 Option 1. One of the ways for you to edit scripts on Pi through terminal is using [`nano`](https://linuxize.com/post/how-to-use-nano-text-editor/) command. You can go into the `screen_clock.py` by typing the follow command line:
 ```
@@ -191,6 +278,31 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
+**Concept:**
+We want to turn the clock into a **Pokémon-style hatching** egg. Instead of showing the time in numbers, the egg “incubates” and eventually “hatches” as time goes by. The idea is to make the passage of time feel alive
+
+**Planned Interactions:**
+- **Gesture sensor (APDS9960)**: Wave a hand over the top to check the egg’s status. Different gestures can switch between views—like showing the hatching progress or a π-based time display.
+- **Rotary encoder at the base**: The egg’s cap is physically connected to the encoder, letting users rotate it like a control dial. This input changes modes (e.g., speed up time, adjust color scheme) and can also serve as a push button for hidden interactions.
+- **Ambient light sensor**: The hatching rate changes with day and night, so the effect feels more natural.
+- **Side gear driven by servo**: The external gear slowly rotates to represent the flow of time. Each minute corresponds to a small step, and on the hour the gear spins more dramatically, simulating a “burst” of time.
+- **Bluetooth speaker**: Provides ambient heartbeat rhythms, cracking sounds, or creature noises that intensify over time.
+- **PiTFT screen** next to the egg: Shows a stream of π digits and highlights where the current time appears.
+
+**Next Steps:**
+- Adapt the Steampunk Easter Egg Container 3D model (MakerWorld #394578) for hardware mounting.
+- Mechanically link the rotary encoder to the egg’s top cap.
+- Place the servo motor inside so it engages with the side gear and rotates it smoothly.
+- Integrate sensors (gesture, touch, IMU, ambient light) through discreet openings without breaking the visual aesthetic.
+- Prototype synchronized feedback: gear turning, LED lighting, sound playback, and servo vibration.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3c4c0727-4833-4e44-a587-58db66d0d342" width="300" height="450" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ce81febf-dbd9-4fd5-94da-f4e28bce055c" width="300" height="300" />
+</p>
 
 # Prep for Part 2
 
@@ -208,18 +320,130 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
+
+Please sketch/diagram your clock idea. (Try using a [Verplank digram](http://www.billverplank.com/IxDSketchBook.pdf)!
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/358ca170-0106-4cf1-bec2-e6a81e2475b3" width="900" height="600"  >
+</p>
+=======
 Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!
+
+
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
-
-\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+**Concept**
+
+- This PiClock shows time as: a **traditional digital clock** (baseline), an **hourglass** that “drains” over a duration, a **jittery heartbeat waveform**, a **wobbling egg**.
+
+- A rotary knob (I²C Seesaw encoder) switches views. An IMU (LSM6DS*) adds physicality—shake/tilt the device and the hourglass deforms, the heartbeat becomes erratic, and the egg rocks. A servo swings like a **pendulum (left 1 s, right 1 s)**, giving a tangible rhythm for time passing.
+
+**Video of our PiClock**
+
+1. In the first video, the display screen shows the current time in various ways.
+- A 9 g micro-servo drives a small gear back and forth—one second to the left, one second to the right—mimicking the motion of an old-fashioned clock pendulum.
+- Meanwhile, turning the top knob (controlled by a rotary encoder) cycles the screen through different time-themed visualizations: the flow of an hourglass, a heartbeat-like electrocardiogram, and a hatching egg animation.
+
+https://github.com/user-attachments/assets/81d5acea-d417-4cd6-95df-f77baac639f7
+
+2. In the second video, the focus shifts to active user interaction, where people can intervene to disrupt the objective flow of time. When a person shakes the egg, both the hourglass and the egg animations wobble, and the heartbeat trace intensifies its vibration, amplifying the sense that **human action can temporarily disturb time’s natural rhythm**.
+
+https://github.com/user-attachments/assets/1b1d2144-52de-40a9-bb68-448889e3be9a
+
+
+**Hardware**
+
+- ST7789 240×135 SPI TFT (Adafruit mini-PiTFT style)
+
+- I²C Seesaw Rotary Encoder (addr 0x36) with push button
+
+- IMU: any of the Adafruit LSM6DS family (LSM6DS3, LSM6DS33, LSM6DSOX) on I²C
+
+- 9g servo (or similar) powered from external 5V
+
+- Common GND between Pi and external 5V
+
+**Wiring**
+
+- Display (ST7789)
+
+- SPI: SCK/MOSI from Pi SPI0, DC → D25, CS → D5, RST → none
+
+- Offsets for 240×135 panels: x_offset=53, y_offset=40, rotation 90.
+
+- Backlight: D22 (GPIO 22) high = on.
+
+- Rotary (Seesaw): I²C SCL/SDA + 3V + GND, address 0x36.
+
+- Button pin on the Seesaw board typically 24 (internal pull-up).
+
+- IMU: I²C SCL/SDA + 3V + GND.
+
+- Servo: signal → GPIO 13 (can also use 12/19), power from external 5V, ground tied to Pi GND.
+
+  <img width="1006" height="537" alt="2ba72b7a24987760804a07cef7d4ff39" src="https://github.com/user-attachments/assets/bd687fb7-920a-440b-b614-3ac0f7278b03" />
+
+
+**Technical Overview**
+
+A single Python program that:
+
+- drives a 240×135 ST7789 SPI TFT for graphics
+
+- reads a Seesaw I²C rotary encoder (with push-button) to switch four visual modes
+
+- samples an I²C IMU (LSM6DS*) to modulate animations
+
+- and runs a servo pendulum on GPIO13 (hardware PWM via lgpio) at the same time
+
+The four modes are: **Clock, Hourglass, Heartbeat, Egg**. The **knob rotates** to change modes; a short press returns to the Clock. If the IMU is missing, tilt/shake gracefully fall back to (0, 0).
+
+**Mode logic**
+
+- **Clock**: Once per second, draw centered HH:MM:SS; date above; label “CLOCK”.
+
+- **Hourglass**: 60 s drain timer; top sand decreases as bottom fills; narrow “neck” stream. Tilt adds horizontal shear to the glass and sand layers; small label shows seconds remaining.
+
+- **Heartbeat**: Synthetic ECG (P-QRS-T) via a few Gaussians + sines. Shake raises BPM and adds noise → agitated trace over a grid.
+
+- **Egg**: Egg silhouette on an RGBA layer, rotated about its center. Tilt sets static lean (±12° clamp); shake adds micro wobble.
+
+**Key implementation details**
+
+**1. eesaw encoder**
+
+Uses I²C (no Pi-side quadrature decoding).
+
+Robust against bouncing; just compare `position` to the previous value each frame.
+
+Button read is active-low. If your board’s button pin differs, change the Seesaw pin number (commonly 24 or 9).
+
+**2. Servo timing (why cosine)**
+
+`cos()` gives natural easing—gentle near extremes, faster through center—so the gear motion looks physical rather than robotic.
+
+Tunables:
+
+Center (`1500µs`) → trim neutral angle,
+
+Amplitude (`±400µs`) → swing width,
+
+Period (`2.0 s`) → tempo.
+
+**3. ST7789 performance**
+
+SPI at 64 MHz; draw off-screen with PIL, then a single blit per frame (reduces tearing).
+
+Font metrics via `textbbox()` for crisp, centered text.
+
+**4. IMU fallback**
+
+No fake tilt/shake: if the IMU probe fails, we return `(0, 0)` so visuals stay stable and predictable.
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 

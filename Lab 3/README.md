@@ -1,5 +1,5 @@
 # Chatterboxes
-**NAMES OF COLLABORATORS HERE**
+**Melody Huang(yh2353) & Xiang Chang (xc529) & Dingran Dai (dd699)**
 [![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
 
 In this lab, we want you to design interaction with a speech-enabled device--something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1).  First, we want you first to storyboard what you imagine the conversational interaction to be like. Then, you will use wizarding techniques to elicit examples of what people might say, ask, or respond.  We then want you to use the examples collected from at least two other people to inform the redesign of the device.
@@ -147,6 +147,47 @@ python faster_whisper_try.py
 ```
 \*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
 
+[#### Speech-to-ZIP (Whisper)]( https://github.com/Daidai1031/Interactive-Lab-Hub/blob/Fall2025/Lab%203/speech-scripts/ask_zip_whisper.sh)
+##### Stack
+
+STT: openai-whisper (Python)
+
+TTS: gTTS (online) → fallback espeak (offline)
+
+Audio I/O: arecord (ALSA), optional aplay for playback
+
+Shell driver: Bash (#!/usr/bin/env bash, set -euo pipefail for robust error handling)
+
+##### Pipeline
+
+Prompt (TTS): uses gTTS to synthesize English prompt (falls back to espeak if gTTS/mpg123 unavailable).
+
+Record: arecord -d 6 -f S16_LE -r 16000 -c 1 zip_input.wav.
+
+Transcribe: whisper.load_model("tiny.en").transcribe(..., language="en").
+
+Extract: re.findall(r"\d", transcript) → join → take first 5 digits.
+
+Confirm (TTS): speaks back the 5-digit ZIP: “Great, your ZIP code is 10044.”
+
+##### Config knobs
+
+Model: WHISPER_MODEL="tiny.en" → for higher accuracy use base.en (slower).
+
+Duration: RECORD_SECONDS=6 → increase to 8–10s for very short responses.
+
+Audio device: set ALSA_DEV="plughw:1,0" after checking arecord -l.
+
+TTS: TTS_ENGINE="gtts" (natural; needs internet) or espeak (offline).
+
+##### Files produced
+
+zip_input.wav – recorded audio (overwritten each run)
+
+zip_transcript.txt – full transcription text
+
+zip_digits.txt – extracted 5-digit ZIP
+
 ### 🤖 NEW: AI-Powered Conversations with Ollama
 
 Want to add intelligent conversation capabilities to your voice projects? **Ollama** lets you run AI models locally on your Raspberry Pi for sophisticated dialogue without requiring internet connectivity!
@@ -173,6 +214,8 @@ source ollama_venv/bin/activate
 # Install Python dependencies in separate environment
 pip install -r ollama_requirements.txt
 ```
+
+
 #### Ready-to-Use Scripts
 
 We've created three Ollama integration scripts for different use cases:
@@ -181,7 +224,46 @@ We've created three Ollama integration scripts for different use cases:
 ```bash
 python3 ollama_demo.py
 ```
+**problem:** 
+` Error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=30) `
 
+
+**My solution 1: Longer timeout** 
+
+`timeout=30`  -> `timeout=600`
+
+**My solution 2: Shorter & faster reply** 
+```bash
+def query_ollama(prompt, model="phi3:mini", timeout=60):
+    """Short & fast reply from Ollama"""
+    try:
+        t0 = time.perf_counter()
+        response = requests.post(
+            "http://localhost:11434/api/generate",
+            json={
+                "model": model,
+                "prompt": f"Answer concisely in <= 20 words. {prompt}",
+                "stream": False,
+                "options": {
+                    "num_predict": 60,     
+                    "temperature": 0.2,    
+                    "top_p": 0.9,
+                    "top_k": 40,
+                    "repeat_penalty": 1.1  
+                },
+                "stop": ["\n\n"]
+            },
+            timeout=timeout
+        )
+        elapsed = time.perf_counter() - t0
+        print(f"[query_ollama] elapsed: {elapsed:.2f}s (timeout={timeout}s)")
+        if response.status_code == 200:
+            return response.json().get('response', 'No response')
+        else:
+            return f"Error: HTTP {response.status_code} – {response.text[:200]}"
+    except Exception as e:
+        return f"Error: {e}"
+```
 **2. Voice Assistant** - Full speech-to-text + AI + text-to-speech:
 ```bash
 python3 ollama_voice_assistant.py
@@ -214,6 +296,32 @@ answer = ask_ai("How should I greet users?")
 
 \*\***Try creating a simple voice interaction that combines speech recognition, Ollama processing, and text-to-speech output. Document what you built and how users responded to it.**\*\*
 
+**YAZ (pill) voice assistant**
+
+1. Pipeline (voice → AI → voice)
+
+arecord (16 kHz mono) → Whisper (tiny.en) for STT → Ollama (phi3:mini) for short answers → gTTS/espeak for TTS.
+
+**Ollama integration (short, fast answers)**
+
+Use REST /api/generate; constrain output length & randomness.
+```bash
+requests.post(f'{OLLAMA}/api/generate', json={
+    'model':'phi3:mini',
+    'prompt': 'Answer concisely (<= 50 words): '+user_q,
+    'stream': False,
+    'options': {'num_predict':60, 'temperature':0.2, 'repeat_penalty':1.1},
+    'stop':['\n\n']
+}, timeout=REQUEST_TIMEOUT)
+```
+**Minimal UX flows**
+
+1. Set time → ask → record → STT → parse → save → TTS confirm.
+
+2. Query time → read file → TTS.
+
+3. YAZ Q&A → ask → record → STT → Ollama (short) → TTS.
+
 ### Serving Pages
 
 In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
@@ -232,21 +340,98 @@ pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
 ```
 From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
 
+
 ### Storyboard
 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
 
+**Concept at a glance**
+
+**Who:** busy student/professional who often forgets a daily pill.
+
+**What:** voice device with one big confirm button + LED ring + small display (optional). Local wake word (“Hey Remi”).
+
+**Why:** reduce missed doses; make adherence quick and friendly without opening an app.
+
+
 \*\***Post your storyboard and diagram here.**\*\*
+
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/faad9d69-d240-4156-9ba2-e7ee63cd3d4a" />
+
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
 
+
+**Idea:** Lower the cognitive load of medication adherence.
+
+**Metaphor:** Gentle companion + kitchen timer that talks and listens.
+
+**Model:** Finite‑state reminder cycle per medication: Scheduled → Alerting → Waiting for Confirmation → (Snoozed/Repeat) → Done.
+
+**Display**: LED ring states (idle, listening, alerting), optional e‑ink line for text (“Yaz • 10:00”), simple chime.
+
+**Tasks:** Create/edit schedule; acknowledge dose; snooze/skip; check next dose; add meds.
+
+**Control:** Voice commands (“Hey Remi…”), one big confirm button, capacitive snooze tap (optional), physical mute switch.
+
+
 \*\***Please describe and document your process.**\*\*
+
+1. Set task: “Set Yaz reminder at 10:00 AM every day.” Device must confirm schedule.
+
+2. On‑time reminder (10:00): Chime + TTS: “It’s 10:00. Time to take Yaz.”
+
+3. Follow‑up (10:05): If no confirmation, ask: “Did you take Yaz yet?”
+
+4. Complete: User presses the large button or says “Yes, I took it,” device: “Great job — you’ve completed today’s dose. I’ll stop reminding.”
+
 
 ### Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
 
+Dialogue Scripts
+
+**A) Setup (User creates a daily reminder)**
+
+D: “Hey Remi, set a medication reminder for Yaz at 10:00 AM every day.”
+
+D: “Okay. I’ll remind you to take Yaz at 10:00 AM daily. Start today?”
+
+U: “Yes.”
+
+D: “All set. I’ll chime at 10:00.”
+
+**B) On‑time reminder (10:00)**
+
+D (chime): “It’s 10:00. Time to take Yaz.”
+
+D (nudge): “Friendly reminder: Yaz time.”
+
+U: sleeping
+
+**C) Follow‑up (10:05)**
+
+Condition: no response by 10:05.
+
+D: “Quick check — did you take Yaz? You can press the button, say ‘Yes’, or say ‘Snooze’.”
+
+U: “Yes.”
+
+D: “Awesome. Marked complete.”
+
+https://github.com/user-attachments/assets/f6bf10c9-58b7-4280-8227-05b0e1fe490d
+
+
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+
+**Chime before speech.** When we acted/wizarded it, a disembodied voice felt jarring, so we added a brief “ding” to cue attention.
+
+**Improve:** Precede TTS with a sub-second earcon (or ≤2s musical lead-in) and keep barge-in enabled so users can reply immediately, with volume auto-reduced during quiet hours.
+
+**Knowing when the user is done (endpointing). **The device hesitated to avoid cutting users off, creating awkward pauses.
+
+**Improve:** Combine a short silence threshold with intent confidence for a “soft end,” then wait ~200 ms for any continued speech before responding (cancel if speech resumes).
 
 ### Wizarding with the Pi (optional)
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
@@ -271,8 +456,222 @@ The system should:
 * require participants to speak to it. 
 
 *Document how the system works*
+<img width="1018" height="1857" alt="storyboard_;ab3_2" src="https://github.com/user-attachments/assets/b5d8c9d9-1e58-4663-9bf0-2a0070b737b7" />
+
+
+https://github.com/user-attachments/assets/4b7e86a1-e5ef-414a-aebf-6dc980800fac
+
 
 *Include videos or screencaptures of both the system and the controller.*
+## 1) Product Overview
+**Goal:** A voice-driven assistant that helps the user schedule a medication reminder and handles snooze/confirm workflows via two hardware buttons. All prompts and speech are in English.
+
+**User flow:**
+1. User presses the *TOP* tactile button.
+2. Assistant: “Starting a new medication plan. When should I remind you?”  
+   User replies with natural language (e.g., “in three minutes”, “one minute”, “at 8:05 pm”).
+3. Assistant parses and schedules the reminder.
+4. At the scheduled time, Assistant speaks: “It’s time to take your medicine.”
+5. A 30‑second response window begins:
+   - If user presses *TOP* → snooze 30 seconds and repeat step 4.
+   - If user presses *BOTTOM* → confirm taken. Assistant: “Good job. Finished!” and returns to idle.
+
+**Display behavior:**
+- Idle: “Medication Assistant / Press TOP to start”
+- Listening: “Listening… / Say a time”
+- Scheduled: shows **Next Reminder**, **target time**, and a live **T‑MM:SS** countdown plus current time.
+- Ringing: “Time to take / medicine”
+- Snoozed: “Snoozed / 30 s”
+- Finished: “Taken / OK”
+
+---
+
+## 2) Architecture & Components
+### State machine
+- **IDLE** → (TOP) → **AWAIT_TIME** (listen/parse) → **SCHEDULED** (timer threads)
+- **SCHEDULED** → (time reached) → **RINGING** (30 s response window)
+- **RINGING** → (TOP) → **SNOOZE** (30 s) → back to **RINGING**
+- **RINGING** → (BOTTOM) → **IDLE** (Finished)
+
+### Modules
+- **Buttons**: `gpiozero.Button` on BCM23 (TOP) and BCM24 (BOTTOM); debounced. Fallbacks: `evdev` (GPIO keys) or keyboard.
+- **ASR**: Vosk + sounddevice @ 16 kHz. The callback passes **bytes** to `AcceptWaveform`. Optional mic selection via `SD_INPUT_NAME`.
+- **Time parsing**: Heuristics for:
+  - relative: “in 3 minutes”, “one minute”, “30 seconds” (even without “in/after”), “2h 15m”
+  - absolute: “at 8:05 pm” (rolls over to tomorrow if past)
+  - fallback to `dateparser` with timezone‑safe settings
+- **TTS**: `espeak-ng` (or `pyttsx3` fallback). Includes a **Bluetooth audio warm‑up** to prevent first‑word truncation.
+- **Display**: ST7789 (SPI). Pillow for rendering (Pillow 10+ safe via `textbbox`). Dedicated countdown painter updates once per second.
+- **Scheduler**: lightweight threads: a waiter for time reach, a countdown refresher, snooze timers.
+
+---
+
+## 3) Hardware Interface & Pin Map
+- **Buttons**:
+  - TOP: **BCM23** (pull‑up, active‑low)
+  - BOTTOM: **BCM24** (pull‑up, active‑low)
+- **Backlight**: **BCM22** (output, on)
+- **Mini PiTFT (ST7789)** over SPI:  
+  `cs=D5`, `dc=D25`, `rst=None`, `baudrate=64 MHz`, `width=135`, `height=240`, `x_offset=53`, `y_offset=40`, rotation=90°.  
+  > Using `rst=None` avoids conflicts with BCM24 (BOTTOM button).
+
+---
+
+## 4) Software Setup
+### APT packages (recommended)
+```bash
+sudo apt-get update
+sudo apt-get install -y espeak-ng portaudio19-dev python3-pip python3-venv \
+  libatlas-base-dev libopenblas-dev
+```
+
+### Python venv and dependencies
+```bash
+cd "/home/pi/Interactive-Lab-Hub/Lab 3"
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip wheel
+pip install gpiozero lgpio sounddevice vosk pillow dateparser \
+    adafruit-circuitpython-rgb-display pyttsx3
+```
+
+### Services that can block GPIO
+If your course image starts a screen service on boot:
+```bash
+sudo systemctl stop piscreen.service --now   # stop during development
+# ... later when done
+sudo systemctl start piscreen.service --now
+```
+
+---
+
+## 5) Running & Useful Environment Variables
+**Minimal button test**
+```bash
+python "/home/pi/Interactive-Lab-Hub/Lab 3/speech-scripts/button_test.py"
+```
+
+**Final app (no display, easier to debug)**
+```bash
+cd "/home/pi/Interactive-Lab-Hub/Lab 3/speech-scripts"
+source ../.venv/bin/activate
+USE_DISPLAY=0 BUTTON_BACKEND=gpio GPIOZERO_PIN_FACTORY=lgpio \
+python med_assistant_v3_final.py
+```
+
+**Final app with display**
+```bash
+sudo systemctl stop piscreen.service --now
+BUTTON_BACKEND=gpio USE_DISPLAY=1 GPIOZERO_PIN_FACTORY=lgpio \
+python med_assistant_v3_final.py
+```
+
+**Select a specific microphone (e.g., Logitech)**
+```bash
+SD_INPUT_NAME=Logi BUTTON_BACKEND=gpio USE_DISPLAY=1 GPIOZERO_PIN_FACTORY=lgpio \
+python med_assistant_v3_final.py
+```
+
+**Environment variables (summary)**
+- `USE_DISPLAY={0|1}`: enable screen drawing
+- `BUTTON_BACKEND={gpio|evdev|keyboard}`: force button driver
+- `GPIOZERO_PIN_FACTORY=lgpio`: preferred on Pi 5
+- `TOP_BUTTON_PIN`, `BOTTOM_BUTTON_PIN`: override BCM pins (defaults 23/24)
+- `SD_INPUT_NAME`: substring to select input audio device
+- `TZ`: timezone (default `America/New_York`)
+
+---
+
+## 6) Issues Encountered & Fixes
+1. **GPIO busy** during display init or button read  
+   **Cause:** a boot service (`piscreen.service`) occupying pins.  
+   **Fix:** stop the service while running the app; ensure TFT reset is **not** mapped to BCM24.
+
+2. **Physical buttons didn’t trigger in the main app**  
+   **Cause:** pin factory / contention differences between scripts.  
+   **Fix:** verified with `button_test.py`; for the app, forced `BUTTON_BACKEND=gpio` and `GPIOZERO_PIN_FACTORY=lgpio`.
+
+3. **UnicodeEncodeError** in logs (em‑dash/UTF‑8)  
+   **Fix:** ASCII‑only logs for terminal safety; removed special punctuation.
+
+4. **Pillow 10+ removed `ImageDraw.textsize`**  
+   **Symptom:** `AttributeError: 'ImageDraw' object has no attribute 'textsize'`.  
+   **Fix:** used `textbbox()` when available, fallback to legacy `textsize()`.
+
+5. **Vosk cffi TypeError** in sound callback  
+   **Symptom:** `initializer for ctype 'char *' must be a cdata pointer...`.  
+   **Fix:** pass `bytes(indata)` to `AcceptWaveform`.
+
+6. **`dateparser` TypeError (timezone)**  
+   **Symptom:** `Invalid {"TIMEZONE": None}`.  
+   **Fix:** only pass `TIMEZONE` if non‑empty; otherwise omit; also add robust relative parsing.
+
+7. **Utterances like “one minute” (no “in/after”) not parsed**  
+   **Fix:** added detection for bare relative phrases (words or numeric + units) → seconds.
+
+8. **Bluetooth speaker cuts off first words**  
+   **Fix:** added TTS **warm‑up**: `espeak-ng -a 0` (silent) + ~120 ms pause before speaking real text.
+
+9. **Display didn’t update (fixed time)**  
+   **Fix:** added a dedicated countdown thread (paint at second boundaries) and a rich scheduled screen.
+
+10. **TOP/BOTTOM behavior clarity**  
+    **Note:** in **IDLE**, only TOP starts; in **RINGING**, TOP=**Snooze 30s**, BOTTOM=**Finished**.
+
+---
+
+## 7) Code Map (key files)
+- `med_assistant_v3_final.py` – main application with all fixes (ASR/TTS/Display/Buttons/State machine)
+- `button_test.py` – minimal hardware button verifier (prints & speaks on press)
+- (previous diagnostic builds retained for reference):
+  - `med_assistant_v3_diag.py` – button callback logging
+  - `med_assistant_v3_diag_fix.py` – ASR bytes fix
+  - `med_assistant_v3_diag_tzfix.py` – timezone‑safe parsing + bare relative time
+
+---
+
+## 8) Testing Checklist
+- **Buttons:** `button_test.py` prints on both TOP/BOTTOM; no “GPIO busy”.
+- **ASR:** say “in 10 seconds” → logs show `[ASR] Heard: in 10 seconds`.
+- **Scheduling:** screen shows Next Reminder, target time, and T‑MM:SS counting down.
+- **Ringing:** at time, complete TTS sentence is audible; 30 s response window starts.
+- **Snooze:** TOP during ringing → “Snoozed / 30 s”, then rings again.
+- **Finish:** BOTTOM during ringing → “Taken / OK” then back to idle.
+
+---
+
+## 9) Design Choices & Rationale
+- **Simple, robust threading** instead of external schedulers; avoids cron/systemd complexity.
+- **Vosk offline ASR** for low-latency local recognition without network dependency.
+- **espeak-ng** for consistent TTS on Pi; Bluetooth warm‑up eliminates first‑word truncation.
+- **GPIO mapping avoiding conflicts** (no TFT reset on BCM24) ensures reliable button events.
+- **Pillow 10+ compatibility** future‑proofs display code on current Python images.
+
+---
+
+## 10) Future Enhancements (optional)
+- Per‑reminder labels (“vitamin D”, “antibiotic”) and multi‑reminder queue.
+- Persistent schedules (write to disk), recurring reminders (e.g., every 8 hours).
+- On‑device volume control via BOTTOM long‑press.
+- Wake word to start flow (hands‑free), VAD for smarter listening window.
+- On‑screen icons, progress rings, or color themes.
+
+---
+
+## 11) Safety & Privacy Notes
+- No cloud ASR used; all speech processed locally.
+- Avoid logging raw audio; keep console output ASCII‑only.
+- If adding persistence, store only minimal timestamps/labels.
+
+---
+
+## 12) Quick Troubleshooting
+- **No reaction to buttons** → stop services (`piscreen.service`), verify pins with `button_test.py`, set `GPIOZERO_PIN_FACTORY=lgpio`.
+- **TTS clipped** → ensure Bluetooth warm‑up path is executed (espeak‑ng installed).
+- **ASR silent** → choose mic with `SD_INPUT_NAME`, check `arecord -l`.
+- **Display errors** → confirm SPI enabled; verify cs/dc pins (`D5`/`D25`), `rst=None`, backlight on `BCM22`.
+
+---
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
@@ -292,20 +691,96 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+#### The features that went well:
+
+**Core Interaction Flow:** The primary user flow was very successful. Testers understood that pressing the top button initiated the process, and the two-button (Snooze/Confirm) design for the reminder was immediately intuitive.
+
+**Offline ASR Responsiveness:**  Using Vosk for local speech recognition meant the system was fast and didn't rely on an internet connection. Users appreciated the immediate "Listening..." feedback and the quick parsing of their spoken commands.
+
+**Clear Visual Feedback:** The display was crucial. It effectively communicated the system's state at all times: what it was doing (Listening...), what it had scheduled (Next Reminder: ...), and the live countdown (T-MM:SS). This prevented confusion and kept the user informed.
+
+#### The features that failed:
+
+**Narrow Natural Language Understanding:** While the time parsing was robust for specific phrases like "in three minutes" or "at 8:05 pm," it likely struggled with more conversational or ambiguous requests. For example, a user might say "remind me around dinnertime" or "in a little bit," which the system isn't designed to handle.
+
+**Physical Interaction Requirement:** Users had to physically press a button to start every interaction. This is less fluid than a hands-free "wake word" system and makes it feel more like a traditional device than a voice-first assistant.
+
+**Lack of Confirmation:** The system immediately schedules a reminder after parsing the time. If the ASR misheard "in 30 minutes" as "in 13 minutes," the user had no opportunity to correct it before the timer was set.
 
 ### What worked well about the controller and what didn't?
 
-\*\**your answer here*\*\*
+Since this was an autonomous system, there was no human "controller" or wizard. However, we can evaluate the system's internal state machine and logic as the "controller."
+
+#### What worked well about the internal controller:
+
+**Reliable State Management:** The state machine described (IDLE → AWAIT_TIME → SCHEDULED → RINGING) was robust. It correctly handled the transitions between states without getting stuck, ensuring the user journey was always logical and predictable.
+
+**Efficient Threading:** The use of dedicated threads for the countdown timer and alarm scheduling worked perfectly. This allowed the display to update smoothly every second without interfering with the main application logic that was waiting for button presses or alarms.
+
+#### What didn't work well about the internal controller: 
+
+**Single-Task Limitation:** The controller's logic is designed to handle only one reminder at a time. It cannot queue multiple reminders or manage recurring schedules, which limits its real-world utility for users with complex medication plans.
+
+**No Error Recovery Path:** The logic assumes a "happy path." If the ASR returns a nonsensical result, the system doesn't have a clear way to ask the user to repeat themselves. It either fails or parses incorrectly, tying into the "Lack of Confirmation" issue mentioned earlier.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-\*\**your answer here*\*\*
+Since the system is already autonomous, we can reframe this as: "What lessons from testing the prototype can inform the next, more advanced autonomous version?"
+
+**Confirmation is Non-Negotiable:** The most critical lesson is that the system must confirm critical information before acting on it. After parsing a time, the next version should always ask, "OK, setting a reminder for 10 minutes. Is that correct?" This would prevent ASR errors from causing incorrect reminders.
+
+**Flexibility in Language is Key:** Watching users interact with the system would highlight the many different ways people express time. The next version needs a much more powerful Natural Language Understanding (NLU) engine or more sophisticated parsing to handle ambiguity and a wider variety of phrases.
+
+**A Hands-Free Option is Expected:** The reliance on a button press is a major limitation. The next version should incorporate a wake word (e.g., "Hey, Meds Assistant...") to initiate the scheduling process, making the interaction feel much more natural and accessible, especially for users who may have mobility challenges.
 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-\*\**your answer here*\*\*
+This system is an excellent foundation for creating a valuable, specialized dataset.
+
+#### How to create the dataset:
+We can modify the code to log a structured record for each complete interaction. With user consent, we would capture:
+
+- Timestamp: The exact time the interaction started.
+
+- Raw Audio: The .wav file of the user's spoken command (e.g., "in_three_minutes_user01.wav").
+
+- ASR Transcription: The text output from Vosk (e.g., "in three minutes").
+
+- Parsed Intent: The system's interpretation (e.g., {"intent": "set_reminder", "entity": "relative_time", "value_seconds": 180}).
+
+- System Action: The final outcome (e.g., SCHEDULED, SNOOZED, CONFIRMED).
+
+This dataset would be extremely useful for training a custom ASR model tuned to time-related phrases or for building a more advanced NLU model.
+
+#### Other sensing modalities to capture:
+
+Camera Vision: A camera could add rich contextual data. It could be used for:
+
+- User Presence: Confirming a person is actually in front of the device when the alarm rings.
+
+- Medication Recognition: Using computer vision to identify the medication bottle (via QR code or image recognition) to log which specific medicine was taken.
+
+- Proximity Sensor: An ultrasonic or infrared sensor could detect if a user is nearby. If the alarm is ringing and no one is close, the system could increase the volume or send a notification to a caregiver's phone.
+
+- Accelerometer/IMU: Placing an accelerometer on the device could detect if it has been picked up or moved. This physical interaction could serve as an implicit confirmation that the user has acknowledged the reminder, even without a button press.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

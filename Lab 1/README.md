@@ -2,7 +2,11 @@
 
 # Staging Interaction
 
-\*\***NAME OF COLLABORATOR HERE**\*\*
+\*\***Hongyiming Cui - hc2259**, 
+
+**Xiang Chang - xc529**, 
+
+**Qingxuan Yan - qy264**\*\*
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -72,24 +76,83 @@ _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening th
 
 The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
-\*\***Describe your setting, players, activity and goals here.**\*\*
+\*\***Setting**  
+The interaction takes place in the kitchen, while someone is preparing and cooking steak. The main interactive device is integrated into the range hood above the stove.  
+
+**Players**  
+- **Primary cook**: the person cooking the steak.  
+- **The interactive device**: a light-based feedback system built into the range hood, displaying real-time cooking guidance.  
+- **Possible bystanders**: roommates, family members, or guests in the kitchen who may also notice the light signals (they could help prevent accidents).  
+
+**Activity**  
+The cook places a raw steak in the pan and uses the interactive device to monitor doneness and temperature.  
+Before starting, the cook inputs the steak’s weight and desired doneness (e.g., medium rare, medium, well-done) via a small control panel on the range hood.  
+During cooking, the device continuously tracks the pan’s temperature and the steak’s cooking progress, displaying color-coded light signals:  
+- **Green** → pan is still heating up, not ready.  
+- **Yellow** → pan is at the optimal temperature, steak should be placed.  
+- **Red (steady)** → pan is too hot, risk of burning.  
+- **Red (flashing)** → urgent warning, steak is burning or overcooked.  
+
+After the steak is placed, the device continues to monitor cooking, signaling with subtle changes if the steak risks being undercooked or burnt.  
+
+**Goals**
+- Prepare the steak safely and to the desired doneness without over/undercooking.
+- Provide intuitive light-based guidance for timing and temperature to improve cooking results.
+\*\*
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
-\*\***Include pictures of your storyboards here**\*\*
+\*\***![Storyboard 1](./Storyboard1.jpeg)**\*\*
 
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
-\*\***Summarize feedback you got here.**\*\*
+\*\***Feedback from Xiang Chang:**
 
+Nice flow overall—the storyboard clearly communicates setup → add steak → monitor → warn → done, and the use of light fits the brief. I’d tighten a few things: make color semantics intuitive (e.g., Blue/White = preheat, Yellow = add steak, Orange = cooking, Red = too hot, Green = done)\*\*
+
+\*\***After forming group, we decided to continue with the following design of smart lamp**
+
+**Setting**  
+A bedroom at night, as the user winds down for sleep.  
+
+**Players**  
+- **Main user**: an adult preparing to sleep.  
+
+**Activity**  
+- The user begins reading before bed under the smart bedside lamp’s *Reading Mode* (comfortable brightness, neutral/cooler white for legibility).  
+- When the user says “Good night” or after a set wind-down timer starts while reading, the lamp transitions into *Sleep Mode*:  
+  - Brightness gradually dims over the wind-down period.  
+  - Color temperature gradually warms (cool → warm amber) to reduce blue light and promote drowsiness.  
+- If the user gets out of bed during the night, a low, warm guiding light gently turns on for safe movement.  
+- When the user is fully asleep, the lamp fades out completely (e.g., after the wind-down completes and there is no interaction/motion for a set interval).  
+
+**Goals**  
+- **Main user**: read comfortably, ease into drowsiness, move safely at night, and receive subtle notifications without disturbance.  
+- **Device**: use light (dimming + warming) to support relaxation, provide unobtrusive feedback, and automatically power off once the user is asleep.  
+
+**Storyboard**  
+*![Storyboard](./Lamp%20Storyboard.jpg)*  
+
+**Feedback**  
+I like how the brightness changes along with the user's activity. But how would you define the brightness for different settings? How does the light detect the user's activities — through motion capture or voice control?\*\*
 
 ## Part B. Act out the Interaction
 
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
-\*\***Are there things that seemed better on paper than acted out?**\*\*
+\*\***Are there things that seemed better on paper than acted out?**
 
-\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+On paper the user’s state is obvious; in acting it’s hard to tell if the user is truly asleep.
+
+Small sleep movements easily false-trigger the light.
+\*\*
+
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**
+
+We define light by mode, not fixed numbers: Reading = brighter neutral; Wind-down = gradually dimmer and warmer; Asleep = off/very low; Night path = low warm path light (bedside → door); Morning = gradually brighter and cooler (sunrise-like).
+
+Activities are detected primarily by explicit commands (voice or tap). For automation, we add low-privacy sensing (mmWave/PIR or a bed pressure strip) to tell turning over from getting out of bed—no cameras. Optional phone alarm/quiet hours can trigger Morning Mode and suppress late-night flashes.
+\*\*
 
 
 ## Part C. Prototype the device
@@ -102,17 +165,38 @@ We invented this tool for this lab!
 
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
-\*\***Give us feedback on Tinkerbelle.**\*\*
+\*\***Give us feedback on Tinkerbelle.**
+
+**Pros**  
+- Using a smartphone browser as a “light” prototype is quick to set up, easy to demo remotely, and clearly shows color/brightness transitions.  
+
+**Cons**  
+- Color gamut mismatch: The phone’s display gamut differs from the computer/preview display, so colors on the phone may not match the design intent.  
+- No remote brightness control: The computer cannot control the phone’s system screen brightness; only on-page (CSS) brightness can be altered.i\*\*
 
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
-\*\***Include your first attempts at recording the set-up video here.**\*\*
+\*\***Include your first attempts at recording the set-up video here.**
+[Setup Video](./initialsetup.mp4)
+\*\*
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
-\*\***Show the follow-up work here.**\*\*
+\*\***Show the follow-up work here.** 
+
+[Storyboard Updated](./Storyboard%20after%20update.jpeg)
+
+**Update to the paper prototype**  
+I added colors to the storyboard to show each state:  
+
+- **Reading**: neutral white  
+- **Wind-down**: gradually warmer, dimmer  
+- **Asleep**: very low / off  
+- **Night path**: low warm strip toward the door  
+- **Morning (new)**: gradient orange → yellow → neutral white to simulate sunrise  
+\*\*
 
 
 ## Part E. Costume the device
@@ -121,16 +205,42 @@ Only now should you start worrying about what the device should look like. Devel
 
 Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
 
-\*\***Include sketches of what your devices might look like here.**\*\*
+\*\***Include sketches of what your devices might look like here.**
 
-\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+![Sketch1](./Sketch1.png)
+![Sketch2](./Sketch2.png)
+![Sketch3](./Sketch3.jpeg) \*\*
+
+\*\***What concerns or opportunitities are influencing the way you've designed the device to look?**
+
+**What concerns or opportunities are influencing the way you've designed the device to look?**  
+
+- **Concerns**:  
+  - The lamp will be used in a bedroom environment where glare or overly bright colors could disturb relaxation.  
+  - It needs to minimize blue light at night to avoid disrupting circadian rhythms.  
+  - Safety at night is critical: the design must provide just enough illumination to guide movement without waking the user fully.  
+
+- **Opportunities**:  
+  - A bedside lamp is a familiar form factor, so embedding smart light behaviors feels natural and unobtrusive.  
+  - The device can enhance the bedtime routine by visually signaling transitions (reading → winding down → asleep).  
+  - Its aesthetic can be calming and modern, doubling as both décor and functional technology. \*\*
 
 
 ## Part F. Record
 
-\*\***Take a video of your prototyped interaction.**\*\*
+\*\***Take a video of your prototyped interaction.**
 
-\*\***Please indicate who you collaborated with on this Lab.**\*\*
+[Prototype interaction1](https://drive.google.com/file/d/1tre7x_4sBOrJaDt7Dedb9JzvSQP8Z8of/view?usp=share_link)
+
+[Prototype interaction2](https://drive.google.com/file/d/1U9Hh4Y8ercF1ofvi9ErE5pA6-52x-vew/view?usp=sharing)
+
+[Prototype interaction3](https://drive.google.com/file/d/1xOXjGUthD1APAwE41RHo6jyIyoY3iPy3/view?usp=sharing)\*\*
+
+\*\***Please indicate who you collaborated with on this Lab.**
+
+We worked in a group including Hongyiming Cui (Marina), Xiang Chang, and Qingxuan Yan\*\*
+
+
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
 
@@ -138,6 +248,8 @@ Be generous in acknowledging their contributions! And also recognizing any other
 # Staging Interaction, Part 2 
 
 This describes the second week's work for this lab activity.
+
+**Dingran Dai (dd699) & Yun-Jou, Huang (yh2353) & Xiang Chang (xc529)**
 
 
 ## Prep (to be done before Lab on Wednesday)
@@ -154,3 +266,86 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+
+
+- **New Idea 1**
+
+  Place a display board at the elevator area on each floor, showing the current status of all residents on that floor. By doing so, residents don't have to pass by individual doors to know who is available. 
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/136aeb43-7f6e-4c14-8f14-1995a4db5a9d" width="1536" height="1024" />
+</p>
+
+
+https://github.com/user-attachments/assets/f66016d4-4b29-4f7d-9cbe-20e185e2bfff
+
+
+
+- **New Idea 2**
+
+  The current color-to-action mapping may not align well with common sense. We could add pixelated emoji-style icons: for example, a rice bowl for dining mode, two people with a speech bubble for chat mode, a book for study mode, and a “zzz” sleep symbol for do-not-disturb mode.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b7fce9e8-11d5-4ae3-a2f3-11c499b9b8c4" width="1536" height="1024" />
+</p>
+
+
+https://github.com/user-attachments/assets/83e13878-8646-4eb6-bad9-9692b4b886e9
+
+
+- **New Idea 3**
+
+  Add a vibration effect as haptic feedback to the device when mode changes.  In this way, users could notice the status switch clearly.
+
+https://github.com/user-attachments/assets/9800a0ae-15b9-4ce6-8946-4b64242ef37b
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/97aeec5f-a311-4f1f-ae06-b903118e9505" width="1536" height="1024" />
+</p>
+
+
+https://github.com/user-attachments/assets/a415e126-5f02-40f1-b114-6dc4c8068b6a
+
+
+**templates/index.html:**
+
+- Added a controller button to trigger vibration:
+```
+<button id="buzz">Buzz phone</button>
+```
+
+**static/index.js:**
+
+- Added a listener to execute vibration on the client (phone):
+```
+socket.on('vibrate', (payload = {}) => {
+  const pattern = payload.pattern ?? 2000; 
+  if (navigator.vibrate) {
+    navigator.vibrate(pattern);
+  } else {
+    console.warn('Vibration API not supported on this device/browser.');
+  }
+});
+```
+
+- Added a global click handler for the controller button to emit the event:
+
+```
+document.getElementById('buzz')?.addEventListener('click', () => {
+    socket.emit('vibrate', { pattern: [1200, 50, 1200] });
+});
+```
+
+
+**tinker.py:**
+
+- Implemented Socket.IO handler to broadcast the vibration payload to all clients:
+
+```
+@socketio.on('vibrate')
+def on_vibrate(payload):
+    emit('vibrate', payload or {}, broadcast=True)
+```
+
+
