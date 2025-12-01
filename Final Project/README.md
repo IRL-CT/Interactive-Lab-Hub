@@ -216,7 +216,7 @@ The final submission will include:
 
 ---
 
-### 11/15 Log
+## 11/15 Log
 
 **What We've Built So Far**
 
@@ -235,3 +235,97 @@ https://github.com/user-attachments/assets/73619182-87a8-4e3f-9667-aa8d750fe627
 **Next Steps**
 
 The core loop works, but the user experience can be improved. Right now, a user can press multiple buttons rapidly, causing sounds to interrupt each other and the display to flash. Our next step is to manage the "state" of the exhibit and change the interaction to when users pick up the object, the device will play the sound.
+
+---
+
+## 12/01 Log
+
+**What We've Built So Far**
+
+We have upgraded the exhibit from a simple soundboard into a robust, state-aware interactive kiosk. The system now manages user flow, prevents audio overlapping, and offers a deeper visual history using the PiTFT buttons.
+
+**1. Dual-Mode Visual Discovery:** We implemented a layered information system.
+    * **Touch:** Plays audio and shows the object's description.
+    * **Button Press (Action Shot):** Pressing the **Top Button** on the PiTFT switches the display to a historical photo of people *using* the object, overlaid with a "Popular Year" fact (e.g., *"1990s Storage: Only 1.44MB!"*).
+    * **Button Press (Info):** Pressing the **Bottom Button** switches back to the text description.
+    
+**2. Intelligent Idle Mode:** If no interaction occurs for **30 seconds**, the screen automatically resets to a high-contrast "Pick up any Object" prompt, ensuring the exhibit is always ready for the next visitor.
+
+**3. Input Locking (The 10-Second Rule):** To prevent audio chaos, the system "locks" input for **10 seconds** (or until the sound finishes) once a user touches an object. This forces the user to engage with the current content before switching.
+
+**4. Auto-Debounce:** Added specific sleep timers to smooth out sensor readings and prevent accidental double-triggering.
+
+**Code Explanation**
+
+We moved away from simple `sleep()` commands to a non-blocking time-based state machine in `main.py`.
+
+**1. Input Locking (The Busy State)**
+We calculate a target `unlock_time`. If the current time is less than this target, the loop skips input detection.
+
+```python
+# main.py
+if current_time < unlock_time:
+    time.sleep(0.1)
+    continue # Skip loop, effectively locking the system
+```
+**2. Idle Timeout We track the timestamp of the last_interaction. If the difference between now and then exceeds 30 seconds, we trigger the reset.**
+
+```python
+# main.py
+if not is_idle_mode and (current_time - last_interaction_time > 30):
+    screen.show_idle() # Reset screen to "Pick Up Object"
+    is_idle_mode = True
+    audio.stop()
+```
+
+**3. Context-Aware Buttons We track which object is currently active (current_active_pad) so the physical buttons know which specific photo to load.**
+
+```python
+# main.py
+if not button_a.value and current_active_pad is not None:
+    obj = OBJECTS[current_active_pad]
+    # Shows the "Action Image" defined in config.py
+    screen.show_photo(obj["action_image"], obj["year_text"])
+```
+
+**Video Showcase**
+
+**1. Here is the demo video for the photo function**
+
+
+https://github.com/user-attachments/assets/32da5358-9645-420e-91cc-b72d08f50262
+
+
+**2. Here is the video for terminal**
+
+https://github.com/user-attachments/assets/d3235dd2-5367-4f05-a2c6-8ce01d9400d5
+
+
+**Next Steps: Physical Prototyping & Pilot Testing**
+
+Based on feedback regarding the small size of the Mini PiTFT (1.14"), we are pivoting the physical design to create a more immersive viewing experience.
+
+**1. "Peep Hole" Enclosure Design**
+
+The Concept: To address the small screen size, we will design an enclosed "stage" or "peep box" for the display. This forces the user to lean in and focus on the screen through a small opening, creating an intimate, voyeuristic feeling ("looking into the past").
+
+Goal: This controls the viewing angle and makes the small image feel larger and more significant.
+
+**2. Low-Fidelity "Stage" Prototype**
+
+Action: Before 3D printing the final casing, we will construct a cardboard prototype of the stage/enclosure.
+
+Setup: This will house the PiTFT and conceal the wiring, leaving only the 3D-printed artifacts and the "peep hole" exposed to the user.
+
+**3. Pilot Testing (Ergonomics & Visibility)**
+
+Test: We will conduct a user test with the cardboard prototype to verify:
+
+Height/Angle: Is the peep hole comfortable to look into?
+
+Visibility: Can the user clearly read the text and see the photos through the opening?
+
+Flow: Does the act of "peeking" distract from touching the objects, or enhance the mystery?
+
+
+
