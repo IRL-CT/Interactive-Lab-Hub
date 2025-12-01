@@ -1,7 +1,6 @@
 import pygame
 import random
 import math
-import numpy as np
 
 class AnimationEngine:
     def __init__(self, width=1280, height=720):
@@ -13,89 +12,109 @@ class AnimationEngine:
         self.clock = pygame.time.Clock()
 
         self.current_element = None
-        self.scale = 1.0
-        self.temp_shift = 0.0
+        self.scale = 1.0           # overall energy size
+        self.temp_shift = 0.0      # -1.0 (cold) ~ +1.0 (warm)
         self.particles = []
 
-        # define simple base colors per element
-        self.colors = {
-            "Fire": [(255, 100, 50), (255, 200, 80)],
-            "Water": [(50, 150, 255), (100, 220, 255)],
-            "Wind": [(200, 240, 255), (150, 200, 255)],
-            "Earth": [(100, 180, 100), (180, 240, 160)],
-            "Light": [(255, 255, 255), (255, 240, 200)],
-            "Shadow": [(80, 60, 120), (50, 30, 100)],
+        # base colors per element
+        self.element_colors = {
+            "Fire":   [(255, 120, 60), (255, 200, 90)],
+            "Water":  [(60, 140, 255), (110, 220, 255)],
+            "Wind":   [(190, 230, 255), (150, 210, 255)],
+            "Earth":  [(90, 160, 100), (170, 220, 150)],
+            "Light":  [(255, 255, 255), (255, 240, 210)],
+            "Shadow": [(120, 70, 160), (60, 30, 100)],
         }
 
     def update(self, element=None, gesture=None, frame=None):
-        """
-        Called every frame from main.py
-        element: string name of current selected element
-        gesture: dict or string describing movement
-        frame: optional camera frame (OpenCV image)
-        """
-        # ---- handle user input ----
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+
+
         if element and element != self.current_element:
             self.current_element = element
             self.particles.clear()
-            print(f"[Engine] Element changed → {element}")
+            print(f"[Animation] Element -> {element}")
+
 
         if gesture:
-            # interpret gestures
-            if gesture == "up":
+            if gesture == "expand":
                 self.scale = min(3.0, self.scale + 0.1)
-            elif gesture == "down":
+            elif gesture == "shrink":
                 self.scale = max(0.5, self.scale - 0.1)
-            elif gesture == "left":
+            elif gesture == "cooler":
                 self.temp_shift = max(-1.0, self.temp_shift - 0.05)
-            elif gesture == "right":
+            elif gesture == "warmer":
                 self.temp_shift = min(1.0, self.temp_shift + 0.05)
 
-        # ---- draw frame ----
-        self._draw_particles(element or self.current_element)
 
+        self._draw_frame()
         pygame.display.flip()
         self.clock.tick(60)
 
-    def _draw_particles(self, element):
-        if not element:
-            self.screen.fill((0, 0, 0))
-            return
+    def _draw_frame(self):
+        element = self.current_element or "Shadow"  # 默认先给一个
+        base_colors = self.element_colors.get(element, [(255, 255, 255), (200, 200, 200)])
 
-        # get colors
-        c1, c2 = self.colors.get(element, [(255, 255, 255), (255, 255, 255)])
 
-        # mix color temperature (colder = blue, warmer = orange)
         warm = (255, 180, 80)
-        cold = (80, 160, 255)
-        mix = self._lerp_color(cold, warm, (self.temp_shift + 1) / 2)
-        bg = self._lerp_color((0, 0, 0), mix, 0.1)
+        cold = (80, 150, 255)
+        tint = self._lerp_color(cold, warm, (self.temp_shift + 1) / 2)
+        bg = self._lerp_color((0, 0, 0), tint, 0.08)
+
         self.screen.fill(bg)
 
-        # spawn new particles
-        while len(self.particles) < int(200 * self.scale):
-            x = random.randint(0, self.width)
-            y = random.randint(0, self.height)
-            vx = random.uniform(-1, 1)
-            vy = random.uniform(-1, 1)
-            life = random.uniform(2, 5)
-            self.particles.append([x, y, vx, vy, life, random.choice([c1, c2])])
 
-        # draw and update particles
+        target_count = int(180 * self.scale)
+        while len(self.particles) < target_count:
+            x = random.uniform(0, self.width)
+            y = random.uniform(0, self.height)
+            angle = random.uniform(0, math.tau)
+            speed = random.uniform(20, 80) * self.scale
+            vx = math.cos(angle) * speed
+            vy = math.sin(angle) * speed
+            life = random.uniform(2.0, 5.0)
+            color = random.choice(base_colors)
+            self.particles.append([x, y, vx, vy, life, color])
+
         new_particles = []
-        for p in self.particles:
-            x, y, vx, vy, life, color = p
+        for x, y, vx, vy, life, color in self.particles:
             life -= 0.03
-            if life > 0:
-                x += vx * 3 * self.scale
-                y += vy * 3 * self.scale
-                r = max(1, int(3 * self.scale))
-                pygame.draw.circle(self.screen, color, (int(x), int(y)), r)
-                new_particles.append([x, y, vx, vy, life, color])
+            if life <= 0:
+                continue
+
+            x += vx * 0.03
+            y += vy * 0.03
+
+            # wrap around
+            if x < -50: x = self.width + 50
+            if x > self.width + 50: x = -50
+            if y < -50: y = self.height + 50
+            if y > self.height + 50: y = -50
+
+
+            final_color = self._lerp_color(color, tint, 0.3)
+
+            radius = max(1, int(3 * self.scale))
+            pygame.draw.circle(self.screen, final_color, (int(x), int(y)), radius)
+
+            new_particles.append([x, y, vx, vy, life, color])
+
         self.particles = new_particles
 
+
+        self._draw_label(element)
+
+    def _draw_label(self, element):
+        font = pygame.font.SysFont("arial", 24)
+        text = font.render(f"Element: {element}", True, (230, 230, 230))
+        self.screen.blit(text, (20, 20))
+
     def _lerp_color(self, c1, c2, t):
-        t = max(0, min(1, t))
+        t = max(0.0, min(1.0, t))
         return (
             int(c1[0] + (c2[0] - c1[0]) * t),
             int(c1[1] + (c2[1] - c1[1]) * t),
