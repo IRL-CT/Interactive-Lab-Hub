@@ -2,6 +2,14 @@ import pygame
 import random
 import math
 
+try:
+    import cv2
+    import numpy as np
+except ImportError:
+    cv2 = None
+    np = None
+
+
 class AnimationEngine:
     def __init__(self, width=1280, height=720):
         pygame.init()
@@ -12,8 +20,8 @@ class AnimationEngine:
         self.clock = pygame.time.Clock()
 
         self.current_element = None
-        self.scale = 1.0           # overall energy size
-        self.temp_shift = 0.0      # -1.0 (cold) ~ +1.0 (warm)
+        self.scale = 1.0          # energy size
+        self.temp_shift = 0.0     # -1.0 (cold) ~ +1.0 (warm)
         self.particles = []
 
         # base colors per element
@@ -27,18 +35,16 @@ class AnimationEngine:
         }
 
     def update(self, element=None, gesture=None, frame=None):
-
+        # 处理事件
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 raise SystemExit
 
-
         if element and element != self.current_element:
             self.current_element = element
             self.particles.clear()
             print(f"[Animation] Element -> {element}")
-
 
         if gesture:
             if gesture == "expand":
@@ -50,23 +56,25 @@ class AnimationEngine:
             elif gesture == "warmer":
                 self.temp_shift = min(1.0, self.temp_shift + 0.05)
 
-
-        self._draw_frame()
+        self._draw_frame(frame)
         pygame.display.flip()
         self.clock.tick(60)
 
-    def _draw_frame(self):
-        element = self.current_element or "Shadow"  # 默认先给一个
-        base_colors = self.element_colors.get(element, [(255, 255, 255), (200, 200, 200)])
-
+    def _draw_frame(self, frame):
+        element = self.current_element or "Shadow"
+        base_colors = self.element_colors.get(
+            element, [(255, 255, 255), (200, 200, 200)]
+        )
 
         warm = (255, 180, 80)
         cold = (80, 150, 255)
         tint = self._lerp_color(cold, warm, (self.temp_shift + 1) / 2)
-        bg = self._lerp_color((0, 0, 0), tint, 0.08)
+        bg = self._lerp_color((0, 0, 0), tint, 0.05)
 
         self.screen.fill(bg)
 
+        if frame is not None and cv2 is not None:
+            self._blit_camera(frame)
 
         target_count = int(180 * self.scale)
         while len(self.particles) < target_count:
@@ -89,24 +97,39 @@ class AnimationEngine:
             x += vx * 0.03
             y += vy * 0.03
 
-            # wrap around
+            # wrap
             if x < -50: x = self.width + 50
             if x > self.width + 50: x = -50
             if y < -50: y = self.height + 50
             if y > self.height + 50: y = -50
 
-
             final_color = self._lerp_color(color, tint, 0.3)
-
             radius = max(1, int(3 * self.scale))
             pygame.draw.circle(self.screen, final_color, (int(x), int(y)), radius)
 
             new_particles.append([x, y, vx, vy, life, color])
 
         self.particles = new_particles
-
-
         self._draw_label(element)
+
+    def _blit_camera(self, frame):
+        try:
+            h, w = frame.shape[:2]
+        except Exception:
+            return
+
+        # BGR -> RGB
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+        scale = min(self.width / w, self.height / h)
+        new_size = (int(w * scale), int(h * scale))
+        frame_resized = cv2.resize(frame_rgb, new_size)
+
+        surf = pygame.surfarray.make_surface(frame_resized.swapaxes(0, 1))
+        surf.set_alpha(120)  
+        x = (self.width - new_size[0]) // 2
+        y = (self.height - new_size[1]) // 2
+        self.screen.blit(surf, (x, y))
 
     def _draw_label(self, element):
         font = pygame.font.SysFont("arial", 24)
