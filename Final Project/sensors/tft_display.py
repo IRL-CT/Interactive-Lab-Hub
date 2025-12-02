@@ -42,30 +42,30 @@ class TFTDisplay:
             self.enabled = False
 
         def show_element(self, element: str):
-        if not self.enabled or self.display is None:
-            print(f"[OLED] Element -> {element}")
-            return
-
-        self.draw.rectangle((0, 0, 128, 64), outline=0, fill=0)
-        
-        try:
-            from PIL import ImageFont
-            self.font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 10)
-        except Exception:
-            self.font = ImageFont.load_default()
-
-        title = "Inner Constellation"
-        line = f"Element: {element}"
-
-        title_w, title_h = self.draw.textsize(title, font=self.font)
-        line_w, line_h = self.draw.textsize(line, font=self.font)
-
-        title_x = (128 - title_w) // 2
-        line_x = (128 - line_w) // 2
-
-        self.draw.text((title_x, 10), title, font=self.font, fill=255)
-        self.draw.text((line_x, 10 + title_h + 6), line, font=self.font, fill=255)
-
-        self.display.image(self.image)
-        self.display.show()
-
+            if not self.enabled or self.display is None:
+                print(f"[OLED] Element -> {element}")
+                return
+    
+            self.draw.rectangle((0, 0, 128, 64), outline=0, fill=0)
+            
+            try:
+                from PIL import ImageFont
+                self.font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 10)
+            except Exception:
+                self.font = ImageFont.load_default()
+    
+            title = "Inner Constellation"
+            line = f"Element: {element}"
+    
+            title_w, title_h = self.draw.textsize(title, font=self.font)
+            line_w, line_h = self.draw.textsize(line, font=self.font)
+    
+            title_x = (128 - title_w) // 2
+            line_x = (128 - line_w) // 2
+    
+            self.draw.text((title_x, 10), title, font=self.font, fill=255)
+            self.draw.text((line_x, 10 + title_h + 6), line, font=self.font, fill=255)
+    
+            self.display.image(self.image)
+            self.display.show()
+    
