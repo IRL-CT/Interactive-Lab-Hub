@@ -60,7 +60,6 @@ class SensorManager:
         gesture = None
         if self.gesture is not None:
             try:
-                # 注意：read_gesture 必须是「非阻塞」的实现
                 gesture = self.gesture.read_gesture()
             except Exception as e:
                 print(f"[SensorManager] Error reading gesture: {e}")
