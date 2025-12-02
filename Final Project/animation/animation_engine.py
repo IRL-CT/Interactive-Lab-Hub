@@ -19,16 +19,28 @@ class AnimationEngine:
         pygame.display.set_caption("Inner Constellation")
         self.clock = pygame.time.Clock()
 
-        # --------- 状态 ----------
-        self.current_element = None          # 单一元素（fallback）
-        self.current_profile = None          # 3 元素组合 ["Fire","Water","Light"]
-        self.spectrum_name = "None"          # 用于 UI 的名字
+        # Profile / element state
+        self.current_element = None          # single element fallback
+        self.current_profile = None          # e.g. ["Fire", "Water", "Light"]
+        self.spectrum_name = "None"          # label for UI
 
-        self.scale = 1.0          # energy size / breathing
-        self.temp_shift = 0.0     # -1.0 (cold) ~ +1.0 (warm)
+        # Energy scale and temperature
+        self.scale = 1.0                     # base energy size (changed by gestures)
+        self.temp_shift = 0.0                # -1.0 (cold) ~ +1.0 (warm)
+
+        # Time and motion state (for breathing and aura response)
+        self.time = 0.0
+        self.motion_level = 0.0              # 0~1, estimated from camera motion
+
+        # Camera motion analysis
+        self.prev_gray = None
+        self.body_box = None                 # (x_min, y_min, x_max, y_max) in low-res space
+        self.downsample_size = (64, 36)      # width, height for motion detection
+
+        # Particle buffer (optional, currently unused, kept for later effects)
         self.particles = []
 
-        # base colors per element
+        # Base colors per element
         self.element_colors = {
             "Fire":   [(255, 120, 60), (255, 200, 90)],
             "Water":  [(60, 140, 255), (110, 220, 255)],
@@ -38,42 +50,31 @@ class AnimationEngine:
             "Shadow": [(120, 70, 160), (60, 30, 100)],
         }
 
-        # 简单时间 & 运动量（给呼吸用，以后可以接摄像头）
-        self.time = 0.0
-        self.motion_level = 0.0   # 0~1
-
-        # camera analysis
-        self.prev_gray = None
-
-    # --------------------------------------------------------
-    #   profile: ["Fire","Water","Light"]  或 None
-    #   element: "Fire" / "Water" ... 单元素 fallback
-    # --------------------------------------------------------
+    # ------------------------------------------------------------------
+    # profile: ["Fire","Water","Light"] or None
+    # element: "Fire", "Water", ... (used before profile is ready)
+    # ------------------------------------------------------------------
     def update(self, profile=None, element=None, gesture=None, frame=None):
-        # 处理 Pygame 事件
+        # Handle Pygame events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 raise SystemExit
 
-        # ---------- 1. 处理元素 / 组合 ----------
-        # 优先使用 profile（三元素组合）
+        # 1) Handle element / profile changes
+        # Priority: 3-element profile > single element
         if profile is not None and profile != self.current_profile:
             self.current_profile = profile
-            self.current_element = None  # 不再用单元素
-            self.particles.clear()
-
+            self.current_element = None
             self.spectrum_name = " + ".join(profile)
             print(f"[Animation] Spectrum profile -> {self.spectrum_name}")
 
-        # 还没有 profile 的时候，继续用原来的单元素逻辑
         if self.current_profile is None and element and element != self.current_element:
             self.current_element = element
             self.spectrum_name = element
-            self.particles.clear()
             print(f"[Animation] Element -> {element}")
 
-        # ---------- 2. 手势调节 ----------
+        # 2) Handle gesture input
         if gesture:
             if gesture == "expand":
                 self.scale = min(3.0, self.scale + 0.1)
@@ -84,51 +85,73 @@ class AnimationEngine:
             elif gesture == "warmer":
                 self.temp_shift = min(1.0, self.temp_shift + 0.05)
 
-        # ---------- 3. 简单的“动作 → 呼吸”映射（基于摄像头运动量） ----------
-        if frame is not None and cv2 is not None and np is not None:
-            self._analyze_motion(frame)
-            # 把 motion_level 映射到一个轻微呼吸变化（0.9~1.3）
-            breath = 0.9 + 0.4 * self.motion_level
-        else:
-            breath = 1.0
-
-        # 时间推进
-        dt = self.clock.get_time() / 1000.0 if self.clock.get_time() > 0 else 1 / 60
+        # 3) Time / breathing update
+        dt_ms = self.clock.get_time()
+        dt = dt_ms / 1000.0 if dt_ms > 0 else 1.0 / 60.0
         self.time += dt
 
-        # 轻微的 sin 呼吸，让画面更有生命感
-        breathing_wave = 1.0 + 0.1 * math.sin(self.time * 2 * math.pi * 0.5)  # 0.5Hz
-        self.scale *= 0.98  # 慢慢回到原始大小（防止无限膨胀）
-        self.scale = max(0.6, min(2.5, self.scale * breath * breathing_wave))
+        # Analyze motion if camera and numpy are available
+        if frame is not None and cv2 is not None and np is not None:
+            self._analyze_motion(frame)
 
-        # ---------- 4. 画一帧 ----------
+        # Breathing modulation:
+        # - motion_level increases breathing width/intensity
+        # - sine wave adds slow organic oscillation
+        breath_from_motion = 0.9 + 0.4 * self.motion_level
+        breathing_wave = 1.0 + 0.12 * math.sin(self.time * 2.0 * math.pi * 0.5)
+
+        # Slowly decay scale back to normal range
+        self.scale *= 0.99
+        self.scale = max(0.6, min(2.5, self.scale))
+
+        # Effective scale used for drawing
+        self.render_scale = self.scale * breath_from_motion * breathing_wave
+
+        # Draw frame
         self._draw_frame(frame)
+
         pygame.display.flip()
         self.clock.tick(60)
 
-    # --------------------------------------------------------
-    #   分析摄像头运动：越动越大，motion_level 越接近 1
-    # --------------------------------------------------------
+    # ------------------------------------------------------------------
+    # Analyze camera motion and estimate a rough body bounding box
+    # ------------------------------------------------------------------
     def _analyze_motion(self, frame):
+        # Convert to grayscale and downsample to a small resolution
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        gray_small = cv2.resize(gray, (64, 36))
+        gray_small = cv2.resize(gray, self.downsample_size)
 
         if self.prev_gray is None:
             self.prev_gray = gray_small
             self.motion_level = 0.0
+            self.body_box = None
             return
 
+        # Frame difference
         diff = cv2.absdiff(gray_small, self.prev_gray)
         self.prev_gray = gray_small
 
-        # 平均差值归一化到 0~1
+        # Average intensity of difference (0~1)
         mean_diff = diff.mean() / 255.0
-        # 平滑一下
+        # Smooth motion_level over time
         self.motion_level = 0.8 * self.motion_level + 0.2 * min(1.0, mean_diff * 5.0)
 
-    # --------------------------------------------------------
+        # Estimate body box from thresholded motion map
+        _, diff_bin = cv2.threshold(diff, 25, 255, cv2.THRESH_BINARY)
+        ys, xs = np.where(diff_bin > 0)
+
+        if len(xs) < 50:
+            # Not enough moving pixels → no reliable box
+            self.body_box = None
+            return
+
+        x_min, x_max = xs.min(), xs.max()
+        y_min, y_max = ys.min(), ys.max()
+        self.body_box = (x_min, y_min, x_max, y_max)
+
+    # ------------------------------------------------------------------
     def _draw_frame(self, frame):
-        # 1）根据元素 / 组合获取颜色 palette
+        # 1) Determine base colors from profile or single element
         if self.current_profile is not None:
             base_colors = self._colors_from_profile(self.current_profile)
         else:
@@ -137,61 +160,28 @@ class AnimationEngine:
                 element, [(255, 255, 255), (200, 200, 200)]
             )
 
-        # 背景色：由 temp_shift 和冷暖色插值
+        # 2) Background color based on temperature shift
         warm = (255, 180, 80)
         cold = (80, 150, 255)
         tint = self._lerp_color(cold, warm, (self.temp_shift + 1) / 2)
         bg = self._lerp_color((0, 0, 0), tint, 0.05)
-
         self.screen.fill(bg)
 
-        # 叠加摄像头画面
+        # 3) Draw camera reflection behind aura
         if frame is not None and cv2 is not None:
             self._blit_camera(frame)
 
-        # 粒子数量和 scale 相关
-        target_count = int(220 * self.scale)
-        while len(self.particles) < target_count:
-            x = random.uniform(0, self.width)
-            y = random.uniform(0, self.height)
-            angle = random.uniform(0, math.tau)
-            speed = random.uniform(20, 80) * self.scale
-            vx = math.cos(angle) * speed
-            vy = math.sin(angle) * speed
-            life = random.uniform(2.0, 5.0)
-            color = random.choice(base_colors)
-            self.particles.append([x, y, vx, vy, life, color])
+        # 4) Draw aura around the detected body region
+        self._draw_aura(base_colors)
 
-        new_particles = []
-        for x, y, vx, vy, life, color in self.particles:
-            life -= 0.03
-            if life <= 0:
-                continue
-
-            x += vx * 0.03
-            y += vy * 0.03
-
-            # wrap around 四周
-            if x < -50: x = self.width + 50
-            if x > self.width + 50: x = -50
-            if y < -50: y = self.height + 50
-            if y > self.height + 50: y = -50
-
-            final_color = self._lerp_color(color, tint, 0.3)
-            radius = max(1, int(3 * self.scale))
-            pygame.draw.circle(self.screen, final_color, (int(x), int(y)), radius)
-
-            new_particles.append([x, y, vx, vy, life, color])
-
-        self.particles = new_particles
-
+        # 5) UI label
         self._draw_label()
 
-    # --------------------------------------------------------
-    #   把三个元素的颜色混合成一套 palette
-    # --------------------------------------------------------
+    # ------------------------------------------------------------------
+    # Build a color palette from a 3-element profile
+    # ------------------------------------------------------------------
     def _colors_from_profile(self, profile):
-        # 获取三种元素的 base color 列表
+        # Collect all base colors from each element
         cols = []
         for name in profile:
             cols.extend(self.element_colors.get(name, []))
@@ -199,19 +189,104 @@ class AnimationEngine:
         if not cols:
             return [(255, 255, 255), (200, 200, 200)]
 
-        # 取平均色作为中间色
+        # Average color across all contributing colors
         r = sum(c[0] for c in cols) // len(cols)
         g = sum(c[1] for c in cols) // len(cols)
         b = sum(c[2] for c in cols) // len(cols)
         avg = (r, g, b)
 
-        # palette：偏冷 / 平均 / 偏暖
+        # Create a simple gradient: cooler → avg → warmer
         cold_tint = self._lerp_color(avg, (80, 150, 255), 0.3)
         warm_tint = self._lerp_color(avg, (255, 200, 120), 0.3)
 
         return [cold_tint, avg, warm_tint]
 
-    # --------------------------------------------------------
+    # ------------------------------------------------------------------
+    # Draw a vertical energy aura around the body box (or center)
+    # ------------------------------------------------------------------
+    def _draw_aura(self, base_colors):
+        """
+        Draw a vertical energy aura (capsule-like column) using
+        a separate alpha surface, then blit it onto the main screen.
+        """
+
+        aura_surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+
+        # Determine the center and vertical span of the aura
+        if self.body_box is not None:
+            x_min, y_min, x_max, y_max = self.body_box
+
+            # Map from low-res motion space to screen coordinates
+            scale_x = self.width / self.downsample_size[0]
+            scale_y = self.height / self.downsample_size[1]
+
+            cx = int((x_min + x_max) / 2 * scale_x)
+            top = int(y_min * scale_y)
+            bottom = int(y_max * scale_y)
+        else:
+            # Fallback: central column
+            cx = self.width // 2
+            top = int(self.height * 0.18)
+            bottom = int(self.height * 0.82)
+
+        height = bottom - top
+        if height < int(self.height * 0.25):
+            # Ensure a minimum visible height
+            top = int(self.height * 0.25)
+            bottom = int(self.height * 0.75)
+            height = bottom - top
+
+        # Base column width influenced by scale and motion
+        motion_factor = 1.0 + 0.6 * self.motion_level
+        base_width = int(90 * self.render_scale * motion_factor)
+        base_width = max(40, min(base_width, self.width // 2))
+
+        # Rect describes the core of the column
+        base_rect = pygame.Rect(0, 0, base_width, height)
+        base_rect.centerx = cx
+        base_rect.centery = (top + bottom) // 2
+
+        # Slight vertical wobble over time to make the aura feel alive
+        wobble = 12 * math.sin(self.time * 2.0 * math.pi * 0.3)
+        base_rect.centery += int(wobble)
+
+        # Draw multiple layered ellipses to form a glowing column
+        num_layers = 12
+        for i in range(num_layers):
+            t = i / (num_layers - 1)
+
+            # Color smoothly interpolates across the base palette
+            if len(base_colors) == 1:
+                color = base_colors[0]
+            else:
+                idx = int(t * (len(base_colors) - 1))
+                next_idx = min(idx + 1, len(base_colors) - 1)
+                local_t = (t * (len(base_colors) - 1)) - idx
+                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+
+            # Inner layers are brighter; outer layers more transparent
+            alpha = int(230 * (1.0 - t ** 1.5))
+            rgba = (color[0], color[1], color[2], alpha)
+
+            # Inflate rect gradually to create soft edges
+            inflate_x = int(base_width * 0.9 * t)
+            inflate_y = int(height * 0.4 * t)
+            layer_rect = base_rect.inflate(inflate_x, inflate_y)
+
+            pygame.draw.ellipse(aura_surface, rgba, layer_rect)
+
+        # Draw a bright core orb in the center
+        core_radius = int(base_width * 0.55)
+        core_radius = max(20, core_radius)
+        core_color = base_colors[len(base_colors) // 2]
+        core_rgba = (core_color[0], core_color[1], core_color[2], 245)
+        core_center = (base_rect.centerx, base_rect.centery)
+        pygame.draw.circle(aura_surface, core_rgba, core_center, core_radius)
+
+        # Blit the aura on top of everything
+        self.screen.blit(aura_surface, (0, 0))
+
+    # ------------------------------------------------------------------
     def _blit_camera(self, frame):
         try:
             h, w = frame.shape[:2]
@@ -221,23 +296,24 @@ class AnimationEngine:
         # BGR -> RGB
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
+        # Fit the camera frame into the screen while keeping aspect ratio
         scale = min(self.width / w, self.height / h)
         new_size = (int(w * scale), int(h * scale))
         frame_resized = cv2.resize(frame_rgb, new_size)
 
         surf = pygame.surfarray.make_surface(frame_resized.swapaxes(0, 1))
-        surf.set_alpha(120)
+        surf.set_alpha(120)  # semi-transparent so aura stands out
         x = (self.width - new_size[0]) // 2
         y = (self.height - new_size[1]) // 2
         self.screen.blit(surf, (x, y))
 
-    # --------------------------------------------------------
+    # ------------------------------------------------------------------
     def _draw_label(self):
         font = pygame.font.SysFont("arial", 24)
         text = font.render(f"Spectrum: {self.spectrum_name}", True, (230, 230, 230))
         self.screen.blit(text, (20, 20))
 
-    # --------------------------------------------------------
+    # ------------------------------------------------------------------
     def _lerp_color(self, c1, c2, t):
         t = max(0.0, min(1.0, t))
         return (
