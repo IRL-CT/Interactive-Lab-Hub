@@ -47,7 +47,7 @@ class TouchElementSelector:
 
                 if len(self.selected) == 3:
                     self.selection_done = True
-                    print(f"[Touch] Final user profile selected → {self.selected}")
+                    print(f"[Touch] Final user profile selected {self.selected}")
                     return self.selected
 
         return None
