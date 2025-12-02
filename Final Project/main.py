@@ -1,3 +1,4 @@
+# main.py
 from sensors.sensor_manager import SensorManager
 from animation.animation_engine import AnimationEngine
 import time
@@ -11,12 +12,18 @@ def main():
     while True:
         data = sensors.update()
 
-        element = data["element"]
+        profile = data["profile"]   
+        element = data["element"]   
         gesture = data["gesture"]
         frame = data["frame"]
 
-        # Send to animation engine
-        engine.update(element=element, gesture=gesture, frame=frame)
+
+        engine.update(
+            profile=profile,
+            element=element,
+            gesture=gesture,
+            frame=frame,
+        )
 
         time.sleep(0.01)
 
