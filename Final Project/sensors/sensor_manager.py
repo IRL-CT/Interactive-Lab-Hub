@@ -119,8 +119,9 @@ class SensorManager:
         # RETURN SENSOR DATA
         # -----------------------------------------
         return {
-            "profile": self.user_profile if self.profile_selected else None,
+            "profile": self.user_profile if self.profile_selected else None,  # ["Fire","Water","Light"]
             "element": self.current_element,
             "gesture": gesture,
             "frame": frame,
         }
+
