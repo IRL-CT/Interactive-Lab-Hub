@@ -4,6 +4,7 @@ adafruit-circuitpython-busdevice
 adafruit-circuitpython-mpr121
 adafruit-circuitpython-apds9960
 adafruit-circuitpython-rgb-display
+adafruit-circuitpython-ssd1306
 
 # Display & graphics
 Pillow
