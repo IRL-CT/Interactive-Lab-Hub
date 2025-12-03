@@ -92,7 +92,7 @@ class GestureSensor:
 
         if decoded_action is not None:
             self.last_gesture_time = now
-            print(f"[Gesture] Detected {direction} → {decoded_action}")
+            print(f"[Gesture] Detected {direction} to {decoded_action}")
             return decoded_action
 
         return None
