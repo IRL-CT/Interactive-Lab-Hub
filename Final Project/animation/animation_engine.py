@@ -1,5 +1,4 @@
 import pygame
-import random
 import math
 
 try:
@@ -36,9 +35,6 @@ class AnimationEngine:
         self.prev_gray = None
         self.body_box = None                 # (x_min, y_min, x_max, y_max) in low-res space
         self.downsample_size = (64, 36)      # width, height for motion detection
-
-        # Particle buffer (optional, currently unused, kept for later effects)
-        self.particles = []
 
         # Base colors per element
         self.element_colors = {
@@ -97,8 +93,8 @@ class AnimationEngine:
         # Breathing modulation:
         # - motion_level increases breathing width/intensity
         # - sine wave adds slow organic oscillation
-        breath_from_motion = 0.9 + 0.4 * self.motion_level
-        breathing_wave = 1.0 + 0.12 * math.sin(self.time * 2.0 * math.pi * 0.5)
+        breath_from_motion = 0.9 + 0.5 * self.motion_level
+        breathing_wave = 1.0 + 0.15 * math.sin(self.time * 2.0 * math.pi * 0.5)
 
         # Slowly decay scale back to normal range
         self.scale *= 0.99
@@ -134,13 +130,13 @@ class AnimationEngine:
         # Average intensity of difference (0~1)
         mean_diff = diff.mean() / 255.0
         # Smooth motion_level over time
-        self.motion_level = 0.8 * self.motion_level + 0.2 * min(1.0, mean_diff * 5.0)
+        self.motion_level = 0.8 * self.motion_level + 0.2 * min(1.0, mean_diff * 6.0)
 
         # Estimate body box from thresholded motion map
         _, diff_bin = cv2.threshold(diff, 25, 255, cv2.THRESH_BINARY)
         ys, xs = np.where(diff_bin > 0)
 
-        if len(xs) < 50:
+        if len(xs) < 30:
             # Not enough moving pixels → no reliable box
             self.body_box = None
             return
@@ -164,7 +160,7 @@ class AnimationEngine:
         warm = (255, 180, 80)
         cold = (80, 150, 255)
         tint = self._lerp_color(cold, warm, (self.temp_shift + 1) / 2)
-        bg = self._lerp_color((0, 0, 0), tint, 0.05)
+        bg = self._lerp_color((0, 0, 0), tint, 0.06)
         self.screen.fill(bg)
 
         # 3) Draw camera reflection behind aura
@@ -174,7 +170,7 @@ class AnimationEngine:
         # 4) Draw aura around the detected body region
         self._draw_aura(base_colors)
 
-        # 5) UI label
+        # 5) UI label and debug info
         self._draw_label()
 
     # ------------------------------------------------------------------
@@ -196,8 +192,8 @@ class AnimationEngine:
         avg = (r, g, b)
 
         # Create a simple gradient: cooler → avg → warmer
-        cold_tint = self._lerp_color(avg, (80, 150, 255), 0.3)
-        warm_tint = self._lerp_color(avg, (255, 200, 120), 0.3)
+        cold_tint = self._lerp_color(avg, (80, 150, 255), 0.35)
+        warm_tint = self._lerp_color(avg, (255, 200, 120), 0.35)
 
         return [cold_tint, avg, warm_tint]
 
@@ -208,6 +204,7 @@ class AnimationEngine:
         """
         Draw a vertical energy aura (capsule-like column) using
         a separate alpha surface, then blit it onto the main screen.
+        This should look like a strong glowing spectrum around the user.
         """
 
         aura_surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -223,11 +220,21 @@ class AnimationEngine:
             cx = int((x_min + x_max) / 2 * scale_x)
             top = int(y_min * scale_y)
             bottom = int(y_max * scale_y)
+
+            # Debug rectangle to show detected region (white box)
+            debug_rect = pygame.Rect(
+                int(x_min * scale_x),
+                int(y_min * scale_y),
+                int((x_max - x_min) * scale_x),
+                int((y_max - y_min) * scale_y),
+            )
+            pygame.draw.rect(self.screen, (255, 255, 255), debug_rect, 2)
+
         else:
-            # Fallback: central column
+            # Fallback: central column when no body is detected
             cx = self.width // 2
-            top = int(self.height * 0.18)
-            bottom = int(self.height * 0.82)
+            top = int(self.height * 0.2)
+            bottom = int(self.height * 0.8)
 
         height = bottom - top
         if height < int(self.height * 0.25):
@@ -237,9 +244,9 @@ class AnimationEngine:
             height = bottom - top
 
         # Base column width influenced by scale and motion
-        motion_factor = 1.0 + 0.6 * self.motion_level
-        base_width = int(90 * self.render_scale * motion_factor)
-        base_width = max(40, min(base_width, self.width // 2))
+        motion_factor = 1.0 + 0.8 * self.motion_level
+        base_width = int(140 * self.render_scale * motion_factor)
+        base_width = max(80, min(base_width, self.width // 2))
 
         # Rect describes the core of the column
         base_rect = pygame.Rect(0, 0, base_width, height)
@@ -247,11 +254,11 @@ class AnimationEngine:
         base_rect.centery = (top + bottom) // 2
 
         # Slight vertical wobble over time to make the aura feel alive
-        wobble = 12 * math.sin(self.time * 2.0 * math.pi * 0.3)
+        wobble = 18 * math.sin(self.time * 2.0 * math.pi * 0.3)
         base_rect.centery += int(wobble)
 
         # Draw multiple layered ellipses to form a glowing column
-        num_layers = 12
+        num_layers = 16
         for i in range(num_layers):
             t = i / (num_layers - 1)
 
@@ -261,25 +268,25 @@ class AnimationEngine:
             else:
                 idx = int(t * (len(base_colors) - 1))
                 next_idx = min(idx + 1, len(base_colors) - 1)
-                local_t = (t * (len(base_colors) - 1)) - idx
-                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                segment_t = (t * (len(base_colors) - 1)) - idx
+                color = self._lerp_color(base_colors[idx], base_colors[next_idx], segment_t)
 
             # Inner layers are brighter; outer layers more transparent
-            alpha = int(230 * (1.0 - t ** 1.5))
+            alpha = int(255 * (1.0 - t ** 1.3))
             rgba = (color[0], color[1], color[2], alpha)
 
             # Inflate rect gradually to create soft edges
-            inflate_x = int(base_width * 0.9 * t)
-            inflate_y = int(height * 0.4 * t)
+            inflate_x = int(base_width * 1.2 * t)
+            inflate_y = int(height * 0.45 * t)
             layer_rect = base_rect.inflate(inflate_x, inflate_y)
 
             pygame.draw.ellipse(aura_surface, rgba, layer_rect)
 
         # Draw a bright core orb in the center
-        core_radius = int(base_width * 0.55)
-        core_radius = max(20, core_radius)
+        core_radius = int(base_width * 0.6)
+        core_radius = max(30, core_radius)
         core_color = base_colors[len(base_colors) // 2]
-        core_rgba = (core_color[0], core_color[1], core_color[2], 245)
+        core_rgba = (core_color[0], core_color[1], core_color[2], 255)
         core_center = (base_rect.centerx, base_rect.centery)
         pygame.draw.circle(aura_surface, core_rgba, core_center, core_radius)
 
@@ -302,7 +309,7 @@ class AnimationEngine:
         frame_resized = cv2.resize(frame_rgb, new_size)
 
         surf = pygame.surfarray.make_surface(frame_resized.swapaxes(0, 1))
-        surf.set_alpha(120)  # semi-transparent so aura stands out
+        surf.set_alpha(110)  # semi-transparent so aura stands out
         x = (self.width - new_size[0]) // 2
         y = (self.height - new_size[1]) // 2
         self.screen.blit(surf, (x, y))
@@ -312,6 +319,13 @@ class AnimationEngine:
         font = pygame.font.SysFont("arial", 24)
         text = font.render(f"Spectrum: {self.spectrum_name}", True, (230, 230, 230))
         self.screen.blit(text, (20, 20))
+
+        # Debug: show motion level
+        debug_font = pygame.font.SysFont("arial", 18)
+        motion_text = debug_font.render(
+            f"Motion: {self.motion_level:.2f}", True, (220, 220, 220)
+        )
+        self.screen.blit(motion_text, (20, 50))
 
     # ------------------------------------------------------------------
     def _lerp_color(self, c1, c2, t):
