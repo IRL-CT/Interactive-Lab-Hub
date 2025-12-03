@@ -31,7 +31,7 @@ def main():
 
                 elif event.key == pygame.K_r:
                     # R → reset profile selection
-                    print("[Main] 'R' pressed → reset profile.")
+                    print("[Main] 'R' pressed to reset profile.")
                     sensors.reset_profile()
                     engine.reset_profile()
 
