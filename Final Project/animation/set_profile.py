@@ -4,6 +4,18 @@ Profile-to-style helpers.
 
 Given a 3-element profile like ["Fire", "Water", "Light"],
 this module returns a style dict describing the visual mood.
+
+We also assign each profile a pattern_type:
+- pillar_orbs
+- ring_waves
+- radial_rays
+- galaxy
+- double_pillar
+- vertical_ribbons
+- grid_pulse
+- starfield
+- vortex
+- cross_waves
 """
 
 from typing import Dict, Any, List, Tuple
@@ -64,19 +76,20 @@ def _build_default_style(profile: List[str]) -> Dict[str, Any]:
         "pillar_width_factor": 1.0,
         "pillar_height_factor": 1.0,
         "halo_scale": 1.0,
-        "orb_count": 24,
-        "orb_radius_range": (140, 260),
-        "orb_speed_range": (0.3, 0.9),
-        "orb_size_range": (4.0, 10.0),
+        "orb_count": 32,
+        "orb_radius_range": (160, 320),
+        "orb_speed_range": (0.4, 1.0),
+        "orb_size_range": (5.0, 12.0),
         "orb_vertical_squash": 0.55,
         "pattern_type": "pillar_orbs",
     }
 
 
 # --------------------------------------------------------------------
-# PRESETS: for each 3-element combination, define name + pattern type
-# and optionally override some geometry parameters.
-# We always start from _build_default_style and then overlay these.
+# PRESETS: for each 3-element combination, define:
+# - name: energy field name
+# - pattern_type: which visual pattern is used
+# plus optional overrides of geometric parameters.
 # --------------------------------------------------------------------
 
 PATTERN_PRESETS: Dict[Tuple[str, str, str], Dict[str, Any]] = {}
@@ -92,18 +105,19 @@ def _add_preset(elems, name, pattern_type, **overrides):
     PATTERN_PRESETS[key] = data
 
 
-# Earth, Fire, Light, Shadow, Water, Wind
-E, F, L, S, W, D = "Earth", "Fire", "Light", "Shadow", "Water", "Wind"
+# Short aliases
+E, F, L, S, Wa, Wi = "Earth", "Fire", "Light", "Shadow", "Water", "Wind"
+
+# 20 combinations → distribute across 10+ pattern types
 
 # 1. Earth Fire Light
 _add_preset(
     (E, F, L),
     name="Lantern Core",
     pattern_type="pillar_orbs",
-    pillar_width_factor=1.2,
+    pillar_width_factor=1.3,
     pillar_height_factor=1.1,
-    halo_scale=1.3,
-    orb_count=26,
+    halo_scale=1.4,
 )
 
 # 2. Earth Fire Shadow
@@ -115,57 +129,57 @@ _add_preset(
 
 # 3. Earth Fire Water
 _add_preset(
-    (E, F, W),
+    (E, F, Wa),
     name="Steam Bloom",
     pattern_type="ring_waves",
 )
 
 # 4. Earth Fire Wind
 _add_preset(
-    (E, F, D),
+    (E, F, Wi),
     name="Dustflare",
-    pattern_type="radial_rays",
+    pattern_type="vortex",
 )
 
 # 5. Earth Light Shadow
 _add_preset(
     (E, L, S),
     name="Twilight Ground",
-    pattern_type="galaxy",
+    pattern_type="double_pillar",
 )
 
 # 6. Earth Light Water
 _add_preset(
-    (E, L, W),
+    (E, L, Wa),
     name="Forest Heart",
     pattern_type="pillar_orbs",
-    pillar_height_factor=1.15,
+    pillar_height_factor=1.2,
 )
 
 # 7. Earth Light Wind
 _add_preset(
-    (E, L, D),
+    (E, L, Wi),
     name="Dawn Breeze",
-    pattern_type="ring_waves",
+    pattern_type="vertical_ribbons",
 )
 
 # 8. Earth Shadow Water
 _add_preset(
-    (E, S, W),
+    (E, S, Wa),
     name="Deep Spring",
     pattern_type="galaxy",
 )
 
 # 9. Earth Shadow Wind
 _add_preset(
-    (E, S, D),
+    (E, S, Wi),
     name="Hollow Gale",
-    pattern_type="radial_rays",
+    pattern_type="cross_waves",
 )
 
 # 10. Earth Water Wind
 _add_preset(
-    (E, W, D),
+    (E, Wa, Wi),
     name="Valley Mist",
     pattern_type="ring_waves",
 )
@@ -179,67 +193,65 @@ _add_preset(
 
 # 12. Fire Light Water
 _add_preset(
-    (F, L, W),
+    (F, L, Wa),
     name="Aurora Flame",
-    pattern_type="ring_waves",
+    pattern_type="vortex",
 )
 
 # 13. Fire Light Wind
 _add_preset(
-    (F, L, D),
+    (F, L, Wi),
     name="Solar Flare",
     pattern_type="pillar_orbs",
-    orb_count=28,
 )
 
 # 14. Fire Shadow Water
 _add_preset(
-    (F, S, W),
+    (F, S, Wa),
     name="Boiling Night",
-    pattern_type="galaxy",
+    pattern_type="starfield",
 )
 
 # 15. Fire Shadow Wind
 _add_preset(
-    (F, S, D),
+    (F, S, Wi),
     name="Storm Core",
     pattern_type="radial_rays",
 )
 
 # 16. Fire Water Wind
 _add_preset(
-    (F, W, D),
+    (F, Wa, Wi),
     name="Tempest Rise",
-    pattern_type="ring_waves",
+    pattern_type="cross_waves",
 )
 
 # 17. Light Shadow Water
 _add_preset(
-    (L, S, W),
+    (L, S, Wa),
     name="Moonlit Tide",
     pattern_type="ring_waves",
 )
 
 # 18. Light Shadow Wind
 _add_preset(
-    (L, S, D),
+    (L, S, Wi),
     name="Starlit Veil",
     pattern_type="galaxy",
 )
 
 # 19. Light Water Wind
 _add_preset(
-    (L, W, D),
+    (L, Wa, Wi),
     name="Sky Lanterns",
-    pattern_type="pillar_orbs",
-    halo_scale=1.4,
+    pattern_type="double_pillar",
 )
 
 # 20. Shadow Water Wind
 _add_preset(
-    (S, W, D),
+    (S, Wa, Wi),
     name="Nebula Drift",
-    pattern_type="galaxy",
+    pattern_type="grid_pulse",
 )
 
 
@@ -259,10 +271,10 @@ def get_spectrum_style(profile: List[str]) -> Dict[str, Any]:
             "pillar_width_factor": 1.0,
             "pillar_height_factor": 1.0,
             "halo_scale": 1.0,
-            "orb_count": 24,
-            "orb_radius_range": (140, 260),
-            "orb_speed_range": (0.3, 0.9),
-            "orb_size_range": (4.0, 10.0),
+            "orb_count": 32,
+            "orb_radius_range": (160, 320),
+            "orb_speed_range": (0.4, 1.0),
+            "orb_size_range": (5.0, 12.0),
             "orb_vertical_squash": 0.55,
             "pattern_type": "pillar_orbs",
         }
