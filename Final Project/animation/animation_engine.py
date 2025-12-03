@@ -1,5 +1,6 @@
+# animation/animation_engine.py
+
 import pygame
-import random
 import math
 
 try:
@@ -8,6 +9,8 @@ try:
 except ImportError:
     cv2 = None
     np = None
+
+from animation.set_profile import get_spectrum_style
 
 
 class AnimationEngine:
@@ -24,22 +27,26 @@ class AnimationEngine:
         self.current_profile = None          # e.g. ["Fire", "Water", "Light"]
         self.spectrum_name = "None"          # label for UI
 
+        # Style from set_profile
+        self.style = get_spectrum_style([])  # default neutral style
+
         # Energy scale and temperature
-        self.scale = 1.0                     # base energy size (changed by gestures)
+        self.scale = 1.0                     # base energy size (gestures)
         self.temp_shift = 0.0                # -1.0 (cold) ~ +1.0 (warm)
 
-        # Time and "motion energy"
+        # Time and "energy" levels
         self.time = 0.0
-        self.motion_level = 0.0              # 0~1, estimated from camera motion (global)
+        self.motion_level = 0.0              # 0~1, from camera motion
+        self.proximity_level = 0.0           # 0~1, from APDS-9960
 
         # Camera motion analysis
         self.prev_gray = None
-        self.downsample_size = (64, 36)      # for motion estimation
+        self.downsample_size = (64, 36)
 
-        # Orbiting energy orbs
-        self.orbs = []                       # each: [radius, angle, speed, size, color_idx]
+        # Orbiting orbs
+        self.orbs = []  # each: [radius, angle, speed, size, color_idx]
 
-        # Base colors per element
+        # Base colors per element (for single-element fallback)
         self.element_colors = {
             "Fire":   [(255, 120, 60), (255, 200, 90)],
             "Water":  [(60, 140, 255), (110, 220, 255)],
@@ -50,35 +57,32 @@ class AnimationEngine:
         }
 
     # ------------------------------------------------------------------
-    # Main update entry
-    # profile: ["Fire","Water","Light"] or None
-    # element: "Fire", "Water", ... (used before profile is ready)
-    # frame: camera frame in BGR (OpenCV)
+    # Main update
     # ------------------------------------------------------------------
-    def update(self, profile=None, element=None, gesture=None, frame=None):
+    def update(self, profile=None, element=None, gesture=None, proximity=None, frame=None):
         # Handle Pygame events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 raise SystemExit
 
-        # 1) Handle element / profile changes
+        # 1) Handle profile / element changes
         if profile is not None and profile != self.current_profile:
             self.current_profile = profile
             self.current_element = None
-            self.spectrum_name = " + ".join(profile)
-            print(f"[Animation] Spectrum profile -> {self.spectrum_name}")
-
-            # Reset orbs to introduce fresh layout for new combination
+            self.style = get_spectrum_style(profile)
+            self.spectrum_name = self.style.get("name", "Spectrum")
             self.orbs.clear()
+            print(f"[Animation] Spectrum profile -> {self.spectrum_name}")
 
         if self.current_profile is None and element and element != self.current_element:
             self.current_element = element
             self.spectrum_name = element
-            print(f"[Animation] Element -> {element}")
+            self.style = get_spectrum_style([element])  # simple fallback
             self.orbs.clear()
+            print(f"[Animation] Element -> {element}")
 
-        # 2) Handle gesture input (optional physical control)
+        # 2) Gestures: up/down/left/right from APDS-9960
         if gesture:
             if gesture == "expand":
                 self.scale = min(3.0, self.scale + 0.1)
@@ -89,27 +93,30 @@ class AnimationEngine:
             elif gesture == "warmer":
                 self.temp_shift = min(1.0, self.temp_shift + 0.05)
 
-        # 3) Time update
+        # 3) Proximity: hand distance (0~1)
+        if proximity is not None:
+            # Smooth proximity for stable visuals
+            self.proximity_level = 0.8 * self.proximity_level + 0.2 * proximity
+
+        # 4) Time update
         dt_ms = self.clock.get_time()
         dt = dt_ms / 1000.0 if dt_ms > 0 else 1.0 / 60.0
         self.time += dt
 
-        # 4) Global motion energy from camera (no body outline, just "how alive" the scene is)
+        # 5) Camera motion energy (global, not body outline)
         if frame is not None and cv2 is not None and np is not None:
             self._update_motion_energy(frame)
 
-        # 5) Breathing modulation:
-        # motion_level controls overall intensity
-        # sine wave makes it feel alive and slow-breathing
-        breath_from_motion = 1.0 + 0.8 * self.motion_level
+        # 6) Breathing modulation:
+        # camera motion + proximity both increase intensity
+        breath_from_motion = 1.0 + 0.6 * self.motion_level
+        breath_from_proximity = 1.0 + 0.8 * self.proximity_level
         breathing_wave = 1.0 + 0.18 * math.sin(self.time * 2.0 * math.pi * 0.4)
 
-        # Slowly decay base scale back to normal
         self.scale *= 0.99
         self.scale = max(0.6, min(2.5, self.scale))
 
-        # This is the effective scale for drawing
-        self.render_scale = self.scale * breath_from_motion * breathing_wave
+        self.render_scale = self.scale * breath_from_motion * breath_from_proximity * breathing_wave
 
         # Draw frame
         self._draw_frame(frame, dt)
@@ -117,8 +124,6 @@ class AnimationEngine:
         pygame.display.flip()
         self.clock.tick(60)
 
-    # ------------------------------------------------------------------
-    # Compute a single "motion_level" from camera: how much the scene changes
     # ------------------------------------------------------------------
     def _update_motion_energy(self, frame):
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -132,101 +137,65 @@ class AnimationEngine:
         diff = cv2.absdiff(gray_small, self.prev_gray)
         self.prev_gray = gray_small
 
-        # Average difference gives a rough motion energy
         mean_diff = diff.mean() / 255.0
         self.motion_level = 0.85 * self.motion_level + 0.15 * min(1.0, mean_diff * 8.0)
 
     # ------------------------------------------------------------------
     def _draw_frame(self, frame, dt):
-        # 1) Colors based on profile or single element
-        if self.current_profile is not None:
-            base_colors = self._colors_from_profile(self.current_profile)
+        # Colors from style or single element
+        if self.current_profile is not None or self.current_element is not None:
+            base_colors = self.style.get("base_colors", [(255, 255, 255), (200, 200, 200)])
         else:
-            element = self.current_element or "Shadow"
-            base_colors = self.element_colors.get(
-                element, [(255, 255, 255), (200, 200, 200)]
-            )
+            base_colors = [(255, 255, 255), (200, 200, 200)]
 
-        # 2) Background gradient based on temperature shift
+        # Background
         warm = (255, 180, 80)
         cold = (80, 150, 255)
         temp_tint = self._lerp_color(cold, warm, (self.temp_shift + 1) / 2)
         bg = self._lerp_color((0, 0, 0), temp_tint, 0.12)
         self.screen.fill(bg)
 
-        # 3) Camera reflection (very soft) behind everything
+        # Camera reflection (soft)
         if frame is not None and cv2 is not None:
             self._blit_camera(frame)
 
-        # 4) Central energy aura (pillar + head halo)
+        # Central aura and halo
         self._draw_aura(base_colors)
 
-        # 5) Orbiting "element orbs" around the aura
+        # Orbiting element orbs
         self._update_and_draw_orbs(base_colors, dt)
 
-        # 6) Label
+        # UI label
         self._draw_label()
 
     # ------------------------------------------------------------------
-    # Blend element colors to build a "spectrum"
-    # ------------------------------------------------------------------
-    def _colors_from_profile(self, profile):
-        cols = []
-        for name in profile:
-            cols.extend(self.element_colors.get(name, []))
-
-        if not cols:
-            return [(255, 255, 255), (200, 200, 200)]
-
-        r = sum(c[0] for c in cols) // len(cols)
-        g = sum(c[1] for c in cols) // len(cols)
-        b = sum(c[2] for c in cols) // len(cols)
-        avg = (r, g, b)
-
-        # cooler, mid, warmer variants
-        cold_tint = self._lerp_color(avg, (80, 150, 255), 0.35)
-        warm_tint = self._lerp_color(avg, (255, 200, 120), 0.35)
-
-        return [cold_tint, avg, warm_tint]
-
-    # ------------------------------------------------------------------
-    # Central aura: a vertical glowing pillar + a halo around "head" position
-    # ------------------------------------------------------------------
     def _draw_aura(self, base_colors):
-        """
-        Draw a dream-like aura in the center of the screen:
-        - A vertical gradient pillar (like a body)
-        - A circular halo at the upper part (like a head aura)
-        """
-
         aura_surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
 
         center_x = self.width // 2
-        center_y = int(self.height * 0.55)  # body center
-        pillar_height = int(self.height * 0.6 * self.render_scale)
-        pillar_height = max(int(self.height * 0.4), min(pillar_height, int(self.height * 0.8)))
+        center_y = int(self.height * 0.55)
 
-        top_y = center_y - pillar_height // 2
-        bottom_y = center_y + pillar_height // 2
+        width_factor = self.style.get("pillar_width_factor", 1.0)
+        height_factor = self.style.get("pillar_height_factor", 1.0)
+        halo_scale = self.style.get("halo_scale", 1.0)
 
-        # Pillar base width depends on render_scale
-        base_width = int(140 * self.render_scale)
-        base_width = max(80, min(base_width, self.width // 2))
+        pillar_height = int(self.height * 0.6 * self.render_scale * height_factor)
+        pillar_height = max(int(self.height * 0.35), min(pillar_height, int(self.height * 0.85)))
+
+        base_width = int(140 * self.render_scale * width_factor)
+        base_width = max(70, min(base_width, self.width // 2))
 
         base_rect = pygame.Rect(0, 0, base_width, pillar_height)
         base_rect.centerx = center_x
         base_rect.centery = center_y
 
-        # Slight vertical breathing wobble
         wobble = 12 * math.sin(self.time * 2.0 * math.pi * 0.3)
-        base_rect.centery += int(wobble)
+        base_rect.centery += int(wobble * (0.6 + 0.4 * self.proximity_level))
 
-        # Draw multiple layered ellipses to form the pillar
         num_layers = 18
         for i in range(num_layers):
             t = i / (num_layers - 1)
 
-            # Interpolate through the spectrum palette
             if len(base_colors) == 1:
                 color = base_colors[0]
             else:
@@ -235,100 +204,85 @@ class AnimationEngine:
                 local_t = (t * (len(base_colors) - 1)) - idx
                 color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
 
-            # Alpha: bright in the center, softer outside
             alpha = int(255 * (1.0 - t ** 1.4))
+            # Let proximity slightly boost brightness
+            alpha = int(alpha * (0.7 + 0.6 * self.proximity_level))
+            alpha = max(0, min(alpha, 255))
+
             rgba = (color[0], color[1], color[2], alpha)
 
-            # Horizontal inflation makes outer glow
-            inflate_x = int(base_width * 1.4 * t)
-            inflate_y = int(pillar_height * 0.4 * t)
+            inflate_x = int(base_width * 1.6 * t)
+            inflate_y = int(pillar_height * 0.45 * t)
             layer_rect = base_rect.inflate(inflate_x, inflate_y)
 
             pygame.draw.ellipse(aura_surface, rgba, layer_rect)
 
-        # Head halo: circle above the center of the pillar
+        # Head halo
         head_y = base_rect.top + int(pillar_height * 0.18)
-        halo_radius = int(base_width * 0.7)
+        halo_radius = int(base_width * 0.75 * halo_scale * (0.8 + 0.4 * self.proximity_level))
         halo_radius = max(40, halo_radius)
 
         halo_center = (center_x, head_y)
         for i in range(8):
             t = i / 7.0
             color = base_colors[min(len(base_colors) - 1, i % len(base_colors))]
-            alpha = int(220 * (1.0 - t ** 1.8))
+            alpha = int(230 * (1.0 - t ** 1.8) * (0.7 + 0.5 * self.proximity_level))
             radius = int(halo_radius * (0.6 + 0.5 * t * self.render_scale))
 
-            rgba = (color[0], color[1], color[2], alpha)
+            rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
             pygame.draw.circle(aura_surface, rgba, halo_center, radius)
 
-        # Core "soul" orb
+        # Core soul orb
         core_color = base_colors[len(base_colors) // 2]
         core_rgba = (core_color[0], core_color[1], core_color[2], 255)
-        core_radius = int(base_width * 0.45)
+        core_radius = int(base_width * 0.45 * (1.0 + 0.3 * self.proximity_level))
         core_radius = max(30, core_radius)
         pygame.draw.circle(aura_surface, core_rgba, halo_center, core_radius)
 
-        # Blend aura onto main screen
         self.screen.blit(aura_surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # Orbiting orbs around the aura (representing the 3 elements)
-    # ------------------------------------------------------------------
     def _update_and_draw_orbs(self, base_colors, dt):
-        """
-        Draw small glowing orbs that orbit around the aura.
-        Their speed and size are influenced by the motion energy.
-        """
-
         center_x = self.width // 2
         center_y = int(self.height * 0.55)
 
-        # Ensure we have a stable set of orbs
-        desired_orb_count = 24
-        if len(self.orbs) == 0:
-            for i in range(desired_orb_count):
-                # Radius layers: some near the body, some further out
-                radius = random.uniform(120, 260)
-                angle = random.uniform(0, math.tau)
-                # Base speed influenced by motion_level
-                speed = random.uniform(0.3, 0.9)
-                size = random.uniform(4.0, 10.0)
-                color_idx = random.randint(0, len(base_colors) - 1)
-                self.orbs.append([radius, angle, speed, size, color_idx])
-        elif len(self.orbs) < desired_orb_count:
-            # Top up slowly if needed
-            for i in range(desired_orb_count - len(self.orbs)):
-                radius = random.uniform(120, 260)
-                angle = random.uniform(0, math.tau)
-                speed = random.uniform(0.3, 0.9)
-                size = random.uniform(4.0, 10.0)
+        orb_count = self.style.get("orb_count", 24)
+        r_min, r_max = self.style.get("orb_radius_range", (140, 260))
+        speed_min, speed_max = self.style.get("orb_speed_range", (0.3, 0.9))
+        size_min, size_max = self.style.get("orb_size_range", (4.0, 10.0))
+        vertical_squash = self.style.get("orb_vertical_squash", 0.55)
+
+        # Ensure at least orb_count orbs
+        if len(self.orbs) < orb_count:
+            for _ in range(orb_count - len(self.orbs)):
+                radius = (r_min + (r_max - r_min) * (0.2 + 0.8 * (0.5)))
+                radius = radius * (0.8 + 0.4 * self.render_scale)
+                angle = math.tau * (len(self.orbs) / max(1, orb_count))
+                speed = random.uniform(speed_min, speed_max)
+                size = random.uniform(size_min, size_max)
                 color_idx = random.randint(0, len(base_colors) - 1)
                 self.orbs.append([radius, angle, speed, size, color_idx])
 
-        # Draw each orb
+        # Draw orbs
         for orb in self.orbs:
             radius, angle, speed, size, color_idx = orb
 
-            # Orbital angular speed amplified by motion_level
-            angular_speed = speed * (1.0 + 1.2 * self.motion_level)
+            # Motion and proximity both make orbit faster
+            angular_speed = speed * (1.0 + 1.2 * self.motion_level + 1.0 * self.proximity_level)
             orb[1] += angular_speed * dt
 
-            # Compute position
             x = center_x + math.cos(orb[1]) * radius
-            y = center_y + math.sin(orb[1]) * radius * 0.55  # slightly squashed vertically
+            y = center_y + math.sin(orb[1]) * radius * vertical_squash
 
-            # Size breathing with scene energy
-            final_size = size * (0.8 + 0.6 * self.render_scale)
-            final_size = max(2.0, min(final_size, 18.0))
+            final_size = size * (0.9 + 0.7 * self.render_scale)
+            final_size = max(2.0, min(final_size, 20.0))
 
             color = base_colors[color_idx]
-            # Slight shimmering by mixing with temp tint
             warm = (255, 180, 80)
             cold = (80, 150, 255)
             temp_tint = self._lerp_color(cold, warm, (self.temp_shift + 1) / 2)
             final_color = self._lerp_color(color, temp_tint, 0.25)
 
-            # Draw a soft glowing orb
             pygame.draw.circle(self.screen, final_color, (int(x), int(y)), int(final_size))
 
     # ------------------------------------------------------------------
@@ -344,7 +298,7 @@ class AnimationEngine:
         frame_resized = cv2.resize(frame_rgb, new_size)
 
         surf = pygame.surfarray.make_surface(frame_resized.swapaxes(0, 1))
-        surf.set_alpha(90)  # very soft reflection
+        surf.set_alpha(90)
         x = (self.width - new_size[0]) // 2
         y = (self.height - new_size[1]) // 2
         self.screen.blit(surf, (x, y))
@@ -357,9 +311,13 @@ class AnimationEngine:
 
         debug_font = pygame.font.SysFont("arial", 18)
         motion_text = debug_font.render(
-            f"Energy: {self.motion_level:.2f}", True, (220, 220, 220)
+            f"Energy(cam): {self.motion_level:.2f}", True, (220, 220, 220)
+        )
+        prox_text = debug_font.render(
+            f"Energy(hand): {self.proximity_level:.2f}", True, (220, 220, 220)
         )
         self.screen.blit(motion_text, (20, 50))
+        self.screen.blit(prox_text, (20, 70))
 
     # ------------------------------------------------------------------
     def _lerp_color(self, c1, c2, t):
