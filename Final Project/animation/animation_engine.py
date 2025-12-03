@@ -1,3 +1,5 @@
+# animation/animation_engine.py
+
 import pygame
 import math
 import random
@@ -42,8 +44,8 @@ class AnimationEngine:
         self.prev_gray = None
         self.downsample_size = (64, 36)
 
-        # Shared particle/orb state
-        self.orbs = []                       # used by some patterns
+        # Shared state for patterns that need persistent particles
+        self.orbs = []
 
         # Base colors per element (for single-element fallback)
         self.element_colors = {
@@ -75,11 +77,11 @@ class AnimationEngine:
         if self.current_profile is None and element is not None and element != self.current_element:
             self.current_element = element
             self.spectrum_name = element
-            self.style = get_spectrum_style([element])  # simple style
+            self.style = get_spectrum_style([element])
             self.orbs.clear()
             print(f"[Animation] Element -> {element}")
 
-        # 2) Gestures: up/down/left/right from APDS-9960
+        # 2) Gestures from APDS-9960
         if gesture:
             if gesture == "expand":
                 self.scale = min(3.0, self.scale + 0.1)
@@ -99,18 +101,17 @@ class AnimationEngine:
         dt = dt_ms / 1000.0 if dt_ms > 0 else 1.0 / 60.0
         self.time += dt
 
-        # 5) Camera motion energy (global, not body outline)
+        # 5) Camera motion energy (global)
         if frame is not None and cv2 is not None and np is not None:
             self._update_motion_energy(frame)
 
-        # 6) Breathing modulation:
-        # camera motion + proximity both increase intensity
-        breath_from_motion = 1.0 + 0.6 * self.motion_level
-        breath_from_proximity = 1.0 + 0.8 * self.proximity_level
-        breathing_wave = 1.0 + 0.18 * math.sin(self.time * 2.0 * math.pi * 0.4)
+        # 6) Breathing modulation
+        breath_from_motion = 1.0 + 0.7 * self.motion_level
+        breath_from_proximity = 1.0 + 0.9 * self.proximity_level
+        breathing_wave = 1.0 + 0.22 * math.sin(self.time * 2.0 * math.pi * 0.4)
 
         self.scale *= 0.99
-        self.scale = max(0.6, min(2.5, self.scale))
+        self.scale = max(0.7, min(2.7, self.scale))
 
         self.render_scale = self.scale * breath_from_motion * breath_from_proximity * breathing_wave
 
@@ -138,17 +139,17 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
     def _draw_frame(self, frame, dt):
-        # Colors from style or single element
+        # Colors from style or fallback
         if self.current_profile is not None or self.current_element is not None:
             base_colors = self.style.get("base_colors", [(255, 255, 255), (200, 200, 200)])
         else:
             base_colors = [(255, 255, 255), (200, 200, 200)]
 
         # Background tint
-        warm = (255, 180, 80)
-        cold = (80, 150, 255)
+        warm = (255, 190, 90)
+        cold = (70, 150, 255)
         temp_tint = self._lerp_color(cold, warm, (self.temp_shift + 1) / 2)
-        bg = self._lerp_color((0, 0, 0), temp_tint, 0.12)
+        bg = self._lerp_color((0, 0, 0), temp_tint, 0.18)
         self.screen.fill(bg)
 
         # Camera reflection (subtle)
@@ -158,24 +159,41 @@ class AnimationEngine:
         # Pattern routing
         pattern_type = self.style.get("pattern_type", "pillar_orbs")
 
-        if pattern_type == "ring_waves":
+        if pattern_type == "pillar_orbs":
+            self._pattern_pillar_orbs(base_colors, dt)
+        elif pattern_type == "ring_waves":
             self._pattern_ring_waves(base_colors)
         elif pattern_type == "radial_rays":
             self._pattern_radial_rays(base_colors)
         elif pattern_type == "galaxy":
             self._pattern_galaxy(base_colors)
+        elif pattern_type == "double_pillar":
+            self._pattern_double_pillar(base_colors)
+        elif pattern_type == "vertical_ribbons":
+            self._pattern_vertical_ribbons(base_colors)
+        elif pattern_type == "grid_pulse":
+            self._pattern_grid_pulse(base_colors)
+        elif pattern_type == "starfield":
+            self._pattern_starfield(base_colors)
+        elif pattern_type == "vortex":
+            self._pattern_vortex(base_colors)
+        elif pattern_type == "cross_waves":
+            self._pattern_cross_waves(base_colors)
         else:
-            # default to pillar + orbs
-            self._draw_aura(base_colors)
-            self._pattern_orbiting_orbs(base_colors, dt)
+            # fallback
+            self._pattern_pillar_orbs(base_colors, dt)
 
         # UI label
         self._draw_label()
 
     # ------------------------------------------------------------------
-    # Pattern 1: central pillar + orbiting orbs
+    # PATTERN 1: central pillar + orbiting orbs
     # ------------------------------------------------------------------
-    def _draw_aura(self, base_colors):
+    def _pattern_pillar_orbs(self, base_colors, dt):
+        self._draw_aura_center(base_colors)
+        self._pattern_orbiting_orbs(base_colors, dt)
+
+    def _draw_aura_center(self, base_colors):
         aura_surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
 
         center_x = self.width // 2
@@ -185,20 +203,20 @@ class AnimationEngine:
         height_factor = self.style.get("pillar_height_factor", 1.0)
         halo_scale = self.style.get("halo_scale", 1.0)
 
-        pillar_height = int(self.height * 0.6 * self.render_scale * height_factor)
-        pillar_height = max(int(self.height * 0.35), min(pillar_height, int(self.height * 0.85)))
+        pillar_height = int(self.height * 0.7 * self.render_scale * height_factor)
+        pillar_height = max(int(self.height * 0.4), min(pillar_height, int(self.height * 0.9)))
 
-        base_width = int(140 * self.render_scale * width_factor)
-        base_width = max(70, min(base_width, self.width // 2))
+        base_width = int(200 * self.render_scale * width_factor)
+        base_width = max(90, min(base_width, int(self.width * 0.75)))
 
         base_rect = pygame.Rect(0, 0, base_width, pillar_height)
         base_rect.centerx = center_x
         base_rect.centery = center_y
 
-        wobble = 12 * math.sin(self.time * 2.0 * math.pi * 0.3)
+        wobble = 18 * math.sin(self.time * 2.0 * math.pi * 0.3)
         base_rect.centery += int(wobble * (0.6 + 0.4 * self.proximity_level))
 
-        num_layers = 18
+        num_layers = 22
         for i in range(num_layers):
             t = i / (num_layers - 1)
 
@@ -210,28 +228,28 @@ class AnimationEngine:
                 local_t = (t * (len(base_colors) - 1)) - idx
                 color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
 
-            alpha = int(255 * (1.0 - t ** 1.4))
-            alpha = int(alpha * (0.7 + 0.6 * self.proximity_level))
+            alpha = int(255 * (1.0 - t ** 1.3))
+            alpha = int(alpha * (0.9 + 0.8 * self.proximity_level))
             alpha = max(0, min(alpha, 255))
 
             rgba = (color[0], color[1], color[2], alpha)
 
-            inflate_x = int(base_width * 1.6 * t)
-            inflate_y = int(pillar_height * 0.45 * t)
+            inflate_x = int(base_width * 1.8 * t)
+            inflate_y = int(pillar_height * 0.5 * t)
             layer_rect = base_rect.inflate(inflate_x, inflate_y)
 
             pygame.draw.ellipse(aura_surface, rgba, layer_rect)
 
         # Head halo
-        head_y = base_rect.top + int(pillar_height * 0.18)
-        halo_radius = int(base_width * 0.75 * halo_scale * (0.8 + 0.4 * self.proximity_level))
-        halo_radius = max(40, halo_radius)
+        head_y = base_rect.top + int(pillar_height * 0.2)
+        halo_radius = int(base_width * 0.9 * halo_scale * (0.8 + 0.5 * self.proximity_level))
+        halo_radius = max(55, halo_radius)
 
         halo_center = (center_x, head_y)
-        for i in range(8):
-            t = i / 7.0
+        for i in range(10):
+            t = i / 9.0
             color = base_colors[min(len(base_colors) - 1, i % len(base_colors))]
-            alpha = int(230 * (1.0 - t ** 1.8) * (0.7 + 0.5 * self.proximity_level))
+            alpha = int(245 * (1.0 - t ** 1.8) * (0.8 + 0.5 * self.proximity_level))
             radius = int(halo_radius * (0.6 + 0.5 * t * self.render_scale))
 
             rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
@@ -240,8 +258,8 @@ class AnimationEngine:
         # Core orb
         core_color = base_colors[len(base_colors) // 2]
         core_rgba = (core_color[0], core_color[1], core_color[2], 255)
-        core_radius = int(base_width * 0.45 * (1.0 + 0.3 * self.proximity_level))
-        core_radius = max(30, core_radius)
+        core_radius = int(base_width * 0.55 * (1.0 + 0.3 * self.proximity_level))
+        core_radius = max(40, core_radius)
         pygame.draw.circle(aura_surface, core_rgba, halo_center, core_radius)
 
         self.screen.blit(aura_surface, (0, 0))
@@ -250,10 +268,10 @@ class AnimationEngine:
         center_x = self.width // 2
         center_y = int(self.height * 0.55)
 
-        orb_count = self.style.get("orb_count", 24)
-        r_min, r_max = self.style.get("orb_radius_range", (140, 260))
-        speed_min, speed_max = self.style.get("orb_speed_range", (0.3, 0.9))
-        size_min, size_max = self.style.get("orb_size_range", (4.0, 10.0))
+        orb_count = self.style.get("orb_count", 32)
+        r_min, r_max = self.style.get("orb_radius_range", (160, 320))
+        speed_min, speed_max = self.style.get("orb_speed_range", (0.4, 1.0))
+        size_min, size_max = self.style.get("orb_size_range", (5.0, 12.0))
         vertical_squash = self.style.get("orb_vertical_squash", 0.55)
 
         if len(self.orbs) < orb_count:
@@ -268,25 +286,25 @@ class AnimationEngine:
         for orb in self.orbs:
             radius, angle, speed, size, color_idx = orb
 
-            angular_speed = speed * (1.0 + 1.2 * self.motion_level + 1.0 * self.proximity_level)
+            angular_speed = speed * (1.0 + 1.3 * self.motion_level + 1.1 * self.proximity_level)
             orb[1] += angular_speed * dt
 
             x = center_x + math.cos(orb[1]) * radius
             y = center_y + math.sin(orb[1]) * radius * vertical_squash
 
-            final_size = size * (0.9 + 0.7 * self.render_scale)
-            final_size = max(2.0, min(final_size, 20.0))
+            final_size = size * (1.1 + 0.8 * self.render_scale)
+            final_size = max(3.0, min(final_size, 26.0))
 
             color = base_colors[color_idx]
-            warm = (255, 180, 80)
-            cold = (80, 150, 255)
+            warm = (255, 190, 90)
+            cold = (70, 150, 255)
             temp_tint = self._lerp_color(cold, warm, (self.temp_shift + 1) / 2)
             final_color = self._lerp_color(color, temp_tint, 0.25)
 
             pygame.draw.circle(self.screen, final_color, (int(x), int(y)), int(final_size))
 
     # ------------------------------------------------------------------
-    # Pattern 2: ring waves (horizontal / elliptical waves)
+    # PATTERN 2: ring waves
     # ------------------------------------------------------------------
     def _pattern_ring_waves(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -294,20 +312,19 @@ class AnimationEngine:
         center_x = self.width // 2
         center_y = int(self.height * 0.55)
 
-        num_rings = 14
-        base_radius_y = 40 * self.render_scale
-        gap = 18 * self.render_scale
+        num_rings = 18
+        base_radius_y = 60 * self.render_scale
+        gap = 26 * self.render_scale
 
-        # Wave amplitude reacts to motion + proximity
-        amp = 28 * (0.3 + 0.7 * (self.motion_level + self.proximity_level) / 2.0)
-        time_factor = self.time * 1.2
+        amp = 36 * (0.3 + 0.7 * (self.motion_level + self.proximity_level) / 2.0)
+        time_factor = self.time * 1.4
 
         for i in range(num_rings):
             t = i / (num_rings - 1)
             radius_y = base_radius_y + i * gap
-            radius_x = radius_y * 1.8
+            radius_x = radius_y * 2.0
 
-            y_offset = math.sin(time_factor + i * 0.3) * amp
+            y_offset = math.sin(time_factor + i * 0.35) * amp
 
             if len(base_colors) == 1:
                 color = base_colors[0]
@@ -317,8 +334,8 @@ class AnimationEngine:
                 local_t = (t * (len(base_colors) - 1)) - idx
                 color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
 
-            alpha = int(200 * (1.0 - t ** 1.6))
-            alpha = int(alpha * (0.6 + 0.7 * self.proximity_level))
+            alpha = int(230 * (1.0 - t ** 1.5))
+            alpha = int(alpha * (0.7 + 0.8 * self.proximity_level))
             alpha = max(0, min(alpha, 255))
 
             rect = pygame.Rect(0, 0, int(radius_x * 2), int(radius_y * 2))
@@ -326,12 +343,12 @@ class AnimationEngine:
             rect.centery = center_y + int(y_offset)
 
             rgba = (color[0], color[1], color[2], alpha)
-            pygame.draw.ellipse(surface, rgba, rect, width=2)
+            pygame.draw.ellipse(surface, rgba, rect, width=4)
 
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # Pattern 3: radial rays (like light beams / spikes)
+    # PATTERN 3: radial rays
     # ------------------------------------------------------------------
     def _pattern_radial_rays(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -339,12 +356,12 @@ class AnimationEngine:
         center_x = self.width // 2
         center_y = int(self.height * 0.55)
 
-        num_rays = 18
-        inner_radius = 40 * (0.8 + 0.4 * self.render_scale)
-        outer_base = min(self.width, self.height) * 0.6 * (0.7 + 0.5 * self.render_scale)
+        num_rays = 24
+        inner_radius = 60 * (0.9 + 0.4 * self.render_scale)
+        outer_base = min(self.width, self.height) * 0.8 * (0.6 + 0.6 * self.render_scale)
 
         energy = (self.motion_level + self.proximity_level) / 2.0
-        time_factor = self.time * (0.8 + 1.2 * energy)
+        time_factor = self.time * (1.0 + 1.4 * energy)
 
         for i in range(num_rays):
             t = i / num_rays
@@ -358,22 +375,20 @@ class AnimationEngine:
                 local_t = (t * (len(base_colors) - 1)) - idx
                 color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
 
-            # length breathing
-            length = outer_base * (0.7 + 0.6 * energy + 0.2 * math.sin(self.time * 2.0 + i * 0.4))
+            length = outer_base * (0.7 + 0.7 * energy + 0.25 * math.sin(self.time * 2.3 + i * 0.5))
 
             x1 = center_x + math.cos(angle) * inner_radius
             y1 = center_y + math.sin(angle) * inner_radius
             x2 = center_x + math.cos(angle) * length
             y2 = center_y + math.sin(angle) * length
 
-            alpha = int(220 * (0.4 + 0.6 * energy))
+            alpha = int(255 * (0.5 + 0.6 * energy))
             rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
 
-            # Draw a thicker ray by drawing several close lines
-            width = int(3 + 4 * self.render_scale)
+            width = int(4 + 5 * self.render_scale)
             for offset in range(-width // 2, width // 2 + 1):
-                dx = -math.sin(angle) * offset * 0.6
-                dy = math.cos(angle) * offset * 0.6
+                dx = -math.sin(angle) * offset * 0.7
+                dy = math.cos(angle) * offset * 0.7
                 start_pos = (int(x1 + dx), int(y1 + dy))
                 end_pos = (int(x2 + dx), int(y2 + dy))
                 pygame.draw.line(surface, rgba, start_pos, end_pos, 1)
@@ -381,7 +396,7 @@ class AnimationEngine:
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # Pattern 4: galaxy-like spiral particle field
+    # PATTERN 4: galaxy
     # ------------------------------------------------------------------
     def _pattern_galaxy(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -389,13 +404,13 @@ class AnimationEngine:
         center_x = self.width // 2
         center_y = int(self.height * 0.55)
 
-        num_arms = 4
-        points_per_arm = 65
-        base_radius = 40 * self.render_scale
-        max_radius = min(self.width, self.height) * 0.55 * (0.6 + 0.5 * self.render_scale)
+        num_arms = 5
+        points_per_arm = 80
+        base_radius = 60 * self.render_scale
+        max_radius = min(self.width, self.height) * 0.6 * (0.7 + 0.6 * self.render_scale)
 
         energy = (self.motion_level + self.proximity_level) / 2.0
-        spin_speed = 0.4 + 0.8 * energy
+        spin_speed = 0.5 + 1.0 * energy
 
         for arm in range(num_arms):
             arm_angle = arm * (math.tau / num_arms)
@@ -403,13 +418,11 @@ class AnimationEngine:
                 t = i / (points_per_arm - 1)
                 radius = base_radius + t * max_radius
 
-                # Spiral shape
-                angle = arm_angle + t * 2.0 + self.time * spin_speed
+                angle = arm_angle + t * 2.3 + self.time * spin_speed
 
-                # Small jitter
-                jitter = (0.5 - random.random()) * 14.0
+                jitter = (0.5 - random.random()) * 18.0
                 x = center_x + math.cos(angle) * radius + jitter
-                y = center_y + math.sin(angle) * radius * 0.7 + jitter
+                y = center_y + math.sin(angle) * radius * 0.75 + jitter
 
                 if len(base_colors) == 1:
                     color = base_colors[0]
@@ -419,14 +432,282 @@ class AnimationEngine:
                     local_t = (t * (len(base_colors) - 1)) - idx
                     color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
 
-                alpha = int(255 * (0.2 + 0.8 * (1.0 - t)))
-                alpha = int(alpha * (0.4 + 0.8 * energy))
+                alpha = int(255 * (0.15 + 0.85 * (1.0 - t)))
+                alpha = int(alpha * (0.4 + 0.9 * energy))
                 alpha = max(0, min(alpha, 255))
 
-                size = 2 + int(3 * (1.0 - t) * (0.8 + 0.6 * self.render_scale))
+                size = 2 + int(4 * (1.0 - t) * (0.8 + 0.7 * self.render_scale))
 
                 rgba = (color[0], color[1], color[2], alpha)
                 pygame.draw.circle(surface, rgba, (int(x), int(y)), size)
+
+        self.screen.blit(surface, (0, 0))
+
+    # ------------------------------------------------------------------
+    # PATTERN 5: double pillar (left & right)
+    # ------------------------------------------------------------------
+    def _pattern_double_pillar(self, base_colors):
+        aura_surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+
+        center_y = int(self.height * 0.55)
+        spacing = int(self.width * 0.22)
+
+        centers = [
+            (self.width // 2 - spacing, center_y),
+            (self.width // 2 + spacing, center_y),
+        ]
+
+        pillar_height = int(self.height * 0.6 * self.render_scale)
+        pillar_height = max(int(self.height * 0.4), min(pillar_height, int(self.height * 0.9)))
+
+        base_width = int(140 * self.render_scale)
+        base_width = max(70, min(base_width, int(self.width * 0.4)))
+
+        wobble_amp = 12 * (1.0 + 0.5 * self.proximity_level)
+
+        for cx, cy in centers:
+            base_rect = pygame.Rect(0, 0, base_width, pillar_height)
+            base_rect.centerx = cx
+            base_rect.centery = cy + int(wobble_amp * math.sin(self.time * 2.0 + cx * 0.002))
+
+            num_layers = 18
+            for i in range(num_layers):
+                t = i / (num_layers - 1)
+                if len(base_colors) == 1:
+                    color = base_colors[0]
+                else:
+                    idx = int(t * (len(base_colors) - 1))
+                    next_idx = min(idx + 1, len(base_colors) - 1)
+                    local_t = (t * (len(base_colors) - 1)) - idx
+                    color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+
+                alpha = int(240 * (1.0 - t ** 1.4) * (0.7 + 0.7 * self.proximity_level))
+                alpha = max(0, min(alpha, 255))
+                rgba = (color[0], color[1], color[2], alpha)
+
+                inflate_x = int(base_width * 1.4 * t)
+                inflate_y = int(pillar_height * 0.5 * t)
+                layer_rect = base_rect.inflate(inflate_x, inflate_y)
+
+                pygame.draw.ellipse(aura_surface, rgba, layer_rect)
+
+        # Soft bridge between two pillars
+        mid_rect = pygame.Rect(0, 0, spacing * 2, int(pillar_height * 0.35))
+        mid_rect.center = (self.width // 2, center_y)
+        bridge_color = base_colors[len(base_colors) // 2]
+        bridge_rgba = (bridge_color[0], bridge_color[1], bridge_color[2], 120 + int(80 * self.proximity_level))
+        pygame.draw.ellipse(aura_surface, bridge_rgba, mid_rect)
+
+        self.screen.blit(aura_surface, (0, 0))
+
+    # ------------------------------------------------------------------
+    # PATTERN 6: vertical ribbons
+    # ------------------------------------------------------------------
+    def _pattern_vertical_ribbons(self, base_colors):
+        surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+
+        num_ribbons = 10
+        ribbon_width = self.width / num_ribbons
+
+        energy = (self.motion_level + self.proximity_level) / 2.0
+
+        for i in range(num_ribbons):
+            t = i / max(1, num_ribbons - 1)
+
+            if len(base_colors) == 1:
+                color = base_colors[0]
+            else:
+                idx = int(t * (len(base_colors) - 1))
+                next_idx = min(idx + 1, len(base_colors) - 1)
+                local_t = (t * (len(base_colors) - 1)) - idx
+                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+
+            alpha = int(200 * (0.7 + 0.6 * energy))
+            rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
+
+            x_center = (i + 0.5) * ribbon_width
+            # horizontal wobble
+            wobble = math.sin(self.time * 1.5 + i * 0.7) * ribbon_width * 0.25 * (0.4 + 0.6 * energy)
+            rect = pygame.Rect(0, 0, int(ribbon_width * 0.9), int(self.height * (0.7 + 0.4 * self.render_scale)))
+            rect.centerx = int(x_center + wobble)
+            rect.centery = int(self.height * 0.55)
+
+            pygame.draw.rect(surface, rgba, rect, border_radius=40)
+
+        self.screen.blit(surface, (0, 0))
+
+    # ------------------------------------------------------------------
+    # PATTERN 7: grid pulse
+    # ------------------------------------------------------------------
+    def _pattern_grid_pulse(self, base_colors):
+        surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+
+        rows = 10
+        cols = 16
+        cell_w = self.width / cols
+        cell_h = self.height / rows
+
+        energy = (self.motion_level + self.proximity_level) / 2.0
+
+        for r in range(rows):
+            for c in range(cols):
+                t_x = c / max(1, cols - 1)
+                t_y = r / max(1, rows - 1)
+                t = (t_x + t_y) / 2.0
+
+                if len(base_colors) == 1:
+                    color = base_colors[0]
+                else:
+                    idx = int(t * (len(base_colors) - 1))
+                    next_idx = min(idx + 1, len(base_colors) - 1)
+                    local_t = (t * (len(base_colors) - 1)) - idx
+                    color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+
+                phase = self.time * 2.0 + c * 0.5 + r * 0.4
+                pulse = (math.sin(phase) + 1.0) / 2.0  # 0~1
+
+                alpha = int(255 * pulse * (0.4 + 0.8 * energy))
+                if alpha < 25:
+                    continue
+
+                size = int(min(cell_w, cell_h) * (0.25 + 0.5 * pulse) * (0.8 + 0.6 * self.render_scale))
+                x = int((c + 0.5) * cell_w)
+                y = int((r + 0.5) * cell_h)
+
+                rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
+                pygame.draw.circle(surface, rgba, (x, y), size)
+
+        self.screen.blit(surface, (0, 0))
+
+    # ------------------------------------------------------------------
+    # PATTERN 8: starfield
+    # ------------------------------------------------------------------
+    def _pattern_starfield(self, base_colors):
+        surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+
+        energy = (self.motion_level + self.proximity_level) / 2.0
+        num_stars = int(260 * (0.8 + 0.7 * self.render_scale))
+
+        random.seed(42)  # stable pattern per frame for softness
+
+        for i in range(num_stars):
+            t = random.random()
+
+            if len(base_colors) == 1:
+                color = base_colors[0]
+            else:
+                idx = int(t * (len(base_colors) - 1))
+                next_idx = min(idx + 1, len(base_colors) - 1)
+                local_t = (t * (len(base_colors) - 1)) - idx
+                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+
+            x = random.randint(0, self.width)
+            y = random.randint(0, self.height)
+
+            flicker = (math.sin(self.time * 3.0 + i * 0.21) + 1.0) / 2.0
+            alpha = int(255 * (0.2 + 0.8 * flicker) * (0.4 + 0.8 * energy))
+            alpha = max(0, min(alpha, 255))
+
+            size = 1 + int(3 * (0.3 + 0.7 * flicker) * (0.7 + 0.7 * self.render_scale))
+
+            rgba = (color[0], color[1], color[2], alpha)
+            pygame.draw.circle(surface, rgba, (x, y), size)
+
+        self.screen.blit(surface, (0, 0))
+
+    # ------------------------------------------------------------------
+    # PATTERN 9: vortex
+    # ------------------------------------------------------------------
+    def _pattern_vortex(self, base_colors):
+        surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+
+        center_x = self.width // 2
+        center_y = int(self.height * 0.55)
+
+        num_rings = 16
+        max_radius = min(self.width, self.height) * 0.55 * (0.8 + 0.6 * self.render_scale)
+
+        energy = (self.motion_level + self.proximity_level) / 2.0
+        spin = self.time * (1.2 + 1.0 * energy)
+
+        for i in range(num_rings):
+            t = i / (num_rings - 1)
+            radius = (t ** 1.1) * max_radius
+
+            if len(base_colors) == 1:
+                color = base_colors[0]
+            else:
+                idx = int(t * (len(base_colors) - 1))
+                next_idx = min(idx + 1, len(base_colors) - 1)
+                local_t = (t * (len(base_colors) - 1)) - idx
+                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+
+            alpha = int(220 * (1.0 - t ** 1.4) * (0.6 + 0.8 * energy))
+            alpha = max(0, min(alpha, 255))
+
+            angle_offset = spin + t * 3.0
+
+            num_segments = 64
+            points = []
+            for j in range(num_segments):
+                a = j / (num_segments - 1) * math.tau + angle_offset
+                x = center_x + math.cos(a) * radius
+                y = center_y + math.sin(a) * radius * 0.65
+                points.append((int(x), int(y)))
+
+            rgba = (color[0], color[1], color[2], alpha)
+            if len(points) > 1:
+                pygame.draw.lines(surface, rgba, True, points, width=3)
+
+        self.screen.blit(surface, (0, 0))
+
+    # ------------------------------------------------------------------
+    # PATTERN 10: cross waves (horizontal + vertical)
+    # ------------------------------------------------------------------
+    def _pattern_cross_waves(self, base_colors):
+        surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+
+        energy = (self.motion_level + self.proximity_level) / 2.0
+
+        # Horizontal bands
+        num_h = 8
+        for i in range(num_h):
+            t = i / max(1, num_h - 1)
+
+            if len(base_colors) == 1:
+                color = base_colors[0]
+            else:
+                idx = int(t * (len(base_colors) - 1))
+                next_idx = min(idx + 1, len(base_colors) - 1)
+                local_t = (t * (len(base_colors) - 1)) - idx
+                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+
+            y = int((i + 0.5) * self.height / num_h + math.sin(self.time * 1.5 + i) * 25 * (0.4 + 0.6 * energy))
+            alpha = int(190 * (0.6 + 0.7 * energy))
+            rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
+
+            rect = pygame.Rect(0, y - 18, self.width, 36)
+            pygame.draw.rect(surface, rgba, rect)
+
+        # Vertical bands
+        num_v = 8
+        for j in range(num_v):
+            t = j / max(1, num_v - 1)
+
+            if len(base_colors) == 1:
+                color = base_colors[0]
+            else:
+                idx = int(t * (len(base_colors) - 1))
+                next_idx = min(idx + 1, len(base_colors) - 1)
+                local_t = (t * (len(base_colors) - 1)) - idx
+                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+
+            x = int((j + 0.5) * self.width / num_v + math.cos(self.time * 1.3 + j) * 25 * (0.4 + 0.6 * energy))
+            alpha = int(160 * (0.6 + 0.7 * energy))
+            rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
+
+            rect = pygame.Rect(x - 18, 0, 36, self.height)
+            pygame.draw.rect(surface, rgba, rect)
 
         self.screen.blit(surface, (0, 0))
 
@@ -443,17 +724,17 @@ class AnimationEngine:
         frame_resized = cv2.resize(frame_rgb, new_size)
 
         surf = pygame.surfarray.make_surface(frame_resized.swapaxes(0, 1))
-        surf.set_alpha(80)
+        surf.set_alpha(70)
         x = (self.width - new_size[0]) // 2
         y = (self.height - new_size[1]) // 2
         self.screen.blit(surf, (x, y))
 
     # ------------------------------------------------------------------
     def _draw_label(self):
-        font = pygame.font.SysFont("arial", 24)
+        font = pygame.font.SysFont("arial", 26)
         title = f"Energy Field: {self.spectrum_name}"
-        text = font.render(title, True, (235, 235, 235))
-        self.screen.blit(text, (20, 20))
+        text = font.render(title, True, (245, 245, 245))
+        self.screen.blit(text, (20, 18))
 
         # Show selected elements (profile) or current element
         if self.current_profile:
@@ -463,19 +744,19 @@ class AnimationEngine:
         else:
             elements_str = "None"
 
-        sub_font = pygame.font.SysFont("arial", 20)
-        profile_text = sub_font.render(f"Elements: {elements_str}", True, (220, 220, 220))
+        sub_font = pygame.font.SysFont("arial", 22)
+        profile_text = sub_font.render(f"Elements: {elements_str}", True, (230, 230, 230))
         self.screen.blit(profile_text, (20, 50))
 
         debug_font = pygame.font.SysFont("arial", 16)
         motion_text = debug_font.render(
-            f"Energy(cam): {self.motion_level:.2f}", True, (210, 210, 210)
+            f"Energy(cam): {self.motion_level:.2f}", True, (220, 220, 220)
         )
         prox_text = debug_font.render(
-            f"Energy(hand): {self.proximity_level:.2f}", True, (210, 210, 210)
+            f"Energy(hand): {self.proximity_level:.2f}", True, (220, 220, 220)
         )
-        self.screen.blit(motion_text, (20, 76))
-        self.screen.blit(prox_text, (20, 96))
+        self.screen.blit(motion_text, (20, 80))
+        self.screen.blit(prox_text, (20, 100))
 
     # ------------------------------------------------------------------
     def _lerp_color(self, c1, c2, t):
