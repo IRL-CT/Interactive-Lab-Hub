@@ -766,3 +766,17 @@ class AnimationEngine:
             int(c1[1] + (c2[1] - c1[1]) * t),
             int(c1[2] + (c2[2] - c1[2]) * t),
         )
+
+    # ------------------------------------------------------------------
+    # Public: reset current profile / element from outside
+    # ------------------------------------------------------------------
+    def reset_profile(self):
+        """Clear current energy field so a new profile can be selected."""
+        self.current_profile = None
+        self.current_element = None
+        self.spectrum_name = "None"
+        self.style = get_spectrum_style([])  # back to neutral style
+        self.orbs.clear()
+        print("[Animation] Profile cleared. Waiting for new selection.")
+
+
