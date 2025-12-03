@@ -3,14 +3,14 @@
 from sensors.gesture_apds9960 import GestureSensor
 from sensors.camera_reflection import CameraFeed
 from sensors.tft_display import TFTDisplay
-from sensors.touch_mpr121_selector import TouchElementSelector  
+from sensors.touch_mpr121_selector import TouchElementSelector
 
 
 class SensorManager:
     def __init__(self):
         print("[SensorManager] Initializing sensors...")
 
-        # 1. OLED display
+        # 1. OLED / TFT
         try:
             self.tft = TFTDisplay()
             print("[SensorManager] OLED/TFT ready (or dummy).")
@@ -26,10 +26,10 @@ class SensorManager:
             print(f"[SensorManager] Failed to init TouchElementSelector: {e}")
             self.touch_selector = None
 
-        # 3. Gesture + proximity sensor (APDS-9960)
+        # 3. Gesture sensor
         try:
             self.gesture = GestureSensor()
-            print("[SensorManager] Gesture sensor ready.")
+            print("[SensorManager] Gesture sensor ready (or in dummy mode).")
         except Exception as e:
             print(f"[SensorManager] Failed to init GestureSensor: {e}")
             self.gesture = None
@@ -42,24 +42,44 @@ class SensorManager:
             print(f"[SensorManager] Failed to init CameraFeed: {e}")
             self.camera = None
 
-        # runtime state
+        # Runtime state
+        self.profile_selected = False     # True after 3 elements chosen
+        self.user_profile = None          # e.g. ["Fire","Water","Light"]
+        self.current_element = "None"     # last single element before profile is locked
+
+    # ------------------------------------------------------------
+    # Public: reset profile selection
+    # ------------------------------------------------------------
+    def reset_profile(self):
+        """Allow the user to re-select a 3-element profile."""
         self.profile_selected = False
         self.user_profile = None
         self.current_element = "None"
 
-        # smoothed proximity (0~1)
-        self.proximity_level = 0.0
+        # Reset touch selector
+        if self.touch_selector:
+            try:
+                self.touch_selector.reset()
+            except Exception as e:
+                print(f"[SensorManager] Failed to reset touch selector: {e}")
+
+        # Clear OLED text
+        if self.tft:
+            try:
+                self.tft.show_element_list([])
+            except Exception as e:
+                print(f"[SensorManager] Failed to clear TFT: {e}")
+
+        print("[SensorManager] Profile reset. User can select elements again.")
 
     # ----------------------------------------------------------------
-    # MAIN UPDATE LOOP
+    #                      MAIN UPDATE LOOP
     # ----------------------------------------------------------------
     def update(self):
-        """
-        Return a dict with:
-            profile: ["Water","Fire","Wind"] once selected (3 elements)
-            element: current simple element (fallback before profile)
-            gesture: symbolic gesture string
-            proximity: 0.0 ~ 1.0 (hand distance)
+        """Return a dict with:
+            profile: ["Water","Fire","Wind"] once locked
+            element: current simple element (before profile is locked)
+            gesture: hand gesture (expand/shrink/cooler/warmer)
             frame: camera frame (or None)
         """
 
@@ -69,28 +89,23 @@ class SensorManager:
             profile = self.touch_selector.update()
 
             if profile is not None:
+                # Three chosen → lock profile
                 self.profile_selected = True
                 self.user_profile = profile
                 print(f"[SensorManager] Final profile locked: {profile}")
 
+                # Show final on OLED
                 if self.tft:
                     self.tft.show_element_list(profile)
 
-        # 2. Gesture + proximity
+        # 2. Gesture sensor
         gesture = None
-        proximity = None
         if self.gesture is not None:
             try:
                 gesture = self.gesture.read_gesture()
             except Exception as e:
                 print(f"[SensorManager] Error reading gesture: {e}")
                 gesture = None
-
-            try:
-                proximity = self.gesture.read_proximity()
-            except Exception as e:
-                print(f"[SensorManager] Error reading proximity: {e}")
-                proximity = None
 
         # 3. Camera frame
         frame = None
@@ -101,22 +116,17 @@ class SensorManager:
                 print(f"[SensorManager] Error reading camera: {e}")
                 frame = None
 
-        # 4. Fallback element (before 3-pick is finished)
+        # 4. Fallback element (only used before 3-pick is finished)
         if not self.profile_selected:
             if self.touch_selector and len(self.touch_selector.selected) > 0:
                 self.current_element = self.touch_selector.selected[-1]
             else:
                 self.current_element = "None"
 
-        # smooth proximity for stability
-        if proximity is not None:
-            self.proximity_level = 0.8 * self.proximity_level + 0.2 * proximity
-
-        # RETURN SENSOR DATA
+        # 5. RETURN SENSOR DATA
         return {
             "profile": self.user_profile if self.profile_selected else None,
             "element": self.current_element,
             "gesture": gesture,
-            "proximity": self.proximity_level,
             "frame": frame,
         }
