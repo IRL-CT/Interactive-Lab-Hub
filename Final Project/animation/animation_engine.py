@@ -30,12 +30,11 @@ class AnimationEngine:
 
         # Time and motion
         self.time = 0.0
-        self.motion_level = 0.0              # 0~1, estimated from camera motion
+        self.motion_level = 0.0              # 0~1, estimated from edge density
 
-        # Camera motion analysis
-        self.prev_gray = None
-        self.body_box = None                 # (x_min, y_min, x_max, y_max) in low-res space
-        self.downsample_size = (64, 36)      # width, height for motion detection
+        # Camera / body detection
+        self.downsample_size = (64, 36)      # (w, h) for edge detection
+        self.body_center = (self.width // 2, self.height // 2)  # (x, y) on screen
 
         # Particle list: [x, y, vx, vy, life, base_color]
         self.particles = []
@@ -53,6 +52,7 @@ class AnimationEngine:
     # ------------------------------------------------------------------
     # profile: ["Fire","Water","Light"] or None
     # element: "Fire", "Water", ... (used before profile is ready)
+    # frame: camera frame (BGR, from OpenCV)
     # ------------------------------------------------------------------
     def update(self, profile=None, element=None, gesture=None, frame=None):
         # Handle Pygame events
@@ -87,27 +87,27 @@ class AnimationEngine:
             elif gesture == "warmer":
                 self.temp_shift = min(1.0, self.temp_shift + 0.05)
 
-        # 3) Time and motion update
+        # 3) Time update
         dt_ms = self.clock.get_time()
         dt = dt_ms / 1000.0 if dt_ms > 0 else 1.0 / 60.0
         self.time += dt
 
-        # Analyze motion if camera is available
+        # 4) Analyze body position from camera frame (using edges, not motion)
         if frame is not None and cv2 is not None and np is not None:
-            self._analyze_motion(frame)
+            self._analyze_body_center(frame)
 
-        # Breathing modulation:
-        # - motion_level increases cloud size
-        # - sine wave adds organic breathing
-        breath_from_motion = 1.0 + 0.6 * self.motion_level
-        breathing_wave = 1.0 + 0.2 * math.sin(self.time * 2.0 * math.pi * 0.5)
+        # 5) Breathing modulation:
+        # motion_level increases cloud size
+        # sine wave adds soft breathing
+        breath_from_edges = 1.0 + 0.5 * self.motion_level
+        breathing_wave = 1.0 + 0.15 * math.sin(self.time * 2.0 * math.pi * 0.5)
 
         # Slowly decay scale back to normal range
         self.scale *= 0.99
         self.scale = max(0.6, min(2.5, self.scale))
 
         # Effective scale used for drawing / particle radius
-        self.render_scale = self.scale * breath_from_motion * breathing_wave
+        self.render_scale = self.scale * breath_from_edges * breathing_wave
 
         # Draw frame
         self._draw_frame(frame, dt)
@@ -116,39 +116,51 @@ class AnimationEngine:
         self.clock.tick(60)
 
     # ------------------------------------------------------------------
-    # Analyze camera motion and estimate a rough body center
+    # Use edge detection to estimate where the user is in the frame.
+    # This works even if the user is only partially visible (head / upper body).
     # ------------------------------------------------------------------
-    def _analyze_motion(self, frame):
+    def _analyze_body_center(self, frame):
         # Convert to grayscale and downsample
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         gray_small = cv2.resize(gray, self.downsample_size)
 
-        if self.prev_gray is None:
-            self.prev_gray = gray_small
-            self.motion_level = 0.0
-            self.body_box = None
+        # Edge detection (Canny)
+        edges = cv2.Canny(gray_small, 50, 150)
+
+        # Find all edge pixels
+        ys, xs = np.where(edges > 0)
+
+        if len(xs) < 40:
+            # Not enough edges: keep previous body_center, lower motion_level
+            self.motion_level *= 0.9
             return
 
-        # Frame difference
-        diff = cv2.absdiff(gray_small, self.prev_gray)
-        self.prev_gray = gray_small
+        # Center of all edges in low-res space
+        x_mean = xs.mean()
+        y_mean = ys.mean()
 
-        # Average intensity of difference (0~1)
-        mean_diff = diff.mean() / 255.0
-        self.motion_level = 0.8 * self.motion_level + 0.2 * min(1.0, mean_diff * 8.0)
+        # Map to screen coordinates
+        scale_x = self.width / self.downsample_size[0]
+        scale_y = self.height / self.downsample_size[1]
+        cx = int(x_mean * scale_x)
+        cy = int(y_mean * scale_y)
 
-        # Threshold for active motion pixels
-        _, diff_bin = cv2.threshold(diff, 25, 255, cv2.THRESH_BINARY)
-        ys, xs = np.where(diff_bin > 0)
+        # Clamp to screen
+        cx = max(0, min(self.width, cx))
+        cy = max(0, min(self.height, cy))
 
-        if len(xs) < 20:
-            # Not enough motion → no reliable body box
-            self.body_box = None
-            return
+        # Smooth movement of body_center
+        prev_x, prev_y = self.body_center
+        alpha = 0.2  # smoothing factor
+        smoothed_x = int(prev_x * (1 - alpha) + cx * alpha)
+        smoothed_y = int(prev_y * (1 - alpha) + cy * alpha)
 
-        x_min, x_max = xs.min(), xs.max()
-        y_min, y_max = ys.min(), ys.max()
-        self.body_box = (x_min, y_min, x_max, y_max)
+        self.body_center = (smoothed_x, smoothed_y)
+
+        # motion_level based on how many edges we see (normalized)
+        total_pixels = self.downsample_size[0] * self.downsample_size[1]
+        density = len(xs) / total_pixels  # 0~1 in a typical range
+        self.motion_level = 0.8 * self.motion_level + 0.2 * min(1.0, density * 5.0)
 
     # ------------------------------------------------------------------
     def _draw_frame(self, frame, dt):
@@ -173,33 +185,14 @@ class AnimationEngine:
             self._blit_camera(frame)
 
         # 4) Particle cloud around user's body center
-        center_x, center_y = self._get_center()
-        self._update_and_draw_particles(base_colors, center_x, center_y, dt)
+        cx, cy = self.body_center
+        self._update_and_draw_particles(base_colors, cx, cy, dt)
+
+        # Optional: small debug dot at the detected center
+        pygame.draw.circle(self.screen, (255, 255, 255), (cx, cy), 4)
 
         # 5) UI label
         self._draw_label()
-
-    # ------------------------------------------------------------------
-    # Decide where the particle cloud should be centered
-    # ------------------------------------------------------------------
-    def _get_center(self):
-        if self.body_box is not None:
-            x_min, y_min, x_max, y_max = self.body_box
-
-            # Map from low-res motion space to screen coordinates
-            scale_x = self.width / self.downsample_size[0]
-            scale_y = self.height / self.downsample_size[1]
-
-            cx = int((x_min + x_max) / 2 * scale_x)
-            cy = int((y_min + y_max) / 2 * scale_y)
-
-            # Clamp to screen bounds
-            cx = max(0, min(self.width, cx))
-            cy = max(0, min(self.height, cy))
-            return cx, cy
-
-        # Fallback: center of the screen
-        return self.width // 2, self.height // 2
 
     # ------------------------------------------------------------------
     # Build a color palette from a 3-element profile
@@ -228,19 +221,19 @@ class AnimationEngine:
     def _update_and_draw_particles(self, base_colors, cx, cy, dt):
         # Target particle count grows with render_scale
         target_count = int(260 * self.render_scale)
-        target_count = max(120, min(target_count, 600))
+        target_count = max(150, min(target_count, 700))
 
         # Spawn new particles around the center
         while len(self.particles) < target_count:
             angle = random.uniform(0, math.tau)
             # Spread radius around the body, scaled by render_scale
-            max_radius = 200 * self.render_scale
+            max_radius = 220 * self.render_scale
             r = random.uniform(0, max_radius)
             x = cx + math.cos(angle) * r
             y = cy + math.sin(angle) * r
 
             # Initial tangential swirl velocity
-            speed = random.uniform(20, 60) * self.render_scale
+            speed = random.uniform(25, 70) * self.render_scale
             vx = -math.sin(angle) * speed
             vy = math.cos(angle) * speed
 
@@ -260,16 +253,15 @@ class AnimationEngine:
             dist = math.hypot(dx, dy) + 1e-5
 
             # Gentle attraction back to the center
-            # Stronger if particle is far away
-            max_radius = 240 * self.render_scale
-            pull_strength = 40.0 * (dist / max_radius)
-            pull_strength = min(pull_strength, 80.0)
+            max_radius = 260 * self.render_scale
+            pull_strength = 50.0 * (dist / max_radius)
+            pull_strength = min(pull_strength, 100.0)
 
             ax = -dx / dist * pull_strength
             ay = -dy / dist * pull_strength
 
             # Slight swirl around the center
-            swirl_strength = 30.0
+            swirl_strength = 35.0
             ax += -dy / dist * swirl_strength
             ay += dx / dist * swirl_strength
 
@@ -291,7 +283,7 @@ class AnimationEngine:
 
             # Particle size linked to distance from center and render_scale
             base_radius = 4.0 * self.render_scale
-            radius = int(max(2, min(base_radius * (1.2 - 0.6 * (dist / max_radius)), 12)))
+            radius = int(max(2, min(base_radius * (1.2 - 0.6 * (dist / max_radius)), 14)))
 
             pygame.draw.circle(self.screen, final_color, (int(x), int(y)), radius)
             new_particles.append([x, y, vx, vy, life, color])
@@ -314,7 +306,7 @@ class AnimationEngine:
         frame_resized = cv2.resize(frame_rgb, new_size)
 
         surf = pygame.surfarray.make_surface(frame_resized.swapaxes(0, 1))
-        surf.set_alpha(110)  # semi-transparent so particles stand out
+        surf.set_alpha(120)  # semi-transparent so particles stand out
         x = (self.width - new_size[0]) // 2
         y = (self.height - new_size[1]) // 2
         self.screen.blit(surf, (x, y))
@@ -327,7 +319,7 @@ class AnimationEngine:
 
         debug_font = pygame.font.SysFont("arial", 18)
         motion_text = debug_font.render(
-            f"Motion: {self.motion_level:.2f}", True, (220, 220, 220)
+            f"Edge level: {self.motion_level:.2f}", True, (220, 220, 220)
         )
         self.screen.blit(motion_text, (20, 50))
 
