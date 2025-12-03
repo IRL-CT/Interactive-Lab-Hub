@@ -2,6 +2,7 @@
 
 import pygame
 import math
+import random
 
 try:
     import cv2
@@ -327,3 +328,4 @@ class AnimationEngine:
             int(c1[1] + (c2[1] - c1[1]) * t),
             int(c1[2] + (c2[2] - c1[2]) * t),
         )
+
