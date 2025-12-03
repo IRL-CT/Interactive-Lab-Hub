@@ -3,22 +3,12 @@
 Profile-to-style helpers.
 
 Given a 3-element profile like ["Fire", "Water", "Light"],
-this module returns a style dict describing the visual mood:
-- name: human-readable style name
-- base_colors: list of RGB colors used as the main spectrum
-- pillar_width_factor: scales the width of the central aura pillar
-- pillar_height_factor: scales the height of the pillar
-- halo_scale: scales the halo around the "head"
-- orb_count: number of orbiting orbs
-- orb_radius_range: min / max radius for orbs (pixels)
-- orb_speed_range: min / max angular speed
-- orb_size_range: min / max orb radius (pixels)
-- orb_vertical_squash: vertical squash factor for orbits (0.0~1.0)
+this module returns a style dict describing the visual mood.
 """
 
 from typing import Dict, Any, List, Tuple
 
-# Base element colors, kept in sync with AnimationEngine
+# Base element colors, should be consistent with AnimationEngine
 ELEMENT_COLORS = {
     "Fire":   [(255, 120, 60), (255, 200, 90)],
     "Water":  [(60, 140, 255), (110, 220, 255)],
@@ -49,7 +39,8 @@ def normalize_profile(profile: List[str]) -> Tuple[str, str, str]:
 def _build_default_style(profile: List[str]) -> Dict[str, Any]:
     """
     Fallback style when a specific combination is not defined.
-    Blend the three elements into a calm, balanced spectrum.
+    Blend the elements into a calm, balanced spectrum and
+    provide default geometric parameters.
     """
     cols = []
     for name in profile:
@@ -78,176 +69,178 @@ def _build_default_style(profile: List[str]) -> Dict[str, Any]:
         "orb_speed_range": (0.3, 0.9),
         "orb_size_range": (4.0, 10.0),
         "orb_vertical_squash": 0.55,
+        "pattern_type": "pillar_orbs",
     }
 
 
 # --------------------------------------------------------------------
-# PREDEFINED STYLES — tuned for emotional "feel"
-# key = normalized 3-tuple of elements
+# PRESETS: for each 3-element combination, define name + pattern type
+# and optionally override some geometry parameters.
+# We always start from _build_default_style and then overlay these.
 # --------------------------------------------------------------------
-SPECTRUM_STYLES: Dict[Tuple[str, str, str], Dict[str, Any]] = {
-    # Warm, radiant, expansive: joy / confidence
-    normalize_profile(["Fire", "Light", "Wind"]): {
-        "name": "Solar Flare",
-        "base_colors": [
-            (255, 180, 90),   # warm gold
-            (255, 230, 190),  # soft cream
-            (255, 140, 80),   # orange accent
-        ],
-        "pillar_width_factor": 1.3,
-        "pillar_height_factor": 1.1,
-        "halo_scale": 1.3,
-        "orb_count": 26,
-        "orb_radius_range": (150, 280),
-        "orb_speed_range": (0.5, 1.2),
-        "orb_size_range": (5.0, 12.0),
-        "orb_vertical_squash": 0.5,
-    },
 
-    # Calm, flowing, dreamy: healing / reflection
-    normalize_profile(["Water", "Wind", "Light"]): {
-        "name": "Aurora Tide",
-        "base_colors": [
-            (70, 160, 255),   # clear blue
-            (140, 220, 255),  # cyan
-            (230, 250, 255),  # pale blue-white
-        ],
-        "pillar_width_factor": 1.0,
-        "pillar_height_factor": 1.2,
-        "halo_scale": 1.4,
-        "orb_count": 22,
-        "orb_radius_range": (160, 260),
-        "orb_speed_range": (0.25, 0.7),
-        "orb_size_range": (4.0, 9.0),
-        "orb_vertical_squash": 0.7,
-    },
+PATTERN_PRESETS: Dict[Tuple[str, str, str], Dict[str, Any]] = {}
 
-    # Deep, grounding, slow breathing: safety / stability
-    normalize_profile(["Earth", "Water", "Light"]): {
-        "name": "Forest Heart",
-        "base_colors": [
-            (70, 140, 110),   # deep green
-            (160, 210, 150),  # soft leaf
-            (230, 245, 220),  # misty light
-        ],
-        "pillar_width_factor": 1.1,
-        "pillar_height_factor": 1.15,
-        "halo_scale": 1.1,
-        "orb_count": 20,
-        "orb_radius_range": (140, 240),
-        "orb_speed_range": (0.2, 0.6),
-        "orb_size_range": (4.0, 11.0),
-        "orb_vertical_squash": 0.6,
-    },
 
-    # Intense, electric, dramatic: anger / excitement / storm
-    normalize_profile(["Fire", "Wind", "Shadow"]): {
-        "name": "Storm Core",
-        "base_colors": [
-            (255, 120, 80),   # hot orange
-            (170, 60, 200),   # magenta / violet
-            (70, 80, 160),    # storm blue
-        ],
-        "pillar_width_factor": 1.4,
-        "pillar_height_factor": 1.0,
-        "halo_scale": 1.2,
-        "orb_count": 28,
-        "orb_radius_range": (160, 300),
-        "orb_speed_range": (0.6, 1.5),
-        "orb_size_range": (5.0, 13.0),
-        "orb_vertical_squash": 0.5,
-    },
+def _add_preset(elems, name, pattern_type, **overrides):
+    key = normalize_profile(list(elems))
+    data: Dict[str, Any] = {
+        "name": name,
+        "pattern_type": pattern_type,
+    }
+    data.update(overrides)
+    PATTERN_PRESETS[key] = data
 
-    # Quiet, introspective, cosmic: mystery / melancholy
-    normalize_profile(["Water", "Shadow", "Wind"]): {
-        "name": "Nebula Veil",
-        "base_colors": [
-            (80, 110, 220),   # deep blue
-            (120, 80, 190),   # violet
-            (200, 180, 255),  # pale lavender
-        ],
-        "pillar_width_factor": 0.9,
-        "pillar_height_factor": 1.25,
-        "halo_scale": 1.5,
-        "orb_count": 22,
-        "orb_radius_range": (170, 280),
-        "orb_speed_range": (0.25, 0.8),
-        "orb_size_range": (3.5, 9.0),
-        "orb_vertical_squash": 0.65,
-    },
 
-    # Very bright, pure, almost angelic: clarity / hope
-    normalize_profile(["Light", "Wind", "Earth"]): {
-        "name": "Dawn Bloom",
-        "base_colors": [
-            (255, 255, 255),  # pure light
-            (240, 255, 210),  # pale greenish white
-            (255, 220, 170),  # warm highlight
-        ],
-        "pillar_width_factor": 1.0,
-        "pillar_height_factor": 1.3,
-        "halo_scale": 1.5,
-        "orb_count": 20,
-        "orb_radius_range": (150, 250),
-        "orb_speed_range": (0.25, 0.7),
-        "orb_size_range": (4.0, 10.0),
-        "orb_vertical_squash": 0.6,
-    },
+# Earth, Fire, Light, Shadow, Water, Wind
+E, F, L, S, W, D = "Earth", "Fire", "Light", "Shadow", "Water", "Wind"
 
-    # Heavy, grounded, slightly dark: burden / contemplation
-    normalize_profile(["Earth", "Water", "Shadow"]): {
-        "name": "Deep Root",
-        "base_colors": [
-            (50, 110, 90),    # dark green
-            (100, 160, 140),  # teal
-            (200, 230, 210),  # soft mist
-        ],
-        "pillar_width_factor": 1.2,
-        "pillar_height_factor": 0.95,
-        "halo_scale": 1.0,
-        "orb_count": 18,
-        "orb_radius_range": (130, 230),
-        "orb_speed_range": (0.2, 0.55),
-        "orb_size_range": (4.0, 9.0),
-        "orb_vertical_squash": 0.5,
-    },
+# 1. Earth Fire Light
+_add_preset(
+    (E, F, L),
+    name="Lantern Core",
+    pattern_type="pillar_orbs",
+    pillar_width_factor=1.2,
+    pillar_height_factor=1.1,
+    halo_scale=1.3,
+    orb_count=26,
+)
 
-    # Sharp, hot, aggressive: strong will / conflict
-    normalize_profile(["Fire", "Earth", "Shadow"]): {
-        "name": "Magma Pulse",
-        "base_colors": [
-            (255, 120, 70),   # lava
-            (200, 90, 60),    # dark lava
-            (80, 30, 70),     # deep magma
-        ],
-        "pillar_width_factor": 1.4,
-        "pillar_height_factor": 0.9,
-        "halo_scale": 1.1,
-        "orb_count": 26,
-        "orb_radius_range": (150, 260),
-        "orb_speed_range": (0.5, 1.3),
-        "orb_size_range": (5.0, 12.0),
-        "orb_vertical_squash": 0.45,
-    },
+# 2. Earth Fire Shadow
+_add_preset(
+    (E, F, S),
+    name="Magma Root",
+    pattern_type="radial_rays",
+)
 
-    # Playful, light, floating: curiosity / optimism
-    normalize_profile(["Fire", "Light", "Earth"]): {
-        "name": "Lantern Garden",
-        "base_colors": [
-            (255, 190, 120),  # warm peach
-            (230, 240, 200),  # pale yellow
-            (180, 210, 150),  # soft green
-        ],
-        "pillar_width_factor": 1.1,
-        "pillar_height_factor": 1.15,
-        "halo_scale": 1.3,
-        "orb_count": 24,
-        "orb_radius_range": (130, 240),
-        "orb_speed_range": (0.3, 0.8),
-        "orb_size_range": (4.5, 11.0),
-        "orb_vertical_squash": 0.7,
-    },
-}
+# 3. Earth Fire Water
+_add_preset(
+    (E, F, W),
+    name="Steam Bloom",
+    pattern_type="ring_waves",
+)
+
+# 4. Earth Fire Wind
+_add_preset(
+    (E, F, D),
+    name="Dustflare",
+    pattern_type="radial_rays",
+)
+
+# 5. Earth Light Shadow
+_add_preset(
+    (E, L, S),
+    name="Twilight Ground",
+    pattern_type="galaxy",
+)
+
+# 6. Earth Light Water
+_add_preset(
+    (E, L, W),
+    name="Forest Heart",
+    pattern_type="pillar_orbs",
+    pillar_height_factor=1.15,
+)
+
+# 7. Earth Light Wind
+_add_preset(
+    (E, L, D),
+    name="Dawn Breeze",
+    pattern_type="ring_waves",
+)
+
+# 8. Earth Shadow Water
+_add_preset(
+    (E, S, W),
+    name="Deep Spring",
+    pattern_type="galaxy",
+)
+
+# 9. Earth Shadow Wind
+_add_preset(
+    (E, S, D),
+    name="Hollow Gale",
+    pattern_type="radial_rays",
+)
+
+# 10. Earth Water Wind
+_add_preset(
+    (E, W, D),
+    name="Valley Mist",
+    pattern_type="ring_waves",
+)
+
+# 11. Fire Light Shadow
+_add_preset(
+    (F, L, S),
+    name="Solar Eclipse",
+    pattern_type="radial_rays",
+)
+
+# 12. Fire Light Water
+_add_preset(
+    (F, L, W),
+    name="Aurora Flame",
+    pattern_type="ring_waves",
+)
+
+# 13. Fire Light Wind
+_add_preset(
+    (F, L, D),
+    name="Solar Flare",
+    pattern_type="pillar_orbs",
+    orb_count=28,
+)
+
+# 14. Fire Shadow Water
+_add_preset(
+    (F, S, W),
+    name="Boiling Night",
+    pattern_type="galaxy",
+)
+
+# 15. Fire Shadow Wind
+_add_preset(
+    (F, S, D),
+    name="Storm Core",
+    pattern_type="radial_rays",
+)
+
+# 16. Fire Water Wind
+_add_preset(
+    (F, W, D),
+    name="Tempest Rise",
+    pattern_type="ring_waves",
+)
+
+# 17. Light Shadow Water
+_add_preset(
+    (L, S, W),
+    name="Moonlit Tide",
+    pattern_type="ring_waves",
+)
+
+# 18. Light Shadow Wind
+_add_preset(
+    (L, S, D),
+    name="Starlit Veil",
+    pattern_type="galaxy",
+)
+
+# 19. Light Water Wind
+_add_preset(
+    (L, W, D),
+    name="Sky Lanterns",
+    pattern_type="pillar_orbs",
+    halo_scale=1.4,
+)
+
+# 20. Shadow Water Wind
+_add_preset(
+    (S, W, D),
+    name="Nebula Drift",
+    pattern_type="galaxy",
+)
 
 
 def get_spectrum_style(profile: List[str]) -> Dict[str, Any]:
@@ -271,12 +264,15 @@ def get_spectrum_style(profile: List[str]) -> Dict[str, Any]:
             "orb_speed_range": (0.3, 0.9),
             "orb_size_range": (4.0, 10.0),
             "orb_vertical_squash": 0.55,
+            "pattern_type": "pillar_orbs",
         }
 
+    default_style = _build_default_style(profile)
     key = normalize_profile(profile)
-    if key in SPECTRUM_STYLES:
-        return SPECTRUM_STYLES[key]
+    preset = PATTERN_PRESETS.get(key)
+    if preset:
+        # Overlay preset values onto the default style
+        for k, v in preset.items():
+            default_style[k] = v
 
-    # Fallback: blended but still structured style
-    return _build_default_style(profile)
-
+    return default_style
