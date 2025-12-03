@@ -38,7 +38,7 @@ class AnimationEngine:
         # Time and energy levels
         self.time = 0.0
         self.motion_level = 0.0              # 0~1, from camera motion
-        self.proximity_level = 0.0           # 0~1, from APDS-9960
+        self.proximity_level = 0.0           # 0~1, from APDS-9960 (if used)
 
         # Camera motion analysis
         self.prev_gray = None
@@ -46,6 +46,9 @@ class AnimationEngine:
 
         # Shared state for patterns that need persistent particles
         self.orbs = []
+
+        # Last gesture for on-screen display
+        self.last_gesture = None
 
         # Base colors per element (for single-element fallback)
         self.element_colors = {
@@ -59,7 +62,17 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
     def update(self, profile=None, element=None, gesture=None, proximity=None, frame=None):
-        # Handle Pygame events
+        """
+        Main update entry point.
+
+        Args:
+            profile: list of 3 elements, e.g. ["Fire","Water","Light"], or None
+            element: single element name used before profile is selected
+            gesture: "expand" / "shrink" / "cooler" / "warmer" / None
+            proximity: normalized 0~1 hand distance (optional)
+            frame: OpenCV camera frame (BGR) or None
+        """
+        # Handle Pygame window events (note: main.py also processes events)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -83,6 +96,9 @@ class AnimationEngine:
 
         # 2) Gestures from APDS-9960
         if gesture:
+            # Remember last gesture for on-screen display
+            self.last_gesture = gesture
+
             if gesture == "expand":
                 self.scale = min(3.0, self.scale + 0.1)
             elif gesture == "shrink":
@@ -113,7 +129,9 @@ class AnimationEngine:
         self.scale *= 0.99
         self.scale = max(0.7, min(2.7, self.scale))
 
-        self.render_scale = self.scale * breath_from_motion * breath_from_proximity * breathing_wave
+        self.render_scale = (
+            self.scale * breath_from_motion * breath_from_proximity * breathing_wave
+        )
 
         # Draw frame
         self._draw_frame(frame, dt)
@@ -123,6 +141,7 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
     def _update_motion_energy(self, frame):
+        """Compute a global motion level from camera frames."""
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         gray_small = cv2.resize(gray, self.downsample_size)
 
@@ -141,7 +160,9 @@ class AnimationEngine:
     def _draw_frame(self, frame, dt):
         # Colors from style or fallback
         if self.current_profile is not None or self.current_element is not None:
-            base_colors = self.style.get("base_colors", [(255, 255, 255), (200, 200, 200)])
+            base_colors = self.style.get(
+                "base_colors", [(255, 255, 255), (200, 200, 200)]
+            )
         else:
             base_colors = [(255, 255, 255), (200, 200, 200)]
 
@@ -204,7 +225,9 @@ class AnimationEngine:
         halo_scale = self.style.get("halo_scale", 1.0)
 
         pillar_height = int(self.height * 0.7 * self.render_scale * height_factor)
-        pillar_height = max(int(self.height * 0.4), min(pillar_height, int(self.height * 0.9)))
+        pillar_height = max(
+            int(self.height * 0.4), min(pillar_height, int(self.height * 0.9))
+        )
 
         base_width = int(200 * self.render_scale * width_factor)
         base_width = max(90, min(base_width, int(self.width * 0.75)))
@@ -226,7 +249,9 @@ class AnimationEngine:
                 idx = int(t * (len(base_colors) - 1))
                 next_idx = min(idx + 1, len(base_colors) - 1)
                 local_t = (t * (len(base_colors) - 1)) - idx
-                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                color = self._lerp_color(
+                    base_colors[idx], base_colors[next_idx], local_t
+                )
 
             alpha = int(255 * (1.0 - t ** 1.3))
             alpha = int(alpha * (0.9 + 0.8 * self.proximity_level))
@@ -242,14 +267,23 @@ class AnimationEngine:
 
         # Head halo
         head_y = base_rect.top + int(pillar_height * 0.2)
-        halo_radius = int(base_width * 0.9 * halo_scale * (0.8 + 0.5 * self.proximity_level))
+        halo_radius = int(
+            base_width
+            * 0.9
+            * halo_scale
+            * (0.8 + 0.5 * self.proximity_level)
+        )
         halo_radius = max(55, halo_radius)
 
         halo_center = (center_x, head_y)
         for i in range(10):
             t = i / 9.0
             color = base_colors[min(len(base_colors) - 1, i % len(base_colors))]
-            alpha = int(245 * (1.0 - t ** 1.8) * (0.8 + 0.5 * self.proximity_level))
+            alpha = int(
+                245
+                * (1.0 - t ** 1.8)
+                * (0.8 + 0.5 * self.proximity_level)
+            )
             radius = int(halo_radius * (0.6 + 0.5 * t * self.render_scale))
 
             rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
@@ -258,7 +292,9 @@ class AnimationEngine:
         # Core orb
         core_color = base_colors[len(base_colors) // 2]
         core_rgba = (core_color[0], core_color[1], core_color[2], 255)
-        core_radius = int(base_width * 0.55 * (1.0 + 0.3 * self.proximity_level))
+        core_radius = int(
+            base_width * 0.55 * (1.0 + 0.3 * self.proximity_level)
+        )
         core_radius = max(40, core_radius)
         pygame.draw.circle(aura_surface, core_rgba, halo_center, core_radius)
 
@@ -276,7 +312,9 @@ class AnimationEngine:
 
         if len(self.orbs) < orb_count:
             for _ in range(orb_count - len(self.orbs)):
-                radius = random.uniform(r_min, r_max) * (0.7 + 0.4 * self.render_scale)
+                radius = random.uniform(r_min, r_max) * (
+                    0.7 + 0.4 * self.render_scale
+                )
                 angle = random.uniform(0, math.tau)
                 speed = random.uniform(speed_min, speed_max)
                 size = random.uniform(size_min, size_max)
@@ -286,7 +324,9 @@ class AnimationEngine:
         for orb in self.orbs:
             radius, angle, speed, size, color_idx = orb
 
-            angular_speed = speed * (1.0 + 1.3 * self.motion_level + 1.1 * self.proximity_level)
+            angular_speed = speed * (
+                1.0 + 1.3 * self.motion_level + 1.1 * self.proximity_level
+            )
             orb[1] += angular_speed * dt
 
             x = center_x + math.cos(orb[1]) * radius
@@ -301,7 +341,9 @@ class AnimationEngine:
             temp_tint = self._lerp_color(cold, warm, (self.temp_shift + 1) / 2)
             final_color = self._lerp_color(color, temp_tint, 0.25)
 
-            pygame.draw.circle(self.screen, final_color, (int(x), int(y)), int(final_size))
+            pygame.draw.circle(
+                self.screen, final_color, (int(x), int(y)), int(final_size)
+            )
 
     # ------------------------------------------------------------------
     # PATTERN 2: ring waves
@@ -332,13 +374,17 @@ class AnimationEngine:
                 idx = int(t * (len(base_colors) - 1))
                 next_idx = min(idx + 1, len(base_colors) - 1)
                 local_t = (t * (len(base_colors) - 1)) - idx
-                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                color = self._lerp_color(
+                    base_colors[idx], base_colors[next_idx], local_t
+                )
 
             alpha = int(230 * (1.0 - t ** 1.5))
             alpha = int(alpha * (0.7 + 0.8 * self.proximity_level))
             alpha = max(0, min(alpha, 255))
 
-            rect = pygame.Rect(0, 0, int(radius_x * 2), int(radius_y * 2))
+            rect = pygame.Rect(
+                0, 0, int(radius_x * 2), int(radius_y * 2)
+            )
             rect.centerx = center_x
             rect.centery = center_y + int(y_offset)
 
@@ -358,7 +404,11 @@ class AnimationEngine:
 
         num_rays = 24
         inner_radius = 60 * (0.9 + 0.4 * self.render_scale)
-        outer_base = min(self.width, self.height) * 0.8 * (0.6 + 0.6 * self.render_scale)
+        outer_base = (
+            min(self.width, self.height)
+            * 0.8
+            * (0.6 + 0.6 * self.render_scale)
+        )
 
         energy = (self.motion_level + self.proximity_level) / 2.0
         time_factor = self.time * (1.0 + 1.4 * energy)
@@ -373,9 +423,15 @@ class AnimationEngine:
                 idx = int(t * (len(base_colors) - 1))
                 next_idx = min(idx + 1, len(base_colors) - 1)
                 local_t = (t * (len(base_colors) - 1)) - idx
-                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                color = self._lerp_color(
+                    base_colors[idx], base_colors[next_idx], local_t
+                )
 
-            length = outer_base * (0.7 + 0.7 * energy + 0.25 * math.sin(self.time * 2.3 + i * 0.5))
+            length = outer_base * (
+                0.7
+                + 0.7 * energy
+                + 0.25 * math.sin(self.time * 2.3 + i * 0.5)
+            )
 
             x1 = center_x + math.cos(angle) * inner_radius
             y1 = center_y + math.sin(angle) * inner_radius
@@ -407,7 +463,11 @@ class AnimationEngine:
         num_arms = 5
         points_per_arm = 80
         base_radius = 60 * self.render_scale
-        max_radius = min(self.width, self.height) * 0.6 * (0.7 + 0.6 * self.render_scale)
+        max_radius = (
+            min(self.width, self.height)
+            * 0.6
+            * (0.7 + 0.6 * self.render_scale)
+        )
 
         energy = (self.motion_level + self.proximity_level) / 2.0
         spin_speed = 0.5 + 1.0 * energy
@@ -430,13 +490,17 @@ class AnimationEngine:
                     idx = int(t * (len(base_colors) - 1))
                     next_idx = min(idx + 1, len(base_colors) - 1)
                     local_t = (t * (len(base_colors) - 1)) - idx
-                    color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                    color = self._lerp_color(
+                        base_colors[idx], base_colors[next_idx], local_t
+                    )
 
                 alpha = int(255 * (0.15 + 0.85 * (1.0 - t)))
                 alpha = int(alpha * (0.4 + 0.9 * energy))
                 alpha = max(0, min(alpha, 255))
 
-                size = 2 + int(4 * (1.0 - t) * (0.8 + 0.7 * self.render_scale))
+                size = 2 + int(
+                    4 * (1.0 - t) * (0.8 + 0.7 * self.render_scale)
+                )
 
                 rgba = (color[0], color[1], color[2], alpha)
                 pygame.draw.circle(surface, rgba, (int(x), int(y)), size)
@@ -458,7 +522,9 @@ class AnimationEngine:
         ]
 
         pillar_height = int(self.height * 0.6 * self.render_scale)
-        pillar_height = max(int(self.height * 0.4), min(pillar_height, int(self.height * 0.9)))
+        pillar_height = max(
+            int(self.height * 0.4), min(pillar_height, int(self.height * 0.9))
+        )
 
         base_width = int(140 * self.render_scale)
         base_width = max(70, min(base_width, int(self.width * 0.4)))
@@ -468,7 +534,9 @@ class AnimationEngine:
         for cx, cy in centers:
             base_rect = pygame.Rect(0, 0, base_width, pillar_height)
             base_rect.centerx = cx
-            base_rect.centery = cy + int(wobble_amp * math.sin(self.time * 2.0 + cx * 0.002))
+            base_rect.centery = cy + int(
+                wobble_amp * math.sin(self.time * 2.0 + cx * 0.002)
+            )
 
             num_layers = 18
             for i in range(num_layers):
@@ -479,9 +547,15 @@ class AnimationEngine:
                     idx = int(t * (len(base_colors) - 1))
                     next_idx = min(idx + 1, len(base_colors) - 1)
                     local_t = (t * (len(base_colors) - 1)) - idx
-                    color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                    color = self._lerp_color(
+                        base_colors[idx], base_colors[next_idx], local_t
+                    )
 
-                alpha = int(240 * (1.0 - t ** 1.4) * (0.7 + 0.7 * self.proximity_level))
+                alpha = int(
+                    240
+                    * (1.0 - t ** 1.4)
+                    * (0.7 + 0.7 * self.proximity_level)
+                )
                 alpha = max(0, min(alpha, 255))
                 rgba = (color[0], color[1], color[2], alpha)
 
@@ -495,7 +569,12 @@ class AnimationEngine:
         mid_rect = pygame.Rect(0, 0, spacing * 2, int(pillar_height * 0.35))
         mid_rect.center = (self.width // 2, center_y)
         bridge_color = base_colors[len(base_colors) // 2]
-        bridge_rgba = (bridge_color[0], bridge_color[1], bridge_color[2], 120 + int(80 * self.proximity_level))
+        bridge_rgba = (
+            bridge_color[0],
+            bridge_color[1],
+            bridge_color[2],
+            120 + int(80 * self.proximity_level),
+        )
         pygame.draw.ellipse(aura_surface, bridge_rgba, mid_rect)
 
         self.screen.blit(aura_surface, (0, 0))
@@ -520,15 +599,20 @@ class AnimationEngine:
                 idx = int(t * (len(base_colors) - 1))
                 next_idx = min(idx + 1, len(base_colors) - 1)
                 local_t = (t * (len(base_colors) - 1)) - idx
-                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                color = self._lerp_color(
+                    base_colors[idx], base_colors[next_idx], local_t
+                )
 
             alpha = int(200 * (0.7 + 0.6 * energy))
             rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
 
             x_center = (i + 0.5) * ribbon_width
-            # horizontal wobble
-            wobble = math.sin(self.time * 1.5 + i * 0.7) * ribbon_width * 0.25 * (0.4 + 0.6 * energy)
-            rect = pygame.Rect(0, 0, int(ribbon_width * 0.9), int(self.height * (0.7 + 0.4 * self.render_scale)))
+            wobble = math.sin(self.time * 1.5 + i * 0.7) * ribbon_width * 0.25 * (
+                0.4 + 0.6 * energy
+            )
+            rect = pygame.Rect(
+                0, 0, int(ribbon_width * 0.9), int(self.height * (0.7 + 0.4 * self.render_scale))
+            )
             rect.centerx = int(x_center + wobble)
             rect.centery = int(self.height * 0.55)
 
@@ -561,7 +645,9 @@ class AnimationEngine:
                     idx = int(t * (len(base_colors) - 1))
                     next_idx = min(idx + 1, len(base_colors) - 1)
                     local_t = (t * (len(base_colors) - 1)) - idx
-                    color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                    color = self._lerp_color(
+                        base_colors[idx], base_colors[next_idx], local_t
+                    )
 
                 phase = self.time * 2.0 + c * 0.5 + r * 0.4
                 pulse = (math.sin(phase) + 1.0) / 2.0  # 0~1
@@ -570,7 +656,11 @@ class AnimationEngine:
                 if alpha < 25:
                     continue
 
-                size = int(min(cell_w, cell_h) * (0.25 + 0.5 * pulse) * (0.8 + 0.6 * self.render_scale))
+                size = int(
+                    min(cell_w, cell_h)
+                    * (0.25 + 0.5 * pulse)
+                    * (0.8 + 0.6 * self.render_scale)
+                )
                 x = int((c + 0.5) * cell_w)
                 y = int((r + 0.5) * cell_h)
 
@@ -588,7 +678,7 @@ class AnimationEngine:
         energy = (self.motion_level + self.proximity_level) / 2.0
         num_stars = int(260 * (0.8 + 0.7 * self.render_scale))
 
-        random.seed(42)  # stable pattern per frame for softness
+        random.seed(42)  # stable pattern per frame
 
         for i in range(num_stars):
             t = random.random()
@@ -599,16 +689,24 @@ class AnimationEngine:
                 idx = int(t * (len(base_colors) - 1))
                 next_idx = min(idx + 1, len(base_colors) - 1)
                 local_t = (t * (len(base_colors) - 1)) - idx
-                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                color = self._lerp_color(
+                    base_colors[idx], base_colors[next_idx], local_t
+                )
 
             x = random.randint(0, self.width)
             y = random.randint(0, self.height)
 
             flicker = (math.sin(self.time * 3.0 + i * 0.21) + 1.0) / 2.0
-            alpha = int(255 * (0.2 + 0.8 * flicker) * (0.4 + 0.8 * energy))
+            alpha = int(
+                255
+                * (0.2 + 0.8 * flicker)
+                * (0.4 + 0.8 * energy)
+            )
             alpha = max(0, min(alpha, 255))
 
-            size = 1 + int(3 * (0.3 + 0.7 * flicker) * (0.7 + 0.7 * self.render_scale))
+            size = 1 + int(
+                3 * (0.3 + 0.7 * flicker) * (0.7 + 0.7 * self.render_scale)
+            )
 
             rgba = (color[0], color[1], color[2], alpha)
             pygame.draw.circle(surface, rgba, (x, y), size)
@@ -625,7 +723,11 @@ class AnimationEngine:
         center_y = int(self.height * 0.55)
 
         num_rings = 16
-        max_radius = min(self.width, self.height) * 0.55 * (0.8 + 0.6 * self.render_scale)
+        max_radius = (
+            min(self.width, self.height)
+            * 0.55
+            * (0.8 + 0.6 * self.render_scale)
+        )
 
         energy = (self.motion_level + self.proximity_level) / 2.0
         spin = self.time * (1.2 + 1.0 * energy)
@@ -640,9 +742,15 @@ class AnimationEngine:
                 idx = int(t * (len(base_colors) - 1))
                 next_idx = min(idx + 1, len(base_colors) - 1)
                 local_t = (t * (len(base_colors) - 1)) - idx
-                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                color = self._lerp_color(
+                    base_colors[idx], base_colors[next_idx], local_t
+                )
 
-            alpha = int(220 * (1.0 - t ** 1.4) * (0.6 + 0.8 * energy))
+            alpha = int(
+                220
+                * (1.0 - t ** 1.4)
+                * (0.6 + 0.8 * energy)
+            )
             alpha = max(0, min(alpha, 255))
 
             angle_offset = spin + t * 3.0
@@ -680,9 +788,14 @@ class AnimationEngine:
                 idx = int(t * (len(base_colors) - 1))
                 next_idx = min(idx + 1, len(base_colors) - 1)
                 local_t = (t * (len(base_colors) - 1)) - idx
-                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                color = self._lerp_color(
+                    base_colors[idx], base_colors[next_idx], local_t
+                )
 
-            y = int((i + 0.5) * self.height / num_h + math.sin(self.time * 1.5 + i) * 25 * (0.4 + 0.6 * energy))
+            y = int(
+                (i + 0.5) * self.height / num_h
+                + math.sin(self.time * 1.5 + i) * 25 * (0.4 + 0.6 * energy)
+            )
             alpha = int(190 * (0.6 + 0.7 * energy))
             rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
 
@@ -700,9 +813,14 @@ class AnimationEngine:
                 idx = int(t * (len(base_colors) - 1))
                 next_idx = min(idx + 1, len(base_colors) - 1)
                 local_t = (t * (len(base_colors) - 1)) - idx
-                color = self._lerp_color(base_colors[idx], base_colors[next_idx], local_t)
+                color = self._lerp_color(
+                    base_colors[idx], base_colors[next_idx], local_t
+                )
 
-            x = int((j + 0.5) * self.width / num_v + math.cos(self.time * 1.3 + j) * 25 * (0.4 + 0.6 * energy))
+            x = int(
+                (j + 0.5) * self.width / num_v
+                + math.cos(self.time * 1.3 + j) * 25 * (0.4 + 0.6 * energy)
+            )
             alpha = int(160 * (0.6 + 0.7 * energy))
             rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
 
@@ -713,6 +831,7 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
     def _blit_camera(self, frame):
+        """Blend the camera feed under the energy field."""
         try:
             h, w = frame.shape[:2]
         except Exception:
@@ -731,6 +850,7 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
     def _draw_label(self):
+        """Draw title, elements, gesture and debug energy levels."""
         font = pygame.font.SysFont("arial", 26)
         title = f"Energy Field: {self.spectrum_name}"
         text = font.render(title, True, (245, 245, 245))
@@ -745,9 +865,19 @@ class AnimationEngine:
             elements_str = "None"
 
         sub_font = pygame.font.SysFont("arial", 22)
-        profile_text = sub_font.render(f"Elements: {elements_str}", True, (230, 230, 230))
+        profile_text = sub_font.render(
+            f"Elements: {elements_str}", True, (230, 230, 230)
+        )
         self.screen.blit(profile_text, (20, 50))
 
+        # Show last detected gesture
+        gesture_str = self.last_gesture if self.last_gesture else "none"
+        gesture_text = sub_font.render(
+            f"Gesture: {gesture_str}", True, (230, 230, 230)
+        )
+        self.screen.blit(gesture_text, (20, 80))
+
+        # Debug energy levels
         debug_font = pygame.font.SysFont("arial", 16)
         motion_text = debug_font.render(
             f"Energy(cam): {self.motion_level:.2f}", True, (220, 220, 220)
@@ -755,8 +885,8 @@ class AnimationEngine:
         prox_text = debug_font.render(
             f"Energy(hand): {self.proximity_level:.2f}", True, (220, 220, 220)
         )
-        self.screen.blit(motion_text, (20, 80))
-        self.screen.blit(prox_text, (20, 100))
+        self.screen.blit(motion_text, (20, 108))
+        self.screen.blit(prox_text, (20, 128))
 
     # ------------------------------------------------------------------
     def _lerp_color(self, c1, c2, t):
@@ -777,6 +907,5 @@ class AnimationEngine:
         self.spectrum_name = "None"
         self.style = get_spectrum_style([])  # back to neutral style
         self.orbs.clear()
+        self.last_gesture = None
         print("[Animation] Profile cleared. Waiting for new selection.")
-
-
