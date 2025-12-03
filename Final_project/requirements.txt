@@ -1,2 +1,10 @@
 adafruit-circuitpython-drv2605
 adafruit-blinka
+adafruit-circuitpython-mpr121
+board
+adafruit-circuitpython-lsm6ds
+sounddevice 
+numpy
+edge-impulse-linux
+smbus2
+rpi-lgpio

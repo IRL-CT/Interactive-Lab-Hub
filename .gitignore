@@ -6,3 +6,4 @@ __*
 .venv*
 .venv/
 .*venv*
+*.csv
