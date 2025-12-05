@@ -5,7 +5,9 @@
 - Make sure to connec the LED Ring 
     - 5G to Pin 2
     - GN to Pin 6
-    - DIN to GPIO12 (Pin 32)
+    - DIN to GPIO18 (PIN 18) - 6th on the right row
+
+- FOr the pressure sensor, left 4 
 
 
 ## How to run 

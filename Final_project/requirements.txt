@@ -8,3 +8,4 @@ numpy
 edge-impulse-linux
 smbus2
 rpi-lgpio
+sparkfun-pi-servo-hat

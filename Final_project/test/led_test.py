@@ -5,7 +5,7 @@ import neopixel
 # Initialize NeoPixel ring
 NUM_PIXELS = 24  # Adjust based on your ring (12, 16, 24, etc.)
 MAX_GLOBAL_BRIGHTNESS = 0.3  # Safe limit for Pi power
-pixels = neopixel.NeoPixel(board.D12, NUM_PIXELS, brightness=MAX_GLOBAL_BRIGHTNESS, auto_write=False)
+pixels = neopixel.NeoPixel(board.D18, NUM_PIXELS, brightness=MAX_GLOBAL_BRIGHTNESS, auto_write=False)
 
 print("NeoPixel Ring Test Script")
 print(f"Testing {NUM_PIXELS} pixels on pin D6")
@@ -117,7 +117,7 @@ try:
     print("\n6. Testing rainbow...")
     test_rainbow(0.02)
     
-    print("\n✓ All tests complete!")
+    print("\n All tests complete!")
     pixels.fill((0, 255, 0))  # Green for success
     pixels.show()
     time.sleep(1)
