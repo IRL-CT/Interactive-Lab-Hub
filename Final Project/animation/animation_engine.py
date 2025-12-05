@@ -26,6 +26,8 @@ class AnimationEngine:
         self.current_profile = None          # e.g. ["Fire", "Water", "Light"]
         self.spectrum_name = "None"          # label shown on screen
 
+        self.request_reset = False
+
         # Style dictionary from set_profile
         self.style = get_spectrum_style([])  # neutral default style
 
@@ -67,19 +69,20 @@ class AnimationEngine:
     def update(self, profile=None, element=None, gesture=None, proximity=None, frame=None):
         """
         Main update entry point.
-
-        Args:
-            profile: list of 3 elements (or None)
-            element: single element name (fallback before profile is selected)
-            gesture: ignored (gesture sensor disabled)
-            proximity: ignored
-            frame: OpenCV camera frame (BGR) or None
         """
-        # Handle window close
+        # Handle window and keyboard events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 raise SystemExit
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    # Ask outer loop to reset sensors + profile
+                    self.request_reset = True
+                elif event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    raise SystemExit
+
 
         # 1) Handle profile / element changes
         if profile is not None and profile != self.current_profile:
@@ -1043,6 +1046,7 @@ class AnimationEngine:
         if surface is None:
             return None
         return pygame.surfarray.array3d(surface)
+
 
 
 
