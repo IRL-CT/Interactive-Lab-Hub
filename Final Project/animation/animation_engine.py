@@ -27,6 +27,7 @@ class AnimationEngine:
         self.spectrum_name = "None"          # label shown on screen
 
         self.request_reset = False
+        self.show_labels = True
 
         # Style dictionary from set_profile
         self.style = get_spectrum_style([])  # neutral default style
@@ -991,36 +992,39 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
     def _draw_label(self):
-        """Draw title, selected elements, and camera-based energy level."""
+        """Draw title, elements and energy intensity in the top-left corner."""
+        # If labels are disabled (web "Hide HUD" or internal switch), do nothing
         if not getattr(self, "show_labels", True):
             return
 
-        # Main title
-        font = pygame.font.SysFont("arial", 26)
+        # Title: energy field name
+        font = pygame.font.SysFont("arial", 24)
         title = f"Energy Field: {self.spectrum_name}"
         text = font.render(title, True, (245, 245, 245))
         self.screen.blit(text, (20, 18))
-    
-        # Selected elements
+
+        # Selected elements (profile) or current single element
         if self.current_profile:
             elements_str = " · ".join(self.current_profile)
         elif self.current_element:
             elements_str = self.current_element
         else:
             elements_str = "None"
-    
-        sub_font = pygame.font.SysFont("arial", 22)
+
+        sub_font = pygame.font.SysFont("arial", 20)
         profile_text = sub_font.render(
             f"Elements: {elements_str}", True, (230, 230, 230)
         )
-        self.screen.blit(profile_text, (20, 50))
-    
-        # Camera motion-based energy (the only live metric now)
+        self.screen.blit(profile_text, (20, 46))
+
+        # Energy intensity from camera motion (0~1)
+        intensity = self.motion_level
         debug_font = pygame.font.SysFont("arial", 18)
-        motion_text = debug_font.render(
-            f"Energy Intensity: {self.motion_level:.2f}", True, (220, 220, 220)
+        intensity_text = debug_font.render(
+            f"Energy Intensity: {intensity:.2f}", True, (220, 220, 220)
         )
-        self.screen.blit(motion_text, (20, 85))
+        self.screen.blit(intensity_text, (20, 72))
+
 
 
     # ------------------------------------------------------------------
@@ -1049,3 +1053,4 @@ class AnimationEngine:
         if surface is None:
             return None
         return pygame.surfarray.array3d(surface)
+
