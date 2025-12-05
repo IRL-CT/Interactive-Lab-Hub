@@ -32,15 +32,12 @@ pygame.mixer.init()
 # Load your sound files here (you'll need to add actual sound files)
 try:
     sound_touch1 = pygame.mixer.Sound('./sound/purr.wav')
-    sound_touch1.set_volume(1.0)  # Set volume to maximum (0.0 to 1.0)
-    
+    sound_touch1.set_volume(1.0)
     sound_touch2 = pygame.mixer.Sound('./sound/meow.wav')
-    sound_touch2.set_volume(0.7)  # Set to 70% volume
-    
+    sound_touch2.set_volume(0.7) 
     sound_squeeze = pygame.mixer.Sound('./sound/ES_MeowLowShort.wav')
     sound_hug = pygame.mixer.Sound('./sound/ES_MeowMidShort.wav')
     sound_tap = pygame.mixer.Sound('./sound/ES_MeowHighShort.wav')
-
 except:
     print("Warning: Sound files not found. Sounds will be skipped.")
     sound_touch1 = sound_touch2 = sound_squeeze = sound_hug = sound_tap = None
@@ -87,8 +84,8 @@ MEDIUM_PRESS_TIME = 0.7   # Sustained press = MEDIUM pressure
 
 print("Interactive Breathing Plush Ready!")
 print("Long Press (Hug) = Start/Stop breathing")
-print("Touch pad 5  purr with looping sound")
-print("Touch pad 11 meow with looping sound")
+print("Touch pad 1 = 60 second purr with looping sound")
+print("Touch pad 2 = 20 second purr with looping sound")
 print("Medium Press (Squeeze) = Squeeze sound")
 print("Quick Press (Tap) = Tap sound")
 print("Ctrl+C to exit")
@@ -134,6 +131,34 @@ def set_breathing_leds(intensity):
     b = 255  # Blue stays constant at 255
     
     pixels.fill((r, g, b))
+    pixels.show()
+
+def squeeze_light_effect():
+    """Create a quick burst/pulse effect for squeeze detection
+    Warm orange pulse that quickly fades"""
+    # Quick bright orange burst
+    for brightness in [0.3, 0.6, 1.0, 0.8, 0.5, 0.2]:
+        r = int(255 * brightness)
+        g = int(140 * brightness)  # Orange color
+        b = int(0 * brightness)
+        pixels.fill((r, g, b))
+        pixels.show()
+        time.sleep(0.05)
+    
+    # Fade to off
+    pixels.fill((0, 0, 0))
+    pixels.show()
+
+def tap_light_effect():
+    """Create a quick flash effect for tap detection
+    Quick yellow flash"""
+    # Quick yellow flash
+    pixels.fill((255, 255, 0))
+    pixels.show()
+    time.sleep(0.1)
+    
+    # Off
+    pixels.fill((0, 0, 0))
     pixels.show()
 
 def vibrate_breathing(intensity):
@@ -266,8 +291,9 @@ def stop_purr():
 
 def detect_pressure_type():
     """Analyze pressure pattern based on press duration to determine tap/press/hug
-    Hug triggers breathing mode, other pressures play sounds"""
-    global prev_pressure_input, press_start_time, press_duration, breathing_active, breath_phase, last_pressure_event_time
+    Hug triggers breathing mode, other pressures play sounds and show light effects
+    Pressure sensor can override touch sensor modes"""
+    global prev_pressure_input, press_start_time, press_duration, breathing_active, breath_phase, last_pressure_event_time, purring_active
     
     current_pressure = GPIO.input(FSR_PIN)
     current_time = time.time()
@@ -285,25 +311,38 @@ def detect_pressure_type():
         
         # Determine pressure type based on duration
         if press_duration < QUICK_PRESS_TIME:
-            # Quick tap - only play sound if not in breathing/purring mode
-            if not breathing_active and not purring_active:
+            # Quick tap - stop purring if active, then play tap effect
+            if purring_active:
+                stop_purr()
+                print("Purring stopped by tap")
+            
+            if not breathing_active:
+                tap_light_effect()
                 play_sound_safe(sound_tap, current_time, f"Tap detected! (duration: {press_duration:.2f}s)")
         
         elif press_duration < MEDIUM_PRESS_TIME:
-            # Medium press/squeeze - only play sound if not in breathing/purring mode
-            if not breathing_active and not purring_active:
+            # Medium press/squeeze - stop purring if active, then play squeeze effect
+            if purring_active:
+                stop_purr()
+                print("Purring stopped by squeeze")
+            
+            if not breathing_active:
+                squeeze_light_effect()
                 play_sound_safe(sound_squeeze, current_time, f"Squeeze detected! (duration: {press_duration:.2f}s)")
         
         else:
-            # Long press = hug = Toggle breathing!
+            # Long press = hug = Toggle breathing (overrides purring)
+            if purring_active:
+                stop_purr()
+                print("Purring stopped by hug")
+            
             breathing_active = not breathing_active
             print(f"HUG DETECTED! Breathing {'started' if breathing_active else 'stopped'}")
             
             if not breathing_active:
                 pixels.fill((0, 0, 0))
                 pixels.show()
-                if not purring_active:
-                    pwm.ChangeDutyCycle(0)
+                pwm.ChangeDutyCycle(0)
             else:
                 # Reset breath phase when starting
                 breath_phase = 0
@@ -351,7 +390,7 @@ try:
                     if purring_active:
                         stop_purr()
                     elif can_play_sound(current_time):
-                        start_purr(15, sound_touch1)  # 60 seconds
+                        start_purr(60, sound_touch1)  # 60 seconds
                     else:
                         print("Touch cooldown active, please wait...")
                     last_touch1_state = True
