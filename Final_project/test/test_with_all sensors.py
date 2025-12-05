@@ -33,8 +33,8 @@ pygame.mixer.init()
 try:
     sound_touch1 = pygame.mixer.Sound('./sound/purr.wav')
     sound_touch2 = pygame.mixer.Sound('./sound/meow.wav')
-    sound_squeeze = pygame.mixer.Sound('./sound/ES_MeowMidShort.wav')
-    sound_hug = pygame.mixer.Sound('./sound/ES_MeowHighShort.wav')
+    sound_squeeze = pygame.mixer.Sound('./sound/ES_MeowLowShort.wav')
+    sound_hug = pygame.mixer.Sound('./sound/ES_MeowMidShort.wav')
     sound_tap = pygame.mixer.Sound('./sound/ES_MeowHighShort.wav')
 except:
     print("Warning: Sound files not found. Sounds will be skipped.")
