@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Inner Constellation</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: black;
+        overflow: hidden;
+        font-family: "Arial", sans-serif;
+    }
+
+
+    #view {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;      
+        object-position: center;
+        z-index: 1;
+    }
+
+
+    #hud {
+        position: fixed;
+        top: 40px;
+        right: 40px;
+        z-index: 2;
+        text-align: right;
+        color: white;
+
+        font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+        text-shadow: 0 0 6px rgba(0,0,0,0.8);
+    }
+
+    #hud h1 {
+        margin: 0;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    #hud h2 {
+        margin: 8px 0 0;
+        font-size: 22px;
+        font-weight: 400;
+    }
+</style>
+
+</head>
+
+<body>
+
+
+<img id="view" src="/frame">
+
+
+<div id="hud">
+    <h1>Inner Constellation</h1>
+    <h2>Energy Field Active</h2>
+</div>
+
+<script>
+
+    setInterval(() => {
+        const img = document.getElementById("view");
+        img.src = "/frame?" + new Date().getTime();
+    }, 60);
+</script>
+
+</body>
+</html>
