@@ -987,7 +987,7 @@ class AnimationEngine:
         self.screen.blit(surf, (x, y))
 
     # ------------------------------------------------------------------
-   def _draw_label(self):
+    def _draw_label(self):
         """Draw title, elements, gesture and debug energy levels."""
         font = pygame.font.SysFont("arial", 26)
         title = f"Energy Field: {self.spectrum_name}"
@@ -1052,6 +1052,7 @@ class AnimationEngine:
         if surface is None:
             return None
         return pygame.surfarray.array3d(surface)
+
 
 
 
