@@ -24,19 +24,22 @@ frame_lock = threading.Lock()
 # NEW: web reset flag
 reset_flag = False
 
-print("System Started (Web Mode). Running Pygame in MAIN thread.")
-
 @app.route("/hide_labels", methods=["POST"])
 def hide_labels():
+    """Hide text labels drawn by the animation engine (top-left text)."""
     engine.show_labels = False
-    print("[Server] Labels hidden.")
+    print("[Server] Labels hidden (show_labels = False).")
     return "OK"
+
 
 @app.route("/show_labels", methods=["POST"])
 def show_labels():
+    """Show text labels drawn by the animation engine (top-left text)."""
     engine.show_labels = True
-    print("[Server] Labels shown.")
+    print("[Server] Labels shown (show_labels = True).")
     return "OK"
+
+print("System Started (Web Mode). Running Pygame in MAIN thread.")
 
 
 # ---------------------------------------------------------
