@@ -26,6 +26,18 @@ reset_flag = False
 
 print("System Started (Web Mode). Running Pygame in MAIN thread.")
 
+@app.route("/hide_labels", methods=["POST"])
+def hide_labels():
+    engine.show_labels = False
+    print("[Server] Labels hidden.")
+    return "OK"
+
+@app.route("/show_labels", methods=["POST"])
+def show_labels():
+    engine.show_labels = True
+    print("[Server] Labels shown.")
+    return "OK"
+
 
 # ---------------------------------------------------------
 # HOME PAGE: serve index.html
