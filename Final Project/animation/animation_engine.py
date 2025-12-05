@@ -992,6 +992,9 @@ class AnimationEngine:
     # ------------------------------------------------------------------
     def _draw_label(self):
         """Draw title, selected elements, and camera-based energy level."""
+        if not getattr(self, "show_labels", True):
+            return
+
         # Main title
         font = pygame.font.SysFont("arial", 26)
         title = f"Energy Field: {self.spectrum_name}"
@@ -1046,9 +1049,3 @@ class AnimationEngine:
         if surface is None:
             return None
         return pygame.surfarray.array3d(surface)
-
-
-
-
-
-
