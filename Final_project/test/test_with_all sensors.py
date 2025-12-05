@@ -71,6 +71,10 @@ touch2_debounce_time = 0
 last_sound_time = 0
 sound_cooldown = 1.0  # Minimum time between sounds (in seconds)
 
+# --- Sensor Priority Management ---
+last_pressure_event_time = 0
+pressure_lockout = 2.0  # Seconds to wait after pressure event before allowing touch sensors
+
 # --- Pressure Detection Variables ---
 prev_pressure_input = 0
 press_start_time = 0
@@ -83,8 +87,8 @@ MEDIUM_PRESS_TIME = 0.7   # Sustained press = MEDIUM pressure
 
 print("Interactive Breathing Plush Ready!")
 print("Long Press (Hug) = Start/Stop breathing")
-print("Touch pad 1 = 60 second purr with looping sound")
-print("Touch pad 2 = 20 second purr with looping sound")
+print("Touch pad 5  purr with looping sound")
+print("Touch pad 11 meow with looping sound")
 print("Medium Press (Squeeze) = Squeeze sound")
 print("Quick Press (Tap) = Tap sound")
 print("Ctrl+C to exit")
@@ -263,7 +267,7 @@ def stop_purr():
 def detect_pressure_type():
     """Analyze pressure pattern based on press duration to determine tap/press/hug
     Hug triggers breathing mode, other pressures play sounds"""
-    global prev_pressure_input, press_start_time, press_duration, breathing_active, breath_phase
+    global prev_pressure_input, press_start_time, press_duration, breathing_active, breath_phase, last_pressure_event_time
     
     current_pressure = GPIO.input(FSR_PIN)
     current_time = time.time()
@@ -275,6 +279,9 @@ def detect_pressure_type():
     # Pressure released (transition from pressed to not pressed)
     elif prev_pressure_input and (not current_pressure):
         press_duration = current_time - press_start_time
+        
+        # Update pressure event time for any pressure detection
+        last_pressure_event_time = current_time
         
         # Determine pressure type based on duration
         if press_duration < QUICK_PRESS_TIME:
@@ -344,7 +351,7 @@ try:
                     if purring_active:
                         stop_purr()
                     elif can_play_sound(current_time):
-                        start_purr(20, sound_touch1)  # 60 seconds
+                        start_purr(15, sound_touch1)  # 60 seconds
                     else:
                         print("Touch cooldown active, please wait...")
                     last_touch1_state = True
@@ -358,7 +365,7 @@ try:
                     if purring_active:
                         stop_purr()
                     elif can_play_sound(current_time):
-                        start_purr(25, sound_touch2)  # 20 seconds
+                        start_purr(20, sound_touch2)  # 20 seconds
                     else:
                         print("Touch cooldown active, please wait...")
                     last_touch2_state = True
