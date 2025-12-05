@@ -3,7 +3,7 @@
 from sensors.camera_reflection import CameraFeed
 from sensors.tft_display import TFTDisplay
 from sensors.touch_mpr121_selector import TouchElementSelector
-# Note: GestureSensor intentionally not used anymore (camera-only interaction)
+# GestureSensor is intentionally not used (camera-only interaction)
 
 
 class SensorManager:
@@ -46,10 +46,10 @@ class SensorManager:
             print(f"[SensorManager] Failed to init CameraFeed: {e}")
             self.camera = None
 
-        # runtime state
-        self.profile_selected = False     # whether 3 elements have been locked in
-        self.user_profile = None          # e.g. ["Fire", "Water", "Light"]
-        self.current_element = "None"     # single element fallback before profile is locked
+        # Runtime state
+        self.profile_selected = False      # whether 3 elements have been locked in
+        self.user_profile = None           # e.g. ["Fire", "Water", "Light"]
+        self.current_element = "None"      # single element fallback before profile is locked
 
     # ----------------------------------------------------------------
     #                      MAIN UPDATE LOOP
@@ -63,10 +63,7 @@ class SensorManager:
             frame: camera frame (or None)
         """
 
-        # -----------------------------------------
         # 1. Touch element selection (choose 3)
-        # -----------------------------------------
-        profile = None
         if not self.profile_selected and self.touch_selector is not None:
             profile = self.touch_selector.update()
 
@@ -80,14 +77,10 @@ class SensorManager:
                 if self.tft:
                     self.tft.show_element_list(profile)
 
-        # -----------------------------------------
         # 2. Gesture sensor (disabled → always None)
-        # -----------------------------------------
         gesture = None
 
-        # -----------------------------------------
         # 3. Camera frame
-        # -----------------------------------------
         frame = None
         if self.camera is not None:
             try:
@@ -96,21 +89,42 @@ class SensorManager:
                 print(f"[SensorManager] Error reading camera: {e}")
                 frame = None
 
-        # -----------------------------------------
         # 4. Fallback element (only used before 3-pick is finished)
-        # -----------------------------------------
         if not self.profile_selected:
             if self.touch_selector and len(self.touch_selector.selected) > 0:
                 self.current_element = self.touch_selector.selected[-1]
             else:
                 self.current_element = "None"
 
-        # -----------------------------------------
         # RETURN SENSOR DATA
-        # -----------------------------------------
         return {
             "profile": self.user_profile if self.profile_selected else None,
             "element": self.current_element,
             "gesture": gesture,   # always None now
             "frame": frame,
         }
+
+    # ----------------------------------------------------------------
+    #                  RESET PROFILE (for 'R' key)
+    # ----------------------------------------------------------------
+    def reset_profile(self):
+        """
+        Clear current 3-element profile so the user can re-select elements.
+
+        This is called from main.py when the user presses 'R'.
+        """
+        # Reset internal state
+        self.profile_selected = False
+        self.user_profile = None
+        self.current_element = "None"
+
+        # Reset touch selector (allow choosing 3 new elements)
+        if self.touch_selector is not None:
+            self.touch_selector.selected = []
+            self.touch_selector.selection_done = False
+
+        # Update OLED display if available
+        if self.tft is not None:
+            self.tft.show_element("Ready")
+
+        print("[SensorManager] Profile reset. User can select new elements.")
