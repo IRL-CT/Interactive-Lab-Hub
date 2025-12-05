@@ -5,25 +5,30 @@
 <title>Inner Constellation</title>
 
 <style>
-    body {
+    html, body {
         margin: 0;
         padding: 0;
+        width: 100%;
+        height: 100%;
         background: black;
         overflow: hidden;
         font-family: "Arial", sans-serif;
     }
 
+    /* Fullscreen energy view */
     #view {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
+        width: 100vw;      /* fill viewport width */
+        height: 100vh;     /* fill viewport height */
+        object-fit: cover; /* crop to cover, no letterbox */
         object-position: center;
         z-index: 1;
+        display: block;
     }
 
+    /* HUD (title + status + reset button) */
     #hud {
         position: fixed;
         top: 40px;
@@ -33,6 +38,7 @@
         color: white;
         font-family: "Segoe UI", "Helvetica Neue", sans-serif;
         text-shadow: 0 0 6px rgba(0,0,0,0.8);
+        transition: opacity 0.25s ease;
     }
 
     #hud h1 {
@@ -71,10 +77,52 @@
         box-shadow: 0 0 4px rgba(255,255,255,0.25);
     }
 
+    #reset-btn:disabled {
+        opacity: 0.6;
+        cursor: default;
+        box-shadow: none;
+        transform: none;
+    }
+
     #status {
         margin-top: 8px;
         font-size: 12px;
         opacity: 0.9;
+    }
+
+    /* Small toggle button that is always visible */
+    #hud-toggle {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 3;
+        padding: 8px 14px;
+        font-size: 13px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.7);
+        background: rgba(0,0,0,0.45);
+        color: #ffffff;
+        cursor: pointer;
+        backdrop-filter: blur(6px);
+        text-shadow: 0 0 4px rgba(0,0,0,0.7);
+        transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    #hud-toggle:hover {
+        background: rgba(255,255,255,0.16);
+        box-shadow: 0 0 10px rgba(255,255,255,0.35);
+        transform: translateY(-1px);
+    }
+
+    #hud-toggle:active {
+        transform: translateY(0);
+        box-shadow: 0 0 4px rgba(255,255,255,0.25);
+    }
+
+    /* When HUD is hidden, hide the big overlay but keep the small toggle button */
+    body.hud-hidden #hud {
+        opacity: 0;
+        pointer-events: none;
     }
 </style>
 
@@ -82,14 +130,19 @@
 
 <body>
 
+<!-- Fullscreen MJPEG stream -->
 <img id="view" src="/frame">
 
+<!-- HUD overlay: title + state + reset -->
 <div id="hud">
     <h1>Inner Constellation</h1>
     <h2>Energy Field Active</h2>
     <button id="reset-btn">Reselect Elements</button>
     <div id="status"></div>
 </div>
+
+<!-- Small persistent HUD toggle button -->
+<button id="hud-toggle">Hide HUD</button>
 
 <script>
     // Periodically refresh the <img> tag to get the latest frame
@@ -98,7 +151,7 @@
         img.src = "/frame?" + new Date().getTime();
     }, 60);
 
-    // Handle reset button click
+    // Reset button: ask server to reset profile
     const resetBtn = document.getElementById("reset-btn");
     const statusLabel = document.getElementById("status");
 
@@ -108,7 +161,6 @@
 
         fetch("/reset", { method: "POST" })
             .then(() => {
-                // Small delay to make it feel responsive
                 setTimeout(() => {
                     resetBtn.disabled = false;
                     statusLabel.textContent = "Ready for a new energy combination.";
@@ -119,6 +171,19 @@
                 resetBtn.disabled = false;
                 statusLabel.textContent = "Reset failed. Check server console.";
             });
+    });
+
+    // HUD toggle: hide/show all text overlay, keep only the energy field
+    const hudToggle = document.getElementById("hud-toggle");
+    hudToggle.addEventListener("click", () => {
+        const body = document.body;
+        const hidden = body.classList.toggle("hud-hidden");
+
+        if (hidden) {
+            hudToggle.textContent = "Show HUD";
+        } else {
+            hudToggle.textContent = "Hide HUD";
+        }
     });
 </script>
 
