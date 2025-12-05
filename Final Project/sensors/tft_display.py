@@ -46,26 +46,27 @@ class TFTDisplay:
             self.enabled = False
 
 
-    # ------------------------------------------------------------
-    # Show ONE element (big centered)
-    # ------------------------------------------------------------
-    def show_element(self, name: str):
+   def show_element(self, name):
         if not self.enabled:
             print(f"[OLED] {name}")
             return
-
-        # Clear screen
+    
+        self.display.fill(0)
+        self.display.show()
         self.draw.rectangle((0, 0, 128, 64), outline=0, fill=0)
-
-        # Center text
-        w, h = self.draw.textsize(name, font=self.font)
+    
+        # --- new Pillow text size API ---
+        bbox = self.draw.textbbox((0, 0), name, font=self.font)
+        w = bbox[2] - bbox[0]
+        h = bbox[3] - bbox[1]
+    
         x = (128 - w) // 2
         y = (64 - h) // 2
-
         self.draw.text((x, y), name, font=self.font, fill=255)
-
+    
         self.display.image(self.image)
         self.display.show()
+
 
 
     # ------------------------------------------------------------
