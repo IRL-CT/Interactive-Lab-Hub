@@ -31,11 +31,11 @@ pwm.start(0)
 pygame.mixer.init()
 # Load your sound files here (you'll need to add actual sound files)
 try:
-    sound_touch1 = pygame.mixer.Sound('touch1.wav')  # Replace with your sound file
-    sound_touch2 = pygame.mixer.Sound('touch2.wav')  # Replace with your sound file
-    sound_squeeze = pygame.mixer.Sound('squeeze.wav')
-    sound_hug = pygame.mixer.Sound('hug.wav')
-    sound_tap = pygame.mixer.Sound('tap.wav')
+    sound_touch1 = pygame.mixer.Sound('./sound/purr.wav')
+    sound_touch2 = pygame.mixer.Sound('./sound/meow.wav')
+    sound_squeeze = pygame.mixer.Sound('./sound/ES_MeowMidShort.wav')
+    sound_hug = pygame.mixer.Sound('./sound/ES_MeowHighShort.wav')
+    sound_tap = pygame.mixer.Sound('./sound/ES_MeowHighShort.wav')
 except:
     print("Warning: Sound files not found. Sounds will be skipped.")
     sound_touch1 = sound_touch2 = sound_squeeze = sound_hug = sound_tap = None
@@ -49,14 +49,18 @@ last_time = time.time()
 # --- Purring Variables ---
 purring_active = False
 purr_phase = 0
-purr_duration = 20  # Purr duration in seconds (adjust as needed)
+purr_duration = 30  # Default purr duration in seconds
 purr_start_time = 0
+active_purr_duration = 0  # Stores the current purr duration
+purr_sound_channel = None  # For looping sound
 
 # --- Touch Detection Variables ---
 last_touch_state = False
 last_touch1_state = False
+last_touch2_state = False
 touch_debounce_time = 0
 touch1_debounce_time = 0
+touch2_debounce_time = 0
 
 # --- Pressure Detection Variables ---
 pressure_count = 0
@@ -68,8 +72,8 @@ tap_threshold = 1      # Brief pressure spike
 
 print("Interactive Breathing Plush Ready!")
 print("Touch pad 0 = Start/Stop breathing")
-print(f"Touch pad 1 = Toggle purring (play sound + gentle vibration for {purr_duration} seconds)")
-print("Touch pad 2 = Play sound 2")
+print("Touch pad 1 = 60 second purr with looping sound")
+print("Touch pad 2 = 20 second purr with looping sound")
 print("FSR = Different sounds for squeeze/hug/tap")
 print("Ctrl+C to exit")
 
@@ -137,6 +141,70 @@ def vibrate_purr():
     duty_cycle = int(purr_intensity * 100)
     pwm.ChangeDutyCycle(duty_cycle)
 
+def check_purr_timer(current_time, duration):
+    """Check if purr timer has expired and handle cleanup
+    
+    Args:
+        current_time: The current timestamp
+        duration: Duration in seconds for the purr timer
+    
+    Returns:
+        bool: True if purring should continue, False if timer expired
+    """
+    global purring_active, purr_sound_channel
+    
+    if current_time - purr_start_time >= duration:
+        purring_active = False
+        print(f"Purring timer ended after {duration} seconds")
+        
+        # Stop looping sound
+        if purr_sound_channel:
+            purr_sound_channel.stop()
+            purr_sound_channel = None
+        
+        if not breathing_active:
+            pwm.ChangeDutyCycle(0)
+        return False
+    elif not breathing_active:
+        # Only purr if not breathing (breathing takes priority)
+        vibrate_purr()
+        return True
+    return True
+
+def start_purr(duration, sound):
+    """Start purring with specified duration and looping sound
+    
+    Args:
+        duration: How long to purr in seconds
+        sound: The pygame.mixer.Sound object to loop
+    """
+    global purring_active, purr_start_time, active_purr_duration, purr_sound_channel
+    
+    purring_active = True
+    purr_start_time = time.time()
+    active_purr_duration = duration
+    
+    # Start looping sound if available
+    if sound:
+        purr_sound_channel = sound.play(loops=-1)  # -1 means loop infinitely
+    
+    print(f"Purring started for {duration} seconds with looping sound")
+
+def stop_purr():
+    """Stop purring and clean up"""
+    global purring_active, purr_sound_channel
+    
+    purring_active = False
+    print("Purring stopped manually")
+    
+    # Stop looping sound
+    if purr_sound_channel:
+        purr_sound_channel.stop()
+        purr_sound_channel = None
+    
+    if not breathing_active:
+        pwm.ChangeDutyCycle(0)
+
 def detect_pressure_type():
     """Analyze pressure pattern to determine squeeze/hug/tap"""
     global pressure_count, last_pressure_state, pressure_start_time
@@ -198,29 +266,29 @@ try:
             else:
                 last_touch_state = False
             
-            # Touch pad 1: Toggle purring
+            # Touch pad 1: 60 second purr with looping sound
             if touched & (1 << 1):
                 if not last_touch1_state and (current_time - touch1_debounce_time) > 0.3:
-                    purring_active = not purring_active
                     if purring_active:
-                        purr_start_time = current_time
-                        print(f"Purring started (will run for {purr_duration} seconds)")
-                        if sound_touch1:
-                            sound_touch1.play()
+                        stop_purr()
                     else:
-                        print("Purring stopped manually")
-                        if not breathing_active:
-                            pwm.ChangeDutyCycle(0)
+                        start_purr(60, sound_touch1)  # 60 seconds
                     last_touch1_state = True
                     touch1_debounce_time = current_time
             else:
                 last_touch1_state = False
             
-            # Uncomment if you want to use touch pad 2:
-            # if touched & (1 << 2):  # Pad 2
-            #     if sound_touch2:
-            #         sound_touch2.play()
-            #     print("Touch 2 sound played")
+            # Touch pad 2: 20 second purr with looping sound
+            if touched & (1 << 2):
+                if not last_touch2_state and (current_time - touch2_debounce_time) > 0.3:
+                    if purring_active:
+                        stop_purr()
+                    else:
+                        start_purr(20, sound_touch2)  # 20 seconds
+                    last_touch2_state = True
+                    touch2_debounce_time = current_time
+            else:
+                last_touch2_state = False
                 
         except Exception as e:
             print(f"MPR121 error: {e}")
@@ -238,15 +306,7 @@ try:
         
         # --- Purring Pattern ---
         if purring_active:
-            # Check if purr timer has expired
-            if current_time - purr_start_time >= purr_duration:
-                purring_active = False
-                print(f"Purring timer ended after {purr_duration} seconds")
-                if not breathing_active:
-                    pwm.ChangeDutyCycle(0)
-            elif not breathing_active:
-                # Only purr if not breathing (breathing takes priority)
-                vibrate_purr()
+            check_purr_timer(current_time, active_purr_duration)
         
         # --- Pressure Sensor: Detect Type ---
         # Uncomment to enable pressure detection:
