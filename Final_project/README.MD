@@ -15,3 +15,9 @@
 source .venv/bin/activate
 python master.py
 ```
+
+
+When you are not sure if capacitor is working. 
+```bash
+sudo i2cdetect -y 1
+```
