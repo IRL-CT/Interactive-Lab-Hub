@@ -1,4 +1,3 @@
-
 try:
     import board
     import busio
@@ -14,7 +13,6 @@ except ImportError:
 
 
 class TFTDisplay:
-
     def __init__(self):
         self.display = None
         self.enabled = False
@@ -45,29 +43,29 @@ class TFTDisplay:
             print(f"[OLED] init failed → {e}")
             self.enabled = False
 
-
-   def show_element(self, name):
+    # ------------------------------------------------------------
+    # Show ONE element (big centered)
+    # ------------------------------------------------------------
+    def show_element(self, name: str):
         if not self.enabled:
             print(f"[OLED] {name}")
             return
-    
-        self.display.fill(0)
-        self.display.show()
+
+        # Clear screen
         self.draw.rectangle((0, 0, 128, 64), outline=0, fill=0)
-    
-        # --- new Pillow text size API ---
+
+        # Compute text size (use Pillow >=10 compatible API)
         bbox = self.draw.textbbox((0, 0), name, font=self.font)
         w = bbox[2] - bbox[0]
         h = bbox[3] - bbox[1]
-    
+
+        # Center text
         x = (128 - w) // 2
         y = (64 - h) // 2
         self.draw.text((x, y), name, font=self.font, fill=255)
-    
+
         self.display.image(self.image)
         self.display.show()
-
-
 
     # ------------------------------------------------------------
     # Show list of chosen elements (up to 3)
