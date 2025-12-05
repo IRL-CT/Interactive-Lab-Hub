@@ -46,9 +46,17 @@ breath_phase = 0  # 0-1 representing the breathing cycle
 breath_speed = 0.02  # Adjust for faster/slower breathing
 last_time = time.time()
 
+# --- Purring Variables ---
+purring_active = False
+purr_phase = 0
+purr_duration = 20  # Purr duration in seconds (adjust as needed)
+purr_start_time = 0
+
 # --- Touch Detection Variables ---
 last_touch_state = False
+last_touch1_state = False
 touch_debounce_time = 0
+touch1_debounce_time = 0
 
 # --- Pressure Detection Variables ---
 pressure_count = 0
@@ -60,7 +68,7 @@ tap_threshold = 1      # Brief pressure spike
 
 print("Interactive Breathing Plush Ready!")
 print("Touch pad 0 = Start/Stop breathing")
-print("Touch pad 1 = Play sound 1")
+print(f"Touch pad 1 = Toggle purring (play sound + gentle vibration for {purr_duration} seconds)")
 print("Touch pad 2 = Play sound 2")
 print("FSR = Different sounds for squeeze/hug/tap")
 print("Ctrl+C to exit")
@@ -111,6 +119,22 @@ def set_breathing_leds(intensity):
 def vibrate_breathing(intensity):
     """Set vibration motor based on breathing intensity"""
     duty_cycle = int(intensity * 70 + 10)  # 10-80% duty cycle
+    pwm.ChangeDutyCycle(duty_cycle)
+
+def vibrate_purr():
+    """Create a purring vibration pattern like a cat
+    Purrs have a rhythmic pattern around 25-150Hz with variations
+    """
+    global purr_phase
+    
+    # Create a gentle rhythmic pattern
+    purr_phase += 0.15  # Speed of purr cycle
+    if purr_phase >= 1.0:
+        purr_phase = 0
+    
+    # Oscillating pattern: gentle pulses
+    purr_intensity = 0.3 + 0.2 * math.sin(purr_phase * math.pi * 2)  # 30-50% range
+    duty_cycle = int(purr_intensity * 100)
     pwm.ChangeDutyCycle(duty_cycle)
 
 def detect_pressure_type():
@@ -167,18 +191,32 @@ try:
                     if not breathing_active:
                         pixels.fill((0, 0, 0))
                         pixels.show()
-                        pwm.ChangeDutyCycle(0)
+                        if not purring_active:  # Only stop motor if not purring
+                            pwm.ChangeDutyCycle(0)
                     last_touch_state = True
                     touch_debounce_time = current_time
             else:
                 last_touch_state = False
             
-            # Uncomment these if you want to use additional touch pads:
-            # if touched & (1 << 1):  # Pad 1
-            #     if sound_touch1:
-            #         sound_touch1.play()
-            #     print("Touch 1 sound played")
+            # Touch pad 1: Toggle purring
+            if touched & (1 << 1):
+                if not last_touch1_state and (current_time - touch1_debounce_time) > 0.3:
+                    purring_active = not purring_active
+                    if purring_active:
+                        purr_start_time = current_time
+                        print(f"Purring started (will run for {purr_duration} seconds)")
+                        if sound_touch1:
+                            sound_touch1.play()
+                    else:
+                        print("Purring stopped manually")
+                        if not breathing_active:
+                            pwm.ChangeDutyCycle(0)
+                    last_touch1_state = True
+                    touch1_debounce_time = current_time
+            else:
+                last_touch1_state = False
             
+            # Uncomment if you want to use touch pad 2:
             # if touched & (1 << 2):  # Pad 2
             #     if sound_touch2:
             #         sound_touch2.play()
@@ -197,6 +235,18 @@ try:
             intensity = breathing_pattern(breath_phase)
             set_breathing_leds(intensity)
             vibrate_breathing(intensity)
+        
+        # --- Purring Pattern ---
+        if purring_active:
+            # Check if purr timer has expired
+            if current_time - purr_start_time >= purr_duration:
+                purring_active = False
+                print(f"Purring timer ended after {purr_duration} seconds")
+                if not breathing_active:
+                    pwm.ChangeDutyCycle(0)
+            elif not breathing_active:
+                # Only purr if not breathing (breathing takes priority)
+                vibrate_purr()
         
         # --- Pressure Sensor: Detect Type ---
         # Uncomment to enable pressure detection:
