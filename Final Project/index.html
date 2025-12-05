@@ -173,18 +173,26 @@
             });
     });
 
-    // HUD toggle: hide/show all text overlay, keep only the energy field
+        // HUD toggle: hide/show all web text overlay AND labels drawn in pygame
     const hudToggle = document.getElementById("hud-toggle");
     hudToggle.addEventListener("click", () => {
         const body = document.body;
         const hidden = body.classList.toggle("hud-hidden");
 
+        // Update button text
         if (hidden) {
             hudToggle.textContent = "Show HUD";
         } else {
             hudToggle.textContent = "Hide HUD";
         }
+
+        // Tell the server to hide or show labels drawn on the frame
+        const url = hidden ? "/hide_labels" : "/show_labels";
+        fetch(url, { method: "POST" }).catch((err) => {
+            console.error("Label toggle error:", err);
+        });
     });
+
 </script>
 
 </body>
