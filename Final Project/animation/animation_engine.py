@@ -988,41 +988,43 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
    def _draw_label(self):
-    """High-end floating UI in the top-right corner."""
-    
-        # Semi-transparent background box
-        ui_surface = pygame.Surface((400, 180), pygame.SRCALPHA)
-        pygame.draw.rect(ui_surface, (0, 0, 0, 110), (0, 0, 400, 180), border_radius=20)
-    
-        # Fonts (better quality)
-        title_font = pygame.font.SysFont("segoeui", 32, bold=True)
-        sub_font = pygame.font.SysFont("segoeui", 22)
-        small_font = pygame.font.SysFont("segoeui", 18)
-    
-        # Prepare text
-        title = f"Energy: {self.spectrum_name}"
-        elements_str = (
-            " · ".join(self.current_profile)
-            if self.current_profile else self.current_element or "None"
+        """Draw title, elements, gesture and debug energy levels."""
+        font = pygame.font.SysFont("arial", 26)
+        title = f"Energy Field: {self.spectrum_name}"
+        text = font.render(title, True, (245, 245, 245))
+        self.screen.blit(text, (20, 18))
+
+        # Show selected elements (profile) or current element
+        if self.current_profile:
+            elements_str = " · ".join(self.current_profile)
+        elif self.current_element:
+            elements_str = self.current_element
+        else:
+            elements_str = "None"
+
+        sub_font = pygame.font.SysFont("arial", 22)
+        profile_text = sub_font.render(
+            f"Elements: {elements_str}", True, (230, 230, 230)
         )
+        self.screen.blit(profile_text, (20, 50))
+
+        # Show last detected gesture
         gesture_str = self.last_gesture if self.last_gesture else "none"
-    
-        # Render
-        t1 = title_font.render(title, True, (255, 255, 255))
-        t2 = sub_font.render(f"Elements: {elements_str}", True, (230, 230, 230))
-        t3 = sub_font.render(f"Gesture: {gesture_str}", True, (230, 230, 230))
-        t4 = small_font.render(f"Energy(cam): {self.motion_level:.2f}", True, (200, 200, 200))
-        t5 = small_font.render(f"Energy(hand): {self.proximity_level:.2f}", True, (200, 200, 200))
-    
-        # Position text on the UI surface
-        ui_surface.blit(t1, (20, 15))
-        ui_surface.blit(t2, (20, 58))
-        ui_surface.blit(t3, (20, 88))
-        ui_surface.blit(t4, (20, 125))
-        ui_surface.blit(t5, (20, 150))
-    
-        # Draw in the top-right corner
-        self.screen.blit(ui_surface, (self.width - 420, 20))
+        gesture_text = sub_font.render(
+            f"Gesture: {gesture_str}", True, (230, 230, 230)
+        )
+        self.screen.blit(gesture_text, (20, 80))
+
+        # Debug energy levels
+        debug_font = pygame.font.SysFont("arial", 16)
+        motion_text = debug_font.render(
+            f"Energy(cam): {self.motion_level:.2f}", True, (220, 220, 220)
+        )
+        prox_text = debug_font.render(
+            f"Energy(hand): {self.proximity_level:.2f}", True, (220, 220, 220)
+        )
+        self.screen.blit(motion_text, (20, 108))
+        self.screen.blit(prox_text, (20, 128))
 
     # ------------------------------------------------------------------
     def _lerp_color(self, c1, c2, t):
@@ -1050,5 +1052,6 @@ class AnimationEngine:
         if surface is None:
             return None
         return pygame.surfarray.array3d(surface)
+
 
 
