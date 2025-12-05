@@ -1,4 +1,13 @@
 # animation/animation_engine.py
+#
+# Camera-driven Inner Constellation:
+# - No gesture sensor needed.
+# - Horizontal position (body_x) → color temperature
+#     * Left = colder, Right = warmer
+# - Approximate distance (size_level) → scale
+#     * Smaller silhouette (farther) = larger field
+#     * Bigger silhouette (closer) = smaller field
+# - Energy field center follows the motion centroid in the camera frame.
 
 import pygame
 import math
@@ -32,27 +41,27 @@ class AnimationEngine:
         self.style = get_spectrum_style([])  # default neutral style
 
         # Energy scale and temperature
-        self.scale = 1.0                     # base energy size (gestures)
-        self.temp_shift = 0.0                # -1.0 (cold) ~ +1.0 (warm)
+        self.scale = 1.0                     # base energy size
+        self.temp_shift = 0.0               # -1.0 (cold) ~ +1.0 (warm)
 
-        # Time and energy levels
+        # Time and camera-derived energy levels
         self.time = 0.0
-        self.motion_level = 0.0              # 0~1, from camera motion
-        self.proximity_level = 0.0           # 0~1, from APDS-9960 (if used)
+        self.motion_level = 0.0             # 0~1, how much the user is moving
 
         # Camera motion analysis
         self.prev_gray = None
         self.downsample_size = (64, 36)
 
         # Approximate body position (0~1) from camera motion centroid
-        self.body_x = 0.5
-        self.body_y = 0.5
+        self.body_x = 0.5   # 0 = left, 1 = right
+        self.body_y = 0.5   # 0 = top, 1 = bottom
+
+        # Approximate body size (0~1) from activated area in diff
+        # Larger value = user is closer to camera
+        self.size_level = 0.0
 
         # Shared state for patterns that need persistent particles
         self.orbs = []
-
-        # Last gesture for on-screen display
-        self.last_gesture = None
 
         # Base colors per element (for single-element fallback)
         self.element_colors = {
@@ -72,8 +81,8 @@ class AnimationEngine:
         Args:
             profile: list of 3 elements, e.g. ["Fire","Water","Light"], or None
             element: single element name used before profile is selected
-            gesture: "expand" / "shrink" / "cooler" / "warmer" / None
-            proximity: normalized 0~1 hand distance (optional)
+            gesture: ignored in this version (camera-only control)
+            proximity: ignored in this version
             frame: OpenCV camera frame (BGR) or None
         """
         # Handle Pygame window events (safety)
@@ -98,64 +107,57 @@ class AnimationEngine:
             self.orbs.clear()
             print(f"[Animation] Element -> {element}")
 
-        # 2) Gestures from APDS-9960 (stronger and cumulative)
-        if gesture:
-            # Remember last gesture for on-screen display
-            self.last_gesture = gesture
-
-            # Make each gesture step more obvious
-            if gesture == "expand":
-                # Bigger jump and higher max
-                self.scale = min(4.0, self.scale + 0.35)
-            elif gesture == "shrink":
-                self.scale = max(0.4, self.scale - 0.35)
-            elif gesture == "cooler":
-                # Stronger temperature shift per gesture
-                self.temp_shift = max(-1.0, self.temp_shift - 0.18)
-            elif gesture == "warmer":
-                self.temp_shift = min(1.0, self.temp_shift + 0.18)
-
-        # 3) Proximity: hand distance (0~1)
-        if proximity is not None:
-            self.proximity_level = 0.8 * self.proximity_level + 0.2 * proximity
-
-        # 4) Time update
+        # 2) Time update
         dt_ms = self.clock.get_time()
         dt = dt_ms / 1000.0 if dt_ms > 0 else 1.0 / 60.0
         self.time += dt
 
-        # 5) Camera motion energy (global + body position)
+        # 3) Camera motion energy + body position + size
         if frame is not None and cv2 is not None and np is not None:
-            self._update_motion_energy(frame)
+            self._update_motion_features(frame)
 
-        # 6) Breathing modulation
-        # Base scale decays slowly but stays in a range
-        self.scale *= 0.995
-        self.scale = max(0.5, min(3.8, self.scale))
+        # 4) Map body position to temperature shift
+        #    body_x in [0,1] → temp_shift in [-1,1]
+        #    Left = colder, Right = warmer
+        target_temp = (self.body_x - 0.5) * 2.0
+        target_temp = max(-1.0, min(1.0, target_temp))
+        self.temp_shift = 0.9 * self.temp_shift + 0.1 * target_temp
 
-        breath_from_motion = 1.0 + 0.8 * self.motion_level
-        breath_from_proximity = 1.0 + 1.0 * self.proximity_level
+        # 5) Map approximate body size to scale
+        #    size_level in [0,1]: higher = closer
+        #    Farther (small size_level) → larger scale
+        #    Closer (large size_level) → smaller scale
+        base_scale = 1.5
+        target_scale = base_scale + (0.9 - 1.6 * self.size_level)
+        self.scale = 0.9 * self.scale + 0.1 * target_scale
+        self.scale = max(0.6, min(3.0, self.scale))
+
+        # 6) Breathing modulation (based on motion)
+        breath_from_motion = 1.0 + 0.9 * self.motion_level
         breathing_wave = 1.0 + 0.28 * math.sin(self.time * 2.0 * math.pi * 0.4)
+        self.render_scale = self.scale * breath_from_motion * breathing_wave
 
-        self.render_scale = (
-            self.scale * breath_from_motion * breath_from_proximity * breathing_wave
-        )
-
-        # Draw frame
+        # 7) Draw frame
         self._draw_frame(frame, dt)
 
         pygame.display.flip()
         self.clock.tick(60)
 
     # ------------------------------------------------------------------
-    def _update_motion_energy(self, frame):
-        """Compute a global motion level + approximate body centroid from camera frames."""
+    def _update_motion_features(self, frame):
+        """
+        Compute:
+        - motion_level: how much the image changes
+        - body_x, body_y: centroid of motion
+        - size_level: approximate area of active motion
+        """
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         gray_small = cv2.resize(gray, self.downsample_size)
 
         if self.prev_gray is None:
             self.prev_gray = gray_small
             self.motion_level = 0.0
+            self.size_level = 0.0
             return
 
         diff = cv2.absdiff(gray_small, self.prev_gray)
@@ -165,8 +167,17 @@ class AnimationEngine:
         mean_diff = diff.mean() / 255.0
         self.motion_level = 0.85 * self.motion_level + 0.15 * min(1.0, mean_diff * 8.0)
 
-        # Approximate "where" the motion / brightness change is strongest
-        # → use centroid of diff as body position
+        # Threshold to find "active" pixels
+        diff_norm = diff.astype("float32") / 255.0
+        mask = diff_norm > 0.18
+        active_ratio = mask.mean()  # fraction of pixels "moving"
+
+        # Map active_ratio (usually very small) into 0~1 range
+        # Larger active_ratio → user occupies more area → closer
+        size_raw = min(1.0, active_ratio * 18.0)
+        self.size_level = 0.9 * self.size_level + 0.1 * size_raw
+
+        # Approximate motion centroid → body position
         total = diff.sum()
         if total > 1:
             h, w = diff.shape
@@ -178,8 +189,8 @@ class AnimationEngine:
             norm_y = float(cy) / max(1.0, h - 1)
 
             # Smooth to avoid jitter
-            self.body_x = 0.8 * self.body_x + 0.2 * norm_x
-            self.body_y = 0.8 * self.body_y + 0.2 * norm_y
+            self.body_x = 0.85 * self.body_x + 0.15 * norm_x
+            self.body_y = 0.85 * self.body_y + 0.15 * norm_y
 
     # ------------------------------------------------------------------
     def _get_body_center(self):
@@ -201,14 +212,14 @@ class AnimationEngine:
         else:
             base_colors = [(255, 255, 255), (200, 200, 200)]
 
-        # Stronger temperature influence on background
-        warm_bg = (255, 200, 120)
-        cold_bg = (60, 130, 255)
+        # Temperature-influenced background
+        warm_bg = (255, 210, 130)
+        cold_bg = (70, 130, 255)
         temp_t = (self.temp_shift + 1) / 2.0  # -1~1 → 0~1
         temp_t = max(0.0, min(1.0, temp_t))
 
         temp_tint = self._lerp_color(cold_bg, warm_bg, temp_t)
-        bg = self._lerp_color((0, 0, 0), temp_tint, 0.28)
+        bg = self._lerp_color((0, 0, 0), temp_tint, 0.3)
         self.screen.fill(bg)
 
         # Camera reflection (subtle)
@@ -274,7 +285,7 @@ class AnimationEngine:
         base_rect.centery = center_y
 
         wobble = 22 * math.sin(self.time * 2.0 * math.pi * 0.35)
-        base_rect.centery += int(wobble * (0.6 + 0.4 * self.proximity_level))
+        base_rect.centery += int(wobble * (0.7 + 0.5 * self.motion_level))
 
         num_layers = 24
         for i in range(num_layers):
@@ -291,7 +302,7 @@ class AnimationEngine:
                 )
 
             alpha = int(255 * (1.0 - t ** 1.3))
-            alpha = int(alpha * (0.9 + 0.9 * self.proximity_level))
+            alpha = int(alpha * (0.9 + 0.9 * self.motion_level))
             alpha = max(0, min(alpha, 255))
 
             rgba = (color[0], color[1], color[2], alpha)
@@ -308,7 +319,7 @@ class AnimationEngine:
             base_width
             * 1.0
             * halo_scale
-            * (0.9 + 0.7 * self.proximity_level)
+            * (0.9 + 0.7 * self.motion_level)
         )
         halo_radius = max(65, halo_radius)
 
@@ -319,7 +330,7 @@ class AnimationEngine:
             alpha = int(
                 250
                 * (1.0 - t ** 1.8)
-                * (0.8 + 0.6 * self.proximity_level)
+                * (0.8 + 0.6 * self.motion_level)
             )
             radius = int(halo_radius * (0.6 + 0.5 * t * self.render_scale))
 
@@ -330,7 +341,7 @@ class AnimationEngine:
         core_color = base_colors[len(base_colors) // 2]
         core_rgba = (core_color[0], core_color[1], core_color[2], 255)
         core_radius = int(
-            base_width * 0.6 * (1.0 + 0.4 * self.proximity_level)
+            base_width * 0.6 * (1.0 + 0.4 * self.motion_level)
         )
         core_radius = max(45, core_radius)
         pygame.draw.circle(aura_surface, core_rgba, halo_center, core_radius)
@@ -361,7 +372,7 @@ class AnimationEngine:
             radius, angle, speed, size, color_idx = orb
 
             angular_speed = speed * (
-                1.0 + 1.6 * self.motion_level + 1.4 * self.proximity_level
+                1.0 + 1.4 * self.motion_level
             )
             orb[1] += angular_speed * dt
 
@@ -395,7 +406,7 @@ class AnimationEngine:
         base_radius_y = 70 * self.render_scale
         gap = 30 * self.render_scale
 
-        amp = 40 * (0.3 + 0.7 * (self.motion_level + self.proximity_level) / 2.0)
+        amp = 40 * (0.3 + 0.7 * self.motion_level)
         time_factor = self.time * 1.4
 
         for i in range(num_rings):
@@ -416,7 +427,7 @@ class AnimationEngine:
                 )
 
             alpha = int(240 * (1.0 - t ** 1.5))
-            alpha = int(alpha * (0.7 + 0.9 * self.proximity_level))
+            alpha = int(alpha * (0.7 + 0.9 * self.motion_level))
             alpha = max(0, min(alpha, 255))
 
             rect = pygame.Rect(
@@ -446,7 +457,7 @@ class AnimationEngine:
             * (0.6 + 0.6 * self.render_scale)
         )
 
-        energy = (self.motion_level + self.proximity_level) / 2.0
+        energy = self.motion_level
         time_factor = self.time * (1.0 + 1.6 * energy)
 
         for i in range(num_rays):
@@ -504,7 +515,7 @@ class AnimationEngine:
             * (0.7 + 0.6 * self.render_scale)
         )
 
-        energy = (self.motion_level + self.proximity_level) / 2.0
+        energy = self.motion_level
         spin_speed = 0.6 + 1.2 * energy
 
         for arm in range(num_arms):
@@ -564,7 +575,7 @@ class AnimationEngine:
         base_width = int(150 * self.render_scale)
         base_width = max(80, min(base_width, int(self.width * 0.45)))
 
-        wobble_amp = 15 * (1.0 + 0.6 * self.proximity_level)
+        wobble_amp = 15 * (1.0 + 0.6 * self.motion_level)
 
         for idx_c, (cx, cy) in enumerate(centers):
             base_rect = pygame.Rect(0, 0, base_width, pillar_height)
@@ -589,7 +600,7 @@ class AnimationEngine:
                 alpha = int(
                     240
                     * (1.0 - t ** 1.4)
-                    * (0.7 + 0.9 * self.proximity_level)
+                    * (0.7 + 0.9 * self.motion_level)
                 )
                 alpha = max(0, min(alpha, 255))
                 rgba = (color[0], color[1], color[2], alpha)
@@ -608,14 +619,14 @@ class AnimationEngine:
             bridge_color[0],
             bridge_color[1],
             bridge_color[2],
-            130 + int(90 * self.proximity_level),
+            130 + int(90 * self.motion_level),
         )
         pygame.draw.ellipse(aura_surface, bridge_rgba, mid_rect)
 
         self.screen.blit(aura_surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 6: vertical ribbons (full screen, not centered on body)
+    # PATTERN 6: vertical ribbons (full screen)
     # ------------------------------------------------------------------
     def _pattern_vertical_ribbons(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -623,7 +634,7 @@ class AnimationEngine:
         num_ribbons = 10
         ribbon_width = self.width / num_ribbons
 
-        energy = (self.motion_level + self.proximity_level) / 2.0
+        energy = self.motion_level
 
         for i in range(num_ribbons):
             t = i / max(1, num_ribbons - 1)
@@ -666,7 +677,7 @@ class AnimationEngine:
         cell_w = self.width / cols
         cell_h = self.height / rows
 
-        energy = (self.motion_level + self.proximity_level) / 2.0
+        energy = self.motion_level
 
         for r in range(rows):
             for c in range(cols):
@@ -710,7 +721,7 @@ class AnimationEngine:
     def _pattern_starfield(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
 
-        energy = (self.motion_level + self.proximity_level) / 2.0
+        energy = self.motion_level
         num_stars = int(260 * (0.9 + 0.9 * self.render_scale))
 
         random.seed(42)  # stable pattern per frame
@@ -763,7 +774,7 @@ class AnimationEngine:
             * (0.8 + 0.7 * self.render_scale)
         )
 
-        energy = (self.motion_level + self.proximity_level) / 2.0
+        energy = self.motion_level
         spin = self.time * (1.4 + 1.2 * energy)
 
         for i in range(num_rings):
@@ -809,7 +820,7 @@ class AnimationEngine:
     def _pattern_cross_waves(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
 
-        energy = (self.motion_level + self.proximity_level) / 2.0
+        energy = self.motion_level
 
         # Horizontal bands
         num_h = 8
@@ -884,7 +895,7 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
     def _draw_label(self):
-        """Draw title, elements, gesture and debug energy levels."""
+        """Draw title, elements and debug camera features."""
         font = pygame.font.SysFont("arial", 26)
         title = f"Energy Field: {self.spectrum_name}"
         text = font.render(title, True, (245, 245, 245))
@@ -904,23 +915,25 @@ class AnimationEngine:
         )
         self.screen.blit(profile_text, (20, 50))
 
-        # Show last detected gesture
-        gesture_str = self.last_gesture if self.last_gesture else "none"
-        gesture_text = sub_font.render(
-            f"Gesture: {gesture_str}", True, (230, 230, 230)
-        )
-        self.screen.blit(gesture_text, (20, 80))
-
-        # Debug energy levels
+        # Debug camera-driven values
         debug_font = pygame.font.SysFont("arial", 16)
         motion_text = debug_font.render(
-            f"Energy(cam): {self.motion_level:.2f}", True, (220, 220, 220)
+            f"Motion: {self.motion_level:.2f}", True, (220, 220, 220)
         )
-        prox_text = debug_font.render(
-            f"Energy(hand): {self.proximity_level:.2f}", True, (220, 220, 220)
+        pos_text = debug_font.render(
+            f"Position: x={self.body_x:.2f}, y={self.body_y:.2f}", True, (220, 220, 220)
         )
-        self.screen.blit(motion_text, (20, 108))
-        self.screen.blit(prox_text, (20, 128))
+        size_text = debug_font.render(
+            f"Size level: {self.size_level:.2f}", True, (220, 220, 220)
+        )
+        temp_text = debug_font.render(
+            f"Temp shift: {self.temp_shift:.2f}", True, (220, 220, 220)
+        )
+
+        self.screen.blit(motion_text, (20, 80))
+        self.screen.blit(pos_text, (20, 100))
+        self.screen.blit(size_text, (20, 120))
+        self.screen.blit(temp_text, (20, 140))
 
     # ------------------------------------------------------------------
     def _lerp_color(self, c1, c2, t):
@@ -941,7 +954,6 @@ class AnimationEngine:
         self.spectrum_name = "None"
         self.style = get_spectrum_style([])  # back to neutral style
         self.orbs.clear()
-        self.last_gesture = None
         self.scale = 1.0
         self.temp_shift = 0.0
         print("[Animation] Profile cleared. Waiting for new selection.")
