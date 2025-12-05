@@ -32,12 +32,15 @@ pygame.mixer.init()
 # Load your sound files here (you'll need to add actual sound files)
 try:
     sound_touch1 = pygame.mixer.Sound('./sound/purr.wav')
-    sound_touch1.set_volume(1.0)
+    sound_touch1.set_volume(1.0)  # Set volume to maximum (0.0 to 1.0)
+    
     sound_touch2 = pygame.mixer.Sound('./sound/meow.wav')
-    sound_touch2.set_volume(0.7) 
+    sound_touch2.set_volume(0.7)  # Set to 70% volume
+    
     sound_squeeze = pygame.mixer.Sound('./sound/ES_MeowLowShort.wav')
     sound_hug = pygame.mixer.Sound('./sound/ES_MeowMidShort.wav')
     sound_tap = pygame.mixer.Sound('./sound/ES_MeowHighShort.wav')
+
 except:
     print("Warning: Sound files not found. Sounds will be skipped.")
     sound_touch1 = sound_touch2 = sound_squeeze = sound_hug = sound_tap = None
@@ -64,19 +67,26 @@ touch_debounce_time = 0
 touch1_debounce_time = 0
 touch2_debounce_time = 0
 
+# --- Sound Management ---
+last_sound_time = 0
+sound_cooldown = 1.0  # Minimum time between sounds (in seconds)
+
 # --- Pressure Detection Variables ---
-pressure_count = 0
-last_pressure_state = False
-pressure_start_time = 0
-squeeze_threshold = 5  # Consecutive high readings for squeeze
-hug_threshold = 3      # Moderate sustained pressure
-tap_threshold = 1      # Brief pressure spike
+prev_pressure_input = 0
+press_start_time = 0
+press_duration = 0
+
+# Pressure thresholds (adjust based on your FSR behavior)
+QUICK_PRESS_TIME = 0.3    # Quick tap = LOW pressure
+MEDIUM_PRESS_TIME = 0.7   # Sustained press = MEDIUM pressure
+# Anything longer = HIGH pressure (hug!)
 
 print("Interactive Breathing Plush Ready!")
-print("Touch pad 0 = Start/Stop breathing")
+print("Long Press (Hug) = Start/Stop breathing")
 print("Touch pad 1 = 60 second purr with looping sound")
 print("Touch pad 2 = 20 second purr with looping sound")
-print("FSR = Different sounds for squeeze/hug/tap")
+print("Medium Press (Squeeze) = Squeeze sound")
+print("Quick Press (Tap) = Tap sound")
 print("Ctrl+C to exit")
 
 def breathing_pattern(phase):
@@ -180,17 +190,60 @@ def start_purr(duration, sound):
         duration: How long to purr in seconds
         sound: The pygame.mixer.Sound object to loop
     """
-    global purring_active, purr_start_time, active_purr_duration, purr_sound_channel
+    global purring_active, purr_start_time, active_purr_duration, purr_sound_channel, last_sound_time
+    
+    # Stop any currently playing sounds (except looping purr)
+    pygame.mixer.stop()
     
     purring_active = True
     purr_start_time = time.time()
     active_purr_duration = duration
+    last_sound_time = time.time()  # Update sound timer
     
     # Start looping sound if available
     if sound:
         purr_sound_channel = sound.play(loops=-1)  # -1 means loop infinitely
     
     print(f"Purring started for {duration} seconds with looping sound")
+
+def can_play_sound(current_time):
+    """Check if enough time has passed since last sound to prevent overlap
+    
+    Args:
+        current_time: Current timestamp
+    
+    Returns:
+        bool: True if sound can be played, False if still in cooldown
+    """
+    global last_sound_time
+    
+    if current_time - last_sound_time >= sound_cooldown:
+        return True
+    else:
+        print(f"Sound cooldown active... ({sound_cooldown - (current_time - last_sound_time):.1f}s remaining)")
+        return False
+
+def play_sound_safe(sound, current_time, description=""):
+    """Safely play a sound with cooldown and overlap prevention
+    
+    Args:
+        sound: The pygame.mixer.Sound object to play
+        current_time: Current timestamp
+        description: Description of the sound for logging
+    """
+    global last_sound_time
+    
+    if can_play_sound(current_time):
+        # Stop any non-looping sounds
+        pygame.mixer.stop()
+        
+        if sound:
+            sound.play()
+            last_sound_time = current_time
+            if description:
+                print(description)
+        return True
+    return False
 
 def stop_purr():
     """Stop purring and clean up"""
@@ -208,39 +261,55 @@ def stop_purr():
         pwm.ChangeDutyCycle(0)
 
 def detect_pressure_type():
-    """Analyze pressure pattern to determine squeeze/hug/tap"""
-    global pressure_count, last_pressure_state, pressure_start_time
+    """Analyze pressure pattern based on press duration to determine tap/press/hug
+    Hug triggers breathing mode, other pressures play sounds"""
+    global prev_pressure_input, press_start_time, press_duration, breathing_active, breath_phase
     
     current_pressure = GPIO.input(FSR_PIN)
     current_time = time.time()
     
-    if current_pressure and not last_pressure_state:
-        # Pressure started
-        pressure_start_time = current_time
-        pressure_count = 1
-    elif current_pressure and last_pressure_state:
-        # Pressure continuing
-        pressure_count += 1
-    elif not current_pressure and last_pressure_state:
-        # Pressure released
-        duration = current_time - pressure_start_time
-        
-        if pressure_count >= squeeze_threshold:
-            if sound_squeeze:
-                sound_squeeze.play()
-            print("Squeeze detected!")
-        elif pressure_count >= hug_threshold and duration > 0.5:
-            if sound_hug:
-                sound_hug.play()
-            print("Gentle hug detected!")
-        elif pressure_count <= tap_threshold and duration < 0.3:
-            if sound_tap:
-                sound_tap.play()
-            print("Tap detected!")
-        
-        pressure_count = 0
+    # Pressure started (transition from not pressed to pressed)
+    if (not prev_pressure_input) and current_pressure:
+        press_start_time = current_time
     
-    last_pressure_state = current_pressure
+    # Pressure released (transition from pressed to not pressed)
+    elif prev_pressure_input and (not current_pressure):
+        press_duration = current_time - press_start_time
+        
+        # Determine pressure type based on duration
+        if press_duration < QUICK_PRESS_TIME:
+            # Quick tap - only play sound if not in breathing/purring mode
+            if not breathing_active and not purring_active:
+                play_sound_safe(sound_tap, current_time, f"Tap detected! (duration: {press_duration:.2f}s)")
+        
+        elif press_duration < MEDIUM_PRESS_TIME:
+            # Medium press/squeeze - only play sound if not in breathing/purring mode
+            if not breathing_active and not purring_active:
+                play_sound_safe(sound_squeeze, current_time, f"Squeeze detected! (duration: {press_duration:.2f}s)")
+        
+        else:
+            # Long press = hug = Toggle breathing!
+            breathing_active = not breathing_active
+            print(f"HUG DETECTED! Breathing {'started' if breathing_active else 'stopped'}")
+            
+            if not breathing_active:
+                pixels.fill((0, 0, 0))
+                pixels.show()
+                if not purring_active:
+                    pwm.ChangeDutyCycle(0)
+            else:
+                # Reset breath phase when starting
+                breath_phase = 0
+                # Play hug sound when starting breathing (bypass cooldown for mode changes)
+                if sound_hug:
+                    pygame.mixer.stop()
+                    sound_hug.play()
+        
+        # Reset for next press
+        press_start_time = 0
+    
+    # Update previous state
+    prev_pressure_input = current_pressure
 
 try:
     while True:
@@ -252,40 +321,46 @@ try:
         try:
             # Use touched() method which returns the full touch state
             touched = mpr121.touched()
-            # Check if pad 0 is touched (bit 0)
-            if touched & (1 << 0):
-                if not last_touch_state and (current_time - touch_debounce_time) > 0.3:
-                    breathing_active = not breathing_active
-                    print(f"Breathing {'started' if breathing_active else 'stopped'}")
-                    if not breathing_active:
-                        pixels.fill((0, 0, 0))
-                        pixels.show()
-                        if not purring_active:  # Only stop motor if not purring
-                            pwm.ChangeDutyCycle(0)
-                    last_touch_state = True
-                    touch_debounce_time = current_time
-            else:
-                last_touch_state = False
+            
+            # Touch pad 0 is now disabled - hug (FSR) controls breathing instead
+            # Uncomment below if you want to re-enable touch pad 0:
+            # if touched & (1 << 0):
+            #     if not last_touch_state and (current_time - touch_debounce_time) > 0.3:
+            #         breathing_active = not breathing_active
+            #         print(f"Breathing {'started' if breathing_active else 'stopped'}")
+            #         if not breathing_active:
+            #             pixels.fill((0, 0, 0))
+            #             pixels.show()
+            #             if not purring_active:
+            #                 pwm.ChangeDutyCycle(0)
+            #         last_touch_state = True
+            #         touch_debounce_time = current_time
+            # else:
+            #     last_touch_state = False
             
             # Touch pad 1: 60 second purr with looping sound
-            if touched & (1 << 1):
-                if not last_touch1_state and (current_time - touch1_debounce_time) > 0.3:
+            if touched & (1 << 5):
+                if not last_touch1_state and (current_time - touch1_debounce_time) > 0.5:
                     if purring_active:
                         stop_purr()
+                    elif can_play_sound(current_time):
+                        start_purr(20, sound_touch1)  # 60 seconds
                     else:
-                        start_purr(60, sound_touch1)  # 60 seconds
+                        print("Touch cooldown active, please wait...")
                     last_touch1_state = True
                     touch1_debounce_time = current_time
             else:
                 last_touch1_state = False
             
             # Touch pad 2: 20 second purr with looping sound
-            if touched & (1 << 2):
-                if not last_touch2_state and (current_time - touch2_debounce_time) > 0.3:
+            if touched & (1 << 11):
+                if not last_touch2_state and (current_time - touch2_debounce_time) > 0.5:
                     if purring_active:
                         stop_purr()
+                    elif can_play_sound(current_time):
+                        start_purr(25, sound_touch2)  # 20 seconds
                     else:
-                        start_purr(20, sound_touch2)  # 20 seconds
+                        print("Touch cooldown active, please wait...")
                     last_touch2_state = True
                     touch2_debounce_time = current_time
             else:
@@ -310,8 +385,7 @@ try:
             check_purr_timer(current_time, active_purr_duration)
         
         # --- Pressure Sensor: Detect Type ---
-        # Uncomment to enable pressure detection:
-        # detect_pressure_type()
+        detect_pressure_type()
         
         time.sleep(0.05)
 
