@@ -13,7 +13,6 @@ from sensors.sensor_manager import SensorManager
 # ---------------------------------------------------------
 # INITIALIZE GLOBAL OBJECTS
 # ---------------------------------------------------------
-# static_folder / static_url_path 先不用，后面如果要加 CSS / JS 再说
 app = Flask(__name__)
 
 engine = AnimationEngine()
@@ -21,6 +20,9 @@ sensors = SensorManager()
 
 latest_frame = None
 frame_lock = threading.Lock()
+
+# NEW: web reset flag
+reset_flag = False
 
 print("System Started (Web Mode). Running Pygame in MAIN thread.")
 
@@ -36,6 +38,21 @@ def index():
     """
     base_dir = os.path.dirname(__file__)
     return send_from_directory(base_dir, "index.html")
+
+
+# ---------------------------------------------------------
+# WEB RESET ENDPOINT
+# ---------------------------------------------------------
+@app.route("/reset", methods=["POST"])
+def reset_profile_web():
+    """
+    Web endpoint to request profile reset.
+    Called from the browser (Reset button).
+    """
+    global reset_flag
+    reset_flag = True
+    print("[Server] Web reset requested via /reset")
+    return "OK"
 
 
 # ---------------------------------------------------------
@@ -94,7 +111,7 @@ def start_flask():
 # MAIN PYGAME LOOP (runs in main thread)
 # ---------------------------------------------------------
 def pygame_loop():
-    global latest_frame
+    global latest_frame, reset_flag
 
     while True:
         # Sensor data
@@ -104,7 +121,7 @@ def pygame_loop():
         gesture = data.get("gesture")
         cam_frame = data.get("frame")
         profile = data.get("profile")
-        proximity = data.get("proximity")  # may be None, that's fine
+        proximity = data.get("proximity")  # may be None
 
         # Update animation engine
         engine.update(
@@ -115,12 +132,15 @@ def pygame_loop():
             frame=cam_frame,
         )
 
-        # Handle 'R' reset (from keyboard in pygame window)
-        if getattr(engine, "request_reset", False):
-            print("[Main] 'R' pressed to reset profile.")
+        # Handle reset from either:
+        # - R key inside pygame window (if you ever run with a real display)
+        # - Web /reset endpoint (reset_flag)
+        if getattr(engine, "request_reset", False) or reset_flag:
+            print("[Main] Reset requested (R key or web).")
             sensors.reset_profile()
             engine.reset_profile()
             engine.request_reset = False
+            reset_flag = False
 
         # Convert pygame surface → numpy RGB → BGR
         surf = engine.get_frame_surface()
