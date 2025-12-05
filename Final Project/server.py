@@ -98,6 +98,13 @@ def pygame_loop():
             frame=cam_frame
         )
 
+        # Handle 'R' key reset (triggered inside AnimationEngine)
+        if getattr(engine, "request_reset", False):
+            print("[Main] 'R' pressed to reset profile.")
+            sensors.reset_profile()
+            engine.reset_profile()
+            engine.request_reset = False
+
         # Convert pygame surface → numpy RGB → BGR
         surf = engine.get_frame_surface()
         if surf is not None:
@@ -111,6 +118,7 @@ def pygame_loop():
                 print("[Server] Frame conversion error:", e)
 
         time.sleep(0.01)
+
 
 
 # ---------------------------------------------------------
