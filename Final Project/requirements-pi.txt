@@ -9,6 +9,7 @@ adafruit-circuitpython-ssd1306
 # Display & graphics
 Pillow
 pygame
+flask
 
 # Camera
 opencv-python-headless
