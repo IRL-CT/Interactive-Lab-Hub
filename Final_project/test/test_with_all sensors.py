@@ -32,7 +32,9 @@ pygame.mixer.init()
 # Load your sound files here (you'll need to add actual sound files)
 try:
     sound_touch1 = pygame.mixer.Sound('./sound/purr.wav')
+    sound_touch1.set_volume(1.0)
     sound_touch2 = pygame.mixer.Sound('./sound/meow.wav')
+    sound_touch2.set_volume(0.7) 
     sound_squeeze = pygame.mixer.Sound('./sound/ES_MeowLowShort.wav')
     sound_hug = pygame.mixer.Sound('./sound/ES_MeowMidShort.wav')
     sound_tap = pygame.mixer.Sound('./sound/ES_MeowHighShort.wav')
@@ -250,7 +252,6 @@ try:
         try:
             # Use touched() method which returns the full touch state
             touched = mpr121.touched()
-            
             # Check if pad 0 is touched (bit 0)
             if touched & (1 << 0):
                 if not last_touch_state and (current_time - touch_debounce_time) > 0.3:
