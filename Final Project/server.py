@@ -1,7 +1,8 @@
-
-from flask import Flask, Response
 import threading
 import time
+import os
+
+from flask import Flask, Response, send_from_directory
 import numpy as np
 import cv2
 
@@ -12,6 +13,7 @@ from sensors.sensor_manager import SensorManager
 # ---------------------------------------------------------
 # INITIALIZE GLOBAL OBJECTS
 # ---------------------------------------------------------
+# static_folder / static_url_path 先不用，后面如果要加 CSS / JS 再说
 app = Flask(__name__)
 
 engine = AnimationEngine()
@@ -21,6 +23,19 @@ latest_frame = None
 frame_lock = threading.Lock()
 
 print("System Started (Web Mode). Running Pygame in MAIN thread.")
+
+
+# ---------------------------------------------------------
+# HOME PAGE: serve index.html
+# ---------------------------------------------------------
+@app.route("/")
+def index():
+    """
+    Serve the main Inner Constellation web page.
+    index.html must be in the same folder as server.py.
+    """
+    base_dir = os.path.dirname(__file__)
+    return send_from_directory(base_dir, "index.html")
 
 
 # ---------------------------------------------------------
@@ -55,8 +70,10 @@ def frame_feed():
 
             time.sleep(0.02)  # ~50 FPS max
 
-    return Response(generate(),
-                    mimetype="multipart/x-mixed-replace; boundary=frame")
+    return Response(
+        generate(),
+        mimetype="multipart/x-mixed-replace; boundary=frame"
+    )
 
 
 # ---------------------------------------------------------
@@ -69,7 +86,7 @@ def start_flask():
         port=8080,
         debug=False,
         threaded=True,
-        use_reloader=False
+        use_reloader=False,
     )
 
 
@@ -87,7 +104,7 @@ def pygame_loop():
         gesture = data.get("gesture")
         cam_frame = data.get("frame")
         profile = data.get("profile")
-        proximity = data.get("proximity")
+        proximity = data.get("proximity")  # may be None, that's fine
 
         # Update animation engine
         engine.update(
@@ -95,10 +112,10 @@ def pygame_loop():
             element=element,
             gesture=gesture,
             proximity=proximity,
-            frame=cam_frame
+            frame=cam_frame,
         )
 
-        # Handle 'R' key reset (triggered inside AnimationEngine)
+        # Handle 'R' reset (from keyboard in pygame window)
         if getattr(engine, "request_reset", False):
             print("[Main] 'R' pressed to reset profile.")
             sensors.reset_profile()
@@ -109,6 +126,7 @@ def pygame_loop():
         surf = engine.get_frame_surface()
         if surf is not None:
             try:
+                # surf shape: (width, height, 3) → transpose to (height, width, 3)
                 frame_rgb = np.transpose(surf, (1, 0, 2))
                 frame_bgr = cv2.cvtColor(frame_rgb, cv2.COLOR_RGB2BGR)
 
@@ -118,7 +136,6 @@ def pygame_loop():
                 print("[Server] Frame conversion error:", e)
 
         time.sleep(0.01)
-
 
 
 # ---------------------------------------------------------
