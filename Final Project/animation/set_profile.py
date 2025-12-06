@@ -375,3 +375,14 @@ def get_spectrum_style(profile: List[str] | None) -> Style:
 
     # Should never reach here, but keep a safe fallback
     return DEFAULT_STYLE
+
+def combo_palette(elems: List[str]) -> List[Color]:
+    colors: List[Color] = []
+    for e in elems:
+        r, g, b = ELEMENT_MAIN_COLOR.get(e, (255, 255, 255))
+        r = min(int(r * 2), 255)
+        g = min(int(g * 2), 255)
+        b = min(int(b * 2), 255)
+        colors.append((r, g, b))
+    return colors
+
