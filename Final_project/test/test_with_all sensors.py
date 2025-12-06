@@ -30,14 +30,13 @@ pwm.start(0)
 
 # --- Audio Setup ---
 pygame.mixer.init()
-# Load your sound files here (you'll need to add actual sound files)
 try:
     sound_touch1 = pygame.mixer.Sound('./sound/purr.wav')
     sound_touch1.set_volume(1.0)
-    sound_touch2 = pygame.mixer.Sound('./sound/meow.wav')
-    sound_touch2.set_volume(0.7) 
+    sound_touch2 = pygame.mixer.Sound('./sound/ES_MeowMidShort.wav')
+    sound_touch2.set_volume(0.7)
     sound_squeeze = pygame.mixer.Sound('./sound/ES_MeowLowShort.wav')
-    sound_hug = pygame.mixer.Sound('./sound/ES_MeowMidShort.wav')
+    sound_hug = pygame.mixer.Sound('./sound/ES_MeowHighWithPurrs.wav')
     sound_tap = pygame.mixer.Sound('./sound/ES_MeowHighShort.wav')
 except:
     print("Warning: Sound files not found. Sounds will be skipped.")
@@ -45,17 +44,18 @@ except:
 
 # --- Breathing Pattern Variables ---
 breathing_active = False
-breath_phase = 0  # 0-1 representing the breathing cycle
-breath_speed = 0.02  # Adjust for faster/slower breathing
+breath_phase = 0
+breath_speed = 0.02
 last_time = time.time()
 
 # --- Purring Variables ---
 purring_active = False
 purr_phase = 0
-purr_duration = 30  # Default purr duration in seconds
+purr_duration = 30
 purr_start_time = 0
-active_purr_duration = 0  # Stores the current purr duration
-purr_sound_channel = None  # For looping sound
+active_purr_duration = 0
+purr_sound_channel = None
+purr_light_phase = 0.0  # Changed to float for smoother transitions
 
 # --- Touch Detection Variables ---
 last_touch_state = False
@@ -67,163 +67,178 @@ touch2_debounce_time = 0
 
 # --- Sound Management ---
 last_sound_time = 0
-sound_cooldown = 1.0  # Minimum time between sounds (in seconds)
+sound_cooldown = 1.0
 
 # --- Sensor Priority Management ---
 last_pressure_event_time = 0
-pressure_lockout = 2.0  # Seconds to wait after pressure event before allowing touch sensors
+pressure_lockout = 2.0
 
 # --- Pressure Detection Variables ---
 prev_pressure_input = 0
 press_start_time = 0
 press_duration = 0
 
-# Pressure thresholds (adjust based on your FSR behavior)
-QUICK_PRESS_TIME = 0.3    # Quick tap = LOW pressure
-MEDIUM_PRESS_TIME = 1   # Sustained press = MEDIUM pressure
-# Anything longer = HIGH pressure (hug!)
+QUICK_PRESS_TIME = 0.3
+MEDIUM_PRESS_TIME = 1
+
+stop_effect = False
 
 print("Interactive Breathing Plush Ready!")
 print("Long Press (Hug) = Start/Stop breathing")
-print("Touch pad 1 = 60 second purr with looping sound")
-print("Touch pad 2 = 20 second purr with looping sound")
+print("Touch pad 1 (5) = 8 second purr with looping sound")
+print("Touch pad 2 (11) = 7 second purr with looping sound")
 print("Medium Press (Squeeze) = Squeeze sound")
 print("Quick Press (Tap) = Tap sound")
 print("Ctrl+C to exit")
 
 def breathing_pattern(phase):
-    """Calculate breathing intensity (0-1) based on therapeutic 4-7-8 breathing
-    Inhale for 4 counts, hold for 7 counts, exhale for 8 counts
-    Total cycle = 19 counts (~12 seconds at current speed for ~5 breaths/min)
-    """
-    # Normalize phases based on 4-7-8 ratio (total = 19 units)
-    inhale_end = 4/19      # 0.211 (4 counts)
-    hold_end = 11/19       # 0.579 (7 counts)
-    exhale_end = 19/19     # 1.000 (8 counts)
+    """Calculate breathing intensity based on 4-7-8 breathing"""
+    inhale_end = 4/19
+    hold_end = 11/19
+    exhale_end = 19/19
     
-    if phase < inhale_end:  # Inhale (4 counts) - smooth rise
+    if phase < inhale_end:
         progress = phase / inhale_end
         intensity = 0.15 + (math.sin(progress * math.pi / 2) ** 0.7) * 0.85
-    
-    elif phase < hold_end:  # Hold (7 counts) - gentle plateau with slight pulse
+    elif phase < hold_end:
         hold_progress = (phase - inhale_end) / (hold_end - inhale_end)
-        pulse = math.sin(hold_progress * math.pi * 3) * 0.03  # Subtle pulse
+        pulse = math.sin(hold_progress * math.pi * 3) * 0.03
         intensity = 1.0 + pulse
-    
-    else:  # Exhale (8 counts) - slow, extended release
+    else:
         exhale_progress = (phase - hold_end) / (exhale_end - hold_end)
-        # Longer, gentler exhale curve for relaxation
         intensity = 1.0 - (math.sin(exhale_progress * math.pi / 2) ** 0.5) * 0.85
     
-    # Clamp to 0.0-1.0 range to prevent RGB overflow
     return max(0.0, min(1.0, intensity))
 
-stop_effect = False
-
 def stop_all_effects():
-    """Stop any running animation & clear LEDs."""
+    """Stop any running animation & clear LEDs"""
     global stop_effect
-    stop_effect = True           # signal loops to exit
-
-    # --- Clear LEDs here so animations don't need to ---
+    stop_effect = True
     pixels.fill((0,0,0))
     pixels.show()
-    print("\LED stopped externally\n")
+    print("LED stopped externally")
 
-    
 def set_breathing_leds(intensity):
-    """Set LED color transition from blue to white based on breathing intensity
-    Low intensity (exhale) = deep blue
-    High intensity (inhale peak) = bright white
-    """
+    """Blue to white breathing pattern"""
     global stop_effect
-    stop_effect = False
-    if stop_effect:  # just exit
+    if stop_effect:
         return
-    # Blue at low intensity: (0, 50, 255)
-    # White at high intensity: (255, 255, 255)
     
-    # Interpolate between blue and white based on intensity
-    r = int(intensity * 255)  # Red increases from 0 to 255
-    g = int(50 + intensity * 205)  # Green increases from 50 to 255
-    b = 255  # Blue stays constant at 255
+    r = int(intensity * 255)
+    g = int(50 + intensity * 205)
+    b = 255
+    
+    pixels.fill((r, g, b))
+    pixels.show()
+
+def set_purr_leds():
+    """Slow color transitions for purring mode - FIXED VERSION"""
+    global purr_light_phase, stop_effect
+    
+    if stop_effect:
+        return
+    
+    # SLOW increment - about 200 seconds for full cycle
+    purr_light_phase += 0.02
+    if purr_light_phase >= 4.0:
+        purr_light_phase = 0.0
+    
+    # Define color stops
+    colors = [
+        (147, 112, 219),  # Soft purple
+        (230, 230, 250),  # Lavender  
+        (255, 182, 193),  # Soft pink
+        (255, 218, 185),  # Warm peach
+    ]
+    
+    # Determine which colors to blend between
+    color_index = int(purr_light_phase)
+    next_color_index = (color_index + 1) % len(colors)
+    blend = purr_light_phase - color_index
+    
+    # Smooth interpolation
+    r = int(colors[color_index][0] * (1 - blend) + colors[next_color_index][0] * blend)
+    g = int(colors[color_index][1] * (1 - blend) + colors[next_color_index][1] * blend)
+    b = int(colors[color_index][2] * (1 - blend) + colors[next_color_index][2] * blend)
+    
+    # Very gentle brightness pulse
+    pulse = 0.75 + 0.15 * (math.sin(purr_light_phase * math.pi * 0.3) ** 2)
+    
+    r = int(r * pulse)
+    g = int(g * pulse)
+    b = int(b * pulse)
     
     pixels.fill((r, g, b))
     pixels.show()
 
 def squeeze_light_effect():
-    """Create a quick burst/pulse effect for squeeze detection
-    Warm orange pulse that quickly fades"""
+    """Orange chase pattern with vibration"""
     global stop_effect
     stop_effect = False
-    if stop_effect:  # just exit
+    if stop_effect:
         return
     
     pwm.ChangeDutyCycle(50) 
     chase_leds((255, 255, 0), 0.05, 4)
-
-    # Quick bright orange burst
-    # for brightness in [0.3, 0.6, 1.0, 0.8, 0.5, 0.2]:
-    #     r = int(255 * brightness)
-    #     g = int(140 * brightness)  # Orange color
-    #     b = int(0 * brightness)
-    #     pixels.fill((r, g, b))
-    #     pixels.show()
-    #     time.sleep(0.05)
     
-    # Fade to off
     pixels.fill((0, 0, 0))
     pixels.show()
-    # Continue vibration for a few more seconds
     time.sleep(1.0)
-    # Stop vibration
     pwm.ChangeDutyCycle(0)
 
 def chase_leds(color, delay=0.05, cycles=2):
+    """Chase pattern around the ring"""
     global stop_effect
-    stop_effect = False
-    if stop_effect:  # just exit
+    if stop_effect:
         return
     
-    """Chase pattern around the ring"""
-    print("Chase pattern...")
     for _ in range(cycles):
         for i in range(NUM_PIXELS):
             pixels.fill((0, 0, 0))
             pixels[i] = color
             pixels.show()
             time.sleep(delay)
-            
+
+def orange_flash_led():
+    """Quick orange flash effect"""
+    global stop_effect
+    if stop_effect:
+        return
+
+    for brightness in [0.3, 0.6, 1.0, 0.8, 0.5, 0.2]:
+        r = int(255 * brightness)
+        g = int(140 * brightness)
+        b = int(0 * brightness)
+        pixels.fill((r, g, b))
+        pixels.show()
+        time.sleep(0.02)
+    
+    pixels.fill((0, 0, 0))
+    pixels.show()
+               
 def tap_light_effect():
-    """Call sparkle"""
+    """Sparkle effect with vibration"""
     global stop_effect
     stop_effect = False
-    if stop_effect:  # just exit
+    if stop_effect:
         return
-    vibrate_burst(duration=1, intensity=0.6)
-    print("tapped")
-    sparkle_led()
-    # # Quick yellow flash
-    # pixels.fill((0, 0, 0))
-    # pixels.show()
-    # time.sleep(0.1)
     
-    # Off
+    # Start vibration immediately
+    vibrate_burst(duration=1, intensity=0.6)
+    # Sparkle runs concurrently
+    sparkle_led()
     pixels.fill((0, 0, 0))
     pixels.show()
 
 def sparkle_led(duration=5, background=(0,0,0), sparkle_color=(255,255,255),
                  max_sparkles=4, frame_delay=0.05):
-
+    """Sparkle effect - will turn off vibration at end"""
     global stop_effect
-    stop_effect = False
-
-    print(f"Sparkle for {duration}s...")
 
     end_time = time.time() + duration
     while time.time() < end_time:
-
-        if stop_effect:  # just exit
+        if stop_effect:
+            pwm.ChangeDutyCycle(0)  # Stop vibration
             return
 
         pixels.fill(background)
@@ -239,102 +254,80 @@ def sparkle_led(duration=5, background=(0,0,0), sparkle_color=(255,255,255),
 
         pixels.show()
         time.sleep(frame_delay)
-
-    print("Sparkle complete.")
-
-def vibrate_burst(duration=0.2, intensity=0.5):
-    """Create a burst vibration effect
-        duration: How long to vibrate in seconds
-        intensity: Vibration strength (0.0 to 1.0)
-    """
-    duty_cycle = int(intensity * 100)
-    pwm.ChangeDutyCycle(duty_cycle)
-    time.sleep(duration)
+    
+    # Turn off vibration when sparkle ends
     pwm.ChangeDutyCycle(0)
     
+def vibrate_burst(duration=0.2, intensity=0.5):
+    """Burst vibration effect - non-blocking start"""
+    duty_cycle = int(intensity * 100)
+    pwm.ChangeDutyCycle(duty_cycle)
+    # Don't sleep here - let it run while other things happen
+    # Will be stopped by caller or next vibration command
+    
 def vibrate_breathing(intensity):
-    """Set vibration motor based on breathing intensity"""
-    duty_cycle = int(intensity * 70 + 10)  # 10-80% duty cycle
+    """Breathing vibration pattern"""
+    duty_cycle = int(intensity * 70 + 10)
     pwm.ChangeDutyCycle(duty_cycle)
 
 def vibrate_purr():
-    """Create a purring vibration pattern like a cat
-    Purrs have a rhythmic pattern around 25-150Hz with variations
-    """
+    """Cat purr vibration pattern"""
     global purr_phase
     
-    # Create a gentle rhythmic pattern
-    purr_phase += 0.15  # Speed of purr cycle
+    purr_phase += 0.15
     if purr_phase >= 1.0:
         purr_phase = 0
     
-    # Oscillating pattern: gentle pulses
-    purr_intensity = 0.3 + 0.2 * math.sin(purr_phase * math.pi * 2)  # 30-50% range
+    purr_intensity = 0.3 + 0.2 * math.sin(purr_phase * math.pi * 2)
     duty_cycle = int(purr_intensity * 100)
     pwm.ChangeDutyCycle(duty_cycle)
 
 def check_purr_timer(current_time, duration):
-    """Check if purr timer has expired and handle cleanup
-    
-    Args:
-        current_time: The current timestamp
-        duration: Duration in seconds for the purr timer
-    
-    Returns:
-        bool: True if purring should continue, False if timer expired
-    """
-    global purring_active, purr_sound_channel
+    """Check purr timer and cleanup"""
+    global purring_active, purr_sound_channel, purr_light_phase, stop_effect
     
     if current_time - purr_start_time >= duration:
         purring_active = False
+        purr_light_phase = 0.0
+        stop_effect = True  # Signal to stop any ongoing effects
         print(f"Purring timer ended after {duration} seconds")
         
-        # Stop looping sound
         if purr_sound_channel:
             purr_sound_channel.stop()
             purr_sound_channel = None
         
+        pixels.fill((0, 0, 0))
+        pixels.show()
+        
         if not breathing_active:
             pwm.ChangeDutyCycle(0)
+        
+        stop_effect = False  # Reset flag
         return False
     elif not breathing_active:
-        # Only purr if not breathing (breathing takes priority)
         vibrate_purr()
         return True
     return True
 
 def start_purr(duration, sound, origin):
-    """Start purring with specified duration and looping sound
+    """Start purring mode"""
+    global purring_active, purr_start_time, active_purr_duration, purr_sound_channel, last_sound_time, purr_light_phase
     
-    Args:
-        duration: How long to purr in seconds
-        sound: The pygame.mixer.Sound object to loop
-    """
-    global purring_active, purr_start_time, active_purr_duration, purr_sound_channel, last_sound_time
-    
-    # Stop any currently playing sounds (except looping purr)
     pygame.mixer.stop()
     
     purring_active = True
     purr_start_time = time.time()
     active_purr_duration = duration
-    last_sound_time = time.time()  # Update sound timer
+    last_sound_time = time.time()
+    purr_light_phase = 0.0  # Reset phase
     
-    # Start looping sound if available
     if sound:
-        purr_sound_channel = sound.play(loops=-1)  # -1 means loop infinitely
+        purr_sound_channel = sound.play(loops=-1)
     
-    print(f"Purring started for {duration} seconds with looping sound from {origin}")
+    print(f"Purring started for {duration} seconds from {origin}")
 
 def can_play_sound(current_time):
-    """Check if enough time has passed since last sound to prevent overlap
-    
-    Args:
-        current_time: Current timestamp
-    
-    Returns:
-        bool: True if sound can be played, False if still in cooldown
-    """
+    """Check sound cooldown"""
     global last_sound_time
     
     if current_time - last_sound_time >= sound_cooldown:
@@ -343,22 +336,27 @@ def can_play_sound(current_time):
         print(f"Sound cooldown active... ({sound_cooldown - (current_time - last_sound_time):.1f}s remaining)")
         return False
 
-def play_sound_safe(sound, current_time, description=""):
-    """Safely play a sound with cooldown and overlap prevention
+def play_sound_safe(sound, current_time, description="", max_duration=None):
+    """Play sound with cooldown and optional duration limit
     
     Args:
         sound: The pygame.mixer.Sound object to play
         current_time: Current timestamp
         description: Description of the sound for logging
+        max_duration: Maximum duration in milliseconds (None = play full sound)
     """
     global last_sound_time
     
     if can_play_sound(current_time):
-        # Stop any non-looping sounds
         pygame.mixer.stop()
         
         if sound:
-            sound.play()
+            if max_duration:
+                # Play sound for specified duration in milliseconds
+                sound.play(maxtime=max_duration)
+            else:
+                # Play full sound
+                sound.play()
             last_sound_time = current_time
             if description:
                 print(description)
@@ -366,67 +364,72 @@ def play_sound_safe(sound, current_time, description=""):
     return False
 
 def stop_purr():
-    """Stop purring and clean up"""
-    global purring_active, purr_sound_channel
+    """Stop purring mode"""
+    global purring_active, purr_sound_channel, purr_light_phase, stop_effect
     
     purring_active = False
+    purr_light_phase = 0.0
+    stop_effect = True  # Signal to stop effects
     print("Purring stopped manually")
     
-    # Stop looping sound
     if purr_sound_channel:
         purr_sound_channel.stop()
         purr_sound_channel = None
     
+    pixels.fill((0, 0, 0))
+    pixels.show()
+    
     if not breathing_active:
         pwm.ChangeDutyCycle(0)
+    
+    stop_effect = False  # Reset flag
 
 def detect_pressure_type():
-    """Analyze pressure pattern based on press duration to determine tap/press/hug
-    Hug triggers breathing mode, other pressures play sounds and show light effects
-    Pressure sensor can override touch sensor modes"""
-    global prev_pressure_input, press_start_time, press_duration, breathing_active, breath_phase, last_pressure_event_time, purring_active
+    """Detect pressure types: tap, squeeze, hug"""
+    global prev_pressure_input, press_start_time, press_duration, breathing_active, breath_phase, last_pressure_event_time, purring_active, stop_effect
     
     current_pressure = GPIO.input(FSR_PIN)
     current_time = time.time()
     
-    # Pressure started (transition from not pressed to pressed)
     if (not prev_pressure_input) and current_pressure:
         press_start_time = current_time
     
-    # Pressure released (transition from pressed to not pressed)
     elif prev_pressure_input and (not current_pressure):
         press_duration = current_time - press_start_time
-        
-        # Update pressure event time for any pressure detection
         last_pressure_event_time = current_time
         
-        # Determine pressure type based on duration
         if press_duration < QUICK_PRESS_TIME:
-            # Quick tap - stop purring if active, then play tap effect
+            # Tap
             if purring_active:
                 stop_purr()
                 print("Purring stopped by tap")
             
             if breathing_active:
-                stop_effect=True
+                stop_effect = True
             else:
+                # Play sound FIRST, then lights
+                play_sound_safe(sound_tap, current_time, 
+                              f"Tap detected! (duration: {press_duration:.2f}s)", 
+                              max_duration=2000)
                 tap_light_effect()
-                play_sound_safe(sound_tap, current_time, f"Tap detected! (duration: {press_duration:.2f}s)")
         
         elif press_duration < MEDIUM_PRESS_TIME:
-            # Medium press/squeeze - stop purring if active, then play squeeze effect
+            # Squeeze
             if purring_active:
                 stop_purr()
                 print("Purring stopped by squeeze")
             
             if breathing_active:
-                stop_effect=True
+                stop_effect = True
             else:
+                # Play sound FIRST, then lights
+                play_sound_safe(sound_squeeze, current_time, 
+                              f"Squeeze detected! (duration: {press_duration:.2f}s)", 
+                              max_duration=3000)
                 squeeze_light_effect()
-                play_sound_safe(sound_squeeze, current_time, f"Squeeze detected! (duration: {press_duration:.2f}s)")
         
         else:
-            # Long press = hug = Toggle breathing (overrides purring)
+            # Hug - toggle breathing
             if purring_active:
                 stop_purr()
                 print("Purring stopped by hug")
@@ -439,17 +442,13 @@ def detect_pressure_type():
                 pixels.show()
                 pwm.ChangeDutyCycle(0)
             else:
-                # Reset breath phase when starting
                 breath_phase = 0
-                # Play hug sound when starting breathing (bypass cooldown for mode changes)
                 if sound_hug:
                     pygame.mixer.stop()
                     sound_hug.play()
         
-        # Reset for next press
         press_start_time = 0
     
-    # Update previous state
     prev_pressure_input = current_pressure
 
 try:
@@ -458,35 +457,14 @@ try:
         dt = current_time - last_time
         last_time = current_time
         
-        # --- Touch Sensor 0: Toggle Breathing ---
         try:
-            # Use touched() method which returns the full touch state
             touched = mpr121.touched()
             
-            # Touch pad 0 is now disabled - hug (FSR) controls breathing instead
-            # Uncomment below if you want to re-enable touch pad 0:
-            # if touched & (1 << 0):
-            #     if not last_touch_state and (current_time - touch_debounce_time) > 0.3:
-            #         breathing_active = not breathing_active
-            #         print(f"Breathing {'started' if breathing_active else 'stopped'}")
-            #         if not breathing_active:
-            #             pixels.fill((0, 0, 0))
-            #             pixels.show()
-            #             if not purring_active:
-            #                 pwm.ChangeDutyCycle(0)
-            #         last_touch_state = True
-            #         touch_debounce_time = current_time
-            # else:
-            #     last_touch_state = False
-            
-            # Touch pad 1: 20 second purr with looping sound
+            # Touch pad 1 (pin 5): 8 second purr
             if touched & (1 << 5):
                 if not last_touch1_state and (current_time - touch1_debounce_time) > 0.5:
-                    # if purring_active:
-                    #     stop_purr()
-                    # el
                     if can_play_sound(current_time):
-                        start_purr(20, sound_touch1,'touch1' )
+                        start_purr(8, sound_touch1, 'touch1')
                     else:
                         print("Touch cooldown active, please wait...")
                     last_touch1_state = True
@@ -494,14 +472,12 @@ try:
             else:
                 last_touch1_state = False
             
-            # Touch pad 2: 30 second purr with looping sound
+            # Touch pad 2 (pin 11): 7 second purr
             if touched & (1 << 11):
                 if not last_touch2_state and (current_time - touch2_debounce_time) > 0.5:
-                    # if purring_active:
-                    #     stop_purr()
-                    # el
                     if can_play_sound(current_time):
-                        start_purr(30, sound_touch2, 'touch2')
+                        start_purr(7, sound_touch2, 'touch2')
+                        orange_flash_led()
                     else:
                         print("Touch cooldown active, please wait...")
                     last_touch2_state = True
@@ -511,9 +487,8 @@ try:
                 
         except Exception as e:
             print(f"MPR121 error: {e}")
-            print("Check I2C connections!")
         
-        # --- Breathing Pattern ---
+        # Breathing pattern
         if breathing_active:
             breath_phase += breath_speed
             if breath_phase >= 1.0:
@@ -523,11 +498,16 @@ try:
             set_breathing_leds(intensity)
             vibrate_breathing(intensity)
         
-        # --- Purring Pattern ---
+        # Purring pattern
         if purring_active:
-            check_purr_timer(current_time, active_purr_duration)
+            if not check_purr_timer(current_time, active_purr_duration):
+                # Timer expired, ensure lights are off
+                pixels.fill((0, 0, 0))
+                pixels.show()
+            elif not breathing_active:
+                set_purr_leds()
         
-        # --- Pressure Sensor: Detect Type ---
+        # Pressure detection
         detect_pressure_type()
         
         time.sleep(0.05)
@@ -544,7 +524,7 @@ finally:
     
     try:
         pwm.ChangeDutyCycle(0)
-        time.sleep(0.1)  # Give PWM time to finish
+        time.sleep(0.1)
         pwm.stop()
     except:
         pass
