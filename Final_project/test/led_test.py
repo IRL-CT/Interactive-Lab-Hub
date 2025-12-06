@@ -1,6 +1,7 @@
 import time
 import board
 import neopixel
+import random
 
 # Initialize NeoPixel ring
 NUM_PIXELS = 24  # Adjust based on your ring (12, 16, 24, etc.)
@@ -38,6 +39,46 @@ def test_chase(color, delay=0.05, cycles=2):
             pixels[i] = color
             pixels.show()
             time.sleep(delay)
+
+def test_sparkle(
+    duration=5,
+    background=(0, 0, 0),
+    sparkle_color=(255, 255, 255),
+    max_sparkles=4,
+    frame_delay=0.05
+):
+    """
+    Sparkle effect:
+      - background: base color of the ring
+      - sparkle_color: color of the sparkles
+      - duration: how long to run (seconds)
+      - max_sparkles: how many pixels can sparkle per frame
+      - frame_delay: speed of animation (seconds per frame)
+    """
+    print(f"Sparkle effect for {duration} seconds...")
+    end_time = time.time() + duration
+
+    while time.time() < end_time:
+        # Start with the background color
+        pixels.fill(background)
+
+        # Random number of sparkles this frame
+        num_sparkles = random.randint(1, max_sparkles)
+
+        for _ in range(num_sparkles):
+            i = random.randrange(NUM_PIXELS)
+
+            # Random brightness for each sparkle (biased towards dim)
+            scale = random.random() ** 2  # square it to favor small values
+            r = int(sparkle_color[0] * scale)
+            g = int(sparkle_color[1] * scale)
+            b = int(sparkle_color[2] * scale)
+
+            pixels[i] = (r, g, b)
+
+        pixels.show()
+        time.sleep(frame_delay)
+
 
 def test_breathing(color, duration=5):
     """Breathing effect - fade in and out"""
@@ -116,6 +157,27 @@ try:
     
     print("\n6. Testing rainbow...")
     test_rainbow(0.02)
+    
+    print("\n7. Testing sparkle (cool white on black)...")
+    test_sparkle(
+        duration=5,                   # run for 5 seconds
+        background=(0, 0, 0),         # black background
+        sparkle_color=(255, 255, 255),# white sparkles
+        max_sparkles=6,               # up to 6 sparkles at once
+        frame_delay=0.05              # speed
+    )
+    time.sleep(0.5)
+
+    print("\n8. Testing sparkle (gold on dark red)...")
+    test_sparkle(
+        duration=5,
+        background=(40, 0, 0),
+        sparkle_color=(255, 180, 50),
+        max_sparkles=5,
+        frame_delay=0.06
+    )
+    time.sleep(0.5)
+
     
     print("\n All tests complete!")
     pixels.fill((0, 255, 0))  # Green for success

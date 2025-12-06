@@ -6,6 +6,7 @@ import neopixel
 import RPi.GPIO as GPIO
 import math
 import pygame
+import random
 
 # --- NeoPixel Setup ---
 PIXEL_PIN = board.D18
@@ -79,7 +80,7 @@ press_duration = 0
 
 # Pressure thresholds (adjust based on your FSR behavior)
 QUICK_PRESS_TIME = 0.3    # Quick tap = LOW pressure
-MEDIUM_PRESS_TIME = 0.7   # Sustained press = MEDIUM pressure
+MEDIUM_PRESS_TIME = 1   # Sustained press = MEDIUM pressure
 # Anything longer = HIGH pressure (hug!)
 
 print("Interactive Breathing Plush Ready!")
@@ -116,12 +117,29 @@ def breathing_pattern(phase):
     
     # Clamp to 0.0-1.0 range to prevent RGB overflow
     return max(0.0, min(1.0, intensity))
+
+stop_effect = False
+
+def stop_all_effects():
+    """Stop any running animation & clear LEDs."""
+    global stop_effect
+    stop_effect = True           # signal loops to exit
+
+    # --- Clear LEDs here so animations don't need to ---
+    pixels.fill((0,0,0))
+    pixels.show()
+    print("\LED stopped externally\n")
+
     
 def set_breathing_leds(intensity):
     """Set LED color transition from blue to white based on breathing intensity
     Low intensity (exhale) = deep blue
     High intensity (inhale peak) = bright white
     """
+    global stop_effect
+    stop_effect = False
+    if stop_effect:  # just exit
+        return
     # Blue at low intensity: (0, 50, 255)
     # White at high intensity: (255, 255, 255)
     
@@ -136,31 +154,104 @@ def set_breathing_leds(intensity):
 def squeeze_light_effect():
     """Create a quick burst/pulse effect for squeeze detection
     Warm orange pulse that quickly fades"""
+    global stop_effect
+    stop_effect = False
+    if stop_effect:  # just exit
+        return
+    
+    pwm.ChangeDutyCycle(50) 
+    chase_leds((255, 255, 0), 0.05, 4)
+
     # Quick bright orange burst
-    for brightness in [0.3, 0.6, 1.0, 0.8, 0.5, 0.2]:
-        r = int(255 * brightness)
-        g = int(140 * brightness)  # Orange color
-        b = int(0 * brightness)
-        pixels.fill((r, g, b))
-        pixels.show()
-        time.sleep(0.05)
+    # for brightness in [0.3, 0.6, 1.0, 0.8, 0.5, 0.2]:
+    #     r = int(255 * brightness)
+    #     g = int(140 * brightness)  # Orange color
+    #     b = int(0 * brightness)
+    #     pixels.fill((r, g, b))
+    #     pixels.show()
+    #     time.sleep(0.05)
     
     # Fade to off
     pixels.fill((0, 0, 0))
     pixels.show()
+    # Continue vibration for a few more seconds
+    time.sleep(1.0)
+    # Stop vibration
+    pwm.ChangeDutyCycle(0)
 
+def chase_leds(color, delay=0.05, cycles=2):
+    global stop_effect
+    stop_effect = False
+    if stop_effect:  # just exit
+        return
+    
+    """Chase pattern around the ring"""
+    print("Chase pattern...")
+    for _ in range(cycles):
+        for i in range(NUM_PIXELS):
+            pixels.fill((0, 0, 0))
+            pixels[i] = color
+            pixels.show()
+            time.sleep(delay)
+            
 def tap_light_effect():
-    """Create a quick flash effect for tap detection
-    Quick yellow flash"""
-    # Quick yellow flash
-    pixels.fill((255, 255, 0))
-    pixels.show()
-    time.sleep(0.1)
+    """Call sparkle"""
+    global stop_effect
+    stop_effect = False
+    if stop_effect:  # just exit
+        return
+    vibrate_burst(duration=1, intensity=0.6)
+    print("tapped")
+    sparkle_led()
+    # # Quick yellow flash
+    # pixels.fill((0, 0, 0))
+    # pixels.show()
+    # time.sleep(0.1)
     
     # Off
     pixels.fill((0, 0, 0))
     pixels.show()
 
+def sparkle_led(duration=5, background=(0,0,0), sparkle_color=(255,255,255),
+                 max_sparkles=4, frame_delay=0.05):
+
+    global stop_effect
+    stop_effect = False
+
+    print(f"Sparkle for {duration}s...")
+
+    end_time = time.time() + duration
+    while time.time() < end_time:
+
+        if stop_effect:  # just exit
+            return
+
+        pixels.fill(background)
+
+        for _ in range(random.randint(1, max_sparkles)):
+            i = random.randrange(NUM_PIXELS)
+            scale = random.random()**2
+            pixels[i] = (
+                int(sparkle_color[0]*scale),
+                int(sparkle_color[1]*scale),
+                int(sparkle_color[2]*scale)
+            )
+
+        pixels.show()
+        time.sleep(frame_delay)
+
+    print("Sparkle complete.")
+
+def vibrate_burst(duration=0.2, intensity=0.5):
+    """Create a burst vibration effect
+        duration: How long to vibrate in seconds
+        intensity: Vibration strength (0.0 to 1.0)
+    """
+    duty_cycle = int(intensity * 100)
+    pwm.ChangeDutyCycle(duty_cycle)
+    time.sleep(duration)
+    pwm.ChangeDutyCycle(0)
+    
 def vibrate_breathing(intensity):
     """Set vibration motor based on breathing intensity"""
     duty_cycle = int(intensity * 70 + 10)  # 10-80% duty cycle
@@ -212,7 +303,7 @@ def check_purr_timer(current_time, duration):
         return True
     return True
 
-def start_purr(duration, sound):
+def start_purr(duration, sound, origin):
     """Start purring with specified duration and looping sound
     
     Args:
@@ -233,7 +324,7 @@ def start_purr(duration, sound):
     if sound:
         purr_sound_channel = sound.play(loops=-1)  # -1 means loop infinitely
     
-    print(f"Purring started for {duration} seconds with looping sound")
+    print(f"Purring started for {duration} seconds with looping sound from {origin}")
 
 def can_play_sound(current_time):
     """Check if enough time has passed since last sound to prevent overlap
@@ -316,7 +407,9 @@ def detect_pressure_type():
                 stop_purr()
                 print("Purring stopped by tap")
             
-            if not breathing_active:
+            if breathing_active:
+                stop_effect=True
+            else:
                 tap_light_effect()
                 play_sound_safe(sound_tap, current_time, f"Tap detected! (duration: {press_duration:.2f}s)")
         
@@ -326,7 +419,9 @@ def detect_pressure_type():
                 stop_purr()
                 print("Purring stopped by squeeze")
             
-            if not breathing_active:
+            if breathing_active:
+                stop_effect=True
+            else:
                 squeeze_light_effect()
                 play_sound_safe(sound_squeeze, current_time, f"Squeeze detected! (duration: {press_duration:.2f}s)")
         
@@ -384,13 +479,14 @@ try:
             # else:
             #     last_touch_state = False
             
-            # Touch pad 1: 60 second purr with looping sound
+            # Touch pad 1: 20 second purr with looping sound
             if touched & (1 << 5):
                 if not last_touch1_state and (current_time - touch1_debounce_time) > 0.5:
-                    if purring_active:
-                        stop_purr()
-                    elif can_play_sound(current_time):
-                        start_purr(60, sound_touch1)  # 60 seconds
+                    # if purring_active:
+                    #     stop_purr()
+                    # el
+                    if can_play_sound(current_time):
+                        start_purr(20, sound_touch1,'touch1' )
                     else:
                         print("Touch cooldown active, please wait...")
                     last_touch1_state = True
@@ -398,13 +494,14 @@ try:
             else:
                 last_touch1_state = False
             
-            # Touch pad 2: 20 second purr with looping sound
+            # Touch pad 2: 30 second purr with looping sound
             if touched & (1 << 11):
                 if not last_touch2_state and (current_time - touch2_debounce_time) > 0.5:
-                    if purring_active:
-                        stop_purr()
-                    elif can_play_sound(current_time):
-                        start_purr(20, sound_touch2)  # 20 seconds
+                    # if purring_active:
+                    #     stop_purr()
+                    # el
+                    if can_play_sound(current_time):
+                        start_purr(30, sound_touch2, 'touch2')
                     else:
                         print("Touch cooldown active, please wait...")
                     last_touch2_state = True
