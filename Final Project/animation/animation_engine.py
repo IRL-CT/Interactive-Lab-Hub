@@ -22,12 +22,9 @@ class AnimationEngine:
         self.clock = pygame.time.Clock()
 
         # Profile / element state
-        self.current_element = None          # single element fallback
+        self.current_element = None          # 单元素 fallback
         self.current_profile = None          # e.g. ["Fire", "Water", "Light"]
-        self.spectrum_name = "None"          # label shown on screen
-
-        self.request_reset = False
-        self.show_labels = True
+        self.spectrum_name = "None"          # 左上角展示的能量场名字
 
         # Style dictionary from set_profile
         self.style = get_spectrum_style([])  # neutral default style
@@ -38,25 +35,28 @@ class AnimationEngine:
 
         # Time and camera-derived energy levels
         self.time = 0.0
-        self.motion_level = 0.0             # 0~1, how much the user is moving
+        self.motion_level = 0.0             # 0~1, 摄像头检测到的运动强度
 
         # Camera motion analysis
         self.prev_gray = None
         self.downsample_size = (64, 36)
 
-        # Approximate body position (0~1) from camera motion centroid
+        # 身体位置（0~1），来自摄像头运动质心
         self.body_x = 0.5   # 0 = left, 1 = right
         self.body_y = 0.5   # 0 = top, 1 = bottom
 
-        # Approximate body size (0~1) from activated area in diff
+        # 身体大小（0~1），来自活跃区域比例
         self.size_level = 0.0               # larger = closer
 
-        # Persistent particles for some patterns
+        # 持续存在的粒子（部分 pattern 用）
         self.orbs = []
         self.comets = []
         self.bloom_orbs = []
 
-        # Fallback single-element colors
+        # 全局轨迹加粗系数（线条相关 pattern 共用）
+        self.stroke_boost = 1.6  # >1.0 轨迹更粗、更明显
+
+        # Fallback 单元素颜色
         self.element_colors = {
             "Fire":   [(255, 120, 60), (255, 200, 90)],
             "Water":  [(60, 140, 255), (110, 220, 255)],
@@ -70,22 +70,21 @@ class AnimationEngine:
     def update(self, profile=None, element=None, gesture=None, proximity=None, frame=None):
         """
         Main update entry point.
+
+        Args:
+            profile: list of 3 elements (or None)
+            element: single element name (fallback before profile is selected)
+            gesture: ignored (gesture sensor disabled; camera-only control)
+            proximity: ignored
+            frame: OpenCV camera frame (BGR) or None
         """
-        # Handle window and keyboard events
+        # Handle window close
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 raise SystemExit
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_r:
-                    # Ask outer loop to reset sensors + profile
-                    self.request_reset = True
-                elif event.key == pygame.K_ESCAPE:
-                    pygame.quit()
-                    raise SystemExit
 
-
-        # 1) Handle profile / element changes
+        # 1) Profile / element 切换
         if profile is not None and profile != self.current_profile:
             self.current_profile = profile
             self.current_element = None
@@ -101,12 +100,12 @@ class AnimationEngine:
             self._clear_dynamic_buffers()
             print(f"[Animation] Element -> {element}")
 
-        # 2) Time step
+        # 2) 时间步长
         dt_ms = self.clock.get_time()
         dt = dt_ms / 1000.0 if dt_ms > 0 else 1.0 / 60.0
         self.time += dt
 
-        # 3) Camera features: motion + position + approximate size
+        # 3) 摄像头：motion + position + size
         if frame is not None and cv2 is not None and np is not None:
             self._update_motion_features(frame)
 
@@ -115,19 +114,18 @@ class AnimationEngine:
         target_temp = max(-1.0, min(1.0, target_temp))
         self.temp_shift = 0.9 * self.temp_shift + 0.1 * target_temp
 
-        # 5) size_level → scale
-        #    Farther (small size_level) ⇒ larger field
+        # 5) size_level → scale（越远能量场越大）
         base_scale = 1.5
         target_scale = base_scale + (0.9 - 1.6 * self.size_level)
         self.scale = 0.9 * self.scale + 0.1 * target_scale
         self.scale = max(0.6, min(3.0, self.scale))
 
-        # 6) Breathing modulation
+        # 6) 呼吸感放大
         breath_from_motion = 1.0 + 0.9 * self.motion_level
         breathing_wave = 1.0 + 0.28 * math.sin(self.time * 2.0 * math.pi * 0.4)
         self.render_scale = self.scale * breath_from_motion * breathing_wave
 
-        # 7) Draw frame
+        # 7) 绘制 frame
         self._draw_frame(frame, dt)
 
         pygame.display.flip()
@@ -135,14 +133,14 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
     def _clear_dynamic_buffers(self):
-        """Reset all dynamic particle lists when profile changes."""
+        """Profile 变化时清空动态粒子。"""
         self.orbs.clear()
         self.comets.clear()
         self.bloom_orbs.clear()
 
     # ------------------------------------------------------------------
     def _update_motion_features(self, frame):
-        """Compute motion_level, body position, and size_level from camera frames."""
+        """从摄像头画面计算 motion_level、body position、size_level。"""
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         gray_small = cv2.resize(gray, self.downsample_size)
 
@@ -155,18 +153,18 @@ class AnimationEngine:
         diff = cv2.absdiff(gray_small, self.prev_gray)
         self.prev_gray = gray_small
 
-        # Global motion strength
+        # 全局运动强度
         mean_diff = diff.mean() / 255.0
         self.motion_level = 0.85 * self.motion_level + 0.15 * min(1.0, mean_diff * 8.0)
 
-        # Active region ratio → approximate size
+        # 活跃区域比例 → 大小
         diff_norm = diff.astype("float32") / 255.0
         mask = diff_norm > 0.18
         active_ratio = mask.mean()
         size_raw = min(1.0, active_ratio * 18.0)
         self.size_level = 0.9 * self.size_level + 0.1 * size_raw
 
-        # Motion centroid → body position
+        # 运动质心 → 身体位置
         total = diff.sum()
         if total > 1:
             h, w = diff.shape
@@ -182,14 +180,14 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
     def _get_body_center(self):
-        """Map camera 0~1 body coordinates to screen coordinates with margin."""
+        """摄像头 0~1 坐标映射到屏幕坐标，留一点边距。"""
         x = int(self.width * (0.15 + 0.7 * self.body_x))   # 15%~85% width
         y = int(self.height * (0.25 + 0.5 * self.body_y))  # 25%~75% height
         return x, y
 
     # ------------------------------------------------------------------
     def _draw_frame(self, frame, dt):
-        # 1) Determine base colors
+        # 1) 能量颜色
         if self.current_profile is not None or self.current_element is not None:
             base_colors = self.style.get(
                 "base_colors", [(255, 255, 255), (200, 200, 200)]
@@ -197,12 +195,11 @@ class AnimationEngine:
         else:
             base_colors = [(255, 255, 255), (200, 200, 200)]
 
-        # 2) Fixed background (night-sky style)
+        # 2) 固定背景（night-sky）
         bg_color = self.style.get("background_color", (5, 7, 18))
         self.screen.fill(bg_color)
 
-        # 3) Global temperature tint (based on horizontal position)
-        #    temp_shift: -1 (cold) ~ +1 (warm) → 0~1
+        # 3) 水平位置 → 冷暖色
         temp_t = (self.temp_shift + 1) / 2.0
         temp_t = max(0.0, min(1.0, temp_t))
 
@@ -210,21 +207,20 @@ class AnimationEngine:
         warm_core = (255, 190, 110)
         tint_target = self._lerp_color(cold_core, warm_core, temp_t)
 
-        # Apply strong tint to energy colors (field only)
+        # 对能量颜色做冷暖混合 + 亮度增强（只针对能量图案，不动背景）
         tinted_colors = []
         for c in base_colors:
             tinted = self._lerp_color(c, tint_target, 0.65)
-            tinted_colors.append(tinted)
+            boosted = self._boost_color(tinted, factor=1.5)
+            tinted_colors.append(boosted)
 
-        # 4) Camera reflection (softly under the field)
+        # 4) 摄像头画面淡淡铺在下面
         if frame is not None and cv2 is not None:
             self._blit_camera(frame)
 
-        # 5) Pattern routing (all patterns use tinted_colors)
+        # 5) Pattern 分发（所有 pattern 用增强后的 tinted_colors）
         pattern_type = self.style.get("pattern_type", "pillar_orbs")
 
-        # You can alias multiple logical pattern_type strings to one base pattern
-        # if you want more than 14 named variants in set_profile.
         if pattern_type == "pillar_orbs":
             self._pattern_pillar_orbs(tinted_colors, dt)
         elif pattern_type == "ring_waves":
@@ -254,14 +250,13 @@ class AnimationEngine:
         elif pattern_type == "spiral_rings":
             self._pattern_spiral_rings(tinted_colors)
         else:
-            # Fallback
             self._pattern_pillar_orbs(tinted_colors, dt)
 
-        # 6) UI label and debug info
+        # 6) 左上角文字
         self._draw_label()
 
     # ------------------------------------------------------------------
-    # PATTERN 1: central pillar + orbiting orbs (following body)
+    # PATTERN 1: central pillar + orbiting orbs
     # ------------------------------------------------------------------
     def _pattern_pillar_orbs(self, base_colors, dt):
         self._draw_aura_center(base_colors)
@@ -312,7 +307,7 @@ class AnimationEngine:
 
             pygame.draw.ellipse(aura_surface, rgba, layer_rect)
 
-        # Head halo
+        # 头顶光环
         head_y = base_rect.top + int(pillar_height * 0.2)
         halo_radius = int(base_width * 1.0 * halo_scale * (0.9 + 0.7 * self.motion_level))
         halo_radius = max(65, halo_radius)
@@ -369,7 +364,7 @@ class AnimationEngine:
             pygame.draw.circle(self.screen, color, (int(x), int(y)), int(final_size))
 
     # ------------------------------------------------------------------
-    # PATTERN 2: ring waves (concentric ellipses around body)
+    # PATTERN 2: ring waves（同心椭圆波）
     # ------------------------------------------------------------------
     def _pattern_ring_waves(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -406,12 +401,13 @@ class AnimationEngine:
             rect.centery = center_y + int(y_offset)
 
             rgba = (color[0], color[1], color[2], alpha)
-            pygame.draw.ellipse(surface, rgba, rect, width=5)
+            ring_width = int(5 * self.stroke_boost)
+            pygame.draw.ellipse(surface, rgba, rect, width=ring_width)
 
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 3: radial rays (starburst from the body)
+    # PATTERN 3: radial rays（星芒）
     # ------------------------------------------------------------------
     def _pattern_radial_rays(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -450,7 +446,7 @@ class AnimationEngine:
             alpha = int(255 * (0.55 + 0.7 * energy))
             rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
 
-            width = int(5 + 6 * self.render_scale)
+            width = int((5 + 6 * self.render_scale) * self.stroke_boost)
             for offset in range(-width // 2, width // 2 + 1):
                 dx = -math.sin(angle) * offset * 0.8
                 dy = math.cos(angle) * offset * 0.8
@@ -461,7 +457,7 @@ class AnimationEngine:
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 4: galaxy (spiral arms around the body)
+    # PATTERN 4: galaxy（螺旋星系）
     # ------------------------------------------------------------------
     def _pattern_galaxy(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -507,7 +503,7 @@ class AnimationEngine:
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 5: double pillar (two pillars to the left/right of body)
+    # PATTERN 5: double pillar（左右两根能量柱）
     # ------------------------------------------------------------------
     def _pattern_double_pillar(self, base_colors):
         aura_surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -554,7 +550,7 @@ class AnimationEngine:
 
                 pygame.draw.ellipse(aura_surface, rgba, layer_rect)
 
-        # Soft bridge between pillars
+        # 两柱中间的软连接
         mid_rect = pygame.Rect(0, 0, spacing * 2, int(pillar_height * 0.35))
         mid_rect.center = (base_cx, cy)
         bridge_color = base_colors[len(base_colors) // 2]
@@ -569,7 +565,7 @@ class AnimationEngine:
         self.screen.blit(aura_surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 6: vertical ribbons (full-screen ribbons)
+    # PATTERN 6: vertical ribbons（竖条丝带）
     # ------------------------------------------------------------------
     def _pattern_vertical_ribbons(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -609,7 +605,7 @@ class AnimationEngine:
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 7: grid pulse (pulsing dot grid)
+    # PATTERN 7: grid pulse（网格脉冲）
     # ------------------------------------------------------------------
     def _pattern_grid_pulse(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -656,7 +652,7 @@ class AnimationEngine:
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 8: starfield (shimmering stars)
+    # PATTERN 8: starfield（星空）
     # ------------------------------------------------------------------
     def _pattern_starfield(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -664,7 +660,7 @@ class AnimationEngine:
         energy = self.motion_level
         num_stars = int(260 * (0.9 + 0.9 * self.render_scale))
 
-        random.seed(42)  # stable layout per frame
+        random.seed(42)  # 稳定星星位置
 
         for i in range(num_stars):
             t = random.random()
@@ -698,7 +694,7 @@ class AnimationEngine:
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 9: vortex (spiral rings around body)
+    # PATTERN 9: vortex（漩涡环）
     # ------------------------------------------------------------------
     def _pattern_vortex(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -741,12 +737,13 @@ class AnimationEngine:
 
             rgba = (color[0], color[1], color[2], alpha)
             if len(points) > 1:
-                pygame.draw.lines(surface, rgba, True, points, width=4)
+                line_width = int(4 * self.stroke_boost)
+                pygame.draw.lines(surface, rgba, True, points, width=line_width)
 
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 10: cross waves (horizontal + vertical light bands)
+    # PATTERN 10: cross waves（横竖光带）
     # ------------------------------------------------------------------
     def _pattern_cross_waves(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -772,7 +769,8 @@ class AnimationEngine:
             alpha = int(200 * (0.6 + 0.8 * energy))
             rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
 
-            rect = pygame.Rect(0, y - 20, self.width, 40)
+            half_h = int(20 * self.stroke_boost)
+            rect = pygame.Rect(0, y - half_h, self.width, half_h * 2)
             pygame.draw.rect(surface, rgba, rect)
 
         # Vertical bands
@@ -795,13 +793,14 @@ class AnimationEngine:
             alpha = int(170 * (0.6 + 0.8 * energy))
             rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
 
-            rect = pygame.Rect(x - 20, 0, 40, self.height)
+            half_w = int(20 * self.stroke_boost)
+            rect = pygame.Rect(x - half_w, 0, half_w * 2, self.height)
             pygame.draw.rect(surface, rgba, rect)
 
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 11: aurora (flowing bands at the top of the screen)
+    # PATTERN 11: aurora（极光）
     # ------------------------------------------------------------------
     def _pattern_aurora(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -824,7 +823,6 @@ class AnimationEngine:
             alpha = int(210 * (0.5 + 0.6 * energy))
             rgba = (color[0], color[1], color[2], max(0, min(alpha, 255)))
 
-            # Simple waving shape using sine offsets
             for x in range(0, self.width, 8):
                 phase = (x / self.width) * math.tau + self.time * 0.9 + i * 0.7
                 y = int(
@@ -838,7 +836,7 @@ class AnimationEngine:
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 12: blooming orbs (orbs appear and expand around body)
+    # PATTERN 12: blooming orbs（绽放光球）
     # ------------------------------------------------------------------
     def _pattern_blooming_orbs(self, base_colors, dt):
         center_x, center_y = self._get_body_center()
@@ -883,7 +881,7 @@ class AnimationEngine:
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 13: comet trails (streaks orbiting around body)
+    # PATTERN 13: comet trails（彗星轨迹）
     # ------------------------------------------------------------------
     def _pattern_comet_trails(self, base_colors, dt):
         center_x, center_y = self._get_body_center()
@@ -927,7 +925,7 @@ class AnimationEngine:
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    # PATTERN 14: spiral rings (layered rotating arcs around body)
+    # PATTERN 14: spiral rings（螺旋环）
     # ------------------------------------------------------------------
     def _pattern_spiral_rings(self, base_colors):
         surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
@@ -953,7 +951,6 @@ class AnimationEngine:
             alpha = max(0, min(alpha, 255))
             rgba = (color[0], color[1], color[2], alpha)
 
-            # Draw ring as multiple short arcs → spiral feeling
             segments = 32
             arc_len = math.tau * 0.6
             base_angle = self.time * (0.5 + 1.0 * energy) + i * 0.4
@@ -967,13 +964,14 @@ class AnimationEngine:
                 x2 = center_x + math.cos(a2) * radius
                 y2 = center_y + math.sin(a2) * radius * 0.8
 
-                pygame.draw.line(surface, rgba, (int(x1), int(y1)), (int(x2), int(y2)), 3)
+                line_width = int(3 * self.stroke_boost)
+                pygame.draw.line(surface, rgba, (int(x1), int(y1)), (int(x2), int(y2)), line_width)
 
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
     def _blit_camera(self, frame):
-        """Blend the camera feed under the energy field."""
+        """把摄像头画面半透明铺在能量场下方。"""
         try:
             h, w = frame.shape[:2]
         except Exception:
@@ -992,18 +990,13 @@ class AnimationEngine:
 
     # ------------------------------------------------------------------
     def _draw_label(self):
-        """Draw title, elements and energy intensity in the top-left corner."""
-        # If labels are disabled (web "Hide HUD" or internal switch), do nothing
-        if not getattr(self, "show_labels", True):
-            return
-
-        # Title: energy field name
-        font = pygame.font.SysFont("arial", 24)
+        """左上角标题 + 元素 + 摄像头能量强度。"""
+        font = pygame.font.SysFont("arial", 26)
         title = f"Energy Field: {self.spectrum_name}"
         text = font.render(title, True, (245, 245, 245))
         self.screen.blit(text, (20, 18))
 
-        # Selected elements (profile) or current single element
+        # 显示元素组合
         if self.current_profile:
             elements_str = " · ".join(self.current_profile)
         elif self.current_element:
@@ -1011,21 +1004,18 @@ class AnimationEngine:
         else:
             elements_str = "None"
 
-        sub_font = pygame.font.SysFont("arial", 20)
+        sub_font = pygame.font.SysFont("arial", 22)
         profile_text = sub_font.render(
             f"Elements: {elements_str}", True, (230, 230, 230)
         )
-        self.screen.blit(profile_text, (20, 46))
+        self.screen.blit(profile_text, (20, 50))
 
-        # Energy intensity from camera motion (0~1)
-        intensity = self.motion_level
-        debug_font = pygame.font.SysFont("arial", 18)
-        intensity_text = debug_font.render(
-            f"Energy Intensity: {intensity:.2f}", True, (220, 220, 220)
+        # 摄像头 energy debug
+        debug_font = pygame.font.SysFont("arial", 16)
+        motion_text = debug_font.render(
+            f"Energy(cam): {self.motion_level:.2f}", True, (220, 220, 220)
         )
-        self.screen.blit(intensity_text, (20, 72))
-
-
+        self.screen.blit(motion_text, (20, 80))
 
     # ------------------------------------------------------------------
     def _lerp_color(self, c1, c2, t):
@@ -1036,9 +1026,17 @@ class AnimationEngine:
             int(c1[2] + (c2[2] - c1[2]) * t),
         )
 
+    def _boost_color(self, color, factor=1.5):
+        """提升 RGB 亮度 / 饱和度一点，让能量场更亮。"""
+        r, g, b = color
+        r = min(int(r * factor), 255)
+        g = min(int(g * factor), 255)
+        b = min(int(b * factor), 255)
+        return (r, g, b)
+
     # ------------------------------------------------------------------
     def reset_profile(self):
-        """Clear current energy field so a new profile can be selected."""
+        """清空当前能量场，用于按 R 重新选择元素组合。"""
         self.current_profile = None
         self.current_element = None
         self.spectrum_name = "None"
@@ -1047,10 +1045,10 @@ class AnimationEngine:
         self.scale = 1.0
         self.temp_shift = 0.0
         print("[Animation] Profile cleared. Waiting for new selection.")
+
     def get_frame_surface(self):
-        """Return the current pygame surface as an RGB image (numpy array)."""
+        """返回当前 pygame surface 的 RGB 图像（numpy array），用于 Flask 输出。"""
         surface = pygame.display.get_surface()
         if surface is None:
             return None
         return pygame.surfarray.array3d(surface)
-
