@@ -26,12 +26,12 @@ Users choose a decade (e.g., 1980s or 2000s). The backend selects a random track
 ### 🌈 2. Environment-Based Genre Detection
 Ambient light determines the genre:
 
-| Lighting Condition | Genre |
-|-------------------|--------|
-| Low brightness    | Chill |
-| Warm color temp   | Warm |
-| Bright            | Energetic |
-| Very bright       | Party |
+| Lighting Condition                        | Genre |
+|-------------------------------------------|-------|
+| Very dim light                            | Chill |
+| Extremely bright lighting                 | Party |
+| Moderate light + warm color temperature   | Warm |
+| Moderate light + neutral/cool tone        | Energetic |
 
 Switching occurs only when the environment remains stable for several seconds.
 
@@ -49,8 +49,7 @@ Using APDS9960:
 ### 🎛 4. Rotary Encoder Movement Modes
 Controls the decorative music box figurine:
 
-- STOP  
-- SPIN LEFT  
+- SPIN LEFT
 - SPIN RIGHT  
 
 ### 📱 5. Web Controller (React + MQTT)
