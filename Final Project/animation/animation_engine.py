@@ -972,7 +972,7 @@ class AnimationEngine:
         frame_resized = cv2.resize(frame_rgb, new_size)
     
         surf = pygame.surfarray.make_surface(frame_resized.swapaxes(0, 1))
-        surf.set_alpha(100)  
+        surf.set_alpha(150)  
         x = (self.width - new_size[0]) // 2
         y = (self.height - new_size[1]) // 2
         self.screen.blit(surf, (x, y))
@@ -1038,6 +1038,7 @@ class AnimationEngine:
         if surface is None:
             return None
         return pygame.surfarray.array3d(surface)
+
 
 
 
