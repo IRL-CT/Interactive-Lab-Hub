@@ -1,1 +1,9 @@
+pygame
 paho-mqtt
+Pillow
+
+adafruit-blinka
+adafruit-circuitpython-rgb-display
+adafruit-circuitpython-apds9960
+adafruit-circuitpython-seesaw
+adafruit-circuitpython-servokit

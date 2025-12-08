@@ -8,13 +8,17 @@ Main entry point for LumiTune backend.
 """
 
 from audio_engine import AudioEngine
+from display_controller import DisplayController
 from mqtt_controller import MQTTController
 from sensor_controller import SensorController
-
 
 def main():
     # Shared audio engine
     engine = AudioEngine()
+
+    # Start display (shows year + vibe color)
+    display = DisplayController(engine)
+    display.start()
 
     # Start MQTT in background thread
     mqtt_ctrl = MQTTController(engine)
@@ -22,7 +26,10 @@ def main():
 
     # Start sensors (blocking loop)
     sensor_ctrl = SensorController(engine)
-    sensor_ctrl.run_forever()
+    try:
+        sensor_ctrl.run_forever()
+    finally:
+        display.stop()
 
 
 if __name__ == "__main__":
