@@ -1,15 +1,15 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 import threading
 import time
 import numpy as np
 import cv2
-import pygame  # needed for keyboard input (R to reset)
+import pygame  # for event/keyboard handling if needed
 
 from animation.animation_engine import AnimationEngine
 from sensors.sensor_manager import SensorManager
 
 # ---------------------------------------------------------
-# INITIALIZE GLOBAL OBJECTS
+# GLOBAL OBJECTS
 # ---------------------------------------------------------
 app = Flask(__name__)
 
@@ -19,10 +19,13 @@ sensors = SensorManager()
 latest_frame = None
 frame_lock = threading.Lock()
 
-print("System Started (Web Mode). Running Pygame in MAIN thread.")
+# Flag set by /reset endpoint
+reset_requested = False
+
+print("System Started (Web Mode). Pygame runs in MAIN thread.")
 
 # ---------------------------------------------------------
-# SIMPLE HTML PAGE (WEB VIEW)
+# HTML PAGE
 # ---------------------------------------------------------
 
 INDEX_HTML = """
@@ -73,18 +76,26 @@ INDEX_HTML = """
         font-size: 22px;
         font-weight: 400;
     }
-    #toggleBtn {
+    #controls {
         position: fixed;
-        top: 20px;
-        left: 20px;
+        bottom: 28px;
+        left: 28px;
         z-index: 3;
+        display: flex;
+        gap: 12px;
+    }
+    .ctrl-btn {
         padding: 8px 14px;
         font-size: 14px;
         border-radius: 18px;
         border: none;
         cursor: pointer;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.55);
         color: #fff;
+        font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    }
+    .ctrl-btn:hover {
+        background: rgba(0,0,0,0.8);
     }
 </style>
 </head>
@@ -97,7 +108,10 @@ INDEX_HTML = """
     <h2>Energy Field Active</h2>
 </div>
 
-<button id="toggleBtn">Hide HUD</button>
+<div id="controls">
+    <button id="resetBtn" class="ctrl-btn">Re-select Elements</button>
+    <button id="toggleHudBtn" class="ctrl-btn">Hide HUD</button>
+</div>
 
 <script>
     // Periodically refresh MJPEG image
@@ -106,15 +120,26 @@ INDEX_HTML = """
         img.src = "/frame?" + new Date().getTime();
     }, 60);
 
+    // Re-select Elements: call /reset endpoint
+    const resetBtn = document.getElementById("resetBtn");
+    resetBtn.addEventListener("click", () => {
+        fetch("/reset", { method: "POST" })
+            .then(res => res.text())
+            .then(txt => {
+                console.log("Reset response:", txt);
+            })
+            .catch(err => console.error("Reset error:", err));
+    });
+
     // Toggle HUD visibility
     const hud = document.getElementById("hud");
-    const btn = document.getElementById("toggleBtn");
+    const toggleHudBtn = document.getElementById("toggleHudBtn");
     let hudVisible = true;
 
-    btn.addEventListener("click", () => {
+    toggleHudBtn.addEventListener("click", () => {
         hudVisible = !hudVisible;
         hud.style.display = hudVisible ? "block" : "none";
-        btn.textContent = hudVisible ? "Hide HUD" : "Show HUD";
+        toggleHudBtn.textContent = hudVisible ? "Hide HUD" : "Show HUD";
     });
 </script>
 
@@ -125,8 +150,23 @@ INDEX_HTML = """
 
 @app.route("/")
 def index():
-    """Return simple web page streaming the energy field."""
+    """Return main web page."""
     return INDEX_HTML
+
+
+# ---------------------------------------------------------
+# RESET ENDPOINT (WEB BUTTON → RESET PROFILE)
+# ---------------------------------------------------------
+@app.route("/reset", methods=["POST"])
+def reset_profile():
+    """
+    Web endpoint called when user clicks "Re-select Elements".
+    It only sets a flag; actual reset is done in the pygame loop
+    to keep all sensor and engine logic in the main thread.
+    """
+    global reset_requested
+    reset_requested = True
+    return "OK"
 
 
 # ---------------------------------------------------------
@@ -134,7 +174,7 @@ def index():
 # ---------------------------------------------------------
 @app.route("/frame")
 def frame_feed():
-    """Stream MJPEG frames from pygame render output."""
+    """Stream MJPEG frames from pygame output."""
 
     def generate():
         global latest_frame
@@ -169,7 +209,7 @@ def frame_feed():
 # FLASK THREAD
 # ---------------------------------------------------------
 def start_flask():
-    """Run Flask server in background."""
+    """Run Flask server in background thread."""
     app.run(
         host="0.0.0.0",
         port=8080,
@@ -180,25 +220,43 @@ def start_flask():
 
 
 # ---------------------------------------------------------
-# MAIN PYGAME LOOP (runs in main thread)
+# MAIN PYGAME LOOP
 # ---------------------------------------------------------
 def pygame_loop():
-    global latest_frame
+    """
+    Main loop that:
+    1. Reads sensor data
+    2. Updates animation engine
+    3. Handles reset flag from /reset
+    4. Copies current pygame frame for MJPEG streaming
+    """
+    global latest_frame, reset_requested
 
-    print("Press 'R' in the Pygame window to reset element selection.")
-    print("Close the Pygame window or press ESC to quit (if you handle it in engine).")
+    print("[Main] Web mode running. Use the web 'Re-select Elements' button to reset.")
 
     while True:
-        # 1) Read sensor data
+        # 1) Sensor data
         data = sensors.update()
-
         element = data.get("element")
-        gesture = data.get("gesture")
+        gesture = data.get("gesture")          # still passed but unused now
         cam_frame = data.get("frame")
         profile = data.get("profile")
-        proximity = data.get("proximity")
+        proximity = data.get("proximity")      # may be None if not provided
 
-        # 2) Update animation engine
+        # 2) Check if web requested reset
+        if reset_requested:
+            print("[Main] Web reset requested → clearing profile.")
+            try:
+                sensors.reset_profile()
+            except Exception as e:
+                print("[Main] sensors.reset_profile() error:", e)
+            try:
+                engine.reset_profile()
+            except Exception as e:
+                print("[Main] engine.reset_profile() error:", e)
+            reset_requested = False
+
+        # 3) Update animation engine
         engine.update(
             profile=profile,
             element=element,
@@ -207,20 +265,12 @@ def pygame_loop():
             frame=cam_frame,
         )
 
-        # 3) Handle keyboard shortcut 'R' to reset profile
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_r]:
-            print("[Main] 'R' pressed to reset profile.")
-            sensors.reset_profile()
-            engine.reset_profile()
-            # Small delay so holding 'R' does not trigger multiple resets at once
-            time.sleep(0.25)
-
         # 4) Grab frame from pygame and convert to BGR for MJPEG
         surf = engine.get_frame_surface()
         if surf is not None:
             try:
-                frame_rgb = np.transpose(surf, (1, 0, 2))  # (width,height,3) → (h,w,3)
+                # surf: (width, height, 3) → (height, width, 3)
+                frame_rgb = np.transpose(surf, (1, 0, 2))
                 frame_bgr = cv2.cvtColor(frame_rgb, cv2.COLOR_RGB2BGR)
 
                 with frame_lock:
@@ -235,7 +285,7 @@ def pygame_loop():
 # ENTRY POINT
 # ---------------------------------------------------------
 if __name__ == "__main__":
-    # Start Flask in background thread
+    # Start Flask in a background thread
     flask_thread = threading.Thread(target=start_flask, daemon=True)
     flask_thread.start()
 
