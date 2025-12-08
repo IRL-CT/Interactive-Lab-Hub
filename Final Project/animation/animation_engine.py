@@ -967,7 +967,7 @@ class AnimationEngine:
     
         # Make camera frame a bit brighter and with higher contrast
         # alpha > 1.0 increases contrast, beta increases brightness.
-        frame_bright = cv2.convertScaleAbs(frame, alpha=1.3, beta=25)
+        frame_bright = cv2.convertScaleAbs(frame, alpha=1, beta=20)
     
         frame_rgb = cv2.cvtColor(frame_bright, cv2.COLOR_BGR2RGB)
         scale = min(self.width / w, self.height / h)
@@ -1041,6 +1041,7 @@ class AnimationEngine:
         if surface is None:
             return None
         return pygame.surfarray.array3d(surface)
+
 
 
 
