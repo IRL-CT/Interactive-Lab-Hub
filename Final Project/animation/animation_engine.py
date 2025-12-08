@@ -958,22 +958,29 @@ class AnimationEngine:
         self.screen.blit(surface, (0, 0))
 
     # ------------------------------------------------------------------
-    def _blit_camera(self, frame):
+        def _blit_camera(self, frame):
+        """Blend the camera feed under the energy field (brighter, no dark filter)."""
         try:
             h, w = frame.shape[:2]
         except Exception:
             return
 
-        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        # Make camera frame a bit brighter and with higher contrast
+        # alpha > 1.0 increases contrast, beta increases brightness.
+        frame_bright = cv2.convertScaleAbs(frame, alpha=1.3, beta=25)
+
+        frame_rgb = cv2.cvtColor(frame_bright, cv2.COLOR_BGR2RGB)
         scale = min(self.width / w, self.height / h)
         new_size = (int(w * scale), int(h * scale))
         frame_resized = cv2.resize(frame_rgb, new_size)
 
         surf = pygame.surfarray.make_surface(frame_resized.swapaxes(0, 1))
-        surf.set_alpha(60)  # subtle overlay
+        # No alpha here → camera is fully visible background
+        # Energy patterns are drawn AFTER this call, so they stay on top.
         x = (self.width - new_size[0]) // 2
         y = (self.height - new_size[1]) // 2
         self.screen.blit(surf, (x, y))
+
 
     # ------------------------------------------------------------------
     def _draw_label(self):
@@ -1034,4 +1041,5 @@ class AnimationEngine:
         if surface is None:
             return None
         return pygame.surfarray.array3d(surface)
+
 
