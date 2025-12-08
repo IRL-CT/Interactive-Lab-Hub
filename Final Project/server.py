@@ -3,6 +3,7 @@ import threading
 import time
 import numpy as np
 import cv2
+import pygame  # needed for keyboard input (R to reset)
 
 from animation.animation_engine import AnimationEngine
 from sensors.sensor_manager import SensorManager
@@ -21,7 +22,7 @@ frame_lock = threading.Lock()
 print("System Started (Web Mode). Running Pygame in MAIN thread.")
 
 # ---------------------------------------------------------
-# SIMPLE HTML PAGES
+# SIMPLE HTML PAGE (WEB VIEW)
 # ---------------------------------------------------------
 
 INDEX_HTML = """
@@ -31,9 +32,11 @@ INDEX_HTML = """
 <meta charset="utf-8">
 <title>Inner Constellation</title>
 <style>
-    body {
+    html, body {
         margin: 0;
         padding: 0;
+        width: 100%;
+        height: 100%;
         background: black;
         overflow: hidden;
         font-family: "Arial", sans-serif;
@@ -97,7 +100,7 @@ INDEX_HTML = """
 <button id="toggleBtn">Hide HUD</button>
 
 <script>
-    // Refresh MJPEG frame
+    // Periodically refresh MJPEG image
     setInterval(() => {
         const img = document.getElementById("view");
         img.src = "/frame?" + new Date().getTime();
@@ -119,84 +122,11 @@ INDEX_HTML = """
 </html>
 """
 
-# Clean full-screen page: ONLY the rendered frame
-CLEAN_HTML = """
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Inner Constellation - Clean</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: black;
-        overflow: hidden;
-    }
-    #view {
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        object-position: center;
-        display: block;
-    }
-    #fsbtn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 2;
-        padding: 8px 14px;
-        border-radius: 18px;
-        border: none;
-        background: rgba(0,0,0,0.5);
-        color: #fff;
-        font-size: 14px;
-        cursor: pointer;
-    }
-</style>
-</head>
-<body>
-
-<img id="view" src="/frame">
-
-<button id="fsbtn">Fullscreen</button>
-
-<script>
-    // Refresh MJPEG frame
-    setInterval(() => {
-        const img = document.getElementById("view");
-        img.src = "/frame?" + new Date().getTime();
-    }, 60);
-
-    // Try to request browser fullscreen
-    const fsbtn = document.getElementById("fsbtn");
-    fsbtn.addEventListener("click", () => {
-        const elem = document.documentElement;
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-        }
-    });
-</script>
-
-</body>
-</html>
-"""
-
 
 @app.route("/")
 def index():
-    """Default page with HUD."""
+    """Return simple web page streaming the energy field."""
     return INDEX_HTML
-
-
-@app.route("/clean")
-def clean():
-    """Clean full-screen page (only frame)."""
-    return CLEAN_HTML
 
 
 # ---------------------------------------------------------
@@ -221,7 +151,7 @@ def frame_feed():
             if not ret:
                 continue
 
-            # Multipart frame
+            # Multipart MJPEG frame
             yield (
                 b"--frame\r\n"
                 b"Content-Type: image/jpeg\r\n\r\n" +
@@ -255,8 +185,11 @@ def start_flask():
 def pygame_loop():
     global latest_frame
 
+    print("Press 'R' in the Pygame window to reset element selection.")
+    print("Close the Pygame window or press ESC to quit (if you handle it in engine).")
+
     while True:
-        # Sensor data
+        # 1) Read sensor data
         data = sensors.update()
 
         element = data.get("element")
@@ -265,20 +198,29 @@ def pygame_loop():
         profile = data.get("profile")
         proximity = data.get("proximity")
 
-        # Update animation engine
+        # 2) Update animation engine
         engine.update(
             profile=profile,
             element=element,
             gesture=gesture,
             proximity=proximity,
-            frame=cam_frame
+            frame=cam_frame,
         )
 
-        # Convert pygame surface → numpy RGB → BGR
+        # 3) Handle keyboard shortcut 'R' to reset profile
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_r]:
+            print("[Main] 'R' pressed to reset profile.")
+            sensors.reset_profile()
+            engine.reset_profile()
+            # Small delay so holding 'R' does not trigger multiple resets at once
+            time.sleep(0.25)
+
+        # 4) Grab frame from pygame and convert to BGR for MJPEG
         surf = engine.get_frame_surface()
         if surf is not None:
             try:
-                frame_rgb = np.transpose(surf, (1, 0, 2))
+                frame_rgb = np.transpose(surf, (1, 0, 2))  # (width,height,3) → (h,w,3)
                 frame_bgr = cv2.cvtColor(frame_rgb, cv2.COLOR_RGB2BGR)
 
                 with frame_lock:
