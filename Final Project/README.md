@@ -74,7 +74,6 @@ When a visitor touches or lifts a physical object:
 * 🎵 A corresponding nostalgic sound plays through a Bluetooth speaker
 * 🖥️ The Mini PiTFT displays historical information, images, or fun facts
 * ✨ LEDs provide immediate visual feedback
-* 🔧 *(Optional)* A small servo animates the object for added immersion
 
 The goal is to offer a **tangible, multisensory experience** that teaches, entertains, and invites curiosity about past technologies.
 
@@ -100,7 +99,6 @@ The goal is to offer a **tangible, multisensory experience** that teaches, enter
 | Audio                 | **Bluetooth Speaker**     | Plays the corresponding nostalgic sound          |
 | Visual                | **Mini PiTFT**            | Displays text, images, or facts                  |
 | Light                 | **PCF8574 + LEDs**        | Light feedback when interacting                  |
-| Movement *(optional)* | **9G Servo + Servo pHAT** | Small animations (e.g., typewriter arm movement) |
 
 ---
 
@@ -113,8 +111,6 @@ User touches object → MPR121 triggers →
 Raspberry Pi identifies item →
 Bluetooth speaker plays sound +
 Mini PiTFT shows content +
-LEDs light up →
-(Optional) Servo animates object
 ```
 
 ### **Overall Mapping**
@@ -123,8 +119,6 @@ LEDs light up →
 | ------------------------------ | ----------------- | ----------------- | ------------------ |
 | MPR121                         | Touch detection   | Bluetooth Speaker | Audio playback     |
 | APDS9960                       | Gesture/proximity | Mini PiTFT        | Display content    |
-| Rotary Encoder / Qwiic Buttons | User navigation   | PCF8574 + LEDs    | Light feedback     |
-| —                              | —                 | Servo Motor       | Optional animation |
 
 ---
 
