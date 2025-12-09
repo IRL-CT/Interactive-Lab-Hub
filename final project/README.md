@@ -151,16 +151,75 @@ Key components:
 
 ![Wiring diagram for Inner Constellation prototype](images/Wiring_Diagram.jpg)
 
-### Inner Constellation Design 外观的画
-
 
 ## Archive of All Code and Design Patterns
+All related code lives in: [code](../final%20project/code/)
 
-#### Please view my source code（代码链接）
+### Sensor Layer Overview
 
-#### Connect Parts & Sensors 怎么连接的
+**Camera — Motion & Background Feed**
 
-#### Tech Demo (Functional Checkoff) 功能测试视频
+The camera module continuously captures frames, computes motion energy by comparing consecutive grayscale images, and produces a softly blended background silhouette that contributes to the final animation.  
+Its interface is simple: `get_frame()` returns either a processed frame or `None` when unavailable.
+
+**OLED / TFT Display — Minimal Physical Feedback**
+
+The OLED display provides lightweight physical feedback by showing the currently selected element as well as the user's three-element profile.  
+If the device is not detected, the system automatically falls back to a dummy display mode to maintain pipeline stability.
+
+**MPR121 Touch Sensor — Element Selection**
+
+The MPR121 maps individual copper pads to six elemental identities—Fire, Water, Wind, Earth, Light, and Shadow.  
+Touch events are debounced for stability, and the input pipeline supports a three-step profile selection sequence used to generate a personalized spectrum.
+
+<p align="center">
+  <img src="images/elements.png" width="280">
+</p>
+
+
+### Animation Layer Overview
+
+**Overall Architecture**
+
+The animation engine renders at 60 FPS and integrates several input sources: time-based updates, motion-driven scaling, camera-derived features (motion level, body centroid, size estimation), and the user’s multi-element profile.  
+The system contains fourteen visual pattern modes, all implemented as modular pattern functions.
+
+**Core Logic**
+
+**1. Profile and Element System**  
+When a user completes the three-element sequence, the engine enters spectrum mode with blended palettes.  
+Single-element touches produce a fallback mode with a simplified color theme.  
+`get_spectrum_style()` returns base colors, background tones, preferred pattern type (such as galaxy, vortex, or pillar), and parameter presets such as orb speed or halo scale.
+
+**2. Camera-Derived Features**  
+The engine extracts motion intensity, approximate distance (size level), and a motion centroid representing horizontal and vertical body position.  
+These signals modulate animation behavior: motion affects breathing and expansion; horizontal position influences warmth vs. coolness in the color temperature; size level adjusts pillar width, orb radius, and other scale-sensitive effects.  
+A softly composited camera overlay (approximately 60% alpha) contributes to the ambient texture.
+
+**3. Energy Model**  
+A derived energy value governs parameters such as pillar height, halo radius, orb traversal speed, bloom strength, vortex depth, and grid brightness.  
+This single energy model allows different visual modes to respond consistently to user movement.
+
+**Visual Pattern System**  
+All patterns adapt automatically to the selected color spectrum, the user's motion energy, and the inferred distance from the camera.  
+This keeps visual output coherent across modes.
+
+
+### Web Server Layer
+
+`server.py` coordinates two parallel systems:
+
+**Flask Web Server**  
+Serves the front-end interface (`index.html`), streams animation frames via MJPEG (`/frame`), and exposes simple control endpoints such as reset and UI toggles.
+
+**Pygame Animation Loop**  
+Runs in the main thread (required by SDL), receives continuous sensor updates, renders all animation frames, and shares the latest frame with Flask through thread-safe shared memory.  
+
+Both processes remain synchronized through a `frame_lock`, ensuring stable frame delivery even under high interaction load.
+
+
+#### Tech Demo (Functional Checkoff) 
+
 
 #### Make the the mood board and construct device （mood board制作过程以及连接设备）
 
