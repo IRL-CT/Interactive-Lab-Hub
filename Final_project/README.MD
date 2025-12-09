@@ -52,6 +52,7 @@ A soothing smart plushie that provides comforting light, sound, and haptic feedb
 
 <img src="img/final_pic.jpg" width=200>
 
+[Demo video](https://drive.google.com/file/d/1ILqqUDU1AAwQOzUwiy2DEs0eBlaDfm7g/view?usp=drive_link)
 
 - **LED lights** – Calming light patterns
 - **Haptic feedback** – Gentle vibrations
@@ -74,22 +75,6 @@ When activated by a long hug, the plushie guides the user through a calming brea
 - **Inhale (4 counts):** LEDs gradually brighten, vibration increases
 - **Hold (7 counts):** Full brightness with gentle pulse
 - **Exhale (8 counts):** LEDs slowly dim, vibration decreases
-
-#### Hardware We used 
-
-| Component | Purpose |
-|-----------|---------|
-| Raspberry Pi 5 | Main controller |
-| Woven Conductive Fabric (20cm²) | Touch-sensitive surface |
-| Stainless Conductive Thread (2-ply, 23m) | Connecting fabric to sensors |
-| MPR121 Capacitive Touch Sensor | Detecting light touch/petting |
-| Pressure Sensor | Detecting hugs/squeezes |
-| Vibrating Mini Motor Disc | Haptic feedback |
-| NeoPixel LED Ring | Visual feedback |
-| Mini Speaker | Audio output (meows, purring) |
-| 1N4001 Power Diode | Circuit protection |
-
-[Demo video](https://drive.google.com/file/d/1ILqqUDU1AAwQOzUwiy2DEs0eBlaDfm7g/view?usp=drive_link)
 
 # Documentatoin of Process
 
@@ -311,8 +296,23 @@ sudo i2cdetect -y 1
 #This should show 0x5A. If this does not print 0x5A, double check the hardware setup. 
 ```
 
-## Hardware setup 
+## Hardware
 
+### Hardware We used 
+
+| Component | Purpose |
+|-----------|---------|
+| Raspberry Pi 5 | Main controller |
+| Woven Conductive Fabric (20cm²) | Touch-sensitive surface |
+| Stainless Conductive Thread (2-ply, 23m) | Connecting fabric to sensors |
+| MPR121 Capacitive Touch Sensor | Detecting light touch/petting |
+| Pressure Sensor | Detecting hugs/squeezes |
+| Vibrating Mini Motor Disc | Haptic feedback |
+| NeoPixel LED Ring | Visual feedback |
+| Mini Speaker | Audio output (meows, purring) |
+| 1N4001 Power Diode | Circuit protection |
+
+### How to set 
 <img src="img/1.jpg" width=400>
 <img src="img/2.jpg" width=400>
 <img src="img/3.jpg" width=400>
