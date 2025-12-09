@@ -76,7 +76,7 @@ When activated by a long hug, the plushie guides the user through a calming brea
 - **Hold (7 counts):** Full brightness with gentle pulse
 - **Exhale (8 counts):** LEDs slowly dim, vibration decreases
 
-# Documentatoin of Process
+# Documentation of Process
 
 ## 0. Our first ideation 
 
@@ -124,7 +124,7 @@ Given the feedback, we decided to add more sensros as well as output forms.
 
 ### Pressure Sensor
 
-We tested with the [pressure sensor test code](test/pressure-test2.py).
+We tested with the [pressure sensor test code](test/pressure-test2.py). Without an analog to digital converter chip, we chose to measure hug pressure based on the duration of pressure the sensor receieved, shorter being a tap, medium length being a squeeze and longer being a hug.
 
 [Test Pressure Sensor](https://drive.google.com/file/d/1hq4O5mBmDS_iIKmoONX1ANE9k0dyZU5d/view?usp=drive_link)
 
@@ -178,6 +178,9 @@ Activated by touching the conductive fabric (head or back). Runs for a set durat
 - LEDs slowly cycle through calming pastel colors (purple → lavender → pink → peach)
 - Vibration oscillates to mimic a cat's purr
 - Looping audio plays until the timer ends
+
+**Twinkle In Eye**
+- Singular white LED slightly right of the right eye which completed a circuit using a button battery when pressed. 
 
 ```mermaid
 flowchart TD
@@ -258,7 +261,7 @@ flowchart LR
 ```
 
 ## Some feedbacks from Demo Day 
-
+People liked the weight the pi and other components gave the plushie because they made him more huggable and felt more real. They liked the multiple sound options and lights. We found that we should let the other sensors time out the hug more quickly and that we could better manage overlapping inputs since when hugged many would touch the back conductive fabric and squeeze the pressure sensor causing some overlap in response and a longer cool down period where the pressure sensor would stop. One person recommended adding a gyroscope for more interaction so the plush could tell if it was being held upside down or shaken and to provide an accompanying yelp or unhappy sound/output. They appreciated that there were no exposed wires needed and that it could be run without being plugged into anything. Overall they thought it was cute, portable and very cuddly. They liked the sound and said it would be a great alternative to a pet for those with allergies or anyone who doesnt want the responsibility of an actual pet.
 
 # Final Code/Setup 
 
@@ -320,7 +323,7 @@ sudo i2cdetect -y 1
 <img src="img/4.jpg" width=400>
 <img src="img/5.jpg" width=400>
 
-# Video
+# Video of External User's Interaction
 
 [FriendTestingPlushp1](https://drive.google.com/file/d/1ZDuw2JSaymoYfkVlbT1KC0A8QLrDWdW9/view?usp=sharing)
 [FriendTestingPlushp2](https://drive.google.com/file/d/1IiOh0pzbwk9lNgIRKDTvq4dx6eMaAt9-/view?usp=sharing)
