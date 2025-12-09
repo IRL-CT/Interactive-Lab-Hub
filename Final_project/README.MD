@@ -155,7 +155,7 @@ For speaker, we just tested with
 aplay lookdave/wav
 ```
 
-## Test with All Sensors at the Same Time
+## 4. Test with All Sensors at the Same Time
 
 After each of them is working successfully seaparetely, we tested with multiple sensors at the same time. 
 
@@ -170,13 +170,14 @@ Also, we tried to use the Qwiic SHIM; however, althoug we solder them together, 
 
 [Test All Sensors](https://drive.google.com/file/d/1V0iHdGeFqw7xdqrPQZ9Vq-6pxtXVIfxY/view?usp=drive_link)
 
-## Make the Outer Look
+## 5. Make the Outer Look
 
 We increased the overall size to accommodate components and improve comfort based on user feedback.
 
-## Final Code for Interaction 
+## 6. Final Code for Interaction 
 
 [Final Code](master.py)
+
 
 There are two main modes for this code. 
 
@@ -269,8 +270,8 @@ flowchart LR
     style SQUEEZE fill:#FFA500,stroke:#FF8C00
     style HUG fill:#FF6347,stroke:#DC143C
 ```
-## Some feedbacks from Demo Day 
 
+## Some feedbacks from Demo Day 
 
 
 # Final Code/Setup 
