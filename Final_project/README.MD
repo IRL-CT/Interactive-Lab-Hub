@@ -159,6 +159,8 @@ Also, we tried to use the Qwiic SHIM; however, althoug we solder them together, 
 
 We increased the overall size to accommodate components and improve comfort based on user feedback.
 
+<img src="img/final_pic.jpg" width=300>
+
 ## 6. Final Code for Interaction 
 
 [Final Code](master.py)
