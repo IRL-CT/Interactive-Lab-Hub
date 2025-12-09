@@ -142,16 +142,15 @@ aplay lookdave/wav
 
 ## 4. Test with All Sensors at the Same Time
 
-After each of them is working successfully seaparetely, we tested with multiple sensors at the same time. 
+After confirming that each component worked successfully on its own, we tested multiple sensors running at the same time.
+At this stage, we began encountering issues.
 
-At this time, we encountered the issues.
+First, we discovered a compatibility problem between the haptic motor controller and the capacitive touch sensor.
+Both devices communicate over I²C, and when we attempted to use them simultaneously, the system frequently threw an error indicating that address 0x5A could not be found.
 
-Firstly, we encountered the issue of hapric motor controller not compatiblly working with teh capacitive sensor. 
-Since both haptic motor controller and capacitive sensor use i2c, when we tried to run both at the same time, we got error of 0x5A not found. 
+To resolve this, we decided to stop using the haptic motor controller and instead connect the haptic motor directly to the Raspberry Pi through the breadboard.
 
-To encounter this issue, we decided not to use the haptic motor controller but  connects haptic motor with rasberry pi through the breadboard. 
-
-Also, we tried to use the Qwiic SHIM; however, althoug we solder them together, the soldering was very difficult given the small region to solder, we ended up not suing the Qwiic. 
+We also attempted to use a Qwiic SHIM. However, despite soldering the parts together, the soldering pads were extremely small and difficult to work with. As a result, we were not able to create a reliable connection and ultimately did not use the Qwiic setup.
 
 [Test All Sensors](https://drive.google.com/file/d/1V0iHdGeFqw7xdqrPQZ9Vq-6pxtXVIfxY/view?usp=drive_link)
 
