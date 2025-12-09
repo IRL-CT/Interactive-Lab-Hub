@@ -116,7 +116,7 @@ Some intial feedbacks we got:
 - They liked the haptic motor but they thoght it was too strong and not very steady
 - They liked the size of the plushy but could be bigger but not smaller. It's a good size to hug 
 - One of them wants a bit more heavy. It's too light
-- Everyone thought it's a bit too little of the inteactoin that there is no sound or other things to give us feedback. They want a bit more inteaction. 
+- Everyone thought it's a bit too little of the interaction that there is no sound or other things to give us feedback. They want a bit more inteaction. 
 
 ## 3. Add Additional Inputs + Outputs
 
@@ -320,6 +320,7 @@ sudo i2cdetect -y 1
 <img src="img/4.jpg" width=400>
 <img src="img/5.jpg" width=400>
 
-
-
 # Video
+
+[FriendTestingPlushp1](https://drive.google.com/file/d/1ZDuw2JSaymoYfkVlbT1KC0A8QLrDWdW9/view?usp=sharing)
+[FriendTestingPlushp2](https://drive.google.com/file/d/1IiOh0pzbwk9lNgIRKDTvq4dx6eMaAt9-/view?usp=sharing)
