@@ -221,14 +221,66 @@ Both processes remain synchronized through a `frame_lock`, ensuring stable frame
 #### Tech Demo (Functional Checkoff) 
 
 
-#### Make the the mood board and construct device （mood board制作过程以及连接设备）
 
 
 
 ## Video Demo
-最终展示视频
+Below are three demo videos, each highlighting a different interaction feature:
+
+### 1. Motion-Responsive Pattern Movement  
+[Watch Video](https://youtu.be/BQ_63Se5rKE)  
+Shows how the visual patterns follow body movement with large motion amplitude.
+
+### 2. Color Temperature Shift (Left ↔ Right)  
+[Watch Video](https://youtu.be/R7gsMZxLD9I)  
+Demonstrates horizontal movement: right → warmer tones, left → cooler tones.
+
+### 3. Depth-Based Scaling (Forward ↔ Backward)  
+[Watch Video](https://youtu.be/6VBaitVTaA0)  
+Shows how stepping forward reduces pattern scale and stepping backward enlarges it.
+
+
+## User Testing
+
+To understand how visitors interacted with *Inner Constellation*, we conducted several rounds of user testing in the actual exhibition environment. These tests helped us evaluate gesture responsiveness, distance sensing, element selection flow, and overall clarity of the experience. Through observing participants, we refined motion thresholds, improved the card selection feedback, and adjusted projection brightness to ensure patterns remained visible.
+
+Below are four user testing recordings, each capturing different aspects of real user interaction:
+
+- **[User Testing 1](https://youtu.be/hkju2jcZStg)**  
+- **[User Testing 2](https://youtu.be/3vFiwFm4fbo)**  
+- **[User Testing 3](https://youtu.be/uWHozAXnjfg)**  
+- **[User Testing 4](https://youtu.be/76HgVA5d4e8)**  
+From the tests, we learned several key insights:
+- Users intuitively experimented with body movement, but needed clearer feedback about how distance influenced scale.  
+- Horizontal motion was well understood, especially once the color-temperature shift became visually distinct.  
+- Some users tried touching multiple cards at once, which helped us refine the touch debouncing and selection logic.  
+- The projection brightness and contrast needed tuning so that patterns remained visible even when users stood close to the screen.  
+
+These findings helped us refine gesture sensitivity, adjust projection parameters, and streamline the element-selection flow before the final presentation.
+
 
 ## Reflections on Process
+### Joy’s Reflection
+Much of my process revolved around building the visual identity of the installation. Early experiments showed how small choices in color temperature, particle behavior, or motion density dramatically changed the emotional tone of each element. I iterated many rounds of prototypes in Python, Pygame, Processing, and p5.py, testing how each pattern reacted to motion signals and how palettes blended in real time. One challenge was balancing visual richness with performance; several patterns had to be redesigned to avoid frame drops. Collaborating with the sensing pipeline also shaped many decisions, especially around parameter constraints and transitions. This process taught me how tightly visual design and system behavior are intertwined in interactive installations.
+
+### Hester’s Reflection
+My process focused on developing and stabilizing the sensing logic. Integrating gesture signals, distance estimation, and touch input required careful tuning and filtering to ensure interactions felt intentional rather than noisy. Through repeated testing, I learned that sensor-based interaction often depends as much on environment and user behavior as on code. Lighting, distance from the camera, and even movement style all influenced the results. Defining what each gesture should mean—expansion, contraction, temperature shift—became an iterative negotiation between technical feasibility and conceptual clarity. This experience strengthened my understanding of how interaction vocabularies emerge through trial, error, and adjustment.
+
+### Sandy’s Reflection
+Sandy's process centered on connecting the project with its audience and ensuring the installation felt coherent in real space. Beyond documentation, I handled much of the logistics, including setting up the projector, adjusting projection scale and brightness, arranging the physical layout, and making sure the element cards and card box design were easy for users to understand. These spatial and equipment decisions turned out to be crucial—projection distance, ambient lighting, and hardware placement all shaped how immersive the constellation felt.
+User testing was another major part of my work. Observing how people approached the installation revealed gaps we didn't initially anticipate, such as hesitation to touch the cards or uncertainty about where to stand. These insights directly informed layout adjustments and refinements to instructions. Preparing the README, final demo materials, and documentation also required translating a technically complex system into a clear narrative. Through this process, I learned how presentation, environment, and communication play a key role in the success of an interactive artwork.
+
+<p align="center">
+<img src="images/Energy_Card.JPG" width="55%">
+</p>
+
+<p align="center">
+<img src="images/3D_printed.jpeg" width="55%">
+</p>
+
+<p align="center">
+<img src="images/board_decoration.jpeg" width="55%">
+</p>
 
 
 ## Group Work Distribution
@@ -257,46 +309,5 @@ Sandy managed logistics, documentation, and user-facing presentation. She coordi
 - `README.md`
 - User testing notes and documentation
 - Demo video
-
-
-### 分工
-
-#### Joy
-
-主要负责：
-- 设计 6 种元素的视觉语言（颜色、纹理、粒子风格）
-- 调试元素pattern（Python/Pygame/Processing/P5.py/OpenGL）（光点/pattern）
-- Mood Board展示海报与最终视觉呈现
-- 设计并制作“能量元素卡片” * 10
-
-交付物：
-- animation_engine.py + 
-- 能量元素卡片
-- 元素视觉设定图
-- 最终展示海报
-  
-#### Hester
-
-主要负责：
-- 选择元素sensor（或者是点击图标）
-- 实现图案动态变化（手势，声音，距离）
-- 投影仪/显示器连接
-- 设计并制作“能量元素卡片” * 10
-- Mood Board展示海报与最终视觉呈现
-
-交付物：
-- sensor.py
-- 能量元素卡片
-  
-#### Sandy
-
-主要负责：
-- 借投影仪 + 背景板（待定）+ 准备装饰材料
-- Mood Board展示海报与最终视觉呈现
-- 用户测试（引导/观察/访谈）
-- README 所有需要交付的图像
-- README 展示材料
-- 录制展示视频
-
-交付物：
-- README.md
+- 3D printed card box
+- Energy card design
