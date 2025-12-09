@@ -179,23 +179,118 @@ We increased the overall size to accommodate components and improve comfort base
 [Final Code](master.py)
 
 ```mermaid
-flowchart TD
-    A[User Touch / Pressure Input] --> B{Input Sensors};
-    B --> C1[MPR121 Touch Sensor];
-    B --> C2[FSR Pressure Sensor];
-    C2 --> D2{Detect Press Type\nTap / Squeeze / Hug};
-    C1 --> D1[Touch Event\n(pad 5 or 11)];
-    D1 --> E[Interaction Logic];
-    D2 --> E;
-    E --> F1[LED Effects\n(breathing, sparkle, chase)];
-    E --> F2[Sound System\npygame];
-    E --> F3[Vibration Motor\nPWM];
-    F1 --> G[Final Output];
-    F2 --> G;
-    F3 --> G;
-    G[Lights + Sound + Vibration];
+stateDiagram-v2
+    [*] --> Idle
+    
+    Idle --> Purring: Touch head/back
+    Idle --> Breathing: Long hug (>1s)
+    Idle --> Idle: Tap or Squeeze(one-shot effect)
+    
+    Purring --> Idle: Timer expires (7-8s)
+    Purring --> Idle: Any pressure event
+    Purring --> Breathing: Long hug
+    
+    Breathing --> Idle: Long hug (toggle off)
+    Breathing --> Breathing: Touch/tap/squeeze(ignored or stops effect)
+    
+    note right of Idle
+        LEDs off
+        Motor off
+        Listening for input
+    end note
+    
+    note right of Purring
+        Pastel color cycle
+        Oscillating vibration
+        Looping audio
+    end note
+    
+    note right of Breathing
+        Blue↔White LEDs
+        Rhythmic vibration
+        4-7-8 pattern
+    end note
 ```
 
+```mermaid
+flowchart TD
+    subgraph Inputs["👆 INPUTS"]
+        HEAD["🐱 Head Touch(Conductive Fabric)"]
+        BACK["🐱 Back Touch(Conductive Fabric)"]
+        PRESSURE["💪 Pressure Sensor(Body)"]
+    end
+
+    subgraph Detection["⚙️ DETECTION"]
+        CAP["Capacitive TouchSensor (MPR121)"]
+        FSR["Force SensitiveResistor"]
+    end
+
+    subgraph Processing["🧠 PROCESSING (Raspberry Pi)"]
+        TOUCH_LOGIC["Touch Logic"]
+        PRESSURE_LOGIC["Pressure Logic"]
+        
+        subgraph Modes["Active Modes"]
+            PURR_MODE["😺 Purring Mode(7-8 sec timer)"]
+            BREATH_MODE["🌬️ Breathing Mode(4-7-8 pattern)"]
+        end
+    end
+
+    subgraph Outputs["✨ OUTPUTS"]
+        LED["💡 LED Ring(24 NeoPixels)"]
+        MOTOR["📳 Vibration Motor"]
+        SPEAKER["🔊 Speaker"]
+    end
+
+    HEAD --> CAP
+    BACK --> CAP
+    PRESSURE --> FSR
+    
+    CAP --> TOUCH_LOGIC
+    FSR --> PRESSURE_LOGIC
+    
+    TOUCH_LOGIC --> PURR_MODE
+    PRESSURE_LOGIC -->|"> 1 sec"| BREATH_MODE
+    PRESSURE_LOGIC -->|"< 1 sec"| LED
+    PRESSURE_LOGIC -->|"< 1 sec"| MOTOR
+    PRESSURE_LOGIC -->|"< 1 sec"| SPEAKER
+    
+    PURR_MODE --> LED
+    PURR_MODE --> MOTOR
+    PURR_MODE --> SPEAKER
+    
+    BREATH_MODE --> LED
+    BREATH_MODE --> MOTOR
+
+    style HEAD fill:#FFB6C1,stroke:#FF69B4
+    style BACK fill:#FFB6C1,stroke:#FF69B4
+    style PRESSURE fill:#87CEEB,stroke:#4169E1
+    style PURR_MODE fill:#DDA0DD,stroke:#9932CC
+    style BREATH_MODE fill:#98FB98,stroke:#228B22
+    style LED fill:#FFD700,stroke:#FFA500
+    style MOTOR fill:#FFA07A,stroke:#FF6347
+    style SPEAKER fill:#87CEFA,stroke:#1E90FF
+```
+
+#### Pressure Detection Flow
+
+```mermaid
+flowchart LR
+    PRESS["Press Detected"] --> DURATION{"Duration?"}
+    
+    DURATION -->|"< 0.3s"| TAP["⚡ TAP"]
+    DURATION -->|"0.3s - 1s"| SQUEEZE["🤏 SQUEEZE"]
+    DURATION -->|"> 1s"| HUG["🤗 HUG"]
+    
+    TAP --> TAP_OUT["Sparkle LEDs+ Burst Vibration+ Short Meow"]
+    SQUEEZE --> SQUEEZE_OUT["Chase LEDs+ Vibration+ Meow"]
+    HUG --> HUG_OUT["Toggle BreathingMode (4-7-8)"]
+    
+    style TAP fill:#FFD700,stroke:#FFA500
+    style SQUEEZE fill:#FFA500,stroke:#FF8C00
+    style HUG fill:#FF6347,stroke:#DC143C
+```
+
+---
 ## Some feedbacks from Demo Day 
 
 
@@ -239,15 +334,11 @@ sudo i2cdetect -y 1
 
 ## Hardware setup 
 
-<img src="img/1.jpg" width=300>
-
-<img src="img/2.jpg" width=300>
-
-<img src="img/3.jpg" width=300>
-
-<img src="img/4.jpg" width=300>
-
-<img src="img/5.jpg" width=300>
+<img src="img/1.jpg" width=400>
+<img src="img/2.jpg" width=400>
+<img src="img/3.jpg" width=400>
+<img src="img/4.jpg" width=400>
+<img src="img/5.jpg" width=400>
 
 
 
