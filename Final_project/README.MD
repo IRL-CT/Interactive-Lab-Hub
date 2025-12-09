@@ -178,39 +178,19 @@ We increased the overall size to accommodate components and improve comfort base
 
 [Final Code](master.py)
 
-```mermaid
-stateDiagram-v2
-    [*] --> Idle
-    
-    Idle --> Purring: Touch head/back
-    Idle --> Breathing: Long hug (>1s)
-    Idle --> Idle: Tap or Squeeze(one-shot effect)
-    
-    Purring --> Idle: Timer expires (7-8s)
-    Purring --> Idle: Any pressure event
-    Purring --> Breathing: Long hug
-    
-    Breathing --> Idle: Long hug (toggle off)
-    Breathing --> Breathing: Touch/tap/squeeze(ignored or stops effect)
-    
-    note right of Idle
-        LEDs off
-        Motor off
-        Listening for input
-    end note
-    
-    note right of Purring
-        Pastel color cycle
-        Oscillating vibration
-        Looping audio
-    end note
-    
-    note right of Breathing
-        Blue↔White LEDs
-        Rhythmic vibration
-        4-7-8 pattern
-    end note
-```
+There are two main modes for this code. 
+
+**Breathing Mode**
+Activated by a long hug (>1 second press). Implements the 4-7-8 breathing technique used in anxiety management:
+- LEDs transition from blue to white following the breath cycle
+- Vibration intensity syncs with the breathing pattern
+- Stays active until another long hug toggles it off
+
+**Purring Mode**
+Activated by touching the conductive fabric (head or back). Runs for a set duration (7-8 seconds):
+- LEDs slowly cycle through calming pastel colors (purple → lavender → pink → peach)
+- Vibration oscillates to mimic a cat's purr
+- Looping audio plays until the timer ends
 
 ```mermaid
 flowchart TD
@@ -289,8 +269,6 @@ flowchart LR
     style SQUEEZE fill:#FFA500,stroke:#FF8C00
     style HUG fill:#FF6347,stroke:#DC143C
 ```
-
----
 ## Some feedbacks from Demo Day 
 
 
