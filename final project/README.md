@@ -218,9 +218,13 @@ Runs in the main thread (required by SDL), receives continuous sensor updates, r
 Both processes remain synchronized through a `frame_lock`, ensuring stable frame delivery even under high interaction load.
 
 
-#### Tech Demo (Functional Checkoff) 
+### Tech Demo (Functional Checkoff) 
+This early demo shows the initial end-to-end functionality of our sensing pipeline. In this stage, the user selects an element by touching a specific position on the MPR121 sensor. The OLED screen displays the chosen element, and corresponding energy spots appear in the camera window to indicate the system’s recognition of that selection.
 
+**Tech Demo Video:**  
+[Watch the Demo](https://youtu.be/seF8rziH3oU)
 
+At this point, the system successfully connected touch input, OLED feedback, and camera-based visualization. Following this checkoff, we refined the energy spots and overall pattern animations—making them more dynamic, visually expressive, and directly responsive to gesture movements. We also implemented multi-element combinations to generate richer and more personalized energy patterns. These features were completed in the next development cycle and integrated into the final full-function version of the installation.
 
 
 
@@ -267,8 +271,13 @@ Much of my process revolved around building the visual identity of the installat
 My process focused on developing and stabilizing the sensing logic. Integrating gesture signals, distance estimation, and touch input required careful tuning and filtering to ensure interactions felt intentional rather than noisy. Through repeated testing, I learned that sensor-based interaction often depends as much on environment and user behavior as on code. Lighting, distance from the camera, and even movement style all influenced the results. Defining what each gesture should mean—expansion, contraction, temperature shift—became an iterative negotiation between technical feasibility and conceptual clarity. This experience strengthened my understanding of how interaction vocabularies emerge through trial, error, and adjustment.
 
 ### Sandy’s Reflection
-My process centered on connecting the project with its audience and ensuring the installation felt coherent in real space. Beyond documentation, I handled much of the logistics, including setting up the projector, adjusting projection scale and brightness, arranging the physical layout, and making sure the element cards and card box design were easy for users to understand. These spatial and equipment decisions turned out to be crucial—projection distance, ambient lighting, and hardware placement all shaped how immersive the constellation felt.
-User testing was another major part of my work. Observing how people approached the installation revealed gaps we didn't initially anticipate, such as hesitation to touch the cards or uncertainty about where to stand. These insights directly informed layout adjustments and refinements to instructions. Preparing the README, final demo materials, and documentation also required translating a technically complex system into a clear narrative. Through this process, I learned how presentation, environment, and communication play a key role in the success of an interactive artwork.
+My contribution focused on the parts of the project that connected the technical system to the final audience experience. In addition to preparing the README, demo video, user testing notes, and overall documentation, I took responsibility for much of the physical setup and exhibition logistics. I handled the full projector setup process—mounting and aligning the projector, calibrating projection size, adjusting brightness and contrast, and testing visibility in different ambient lighting conditions. I also arranged the physical interaction area, organized cable routing, positioned the Raspberry Pi and sensor board, and made sure the element cards were presented clearly to guide user behavior.
+
+I produced several physical components as well, including designing and assembling the 3D-printed card box and preparing the Energy Cards used during testing and exhibition. I tested the card layout, ensured the MPR121 connections stayed stable, and refined the spacing so users intuitively knew where to touch.
+
+User testing was another substantial part of my work. I filmed each interaction session and documented consistent patterns in how users approached the installation. These observations directly informed several adjustments, including clarifying the standing area, refining the projection distance for better visibility, and improving the way instructions were communicated to first-time participants.
+
+Across these responsibilities, my work bridged the technical system with the physical environment and the people interacting with it. I learned how much the success of an installation depends not only on code and visuals, but also on careful setup, environmental tuning, and clear communication with users.
 
 <p align="center">
 <img src="images/Energy_Card.JPG" width="55%">
