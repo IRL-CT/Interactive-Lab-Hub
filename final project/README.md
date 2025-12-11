@@ -15,7 +15,7 @@
 [Group Work Distribution](#group-work-distribution) 
 
 ## Project Plan
-Huiying Zhan (hz764), 
+Huiying Zhan (hz764), Hester Li(ql382), Joy Sun(js888)
 
 ### Big Idea
 Inner Constellation is an interactive art installation that visualizes a person’s inner energy as a living constellation made of light, color, and motion. It invites people to reflect on their emotions through simple, intuitive interactions.
