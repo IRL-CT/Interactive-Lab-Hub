@@ -318,10 +318,11 @@ Joy focused on developing the interactive animation system and dynamic visual be
 
 
 ### Hester
-Hester was responsible for the interaction logic and sensing pipeline. This included selecting and integrating the elemental sensor (or icon-based interaction), implementing dynamic pattern transitions based on gestures, sound volume, and distance inputs, and setting up the projector/monitor display system. She also contributed to the creation of ten physical “Energy Element Cards” and participated in the visual presentation materials.  
+Hester was responsible for the interaction logic, sensing pipeline, and website build. Her work involved selecting and integrating the elemental sensors (including gesture, proximity, and touch-based inputs), designing how these signals translate into dynamic visual transitions, and ensuring that interactions felt intentional rather than noisy. She also built the web-based display system that replaced VNC, allowing the animation to run with lower latency and a smoother user experience.
 
 **Deliverables:**
-- `sensor.py`
+- sensors design
+- `server.py`
 - Energy Element Cards (×10)
 
 
