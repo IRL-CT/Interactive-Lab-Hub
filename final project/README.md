@@ -265,7 +265,14 @@ These findings helped us refine gesture sensitivity, adjust projection parameter
 
 ## Reflections on Process
 ### Joy’s Reflection
-Much of my process revolved around building the visual identity of the installation. Early experiments showed how small choices in color temperature, particle behavior, or motion density dramatically changed the emotional tone of each element. I iterated many rounds of prototypes in Python, Pygame, Processing, and p5.py, testing how each pattern reacted to motion signals and how palettes blended in real time. One challenge was balancing visual richness with performance; several patterns had to be redesigned to avoid frame drops. Collaborating with the sensing pipeline also shaped many decisions, especially around parameter constraints and transitions. This process taught me how tightly visual design and system behavior are intertwined in interactive installations.
+Designing the visual identity of Inner Constellation became the core of my work. I spent countless hours experimenting with how color temperature, particle behavior, and motion density could shape emotion. Small visual shifts often changed the entire tone of an element.
+
+I built and tested many prototypes in Python, Pygame, Processing, and p5.py, studying how patterns responded to motion and blended in real time. Balancing visual richness with performance was tough, I often had to redesign animations to keep them fluid without losing depth.
+
+Collaborating with the sensing system also influenced every decision. The sensors weren’t just inputs, they defined how visuals moved and breathed with the user. Through that process, I realized how inseparable visual design and system behavior are in interactive work.
+
+This project taught me to see code as a creative medium, one that can express emotion as much as it executes logic.
+
 
 ### Hester’s Reflection
 My work mainly focused on developing and stabilizing the sensing logic. Getting gesture signals, distance estimation, and touch inputs to behave reliably took a lot of tuning, otherwise the interaction felt noisy or accidental rather than intentional. Through repeated testing, I realized sensor-based interaction is shaped just as much by environment and user behavior as by code. Lighting, distance, and even how someone moves can completely change the system’s response.
@@ -300,11 +307,12 @@ Across these responsibilities, my work bridged the technical system with the phy
 
 ## Group Work Distribution
 ### Joy
-Joy focused primarily on the visual language and aesthetic foundation of the project. She designed the color schemes, textures, and particle styles for all six elemental themes, and iterated extensively on the visual patterns using Python, Pygame, Processing, p5.py, and OpenGL-based tools. She also created the full mood board, final visual poster, and produced a set of ten physical “Energy Element Cards.”  
+Joy focused on developing the interactive animation system and dynamic visual behavior of the installation. She implemented real-time energy field patterns that respond to user movement and camera input, designing and optimizing the animation engine with Python and Pygame. She collaborated on defining each elemental visual identity and ensured smooth, expressive transitions between energy states to maintain both aesthetic coherence and technical performance.
 
 **Deliverables:**
 - `animation_engine.py`
-- Energy Element Cards (×10)
+- `set_profile.py`
+- UI and Interaction Code (sensor and camera integration)
 - Element Visual Style Sheets
 - Final Exhibition Poster
 
