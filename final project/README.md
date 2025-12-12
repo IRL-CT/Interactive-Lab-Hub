@@ -323,7 +323,7 @@ Hester was responsible for the interaction logic, sensing pipeline, and website 
 **Deliverables:**
 - sensors design
 - `server.py`
-- Energy Element Cards (×10)
+- Energy Element Cards (×6)
 
 
 ### Sandy
