@@ -160,7 +160,7 @@ Key components:
 
 
 ## Archive of All Code and Design Patterns
-All related code are in: [animation](../final%20project/animation/) and [sensors](../final%20project/sensors/)
+All related code are in: [animation](./final%20project/animation/) and [sensors](./final%20project/sensors/)
 
 ### Sensor Layer Overview
 
