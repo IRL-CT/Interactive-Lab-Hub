@@ -17,6 +17,12 @@
 ## Project Plan
 Huiying Zhan (hz764), Hester Li(ql382), Joy Sun(js888)
 
+### Project Motivation  
+Technology has been changing our lives in a tremendous way. AI brought infinite capacity to our work and study setting, and relentless yet useless productivity is growing out of control. Promoting endless growth like that of cancer cells, capitalism refutes death, which means it also refutes life on the other hand. Human beings have been alienated into tools of labor, and their true attributes have been weakened. In a more dramatic way, our society is permeated with death drive. 
+
+With the aim of bringing vitality back to our lives, our project serves as a trigger for people to reflect on their true forms of life. Six elements are symbols of the origins of the world, and the self-chosen element combinations refers to the person’s inner self, alter ego, in responding to the representatives of nature. This connection between inner power and visual patterns creates a dialogue between the self and the digital realm. Each interaction becomes a moment of connection between body and light, revealing an unseen aura that blurs the boundary between inner feeling and external form.
+
+
 ### Big Idea
 Inner Constellation is an interactive art installation that visualizes a person’s inner energy as a living constellation made of light, color, and motion. It invites people to reflect on their emotions through simple, intuitive interactions.
 
