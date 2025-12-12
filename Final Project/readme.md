@@ -16,7 +16,7 @@
 [Group Work Distribution](#group-work-distribution) 
 
 ## Project Plan
-Huiying Zhan (hz764), Hester Li(ql382), Joy Sun(js888)
+Joy Sun(js888), Huiying Zhan (hz764), Hester Li(ql382)
 
 ### Project Motivation  
 Technology has been changing our lives in a tremendous way. AI brought infinite capacity to our work and study setting, and relentless yet useless productivity is growing out of control. Promoting endless growth like that of cancer cells, capitalism refutes death, which means it also refutes life on the other hand. Human beings have been alienated into tools of labor, and their true attributes have been weakened. In a more dramatic way, our society is permeated with death drive. 
