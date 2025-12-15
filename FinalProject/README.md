@@ -58,9 +58,9 @@ We used makeabox.io to create the designs for the base and buildings, which we e
 
 In addition to being able to assemble individual buildings and the base, the design also had to involve fitting the acrylic buildings onto the wooden base. This also took some trial and error, because we had to modify the width of the holes cut in the base so that we were able to fit the acrylic buildings on top of the base. [Video of earlier prototype](https://drive.google.com/file/d/1vNrLCEC3M1uJeTkorbxCvN4FkjzVsQPe/view?usp=drive_link)
 
-<img width="633" height="656" alt="Screenshot 2025-12-14 at 7 12 24 PM" src="https://github.com/user-attachments/assets/1eb12ff2-1ec3-4fd4-ac80-60897180363f" />
-<img width="595" height="630" alt="Screenshot 2025-12-14 at 7 12 57 PM" src="https://github.com/user-attachments/assets/b3a38701-0c07-4492-9d0e-f933d6c35906" />
-<img width="593" height="623" alt="Screenshot 2025-12-14 at 7 13 12 PM" src="https://github.com/user-attachments/assets/1bf3c92e-9957-40a6-a98e-11295e53323e" />
+<img width=50% alt="Screenshot 2025-12-14 at 7 12 24 PM" src="https://github.com/user-attachments/assets/1eb12ff2-1ec3-4fd4-ac80-60897180363f" />
+<img width=50% alt="Screenshot 2025-12-14 at 7 12 57 PM" src="https://github.com/user-attachments/assets/b3a38701-0c07-4492-9d0e-f933d6c35906" />
+<img width=50% alt="Screenshot 2025-12-14 at 7 13 12 PM" src="https://github.com/user-attachments/assets/1bf3c92e-9957-40a6-a98e-11295e53323e" />
 
 
 ### Overview: Input (QR code) -> song information -> outputs (pi display, speakers, LED lights)
@@ -263,7 +263,7 @@ if art_image:
     display.image(art_image)
 ```
 
-By the showcase deadline of December 1, we had everything working except the LED lights. [Here is a video we recorded of it working.](https://drive.google.com/file/d/1paV4NpYWIWsTyBRG5n4qti43AxIXps6V/view?usp=drive_link)
+By the showcase deadline of December 1, we had everything working except the LED lights. [Here is a video we recorded of it working.](https://drive.google.com/drive/folders/1y_ihyC7CYjQWi6quVmSAh8PM_WfXcZeX?usp=sharing)
 
 ### Song album cover -> LED lights 
 
