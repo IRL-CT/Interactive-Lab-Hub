@@ -64,6 +64,28 @@ You can and are not required to work in teams. Be clear in documentation who con
 
 # The Museum of Lost Sound
 
+---
+
+## 📑 Table of Contents
+
+- [Big Idea](#-big-idea)
+- [Interaction Design](#-interaction-design)
+- [Hardware Mapping](#️-hardware-mapping)
+- [Materials List](#-materials-list)
+- [Project Timeline](#️-project-timeline)
+- [Testing Plan](#-testing-plan)
+- [Fallback Plan](#-fallback-plan)
+- [Progress Logs](#-progress-logs)
+  - [11/15 Log](#1115-log)
+  - [12/01 Log](#1201-log)
+  - [12/03 Log](#1203-log)
+  - [12/04 Log](#1204-log)
+  - [12/07 Log](#1207-log)
+  - [12/08 Log](#1208-log)
+- [Reflections on Process](#reflections-on-process)
+- [Group Work Distribution](#group-work-distribution)
+
+---
 
 ## 🎯 Big Idea
 
@@ -209,6 +231,8 @@ The final submission will include:
 * Reflection & lessons learned
 
 ---
+
+## 📋 Progress Logs
 
 ## 11/15 Log
 
