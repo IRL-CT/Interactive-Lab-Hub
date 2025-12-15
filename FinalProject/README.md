@@ -347,7 +347,7 @@ After we were able to get the LED lights to work, we were able to generate code 
 
 ## Final Functioning project + Archive of all code, design patterns, etc. used in the final design.
 
-<img src="https://github.com/user-attachments/assets/c9beec79-c5bb-48a3-968d-c724e2cb226e" width="25%" />
+<img src="https://github.com/user-attachments/assets/c9beec79-c5bb-48a3-968d-c724e2cb226e" width="50%" />
 
 Final code for the raspberry pi (4) is under the file `final_project_code_pi.py`. 
 
