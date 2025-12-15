@@ -58,9 +58,9 @@ We used makeabox.io to create the designs for the base and buildings, which we e
 
 In addition to being able to assemble individual buildings and the base, the design also had to involve fitting the acrylic buildings onto the wooden base. This also took some trial and error, because we had to modify the width of the holes cut in the base so that we were able to fit the acrylic buildings on top of the base. [Video of earlier prototype](https://drive.google.com/file/d/1vNrLCEC3M1uJeTkorbxCvN4FkjzVsQPe/view?usp=drive_link)
 
-<img width=50% alt="Screenshot 2025-12-14 at 7 12 24 PM" src="https://github.com/user-attachments/assets/1eb12ff2-1ec3-4fd4-ac80-60897180363f" />
-<img width=50% alt="Screenshot 2025-12-14 at 7 12 57 PM" src="https://github.com/user-attachments/assets/b3a38701-0c07-4492-9d0e-f933d6c35906" />
-<img width=50% alt="Screenshot 2025-12-14 at 7 13 12 PM" src="https://github.com/user-attachments/assets/1bf3c92e-9957-40a6-a98e-11295e53323e" />
+<img width="50%" alt="Screenshot 2025-12-14 at 7 12 24 PM" src="https://github.com/user-attachments/assets/1eb12ff2-1ec3-4fd4-ac80-60897180363f" />
+<img width="50%" alt="Screenshot 2025-12-14 at 7 12 57 PM" src="https://github.com/user-attachments/assets/b3a38701-0c07-4492-9d0e-f933d6c35906" />
+<img width="50%" alt="Screenshot 2025-12-14 at 7 13 12 PM" src="https://github.com/user-attachments/assets/1bf3c92e-9957-40a6-a98e-11295e53323e" />
 
 
 ### Overview: Input (QR code) -> song information -> outputs (pi display, speakers, LED lights)
@@ -347,7 +347,7 @@ After we were able to get the LED lights to work, we were able to generate code 
 
 ## Final Functioning project + Archive of all code, design patterns, etc. used in the final design.
 
-![PXL_20251212_181321993 MP](https://github.com/user-attachments/assets/c9beec79-c5bb-48a3-968d-c724e2cb226e)
+<img src="https://github.com/user-attachments/assets/c9beec79-c5bb-48a3-968d-c724e2cb226e" width="25%" />
 
 Final code for the raspberry pi (4) is under the file `final_project_code_pi.py`. 
 
