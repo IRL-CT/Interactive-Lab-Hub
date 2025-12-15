@@ -1,0 +1,4 @@
+Flask
+Flask-SocketIO
+paho-mqtt==1.6.1
+sparkfun-qwiic-joystick

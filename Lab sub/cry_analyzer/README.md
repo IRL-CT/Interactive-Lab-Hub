@@ -1,0 +1,29 @@
+# Readme file for how to run cry model
+
+```bash 
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+sudo systemctl stop piscreen.service --now
+
+#check if the microphone is running 
+arecord -l
+
+python baby_monitor.py
+
+# to test if the cry analyzer is working or not
+python test/cry_analyzer_model_only.py *"filename"*
+```
+
+To test cry vs laugh: 
+
+laugh 
+[https://www.youtube.com/watch?v=IzNvuvgbBnU](https://www.youtube.com/watch?v=IzNvuvgbBnU)
+
+How I trained the model: 
+
+[Github Repo for CryAnalyzer](https://github.com/eigenValue7/cry_analyzer)
+
+Videos: 
+[Folder](https://drive.google.com/drive/folders/1LjDBRH2nMtgujjL64DB2l8F2J6kqiYwR?usp=drive_link)

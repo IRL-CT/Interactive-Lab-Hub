@@ -1,0 +1,16 @@
+[Unit]
+Description=MQTT Shooting Game Server
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/shooting_game
+ExecStart=/usr/bin/python3 /home/pi/shooting_game/game_server.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

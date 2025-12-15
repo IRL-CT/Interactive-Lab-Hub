@@ -1,6 +1,8 @@
 
 # Ph-UI!!!
 
+Partner: Celeste (Lianne) Bisch (lb854)
+
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
   
@@ -11,7 +13,7 @@
 	- Your final submission should be neat, focused on your own work, and easy to read for grading.
   
 	This helps ensure your README.md is clear, professional, and uniquely yours!
-</details>
+
 
 ---
 
@@ -496,3 +498,328 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
 
+</details>
+
+## Part 1
+
+<<<<<<< HEAD
+## A
+=======
+### A. Capacitive Sensing
+>>>>>>> f3f007863ba4db694ae6abc04a4a1ddf5b1af8e1
+
+#### Capacitive Sensing, a.k.a. Human-Twizzler Interaction
+- [video](https://drive.google.com/file/d/18yES5zgi9vadJ35WmzPh92G5otRxhHDW/view?usp=drive_link)
+
+<<<<<<< HEAD
+## B 
+=======
+
+### B. More Sensors 
+>>>>>>> f3f007863ba4db694ae6abc04a4a1ddf5b1af8e1
+
+#### Light/Proximity/Gesture sensor (APDS-9960)
+- [color_sensor](https://drive.google.com/file/d/1nGoNoW5VqaMlu44S1YrABpeoOqZt3pnG/view?usp=drive_link)
+- [Gesture](https://drive.google.com/file/d/1kV9ytehZo7h0iTpj5iUL3qDl60VlzUWA/view?usp=drive_link)
+
+#### Rotary Encoder
+- [video](https://drive.google.com/file/d/1gFWGG_V0EaZ-SAlwyjkxl6xNygtXT9-M/view?usp=drive_link)
+
+#### Joystick
+- [video](https://drive.google.com/file/d/1-eFuz5ohCwvVwxiNTdq3e_H6tSxvZnMg/view?usp=drive_link)
+
+#### Distance Sensor
+- [video](https://drive.google.com/file/d/1nly-xRRw7lkPNoYq9m0ssxKG0KIIMCPE/view?usp=drive_link)
+
+<<<<<<< HEAD
+## C
+
+**\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
+=======
+### C. Physical Sensing Design
+
+**\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+- **Idea1 (Color Sensor)** -  Detecting the color of the clothes for color-blinded people
+
+- **Idea2 (Rotary Encoder)** - Security Box 
+
+>>>>>>> f3f007863ba4db694ae6abc04a4a1ddf5b1af8e1
+<img src="image/sketch1.jpg" height="400" />
+
+- **Idea3 (Distance Sensor)** - Curling Game 
+
+<img src="image/sketch2.jpg" height="400" />
+
+- **Idea4(Capacitive Sensor)** - Draw and play music!
+
+<img src="image/sketch3.jpg" height="400" />
+
+- **Idea5(Rotary Encoder, Joystick)** - Drawing board
+
+<img src="image/sketch4.jpg" height="400" />
+
+**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+
+1. When should the sensors be activated?
+
+While sketching the color-detection cloth, I realized that having the sensor always on might not be ideal—it could waste energy or annoy the user. This raises the question: When should the sensor be active?
+Should users control activation manually (e.g., with an on/off button), or should it be triggered automatically (e.g., by motion detection when the door opens)?
+To answer this, we need to build a physical prototype and test both conditions to observe user preferences and comfort levels—whether constant activation feels intrusive or if automatic triggering feels intuitive.
+
+2. How steady should the drawing board be?
+
+In Idea 5 (the drawing board), we imagined how the user would physically interact with the joystick and rotary encoder. These components require a certain level of resistance—too loose and they feel flimsy, too tight and they’re hard to control.
+This raises questions about stability and usability: How much resistance or structural support should the board have for comfortable use?
+We need to prototype the actual physical setup to test different materials, resistances, and mounting methods that balance stability with smooth movement.
+
+3. What is the appropriate size for the device?
+
+For both Idea 1 and Idea 5, scale is an important factor, especially for the drawing board. It needs to be large enough for expressive drawing but small enough to remain portable and easy to handle.
+This raises the question: How big should the board be to fit the intended user and context of use?
+To explore this, we’ll prototype boards at different scales and test them with target users, considering comfort, usability, and situational fit (e.g., classroom, home, or outdoor use).
+
+
+<<<<<<< HEAD
+**\*\*\*Pick one of these designs to prototype.\*\*\***
+- We decided the sound idea. 
+=======
+**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+
+- We decided to proceed with the **Idea 5. drawing board**!
+
+
+### D. Display & Housing - 5 sketches for display/button/knob positioning - Written reflection: questions raised, what to prototype - Pick one display design to integrate - Rationale for design - Photos/videos of your cardboard prototype
+
+**\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+
+<!-- <img src="image/physical_drawing1.jpg" height="400" /> -->
+
+<img src="image/physical_drawing2.jpg" height="400" />
+<img src="image/controllersketch-a.jpg" height="400" />
+<img src="image/controllersketch-b.jpg" height="400" />
+
+
+**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+
+1. Where should the rotary encoder be placed?
+
+The rotary encoder requires two fingers to hold and rotate, unlike the joystick (which only needs one finger) or the capacitive sensor (which just needs a tap). This raised the question of where it should be located.
+We thought it might be more comfortable to have the encoder fixed on a table, so the user doesn’t have to hold it while rotating (like in Idea 2.0). However, we also wondered if integrating it into a handheld version (like in Idea 5.0) would still feel natural.
+To find out, we plan to prototype both versions and observe how users interact with each design—whether holding it feels awkward or stable enough for precise control.
+
+2. Where should the capacitive sensors be—and how many is too many?
+
+In Idea 4.0, we explored using multiple capacitive sensors to enable many functions. But while working on Idea 5.0, we started to worry about accidental touches: What if the user unintentionally activates the wrong sensor or finds it confusing to distinguish between them?
+To answer this, we need to build a physical prototype and test different numbers and placements of capacitive sensors. This will help us determine how many touch points feel intuitive and accessible without overwhelming the user.
+
+3. Where should the color sensor be located?
+
+We want users to be able to pick any color from their surroundings. Initially, we imagined placing the color sensor on the front of the board, but later thought it might be better positioned on the back so users can “point” the back toward the color source (like a rose or wall).
+We’ll test both placements with a physical prototype to see which orientation feels more natural and precise for color picking.
+
+4. What shape and size make the handheld version comfortable to hold?
+
+If we create a handheld version, we need to consider what shape and size are easiest and most comfortable for users to hold. We plan to experiment through trial and error, prototyping different forms inspired by familiar objects such as game controllers or the Nintendo Switch.
+By testing these variations, we can learn how grip, weight, and balance affect usability and comfort.
+
+<img src="image/game controller.jpeg" height="100" />
+<img src="image/switch.jpeg" height="100" />
+
+
+**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+
+We decided to proceed with **Idea 5.0**; however, we also modified a bit while we are building the physical prototype. 
+>>>>>>> f3f007863ba4db694ae6abc04a4a1ddf5b1af8e1
+
+## D
+
+**\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+
+Our product is called <span style="color: pink">**ColorCatcher**</span>, a drawing board that lets anyone paint using the colors around them.
+Unlike typical drawing tools where users must mix or select colors manually, ColorCatcher allows users to “catch” real-world colors directly from their surroundings.
+For example, if you want to draw a rose, you can simply capture the rose’s color and use it to paint!
+
+Because this product is designed for spontaneous, creative drawing anywhere, we prioritized portability and ease of use without a desk.
+Our design choices reflect these goals:
+
+- Handheld design:
+The board must be easily held and operated in mid-air, so we added two side handles for a stable grip.
+
+- Integrated display and tool:
+To keep the experience intuitive and compact, the display and drawing interface are combined into one device rather than separated.
+
+- Joystick placement:
+The joystick is located at the bottom-right corner, assuming right-handed use. This allows the user to draw continuously without needing to reposition their hand.
+
+- Capacitive sensor buttons:
+These are placed on the upper-left corner to reduce the chance of accidental touches during use.
+
+- Rotary encoder:
+Positioned at the upper-right corner, it can be comfortably operated by the right hand while the left hand holds the board firmly using the left handle.
+
+- Size and form:
+The overall dimensions are based on the sensor modules’ actual sizes and ergonomic testing. The screen area is roughly the size of an iPhone 14—large enough for visible drawing but small enough to remain lightweight and easy to hold.
+
+**\*\*\*Document your rough prototype.\*\*\***
+
+- We went through multiple iterations of cardboard prototype, starting very simple with just openings for the specific sensors we wanted. At first we mocked up the screen to be at the bottom of the controller and later incorporated it into the center for ease of use. We also started with rough cut outs before creating multiple svgs for the laser cutter to make. We asked Chatgpt to make the initial svg and then edited it as we fined tuned our design.
+![Svg_draft ChatGPT](image/gamepad_template_lasercut_220mm_panel_v1.svg)
+![Svg_draft Updated](image/controllerSnicket.svg)
+
+- The image below from left to right shows the general progression of our carboard protyping. Including smaller models that were made to understand how we might want to layout the sensors before cutting a larger version.
+
+<img src="image/draft_cutouts.jpg" height="200" />
+
+- We created an initial 3D model in TinkerCad to visualize the physical layout and dimensions.
+- The model was 3D printed to check how it feels in hand — whether it’s comfortable to hold and if all sensors fit properly.
+- Through multiple iterations, we refined the size and sensor placement based on user comfort and accessibility.
+- Initially, the prototype included six capacitive sensor buttons, but after testing, we realized this caused frequent accidental touches. We reduced the number to improve usability and control.
+
+<img src="image/3d_model2.png" height="200" />
+
+- We also chose to add a plastic acrylic cover to help protect the cardboard since constant handling would cause the cardboard to bend and lose integrity more quickly than we would have preferred. It also provided a sturdy base for the cardboad components to be adheared to.
+
+## Part 2
+
+<!-- *️⃣ E. Multi-Device Demo - Code and video for your multi-input multi-output demo (e.g., chaining Qwiic buttons, servo, GPIO expander, etc.) - Reflection on interaction effects and chaining
+
+*️⃣ F. Final Documentation - Photos/videos of your final prototype - Written summary: what it looks like, works like, acts like - Reflection on what you learned and next steps -->
+### E. Multi-Device Demo
+
+
+#### Code for ColorCatcher: 
+---
+[Code_For_ColorCatcher](color_catcher/paint.py)
+
+#### Setup
+---
+
+**Code setup**
+1. **Create and activate a virtual environment in Lab 4:**
+	```bash
+	cd ~/Interactive-Lab-Hub/Lab\ 4
+	python3 -m venv .venv
+	source .venv/bin/activate
+	```
+2. **Install all Lab 4 requirements:**
+	```bash
+	pip install -r requirements2025.txt
+	```
+
+3. **Move to the color_catcher folder and install additional requirements:**
+	```bash
+	cd color_catcher
+	pip install -r requirements.txt
+	```
+
+4. **Then run the code:**
+	```bash
+	python paint.py
+	```
+
+**Hardware setup**
+
+Connect Rasberry Pi with **Capacitve Sensor, color sensor, joystick, and rotary encoder, and accelerometer**. 
+For Capacitive sensor, make sure each button is associated to the right number. 
+
+| Number | Function |
+|---|---|
+| 3 | Drawing (Rectangler / Ellipse shape) |
+| 5 | Save the image|
+| 6 | Fill in the background color |
+| 8 | Erase |
+
+
+**iPhone setup**
+
+1. Download **RealVNC** Viewer
+2. Login using your rasberry pi IP. User: pi, and password: your_password. 
+3. Run the paint.py
+
+#### System Sketch
+---
+We mapped the input sensors to intuitive actions that mirror physical drawing experiences. The joystick enables directional drawing and control, while the rotary encoder adjusts brush size. Capacitive sensors serve as mode-switch buttons for tools like rectangle, ellipse, and eraser. The accelerometer allows for quick clearing gestures, and the color sensor continuously adapts the brush color to match the user’s environment
+
+<img src="image/system_1.png" height="300" />
+<img src="image/system_2.png" height="300" />
+
+
+| Input Sensor | Input Action | Output On Screen | Output On Speaker|
+|---|---|---|---|
+| Joystick | Press Button | Start/Stop Drawing| __ |
+| Joystick | Tilt | Draw in the direction of tilt| Drawing sound |
+|Rotary Encoder| Rotate | Adjust brush size (increase/decrease) | __|
+| Capacitive Sensor(3)| Tap |Change drawing tool (Rectangle/Ellipse) | __| 
+| Capacitive Sensor(5)| Tap |Save the current image | __| 
+| Capacitive Sensor(6)| Tap | Fill background with the selected color | __| 
+| Capacitive Sensor(8)| Tap | Erase part of the drawing | Erasing Sound|
+| Accelerometer | Tilt forward (y < 0) | Clear the canvas | __|  
+|Color Sensor | *continuous* | Change brush color based on detected environmental color | __ |
+
+#### What We Learned!
+---
+We learned that by combining multiple sensors and actuators in ColorCatcher, we can unlock new kinds of creative and expressive interactions that go beyond what a single sensor can do.
+
+1. Color Sensor + Joystick → “Paint the World” Interaction
+At first, we thought the color sensor would just be a fun add-on. But when we combined it with the joystick, it created a unique experience—letting users literally paint with the colors around them. Users can move their brush using the joystick while the color sensor continuously captures live colors from their environment. This makes it feel like blending the physical and digital worlds, as if they’re “painting directly with nature.”
+If the color sensor were placed separately or awkwardly, this smooth, color-flow experience would be lost.
+
+2. Accelerometer + Color Sensor → Gesture-Based Actions
+By combining the accelerometer and color sensor, we created playful, embodied interactions. Tilting or shaking the board can clear or recolor the canvas, connecting physical motion with visual change. These gestures make the experience feel more natural and alive—much more intuitive than pressing a button. It is also a familiar action to any of those who had used an etch-a-sketch.
+
+3. Effect of Physical Arrangement on User Experience
+The physical layout of each component plays a major role in how natural the interaction feels:
+- The color sensor on the back encourages users to point the board toward real objects, making “color catching” feel similar to taking a photo.
+- The joystick at the bottom-right corner allows smooth, continuous control with the thumb while holding the board.
+- The right-side controls both protrude and are dedicated to brush basic functions: joystick for brush movement, rotary for brush size adjustment. 
+- The additional top left buttons provide access to a separate menu independent from the joystick and rotary controls, resembling the layout of the directional buttons on the switch controller. They house broader functions such as save, fill, erase, and rectangular brush selection. 
+
+4. Changing Primary and Secondary Devices
+When we experimented with swapping which device is “primary,” the experience changed dramatically.
+For example, if the color sensor became the main input (triggering actions based on brightness or hue) and the joystick became secondary (just adjusting direction), the experience shifted from intentional drawing to responsive painting. It felt more like the environment was guiding the artwork.
+
+5. Drawing and Erasing Sound
+We added sound effects for drawing and erasing to make the experience feel more immersive. We also found that audio feedback was helpful when users moved the joystick—it let them know their actions were being registered, even if the screen lagged or their movements weren’t clearly visible. This was especially useful when using the eraser before we added a visual pointer.
+
+#### Things We Learned from Asking others to play around. 
+---
+We tested with two users and they both actually really loved it, which we are super happy!
+They liked the idea of they can color based on the color around you, and enjoyed interacting. 
+During user testing, we received several pieces of valuable feedback that helped us refine the design of ColorCatcher:
+
+1. **Unclear color detection**
+
+Users found it difficult to tell which color was being detected. Even after an explanation, they struggled to capture the color they wanted. This highlighted the need for better feedback — perhaps a visible color indicator or preview on the screen.
+
+2. **Should colors be stored?**
+
+One user wanted the option to save favorite colors, while another enjoyed the spontaneous, constantly changing colors. This raised an interesting design question: should ColorCatcher allow users to store selected colors, or keep the experience immediate and dynamic?
+
+3. **Tilt-to-erasef confusion**
+
+One participant accidentally deleted their drawing while tilting the board to detect colors. They felt the erase gesture was too sensitive and wanted a more intentional action — such as a confirmation step or a separate erase button.
+
+4. **Lack of visual pointer (now fixed)**
+
+Initially, users were confused about where the drawing or erasing was happening because there was no visible cursor. We fixed this issue by adding a pointer indicator, which greatly improved clarity.
+
+5. **Joystick ergonomics**
+
+Some users found the joystick slightly hard to tilt. One user with larger hands mentioned that the joystick felt too close to the handle, making it awkward to use. This feedback suggests we may need to adjust spacing or resistance for better accessibility.
+
+### F. Final Documentation
+
+[Video_of_demo](https://drive.google.com/file/d/1emJ2zIF4F7Sx4GhbfLyXz1QM-JCBCluI/view?usp=sharing)
+
+[Video_of_demo 2](https://drive.google.com/file/d/10IImIktT_0hoaUEwjL4Gq_JYpRLtyKwQ/view?usp=sharing)
+
+<!-- 
+Record
+Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
+
+"Looks like": shows how the device should look, feel, sit, weigh, etc.
+"Works like": shows what the device can do
+"Acts like": shows how a person would interact with the device -->
+
+
+*I used the chatgpt to clean my sentences and codes. We also asked chatgpt to create an initial svg for us to work with so we could use the laser cutter*

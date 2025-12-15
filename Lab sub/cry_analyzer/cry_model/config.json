@@ -1,0 +1,16 @@
+{
+  "sample_rate": 16000,
+  "n_mfcc": 40,
+  "feature_type": "averaged_mfcc",
+  "classes": [
+    "belly_pain",
+    "burping",
+    "discomfort",
+    "hungry",
+    "tired"
+  ],
+  "normalization": "max_abs",
+  "model_type": "Conv1D_simple",
+  "tensorflow_version": "2.19.0",
+  "keras_version": "3.10.0"
+}

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Controller</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .player-select {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .player-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .player-btn {
+            padding: 12px 24px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .player-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .joystick-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .joystick {
+            width: 200px;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            position: relative;
+            border: 3px solid #ddd;
+            touch-action: none;
+        }
+        
+        .joystick-stick {
+            width: 60px;
+            height: 60px;
+            background: #667eea;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: grab;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .joystick-stick:active {
+            cursor: grabbing;
+        }
+        
+        .shoot-button {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 20px 0;
+        }
+        
+        .shoot-button:active {
+            background: #ee5a6f;
+            transform: scale(0.98);
+        }
+        
+        .status {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.05);
+            margin: 20px 0;
+        }
+        
+        .status.connected {
+            background: rgba(76, 175, 80, 0.1);
+            color: #2e7d32;
+        }
+        
+        .position-display {
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            color: #666;
+            margin: 15px 0;
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .control-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        
+        .control-btn:hover {
+            background: #5568d3;
+        }
+        
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(33, 150, 243, 0.1);
+            border-radius: 10px;
+            font-size: 12px;
+            color: #1976d2;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Game Controller</h1>
+        
+        <div class="player-select">
+            <div>Select Player:</div>
+            <div class="player-buttons">
+                <button class="player-btn active" onclick="selectPlayer(1)">Player 1 (Blue)</button>
+                <button class="player-btn" onclick="selectPlayer(2)">Player 2 (Red)</button>
+            </div>
+        </div>
+        
+        <div class="joystick-container">
+            <div class="joystick" id="joystick">
+                <div class="joystick-stick" id="stick"></div>
+            </div>
+        </div>
+        
+        <div class="position-display" id="positionDisplay">
+            X: 0.00, Y: 0.00
+        </div>
+        
+        <button class="shoot-button" id="shootBtn">🔫 SHOOT</button>
+        
+        <div class="status connected" id="status">
+            ✓ Connected to MQTT
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn" onclick="openGame()">Open Game →</button>
+            <button class="control-btn" onclick="resetPosition()">Reset Position</button>
+        </div>
+        
+        <div class="info">
+            💡 <strong>Tip:</strong> Use joystick to move, tap shoot button to fire!<br>
+            Open multiple tabs to simulate multiple controllers.
+        </div>
+    </div>
+
+    <script>
+        // MQTT Configuration
+        const MQTT_BROKER = 'wss://farlab.infosci.cornell.edu:1884/mqtt';
+        const MQTT_USERNAME = 'idd';
+        const MQTT_PASSWORD = 'device@theFarm';
+        
+        let selectedPlayer = 1;
+        let mqttClient = null;
+        let joystickPosition = { x: 0, y: 0 };
+        let isDragging = false;
+        const socket = io();
+        
+        // Initialize MQTT
+        function initMQTT() {
+            const clientId = 'game_controller_' + Math.random().toString(16).substr(2, 8);
+            
+            // mqttClient = mqtt.connect(MQTT_BROKER, {
+            //     clientId: clientId,
+            //     username: MQTT_USERNAME,
+            //     password: MQTT_PASSWORD,
+            //     keepalive: 60,
+            //     clean: true
+            // });
+            // const socket = io();
+            console.log('Connecting to MQTT...');
+            
+            socket.on('connect', () => {
+            console.log('Connected');
+            document.getElementById('status').textContent = '✓ Connected';
+            document.getElementById('status').className = 'status connected';
+            });
+            
+            socket.on('disconnect', () => {
+                console.log('Disconnected');
+                document.getElementById('status').textContent = '✗ Disconnected';
+                document.getElementById('status').className = 'status disconnected';
+            });
+
+            // mqttClient.on('connect', () => {
+            //     console.log('!!Connected to MQTT');
+            //     document.getElementById('status').textContent = 'Connected to MQTT';
+            //     document.getElementById('status').className = 'status connected';
+            // });
+            
+            // mqttClient.on('error', (err) => {
+            //     console.error('MQTT error:', err);
+            //     document.getElementById('status').textContent = 'MQTT Error';
+            //     document.getElementById('status').className = 'status';
+            // });
+        }
+        
+        // Select player
+        function selectPlayer(player) {
+            selectedPlayer = player;
+            const buttons = document.querySelectorAll('.player-btn');
+            buttons.forEach((btn, idx) => {
+                btn.classList.toggle('active', idx + 1 === player);
+            });
+        }
+        
+        // Send MQTT message
+        function sendMessage(shoot = false) {
+            // if (!mqttClient || !mqttClient.connected) {
+            //     console.log('MQTT not connected');
+            //     return;
+            // }
+            
+            const topic = `IDD/game/player${selectedPlayer}`;
+            const payload = {
+                joy_x: joystickPosition.x,
+                joy_y: joystickPosition.y,
+                shoot: shoot
+            };
+            
+            // mqttClient.publish(topic, JSON.stringify(payload));
+            socket.emit('mqtt_publish', { topic: topic, message: JSON.stringify(payload) });
+            console.log('Published to', topic, payload);
+            if (shoot) {
+                console.log('SHOOT!', payload);
+            }
+        }
+        
+        // Joystick handling
+        const joystick = document.getElementById('joystick');
+        const stick = document.getElementById('stick');
+        const positionDisplay = document.getElementById('positionDisplay');
+        
+        function updateJoystickPosition(x, y) {
+            // Calculate position relative to joystick center
+            const rect = joystick.getBoundingClientRect();
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            let deltaX = x - centerX;
+            let deltaY = y - centerY;
+            
+            // Limit to circle
+            const maxDistance = centerX - 30; // stick radius
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            
+            if (distance > maxDistance) {
+                const angle = Math.atan2(deltaY, deltaX);
+                deltaX = Math.cos(angle) * maxDistance;
+                deltaY = Math.sin(angle) * maxDistance;
+            }
+            
+            // Update stick position
+            stick.style.left = (centerX + deltaX) + 'px';
+            stick.style.top = (centerY + deltaY) + 'px';
+            stick.style.transform = 'translate(-50%, -50%)';
+            
+            // Normalize to -1 to 1
+            joystickPosition.x = deltaX / maxDistance;
+            joystickPosition.y = deltaY / maxDistance;
+            
+            // Update display
+            positionDisplay.textContent = 
+                `X: ${joystickPosition.x.toFixed(2)}, Y: ${joystickPosition.y.toFixed(2)}`;
+            
+            // Send to MQTT
+            sendMessage(false);
+        }
+        
+        function resetJoystick() {
+            stick.style.left = '50%';
+            stick.style.top = '50%';
+            joystickPosition = { x: 0, y: 0 };
+            positionDisplay.textContent = 'X: 0.00, Y: 0.00';
+            sendMessage(false);
+        }
+        
+        // Mouse events
+        stick.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const rect = joystick.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            updateJoystickPosition(x, y);
+        });
+        
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                resetJoystick();
+            }
+        });
+        
+        // Touch events
+        stick.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+        
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            
+            const touch = e.touches[0];
+            const rect = joystick.getBoundingClientRect();
+            const x = touch.clientX - rect.left;
+            const y = touch.clientY - rect.top;
+            
+            updateJoystickPosition(x, y);
+            e.preventDefault();
+        });
+        
+        document.addEventListener('touchend', () => {
+            if (isDragging) {
+                isDragging = false;
+                resetJoystick();
+            }
+        });
+        
+        // Shoot button
+        const shootBtn = document.getElementById('shootBtn');
+        shootBtn.addEventListener('click', () => {
+            sendMessage(true);
+            
+            // Visual feedback
+            shootBtn.textContent = '💥 FIRED!';
+            setTimeout(() => {
+                shootBtn.textContent = '🔫 SHOOT';
+            }, 200);
+        });
+        
+        // Controls
+        function openGame() {
+            window.open('/', '_blank');
+        }
+        
+        function resetPosition() {
+            resetJoystick();
+        }
+        
+        // Initialize
+        initMQTT();
+    </script>
+</body>
+</html>

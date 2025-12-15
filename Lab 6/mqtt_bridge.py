@@ -21,11 +21,11 @@ mqtt_client = None
 def on_connect(client, userdata, flags, rc):
     """MQTT connected"""
     if rc == 0:
-        print(f'✓ MQTT connected to {MQTT_BROKER}:{MQTT_PORT}')
+        print(f'MQTT connected to {MQTT_BROKER}:{MQTT_PORT}')
         client.subscribe(MQTT_TOPIC)
-        print(f'✓ Subscribed to {MQTT_TOPIC}')
+        print(f'Subscribed to {MQTT_TOPIC}')
     else:
-        print(f'✗ MQTT connection failed: {rc}')
+        print(f'MQTT connection failed: {rc}')
 
 
 def on_message(client, userdata, msg):

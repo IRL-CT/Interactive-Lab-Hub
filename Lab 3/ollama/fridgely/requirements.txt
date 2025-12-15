@@ -1,0 +1,14 @@
+# Requirements
+
+# Voice processing dependencies
+SpeechRecognition>=3.10.0
+pyaudio>=0.2.11
+pyttsx3>=2.90
+
+# Alternative TTS (system-level, installed via apt)
+# espeak (install with: sudo apt-get install espeak)
+
+requests
+
+adafruit-circuitpython-mpr121
+board

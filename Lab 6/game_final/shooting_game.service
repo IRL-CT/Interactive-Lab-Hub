@@ -1,0 +1,31 @@
+[Unit]
+Description=MQTT Shooting Game Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/shooting_game
+
+# Main process
+ExecStart=/usr/bin/python3 /home/pi/shooting_game/game_server.py
+
+# Restart configuration
+Restart=always
+RestartSec=10
+
+# Output handling
+StandardOutput=journal
+StandardError=journal
+
+# Environment
+Environment="PYTHONUNBUFFERED=1"
+
+# Security hardening (optional, remove if causes issues)
+# NoNewPrivileges=true
+# PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

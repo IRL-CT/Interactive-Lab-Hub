@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Web Controller</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .player-select {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .player-btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .player-btn.player1 {
+            background: #ff3333;
+            color: white;
+        }
+
+        .player-btn.player2 {
+            background: #3333ff;
+            color: white;
+        }
+
+        .player-btn.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .joystick-area {
+            margin: 30px 0;
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            margin-left: auto;
+            margin-right: auto;
+            touch-action: none;
+        }
+
+        .joystick-stick {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #00ff00;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        .crosshair {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .crosshair.horizontal {
+            width: 100%;
+            height: 2px;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .shoot-btn {
+            padding: 20px 60px;
+            font-size: 24px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .shoot-btn:active {
+            transform: scale(0.95);
+            background: #cc0000;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff0000;
+            margin-right: 8px;
+        }
+
+        .status-dot.connected {
+            background: #00ff00;
+        }
+
+        .controls-info {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Web Controller</h1>
+        <p>Control the game from your browser</p>
+
+        <div class="player-select">
+            <button class="player-btn player1 active" onclick="selectPlayer(1)">
+                🔴 Player 1
+            </button>
+            <button class="player-btn player2" onclick="selectPlayer(2)">
+                🔵 Player 2
+            </button>
+        </div>
+
+        <div class="joystick-area" id="joystick">
+            <div class="crosshair"></div>
+            <div class="crosshair horizontal"></div>
+            <div class="joystick-stick" id="stick"></div>
+        </div>
+
+        <button class="shoot-btn" id="shoot-btn">🔫 SHOOT!</button>
+
+        <div class="status">
+            <div>
+                <span class="status-dot" id="status-dot"></span>
+                <span id="status-text">Connecting...</span>
+            </div>
+            <div style="margin-top: 10px;">
+                Position: <span id="position">0.00, 0.00</span>
+            </div>
+        </div>
+
+        <div class="controls-info">
+            💻 Keyboard: WASD to move, SPACE to shoot<br>
+            🖱️ Mouse: Drag joystick, click shoot button<br>
+            📱 Touch: Drag joystick on mobile devices
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+        let currentPlayer = 1;
+        let isDragging = false;
+        let joystickCenter = { x: 0, y: 0 };
+        let currentPos = { x: 0, y: 0 };
+
+        const stick = document.getElementById('stick');
+        const joystick = document.getElementById('joystick');
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const positionText = document.getElementById('position');
+        const shootBtn = document.getElementById('shoot-btn');
+
+        // Socket connection
+        socket.on('connect', () => {
+            statusDot.classList.add('connected');
+            statusText.textContent = 'Connected';
+        });
+
+        socket.on('disconnect', () => {
+            statusDot.classList.remove('connected');
+            statusText.textContent = 'Disconnected';
+        });
+
+        // Player selection
+        function selectPlayer(player) {
+            currentPlayer = player;
+            document.querySelectorAll('.player-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Calculate joystick center
+        function updateJoystickCenter() {
+            const rect = joystick.getBoundingClientRect();
+            joystickCenter = {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+        }
+
+        // Joystick controls
+        function startDrag(e) {
+            isDragging = true;
+            updateJoystickCenter();
+            updateStick(e);
+            e.preventDefault();
+        }
+
+        function stopDrag() {
+            isDragging = false;
+            // Reset to center
+            stick.style.transform = 'translate(-50%, -50%)';
+            sendPosition(0, 0);
+        }
+
+        function updateStick(e) {
+            if (!isDragging) return;
+
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            let deltaX = clientX - joystickCenter.x;
+            let deltaY = clientY - joystickCenter.y;
+
+            // Limit to joystick boundary
+            const maxDistance = 110; // radius - stick radius
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            
+            if (distance > maxDistance) {
+                const angle = Math.atan2(deltaY, deltaX);
+                deltaX = Math.cos(angle) * maxDistance;
+                deltaY = Math.sin(angle) * maxDistance;
+            }
+
+            stick.style.transform = `translate(calc(-50% + ${deltaX}px), calc(-50% + ${deltaY}px))`;
+
+            // Normalize to -1 to 1
+            const normalizedX = deltaX / maxDistance;
+            const normalizedY = deltaY / maxDistance;
+
+            sendPosition(normalizedX, normalizedY);
+        }
+
+        // Send position to MQTT
+        function sendPosition(x, y) {
+            currentPos = { x, y };
+            positionText.textContent = `${x.toFixed(2)}, ${y.toFixed(2)}`;
+
+            const topic = `IDD/game/player${currentPlayer}`;
+            const message = JSON.stringify({
+                joy_x: x,
+                joy_y: y,
+                shoot: false,
+                timestamp: Date.now() / 1000
+            });
+
+            socket.emit('mqtt_publish', { topic, message });
+        }
+
+        // Shoot button
+        shootBtn.addEventListener('click', () => {
+            const topic = `IDD/game/player${currentPlayer}`;
+            const message = JSON.stringify({
+                joy_x: currentPos.x,
+                joy_y: currentPos.y,
+                shoot: true,
+                timestamp: Date.now() / 1000
+            });
+
+            socket.emit('mqtt_publish', { topic, message });
+            
+            // Visual feedback
+            shootBtn.textContent = '💥 BANG!';
+            setTimeout(() => {
+                shootBtn.textContent = '🔫 SHOOT!';
+            }, 200);
+        });
+
+        // Mouse events
+        stick.addEventListener('mousedown', startDrag);
+        document.addEventListener('mousemove', updateStick);
+        document.addEventListener('mouseup', stopDrag);
+
+        // Touch events
+        stick.addEventListener('touchstart', startDrag);
+        document.addEventListener('touchmove', updateStick);
+        document.addEventListener('touchend', stopDrag);
+
+        // Keyboard controls (WASD)
+        document.addEventListener('keydown', (e) => {
+            let x = currentPos.x;
+            let y = currentPos.y;
+            const step = 0.1;
+
+            switch(e.key.toLowerCase()) {
+                case 'w': y -= step; break;
+                case 's': y += step; break;
+                case 'a': x -= step; break;
+                case 'd': x += step; break;
+                case ' ': 
+                    shootBtn.click();
+                    e.preventDefault();
+                    return;
+            }
+
+            // Clamp
+            x = Math.max(-1, Math.min(1, x));
+            y = Math.max(-1, Math.min(1, y));
+
+            if (x !== currentPos.x || y !== currentPos.y) {
+                sendPosition(x, y);
+                
+                // Update visual
+                const maxDistance = 110;
+                stick.style.transform = 
+                    `translate(calc(-50% + ${x * maxDistance}px), calc(-50% + ${y * maxDistance}px))`;
+            }
+        });
+
+        // Initialize
+        updateJoystickCenter();
+        window.addEventListener('resize', updateJoystickCenter);
+    </script>
+</body>
+</html>
