@@ -1,0 +1,8 @@
+spotipy
+python-vlc
+requests
+Pillow
+adafruit-blinka
+adafruit-circuitpython-rgb-display
+opencv-python
+pyzbar
