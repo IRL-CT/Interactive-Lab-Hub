@@ -1,6 +1,6 @@
 # Final Project  
 
-Collaborators: Kyle Li (kl2296), Nophar Shalom (ns2242)
+Collaborators: Kyle Li (kl2296), Angela Bi (ab3348)
 
 <details>
 Requirements:
