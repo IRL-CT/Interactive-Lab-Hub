@@ -353,7 +353,7 @@ Final code for the raspberry pi (4) is under the file `final_project_code_pi.py`
 
 Final code for the computer is under the file `final_project_code_server.py`.
 
-Designs used are in [this shared google drive](https://drive.google.com/drive/folders/1CJG7a2oDp3OnqXGiVvCIhhRAFl7rJiku?usp=drive_link). QR code card designs are [here](https://drive.google.com/file/d/1zqDnjq1lMP1CET62hn4BgXigs2bKYedH/view?usp=drive_link). 
+Designs used are in [this shared google drive](https://drive.google.com/drive/folders/1y_ihyC7CYjQWi6quVmSAh8PM_WfXcZeX?usp=sharing). QR code card designs are [here](https://drive.google.com/file/d/1zqDnjq1lMP1CET62hn4BgXigs2bKYedH/view?usp=drive_link). 
 
 ### Video of someone using our project + Feedback and future directions
 
