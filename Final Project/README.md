@@ -76,12 +76,6 @@ You can and are not required to work in teams. Be clear in documentation who con
 - [Testing Plan](#-testing-plan)
 - [Fallback Plan](#-fallback-plan)
 - [Progress Logs](#-progress-logs)
-  - [11/15 Log](#1115-log)
-  - [12/01 Log](#1201-log)
-  - [12/03 Log](#1203-log)
-  - [12/04 Log](#1204-log)
-  - [12/07 Log](#1207-log)
-  - [12/08 Log](#1208-log)
 - [Reflections on Process](#reflections-on-process)
 - [Group Work Distribution](#group-work-distribution)
 
@@ -234,7 +228,8 @@ The final submission will include:
 
 ## 📋 Progress Logs
 
-## 11/15 Log
+<details><summary><strong>11/15 Log</strong> — Core pipeline working: touch → audio → display</summary>
+
 
 **What We've Built So Far**
 
@@ -254,9 +249,9 @@ https://github.com/user-attachments/assets/73619182-87a8-4e3f-9667-aa8d750fe627
 
 The core loop works, but the user experience can be improved. Right now, a user can press multiple buttons rapidly, causing sounds to interrupt each other and the display to flash. Our next step is to manage the "state" of the exhibit and change the interaction to when users pick up the object, the device will play the sound.
 
----
+</details>
 
-## 12/01 Log
+<details><summary><strong>12/01 Log</strong> — State machine, input locking, dual-mode display</summary>
 
 **What We've Built So Far**
 
@@ -345,10 +340,10 @@ Visibility: Can the user clearly read the text and see the photos through the op
 
 Flow: Does the act of "peeking" distract from touching the objects, or enhance the mystery?
 
+</details>
 
----
 
-## 12/03 Log
+<details><summary><strong>12/03 Log</strong> — Stage concept design and cardboard prototype</summary>
 
 **What We've Built So Far**
 
@@ -368,9 +363,9 @@ Prototyping: We constructed a low-fidelity physical prototype using cardboard to
 
 <img width='400' src='https://github.com/user-attachments/assets/f1ba68a4-a4d3-43ab-8fd5-e9a5ac34e792'>
 
----
+</details>
 
-## 12/04 Log
+<details><summary><strong>12/04 Log</strong> — Lift-to-activate interaction and conductive filament printing</summary>
 
 **What We've Built So Far**
 
@@ -464,9 +459,9 @@ Also, we designed the 3D render for our stage
 
 https://github.com/user-attachments/assets/1af45a15-8aae-41b8-ad2e-ded2f43b09ee
 
----
+</details>
 
-## 12/07 Log
+<details><summary><strong>12/07 Log</strong> — Vintage microphone recording station with audio effects</summary>
 
 **What We've Built So Far**
 
@@ -587,11 +582,10 @@ def apply_vintage_effect(self, audio):
 - **Piper TTS** — Local text-to-speech for voice prompts
 - **Pygame** — Generates countdown beep sounds
 
----
+</details>
 
----
 
-## 12/08 Log
+<details><summary><strong>12/08 Log</strong> — Final assembly, wiring, and presentation day</summary>
 
 **What We've Built So Far**
 
@@ -662,7 +656,7 @@ https://github.com/user-attachments/assets/b84fa3b6-8378-492a-b7a2-c8640757a14e
 https://github.com/user-attachments/assets/942e80eb-3a02-402d-aafd-929c79a14102
 
 
----
+</details>
 
 ## Reflections on Process
 
