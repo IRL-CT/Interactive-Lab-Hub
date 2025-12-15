@@ -1,6 +1,6 @@
 # Final Project
 
-Using the tools and techniques you learned in this class, design, prototype and test an interactive device.
+### Collaborator: Melody Huang (yh2353), Dingran Dai (dd699)
 
 <details><summary><strong>Instruction</strong></summary>
 
@@ -638,6 +638,45 @@ https://github.com/user-attachments/assets/b84fa3b6-8378-492a-b7a2-c8640757a14e
 https://github.com/user-attachments/assets/942e80eb-3a02-402d-aafd-929c79a14102
 
 
+---
+
+## Reflections on Process
+
+**What We Learned**
+
+**1. Hardware-Software Integration Takes Time:** We underestimated how much debugging would happen at the hardware-software boundary. Issues like the C270 webcam rejecting certain sample rates, emoji encoding crashes on the Pi terminal, and Piper TTS path problems weren't predictable from reading documentation alone. Building in extra time for integration testing is essential.
+
+**2. State Machines Are Your Friend:** Early versions of our code used simple time.sleep() calls, which blocked everything. Moving to a non-blocking state machine with timestamps (unlock_time, audio_end_time, last_interaction_time) made the system responsive and professional. This pattern is worth learning early for any interactive project.
+
+**3. Small Screens Need Design Solutions:** The 1.14" PiTFT seemed limiting at first. Instead of fighting it, we embraced it with the "window" — turning a constraint into a feature. Constraints can drive creative solutions.
+
+**4. Test with Real Users Early:** Watching classmates interact with our exhibit revealed assumptions we didn't know we had. Some tried pressing the objects instead of lifting them. User testing should happen earlier in the process.
+
+**What We Wish We Knew at the Start**
+
+| Topic | What We Wish We Knew |
+|-------|----------------------|
+| **Audio on Pi** | USB audio devices have specific sample rate requirements — always test early |
+| **TTS Options** | Piper is great but requires correct paths; espeak is simpler but sounds robotic |
+| **Touch Sensing** | Copper tape quality varies — get good adhesive contact for reliable detection |
+| **Wire Management** | Plan cable lengths and routing before building the enclosure |
+| **Pygame + Sounddevice** | They can conflict; be careful initializing both audio systems |
+| **Font Support** | Pi doesn't have many fonts by default — add custom fonts to the project folder, not the system |
 
 ---
 
+## Group Work Distribution
+
+### Contribution Summary
+
+| Team Member | Contribution Areas |
+|-------------|-------------------|
+| **Melody Huang (yh2353)** | Coding, idea generation, wiring, interaction design, debugging |
+| **Dingran Dai (dd699)** | Stage design, physical assembly, aesthetics, object curation |
+
+### Collaboration Notes
+
+- **Daily syncs** — We communicated regularly to align software capabilities with physical design constraints
+- **Iterative process** — Software features influenced stage design
+- **Parallel workstreams** — Coding and stage construction happened simultaneously, merged during final assembly
+- **Joint presentation** — Both team members contributed to the final demo
