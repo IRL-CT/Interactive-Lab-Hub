@@ -322,4 +322,322 @@ Visibility: Can the user clearly read the text and see the photos through the op
 Flow: Does the act of "peeking" distract from touching the objects, or enhance the mystery?
 
 
+---
+
+## 12/03 Log
+
+**What We've Built So Far**
+
+We finalized the "Stage" concept for the Museum of Lost Sounds. The design features a multi-layered box structure:
+
+- Base Layer (Layer 1): Hides the Raspberry Pi and heavy wiring.
+
+- Interaction Surface: designated spots for the artifacts (phone, typewriter, etc.) to sit.
+
+Prototyping: We constructed a low-fidelity physical prototype using cardboard to test the ergonomics.
+
+**Design Draft**
+
+<img width='400' src='https://github.com/user-attachments/assets/502f1e80-a890-4fea-a184-1dddb341e417'>
+
+**Prototype**
+
+<img width='400' src='https://github.com/user-attachments/assets/f1ba68a4-a4d3-43ab-8fd5-e9a5ac34e792'>
+
+---
+
+## 12/04 Log
+
+**What We've Built So Far**
+
+We upgraded the interaction model from **"Touch to Activate"** to **"Lift to Activate"**. This creates a more intuitive, museum-like experience where visitors physically pick up artifacts to hear their sounds.
+
+**1. Lift Detection Logic:** Instead of triggering when a user touches an object, the system now triggers when the object is **lifted** (circuit breaks). Objects rest on conductive pads, and removing them breaks the connection.
+
+| Old Behavior | New Behavior |
+|--------------|--------------|
+| Touch pad → Trigger | Object rests on pad → Nothing |
+| Release pad → Nothing | Lift object → **Trigger!** |
+
+**2. State Tracking:** The MPR121 sensor only tells us "is it touched right now?" To detect a *lift*, we need to remember the previous state and detect the transition from `touched → not touched`.
+
+**3. Automatic Idle Return:** After the audio finishes playing, the system waits **5 seconds** (allowing button presses), then automatically returns to the idle screen. This replaces the old 30-second timeout.
+
+**Code Explanation**
+
+**1. Lift Detection (State Transition)**
+
+We added a `get_lifted()` method to `touch_input.py` that tracks state changes across frames:
+
+```python
+# touch_input.py
+def get_lifted(self):
+    for i in range(12):
+        current = self.mpr121[i].value
+        was_touched = self.previous_state[i]
+        self.previous_state[i] = current
+        
+        # Was resting (True) -> Now lifted (False) = TRIGGER
+        if was_touched and not current:
+            return i
+    return None
+```
+
+**2. Non-Blocking Idle Timer**
+
+Instead of a blocking `time.sleep(5)`, we use a timestamp so buttons still work during the wait:
+
+```python
+# main.py
+if not audio.is_busy() and audio_end_time is None:
+    audio_end_time = current_time  # Start timer
+
+if audio_end_time and (current_time - audio_end_time >= 5):
+    screen.show_idle()  # Go to idle after 5 seconds
+    is_idle_mode = True
+```
+
+**3. Button Press Resets Timer**
+
+Pressing a button during the 5-second wait resets the countdown:
+
+```python
+# main.py
+if not button_a.value and current_active_pad is not None:
+    audio_end_time = current_time  # Reset 5 second timer
+    screen.show_photo(obj["action_image"], obj["year_text"])
+```
+
+**Physical Setup**
+
+Each object needs:
+1. **Conductive base** (copper tape) that contacts the MPR121 pad
+2. **Solid resting position** so the circuit is closed when "home"
+
+```
+OBJECT AT REST:              OBJECT LIFTED:
+    ┌─────┐                      ┌─────┐  ← picked up
+    │     │                      │     │
+────┴─────┴────               ───────────
+   MPR121 pad                  MPR121 pad
+   (TOUCHED)                   (NOT TOUCHED)
+   Circuit CLOSED              Circuit BROKEN → TRIGGER!
+```
+
+
+
+**3D Printing Challenges Solved**
+
+In the previous prototype, we printed the objects using standard filaments and attached copper tape to the bottom. However, the filament was not conductive or stable enough to establish a threshold for triggering interaction. As a solution, we switched to conductive filament, and it worked! The next challenge we faced was that the temperature of the plate and the printing chamber was not high enough for the filament to adhere properly, failing three plates. We ended up turning one fan off and successfully printed all the objects.
+
+<img width='400' src='https://github.com/user-attachments/assets/083f3151-aa38-4709-9ddb-99d5f71fba47'/>
+
+Also, we designed the 3D render for our stage
+
+<img width='400' src='https://github.com/user-attachments/assets/702be439-533b-4d37-928d-be1e54cf43e4'/>
+
+**Video Showcase**
+
+https://github.com/user-attachments/assets/1af45a15-8aae-41b8-ad2e-ded2f43b09ee
+
+---
+
+## 12/07 Log
+
+**What We've Built So Far**
+
+We added a **Vintage Microphone Recording Station** — a special interactive object that records the visitor's voice and plays it back transformed to sound like a 1940s radio broadcast.
+
+**1. Unique Interaction Flow:** Unlike other objects that play pre-recorded sounds, the microphone has its own complete experience:
+
+| Step | Display | Audio |
+|------|---------|-------|
+| Pick up mic | "Vintage Mic" | Piper TTS: "Speak into the microphone after the beep!" |
+| Countdown | Giant **3, 2, 1, GO!** | Beep tones (low → high) |
+| Recording | "RECORDING" + countdown | (silence - listening) |
+| Processing | "Processing..." | (silence) |
+| Playback | "Listen!" | Transformed vintage voice |
+| Done | "Done!" | (silence) |
+
+**2. Vintage Audio Effect Chain:** We process the recorded audio through multiple effects to simulate old radio equipment:
+
+| Effect | What It Does |
+|--------|--------------|
+| Bandpass Filter (300Hz-3kHz) | Cuts bass and treble (old mics had limited range) |
+| Tape Hiss | Adds subtle background noise |
+| Vinyl Crackle | Random pops and clicks |
+| Tube Saturation | Warm soft clipping distortion |
+
+**3. Big Centered Display:** We created new display methods specifically for the microphone with larger, centered text for better visibility:
+
+| Method | Purpose |
+|--------|---------|
+| `show_mic_message()` | Two-line centered message |
+| `show_mic_countdown()` | Giant countdown numbers |
+| `show_mic_recording()` | Recording status with seconds remaining |
+
+**4. Separate Interaction Path:** The microphone is completely independent from standard objects:
+- No audio file needed in config
+- Buttons A/B are disabled during recording
+- Goes directly to idle after completion
+
+**Code Explanation**
+
+**1. Special Object Type**
+
+In `config.py`, the microphone is marked with `"type": "microphone"`:
+
+```python
+# config.py
+4: {
+    "name": "Vintage Microphone",
+    "type": "microphone",  # Special handling!
+    "record_duration": 8,
+},
+```
+
+**2. Branching Logic**
+
+In `main.py`, we check the object type and branch accordingly:
+
+```python
+# main.py
+if obj.get("type") == "microphone":
+    # Special microphone flow (record, process, play)
+    ...
+else:
+    # Standard flow (play audio file, show info)
+    ...
+```
+
+**3. Recording with Live Countdown**
+
+We record in 1-second chunks so the display can update:
+
+```python
+# main.py
+for remaining in range(8, 0, -1):
+    screen.show_mic_recording(remaining)  # Update display
+    
+    chunk = sd.rec(...)  # Record 1 second
+    sd.wait()
+    all_audio.append(chunk)
+```
+
+**4. Piper TTS for Voice Prompts**
+
+We use Piper (local TTS) to speak the instructions:
+
+```python
+# main.py
+piper_cmd = f'echo "{message}" | /home/pi/piper/piper/piper --model /home/pi/piper/en_US-lessac-medium.onnx --output-raw | aplay -r 22050 -f S16_LE -t raw -q'
+subprocess.run(piper_cmd, shell=True)
+```
+
+**5. Vintage Effect Processing**
+
+The core audio transformation in `vintage_mic.py`:
+
+```python
+# vintage_mic.py
+def apply_vintage_effect(self, audio):
+    # 1. Bandpass filter (300Hz - 3kHz)
+    b, a = signal.butter(4, [low, high], btype='band')
+    audio = signal.filtfilt(b, a, audio)
+    
+    # 2. Add tape hiss
+    audio = audio + np.random.normal(0, 0.02, len(audio))
+    
+    # 3. Add crackle
+    audio = audio + self._generate_crackle(len(audio))
+    
+    # 4. Tube saturation
+    audio = np.tanh(audio * 1.5)
+    
+    return audio
+```
+
+**Hardware**
+
+- **Logitech C270 Webcam** — Used as USB microphone input
+- **Piper TTS** — Local text-to-speech for voice prompts
+- **Pygame** — Generates countdown beep sounds
+
+---
+
+---
+
+## 12/08 Log
+
+**What We've Built So Far**
+
+We transitioned from software development to **physical prototyping and final assembly**. The exhibit came together as a complete, presentable installation ready for the final presentation.
+
+**1. Wiring and Assembly:** We consolidated all hardware components into the stage enclosure
+
+**2. Object Pedestals:** Each artifact sits on a dedicated conductive pad connected to the MPR121. Copper tape on the bottom of objects creates reliable contact for lift detection.
+
+<img width='400' src='https://github.com/user-attachments/assets/41eb02c8-9dce-4766-bd75-356d5413ae22'>
+
+**4. Final Presentation:** We demonstrated the complete Museum of Lost Sounds exhibit to the class, showcasing:
+
+- **Lift-to-Activate interaction** — Picking up objects triggers sounds
+- **Dual-mode display** — Text info + historical action photos
+
+
+**Final Look**
+
+<img width='400' src='https://github.com/user-attachments/assets/c51b0a18-3cb8-41b7-a42e-e88e34f33de3'>
+
+
+
+https://github.com/user-attachments/assets/811d0f92-cba1-4f89-82d6-a9697cd7b4ba
+
+
+**Final System Architecture**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                   RASPBERRY PI                      │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│   ┌──────────┐    ┌──────────┐    ┌──────────┐      │
+│   │  MPR121  │    │  PiTFT   │    │  C270    │      │
+│   │  Touch   │    │ Display  │    │   Mic    │      │
+│   └────┬─────┘    └────┬─────┘    └────┬─────┘      │
+│        │ I2C           │ SPI           │ USB        │
+│        ▼               ▼               ▼            │
+│   ┌─────────┐    ┌─────────┐    ┌──────────┐        │
+│   │ Objects │    │  Screen │    │ Vintage  │        │
+│   │ on Pads │    │  Output │    │ Recorder │        │
+│   └─────────┘    └─────────┘    └──────────┘        │
+│                                                     │
+│                    ┌──────────┐                     │
+│                    │ Speaker  │                     │
+│                    │  Output  │                     │
+│                    └──────────┘                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Presentation Video Showcase**
+
+
+
+https://github.com/user-attachments/assets/e0e0c30b-bcf3-434d-ad82-36b2d025348d
+
+
+
+https://github.com/user-attachments/assets/4ea5e067-bf37-46f9-adbc-4c65084bd401
+
+
+
+https://github.com/user-attachments/assets/b84fa3b6-8378-492a-b7a2-c8640757a14e
+
+
+
+https://github.com/user-attachments/assets/942e80eb-3a02-402d-aafd-929c79a14102
+
+
+
+---
 
