@@ -6,6 +6,68 @@ Inspired by traditional mechanical music boxes, LumiTune lets users explore musi
 
 ---
 
+## ⭐️ Design Process
+
+**🔔 Motivation**
+
+In an era dominated by streaming giants like Spotify and Apple Music, users are often overwhelmed by the "paradox of choice" presented by infinite catalogs and complex interfaces. The simple act of listening to music has shifted from an auditory pleasure to a visual task, requiring constant scrolling and interaction with glass screens. LumiTune seeks to eliminate this digital friction, restoring the immediate simplicity of "just turning on the radio" while offering a curated, magical experience that respects the user's visual attention.
+
+Furthermore, LumiTune recognizes that music is intrinsically tied to both memory and atmosphere. It creates a unique dialogue between the user and the environment: the user manually controls the timeline (1950s–2020s) to satisfy their nostalgia, while the device automatically interprets ambient lighting to select the matching musical "vibe." This fusion of intentional human choice and dynamic environmental sensing generates moments of emotional resonance, making the technology feel like a responsive companion rather than just a tool.
+
+Finally, this project responds to the growing desire for tactile interaction in a touchscreen-saturated world. By employing a rotary encoder for "time travel" and touch-free gestures for control, LumiTune reintroduces the satisfying physical feedback of vintage audio equipment. It effectively bridges the gap between the nostalgia of the physical world and the convenience of modern digital libraries.
+
+**🎯 Goal**
+
+Primary Objective To design and construct LumiTune, a multimodal interactive music system that harmonizes tactile physical control with environmental sensing. The goal is to transform the music listening experience from a passive, screen-based task into an intuitive, atmospheric interaction.
+
+**Key Design Objectives**
+
+* Multimodal Integration: To engineer a robust system that seamlessly combines diverse inputs—light sensing (for genre selection), rotary encoding (for decade selection), and touch-free gestures (for playback control).
+
+* Contextual Harmony: To create a device that "reads the room," automatically aligning the musical energy (e.g., Chill vs. Party) with the physical lighting environment, thereby reducing the friction of manual selection.
+
+* Tangible Nostalgia: To bridge the gap between digital streaming and analog history by using physical, tactile controls to "time travel" through decades of music (1950s–2020s)
+
+**👥 Target Audience**
+
+* The Digital Minimalist Users who experience screen fatigue and want to enjoy music without the distraction of smartphone notifications, complex apps, or infinite scrolling. They value "Calm Technology" that works instantly and intuitively.
+
+* The Atmosphere Creator Homeowners or hosts who use music primarily to set a mood rather than to listen to specific artists. They benefit from a device that automatically adapts the playlist vibe to match the lighting of a dinner party, a study session, or a relaxing evening.
+
+* The Tactile Enthusiast Audiophiles and retro-tech lovers who miss the physical satisfaction of turning knobs and interacting with hardware. They appreciate the novelty of a physical interface that controls modern digital content.
+
+* The Smart Home Explorer Tech-savvy users interested in IoT and ambient computing who enjoy devices that feel "alive" and reactive to their physical surroundings.
+
+**🔖 Storyboard**
+
+![storyboard](./assets/storyboard.png)
+
+---
+
+## 📝 Project Plan
+
+**⏳ Timeline**
+
+| Milestone | Date | Notes |
+| :--- | :--- | :--- |
+| **Setup & Box Design** | W1 Nov 15 | Create the storyboard and finalize the interaction flow. Verify that all hardware components and sensors are functioning properly and ready for integration. |
+| **Module Development** | W2 Nov 18 | Implement #1 color/brightness detection, #2 gesture controls, and #3 rotary movement modes. |
+| **Mobile Control + MQTT Development** | W2 Nov 23 | Implement MQTT messaging for phone; setup MQTT broke, build simple mobile UI to send messages, and implement Pi-side message parsing + fallback logic. |
+| **Module Testing + Product Appearance Design** | W3 Nov 26 | Test all modules: verify gesture reliability, color detection, motor modes, MQTT message flow (connect, publish, subscribe, reconnection). |
+| **System Integration + Product Outlook Generation** | W3 Dec 1 | Combine all modules into one system; ensure conflict handling and smooth state transitions. Design appearance and use 3D Printer & laser machine to generate product outlook. |
+| **User Interaction Testing** | W4 Dec 5 | Conduct user tests to evaluate all functions; test common misuse scenarios. |
+| **Final Write-up + Documentation** | W4 Dec 14 | Complete the final report, including functions, architecture diagrams, and final demo preparation. |
+
+**🛡️ Fallback Plan**
+
+* **Gesture Sensor Instability:** If the APDS-9960 sensor misreads inputs, the **Web Controller** serves as the primary backup for volume and track control.
+* **Color Sensing Failure:** If lighting conditions cannot be determined, the system defaults to the **"Warm"** genre playlist to ensure continuous audio.
+* **Network Disconnection:** If the Wi-Fi or MQTT connection drops, the system enters **Standalone Mode**—local playback and physical sensors continue to function without interruption.
+* **Motor Malfunction:** The decorative servo operates asynchronously; if the motor stalls, the **audio engine continues running** unaffected.
+
+
+---
+
 ## 🎥 Demo & Media
 
 **📸 Device overview**
@@ -16,6 +78,21 @@ Inspired by traditional mechanical music boxes, LumiTune lets users explore musi
 
 
 **🎬 User Testing Video**: [Click to watch](./assets/user_testing.MP4)
+
+**🖇️ User Testing & Iteration**
+
+Testing Challenge: Sensor Input Conflict
+1. **Observation** During the usability testing phase, a critical conflict was identified between the two functions of the APDS-9960 sensor (Gesture Proximity and Ambient Light Sensing). Users attempting to execute the "Pause/Play" command—which requires holding a hand over the sensor for 1 second—inadvertently cast a shadow over the sensor. The system interpreted this sudden drop in brightness as a change in the environmental "vibe," causing the music genre to switch unexpectedly (e.g., from Energetic to Chill) at the same moment the music paused.
+
+2. **Root Cause Analysis** The issue stemmed from both event triggers processing data simultaneously. The "Hold to Pause" threshold (approx. 1 second) was shorter than the light sensor's stability check at the time, meaning a hand hovering for a gesture was indistinguishable from the room lights being turned off.
+
+3. **Solution: Temporal Hysteresis (Time-Based Filtering)** To resolve this, we implemented a software-based differentiation strategy using temporal thresholds:
+
+* Proximity Logic (Immediate): The system continues to register "Hold" gestures after 1 second of proximity detection to ensure responsive playback control.
+
+* Light Sensing Logic (Delayed): We introduced a significant delay (hysteresis) to the environmental sensing algorithm. The system now requires a new light level to remain stable for minimum 10 seconds before triggering a genre change.
+
+4. **Outcome** This update effectively filters out transient shadows caused by hand gestures. In subsequent tests, users were able to pause/play music without triggering an unwanted genre switch, while the system remained responsive to genuine, sustained changes in room lighting.
 
 ---
 
@@ -148,7 +225,8 @@ Project/
 │   ├── enclosure_2.jpg
 │   ├── enclosure_3.jpg
 │   ├── user_testing.mp4
-|
+│   └── storyboard.png
+│
 └── README.md
 ```
 
