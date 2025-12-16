@@ -6,13 +6,34 @@
 
 I built a pair of "compasses" that point towards each other no matter where they are in a room. While standard GPS tools reduce social connection to Cartesian coordinates on a map, the Friend Compass uses relative RF signal strength (RSSI) and sensor fusion to provide a continuous, egocentric bearing toward a partner. It explores how relative directional cues foster a sense of presence, turning navigation into a "warm" game of hot-and-cold rather than a cold turn-by-turn instruction.
 
+## Inspiration
+
+Please note that this project is heavily inspired by [komugiko2000's](https://www.instagram.com/komugiko_2000/) animation for [ZUTOMAYO – Hunch Gray (Music Video)](https://www.youtube.com/watch?v=ugpywe34_30). You can click on the thumbnail below to watch the YouTube video and understand the inspiration. I highly recommend it!
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=ugpywe34_30" target="_blank">
+ <img src="https://img.youtube.com/vi/ugpywe34_30/maxresdefault.jpg" alt="Watch the video" width="640" height="360" border="10" />
+</a>
+</div>
+
+## Background
+
+I actually watched the above video a few years ago and was fascinated by the concept of a compass wristwatch that points to a friend. However, I didn't have the knowledge, resources, or ability at the time for how to even go about building it- and this was my best guess. Here is my sketch from 2022/2023:
+
+<img width="2161" height="582" alt="image" src="https://github.com/user-attachments/assets/2209add0-8e25-47cb-83a4-d1714367e740" />
+
+...and here is a sketch I made for this project (November 2025):
+
+<img width="2305" height="773" alt="image" src="https://github.com/user-attachments/assets/b50572c7-32c5-4001-b8b9-b7752bb7c6cd" />
+
+
 ## Overview
 
 ### Part A: The Scope Pivot (Hardware)
 
-The original vision for this project was ambitious: a Femtoduino-driven watch with a physical brushless motor spinning a needle. I quickly realized this was extreme scope creep. Absolute position motors are expensive, and standard DC motors require complex encoders to know where they are pointing. I tried varying approaches like using a stepper motor (limited to 180 degrees) and a continuous brushless motor but mechanical drift was a constant enemy. Without a closed-loop control system, the physical needle would eventually lose its orientation relative to "North," making the compass useless.
+I started this project with an extremely ambitious "hardware-first" mindset. The original plan was to build a pair of physical wristwatches driven by Femtoduinos, using tiny brushless motors to spin a physical needle. I spent the first week diving into the mechanics of absolute positioning and quickly realized I was spiraling into scope creep. Absolute position motors are surprisingly expensive, and standard DC motors have no idea "where" they are pointing without complex optical encoders. I tried stepper motors, but they are often capped at 180 degrees or require bulky drivers. I considered continuous rotation servos with slip rings, but mechanical drift became a constant enemy; without a closed-loop control system, the physical needle would eventually lose its orientation relative to "North," making the compass useless after just a few minutes of walking.
 
-I pivoted to using a Raspberry Pi 5 with a digital visualization. This allowed me to focus on the actual hard problem: the signal processing. While less "mechanical" than a moving needle, the digital display allowed for rapid iteration on the smoothing algorithms without worrying about the physical latency of a motor.
+I realized that while a physical needle is cool, I was solving a mechanical engineering problem instead of the interaction design problem I actually cared about. I pivoted hard. I swapped the Femtoduino for a Raspberry Pi 5 and the physical motor for a digital display. This allowed me to focus on the actual hard problem: the invisible signal processing. While less "mechanical" than a moving needle, the digital display allowed for rapid iteration on the smoothing algorithms without worrying about the physical inertia or latency of a motor. It shifted the project from "How do I spin this gear?" to "How do I know where my friend is?"
 
 Here is my original pitch:
 
@@ -29,51 +50,89 @@ From left to right:
 
   <img width="960" height="540" alt="idd_compass_tried" src="https://github.com/user-attachments/assets/b673298b-678a-4524-b47d-9e0f3337153a" />
 
-The core technical challenge was calculating direction using Wi-Fi signals. I initially hoped to use a GPS module, but it was incredibly brittle, failing completely indoors and requiring open sky. I shifted to using RSSI (Received Signal Strength Indicator) over a shared Wi-Fi network to estimate proximity and direction.
+The core technical challenge was calculating direction using Wi-Fi signals. My initial instinct was to use a GPS module on the Pi. I thought, "Satellites know where everything is, right?" I was wrong. The GPS modules were incredibly brittle, failing completely indoors (where most social interaction happens) and requiring a clear view of the sky to get even a 10-meter accuracy radius. For a "room-scale" interaction, 10 meters of error is useless, you could be in the kitchen while the compass says you’re outside.
 
-I learned the hard way that RSSI is extremely fickle. It suffers heavily from Multipath Interference: signals bouncing off walls, floors, and metal desks, creating noise that makes a static device look like it's teleporting. Even a hand covering the antenna can drop the signal strength significantly, throwing off the calculation. To combat this, I implemented a complementary filter. I used the Raspberry Pi's IMU (Gyroscope/Magnetometer) to stabilize the "needle." The compass relies on RF for the long-term trend but uses the Gyro to handle short-term movements, preventing the needle from jittering wildly with every packet drop.
+So, I looked at what was already in the air: Wi-Fi. I shifted to using RSSI (Received Signal Strength Indicator) over a shared Wi-Fi network to estimate proximity and direction. I hypothesized that I could triangulate position based on signal strength (I did my undergraduate degree in Mathematics and Bellman's Lost in a Forest navigation problem was by far my favorite- but that is more geometric than this). The "Moment of Truth" came when I set up the two Pis on opposite ends of my apartment. I wrote a script to make the "Seeker" Pi scan for the "Target" Pi's unique beacon packets. I watched the console logs: RSSI: -45dBm, RSSI: -60dBm. It was working! The numbers moved as I moved. But they were pretty messy.
 
-Here is a picture showcasing the **Sphero Ollie (left)** and **Sphero BB-8 (right)**, both robots can be controlled manually via the smartphone app 'Sphero EDU'. Neither have any sort of autonomous capabilities or cameras, that's what I wanted to add.
+Here is a diagram of the pivoted architecture, moving from raw hardware to a sensor-fusion software approach:
 
-![IMG_5722](https://github.com/user-attachments/assets/6af0b38b-35bc-4eb6-aa50-4afcba365ad2)
+<img width="4096" height="1962" alt="compass_new_diagram" src="https://github.com/user-attachments/assets/5fc7f168-f00a-4272-945b-55b91c463eec" />
 
-### Part C: The Interaction
+### Part C: The Mess
 
-Despite the brittleness of the underlying signal, the interaction feels magical when it works. In a confined, open environment (like a large living room or lab without heavy metal interference), the compass reliably points toward the partner device.
+However, seeing numbers on a console screen and getting an arrow to point at a person turned out to be two completely different realities. The gap between "I have data" and "I have a compass" was massive and filled with physics problems I hadn't anticipated. When I first hooked the RSSI data directly to the visual arrow, the result was a catastrophe. The arrow didn't point at my friend; it seized violently, vibrating back and forth across 180 degrees, or spinning in circles even when both devices were sitting perfectly still on a table.
 
-The "Pirates of the Caribbean" effect is real. Users noted that because the device is "alive" (constantly updating), their brains do a lot of the work. If the needle points generally in the right direction, the user feels a connection. The smoothing algorithms helped here immensely; by damping the rotation, the compass feels like it has weight and inertia, making it feel less like a glitchy computer and more like a physical object.
+I discovered that indoor environments are essentially "Halls of Mirrors" for radio waves. This is called Multipath Interference: signals bouncing off walls, floors, and metal desks, creating noise that makes a static device look like it's teleporting. Even a hand covering the antenna can drop the signal strength significantly, throwing off the calculation. The signal from my friend's device wasn't just coming in a straight line; it was bouncing off nearly everything around it. Sometimes a reflected signal was stronger than the direct line-of-sight signal because the direct path was blocked by my own body (maybe since humans are mostly water, and water blocks 2.4GHz waves effectively?). The compass would confidently point at a metal cabinet because that's where the strongest reflection was coming from. I first tried to solve this with machine learning regression, feeding it raw data to "learn" the room, but the environment was too dynamic. Moving a chair or opening a door changed the RF landscape completely.
+
+The breakthrough came when I realized I couldn't rely on RF alone for direction. I needed to know what the device itself was doing. If the signal strength dropped, did my friend run away, or did I just turn my body? To answer this, I integrated an IMU (Inertial Measurement Unit) but I discovered it didn't have a magnetometer (compass chip), only a Gyroscope and Accelerometer. This meant the device had absolutely no idea where "North" was. It was blind to the world, only knowing how fast it was spinning. However, this was useful for the compass to know if we were "turning our body" and essentially could ensure that rotating the device keeps the needle still pointing in the same consistent direction with the IMU readings.
+
+Since we could solve rotating in place, the biggest thing left was accuracy of the needle. Multipath inference was the boss of all bosses- to which I was stumped. Thankfully, real lifef comes to save us sometimes. Reggie Nintendo visited our campus the next day and reminded me that the Wii existed, and specifically Wii Sports Resort and the Wii Balance Board. I remembered something that every person who owned a Wii went through- and wondered if it could be applied to my own setting. Custom calibration the very first time you set it up. So I implemented a "Calibration" startup sequence. When we start using our compass, the user spins around their friend in a slow 360-degree circle. The system maps the RSSI strength and how it changes in that dynamic environment. It identifies the angle where the signal was strongest (the "Peak") and defines that virtual angle as "Friend." From that moment on, the system relies entirely on a calibrated environment that is custom to the person, and not some generic model from a completely different env. This smoothed the experience drastically. While RSSI and multipath inference were still issues, they were noticably less aparrent with the needle stopped jumping to reflections because it was anchored to that initial calibration scan. It wasn't perfect, since there was no magnetometer to correct it, and sometimes Gyro drift would eventually creep in, but it transformed the device from a broken random number generator into something that felt stable, heavy, and intentional.
+
+Here is what the device looked like with needle pointing in direction of a friend:
+
+<img width="2037" height="804" alt="compassespointing1" src="https://github.com/user-attachments/assets/42f23608-ee26-48ec-b801-6b35d0986fb2" />
+
+### Part D: The Interaction
 
 Observations
 
-Where the system shines is the most common case: indoor lighting that isnt ridiculous, a single person 1-3m away, and a floor that isnt slippery. In these conditions, robot feels responsive and accelerates forward when the human is in view of the camera. However, it falls apart in predictable places. Backlight and low light (especially nighttime) makes YOLO break or hallucinate. More than one person and even temporary occlusions encourage target switches (and I thought it was out of scope to put effort into coding stickiness to the last seen person). Glossy floors were a completely unexpected issue- I found that the Ollie could slip on quick turns and then overshoot even if the perception was fine. I had to tone down the speed of accel/decel and the rotation just for this floor issue. The FOV of the camera was also interesting since my settings I used for webcam definitely did not translate perfectly to the FPV camera (more on this later).
+Despite the brittleness of the underlying signal, the interaction feels magical when it works. In a confined, open environment (like a large living room or lab without heavy metal interference), the compass can usually reliably point toward the partner device, with some drift/interference (it is impossible to get rid of all interference with Wi-Fi).
+
+In an open room without too many obstacles, when you turn the device and the arrow spins to lock onto your friend, it feels genuinely alive. It feels like a magnetic pull. Users immediately understood the "game" of it without explanation. However, the system falls apart in predictable, physics-based ways. Even with the smoothing, Multipath Interference is a persistent enemy. In the Maker Lab, which is full of metal desks and equipment, the signal would sometimes bounce so hard that the "Peak" during calibration was actually a reflection off a wall, leading the user confidently in the wrong direction. I also found that the human body is a giant blocker; simply holding the device close to your chest (or enclosing the wifi sensors with your hands) could drop the signal strength by 10dBm, making the compass think your friend just sprinted 20 feet away.
 
 Users
 
-Thinking like a user, I realized very few people are aware theyre interacting with a probability distribution and not a robot. If the robot stops randomly, they dont see "low confidence", they just see weird behavior. I thought about using Sphero v2 API and potentially adding LED cues to make state legible (i.e. blue when it’s confidently tracking you, yellow when it’s searching, red when it stops for safety) but realized that this didn't transfer well across different Sphero models and I sort of wanted to make a "model-agnostic" camera/robot control code. I also realized that the starting and stopping were way too violent for users, and ended up softening behavior to be a lerp between accel and decel when it loses track of human/gains sight, instead of just an immediate stop or start. Finally, I replaced my naive "always correct to perfect center of camera" approach with bigger and more friendly dead-zone. If you’re approximately centered in the shot, it holds its course so it doesnt feel like its constantly hunting for a pixel-perfect alignment (rotating left and right and left and right...).
+Thinking like a user, I realized that "accuracy" matters a bit less than "responsiveness." If the needle jumps around wildly (which raw RSSI data does), the user thinks the device is broken. If the needle moves smoothly but is slightly wrong, the user thinks they are reading it wrong or that it's "calibrating" (or like some users pointed out, were convinced that it was accurate and justified reasons for the needle's direction). I leaned into this. I implemented a heavy filter that trusts the Gyroscope for short-term rotation and ignores sudden, impossible jumps in RSSI signal. This makes the needle feel heavy and intentional, rather than jittery and digital. Users described this as feeling more like a "magnetic" compass, which was exactly the socio-affective vibe I wanted.
 
-Here are some of the failures of the robot (Please note, this is after the FPV camera was attached for part 2. This is just to showcase some of the failures that are described above, like overrotating, glossy floors, accelerating into walls, and the like)
+The "Pirates of the Caribbean" effect is real. Users noted that because the device is "alive" (constantly updating), their brains do a lot of the work. If the needle points generally in the right direction, the user feels a connection. The smoothing algorithms helped here immensely; by damping the rotation, the compass feels like it has weight and inertia, making it feel less like a glitchy computer and more like a physical object.
 
-https://github.com/user-attachments/assets/0f6dcfd1-2ecd-4f9b-86b2-35c0f42ef667
+Here are some top-down photos of the compass:
 
-### Part D
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9e485272-d365-459f-a2f7-c7624004136e" width="45%" />
+  <img src="https://github.com/user-attachments/assets/53e4c728-707e-4839-a466-9d2d334b77e6" width="45%" />
+</p>
 
-To describe my setup again, I used a PC webcam and my location and size on the webcam defined how the robot would accelerate, decelerate, and rotate. This made debugging a very interesting process of having to pick up the Sphero, take it to the end of the room, then face the camera and watch how my location/size on camera would affect the Sphero's movement in each iteration of the script. I realized that this setup worked best with plain bright indoor environments (with flat ground) and was bad with backlit hallways, dark lighting. When it breaks (and it broke often), it was often due to detection failing or my programming of the robot's behavior was not great. Most failures were recoverable by adjusting the code for its behavior, but detection being reliable was much more-so lighting conditions. Biggest fixes for this part were adding smoothing to speed and dead-zones for human being in center of frame so that the robot comes directly towards you and slightly rotates if you are off to one side. It felt kind of personable and the first time it did it I felt really happy when I saw the arc that it curved in to get to me- realizing that it could sort of navigate autonomouslyish.
+Here is a video of the compass when it is near a friend:
 
-| **Question** | **Answer** |
-|---------------|------------|
-| **What can you use X for?** | We can use our pet robot to provide companionship. We do not need to feed it or worry about taking care of it, and can enjoy a socio-affective relationship. |
-| **What is a good environment for X?** | Good environments for the pet robot are generally well-lit areas for vision with non-slip surfaces for navigation, and only one human actor visible. |
-| **What is a bad environment for X?** | Bad environments are dark areas, slippery floors, or have many human actors to detect and follow. |
-| **When will X break?** | The pet robot will break when it gets stuck underneath chairs, beds, cabinets, etc. and needs to be retrieved. It also breaks in all of the bad environments described above, and especially breaks with high-latency instructions. |
-| **When it breaks how will X break?** | When it breaks, the pet robot will be immobile (unable to escape a stuck position), will hop from person to person in a crowd, or will generally just not be responsive enough for a quality interaction (in high-latency settings). |
-| **What are other properties/behaviors of X?** | The pet robot's behaviors need to be explicitly programmed. The width of the dead-zone for how much it rotates to keep a human centered in its vision, the speed and acceleration it uses, its stopping distance from the human, and its default mode (searching by rotating in circles) are all adjustable settings that make the robot interactable and animated. |
-| **How does X feel?** | The pet robot, under low-latency settings, feels like a puppy that chases you around. It constantly nips at your feet and follows you everywhere you go. It is quite an adorable experience with the Sphero frames being designed to appear friendly to even children, so it following you isn’t anything scary. |
+https://github.com/user-attachments/assets/d746280c-711a-43e1-8f6f-bfefe4ae0745
 
-I believe that there are quite a few videos to refer to for this section: namely the working demo below, and the breaking demo above.
+### Part E: Lessons
+
+I realized that the interaction worked best when I treated it as "Calm Technology." It shouldn't scream at you. It should just be.
+
+| Question | Answer |
+| :--- | :--- |
+| **What can you use X for?** | The Friend Compass is used for maintaining a peripheral sense of connection. It allows you to find a friend in a crowd or a large venue without staring at a map app or texting "Where r u?". |
+| **What is a good environment for X?** | Open indoor spaces, line-of-sight scenarios (like a warehouse party or gym), or wood-framed houses where RF passes through walls easily. |
+| **What is a bad environment for X?** | Metal-heavy labs (Faraday cage effect), dense concrete buildings, or incredibly crowded Wi-Fi environments (like a convention center) where packet loss is high. |
+| **When will X break?** | It breaks when Multipath Interference overwhelms the filter (e.g., standing next to a large metal fridge) or when the devices hand-off to different Wi-Fi access points. |
+| **When it breaks how will X break?** | The arrow will drift aimlessly (due to Gyro drift) or lock onto a "reflection" of the signal (like a wall) rather than the true source. |
+| **What are other properties/behaviors of X?** | The "weight" of the needle is programmable. I can make it twitchy and reactive (good for tracking fast movement) or heavy and slow (good for general direction). |
+| **How does X feel?** | It feels like a "living" artifact. The needle has a "magnetic" pull towards your friend. It feels playful, slightly mysterious, and warm. |
+
+#### What worked and what didn’t
+The Wins: The pivot was the biggest win. Moving away from hardware mechanics to software signal processing saved the project. The "vibe" was also a huge success. Even when the compass was technically inaccurate (pointing 15 degrees off), users didn't care. They corrected their path naturally, like playing "Hot and Cold." The visual feedback of the needle rotating smoothly (thanks to the Gyro) made the device feel high-quality, masking the noisy data underneath.
+
+The Misses: RSSI is barely usable for precision. It is incredibly sensitive to the environment. The "GPS" idea was a total failure indoors. Also, the lack of a magnetometer means the device suffers from Gyro Drift over time. If you use it for 10 minutes straight without re-calibrating, "North" will slowly drift to the left or right, and the arrow will lose its accuracy.
+
+#### Lessons for making it more autonomous
+The biggest lesson was that filtering creates reality. The raw data says the friend is teleporting around the room. The filter says the friend is standing still. The user believes the filter. For a device to feel "smart," it doesn't need perfect sensors; it needs a model of the world that rejects impossible data.
+
+I also learned that "calibration" can be a feature, not a bug. Asking the user to calibrate the device creates a ritual that builds trust in the machine. It makes the user an active participant in the sensing loop.
+
+#### What I’d do next
+The first thing I’d change is the radio. LoRaWAN is the answer. Wi-Fi is designed for Netflix, not ranging. LoRa modules (like the SX1280) have Time-of-Flight (ToF) capabilities that measure how long a signal takes to travel, which is infinitely more accurate for distance than measuring signal loudness (RSSI).
+
+Second, Haptics. I want to integrate vibration motors. As you get closer to your friend, the watch should pulse like a heartbeat (The "Tell-Tale Heart" effect). This allows for eyes-free navigation, you could find your friend with your hands in your pockets.
+
+Third, Magnetometer. I would absolutely ensure the next iteration has a working magnetometer. Relying solely on the Gyro creates a "time limit" on usage before drift makes it unusable. A 9-axis IMU (instead of 6-axis) is a requirement for version 2.
+
+Here is a longer format video of the Friend Compass in action, showing the calibration spin and the "seeking" behavior.
+
+
 
 ### Part 2.
-
-For Part 2 I wanted to take what I had managed to do: a proof of concept/prototype on the PC using its webcam and the Sphero, to a real usable autonomous robot. Thankfully, I had some of the materials for the job already in my closet. I had a tiny FPV camera, a 5.8G OTG Skydroid Receiver, and a set of 6 200mW batteries, as well as some scotch tape. 
 
 Here is a diagram of how I envisioned my robot to work after I switch from a PC webcam to a small FPV camera that goes on the robot.
 
