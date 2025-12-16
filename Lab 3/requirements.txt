@@ -21,7 +21,7 @@ dlinfo==2.0.0
 docopt==0.6.2
 espeakng-loader==0.2.4
 faster-whisper==1.2.0
-filelock==3.19.1
+filelock==3.20.1
 flatbuffers==20181003210633
 fsspec==2025.9.0
 hf-xet==1.1.10
