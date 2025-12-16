@@ -12,9 +12,8 @@ Please note that this project is heavily inspired by [komugiko2000's](https://ww
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=ugpywe34_30" target="_blank">
- <img src="https://img.youtube.com/vi/ugpywe34_30/maxresdefault.jpg" alt="Watch the video" width="640" height="360" border="10" />
+ <img src="https://github.com/user-attachments/assets/f6a5ddf4-38cb-4a04-9595-eb279464b355" alt="Watch the video" width="640" height="360" border="10" />
 </a>
-</div>
 
 ## Background
 
