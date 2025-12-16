@@ -226,7 +226,7 @@ The `compass.py` script relies on **Stereo RF**. The Root Pi must have **two sep
 
 ### Critical Setup Instructions
 
-To make this work, you cannot just run the scripts. You must configure the hardware environment first.
+To make this work, you cannot just run the scripts!! You MUST configure the hardware environment first (super important)
 
 **1. Monitor Mode is Mandatory**
 The `compass.py` script requires raw access to radio packets. You must manually set your USB Wi-Fi adapters (`wlan1` and `wlan2`) to Monitor Mode before running the script.
@@ -263,28 +263,11 @@ pkill -f "python.*screen_boot_script.py"
 
 ## AI Disclaimer
 
-I used AI coding assistance (GitHub Copilot) to generate the `scapy` packet sniffing logic in `compass.py` and the `pygame` rendering boilerplate in `mirror.py`. The sensor fusion math (weighted averaging of RSSI delta and Gyroscope integration) and the distributed "Beacon/Mirror" architecture were implemented mostly manually to ensure low latency.
+I used AI coding assistance (GitHub Copilot) to generate the `scapy` packet sniffing logic in `compass.py` and the `pygame` rendering boilerplate in `mirror.py`. The sensor fusion math (weighted averaging of RSSI delta and Gyroscope integration) and the distributed "Beacon/Mirror" architecture were implemented piecewise with quite a bit of manual work from me to ensure low latency.
 
-## Pictures of the robot
+## Poster
 
-<table>
-  <tr>
-    <td>
-      <img src="https://github.com/user-attachments/assets/3f095ea5-4396-4ae5-8052-7402fe28fc14" alt="1_finished_IMG_5726" width="100%"/>
-    </td>
-    <td>
-      <img src="https://github.com/user-attachments/assets/d16ea9d6-74cd-4e93-91cd-1c52610657d0" alt="2_finished_IMG_5726" width="100%"/>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <img src="https://github.com/user-attachments/assets/2e707e09-8f39-4ee3-a217-b9e7d04e1a3c" alt="3_finished_IMG_5726" width="100%"/>
-    </td>
-    <td>
-      <img src="https://github.com/user-attachments/assets/bed0d4a0-06fc-47d0-91f0-a618bf0823fd" alt="4_finished_IMG_5726" width="100%"/>
-    </td>
-  </tr>
-</table>
+<img width="2500" height="1666" alt="FriendCompassPoster" src="https://github.com/user-attachments/assets/4e7827da-405f-4c2a-9ab1-75e36f9561df" />
 
 ## Credits
 
