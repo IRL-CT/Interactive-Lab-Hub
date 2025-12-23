@@ -70,15 +70,15 @@ To design and build LumiTune, a multimodal interactive music system that integra
 ---
 
 ## 🎥 Demo & Media
-
 **📸 Device overview**
 
 | Hardware | Enclosure - Left | Enclosure - Front | Enclosure - Right |
 |--------|--------|--------|--------|
 | ![hardware](./assets/hardware.jpg) | ![enclosure - left](./assets/enclosure_1.JPG) | ![enclosure - front](./assets/enclosure_2.JPG) | ![enclosure - right](./assets/enclosure_3.JPG) |
 
+**🎬 Demo Video**: [Click to watch on YouTube](https://youtu.be/L6jBFdgEYPU)
 
-**🎬 User Testing Video**: [Click to watch](./assets/user_testing.MP4)
+**📷 User Testing Video**: [Click to watch](./assets/user_testing.MP4)
 
 **🖇️ User Testing & Iteration**
 
