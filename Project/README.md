@@ -1,4 +1,5 @@
 # 🎶 **LumiTune — Sensor-Driven Interactive Music Box**
+**Collaborators: Jessica Hsiao (dh779), Irene Wu (yw2785)**
 
 LumiTune is an immersive, sensor-driven music box that blends **physical interaction**, **environmental sensing**, and **networked control**.
 
@@ -18,7 +19,7 @@ Finally, this project responds to the growing desire for tactile interaction in 
 
 **🎯 Goal**
 
-Primary Objective To design and construct LumiTune, a multimodal interactive music system that harmonizes tactile physical control with environmental sensing. The goal is to transform the music listening experience from a passive, screen-based task into an intuitive, atmospheric interaction.
+To design and build LumiTune, a multimodal interactive music system that integrates tactile physical controls with environmental sensing to create a more embodied listening experience. LumiTune aims to shift music engagement from a passive, screen-based activity to an intuitive, atmospheric interaction shaped by both user intent and surrounding context.
 
 **Key Design Objectives**
 
@@ -30,13 +31,13 @@ Primary Objective To design and construct LumiTune, a multimodal interactive mus
 
 **👥 Target Audience**
 
-* The Digital Minimalist Users who experience screen fatigue and want to enjoy music without the distraction of smartphone notifications, complex apps, or infinite scrolling. They value "Calm Technology" that works instantly and intuitively.
+* Digital Minimalist Users - Individuals who experience screen fatigue and want to enjoy music without the distraction of smartphone notifications, complex apps, or infinite scrolling. They value *Calm Technology* that operates instantly, intuitively, and with minimal cognitive load.
 
-* The Atmosphere Creator Homeowners or hosts who use music primarily to set a mood rather than to listen to specific artists. They benefit from a device that automatically adapts the playlist vibe to match the lighting of a dinner party, a study session, or a relaxing evening.
+* Atmosphere-Creator Homeowners and Hosts - Users who treat music primarily as a way to shape ambience rather than to select specific artists or tracks. They benefit from a system that automatically adapts musical “vibe” to environmental cues, such as lighting conditions during a dinner party, study session, or relaxing evening.
 
-* The Tactile Enthusiast Audiophiles and retro-tech lovers who miss the physical satisfaction of turning knobs and interacting with hardware. They appreciate the novelty of a physical interface that controls modern digital content.
+* Tactile-Enthusiast Audiophiles and Retro-Tech Lovers - Users who miss the physical satisfaction of knobs, dials, and embodied interaction. They appreciate the novelty and emotional resonance of a tangible interface that controls modern digital music content.
 
-* The Smart Home Explorer Tech-savvy users interested in IoT and ambient computing who enjoy devices that feel "alive" and reactive to their physical surroundings.
+* Smart Home Explorers - Tech-savvy users interested in IoT and ambient computing who enjoy devices that feel responsive, context-aware, and “alive” within their physical environment.
 
 **🔖 Storyboard**
 
@@ -130,12 +131,12 @@ Example: `1960_chill_02.mp3`
 
 Ambient lighting determines the vibe:
 
-| Environment Condition | Genre |
-|----------------------|--------|
-| Very dim light | Chill |
-| Extremely bright | Party |
-| Moderate brightness + warm tone | Warm |
-| Moderate brightness + neutral/cool tone | Energetic |
+| Environment Condition | Genre | Color |
+|---|---|---|
+| Very dim light | Chill | Blue |
+| Extremely bright | Party | Red |
+| Moderate brightness + warm tone | Warm | Yellow |
+| Moderate brightness + neutral/cool tone | Energetic | Green |
 
 Genre switching occurs **only when conditions remain stable** for several seconds to avoid flicker.
 
@@ -343,6 +344,38 @@ Supported genres:
 ✔ party  
 
 Each decade folder contains 12 total files (3 tracks × 4 genres).
+
+---
+
+## 🎞️ Reflection
+
+Through the development of LumiTune, we learned the importance of extensive user testing and deliberate system integration in multimodal interactive devices. While individual sensors and interaction techniques functioned reliably in isolation, unexpected conflicts emerged once they were combined within a shared physical and temporal context. This experience highlighted the need to think beyond isolated features and instead design for how multiple inputs interact over time within a single embodied system.
+
+The project also emphasized the value of clear collaboration structures and dedicated integration phases. Although dividing responsibilities by subsystem enabled efficient parallel development, many critical issues only became apparent during full-system testing. This reinforced the insight that integration is not merely a final implementation step, but a core design phase that requires intentional planning and iteration.
+
+The following challenges were particularly significant lessons for us:
+
+### 1. Managing Multi-Sensor Interactions Through Time-Based Logic
+
+One key lesson was that sensor inputs cannot be treated independently when they reflect overlapping user intent or physical presence. Our initial implementation relied primarily on instantaneous thresholds (e.g., brightness levels or proximity duration), which led to unintended interactions—most notably when gesture-based pause controls interfered with ambient light sensing.
+
+Through user testing, we identified time-based filtering and prioritization (temporal hysteresis) as essential strategies in sensor-driven interaction design. By introducing stability windows and input precedence rules, we were able to distinguish intentional environmental changes from transient human actions. This reinforced the understanding that robust interactive behavior often depends more on temporal logic and interaction design decisions than on hardware precision alone.
+
+### 2. Collaboration Requires Clear Ownership and Dedicated Integration Time
+
+Dividing development responsibilities across subsystems—such as sensing, frontend control, networking, and integration—proved effective for parallel progress. However, the project revealed that meaningful integration requires dedicated time and shared ownership. Many interaction conflicts only surfaced once all components operated simultaneously, underscoring that integration should be treated as a first-class design activity rather than a late-stage technical task.
+
+Moving forward, we would approach future multimodal systems by prototyping integration earlier and treating temporal interaction logic as a primary design concern rather than an implementation detail.
+
+---
+
+## 👭 Team Contributions
+
+Irene primarily focused on developing gesture sensing and ambient brightness sensing using the APDS990, as well as implementing music playback and designing the product’s physical appearance.
+
+Jessica primarily focused on developing the rotation encoder, MQTT communication, and the web-based controller frontend, and on integrating all software components into a cohesive system.
+
+Throughout the project, both team members collaborated closely, jointly troubleshooting technical challenges and supporting each other across different components as needed.
 
 ---
 
