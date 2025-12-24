@@ -22,7 +22,7 @@ PyAudio==0.2.11
 pyftdi==0.52.9
 pyserial==3.5
 python-engineio==4.0.1
-python-socketio==5.1.0
+python-socketio==5.14.0
 pyusb==1.1.1
 rpi-ws281x==4.2.6
 RPi.GPIO==0.7.1
