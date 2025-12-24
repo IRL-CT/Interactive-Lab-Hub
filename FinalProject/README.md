@@ -358,6 +358,7 @@ Designs used are in [this shared google drive](https://drive.google.com/drive/fo
 ### Video of someone using our project + Feedback and future directions
 
 Videos of the Skyline Speaker in action: [this shared google drive](https://drive.google.com/drive/folders/1owq4bvrL6NGnxdHZzq-smcAHwIi2oI_W?usp=drive_link)
+
 We tested and got feedback about our prototype with multiple people. 
 
 When we first demoed our project to Wendy, Albert and Hauke, we got the following feedback:
