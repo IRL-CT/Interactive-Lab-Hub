@@ -263,7 +263,7 @@ if art_image:
     display.image(art_image)
 ```
 
-By the showcase deadline of December 1, we had everything working except the LED lights. [Here is a video we recorded of it working.](https://drive.google.com/drive/folders/1y_ihyC7CYjQWi6quVmSAh8PM_WfXcZeX?usp=sharing)
+By the showcase deadline of December 1, we had everything working except the LED lights. [Here is a video we recorded of it working.](https://drive.google.com/file/d/1paV4NpYWIWsTyBRG5n4qti43AxIXps6V/view)
 
 ### Song album cover -> LED lights 
 
@@ -357,6 +357,7 @@ Designs used are in [this shared google drive](https://drive.google.com/drive/fo
 
 ### Video of someone using our project + Feedback and future directions
 
+Videos of the Skyline Speaker in action: [this shared google drive](https://drive.google.com/drive/folders/1owq4bvrL6NGnxdHZzq-smcAHwIi2oI_W?usp=drive_link)
 We tested and got feedback about our prototype with multiple people. 
 
 When we first demoed our project to Wendy, Albert and Hauke, we got the following feedback:
