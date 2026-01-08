@@ -194,6 +194,6 @@ v4l2-python3==0.3.2
 vosk==0.3.45
 webencodings==0.5.1
 websockets==11.0.3
-Werkzeug==1.0.1
+Werkzeug==3.1.5
 wrapt==1.12.1
 zipp==3.16.2
