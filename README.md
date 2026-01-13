@@ -1,4 +1,4 @@
-# [Your name here]'s-Lab-Hub
+# [Huiying Zhan]'s-Lab-Hub
 for [Interactive Device Design](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/)
 
 Please place links here to the README.md's for each of your labs here:
@@ -15,7 +15,21 @@ Please place links here to the README.md's for each of your labs here:
 
 [Lab 6. Little Interactions Everywhere](Lab%206/)
 
-[Final Project](https://github.com/IRL-CT/Developing-and-Designing-Interactive-Devices/blob/2025Fall/FinalProject.md)
+[Final Project](https://github.com/hz764/Interactive-Lab-Hub-hz764/tree/Fall2025/final%20project)
 
 Online Repository
+
+Host 10.56.130.15
+  HostName 10.56.130.15
+  User pi
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  XAuthLocation /opt/X11/bin/xauth
+
+Host 10.56.129.97
+  HostName 10.56.129.97
+  User pi
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  XAuthLocation /opt/X11/bin/xauth
 

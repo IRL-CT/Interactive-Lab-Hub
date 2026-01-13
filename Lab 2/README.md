@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+Huiying Zhan, Jiayi Sun
 
 Does it feel like time is moving strangely during this semester?
 
@@ -111,6 +111,8 @@ Install the packages from the requirements.txt and run the example script `cli_c
 The terminal should show the time, you can press `ctrl-c` to exit the script.
 If you are unfamiliar with the Python code in `cli_clock.py`, have a look at [this Python refresher](https://hackernoon.com/intermediate-python-refresher-tutorial-project-ideas-and-tips-i28s320p). If you are still concerned, please reach out to the teaching staff!
 
+### <mark>I successfully ran `cli_clock.py` on my Pi. The terminal printed the current time as expected:</mark>
+![screenshot of cli_clock.py running](./images/cli_clock_output.png)
 
 ## Part C. 
 ### Set up your RGB Display
@@ -158,7 +160,20 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
 
+### <mark>I have successfully set up the Adafruit MiniPiTFT on my Raspberry Pi.</mark>
 
+### <mark>What I did</mark>
+- Installed the screen on the Pi and confirmed the hardware connection.
+- Stopped the default `piscreen.service` to avoid conflicts.
+- Tested the screen with:
+  ```bash
+  python screen_test.py
+- Implemented an additional script image_fixed.py to extend functionality:
+   - Displayed an initial image on the MiniPiTFT.
+   - Switched to another image when one of the buttons was pressed, verifying button interaction with the display.
+   - Verified that the display responds correctly to both text and image rendering.
+- Added a demo video showing the button-controlled image switching:  
+  [Watch on YouTube](https://www.youtube.com/watch?v=V0SvURDCLb8)
 
 ## Part D. 
 ### Set up the Display Clock Demo
@@ -184,13 +199,55 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
+### <mark>Clock Demo</mark>  
+<img src="images/lab2_partD.jpg" alt="Clock Demo" width="500"/>
+
 ## Part E. Now moved to Lab2 Part 2.
 
 ## Part F. Now moved to Lab2 Part 2.
 
 ## Part G. 
-## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+### Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+### <mark>Idea 1: Cable Car Round-Trip Clock</mark>
+#### Overview
+We designed a creative clock interface that uses the number of Roosevelt Island cable car **round trips** to represent time.
 
+#### Composition
+- A single horizontal **blue cable** stretches across the screen.
+- A **blue cable car** hangs from the cable.
+- A **number inside the car** shows the trip count, representing the passage of time.
+
+#### Unit of Time
+- **1 round trip = 30 minutes**.
+- Current “time unit” (trip count) is computed as:  
+  \[
+  \text{trips} = \left\lfloor \frac{\text{current\_hour} \times 60 + \text{current\_minute}}{30} \right\rfloor
+  \]
+
+#### How It Works
+- Top-left label: **“CABLE CAR ROUND TRIPS”** (the unit of time in this design).
+- Over the course of a day, the cable car **moves from bottom-left to top-right** to indicate time’s progression.
+- The **background shifts** from **light red** to **dark red** as the day advances.
+<img src="images/cable_car.jpg" alt="cable car" width="500"/>
+
+
+### <mark>Idea 2: Reminder Clock</mark>
+#### Overview
+We designed a pixel art watch interface that combines current time with reminder notifications.
+
+#### Composition
+- The interface is a **horizontal digital watch screen**.  
+- The **current time (HH:MM)** is displayed at the top in large pixelated digits.  
+- Below the time, a **reminder text** appears, such as *“Reminder: Meeting.”*  
+
+#### Unit of Time
+- The reminder is measured with a **countdown that always fits within one hour**.  
+- For example, the display may show *“45 min remaining”*, indicating how much time is left until the event begins.  
+
+#### How It Works
+- The design highlights both the **present moment** and the **urgency of upcoming tasks**.  
+- By pairing the clock with a real-time countdown, the user immediately sees not only what time it is but also **how soon their next activity will start**.  
+<img src="images/time_reminder.pic.jpg" alt="cable car" width="500"/>
 
 # Prep for Part 2
 
@@ -208,18 +265,32 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
-Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!
+Please sketch/diagram your clock idea. (Try using a [Verplank diagram](http://www.billverplank.com/IxDSketchBook.pdf)!)
+
+**CABLE CAR ROUND TRIPS**  
+<img src="images/cable_car.jpg" alt="cable car" width="500"/>   
+
+**Reminder Clock**  
+<img src="images/time_reminder.pic.jpg" alt="cable car" width="500"/>
+
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
 
-\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*   
+<mark> A copy of my code is included in my Lab 2 GitHub repo: </mark>
 
+**gesture_daemon.py** – Implements gesture control. When the user waves their hand toward the screen, the detailed reminder view toggles on; waving again hides the reminder so that only the time is shown.
+
+**reminder_clock.py** – Implements button interactions. Button A cycles to the next reminder, Button B cycles to the previous reminder, and pressing A + B together deletes the current reminder.
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+\*\*\***Take a video of your PiClock.**\*\*\*   
+<mark> **Here is the video of my Reminder Clock demo: 👉 [https://youtu.be/Pi32cqu7j2A](https://youtu.be/Pi32cqu7j2A)** </mark>
+
+<mark> **Here is the video of my Cable Clock demo: 👉 [https://youtu.be/d-vsA0yDSq8](https://youtu.be/d-vsA0yDSq8)** </mark>
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -240,4 +311,10 @@ As always, make sure you document contributions and ideas from others explicitly
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
 
+## Reflection
+For this lab, our team divided the work into two main directions.  
+I was primarily responsible for the **Reminder Clock** implementation. My focus was on extending the barebones PiClock with both gesture and button interactions. I implemented the `gesture_daemon.py` script, which allows users to wave their hand in front of the PiClock to toggle between the detailed reminder view and a simplified time-only view. In addition, I worked on the `reminder_clock.py` script, where I added button functions: pressing **A** switches to the next reminder, **B** switches to the previous reminder, and pressing **A + B** together deletes the current reminder. Through this process, I gained hands-on experience in integrating hardware input (buttons and proximity sensor) with the software interface to create a more interactive time display.
 
+**Jiayi Sun** was responsible for the **Cable Car Clock** concept and its implementation. She designed and prototyped a creative visualization of time as cable car round trips, moving away from traditional clock metaphors. Her work involved sketching and developing the diagram, as well as experimenting with ways to represent the passage of time in a more narrative and playful format.
+
+Overall, our collaboration allowed us to explore two different interpretations of “making time interactive.” My Reminder Clock emphasized practical interaction through reminders and controls, while Jiayi’s Cable Car Clock highlighted conceptual and visual creativity. This division of labor helped us learn from each other’s approaches and combine functional coding with imaginative design.

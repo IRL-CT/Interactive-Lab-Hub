@@ -1,17 +1,17 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+**Huiying Zhan, Jiayi Sun, Qinrui Li**
 
-For submission, replace this section with your documentation!
 
----
-
-## Prep
+<details>
+	<summary><h2> Prep </h2></summary>
 
 1. Pull the new changes
 2. Read: [The Presence Table](https://dl.acm.org/doi/10.1145/1935701.1935800) ([video](https://vimeo.com/15932020))
+</details>
 
-## Overview
+<details>
+	<summary><h2> Overview </h2></summary>
 
 Build interactive systems where **multiple devices communicate over a network** using MQTT messaging. Work in teams of 3+ with Raspberry Pis.
 
@@ -19,10 +19,12 @@ Build interactive systems where **multiple devices communicate over a network** 
 - A: Learn MQTT messaging
 - B: Try collaborative pixel grid demo  
 - C: Build your own distributed system
+</details>
 
 ---
 
-## Part A: MQTT Messaging
+<details>
+	<summary><h2> Part A: MQTT Messaging </h2></summary>
 
 MQTT = lightweight messaging for IoT. Publish/subscribe model with central broker.
 
@@ -57,11 +59,97 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'H
 
 ![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
 
+</details>
+
 **💡 Brainstorm 5 ideas for messaging between devices**
+
+### 1. MQTT Setup & Testing
+**Result:** ✅ Successfully received messages from other devices, including:
+- Real-time RGB sensor data from classmates
+- Test messages sent by myself
+- Multiple device communications over the MQTT broker
+
+#### Testing MQTT Publish (Sending Messages)
+Command used to send test message:
+```bash
+mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/huiying' -m 'Hello!' -u idd -P 'device@theFarm'
+```
+
+**Result:** ✅ Successfully sent and received my own message "Hello!" in the subscriber window.
+
+
+### 2. 💡 Five Ideas for Distributed Device Messaging
+
+#### Idea 1: **Collaborative Music Ensemble**
+- **Description:** Each Pi controls one instrument/sound parameter (melody, rhythm, bass, harmony)
+- **Interaction:** Sensors detect gestures or movements to trigger notes. All devices must play together to create harmonious music
+- **MQTT Usage:** Each Pi publishes its current note/beat to a topic. A central controller synchronizes timing
+- **Why Interesting:** Only works as a team - teaches coordination and creates something beautiful together
+
+#### Idea 2: **Distributed Memory Game**
+- **Description:** Like Simon Says but across multiple devices - each Pi displays a color sequence
+- **Interaction:** Players must remember and repeat the pattern across all devices in correct order
+- **MQTT Usage:** 
+  - Topic: `IDD/game/sequence` - broadcasts the pattern
+  - Topic: `IDD/game/player/[name]` - player responses
+- **Why Interesting:** Classic game reimagined for distributed systems, tests memory and reaction time
+
+#### Idea 3: **Virtual Plant Growth System**
+- **Description:** Each Pi "waters" a shared virtual plant with different nutrients (light, water, temperature)
+- **Interaction:** Distance sensors detect when someone approaches, contributing their "nutrient". Plant grows only when all nutrients are balanced
+- **MQTT Usage:**
+  - Topic: `IDD/plant/light` - light contribution
+  - Topic: `IDD/plant/water` - water contribution  
+  - Topic: `IDD/plant/growth` - overall growth status
+- **Why Interesting:** Encourages collaboration and teaches about balanced ecosystems
+
+#### Idea 4: **Emotion Wave Visualizer**
+- **Description:** Detects group emotion through color/gesture sensors and creates a collective "mood wave" visualization
+- **Interaction:** Each person's Pi reads their input (e.g., red object = excited, blue = calm). System combines all emotions into a flowing pattern displayed on all screens
+- **MQTT Usage:**
+  - Topic: `IDD/emotion/[username]` - individual emotion data (RGB values)
+  - Topic: `IDD/emotion/collective` - aggregated visualization data
+- **Why Interesting:** Makes abstract emotions visible and shows how individual feelings contribute to group atmosphere
+
+#### Idea 5: **Distributed Story Generator**
+- **Description:** Sensor events trigger story elements that build a collaborative narrative
+- **Interaction:** 
+  - Distance sensor < 10cm = "suddenly"
+  - Red color detected = "danger appeared"
+  - Gesture up = "climbed higher"
+  - Proximity increases = "came closer"
+- **MQTT Usage:**
+  - Topic: `IDD/story/events` - sensor triggers
+  - Topic: `IDD/story/narrative` - assembled story segments
+- **Why Interesting:** Turns random sensor inputs into creative storytelling, unpredictable and fun
+
+
+### 3. Reflections on MQTT
+
+**What I Learned:**
+- MQTT's publish/subscribe model is very efficient for IoT devices
+- The broker-based architecture makes it easy to add/remove devices dynamically
+- Using wildcards (#) in topics allows flexible message filtering
+- Real-time communication enables new types of collaborative interactions
+
+**Observations:**
+- Saw active classmate devices sending RGB sensor data in real-time
+- The system handles multiple simultaneous publishers seamlessly
+- Message throughput is very fast - almost instantaneous delivery
+
+**Potential Applications:**
+These distributed messaging patterns could be used for:
+- Smart home automation (coordinating multiple sensors/actuators)
+- Group gaming and interactive art installations
+- Collaborative learning environments
+- Real-time monitoring systems
 
 ---
 
-## Part B: Collaborative Pixel Grid
+
+
+<details>
+	<summary><h2> Part B: Collaborative Pixel Grid </h2></summary>
 
 Each Pi = one pixel, controlled by RGB sensor, displayed in real-time grid.
 
@@ -122,10 +210,27 @@ Hold colored objects near sensor to change your pixel!
 ![Pixel grid with two devices](imgs/two-devices-grid.png)
 
 **📸 Include: Screenshot of grid + photo of your Pi setup**
+</details>
+
+We built a distributed pixel grid where each Raspberry Pi represents one pixel that changes color based on the RGB sensor input.
+
+🎥 **Demo Video:** [Watch on YouTube](https://youtu.be/6vmiTTxWM5w)
+
+Each Pi publishes its color data through MQTT to a shared server that displays all pixels in real time.
+
+![Pixel Grid Result](pixels.png)
+![Pi Setup](WechatIMG1529.jpeg)
+
+**Reflection:**  
+We successfully visualized real-time color detection from multiple devices.  
+The hardest part was coordinating MQTT topics and maintaining connection stability.  
+This exercise helped us understand distributed interaction between hardware systems.
+
 
 ---
 
-## Part C: Make Your Own
+<details>
+	<summary><h2> Part C: Make Your Own </h2></summary>
 
 **Requirements:**
 - 3+ people, 3+ Pis
@@ -177,9 +282,190 @@ Replace this README with your documentation:
 - How did sensor events work?
 - What would you improve?
 
+</details>
+
+## Deliverables
+
+Replace this README with your documentation:  
+
+### **1. Project Description**
+This is a cooperative game in which three players attempt to retrieve a legendary treasure hidden deep inside an ancient temple. Each player controls a different physical sensor device. The Game Master script delivers the story narration and instructions over MQTT. Players must perform their assigned actions in the correct order to advance the story.
+
+The interaction becomes meaningful because:
+
+- Each player contributes a unique action.
+- No player can solve the puzzle alone.
+- Success depends on communication and timing.
+
+The story framework turns simple sensor actions into dramatic “temple mechanisms” that must be activated to progress.
+
+
+### **2. Architecture Diagram**  
+
+Three Raspberry Pis act as players:
+
+- Player A uses a touch sensor
+- Player B uses a joystick
+- Player C uses a color sensor
+
+A central Game Master coordinates the game:
+
+1. Sends narration text to all players.
+2. Sends individual tasks privately to each player.
+3. Waits for each player to respond with either “success” or “fail.”
+4. Determines whether the group continues or the adventure ends.
+
+<p align="center">
+  <img src="diagram.jpeg" width="600" />
+</p>
+
+### **3. Build Documentation**  
+
+#### - **Hardware Setup**  
+
+Each Raspberry Pi is connected to:
+
+- Power
+- I2C communication lines for its sensor
+
+Player A interacts by touching specific pads.
+Player B interacts by moving or pressing the joystick.
+Player C interacts by showing colored objects to the APDS-9960.
+
+Each sensor continuously reads input and checks whether the required action has been performed.
+
+<p align="center">
+  <img src="setup1.jpeg" width="350" style="margin-right:10px;" />
+  <img src="setup2.jpeg" width="350" />
+</p>
+<br>
+
+#### - **MQTT Communication Structure**
+
+The Game Master sends story narration using the topic:
+game/story
+
+
+The Game Master sends individual task commands:
+game/<player_name>/task
+
+
+Each player reports success or failure to:
+game/<player_name>/result
+
+
+The Game Master broadcasts final outcome:
+game/status
+
+
+Payload: game_success or game_fail
+Broker:
+Host: farlab.infosci.cornell.edu
+Port: 1883
+Username: idd
+Password: device@theFarm
+
+#### - **Story Integration**
+
+Narration lines are stored inside game_master.py:  
+
+#### - Story Introduction
+
+You are part of a legendary trio of master thieves, known across kingdoms as the Silent Serpents.
+Tonight, you infiltrate the ancient Temple of the Sleeping Star, a place rumored to guard the priceless relic known as the Heart of Dawn.
+
+The temple is protected by layered traps, intricate puzzles, and arcane barriers.
+Only perfect coordination will allow you to survive… and escape with the treasure.
+
+<p align="center">
+  <img src="storyboard.png" width="600" />
+</p>
+
+### Prototype Demo
+<p align="left">
+  <a href="https://youtu.be/X49TW9GbIAs?si=_uI-3xRdj2L-BlTg" target="_blank">
+    ▶️ <strong>Watch our Prototype Demo on YouTube</strong>
+  </a>
+</p>
+
+### Challenges
+#### - Challenge 1 — The Shifting Pathway
+
+A long stone pathway stretches before you.
+The floor panels slide and realign like living machinery, revealing hidden spike pits beneath.
+
+To move forward safely, your steps must be chosen with precision.
+The temple waits for your command.
+
+#### - Challenge 2 — The Runes of Awakening
+
+A towering wall carved with ancient runes begins to glow in a cool blue light.
+Each symbol corresponds to an old incantation — but only one correct combination will unlock the next chamber.
+
+A single mistake could seal the passage forever.
+
+#### - Challenge 3 — The Veil of Spectral Light
+
+Ahead, a shimmering arcane barrier blocks the path.
+Its surface ripples like moonlit water, changing color with an otherworldly rhythm.
+
+Only by matching its hue precisely can the barrier be dissolved and the path revealed.
+
+#### - Outcomes
+
+**If the action is correct:**
+Your movement is precise. The mechanism responds. The path forward opens.
+
+**If the action fails:**
+Your action falters. The mechanism resists. The temple remains sealed, and time is running out.
+
+
+
+
+### **4. User Testing**
+
+<p align="left">
+  <a href="https://youtu.be/vdrnqq7rVQQ?si=gwL2ycjkJ4blA21E" target="_blank">
+    ▶️ <strong>Watch our User Testing Session on YouTube</strong>
+  </a>
+  <br>
+  This video captures participants interacting with the system, showing how they collaborated  
+  to solve challenges using touch, joystick, and color sensors in real-time.
+</p>
+  
+#### Before trying:
+Most participants were curious but unsure how the different sensors would interact. They expected the game to be simple and linear.
+
+#### During the game:
+Players were surprised by how coordinated actions were required. The need to respond quickly and accurately to each step created tension and excitement. Participants particularly enjoyed seeing the story unfold in real-time as each sensor triggered events.
+
+#### Feedback and observations:
+
+- Players appreciated the story-driven experience; it added context and motivation for their actions.
+- Some noted that the time limit for tasks was challenging but fun.
+- A few suggested adding more variety to the story and sensor interactions to increase replay value.
+- All participants enjoyed the distributed, collaborative nature — the game only worked when everyone succeeded together.
+
+### **5. Reflection**
+What worked well:
+
+- The narrative improved engagement and made sensor tasks feel meaningful.
+- The sequential structure ensured that cooperation was required.
+
+Challenges:
+
+- Color sensor thresholds required careful tuning under different lighting.
+- Players sometimes forgot to watch the terminal for story or task updates.
+
+Future improvements:
+
+- Add sound or LED cues to reinforce when to act.
+- Expand story paths for alternative outcomes.
+
 ---
 
-## Code Files
+<details>
+	<summary><h2> Code Files </h2></summary>
 
 **Server files:**
 - `app.py` - Pixel grid server (Flask + WebSocket + MQTT)
@@ -195,10 +481,18 @@ Replace this README with your documentation:
 - `templates/grid.html` - Pixel grid display
 - `templates/controller.html` - Color picker
 - `templates/mqtt_viewer.html` - Message viewer
+</details>
+
+- [`game_master.py`](./final_code/game_master.py) | Central controller that sends narration, assigns tasks, and evaluates results via MQTT.
+- [`Joy_Client.py`](./final_code/Joy_Client.py) | Player A’s client code (Touch sensor).
+- [`Hester_Client.py`](./final_code/Hester_Client.py) | Player B’s client code (Joystick control).
+- [`Sandy_Client.py`](./final_code/Sandy_Cilent.py) | Player C’s client code (Color sensor).
+
 
 ---
 
-## Debugging Tools
+<details>
+	<summary><h2> Debugging Tools </h2></summary>
 
 **MQTT Message Viewer:** `http://farlab.infosci.cornell.edu:5001`
 - See all MQTT messages in real-time
@@ -210,10 +504,12 @@ Replace this README with your documentation:
 # See all IDD messages
 mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device@theFarm"
 ```
+</details>
 
 ---
 
-## Troubleshooting
+<details>
+	<summary><h2> Troubleshooting </h2></summary>
 
 **MQTT:** Broker `farlab.infosci.cornell.edu:1883`, user `idd`, pass `device@theFarm`
 
@@ -222,11 +518,12 @@ mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device
 **Grid:** Verify server running, check MQTT in console, test with web controller
 
 **Pi venv:** Make sure to activate: `source .venv/bin/activate`
-
+</details>
 
 ---
 
-## Submission Checklist
+<details>
+	<summary><h2> Submission Checklist </h2></summary>
 
 Before submitting:
 - [ ] Delete prep/instructions above
@@ -237,6 +534,8 @@ Before submitting:
 - [ ] List team names at top
 
 **Your README = story of what YOU built!**
+
+</details>
 
 ---
 
