@@ -79,14 +79,15 @@ with torch.no_grad():
         output = net(input_batch)
         top = list(enumerate(output[0].softmax(dim=0)))
         top.sort(key=lambda x: x[1], reverse=True)
-        for idx, val in top[:2]:
-            print(f"{val.item()*100:.2f}% {classes[str(idx)]}")
+        
 
 
         # log model performance
         frame_count += 1
         now = time.time()
         if now - last_logged > 1:
+            for idx, val in top[:2]:
+                print(f"{val.item()*100:.2f}% {classes[str(idx)]}")
             print(f"{frame_count / (now-last_logged)} fps")
             last_logged = now
             frame_count = 0

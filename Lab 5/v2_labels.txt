@@ -1,0 +1,3 @@
+0 Cleaned
+1 Messy
+2 Default
