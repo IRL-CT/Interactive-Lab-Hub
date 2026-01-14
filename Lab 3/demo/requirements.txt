@@ -8,7 +8,7 @@ Adafruit-PlatformDetect==3.3.0
 Adafruit-PureIO==1.1.8
 bidict==0.21.2
 click==7.1.2
-dnspython==1.16.0
+dnspython==2.6.1
 eventlet==0.31.0
 Flask==1.1.2
 Flask-SocketIO==5.0.1
