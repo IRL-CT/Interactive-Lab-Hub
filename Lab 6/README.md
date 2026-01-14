@@ -1,6 +1,6 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+Viha Srinivas (me), Nikhil Gangaram, Sachin Jojode, Arya Prasad
 
 For submission, replace this section with your documentation!
 
@@ -23,221 +23,49 @@ Build interactive systems where **multiple devices communicate over a network** 
 ---
 
 ## Part A: MQTT Messaging
-
-MQTT = lightweight messaging for IoT. Publish/subscribe model with central broker.
-
-**Concepts:**
-- **Broker**: `farlab.infosci.cornell.edu:1883`
-- **Topic**: Like `IDD/bedroom/temperature` (use `#` wildcard)
-- **Publish/Subscribe**: Send and receive messages
-
-**Install MQTT tools on your Pi:**
-```bash
-sudo apt-get update
-sudo apt-get install -y mosquitto-clients
-```
-
-**Test it:**
-
-**Subscribe to messages (listener):**
-```bash
-mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/#' -u idd -P 'device@theFarm'
-```
-
-**Publish a message (sender):**
-```bash
-mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'Hello!' -u idd -P 'device@theFarm'
-```
-
-> **💡 Tips:**
-> - Replace `yourname` with your actual name in the topic
-> - Use single quotes around the password: `'device@theFarm'`
-
-**🔧 Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
-
-![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
-
-**💡 Brainstorm 5 ideas for messaging between devices**
-
----
+Brainstormed Ideas:
+1. Party Lights: Each Pi senses sound or light and sends colorful flashes to a shared web grid that reacts like a disco.
+2. Mood Wall: Each Pi sends a color based on room lighting or emotion, forming a shared “mood board.”
+3. Distributed Band: Each Pi plays a different sound when triggered, together they form live music.
+4. Presence Mirror: Each Pi lights up when someone is nearby, showing who’s “present” across locations.
+5. Fortune Machine: Each Pi sends a random value that combines into one group-generated “fortune” message.
 
 ## Part B: Collaborative Pixel Grid
-
-Each Pi = one pixel, controlled by RGB sensor, displayed in real-time grid.
-
-**Architecture:** `Pi (sensor) → MQTT → Server → Web Browser`
-
-**Setup:**
-
-1. **Sensor**
-
-#### Light/Proximity/Gesture sensor (APDS-9960)
-We use this sensor [Adafruit APDS-9960](https://www.adafruit.com/product/3595) for this exmaple to detect light (also RGB)
- 
-<img src="https://cdn-shop.adafruit.com/970x728/3595-06.jpg" width=200>
-
-Connect it to your pi with Qwiic connector
-
-
-<img src="imgs/IMG_0270.jpg" height="200" />
-We need to use the screen to display the color detection, so we need to stop the running piscreen.service to make your screen available again
-
-```bash
-# stop the screen service
-sudo systemctl stop piscreen.service
-```
-
-if you want to restart the screen service
-```bash
-# start the screen service
-sudo systemctl start piscreen.service
-```
- 
-2. **Server** (one person on laptop):
-```bash
-cd "Lab 6"  
-source .venv/bin/activate
-pip install -r requirements-server.txt
-python app.py
-```
-
-2. **View in browser:**
-   - Grid: `http://farlab.infosci.cornell.edu:5000`
-   - Controller: `http://farlab.infosci.cornell.edu:5000/controller`
-
-3. **Pi publisher** (everyone on their Pi):
-```bash
-# First time setup - create virtual environment
-cd "Lab 6"
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-pi.txt
-
-# Run the publisher
-python pixel_grid_publisher.py
-```
-
-Hold colored objects near sensor to change your pixel!
-
-![Pixel grid with two devices](imgs/two-devices-grid.png)
-
-**📸 Include: Screenshot of grid + photo of your Pi setup**
-
----
+![IMG_7852](https://github.com/user-attachments/assets/8ef8b5a9-216d-4727-a011-1c21fc465287)
+![IMG_7853](https://github.com/user-attachments/assets/2648c689-1285-4f56-8af0-898bd2f2f76f)
 
 ## Part C: Make Your Own
 
-**Requirements:**
-- 3+ people, 3+ Pis
-- Each Pi contributes sensor input via MQTT
-- Meaningful or fun interaction
+1. Project Description
 
-**Ideas:**
+For our final project, we’re developing gesture-controlled modules that serve as the foundation of our system. The concept involves using low-cost computers, like Raspberry Pis, to communicate with a central computer (our laptops) and collectively maintain an accessible global state. We designed two gestures inspired by American Sign Language (ASL) that allow users to modify this shared state across all connected devices. In our prototype, these gestures let users cycle through the colors of the rainbow in opposite directions.
 
-**Sensor Fortune Teller**
-- Each Pi sends 0-255 from different sensor
-- Server generates fortunes from combined values
+2. Architecture Diagram
+<img width="626" height="621" alt="Screen Shot 2025-11-10 at 9 39 33 AM" src="https://github.com/user-attachments/assets/f08ec067-4430-4169-bee3-fe4878c2ff6e" />
+<img width="637" height="644" alt="Screen Shot 2025-11-10 at 9 39 54 AM" src="https://github.com/user-attachments/assets/5177aa9d-8656-4a83-9425-c7ab4b644523" />
 
-**Frankenstories**
-- Sensor events → story elements (not text!)
-- Red = danger, gesture up = climbed, distance <10cm = suddenly
+3. Build Documentation
+We broke our process down into 3 steps:
 
-**Distributed Instrument**
-- Each Pi = one musical parameter
-- Only works together
+pi-pi communication: https://www.youtube.com/watch?v=l3sK-Un6r_g
 
-**Others:** Games, presence display, mood ring
+gesture control: https://www.youtube.com/shorts/ilUMCtHcV4I?feature=share
 
-### Deliverables
+integration: https://www.youtube.com/shorts/WWuHhcyBsaM?feature=share
 
-Replace this README with your documentation:
+4. User Testing
+- Sachin’s girlfriend, Thirandi, tested the system while visiting.
+- She preferred not to be on camera but thought the concept was fun and creative.
+- She noted that the latency made the system feel unfinished, since the response wasn’t instantaneous.
+- She also mentioned that having only a few gestures made the interaction feel less intuitive.
 
-**1. Project Description**
-- What does it do? Why interesting? User experience?
-
-**2. Architecture Diagram**
-- Hardware, connections, data flow
-- Label input/computation/output
-
-**3. Build Documentation**
-- Photos of each Pi + sensors
-- MQTT topics used
-- Code snippets with explanations
-
-**4. User Testing**
-- **Test with 2+ people NOT on your team**
-- Photos/video of use
-- What did they think before trying?
-- What surprised them?
-- What would they change?
+Stephanie: 
 
 **5. Reflection**
-- What worked well?
-- Challenges with distributed interaction?
-- How did sensor events work?
-- What would you improve?
+- The software modules were stable and reliable, thanks to using well-tested and proven technologies.
+- The computer vision pipeline in its early stages was jumpy and occasionally misread user gestures.
+- Arya refined the vision pipeline, greatly improving accuracy and responsiveness.
+- Sensor events from the camera act as triggers, which are sent through the MQTT network to update other Raspberry Pis.
+- Gemini assisted during the ideation phase, helping refine the written content, generate visuals for the sketch and control flow diagram, and support parts of the code development.
+- All team members contributed to both idea generation and software development throughout the project.
 
----
-
-## Code Files
-
-**Server files:**
-- `app.py` - Pixel grid server (Flask + WebSocket + MQTT)
-- `mqtt_viewer.py` - MQTT message viewer for debugging
-- `mqtt_bridge.py` - MQTT → WebSocket bridge
-- `requirements-server.txt` - Server dependencies
-
-**Pi files:**
-- `pixel_grid_publisher.py` - Example (RGB sensor → MQTT)
-- `requirements-pi.txt` - Pi dependencies
-
-**Web interface:**
-- `templates/grid.html` - Pixel grid display
-- `templates/controller.html` - Color picker
-- `templates/mqtt_viewer.html` - Message viewer
-
----
-
-## Debugging Tools
-
-**MQTT Message Viewer:** `http://farlab.infosci.cornell.edu:5001`
-- See all MQTT messages in real-time
-- View topics and payloads
-- Helpful for debugging your own projects
-
-**Command line:**
-```bash
-# See all IDD messages
-mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device@theFarm"
-```
-
----
-
-## Troubleshooting
-
-**MQTT:** Broker `farlab.infosci.cornell.edu:1883`, user `idd`, pass `device@theFarm`
-
-**Sensor:** Check `i2cdetect -y 1`, APDS-9960 at `0x39`
-
-**Grid:** Verify server running, check MQTT in console, test with web controller
-
-**Pi venv:** Make sure to activate: `source .venv/bin/activate`
-
-
----
-
-## Submission Checklist
-
-Before submitting:
-- [ ] Delete prep/instructions above
-- [ ] Add YOUR project documentation
-- [ ] Include photos/videos/diagrams  
-- [ ] Document user testing with non-team members
-- [ ] Add reflection on learnings
-- [ ] List team names at top
-
-**Your README = story of what YOU built!**
-
----
-
-Resources: [MQTT Guide](https://www.hivemq.com/mqtt-essentials/) | [Paho Python](https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php) | [Flask-SocketIO](https://flask-socketio.readthedocs.io/)

@@ -1,8 +1,7 @@
 
-
 # Staging Interaction
 
-\*\***NAME OF COLLABORATOR HERE**\*\*
+Collaborators: Sachin Jogode, Nikhil Gangaram
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -60,27 +59,15 @@ Labs are due on Mondays. Make sure this page is linked to on your main class hub
 
 ## Part A. Plan 
 
-To stage an interaction with your interactive device, think about:
-
-_Setting:_ Where is this interaction happening? (e.g., a jungle, the kitchen) When is it happening?
-
-_Players:_ Who is involved in the interaction? Who else is there? If you reflect on the design of current day interactive devices like the Amazon Alexa, it’s clear they didn’t take into account people who had roommates, or the presence of children. Think through all the people who are in the setting.
-
-_Activity:_ What is happening between the actors?
-
-_Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening the fridge). 
-
-The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
-
 \*\***Describe your setting, players, activity and goals here.**\*\*
 
-Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
+This interactive device is meant to be used in a household kitchen, centered around the refrigerator. It is designed for private use, not in shared or public kitchens, because the device personalizes suggestions based on the food preferences of the people using it. For example, it works best in homes where families eat together and share similar tastes, or for individuals who live alone and cook for themselves. The device works by identifying the ingredients currently stored in the fridge. Once it knows what food is available, it can curate meal ideas tailored to the user. For instance, it might suggest a simple recipe that uses only the ingredients already inside the fridge, or it might recommend a more complex dish that requires a few extra ingredients. In that case, it can highlight what is missing and help users plan a grocery list. 
 
 \*\***Include pictures of your storyboards here**\*\*
+<img width="744" height="560" alt="Screen Shot 2025-09-05 at 7 43 50 PM" src="https://github.com/user-attachments/assets/27b48de6-ab90-4a23-b586-eea1869fe807" />
+<img width="572" height="447" alt="Screen Shot 2025-09-05 at 7 44 49 PM" src="https://github.com/user-attachments/assets/6309f42c-8e37-45d5-9a5b-8c2db7adbdab" />
 
-Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
-
-\*\***Summarize feedback you got here.**\*\*
+Feedback: Everyone who saw our prototype thought the idea was both unique and very useful. They liked how it could make cooking and meal planning easier, but they also gave us helpful suggestions. One idea was to add a voice feature so the device could talk to the user. For example, it could answer questions like “What can I make for dinner?” or suggest recipes out loud while someone is cooking. This would make the device feel more interactive. Another suggestion was to create a way for the device to measure the exact amounts of food left in the fridge, such as the ounces of milk or how many eggs are left. This would make the device more accurate and help people plan meals better. It could also help reduce food waste because users would know exactly what they need to use up before it goes bad. We plan to keep working on our prototype and add these new features.
 
 
 ## Part B. Act out the Interaction
@@ -89,7 +76,11 @@ Try physically acting out the interaction you planned. For now, you can just pre
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
 
+After physically acting out the interaction, some things were definitely better on paper. When a user is taking things out of the fridge, that means that you have to memorize what every color means. Like if the light was yellow, you would have to know for a fact that you are running low on a specific ingredient, and then came how the device would indicate what that specific ingredient is. We were considering having the racks of the fridge be a weighing scale, so it would know when something is running low. On paper, it seemed simple for the device to “know” what was in the fridge, but acting it out made us realize it’s difficult to track half used items, like a half carton of eggs or a partly full jug of milk. We also noticed that pulling out multiple items to make a recipe was more time consuming than expected, especially when the fridge was crowded. Talking to the fridge also felt awkward but on paper it looked natural. We were also wondering what would happen if the device suggests a recipe that requires just one extra ingredient? We are currently trying a prototype of a way we can replace or substitute specific ingredients. 
+
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+
+Yes. Acting it out gave us several new ideas for how the fridge could be even more useful. One idea was an instant ordering system where the fridge recognizes what is missing and offers to place an order right to your doorstep. Another idea was adding a calorie counter that works with the suggested meals and adjusts to a personalized daily calorie goal. We also thought about a progress bar that tracks how many ingredients are being taken out for a specific meal, helping users stay organized while cooking. Finally, we came up with a notification system that alerts your handheld devices when certain foods are running low, so you always know what needs restocking even when you’re away from home.
 
 
 ## Part C. Prototype the device
@@ -104,16 +95,21 @@ If you run into technical issues with this tool, you can also use a light switch
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
 
+I think the instructions for Tinkerbelle are really detailed, especially the setup for both the computer and phone. I like how it gives troubleshooting tips for different Python versions which makes it easier to navigate if something goes wrong. One thing that could be improved is making the directions a little more clear, since there’s a lot of text and it’s easy to get lost in the steps. Maybe adding a “getting started checklist” at the top would make it easier to follow. I also thought the option to customize swatches and sounds was cool, but it might help if there were a few more examples of fun effects people could try. Overall, it seems like a really useful prototyping tool.
+
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
 
-Now, change the goal within the same setting, and update the interaction with the paper prototype. 
+https://youtube.com/shorts/6KSoQGEgqg4?feature=share
+
+Now, hange the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
 
+https://youtube.com/shorts/a93JT1vTiAk?feature=share
 
 ## Part E. Costume the device
 
@@ -122,18 +118,25 @@ Only now should you start worrying about what the device should look like. Devel
 Think about the setting of the device: is the environment a place where the device could overheat? Is water a danger? Does it need to have bright colors in an emergency setting?
 
 \*\***Include sketches of what your devices might look like here.**\*\*
+<img width="589" height="586" alt="Screen Shot 2025-09-05 at 7 47 18 PM" src="https://github.com/user-attachments/assets/c12de175-7c45-4121-adec-91d25fbf329a" />
+<img width="474" height="664" alt="Screen Shot 2025-09-05 at 7 47 33 PM" src="https://github.com/user-attachments/assets/65979911-29a3-4b3a-b9a0-bd6a92e900e4" />
 
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+
+A few concerns with these designs are durability and safety, since a phone inside a container like a milk jug could overheat or be hard to remove quickly. Visibility is another issue, if the screen is covered, the light may not shine through clearly. Stability is also a concern, as suction cups or magnets might not hold on all surfaces. Finally, water or condensation in a fridge could damage the phone.
 
 
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
 
+https://youtube.com/shorts/a93JT1vTiAk?feature=share | 
+https://youtube.com/shorts/tW5_B8EWR20?feature=share |
+https://youtube.com/shorts/r0gbEQ4s7Z8?feature=share
+
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
-Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
-
+Nikhil and Sachin were both so creative and great to work with for this lab.We each brought different strengths to the table. The original concept for the device came from Nikhil, and together we refined it through storyboarding, prototyping, and testing. My main role was shaping the flow of the interaction, coming up with different prototypes and the storyboards, while Sachin focused more on the costumes and video production. Nikhil split his efforts between building the physical prototypes and helping with the video work. Overall, it was a very collaborative process, and we even drew inspiration from Duolingo’s model.
 
 # Staging Interaction, Part 2 
 
@@ -146,11 +149,73 @@ You will be assigned three partners from other groups. Go to their github pages,
 
 \*\***Summarize feedback from your partners here.**\*\*
 
+Everyone who saw our video thought it was very easy and clear to understand, the only concerns that some peers had was recognizing the colors and knowing what they meant. They suggested to add in a voice feature, but overall we didn't get too much criticism, only very positive feedback.
+
+
 ## Make it your own
 
-Do last week’s assignment again, but this time: 
-1) It doesn’t have to (just) use light, 
-2) You can use any modality (e.g., vibration, sound) to prototype the behaviors! Again, be creative! Feel free to fork and modify the tinkerbell code! 
-3) We will be grading with an emphasis on creativity. 
+Part A. Plan
 
-\*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+**Describe your setting, players, activity and goals here.**
+
+This device is designed for use in a home kitchen, mainly around the refrigerator, and works best in private spaces rather than shared kitchens because it gives personalized suggestions. The main users are families who share meals and food preferences, or individuals who cook for themselves. It can also support people with disabilities, such as those who cannot see, by using sound instead of only visuals. The device scans the fridge to identify what ingredients are available and then suggests meals. If items are missing, it can recommend substitutes, give calorie counts for recipes, and even connect to Instacart to place an order. It also checks what equipment is available and can suggest alternate cooking methods if certain tools, like a grill, aren’t there. The overall goal is to make cooking easier and more inclusive by helping users plan meals and track ingredients.
+
+**Include pictures of your storyboards here.**
+
+<img width="394" height="609" alt="Screen Shot 2025-09-06 at 5 30 06 PM" src="https://github.com/user-attachments/assets/1badec08-6e3d-498e-909b-c20371ad808b" />
+<img width="468" height="694" alt="Screen Shot 2025-09-06 at 5 31 37 PM" src="https://github.com/user-attachments/assets/c41fe52d-c35d-4184-94be-ffe8ddd09b79" />
+<img width="439" height="625" alt="Screen Shot 2025-09-06 at 5 34 29 PM" src="https://github.com/user-attachments/assets/1b89ab16-ea75-44d8-8ea5-1a49d9199ef5" />
+<img width="585" height="386" alt="Screen Shot 2025-09-06 at 5 34 57 PM" src="https://github.com/user-attachments/assets/91035eed-a355-495f-bc3f-7f344aee0240" />
+
+**Summarize feedback you got here.**
+
+After showing other classmates our storyboards and discussing our ideas, they really liked how the device could make cooking easier by suggesting meals and tracking ingredients. They thought the allergy alerts and Instacart ordering were especially strong features, and many said the calorie counter and substitute suggestions made it practical. At the same time they questioned how accurate the calorie tracking and allergy detection could really be, and whether the device might become too complicated with so many features. Some also pointed out that voice control might not work well in noisy kitchens and that relying too much on automation like instant ordering could feel overwhelming.
+
+Part B. Act out the Interaction
+
+**Are there things that seemed better on paper than acted out?**
+
+After acting it out with the new features, we noticed some challenges. The calorie counter seemed easy on paper, but it’s hard to measure portions when only part of an ingredient is used. Allergy alerts also raised concerns because they would need to be very accurate to be trusted. Voice control felt less natural in a noisy kitchen and might not always pick up commands. Instacart ordering looked convenient in the storyboard, but acting it out showed it could feel disruptive if it tries to order too quickly without checking with the user first.
+
+**Are there new ideas that occur to you or your collaborator that come up from the acting?**
+
+Yes. Acting it out gave us some new ideas to make the device more useful. One idea was adding a confirmation step before Instacart places an order, so users don’t get unwanted deliveries. Another was to let the allergy feature connect to a user’s profile, so it can adjust alerts. We also thought about having the calorie counter suggest healthier substitutes instead of just showing numbers. Finally, we imagined adding a simple vibration or sound alert to go along with the lights, so users don’t have to rely on colors alone.
+
+Part C. Prototype the device
+
+**Give us feedback on Tinkerbelle.**
+
+Our group was not able to use it together as we were in different locations, but I think the instructions for Tinkerbelle are really detailed, especially the setup for both the computer and phone. I like how it gives troubleshooting tips for different Python versions which makes it easier to navigate if something goes wrong. One thing that could be improved is making the directions a little more clear, since there’s a lot of text and it’s easy to get lost in the steps. Maybe adding a “getting started checklist” at the top would make it easier to follow. I also thought the option to customize swatches and sounds was cool, but it might help if there were a few more examples of fun effects people could try. Overall, it seems like a really useful prototyping tool. 
+
+Part D. Wizard the device
+
+**Include your first attempts at recording the set-up video here.**
+
+https://youtube.com/shorts/eV2Qi6K9Z58?feature=share
+
+**Show the follow-up work here.**
+
+https://youtube.com/shorts/NFFIiy9WZf4?feature=share
+
+Part E. Costume the device
+
+**Include sketches of what your devices might look like here.**
+
+<img width="539" height="656" alt="Screen Shot 2025-09-06 at 6 50 16 PM" src="https://github.com/user-attachments/assets/0a10d9b1-bac6-4812-9bef-7e7a80371f64" />
+<img width="489" height="621" alt="Screen Shot 2025-09-06 at 9 50 55 PM" src="https://github.com/user-attachments/assets/3fddfc96-bedd-4ca2-8d4e-49025a315217" />
+<img width="357" height="648" alt="Screen Shot 2025-09-06 at 9 51 46 PM" src="https://github.com/user-attachments/assets/f05209ea-6e19-424e-9819-09dbf1b314b8" />
+
+**What concerns or opportunitities are influencing the way you've designed the device to look?**
+
+Adding features like allergy alerts, calorie tracking, and voice control brings new concerns about accuracy, and the voice may not work well in noisy kitchens, and tracking must be precise to be trusted. At the same time, these features create opportunities to make the device more inclusive and health focused so it can be useful as a true kitchen assistant rather than just a smart light.
+
+Part F. Record
+**Take a video of your prototyped interaction.**
+
+https://youtube.com/shorts/NFFIiy9WZf4?feature=share |
+https://youtube.com/shorts/bb85qWyLwTQ?feature=share |
+https://youtube.com/shorts/UC5cSMIk93s?feature=share 
+
+**Please indicate who you collaborated with on this Lab.** Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design.
+
+I collaborated with Nithin and Sachin on this lab and they were both so inclusive and great to work with. Both of them had loveley and amazing ideas about this product. Nikhil, Sachin, and I all worked on very amazing prototypes and we were able to add on to eachother's ideas. We all equally created costumes, while Sachin filmed the videos. We used inspiration from Amazon Alexa when it came to speaking to the device itself. For the JOBY prototype, the primary inspiration came from the JOBY GorrilaPod camera arm: [Link](https://joby.com/us-en/gorillapod-arm-kit-jb01532-0ww/). Specifically, our team was impressed by how manueverable yet stable the arm was.
