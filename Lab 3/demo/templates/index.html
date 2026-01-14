@@ -1,30 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
-    <link rel="stylesheet" href="static/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+  <link rel="stylesheet" href="static/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
+  <title>Joystick Dashboard</title>
 </head>
 <body>
-	<div id='chart'></div>
-    <br>
-	<button id = 'play'>Eavesdrop</button>
-    <audio id='mic' src="http://{{ hostname }}.local:8080" >
-    </audio>
-        <br>
-            <br>
-    <label> Speak
-        <input type="text" id='wordsIn'>
-        <button id='send'>send</button>
+  <h2>🎮 Joystick Dashboard</h2>
+  <div id="joystick-data">
+    <p><strong>Horizontal:</strong> <span id="x-val">--</span></p>
+    <p><strong>Vertical:</strong> <span id="y-val">--</span></p>
+    <p><strong>Button:</strong> <span id="button-val">--</span></p>
+  </div>
 
-    </label>
-<script src="static/index.js"></script>
+  <br>
+  <button id="play">Eavesdrop</button>
+  <audio id="mic" src="http://{{ hostname }}.local:8080"></audio>
+
+  <br><br>
+  <label> Speak
+    <input type="text" id="wordsIn">
+    <button id="send">Send</button>
+  </label>
+
+  <script>
+    const socket = io();
+
+    socket.on('connect', function() {
+      console.log("Connected to Flask server");
+      socket.emit('connect');
+    });
+
+    socket.on('after connect', function(msg) {
+      console.log("Server:", msg.data);
+    });
+
+    setInterval(() => {
+      socket.emit('ping-gps', {});
+    }, 300); 
+
+    socket.on('pong-gps', function(data) {
+      document.getElementById('x-val').textContent = data.horizontal;
+      document.getElementById('y-val').textContent = data.vertical;
+      document.getElementById('button-val').textContent =
+        data.button === 0 ? "Pressed" : "Released";
+    });
+
+    document.getElementById('play').onclick = function() {
+      document.getElementById('mic').play();
+    };
+
+    document.getElementById('send').onclick = function() {
+      const text = document.getElementById('wordsIn').value;
+      socket.emit('speak', text);
+      document.getElementById('wordsIn').value = '';
+    };
+  </script>
 </body>
 </html>

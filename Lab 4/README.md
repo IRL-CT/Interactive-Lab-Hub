@@ -1,4 +1,5 @@
 
+
 # Ph-UI!!!
 
 <details>
@@ -11,11 +12,12 @@
 	- Your final submission should be neat, focused on your own work, and easy to read for grading.
   
 	This helps ensure your README.md is clear, professional, and uniquely yours!
-</details>
+
 
 ---
-
-## Lab 4 Deliverables
+</details>
+<details>
+<summary><h2>Lab 4 Deliverables</h2></summary>
 
 ### Part 1 (Week 1)
 **Submit the following for Part 1:**  
@@ -53,14 +55,15 @@
 	- Reflection on what you learned and next steps
 
 ---
+</details>
 
 ## Lab Overview
-**NAMES OF COLLABORATORS HERE**
-
+Jiayi Sun and Huiying Zhan
 
 For lab this week, we focus both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
 
-## Part 1 Lab Preparation
+<details>
+<summary><h2>Part 1 Lab Preparation</h2></summary>
 
 ### Get the latest content:
 As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. As we discussed in the class, there are 2 ways you can do so:
@@ -99,8 +102,10 @@ Option 3: (preferred) use the Github.com interface to update the changes.
 
 
 (We do offer shared cutting board, cutting tools, and markers on the class cart during the lab, so do not worry if you don't have them!)
+</details>
 
-## Deliverables \& Submission for Lab 4
+<details>
+<summary><h2> Deliverables \& Submission for Lab 4</h2></summary>
 
 The deliverables for this lab are, writings, sketches, photos, and videos that show what your prototype:
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
@@ -111,7 +116,7 @@ For submission, the readme.md page for this lab should be edited to include the 
 * Upload any materials that explain what you did, into your lab 4 repository, and link them in your lab 4 readme.md.
 * Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
 * Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
-
+</details>
 
 ## Lab Overview
 
@@ -130,7 +135,8 @@ F) [Record the interaction](#part-f)
 
 ## The Report (Part 1: A-D, Part 2: E-F)
 
-### Quick Start: Python Environment Setup
+<details>
+<summary><h3>Quick Start: Python Environment Setup</h3></summary>
 
 1. **Create and activate a virtual environment in Lab 4:**
 	```bash
@@ -147,10 +153,11 @@ F) [Record the interaction](#part-f)
 	python blinkatest.py
 	```
 	If you see "Hello blinka!", your setup is correct. If not, follow the troubleshooting steps in the file or ask for help.
+</details>
 
 ### Part A
-### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
-
+<details>
+<summary><h4>Capacitive Sensing, a.k.a. Human-Twizzler Interaction</h4></summary>
 We want to introduce you to the [capacitive sensor](https://learn.adafruit.com/adafruit-mpr121-gator) in your kit. It's one of the most flexible input devices we are able to provide. At boot, it measures the capacitance on each of the 12 contacts. Whenever that capacitance changes, it considers it a user touch. You can attach any conductive material. In your kit, you have copper tape that will work well, but don't limit yourself! In the example below, we use Twizzlers--you should pick your own objects.
 
 
@@ -168,11 +175,15 @@ These Twizzlers are connected to pads 6 and 10. When you run the code and touch 
 Twizzler 10 touched!
 Twizzler 6 touched!
 ```
+</details>
+
+[Watch the Capacitive Sensing Test video here](https://youtu.be/Zkkp4hpUmT0)   
+
 
 ### Part B
 ### More sensors
-
-#### Light/Proximity/Gesture sensor (APDS-9960)
+<details>
+<summary><h4>Light/Proximity/Gesture sensor (APDS-9960)</h4></summary>
 
 We here want you to get to know this awesome sensor [Adafruit APDS-9960](https://www.adafruit.com/product/3595). It is capable of sensing proximity, light (also RGB), and gesture! 
  
@@ -191,9 +202,15 @@ Connect it to your pi with Qwiic connector and try running the three example scr
 ```
 
 You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_CircuitPython_APDS9960) to see more examples for this sensor!
+</details>
 
-#### Rotary Encoder 
+[Watch the Proximity Test video here](https://youtu.be/O3EXj9QbpGg)   
+[Watch the Gesture Test video here](https://youtu.be/lSCrs3jGfG8)   
+[Watch the Color Test video here](https://youtu.be/w0VfGBpko4k)
 
+
+<details>
+<summary><h4>Rotary Encoder</h4></summary>
 A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came with separate breakout board and encoder itself, that is, they will need to be soldered if you have not yet done so! We will be bringing the soldering station to the lab class for you to use, also, you can go to the MakerLAB to do the soldering off-class. Here is some [guidance on soldering](https://learn.adafruit.com/adafruit-guide-excellent-soldering/preparation) from Adafruit. When you first solder, get someone who has done it before (ideally in the MakerLAB environment). It is a good idea to review this material beforehand so you know what to look at.
 
 <p float="left">
@@ -210,10 +227,12 @@ Connect it to your pi with Qwiic connector and try running the example script, i
 ```
 
 You can go to the [Adafruit Learn Page](https://learn.adafruit.com/adafruit-i2c-qt-rotary-encoder/python-circuitpython) to learn more about the sensor! The sensor actually comes with an LED (neo pixel): Can you try lighting it up? 
+</details>
 
-#### Joystick 
+[Watch the Encoder Test video here](https://youtu.be/-VMnZd_K9Kw)
 
-
+<details>
+<summary><h4>Joystick</h4></summary>
 A [joystick](https://www.sparkfun.com/products/15168) can be used to sense and report the input of the stick for it pivoting angle or direction. It also comes with a button input!
 
 <p float="left">
@@ -227,10 +246,12 @@ Connect it to your pi with Qwiic connector and try running the example script to
 ```
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Joystick_Py) to learn more about the sensor!
+</details>
 
-#### Distance Sensor
+[Watch the Joystick Test video here](https://youtu.be/3UiWbI6_ZkE)
 
-
+<details>
+<summary><h4>Distance Sensor</h4></summary>
 Earlier we have asked you to play with the proximity sensor, which is able to sense objects within a short distance. Here, we offer [Sparkfun Proximity Sensor Breakout](https://www.sparkfun.com/products/15177), With the ability to detect objects up to 20cm away.
 
 <p float="left">
@@ -245,23 +266,90 @@ Connect it to your pi with Qwiic connector and try running the example script to
 ```
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proximity_Py) to learn more about the sensor and see other examples
+</details>
+
+[Watch the Distance Sensor Test video here](https://youtu.be/49AnOakKdbU)
 
 ### Part C
-### Physical considerations for sensing
-
-
+<details>
+<summary><h3>Physical considerations for sensing</h3></summary>
 Usually, sensors need to be positioned in specific locations or orientations to make them useful for their application. Now that you've tried a bunch of the sensors, pick one that you would like to use, and an application where you use the output of that sensor for an interaction. For example, you can use a distance sensor to measure someone's height if you position it overhead and get them to stand under it.
+</details>
+
+### Smart Hygiene Dispenser
+Detects hand proximity to automatically dispense sanitizer and supports gesture control to switch modes.
+<p align="center">
+  <img src="Sensor5.jpeg" alt="Smart Hygiene Dispenser" width="50%">
+</p>
+
+### Breathing Trainer
+Synchronizes light brightness with the user's breathing rhythm and turns off once the user falls asleep.
+<p align="center">
+  <img src="Sensor4.jpeg" alt="Breathing Trainer" width="50%">
+</p>
+
+### Touchless Music Controller
+Uses simple hand gestures to switch, pause, and resume songs without physical contact.
+<p align="center">
+  <img src="Sensor3.jpeg" alt="Touchless Music Controller" width="50%">
+</p>
+
+### Distance Mirror
+Displays real-time weather and time when the user approaches, and hides them when the user moves away.
+<p align="center">
+  <img src="Sensor2.jpeg" alt="Distance Mirror" width="50%">
+</p>
+
+### Gesture Lamp
+Allows users to adjust light intensity and switch lighting modes through up–down and left–right hand waves.
+<p align="center">
+  <img src="Sensor1.jpeg" alt="Gesture Lamp" width="50%">
+</p>
+
+---
+### What questions do these sketches raise?
+
+While sketching these five concepts, we realized that many of them share similar challenges around gesture detection, sensing range, and user feedback.
+Some key questions that emerged are:
+
+#### 1. Sensor sensitivity and detection range
+How far should the user's hand be for the APDS-9960 to reliably detect gestures?
+Will small or fast movements be missed or misclassified?
+
+#### 2. Sensor placement and orientation
+Does the sensor need to face directly toward the user, or can it work at an angle or behind a surface like acrylic?
+How much does the physical mounting affect recognition accuracy?
+
+#### 3. Environmental interference
+Will ambient light, sunlight, or reflections interfere with the proximity or gesture readings?
+
+#### 4. User feedback and learnability
+How can the system communicate successful detection?
+Do users need audio, visual, or haptic cues to understand when the system has responded?
+
+#### 5. Safety and usability in real contexts
+In touchless designs (like the dispenser or music controller), how do we avoid false triggers or unwanted activations when people simply pass by?   
 
 
-**\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
+### What do we need to prototype to answer those questions?
+To explore these issues, we will need to physically prototype and test the following aspects:
+1. Vary the distance and angle between the user's hand and the sensor to measure detection accuracy.
+2. Test gesture recognition (up, down, left, right) in different lighting environments.
+3. Integrate visual or sound feedback (like LEDs or audio tones) to evaluate whether users can easily understand system responses.
+4. Experiment with different enclosure materials (cardboard, plastic, translucent cover) to see how they affect proximity sensing.
+5. Observe how users interact with the device naturally, identifying when false detections occur.
+   
 
-**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+### Prototype Choice
+We decided to prototype the gesture-controlled music player using the APDS-9960 sensor.
+This design feels both fun and practical—it allows users to control music playback without touching any buttons, which is useful when their hands are busy or unclean (for example, while cooking or studying).
 
-**\*\*\*Pick one of these designs to prototype.\*\*\***
+With this prototype, we want to explore how well the sensor can recognize left and right gestures for switching songs, and near/far gestures for pausing and resuming playback. It will also help us understand how users perceive the responsiveness of the system and whether adding visual or audio feedback (like an LED flash or short tone) improves the overall interaction experience.
 
 
 ### Part D
-### Physical considerations for displaying information and housing parts
+<details>
+<summary><h3>Physical considerations for displaying information and housing parts</h3></summary>
 
 
 
@@ -300,20 +388,111 @@ Here is an example:
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/horoscope.png?raw=true"  width="250"/>
 
 Think about how you want to present the information about what your sensor is sensing! Design a paper display for your project that communicates the state of the Pi and a sensor. Ideally you should design it so that you can slide the Pi out to work on the circuit or programming, and then slide it back in and reattach a few wires to be back in operation.
- 
-**\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+</details>
 
-**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+### Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.
+#### Sketch 1 – Turntable
+<p align="center">
+  <img src="Design1.jpeg" alt="Design1" width="70%">
+</p>   
 
-**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+- The APDS-9960 sensor is positioned at the center of a turntable to detect left and right swipe gestures for switching songs.
+- The larger device is designed as a flat record player, allowing users to interact naturally by moving their hands horizontally across the sensor.  
 
-**\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+#### Sketch 2 – Song Player
+<p align="center">
+  <img src="Design2.jpeg" alt="Design2" width="70%">
+</p> 
 
-Build a cardboard prototype of your design.
+- The focus of this design is how to display information through sound — using the speaker as the main medium to communicate playback status.
+- Instead of visual feedback, music itself becomes the output, spreading through the speaker so that people nearby can hear and perceive the interaction.
 
+#### Sketch 3 – Interaction Diagram
+<p align="center">
+  <img src="Design3.jpeg" alt="Design3" width="70%">
+</p>
 
-**\*\*\*Document your rough prototype.\*\*\***
+- This diagram clarifies how hand gestures are recognized:  
+  - Swipe right → Next song  
+  - Swipe left → Previous song  
+- The Raspberry Pi connects to the APDS-9960 through I²C wiring, with enough open space around the sensor to avoid reflections or blocking.   
+- The first three sketches together describe a **single prototype concept** — an interactive vinyl record player that combines gesture-based control, sound output, and tangible form to create a better user experience.
 
+#### Sketch 4 – Wall-mounted Display Turntable
+<p align="center">
+  <img src="Design4.jpeg" alt="Design4" width="70%">
+</p>
+
+- The sensor are mounted on a vertical display turntable, fixed to the wall.  
+- Users can touch a simple “next/previous” button as backup control.  
+- Display on wall make device more public and interactive.
+
+#### Sketch 5 – Portable Pocket Player
+<p align="center">
+  <img src="Design5.jpeg" alt="Design5" width="70%">
+</p>
+
+- A compact, pocket-sized version of the music player.  
+- Includes a screen, two small buttons for switching songs, and a rotary knob for volume control.
+- The physical form focuses on mobility and personal use.
+
+---
+
+### What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?
+1. **Gesture Reliability:**  
+   - How consistently does the APDS-9960 recognize left/right gestures under different lighting conditions and angles?  
+   - Physical prototyping can help determine the optimal sensor placement and gesture distance.  
+
+2. **User Feedback and Visibility:**  
+   - Can users easily understand which song is playing or what gesture was detected?  
+   - Prototyping a screen layout or paper interface will help refine the feedback design.  
+
+3. **Form and Accessibility:**  
+   - How should the device’s size, height, and orientation change between tabletop, wall-mounted, and portable versions?  
+   - Physical mockups will help test usability in different contexts.  
+
+4. **Interaction Comfort:**  
+   - How natural does it feel to wave or swipe above the sensor?
+
+5. **Aesthetic Integration:**  
+   - How can the retro turntable appearance blend with the modern digital interaction?  
+---
+
+### Prototype
+<p align="center">
+  <img src="prototype.jpeg" alt="prototype" width="70%">
+</p>
+
+[Watch the Prototype video here](https://youtu.be/M_O3RC8Aed4)   
+
+The gesture-controlled music player is implemented in [`Lab 4/music_player.py`](https://github.com/hz764/Interactive-Lab-Hub-hz764/blob/Fall2025/Lab%204/music_player.py)
+
+### Explain the Rationale for the Design
+- The design takes inspiration from a **vinyl record player**, emphasizing tangible interaction and visual familiarity.
+- The circular base represents the turntable, while the **paper tonearm** mimics the motion of a real record player.
+- The **APDS-9960 sensor** is positioned at the center, where users can naturally wave their hands to control playback.
+- This placement ensures the gestures are **easily recognized** without obstruction and allows intuitive control from a short distance (5-10 cm).
+- The overall **size and form** are chosen to be tabletop scale — large enough for comfortable hand motion, but compact enough to fit on a desk.
+- The **speaker connection** allows music to be heard by everyone around, reinforcing the shared and social aspect of the design.
+
+### Document Your Rough Prototype
+<p align="center">
+  <img src="Handcraft1.jpeg" alt="Handcraft1" width="70%">
+</p>
+<p align="center">
+  <img src="Handcraft2.jpeg" alt="Handcraft2" width="70%">
+</p>
+
+- The prototype is constructed using **cardboard and colored paper**, with the Raspberry Pi and APDS-9960 connected through I²C wiring.
+- The tonearm is made from **lightweight cardboard**, and the base includes **aesthetic blue and black color contrast** to highlight the interaction zone.
+- The Raspberry Pi handles audio playback and gesture recognition through a Python script.
+- This rough prototype helps visualize how the **gesture input**, **sensor placement**, and **audio feedback** work together in a cohesive setup.
+---
+
+### User Feedback
+- Early testers reported that the design was **visually clear and intuitive**, as the record-player metaphor made the interaction immediately understandable.
+- However, they noted that **gesture sensitivity** could be improved — sometimes swipes were not recognized consistently, especially under bright lighting conditions.
+- Users also suggested that adding **visual indicators or LED feedback** could make the interaction feel more responsive.
 
 # LAB PART 2
 
@@ -324,7 +503,9 @@ Following exploration and reflection from Part 1, complete the "looks like," "wo
 
 
 ### Part E
-
+<details>
+<summary><strong>Guidance (Click to Expand)</strong></summary>
+	
 #### Chaining Devices and Exploring Interaction Effects
 
 For Part 2, you will design and build a fun interactive prototype using multiple inputs and outputs. This means chaining Qwiic and STEMMA QT devices (e.g., buttons, encoders, sensors, servos, displays) and/or combining with traditional breadboard prototyping (e.g., LEDs, buzzers, etc.).
@@ -486,13 +667,137 @@ A servo motor is a rotary actuator that allows for precise control of angular po
 
 ---
 
+</details>
+
 
 ### Part F
 
 ### Record
+<details>
+<summary><strong>Guidance (Click to Expand)</strong></summary>
 
 Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
+</details>
+
+
+## Looks Like
+
+### Picture 1: Prototype Overview
+<p align="center">
+  <img src="Prototype1.jpg" alt="Prototype1" width="70%">
+</p>
+
+### Picture 2: Switch Songs
+<p align="center">
+  <img src="Prototype2.jpg" alt="Prototype2" width="70%">
+</p>
+
+### Picture 3: Pause / Resume Songs
+<p align="center">
+  <img src="Prototype3.jpg" alt="Prototype3" width="70%">
+</p>
+
+### Picture 4: Adjust Volume & Lights
+<p align="center">
+  <img src="Prototype4.jpg" alt="Prototype4" width="70%">
+</p>
+
+
+[▶️ Watch Volume Adjustment & Lights Video](https://youtu.be/YH-1EWWbGyo)  
+[▶️ Watch Pause & Switch Songs Video](https://youtu.be/auJRVmpbO4I)
+
+---
+
+## Works Like
+
+### System Overview
+
+We built a **gesture-controlled music player** that combines multiple input and output devices through I²C chaining:
+
+**Inputs**
+- **APDS-9960 Gesture Sensor** — detects left/right hand swipes to switch songs, and near/far gestures to pause or resume playback.
+- **SparkFun Qwiic Button** — allows manual pause/play control as a backup input.
+- **Adafruit Seesaw Rotary Encoder** — adjusts music volume with smooth physical rotation.
+
+**Outputs**
+- **Qwiic GPIO Board + LEDs** — visual feedback showing current volume level.  
+  - More LEDs light up as volume increases.
+  - Fewer LEDs indicate lower volume.
+- **Speaker** — audio output from Raspberry Pi for real-time playback.
+
+
+---
+
+## Acts Like
+
+### Prototype Behavior
+
+- **Swipe Right:** Next song  
+- **Swipe Left:** Previous song  
+- **Near Gesture:** Pause playback  
+- **Far Gesture:** Resume playback  
+- **Press Qwiic Button:** Toggle play/pause manually  
+- **Rotate Encoder:** Adjust volume; LEDs dynamically show the loudness level  
+
+This prototype merges **gesture, tactile, and visual** interaction modes to make the music player feel more expressive and intuitive. The gestures handle “remote” control, while the button and knob support **direct, physical control** for precision and reliability.
+
+---
+
+## Physical Setup
+
+- The **APDS-9960 sensor** is centered on the top surface for consistent gesture detection within 5–10 cm.  
+- The **rotary encoder** and **Qwiic Button** are placed on the front edge for easy access.  
+- LEDs are arranged in a semicircle near the base, reinforcing the “turntable” look while providing visual feedback.  
+- All components are wired through the Qwiic I²C system to keep cabling neat and modular.  
+
+
+---
+
+## User Test & Feedback
+
+### Test Setup
+We conducted quick user testing with a few participants to observe:
+1. Whether gestures were detected reliably in typical lighting.  
+2. How intuitive users found the button and encoder controls.  
+3. How well LED brightness/quantity communicated volume levels.  
+
+### Feedback Highlights
+- **Gesture Recognition:**  
+  Most users could switch tracks easily with left/right swipes. However, near/far gestures for pause/play were sometimes missed under bright light or when the hand moved too fast.  
+- **Button Control:**  
+  The button was clear and reassuring. Many users liked having a “backup” tactile option when gestures failed.  
+- **Rotary Encoder:**  
+  Turning the knob to adjust volume felt natural and gave a sense of precision.  
+  Users quickly understood that LED count = volume level.  
+- **Overall Experience:**  
+  The combination of gesture and physical controls felt playful and interactive.  
+  The LED feedback was engaging and made the system’s state visible at a glance.  
+
+### Observations
+- The APDS-9960 worked best within ~8 cm and perpendicular hand motion.  
+- Adding a short LED flash or sound cue after a recognized gesture could help confirm input success.  
+- A larger LED diffusion area would make the volume feedback look smoother.
+
+### Improvements for Next Iteration
+- Optimize gesture detection thresholds in code for more stable recognition.  
+- Explore different LED color schemes (e.g., green to red gradient for volume).  
+- Miniaturize the prototype for better portability.
+
+---
+
+## Reflection
+
+Through this multi-input/multi-output prototype, we learned how chaining Qwiic devices enables rich, layered interactions:
+
+- **Integration Challenge:** Coordinating multiple I²C devices required careful address management and timing.  
+- **User Experience Insight:** Combining gestures with physical input greatly improved usability—gestures are expressive, but buttons and knobs ensure reliability.  
+- **Fun Discovery:** The LED feedback added an emotional and visual dimension to sound, turning volume control into a small “light performance.”  
+
+In short, the project showed how combining sensors, encoders, and LEDs can create **playful, multimodal experiences** that feel both modern and tangible.
+
+---
 

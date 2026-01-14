@@ -1,213 +1,118 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Ollama Voice Assistant for Lab 3
-Interactive voice assistant using speech recognition, Ollama AI, and text-to-speech
-
-Dependencies:
-- ollama (API client)
-- speech_recognition
-- pyaudio
-- pyttsx3 or espeak
+- Speech input via microphone
+- Query Ollama (up to 3 minutes)
+- Speak response using espeak (Unicode safe, BLOCKING)
 """
 
 import speech_recognition as sr
-import subprocess
 import requests
-import json
+import subprocess
 import time
 import sys
-import threading
-from queue import Queue
 
-# Set UTF-8 encoding for output
-if sys.stdout.encoding != 'UTF-8':
-    import codecs
-    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
-if sys.stderr.encoding != 'UTF-8':
-    import codecs
-    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+# Ensure stdout uses utf-8 to avoid encoding errors
+sys.stdout.reconfigure(encoding='utf-8')
 
-try:
-    import pyttsx3
-    TTS_ENGINE = 'pyttsx3'
-except ImportError:
-    TTS_ENGINE = 'espeak'
-    print("pyttsx3 not available, using espeak for TTS")
+# Ollama configuration
+OLLAMA_URL = "http://localhost:11434"
+DEFAULT_MODEL = "phi3:mini"
 
-class OllamaVoiceAssistant:
-    def __init__(self, model_name="phi3:mini", ollama_url="http://localhost:11434"):
-        self.model_name = model_name
-        self.ollama_url = ollama_url
-        self.recognizer = sr.Recognizer()
-        self.microphone = sr.Microphone()
-        
-        # Initialize TTS
-        if TTS_ENGINE == 'pyttsx3':
-            self.tts_engine = pyttsx3.init()
-            self.tts_engine.setProperty('rate', 150)  # Speed of speech
-        
-        # Test Ollama connection
-        self.test_ollama_connection()
-        
-        # Adjust for ambient noise
-        print("Adjusting for ambient noise... Please wait.")
-        with self.microphone as source:
-            self.recognizer.adjust_for_ambient_noise(source)
-        print("Ready for conversation!")
+def get_microphone_index():
+    """Find and return the index of the preferred microphone."""
+    mic_list = sr.Microphone.list_microphone_names()
+    print("Detected microphones:")
+    for idx, name in enumerate(mic_list):
+        print(f"{idx}: {name}")
 
-    def test_ollama_connection(self):
-        """Test if Ollama is running and the model is available"""
-        try:
-            response = requests.get(f"{self.ollama_url}/api/tags")
-            if response.status_code == 200:
-                models = response.json().get('models', [])
-                model_names = [m['name'] for m in models]
-                if self.model_name in model_names:
-                    print(f"Ollama is running with {self.model_name} model")
-                else:
-                    print(f"Model {self.model_name} not found. Available models: {model_names}")
-                    if model_names:
-                        self.model_name = model_names[0]
-                        print(f"Using {self.model_name} instead")
-            else:
-                raise Exception("Ollama API not responding")
-        except Exception as e:
-            print(f"Error connecting to Ollama: {e}")
-            print("Make sure Ollama is running: 'ollama serve'")
-            sys.exit(1)
+    # Prefer Logitech C270 HD Webcam
+    for i, name in enumerate(mic_list):
+        if "C270 HD WEBCAM" in name:
+            print(f"Using preferred device: {name} (index={i})")
+            return i
 
-    def speak(self, text):
-        """Convert text to speech"""
-        # Clean text to avoid encoding issues
-        clean_text = text.encode('ascii', 'ignore').decode('ascii')
-        print(f"Assistant: {clean_text}")
-        
-        if TTS_ENGINE == 'pyttsx3':
-            self.tts_engine.say(clean_text)
-            self.tts_engine.runAndWait()
+    # Fallback to default
+    print("C270 microphone not found, using default device")
+    return 0
+
+def query_ollama(prompt, model=DEFAULT_MODEL, timeout=180):
+    """Send prompt to Ollama and return response (up to 3 minutes)."""
+    try:
+        response = requests.post(
+            f"{OLLAMA_URL}/api/generate",
+            json={"model": model, "prompt": prompt, "stream": False},
+            timeout=timeout
+        )
+
+        if response.status_code == 200:
+            return response.json().get("response", "No response generated")
         else:
-            # Use espeak as fallback
-            subprocess.run(['espeak', clean_text], check=False)
+            return f"Error: Ollama returned status {response.status_code}"
 
-    def listen(self):
-        """Listen for speech and convert to text"""
-        try:
-            print("Listening...")
-            with self.microphone as source:
-                # Listen for audio with timeout
-                audio = self.recognizer.listen(source, timeout=5, phrase_time_limit=10)
-            
-            print("Recognizing...")
-            # Use Google Speech Recognition (free)
-            text = self.recognizer.recognize_google(audio)
-            print(f"You said: {text}")
-            return text.lower()
-            
-        except sr.WaitTimeoutError:
-            print("No speech detected, timing out...")
-            return None
-        except sr.UnknownValueError:
-            print("Could not understand audio")
-            return None
-        except sr.RequestError as e:
-            print(f"Error with speech recognition service: {e}")
-            return None
+    except requests.exceptions.Timeout:
+        return "Sorry, the response took too long. Please try again."
+    except Exception as e:
+        return f"Error: {str(e)}"
 
-    def query_ollama(self, prompt, system_prompt=None):
-        """Send a query to Ollama and get response"""
-        try:
-            data = {
-                "model": self.model_name,
-                "prompt": prompt,
-                "stream": False
-            }
-            
-            if system_prompt:
-                data["system"] = system_prompt
-            
-            response = requests.post(
-                f"{self.ollama_url}/api/generate",
-                json=data,
-                timeout=30
-            )
-            
-            if response.status_code == 200:
-                result = response.json()
-                return result.get('response', 'Sorry, I could not generate a response.')
-            else:
-                return f"Error: Ollama API returned status {response.status_code}"
-                
-        except requests.exceptions.Timeout:
-            return "Sorry, the response took too long. Please try again."
-        except Exception as e:
-            return f"Error communicating with Ollama: {e}"
+def speak_text(text):
+    """Convert text to speech using espeak (BLOCKING, safe Unicode)."""
+    try:
+        # Replace problematic characters
+        safe_text = text.replace('–', '-').replace('—', '-').replace('…', '...')
 
-    def run_conversation(self):
-        """Main conversation loop"""
-        print("\nOllama Voice Assistant Started!")
-        print("Say 'hello' to start, 'exit' or 'quit' to stop")
-        print("=" * 50)
-        
-        # System prompt to make the assistant more conversational
-        system_prompt = """You are a helpful voice assistant. Keep your responses concise and conversational, 
-        typically 1-2 sentences. Be friendly and engaging. You are running on a Raspberry Pi as part of an 
-        interactive device design lab."""
-        
-        self.speak("Hello! I'm your Ollama voice assistant. How can I help you today?")
-        
-        while True:
-            try:
-                # Listen for user input
-                user_input = self.listen()
-                
-                if user_input is None:
-                    continue
-                    
-                # Check for exit commands
-                if any(word in user_input for word in ['exit', 'quit', 'bye', 'goodbye']):
-                    self.speak("Goodbye! Have a great day!")
-                    break
-                
-                # Check for greeting
-                if any(word in user_input for word in ['hello', 'hi', 'hey']):
-                    self.speak("Hello! What would you like to talk about?")
-                    continue
-                
-                # Send to Ollama for processing
-                print("Thinking...")
-                response = self.query_ollama(user_input, system_prompt)
-                
-                # Speak the response
-                self.speak(response)
-                
-            except KeyboardInterrupt:
-                print("\nConversation interrupted by user")
-                self.speak("Goodbye!")
-                break
-            except Exception as e:
-                print(f"Unexpected error: {e}")
-                self.speak("Sorry, I encountered an error. Let's try again.")
+        safe_text = ''.join(c if ord(c) < 128 else ' ' for c in safe_text)
+
+        subprocess.run(['espeak', '-v', 'en', safe_text], check=False, encoding='utf-8', timeout=120)
+    except subprocess.TimeoutExpired:
+        print("TTS timeout exceeded")
+    except Exception as e:
+        print(f"TTS Error: {e}")
+
 
 def main():
-    """Main function to run the voice assistant"""
-    print("Starting Ollama Voice Assistant...")
-    
-    # Check if required dependencies are available
+    """Main loop: listen → recognize → query → speak."""
+    device_index = get_microphone_index()
+    r = sr.Recognizer()
+
     try:
-        import speech_recognition
-        import requests
-    except ImportError as e:
-        print(f"Missing dependency: {e}")
-        print("Please install with: pip install speechrecognition requests pyaudio")
-        return
-    
-    # Create and run the assistant
-    try:
-        assistant = OllamaVoiceAssistant()
-        assistant.run_conversation()
-    except Exception as e:
-        print(f"Failed to start assistant: {e}")
+        with sr.Microphone(device_index=device_index) as source:
+            print("Calibrating microphone for ambient noise...")
+            r.adjust_for_ambient_noise(source, duration=1)
+            print("Calibration complete")
+
+            print("Voice assistant ready. Speak into the microphone.")
+            print("Press Ctrl+C to stop.")
+
+            while True:
+                try:
+                    print("\nListening...")
+                    # Listen for up to 15 seconds, end after 2s silence
+                    audio = r.listen(source, timeout=15, phrase_time_limit=15)
+
+                    print("Recognizing speech...")
+                    user_text = r.recognize_google(audio, language="en-US")
+                    print(f"You said: {user_text}")
+
+                    print("Querying Ollama (this may take up to 3 minutes)...")
+                    ai_response = query_ollama(user_text)
+                    print(f"Ollama: {ai_response}")
+
+                    # BLOCKING speak: next listen starts only after TTS finishes
+                    speak_text(ai_response)
+
+                except sr.WaitTimeoutError:
+                    print("No speech detected in time.")
+                except sr.UnknownValueError:
+                    print("Could not understand audio.")
+                except sr.RequestError as e:
+                    print(f"Speech Recognition service error: {e}")
+                except Exception as e:
+                    print(f"Error: {e}")
+                    time.sleep(1)
+
+    except KeyboardInterrupt:
+        print("\nExiting voice assistant...")
 
 if __name__ == "__main__":
     main()

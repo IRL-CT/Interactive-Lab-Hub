@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+**Jiayi Sun and Huiying Zhan**
 
 Does it feel like time is moving strangely during this semester?
 
@@ -152,11 +152,19 @@ You can type the name of a color then press either of the buttons on the MiniPiT
 ```
 
 #### Displaying Info with Texts
-You can look in `screen_boot_script.py` for how to display text on the screen!
+You can look in `screen_boot_script.py` for how to display text on the screen!  
+
 
 #### Displaying an image
 
-You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
+You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?  
+
+<mark><strong>See Interactions Here</strong></mark>  
+
+<img src="text.jpg" height="600" />  
+
+- [▶️ Watch video for colors interaction here](https://youtu.be/n4wuPcWpbyE)  
+- [▶️ Watch video for images interaction here](https://youtu.be/JL0R7H22HcI)  
 
 
 
@@ -182,14 +190,47 @@ Now you should be able to edit python scripts with Thonny on your Pi.
 
 Option 3. A nowadays often preferred method is to use Microsoft [VS code to remote connect to the Pi](https://www.raspberrypi.com/news/coding-on-raspberry-pi-remotely-with-visual-studio-code/). This gives you access to a fullly equipped and responsive code editor with terminal and file browser.  
 
-Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
+Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone!   
+<mark><strong>See Clock Here</strong></mark>  
+<img src="clock.jpg" height="600" />
+
 
 ## Part E. Now moved to Lab2 Part 2.
 
 ## Part F. Now moved to Lab2 Part 2.
 
-## Part G. 
-## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+## Part G  
+## Sketch and brainstorm further interactions and features you would like for your clock for Part 2  
+
+---
+
+### Picture 1: Roosevelt Island Cable Clock  
+<img src="cable car clock.png" width="500">
+
+- **Concept**: A creative clock interface that uses the number of Roosevelt Island cable car round trips to represent time.  
+- **Composition**: The interface consists of a single horizontal blue cable with a blue cable car hanging from it. Inside the cable car, a number shows the trip count, representing the passage of time.  
+- **Unit of Time**: Each round trip equals 30 minutes. The current time in a day is calculated by converting hours into minutes, dividing by 30, and rounding down.  
+- **How it Works**:  
+  - At the top, the text reads *“CABLE CAR ROUND TRIPS”*, which is the unit of time in our design.  
+  - The cable car moves gradually from the bottom-left corner to the top-right corner over the course of the day.  
+  - The background shifts from light red to dark red, simulating time passing.  
+  - The entire design uses pixel art style, making it playful and electronic.  
+
+---
+
+### Picture 2: Interactive Reminder Clock  
+<img src="interactive clock.jpg" width="500">  
+
+- **Concept**: A pixel art watch interface that combines current time with reminder notifications.  
+- **Composition**: A horizontal digital watch screen. The current time (HH:MM) is displayed at the top in large pixelated digits, while below it a reminder text appears, such as *“Reminder: Meeting.”*  
+- **Unit of Time**: The reminder is measured with a countdown that always fits within one hour. For example, the display may show *“45 min remaining”*, indicating how much time is left until the event begins.  
+- **How it Works**:
+  - Users type in upcoming events on their own.
+  - Displays both the present time and the urgency of upcoming tasks.  
+  - By pairing the clock with a real-time countdown, the user sees not only the time but also how soon the next activity will start.  
+  - The retro pixel art style reinforces a clear, playful, and distinctive identity.  
+
+---
 
 
 # Prep for Part 2
@@ -208,18 +249,48 @@ Does time have to be linear?  How do you measure a year? [In daylights? In midni
 
 Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
 
+
 Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!
+
+**CABLE CAR ROUND TRIPS**  
+<img src="cable car clock.png" width="500">
+
+## Key Features  
+
+- **Dynamic gradient background** – background colors shift over time, making the passage of time more vivid.  
+- **Cable car animation** – the car moves smoothly along the cable, with a **gentle pendulum swing**, simulating natural motion.  
+- **Stylized design** – car body is a **rounded rectangle with a trapezoid roof**, sky-blue color, and a subtle shadow effect.  
+- **Center-aligned text** – the trip count is displayed clearly in the middle of the car.  
+- **Explanatory text** – note at the bottom reminds users that one round trip = 30 minutes.  
+
+
+ **Reminder Clock**   
+<img src="interactive clock.jpg" width="500">  
+
+
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
 
-\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*   
+<mark> A copy of my code is included in my Lab 2 GitHub repo: </mark>
 
+**gesture_daemon.py** – Implements gesture control. When the user waves their hand toward the screen, the detailed reminder view toggles on; waving again hides the reminder so that only the time is shown.  
+
+**reminder_clock.py** – Implements button interactions. Button A cycles to the next reminder, Button B cycles to the previous reminder, and pressing A + B together deletes the current reminder.  
+
+**screen_cable_clock.py** – Implements the animated cable car clock with dynamic gradient background and pendulum-style swinging motion.  
+
+---
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+\*\*\***Take a video of your PiClock.**\*\*\*   
+<mark> **Here is the video of my Reminder Clock demo: 👉 [https://youtu.be/Pi32cqu7j2A](https://youtu.be/Pi32cqu7j2A)** </mark>
+
+<mark> **Here is the video of my Cable Clock demo: 👉 [https://youtu.be/d-vsA0yDSq8](https://youtu.be/d-vsA0yDSq8)** </mark>
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -240,4 +311,14 @@ As always, make sure you document contributions and ideas from others explicitly
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
 
+## Reflection  
 
+Throughout this project, I went through multiple **iterations**:  
+
+- Initially, I only had a static black background and a moving car, but no real personality.  
+- Then I experimented with **dynamic gradient backgrounds** to make the time passage more vivid.  
+- I refined the car’s **appearance** (adding rounded corners, a trapezoid roof, windows, and shadow effects) so that it looks more polished.  
+- I also made sure the **text alignment** was centered properly inside the car.  
+- Finally, I added a **pendulum swing** effect to the cable car, which makes the animation feel more natural and alive.  
+
+This iterative process taught me that small design changes — like color, movement, and alignment — can significantly affect how intuitive and enjoyable an interface feels. What started as a plain functional clock gradually became a **playful and interactive visualization of time**, something that feels less like “telling time” and more like “watching time travel.”  
