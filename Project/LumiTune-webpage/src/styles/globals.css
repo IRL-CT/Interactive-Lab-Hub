@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* Warm minimal LumiTune theme */
+@layer base {
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Main panel */
+  .panel {
+    background: #EFE9E3;
+    border-radius: 20px;
+    border: 1px solid #D9CFC7;
+    box-shadow: 
+      0 4px 16px rgba(89, 74, 58, 0.08),
+      0 2px 8px rgba(89, 74, 58, 0.04);
+  }
+
+  /* Form field container */
+  .form-field {
+    @apply space-y-2;
+  }
+
+  /* Form label */
+  .form-label {
+    @apply block text-sm tracking-wide text-[#6B5B4B] ml-1;
+  }
+
+  /* Text input */
+  .form-input {
+    @apply w-full px-4 py-3 rounded-xl
+      bg-white
+      border border-[#D9CFC7]
+      text-[#5A4A3A] placeholder-[#A39383]
+      outline-none
+      transition-all duration-300
+      focus:border-[#C9B59C] focus:shadow-[0_0_0_3px_rgba(201,181,156,0.1)]
+      hover:border-[#C9B59C];
+  }
+
+  /* Select dropdown */
+  .form-select {
+    @apply w-full px-4 py-3 rounded-xl
+      bg-white
+      border border-[#D9CFC7]
+      text-[#5A4A3A]
+      outline-none
+      transition-all duration-300
+      focus:border-[#C9B59C] focus:shadow-[0_0_0_3px_rgba(201,181,156,0.1)]
+      hover:border-[#C9B59C]
+      cursor-pointer
+      appearance-none
+      bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg%20width%3d%2212%22%20height%3d%228%22%20viewBox%3d%220%200%2012%208%22%20fill%3d%22none%22%20xmlns%3d%22http://www.w3.org/2000/svg%22%3e%3cpath%20d%3d%22M1%201L6%206L11%201%22%20stroke%3d%22%23C9B59C%22%20stroke-width%3d%222%22%20stroke-linecap%3d%22round%22%20stroke-linejoin%3d%22round%22/%3e%3c/svg%3e')]
+      bg-[length:16px_16px]
+      bg-[right_12px_center]
+      bg-no-repeat
+      pr-10;
+  }
+
+  .form-select option {
+    @apply bg-white text-[#5A4A3A];
+  }
+
+  /* Genre buttons */
+  .genre-button {
+    @apply py-3 px-4 rounded-full
+      text-[#5A4A3A]
+      transition-all duration-300
+      outline-none
+      border-2
+      hover:shadow-md;
+    
+    /* Default state - outlined with genre color */
+    background: white;
+    border-color: var(--genre-color);
+  }
+
+  .genre-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .genre-button.active {
+    /* Active state - filled with genre color */
+    background: var(--genre-color);
+    border-color: var(--genre-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .genre-button:focus-visible {
+    @apply ring-2 ring-[#C9B59C] ring-offset-2;
+  }
+
+  /* Range slider */
+  .slider {
+    @apply appearance-none h-2 rounded-full
+      bg-[#D9CFC7]
+      outline-none
+      cursor-pointer
+      transition-all duration-300;
+  }
+
+  .slider::-webkit-slider-thumb {
+    @apply appearance-none w-5 h-5 rounded-full
+      bg-[#C9B59C]
+      cursor-pointer
+      transition-all duration-300
+      hover:scale-110;
+    box-shadow: 0 2px 8px rgba(201, 181, 156, 0.4);
+  }
+
+  .slider::-webkit-slider-thumb:hover {
+    box-shadow: 0 4px 12px rgba(201, 181, 156, 0.6);
+  }
+
+  .slider::-moz-range-thumb {
+    @apply w-5 h-5 rounded-full
+      bg-[#C9B59C]
+      cursor-pointer
+      border-0
+      transition-all duration-300
+      hover:scale-110;
+    box-shadow: 0 2px 8px rgba(201, 181, 156, 0.4);
+  }
+
+  .slider::-moz-range-thumb:hover {
+    box-shadow: 0 4px 12px rgba(201, 181, 156, 0.6);
+  }
+
+  /* Volume display */
+  .volume-display {
+    @apply min-w-[3.5rem] px-3 py-2 rounded-lg
+      bg-white
+      border border-[#D9CFC7]
+      text-[#5A4A3A] text-center
+      tabular-nums;
+  }
+
+  /* Submit button */
+  .submit-button {
+    @apply w-full py-4 px-6 rounded-xl
+      bg-[#C9B59C]
+      text-white
+      flex items-center justify-center gap-3
+      outline-none
+      transition-all duration-300
+      hover:bg-[#B8A58B]
+      hover:shadow-lg
+      active:scale-[0.98]
+      focus:ring-2 focus:ring-[#C9B59C] focus:ring-offset-2;
+    box-shadow: 0 4px 12px rgba(201, 181, 156, 0.3);
+  }
+
+  .submit-button:hover {
+    box-shadow: 0 6px 20px rgba(201, 181, 156, 0.4);
+  }
+
+  /* Status message */
+  .status-message {
+    @apply text-center md:text-right text-sm
+      text-[#6B5B4B]
+      px-4 py-2 rounded-lg
+      bg-white
+      border border-[#D9CFC7];
+  }
+}

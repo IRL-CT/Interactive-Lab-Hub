@@ -3,5 +3,54 @@
 venv
 venv*
 __*
+ollama_venv/
 .venv*
-.venv/
+.venv
+
+# =========================================
+# Node / Vite (LumiTune-webpage)
+# =========================================
+
+# Ignore ALL node_modules folders in repo
+node_modules/
+
+# Vite build output
+dist/
+
+# Local configuration (contains Pi IP)
+Project/LumiTune-webpage/public/config.js
+
+# npm / yarn / pnpm lockfiles (optional)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# =========================================
+# Python caches (all labs + project)
+# =========================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =========================================
+# Logs
+# =========================================
+*.log
+logs/
+
+# =========================================
+# Editor / OS junk
+# =========================================
+Thumbs.db
+.vscode/
+.idea/
+*~
+
+# =========================================
+# Audio / ML Artifacts (optional)
+# Comment these out if you want to commit them
+# =========================================
+# *.tflite
+# *.onnx
+

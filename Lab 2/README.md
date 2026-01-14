@@ -1,6 +1,9 @@
 # Interactive Prototyping: The Clock of Pi
 **NAMES OF COLLABORATORS HERE**
 
+Jessica Hsiao (dh779), Irene Wu (yw2785)
+
+---
 Does it feel like time is moving strangely during this semester?
 
 For our first Pi project, we will pay homage to the [timekeeping devices of old](https://en.wikipedia.org/wiki/History_of_timekeeping_devices) by making simple clocks.
@@ -190,7 +193,15 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+A shared social dining tool that helps hotpot eaters time their food (like meat or veggies) without pulling out phones. → The goal is convenience, fun, and better-timed food.
 
+Features
+- The device would show a countdown of minutes/seconds.
+- When the remaining time is less than 30 seconds, the device's screen would turn yellow to red to notify users.
+- Users could push a button to reset the timer.
+- Users could also change the countdown time by clicking the button several times.
+
+![IDD_Lab2a_interaction](./demo_pic/interaction.png)
 
 # Prep for Part 2
 
@@ -212,14 +223,44 @@ Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://c
 
 **We strongly discourage and will reject the results of literal digital or analog clock display.**
 
-
 \*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
 
+---
+
+### Overview
+
+A **shared dining device** designed to make hotpot or barbecue experiences more **convenient, fun, and perfectly timed**. The tool helps diners know exactly when their ingredients, like meat, seafood, or vegetables, are ready without needing to check their phones or guess.
+
+### Scenario
+
+Imagine sitting at a hotpot or Korean barbecue restaurant with friends. Instead of constantly asking “Is this ready yet?” or pulling out your phone timer, you simply select your ingredient on the device, and it takes care of the timing for you.
+
+### Target Users
+
+- **Casual diners** who don’t know the proper cooking times for different ingredients.
+- **Groups of friends or families** who want to focus on conversation instead of managing timers.
+
+### Key Functions
+
+- **Menu Page** – Users scroll through ingredient options (beef, shrimp, vegetables, etc.).
+  - **Button A**: Scroll through the menu to choose the ingredient.
+  - **Button B**: Confirm selection and move to the countdown page.
+- **Countdown Page** – Displays a timer specific to the selected ingredient’s ideal cooking time.
+- **Exit Countdown Mode** – Press buttons A + B simultaneously to stop the timer and return to the menu.
+- **Notification** – At the end of the countdown, the device displays a clear message indicating the food is ready to eat.
+
+### Goal
+
+- **Convenience** – No need for phones or manual timing.
+- **Fun** – Adds a playful, interactive element to the dining experience.
+- **Better-Timed Food** – Reduces overcooking or undercooking, leading to a tastier meal.
 
 ## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+https://github.com/user-attachments/assets/2a973db1-5ccc-49a2-b3e1-7ada9772d3f3
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 

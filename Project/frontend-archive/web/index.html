@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Music Box Control</title>  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .btn {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    select, input {
+      margin-top: 10px;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+    }
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    /* --- add from here --- */
+    .loading-spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #ccc;
+      border-top-color: #4caf50;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .disabled-btn {
+      background: #999 !important;
+      cursor: not-allowed;
+    }
+    /* --- to here --- */
+  </style>
+
+  <!-- MQTT over WebSocket library -->
+  <script src="config.js"></script>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+
+  <h2>Music Box Controller</h2>
+
+  <label for="username">Your name:</label>
+  <input id="username" placeholder="Enter your name" />
+
+  <label for="year">Choose decade:</label>
+  <select id="year">
+    <option value="1950">1950s</option>
+    <option value="1960">1960s</option>
+    <option value="1970">1970s</option>
+    <option value="1980">1980s</option>
+    <option value="1990">1990s</option>
+    <option value="2000">2000s</option>
+    <option value="2010">2010s</option>
+    <option value="2020">2020s</option>
+  </select>
+
+  <label for="genre">Choose Genre:</label>
+  <select id="genre">
+    <option value="chill">Chill</option>
+    <option value="energetic">Energetic</option>
+    <option value="warm">Warm</option>
+    <option value="party">Party</option>
+  </select>
+
+  <label for="volume">Volume (0–1):</label>
+  <input type="number" id="volume" min="0" max="1" step="0.1" value="0.8" />
+
+  <button id="sendBtn" class="btn">Send to Music Box</button>
+
+  <div id="status"></div>
+  <script>
+    const PI_IP = window.MUSICBOX_CONFIG.PI_IP;
+    const WS_PORT = window.MUSICBOX_CONFIG.WS_PORT;
+  
+    console.log(`Connecting to MQTT via WebSocket at ws://${PI_IP}:${WS_PORT}`);
+    const client = mqtt.connect(`ws://${PI_IP}:${WS_PORT}`);
+  
+    const statusEl = document.getElementById("status");
+    const sendBtn = document.getElementById("sendBtn");
+  
+    let hasEverConnected = false;
+  
+    // --- helpers ---
+    function setStatusConnecting() {
+      statusEl.innerHTML =
+        `<span style="display:inline-block;width:14px;height:14px;border:2px solid #ccc;border-top-color:#4caf50;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;vertical-align:middle;"></span>` +
+        `Connecting to Music Box…`;
+    }
+  
+    function setStatusConnected() {
+      statusEl.innerText = "✅ Connected to Music Box";
+      sendBtn.disabled = false;
+      sendBtn.classList.remove("disabled-btn");
+    }
+  
+    function setStatusError(msg) {
+      statusEl.innerText = "❌ " + msg;
+      sendBtn.disabled = true;
+      sendBtn.classList.add("disabled-btn");
+    }
+  
+    function setStatusReconnecting() {
+      statusEl.innerHTML =
+        `<span style="display:inline-block;width:14px;height:14px;border:2px solid #ccc;border-top-color:#4caf50;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:6px;vertical-align:middle;"></span>` +
+        `Reconnecting…`;
+      sendBtn.disabled = true;
+      sendBtn.classList.add("disabled-btn");
+    }
+  
+    // initial state
+    sendBtn.disabled = true;
+    sendBtn.classList.add("disabled-btn");
+    setStatusConnecting();
+  
+    // ---- MQTT event handlers ----
+    client.on("connect", () => {
+      console.log("[MQTT] connected");
+      hasEverConnected = true;
+      setStatusConnected();
+    });
+  
+    client.on("reconnect", () => {
+      console.log("[MQTT] reconnecting");
+      setStatusReconnecting();
+    });
+  
+    client.on("close", () => {
+      console.log("[MQTT] closed");
+      if (hasEverConnected) {
+        setStatusError("MQTT connection closed");
+      } else {
+        setStatusError("Could not connect to Music Box (closed).");
+      }
+    });
+  
+    client.on("offline", () => {
+      console.log("[MQTT] offline");
+      if (hasEverConnected) {
+        setStatusError("MQTT client offline");
+      }
+    });
+  
+    client.on("error", (err) => {
+      console.error("[MQTT ERROR]", err);
+      if (!hasEverConnected) {
+        setStatusError("Unable to connect to Music Box.");
+      }
+    });
+  
+    // If we don't connect within 5 seconds, show an error instead of endless "Connecting..."
+    setTimeout(() => {
+      if (!hasEverConnected) {
+        console.warn("[MQTT] still not connected after 5s");
+        setStatusError("Could not connect. Check that the Pi is on and Mosquitto is running.");
+      }
+    }, 5000);
+  
+    // ---- send button ----
+    sendBtn.onclick = () => {
+      if (sendBtn.disabled) return; // safety
+  
+      const nameInput = document.getElementById("username").value.trim();
+      const genre = document.getElementById("genre").value;
+      const year = parseInt(document.getElementById("year").value, 10);
+      const volume = parseFloat(document.getElementById("volume").value);
+  
+      const clientId = nameInput || "anonymous";
+  
+      const payload = {
+        type: "genre_request",
+        client_id: clientId,
+        genre: genre,
+        year: year,
+        volume: volume,
+        timestamp: Math.floor(Date.now() / 1000),
+      };
+  
+      console.log("[PUBLISH] musicbox/genre/request", payload);
+  
+      client.publish(
+        "musicbox/genre/request",
+        JSON.stringify(payload),
+        (err) => {
+          if (err) {
+            console.error("[PUBLISH ERROR]", err);
+            setStatusError("Failed to send message");
+          } else {
+            statusEl.innerText =
+              `📤 Sent: ${year}s, ${genre}, volume=${volume}, from ${clientId}`;
+          }
+        }
+      );
+    };
+  </script>  
+
+</body>
+</html>
