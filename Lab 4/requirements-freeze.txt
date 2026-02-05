@@ -95,7 +95,7 @@ pigpio==1.78
 Pillow==8.1.2
 piper-phonemize==1.1.0
 piper-tts==1.2.0
-protobuf==3.20.3
+protobuf==5.29.6
 psutil==5.8.0
 pycairo==1.16.2
 pycparser==2.21
