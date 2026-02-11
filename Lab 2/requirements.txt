@@ -10,7 +10,7 @@ Adafruit-PlatformDetect==3.82.0
 Adafruit-PureIO==1.1.11
 binho-host-adapter==0.1.6
 lgpio==0.2.2.0
-pillow==11.3.0
+pillow==12.1.1
 pip-chill==1.0.3
 pyftdi==0.57.1
 pyserial==3.5
