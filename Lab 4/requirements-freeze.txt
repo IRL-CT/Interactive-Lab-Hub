@@ -40,7 +40,7 @@ colorama==0.4.4
 coloredlogs==15.0.1
 colorzero==1.1
 contourpy==1.1.0
-cryptography==3.3.2
+cryptography==46.0.5
 cupshelpers==1.0
 cycler==0.11.0
 dbus-python==1.2.16
