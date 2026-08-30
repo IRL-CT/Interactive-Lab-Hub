@@ -2,9 +2,9 @@
 
 _This project is to be done in teams of 2._
 
-**NAME OF BOTH COLLABORATOR(S) HERE**
+**Tzu-Yao (Regina) Chang, Monica Wei**
 
-**THE MASTERWORK YOU DREW FROM THE HAT:**
+**THE MASTERWORK YOU DREW FROM THE HAT: MESSA DI VOCE**
 
 ---
 
@@ -92,6 +92,21 @@ the interaction*:
 **Describe your masterwork here, in your own words. What is the core interaction
 someone would recognize it by?**
 
+| Input | Response |
+|---|---|
+| Performer makes a sound | A visual forms appears |
+| Volume changes | Changes the size or behavior of the visuals |
+| Pitch changes | Changes the shape or movement of the visuals |
+| Performer changes their voice after seeing the vidual | Creates a continuous feedback loop |
+
+- The vocal performers or audience can interact with it. The piece creates a feedback loop between the performers and the device. When performers make sounds, the device turns those sounds into visual forms. When performers see the visual forms, they change their voice volume or pitch in response to them.
+
+- Messa di Voce is famous for translating sounds from people or the environment into real-time interactive visuals. Instead of simply hearing sounds, performers can see the visuals and interact with them using their voices and bodies.
+
+- Strengths: It makes invisible things, like sound and changes in volume, visible. It also makes sound last longer by turning something temporary into a visual form that can stay in the space and be interacted with. It also provides another way to perceive sound, helping people who may not hear the sound clearly or notice changes in it.
+
+- Weakness: The interaction is mostly limited to sound, body movement, and visual feedback. Adding other types of interaction, such as touch or haptic feedback, could make the experience more immersive and allow people to interact with sound in more ways.
+
 ## Part A. Plan
 
 For your masterwork, reconstruct the interaction as a scene:
@@ -105,6 +120,17 @@ For your masterwork, reconstruct the interaction as a scene:
 
 **Describe your setting, players, activity, and goals here.**
 
+- **Setting:** The house at cornell tech
+- **Players:** 
+   A (in Scene 1): Regina  
+   B (in Scene 2): Monica
+- **Activity:** 
+  - In Scene 1, A walks into the scene and makes sounds. The sounds are transformed into visual forms that appear and remain around A.
+  - In Scene 2, B makes sounds and generates ripple-like visual forms. The ripples spread through the space and interact with another performer.
+  - In Scene 3, B generates a visual form that travels toward A. The visual form hits A, and A reacts as if the visual form physically pushes them out of the scene.
+- **Goals:**
+  The goal is to explore how sound can be transformed into visible forms and how people can interact with these forms in different ways. The visual forms make sound feel like something that can remain in space, move between people, and even have a physical effect on others.
+
 Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
 don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
 and the people around it. If you're new to storyboarding, read
@@ -113,6 +139,7 @@ and the people around it. If you're new to storyboarding, read
 **Include pictures of your storyboards here.**
 
 Use the storyboards to decide what interaction to prototype.
+![Storyboard](image/storyboard.jpg)
 
 **Summarize the feedback you got here.**
 
@@ -124,9 +151,16 @@ it aloud.
 
 **Are there things that seemed better on paper than when acted out?**
 
+It was difficult to show the scene where the ripple-like visual form hits the performer. It was easy to show in the storyboard, but when we acted it out, it was hard to make the interaction look realistic.
+
 **Did new ideas about the piece surface once you were on your feet?**
 
+When sound becomes something visible and physical, it changes how people interact with it. We realized that people could react to sound as if it were a physical object, such as avoiding it, being hit by it, or using their bodies to interact with it.
+
 **Are there key moments in the interaction where things could go in a different direction?**
+
+When a visual form moves toward another performer, they could react in different ways, such as avoiding it, ducking under it, jumping over it, or moving toward it. They could also make their own sound to create another visual form to block or push back against the incoming one. This could make the interaction less sequential and more interactive.
+
 Iterate your storyboards to capture key non-sequential aspects of the interaction. 
 
 ## Part C. Prototype the Light (light first!)
@@ -153,6 +187,7 @@ building any real electronics. (Zoom works well for recording; you can pin the
 video feed of whichever scene you want to capture.)
 
 **Include your first attempts at recording the wizarded set-up here.**
+We used the light from a computer screen as the light source and paper cutouts to create the visual forms. By blocking and allowing light to pass through different parts of the paper cutouts, we created different light patterns.
 
 ## Part E. (optional) Costume the Device
 
@@ -175,6 +210,7 @@ the top of this lab: a viewer who knows the piece should recognize it; a viewer
 who doesn't should come away understanding what it's famous for. How might you illustrate the non-sequential aspects of the interaction in the sketch?
 
 **Include your video here.**
+[Watch our video sketch](video/video_sketch.mp4)
 
 **Please indicate who you collaborated with on this lab.** Be generous in
 acknowledging their contributions, and credit any other influences (YouTube,
