@@ -2,7 +2,7 @@
 
 _This project is to be done in teams of 2._
 
-**Tzu-Yao (Regina) Chang, Monica Wei**
+**Tzu-Yao (Regina) Chang (tc845), Monica Wei (tw628)**
 
 **THE MASTERWORK YOU DREW FROM THE HAT: MESSA DI VOCE**
 
@@ -97,7 +97,7 @@ someone would recognize it by?**
 | Performer makes a sound | A visual forms appears |
 | Volume changes | Changes the size or behavior of the visuals |
 | Pitch changes | Changes the shape or movement of the visuals |
-| Performer changes their voice after seeing the vidual | Creates a continuous feedback loop |
+| Performer changes their voice after seeing the visual | Creates a continuous feedback loop |
 
 - The vocal performers or audience can interact with it. The piece creates a feedback loop between the performers and the device. When performers make sounds, the device turns those sounds into visual forms. When performers see the visual forms, they change their voice volume or pitch in response to them.
 
@@ -142,6 +142,7 @@ Use the storyboards to decide what interaction to prototype.
 ![Storyboard](image/storyboard.jpg)
 
 **Summarize the feedback you got here.**
+Since Messa di Voce is a relatively lesser-known work, people who watched our recreation for the first time could not immediately recognize what we were recreating. However, they still found the interaction interesting and understood that the performers’ sounds were connected to the visual forms. After watching the original Messa di Voce, they could clearly see the similarities and understand how our recreation captured the main idea of transforming sound into interactive visual forms.
 
 ## Part B. Act out the Interaction
 
@@ -210,7 +211,7 @@ the top of this lab: a viewer who knows the piece should recognize it; a viewer
 who doesn't should come away understanding what it's famous for. How might you illustrate the non-sequential aspects of the interaction in the sketch?
 
 **Include your video here.**
-[Watch our video sketch](video/video_sketch.mp4)
+[Watch our video sketch](https://github.com/user-attachments/assets/1ed49530-ff6a-4a75-9317-b9f87e5ce18f)
 
 **Please indicate who you collaborated with on this lab.** Be generous in
 acknowledging their contributions, and credit any other influences (YouTube,
