@@ -219,7 +219,6 @@ This storyboard explores using the Nixie-inspired device as a communication tool
 Storyboard 2: Doctor’s Office
 This storyboard shows the device in a doctor’s waiting room. The receptionist selects the next patient, and the patient’s name glows on the display. The glowing name acts like a gentle guide that tells the patient when it is time to enter the doctor’s room. If the wrong name appears, the receptionist can correct it.
 
-
 Storyboard 3: Tennis Score
 This storyboard uses the Nixie-inspired display as a tennis scoreboard. The umpire presses a button whenever a player wins a point, and the display changes through the normal tennis scores: 0, 15, 30, and 40. If a point is given to the wrong player, the umpire can press Undo and correct the score.
 
