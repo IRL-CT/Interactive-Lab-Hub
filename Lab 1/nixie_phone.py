@@ -13,9 +13,27 @@ PORT = 5001
 # This dictionary remembers what the phone should display.
 display_state = {
     "power": False,
-    "digit": "",
+    "word": "",
     "version": 0
 }
+
+# The words the tube is allowed to display.
+# An empty string means the tube is blank.
+# To add a word, add it here AND add a matching
+# button in the HTML below.
+ALLOWED_WORDS = [
+    "",
+    "Hello",
+    "Thank you",
+    "Sorry",
+    "Please",
+    "Yes",
+    "No",
+    "Help",
+    "Love",
+    "Friend",
+    "Goodbye",
+]
 
 # This prevents two devices from changing the state
 # at exactly the same moment.
@@ -41,7 +59,7 @@ PAGE = r"""
         maximum-scale=1, user-scalable=no"
     >
 
-    <title>Nixie Phone Controller</title>
+    <title>Nixie Sign Language Interpreter</title>
 
     <style>
         * {
@@ -133,15 +151,15 @@ PAGE = r"""
             flex: 1;
         }
 
-        #numberButtons {
+        #wordButtons {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 12px;
         }
 
-        .numberButton {
+        .wordButton {
             min-height: 75px;
-            font-size: 32px;
+            font-size: 22px;
             font-weight: bold;
         }
 
@@ -248,7 +266,7 @@ PAGE = r"""
             pointer-events: none;
         }
 
-        #nixieDigit {
+        #nixieWord {
             position: absolute;
             z-index: 2;
             inset: 0;
@@ -256,8 +274,12 @@ PAGE = r"""
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
 
-            padding-bottom: 7%;
+            padding: 0 6% 7%;
+            overflow-wrap: anywhere;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
 
             color: #ff8922;
 
@@ -267,9 +289,9 @@ PAGE = r"""
                 Arial,
                 sans-serif;
 
-            font-size: min(58vh, 410px);
+            font-size: clamp(36px, 15vw, 110px);
             font-weight: 300;
-            line-height: 1;
+            line-height: 1.1;
 
             opacity: 1;
 
@@ -304,18 +326,18 @@ PAGE = r"""
                 );
         }
 
-        #glassTube.powerOff #nixieDigit {
+        #glassTube.powerOff #nixieWord {
             opacity: 0;
         }
 
-        #nixieDigit.changing {
+        #nixieWord.changing {
             opacity: 0;
             transform: scale(0.96);
             filter: blur(5px);
         }
 
-        #nixieDigit.igniting {
-            animation: igniteDigit 500ms ease-out;
+        #nixieWord.igniting {
+            animation: igniteWord 500ms ease-out;
         }
 
         #glassTube.starting {
@@ -334,7 +356,7 @@ PAGE = r"""
             font-size: 12px;
         }
 
-        @keyframes igniteDigit {
+        @keyframes igniteWord {
             0% {
                 opacity: 0;
                 filter: blur(8px);
@@ -376,7 +398,7 @@ PAGE = r"""
         }
 
         @media (max-width: 600px) {
-            #numberButtons {
+            #wordButtons {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -411,14 +433,14 @@ PAGE = r"""
     <!-- LAPTOP CONTROLLER PAGE -->
 
     <main id="controllerPage" class="hidden">
-        <h1>Nixie Tube Controller</h1>
+        <h1>Nixie Sign Language Interpreter</h1>
 
         <p id="connectionStatus">
             Connected to the Python program.
         </p>
 
         <p>
-            Click a button below. The phone should respond.
+            Click a word below. The phone tube will display it.
         </p>
 
         <div id="powerControls">
@@ -431,17 +453,17 @@ PAGE = r"""
             </button>
         </div>
 
-        <div id="numberButtons">
-            <button class="numberButton" data-digit="0">0</button>
-            <button class="numberButton" data-digit="1">1</button>
-            <button class="numberButton" data-digit="2">2</button>
-            <button class="numberButton" data-digit="3">3</button>
-            <button class="numberButton" data-digit="4">4</button>
-            <button class="numberButton" data-digit="5">5</button>
-            <button class="numberButton" data-digit="6">6</button>
-            <button class="numberButton" data-digit="7">7</button>
-            <button class="numberButton" data-digit="8">8</button>
-            <button class="numberButton" data-digit="9">9</button>
+        <div id="wordButtons">
+            <button class="wordButton" data-word="Hello">Hello</button>
+            <button class="wordButton" data-word="Thank you">Thank you</button>
+            <button class="wordButton" data-word="Sorry">Sorry</button>
+            <button class="wordButton" data-word="Please">Please</button>
+            <button class="wordButton" data-word="Yes">Yes</button>
+            <button class="wordButton" data-word="No">No</button>
+            <button class="wordButton" data-word="Help">Help</button>
+            <button class="wordButton" data-word="Love">Love</button>
+            <button class="wordButton" data-word="Friend">Friend</button>
+            <button class="wordButton" data-word="Goodbye">Goodbye</button>
 
             <button id="blankButton">
                 Blank Tube
@@ -460,12 +482,12 @@ PAGE = r"""
         <div id="glassTube" class="powerOff">
             <div id="glassReflection"></div>
             <div id="wireMesh"></div>
-            <div id="nixieDigit"></div>
+            <div id="nixieWord"></div>
             <div id="tubeBase"></div>
         </div>
 
         <div id="phoneMessage">
-            Nixie Phone Display
+            Nixie Phone Display. Tap once to enable the tube hum.
         </div>
     </main>
 
@@ -483,18 +505,139 @@ PAGE = r"""
         const glassTube =
             document.getElementById("glassTube");
 
-        const nixieDigit =
-            document.getElementById("nixieDigit");
+        const nixieWord =
+            document.getElementById("nixieWord");
 
         const controllerStatus =
             document.getElementById("controllerStatus");
 
-        const numberButtons =
-            document.querySelectorAll(".numberButton");
+        const wordButtons =
+            document.querySelectorAll(".wordButton");
 
-        let lastDigit = null;
+        let lastWord = null;
         let lastPower = null;
         let changingTimer = null;
+
+
+        // ------------------------------------------------
+        // TUBE SOUND
+        //
+        // A real Nixie tube runs on high voltage, and its
+        // power supply gives off a faint high-pitched hum
+        // while the tube is lit. This section generates
+        // that hum in the browser. No audio files needed.
+        // ------------------------------------------------
+
+        let audioContext = null;
+        let humGain = null;
+
+        // Phones only allow sound after the user has
+        // tapped the page. Choosing display mode counts.
+        function prepareAudio() {
+            if (audioContext !== null) {
+                return;
+            }
+
+            const AudioContextClass =
+                window.AudioContext || window.webkitAudioContext;
+
+            if (!AudioContextClass) {
+                return;
+            }
+
+            audioContext = new AudioContextClass();
+
+            // Master volume for the hum. Starts silent.
+            humGain = audioContext.createGain();
+            humGain.gain.value = 0;
+            humGain.connect(audioContext.destination);
+
+            // Two tones make it sound like a transformer
+            // whine rather than a clean beep.
+            const tones = [
+                { frequency: 120, level: 0.35 },
+                { frequency: 3200, level: 0.10 }
+            ];
+
+            tones.forEach((tone) => {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = "sawtooth";
+                oscillator.frequency.value = tone.frequency;
+
+                const toneGain = audioContext.createGain();
+                toneGain.gain.value = tone.level;
+
+                oscillator.connect(toneGain);
+                toneGain.connect(humGain);
+                oscillator.start();
+            });
+        }
+
+
+        function startHum() {
+            if (audioContext === null) {
+                return;
+            }
+
+            if (audioContext.state === "suspended") {
+                audioContext.resume();
+            }
+
+            const now = audioContext.currentTime;
+
+            // Fade the hum in over half a second.
+            humGain.gain.cancelScheduledValues(now);
+            humGain.gain.setValueAtTime(humGain.gain.value, now);
+            humGain.gain.linearRampToValueAtTime(0.05, now + 0.5);
+        }
+
+
+        function stopHum() {
+            if (audioContext === null) {
+                return;
+            }
+
+            const now = audioContext.currentTime;
+
+            humGain.gain.cancelScheduledValues(now);
+            humGain.gain.setValueAtTime(humGain.gain.value, now);
+            humGain.gain.linearRampToValueAtTime(0, now + 0.2);
+        }
+
+
+        // A short burst of noise when a new word ignites.
+        function playCrackle() {
+            if (audioContext === null) {
+                return;
+            }
+
+            const duration = 0.12;
+            const sampleCount =
+                Math.floor(audioContext.sampleRate * duration);
+
+            const buffer = audioContext.createBuffer(
+                1,
+                sampleCount,
+                audioContext.sampleRate
+            );
+
+            const samples = buffer.getChannelData(0);
+
+            for (let i = 0; i < sampleCount; i++) {
+                const fade = 1 - i / sampleCount;
+                samples[i] = (Math.random() * 2 - 1) * fade;
+            }
+
+            const source = audioContext.createBufferSource();
+            source.buffer = buffer;
+
+            const crackleGain = audioContext.createGain();
+            crackleGain.gain.value = 0.08;
+
+            source.connect(crackleGain);
+            crackleGain.connect(audioContext.destination);
+            source.start();
+        }
 
 
         // ------------------------------------------------
@@ -515,6 +658,7 @@ PAGE = r"""
         document
             .getElementById("chooseDisplay")
             .addEventListener("click", async () => {
+                prepareAudio();
                 showDisplay();
 
                 if (document.documentElement.requestFullscreen) {
@@ -550,6 +694,16 @@ PAGE = r"""
 
         if (requestedMode === "display") {
             showDisplay();
+
+            // Sound cannot start until the screen is tapped.
+            // After the first tap the hum follows the tube state.
+            document.addEventListener("pointerdown", () => {
+                prepareAudio();
+
+                if (lastPower) {
+                    startHum();
+                }
+            }, { once: true });
         }
 
 
@@ -574,19 +728,19 @@ PAGE = r"""
 
 
         // ------------------------------------------------
-        // LAPTOP NUMBER BUTTONS
+        // LAPTOP WORD BUTTONS
         // ------------------------------------------------
 
-        numberButtons.forEach((button) => {
+        wordButtons.forEach((button) => {
             button.addEventListener("click", () => {
-                const digit = button.dataset.digit;
+                const word = button.dataset.word;
 
                 sendCommand({
-                    digit: digit
+                    word: word
                 });
 
                 controllerStatus.textContent =
-                    "Sent the number " + digit + " to the phone.";
+                    'Sent the word "' + word + '" to the phone.';
             });
         });
 
@@ -623,7 +777,7 @@ PAGE = r"""
             .getElementById("blankButton")
             .addEventListener("click", () => {
                 sendCommand({
-                    digit: ""
+                    word: ""
                 });
 
                 controllerStatus.textContent =
@@ -662,7 +816,7 @@ PAGE = r"""
 
 
         // ------------------------------------------------
-        // PHONE CHECKS PYTHON FOR THE CURRENT NUMBER
+        // PHONE CHECKS PYTHON FOR THE CURRENT WORD
         // ------------------------------------------------
 
         async function refreshDisplay() {
@@ -700,48 +854,51 @@ PAGE = r"""
                 if (state.power) {
                     glassTube.classList.remove("powerOff");
                     glassTube.classList.add("starting");
+                    startHum();
 
                     setTimeout(() => {
                         glassTube.classList.remove("starting");
                     }, 700);
                 } else {
                     glassTube.classList.add("powerOff");
-                    nixieDigit.textContent = "";
+                    nixieWord.textContent = "";
+                    stopHum();
                 }
 
                 lastPower = state.power;
             }
 
             if (!state.power) {
-                lastDigit = state.digit;
+                lastWord = state.word;
                 return;
             }
 
-            if (state.digit !== lastDigit) {
-                changeDigit(state.digit);
-                lastDigit = state.digit;
+            if (state.word !== lastWord) {
+                changeWord(state.word);
+                lastWord = state.word;
             }
         }
 
 
-        function changeDigit(newDigit) {
+        function changeWord(newWord) {
             if (changingTimer !== null) {
                 clearTimeout(changingTimer);
             }
 
-            nixieDigit.classList.add("changing");
+            nixieWord.classList.add("changing");
 
             changingTimer = setTimeout(() => {
-                nixieDigit.textContent = newDigit;
+                nixieWord.textContent = newWord;
 
-                nixieDigit.classList.remove("changing");
-                nixieDigit.classList.remove("igniting");
+                nixieWord.classList.remove("changing");
+                nixieWord.classList.remove("igniting");
 
                 // This restarts the glow animation.
-                void nixieDigit.offsetWidth;
+                void nixieWord.offsetWidth;
 
-                if (newDigit !== "") {
-                    nixieDigit.classList.add("igniting");
+                if (newWord !== "") {
+                    nixieWord.classList.add("igniting");
+                    playCrackle();
                 }
 
                 changingTimer = null;
@@ -792,24 +949,18 @@ def update_state():
             display_state["power"] = bool(data["power"])
 
             if display_state["power"] is False:
-                display_state["digit"] = ""
+                display_state["word"] = ""
 
-        if "digit" in data:
-            requested_digit = str(data["digit"])
+        if "word" in data:
+            requested_word = str(data["word"])
 
-            allowed_digits = [
-                "",
-                "0", "1", "2", "3", "4",
-                "5", "6", "7", "8", "9"
-            ]
-
-            if requested_digit not in allowed_digits:
+            if requested_word not in ALLOWED_WORDS:
                 return jsonify({
                     "ok": False,
-                    "error": "Only the numbers 0 through 9 are allowed."
+                    "error": "That word is not in the allowed list."
                 }), 400
 
-            display_state["digit"] = requested_digit
+            display_state["word"] = requested_word
 
         display_state["version"] += 1
 

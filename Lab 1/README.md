@@ -211,6 +211,10 @@ and a third group (link to be added).
 
 The context critique is the most useful one for our remix: our recreation shows *how* the tube behaves but not *where it lived* — the 1950s laboratory, the technician's job of reading and recording measurements. A stronger version would establish the scene (instrument panel, notebook, lab setting) before the first numeral ever glows.
 
-For our updated version, we propose an **accessible multimodal Nixie display**. The display keeps the original warm orange glow and whole-numeral appearance, but it adds sound and vibration. When a new numeral appears, the device also speaks the number aloud. For example, the glowing number `3` would be accompanied by the spoken word "three".
+For our updated version, we propose turning the Nixie tube into a **sign language interpreter**. The display keeps the original warm orange glow, glass enclosure, and one-value-at-a-time transitions, but instead of showing numerals it shows words. The performer signs a word such as "thank you", "sorry", or "please", and the tube glows with the matching word in the same Nixie style.
 
-This redesign changes the Nixie tube from a purely visual numerical output into a multimodal display that communicates through light and sound.
+We updated `nixie_phone.py` so the laptop controller now has ten word buttons (Hello, Thank you, Sorry, Please, Yes, No, Help, Love, Friend, Goodbye) in place of the 0 through 9 keypad. The server only accepts words from its allowed list, and the tube text wraps and scales so a multi-letter word still fits inside the glass. The hidden wizard watches the sign and presses the matching word, exactly as they selected numerals before.
+
+We also gave the tube a voice of its own, though not a spoken one. Real Nixie tubes run on high voltage, and their power supplies give off a faint high-pitched whine while the tube is lit. The phone now generates that hum with the browser's built-in audio synthesis: it fades in when the wizard presses Power On, fades out on Power Off, and a short static crackle plays each time a new word ignites. No audio files are needed, so the project is still a single Python file.
+
+This redesign changes the Nixie tube from a numerical readout into a communication aid, and it answers the context critique: the device now has a clear setting and a clear user, someone signing to a person who does not know sign language.
