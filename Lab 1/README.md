@@ -238,4 +238,14 @@ We updated `nixie_phone.py` so the laptop controller now has ten word buttons (H
 
 We also gave the tube a voice of its own, though not a spoken one. Real Nixie tubes run on high voltage, and their power supplies give off a faint high-pitched whine while the tube is lit. The phone now generates that hum with the browser's built-in audio synthesis: it fades in when the wizard presses Power On, fades out on Power Off, and a short static crackle plays each time a new word ignites. No audio files are needed, so the project is still a single Python file.
 
+The phone in display mode, showing the words simulated tube with its glass outline and wire mesh:
+<img width="876" height="1600" alt="WhatsApp Image 2026-09-07 at 4 05 30 AM" src="https://github.com/user-attachments/assets/a9b3708e-1a42-42ef-bb0a-6abd34e4cb26" />
+
+
+
+The laptop controller page used by the hidden wizard:
+<img width="768" height="497" alt="Screenshot (946)" src="https://github.com/user-attachments/assets/5a64cb5e-f21b-4987-95ee-bdd1e7296426" />
+
+
+
 This redesign changes the Nixie tube from a numerical readout into a communication aid, and it answers the context critique: the device now has a clear setting and a clear user, someone signing to a person who does not know sign language.
