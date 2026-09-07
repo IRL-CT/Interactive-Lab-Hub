@@ -215,6 +215,8 @@ For our updated version, We explored three possible contexts for transforming th
 
 Storyboard 1: Sign-Language Interpreter
 This storyboard explores using the Nixie-inspired device as a communication tool. A person performs the sign for “sorry,” the camera recognizes the gesture, and the word SORRY glows on the display. Tapping the screen for the first time also creates a humming sound. If the wrong word appears, the person can repeat the gesture.
+<img width="1599" height="1198" alt="clinic_nixie" src="https://github.com/user-attachments/assets/0a9b8e47-5d98-4eaf-8a63-d1cd07df9d78" />
+
 
 Storyboard 2: Doctor’s Office
 This storyboard shows the device in a doctor’s waiting room. The receptionist selects the next patient, and the patient’s name glows on the display. The glowing name acts like a gentle guide that tells the patient when it is time to enter the doctor’s room. If the wrong name appears, the receptionist can correct it.
