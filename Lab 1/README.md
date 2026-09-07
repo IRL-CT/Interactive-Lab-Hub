@@ -203,7 +203,7 @@ Our prototype was informed by the original Tinkerbelle project from the Interact
 We exchanged feedback with three other groups:
 [edmkong's group](https://github.com/edmkong/Interactive-Lab-Hub), the
 [lightsaber group](https://github.com/ammarsyed/Interactive-Lab-Hub/tree/Fall2026/Lab%201),
-and a third group (link to be added).
+and [wristabnd's group](https://github.com/khanlamiah019/Interactive-Lab-Hub/tree/Fall2026/Lab%201). 
 
 - [edmkong's group](https://github.com/edmkong/Interactive-Lab-Hub) found the Part 0 research clear — especially the strengths, weaknesses, and core interaction — and liked that we modified the Tinkerbelle tool to fit our piece, calling the final video clear and well done. Their critiques focused on the storyboards: the phone display should actually be drawn dark in the frames where it is off; the descriptions talk about finger gestures, but the drawings never show the fingers; the frames are hard to follow scene by scene, particularly in Storyboard 1; and the actor should stay visible in every frame instead of disappearing mid-sequence.
 - The [lightsaber group](https://github.com/ammarsyed/Interactive-Lab-Hub/tree/Fall2026/Lab%201) found the storyboards clear and the Nixie tube adaptation well done, and liked the front end with the full set of numerals and transition states. They caught a mismatch between the storyboard descriptions and the storyboard numbers.
