@@ -242,9 +242,12 @@ The phone in display mode, showing the words simulated tube with its glass outli
 <img width="876" height="1600" alt="WhatsApp Image 2026-09-07 at 4 05 30 AM" src="https://github.com/user-attachments/assets/a9b3708e-1a42-42ef-bb0a-6abd34e4cb26" />
 
 
-
 The laptop controller page used by the hidden wizard:
-<img width="768" height="497" alt="Screenshot (946)" src="https://github.com/user-attachments/assets/5a64cb5e-f21b-4987-95ee-bdd1e7296426" />
+<img width="768" height="497" alt="Screenshot (946)" src="https://github.com/user-attachments/assets/5a64cb5e-f21b-4987-95ee-bdd1e7296426" /seve
+
+
+Costume of our nixie tube 
+<img width="2394" height="4000" alt="20260907_181415" src="https://github.com/user-attachments/assets/1bb8d122-8ca2-4356-951c-7d68b8e12fa7" />
 
 
 
