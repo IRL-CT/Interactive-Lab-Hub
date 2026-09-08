@@ -217,6 +217,12 @@ wasn't clear.
 **Who were the other groups you kibitzed with? Add links to their project pages here.**
 **Summarize the feedback you got from your partners here.**
 
+Group 1: https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub/tree/Fall2026/Lab%201 The feedback was generally positive. They correctly understood that our project recreated the Philips Wake-Up Light, which gradually increases light to simulate sunrise and create a more natural waking experience. They liked the detailed storyboards and thought the video successfully demonstrated the gradual waking interaction. However, they found the red light unclear and suggested making the light brighter or improving the appearance of the device so the interaction would be easier to understand.
+
+Group 2: https://github.com/pp555-prog/Interactive-Lab-Hub/tree/Fall2026/Lab%201 The feedback showed that they understood the project as a device that uses changes in light to create a sense of connection between two people. They liked how the interaction allowed the characters to communicate without directly talking and thought the use of light was subtle and interesting. However, they felt that the meaning of the different light changes was not completely clear and suggested making each light state more distinct so the interaction would be easier to understand.
+
+Group 3: https://github.com/stephen4513/Interactive-Lab-Hub/tree/Fall2026/Lab%201 The feedback by this team showed the understand our device and how easy it was for them to understand. They understand that the light gradually cahnges to simulate a sunrise and to wake the user up naturally. They also acknowledge the storyboard shows different possible ways a person will react to the device. They suggested to make the videos shorter, but other than that, they understand the overall concept. 
+
 ## Remix, Update, or Critique the Master
 
 Now that you understand your masterwork from the inside, respond to it. Do the
@@ -237,6 +243,13 @@ your response engages with what your master was really doing.
 
 **Document everything here — especially the storyboard and video. Photos of the
 prototype are great too.**
+
+We are going with Points 1, 2, and 3. From what we know from the original product, we know that the peaceful sounds will play if the user does not wake up from the white light. If they still do not wake up from the ambient peaceful sounds, then a loud noise will play to startle them. We think that instead of just relying on the sound to play after the lights, we should have the peaceful sounds play before the brighter lights like yellow and white start playing. We think that this experience will make the waking up experience a more peaceful experience.
+
+<img width="1509" height="519" alt="Storyboard4" src="https://github.com/user-attachments/assets/94f1adc2-1b24-4e69-8156-41c7a11ef959" />
+
+
+https://github.com/user-attachments/assets/6daa5b4c-e274-46bb-bcae-a964af8cca96
 
 ---
 
