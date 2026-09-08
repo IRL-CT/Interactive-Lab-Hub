@@ -249,6 +249,12 @@ The laptop controller page used by the hidden wizard:
 <img width="768" height="497" alt="Screenshot (946)" src="https://github.com/user-attachments/assets/5a64cb5e-f21b-4987-95ee-bdd1e7296426" />
 
 
+Final Lab1b video:
+
+<img width="464" height="832" alt="Lab1b(1)" src="https://github.com/user-attachments/assets/01c9baf7-714f-4fa0-bf6f-62b5f3cabe31" />
+
+
+
 Costume of our nixie tube 
 <img width="2394" height="4000" alt="20260907_181415" src="https://github.com/user-attachments/assets/1bb8d122-8ca2-4356-951c-7d68b8e12fa7" />
 
