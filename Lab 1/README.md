@@ -190,10 +190,7 @@ who doesn't should come away understanding what it's famous for. How might you i
 
 **Include your video here.**
 
-
-https://github.com/user-attachments/assets/d4ae0e85-6bb5-42a5-b2c0-1e9afabed0f5
-
-
+https://github.com/user-attachments/assets/e46d979f-4014-45f1-8fec-6ae04d11a5d0
 
 **Please indicate who you collaborated with on this lab.** Be generous in
 acknowledging their contributions, and credit any other influences (YouTube,
