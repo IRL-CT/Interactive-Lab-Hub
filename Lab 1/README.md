@@ -246,7 +246,7 @@ The phone in display mode, showing the words simulated tube with its glass outli
 
 
 The laptop controller page used by the hidden wizard:
-<img width="768" height="497" alt="Screenshot (946)" src="https://github.com/user-attachments/assets/5a64cb5e-f21b-4987-95ee-bdd1e7296426" /seve
+<img width="768" height="497" alt="Screenshot (946)" src="https://github.com/user-attachments/assets/5a64cb5e-f21b-4987-95ee-bdd1e7296426" />
 
 
 Costume of our nixie tube 
