@@ -14,7 +14,7 @@ Be generous in acknowledging their contributions! And also recognizing any other
 
 1. ### Set up your Lab 2 Github
 
-Before the start of lab Wednesday, ensure you have the latest lab content by updating your forked repository. 
+At the start of lab Wednesday, ensure you have the latest lab content by updating your forked repository. 
 
 **📖 [Follow the step-by-step guide for safely updating your fork](pull_updates/README.md)**
 
@@ -22,7 +22,7 @@ This guide covers how to pull updates without overwriting your completed work, h
 
 
 2. ### Get Kit and Inventory Parts
-Prior to the lab session on Wednesday, taken inventory of the kit parts that you have, and note anything that is missing:
+Take inventory of the kit parts that you have, and note anything that is missing:
 
 ***Update your [parts list inventory](partslist.md)***
 
@@ -52,7 +52,7 @@ G) [Sketch and brainstorm further interactions and features you would like for y
 ## The Report
 This readme.md page in your own repository should be edited to include the work you have done. You can delete everything but the headers and the sections between the \*\*\***stars**\*\*\*. Write the answers to the questions under the starred sentences. Include any material that explains what you did in this lab hub folder, and link it in the readme.
 
-Labs are due on Mondays. Make sure this page is linked to on your main class hub page.
+Labs are due on Sunday midnight. Make sure this page is linked to on your main class hub page.
 
 ## Part A. 
 ### Connect to your Pi
@@ -116,7 +116,7 @@ We have asked you to equip the [Adafruit MiniPiTFT](https://www.adafruit.com/pro
 
 <img src="https://cdn-learn.adafruit.com/assets/assets/000/082/842/large1024/adafruit_products_4393_iso_ORIG_2019_10.jpg" height="200" />
 
-The Raspberry Pi 4 has a variety of interfacing options. When you plug the pi in the red power LED turns on. Any time the SD card is accessed the green LED flashes. It has standard USB ports and HDMI ports. Less familiar it has a set of 20x2 pin headers that allow you to connect a various peripherals.
+The Raspberry Pi 5 has a variety of interfacing options. When you plug the pi in the red power LED turns on. Any time the SD card is accessed the green LED flashes. It has standard USB ports and HDMI ports. Less familiar it has a set of 20x2 pin headers that allow you to connect a various peripherals.
 
 <img src="https://maker.pro/storage/g9KLAxU/g9KLAxUiJb9e4Zp1xcxrMhbCDyc3QWPdSunYAoew.png" height="400" />
 
