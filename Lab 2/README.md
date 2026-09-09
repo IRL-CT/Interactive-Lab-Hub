@@ -183,42 +183,43 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
-## Part E. Now moved to Lab2 Part 2.
+## Part E. Read Part 2. Sketch and brainstorm further interactions and features you would like for your clock.
 
-## Part F. Now moved to Lab2 Part 2.
+One potential source of ideas might be thinking about other clocks and timekeeping devices for inspiration.
 
-## Part G. 
-## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
+Another might be novel units of time. How do you measure a year? [In daylights? In midnights? In cups of coffee?](https://www.youtube.com/watch?v=wsj15wPpjLY)
+
+We strongly discourage literal digital or analog clock display: Be creative.
 
 
-# Prep for Part 2
+** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
-1. Pick up remaining parts for kit on Wednesday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
-  
 
-2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
+
+**Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
 
 # Lab 2 Part 2
 
-## Assignment that was formerly Lab 2 Part E.
-### Modify the barebones clock to make it your own
+## Prep 
 
-Does time have to be linear?  How do you measure a year? [In daylights? In midnights? In cups of coffee?](https://www.youtube.com/watch?v=wsj15wPpjLY)
+1. Pick up remaining parts for kit on Wednesday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
 
-Can you make time interactive? You can look in `screen_test.py` for examples for how to use the buttons.
+2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
+**Put the feedback for your ideas here.**
 
-Please sketch/diagram your clock idea. (Try using a [Verplank diagram](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!
+## Update your Lab Hub
 
-**We strongly discourage and will reject the results of literal digital or analog clock display.**
+[Update your Lab Hub](pull_updates/README.md) to get the latest content and requirements for Part 2.
 
+## Modify the barebones clock to make it your own
 
-\*\*\***A copy of your code should be in your Lab 2 Github repo.**\*\*\*
+Start small, pick just one element of your overall idea, just to show you have a handle on the code and components.
 
+\*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
-## Assignment that was formerly Part F. 
 ## Make a short video of your modified barebones PiClock
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+\*\*\***Take a video of your barely modified PiClock.**\*\*\*
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -230,13 +231,20 @@ After you edit and work on the scripts for Lab 2, the files should be upload bac
 
 After that, Git will ask you to login to your GitHub account to push the updates online, you will be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you set up in Part A as the password instead of your account one! Go on your GitHub repo with your laptop, you should be able to see the updated files from your Pi!
 
+## Now, make your own PiClock
 
-[Update your Lab Hub](pull_updates/README.md) to get the latest content and requirements for Part 2.
+Do take advantage of having done the previous iteration to refine and simplify your design.
 
-Modify the code from last week's lab to make a new visual interface for your new clock. You may [extend the Pi](Extending%20the%20Pi.md) by adding sensors or buttons, but this is not required.
+** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
-As always, make sure you document contributions and ideas from others explicitly in your writeup.
 
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
+\*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
+
+\*\*\***Take a video of your PiClock.**\*\*\*
+
+
+As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+
+You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab.  Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page. 
 
 
