@@ -12,11 +12,9 @@ Be generous in acknowledging their contributions! And also recognizing any other
 
 ## Prep
 
-Lab Prep is extra long this week. Make sure to start this early for lab on Thursday.
-
 1. ### Set up your Lab 2 Github
 
-Before the start of lab Thursday, ensure you have the latest lab content by updating your forked repository. 
+Before the start of lab Wednesday, ensure you have the latest lab content by updating your forked repository. 
 
 **📖 [Follow the step-by-step guide for safely updating your fork](pull_updates/README.md)**
 
@@ -24,12 +22,12 @@ This guide covers how to pull updates without overwriting your completed work, h
 
 
 2. ### Get Kit and Inventory Parts
-Prior to the lab session on Thursday, taken inventory of the kit parts that you have, and note anything that is missing:
+Prior to the lab session on Wednesday, taken inventory of the kit parts that you have, and note anything that is missing:
 
 ***Update your [parts list inventory](partslist.md)***
 
 3. ### Prepare your Pi for lab this week
-[Follow these instructions](prep.md) to download and burn the image for your Raspberry Pi before lab Thursday.
+[Follow these instructions](prep.md) to download and burn the image for your Raspberry Pi before lab Wednesday.
 
 
 
@@ -195,7 +193,7 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 # Prep for Part 2
 
-1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
+1. Pick up remaining parts for kit on Wednesday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
   
 
 2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
