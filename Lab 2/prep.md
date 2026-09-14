@@ -12,8 +12,8 @@
 ### Burn your Pi image to your SD card
 #### On your computer 
 - Download the [Raspberry Pi Imager](https://www.raspberrypi.org/software/)
-- Download our copy of Raspbian at [this cornell canvas link](https://canvas.cornell.edu/courses/80789/discussion_topics/936162).
-Download and use the ``rpi5-2025-09-08.img.gz`` file directly in the Raspberry Pi Imager (do not unzip).
+- Download our copy of Raspbian at [this cornell canvas link]( https://drive.google.com/file/d/1mglmzFs7cxT3OKbYALhrL2uQ9GVFBrzA/view?usp=sharing).
+Download and use the file directly in the Raspberry Pi Imager (do not unzip).
 
 - If using windows: [Windows 11 SSH Client](https://docs.microsoft.com/en-us/windows/terminal/tutorials/ssh), [PuTTY](https://www.putty.org/) or [VS Code SSH](https://code.visualstudio.com/learn/develop-cloud/ssh-lab-machines). 
 
@@ -24,10 +24,10 @@ Download and use the ``rpi5-2025-09-08.img.gz`` file directly in the Raspberry P
 
 <img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/wiki/images/pi_imager_os_select.png" alt="choose os" height="200" />
 
-3. Click the gear icon on the bottom right to open Advanced Settings. In here, you need to make two changes:
-- change the "hostname" to something unique
-- ~set the password for user "pi" to something unique to you that you can remember~ Albert says, change the password after you ssh in.
-- do not change any of the other settings (username pi and network should stay as they are)
+~3. Click the gear icon on the bottom right to open Advanced Settings. In here, you need to make two changes:~
+~- change the "hostname" to something unique~
+~- set the password for user "pi" to something unique to you that you can remember~ Albert says, change the password after you ssh in.~
+~- do not change any of the other settings (username pi and network should stay as they are)~
 
 4. Eject or unmount the microSD card reader, and then remove the SD card from the reader and reinsert it into SD card slot on the Pi: it is located on the bottom (silver rectangle on the right).
 
