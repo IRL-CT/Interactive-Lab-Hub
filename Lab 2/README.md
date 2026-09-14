@@ -47,9 +47,27 @@ Updated screen_clock.py to display the time!
 
 ## Part E. Read Part 2. Sketch and brainstorm further interactions and features you would like for your clock.
 
-Below are some ideas for further improvements to the clock interface. I experimented with different font types/number formats to mimic a "retro" style alarm clock, as well as using moon/sun phases. I also think it would be cool to change the background color of the interface based on the time of day (black for night, soft orange for sunrise, light blue for daytime, pinkish orange for sunset, dusk blue for evening).
+### Concept: Spider-Verse Clock
 
-<img width="3417" height="1589" alt="part e" src="https://github.com/user-attachments/assets/1ed79a3b-d2f8-41b8-8074-af809cd4f256" />
+Instead of showing literal time, a chibi Spider-Man mascot swaps suits every hour (24 suits total, one per hour). Each suit has a signature food, and the number of food items shown scales with the hour.
+
+| Hour | Suit | Food (qty = hour) |
+|---|---|---|
+| 8am | Spider-Man India (Pavitr) | 8 cups of chai |
+| 12pm | Spider-Ham (Peter Porker) | 12 mini pies |
+| 3pm | Miles Morales | 3 pizza slices |
+| 6pm | Peter Parker (classic) | 6 of Aunt May's pies |
+| 12am | Spider-Gwen | 12 donuts |
+| 2am | Spider-Man Noir | 2 cups of coffee |
+
+**Interaction loop:** clock ticks → pick suit for current hour → render mascot + food count → repeat every hour.
+
+**Extension ideas:**
+- Button press = "spider-sense" easter egg, flashes a random alt suit
+- Midnight = full-screen suit montage
+- 
+<img width="2244" height="2904" alt="Piclock Spiderman-1" src="https://github.com/user-attachments/assets/7ad4ed6a-b4cb-4be0-a0f9-5f99353d6418" />
+
 
 
 **TODO: Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
