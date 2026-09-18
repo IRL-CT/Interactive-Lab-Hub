@@ -96,8 +96,8 @@ button.pull = digitalio.Pull.UP
 
 # Put your image filenames here
 images = [
-    "spiderman.jpg",
-    "batman.jpg"
+    "spiderman-day.jpg",
+    "spiderman-night.jpg"
 ]
 
 current_image = 0
