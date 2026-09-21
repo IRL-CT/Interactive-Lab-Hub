@@ -110,5 +110,5 @@ https://github.com/user-attachments/assets/5d58c970-658b-4aca-bdf4-0fa92452afc4
 
 After we were able to successfully display and switch between images on our bare-bones clock, we generated images for each hour of Spider-Man's day to display on the Pi. To avoid copyright issues, we prompted our own version of a masked hero and came up with scenarios/actions he does for each time of day (ex: waking up at 6am, fighting a villain at 9pm, sleeping from 2am to 7am). Our scenarios were inspired by the Spider-Verse franchise, though we added our own twists as well. To spruce it up, we generated multiple images for each hour to simulate animation sequences and make the time display more film-like. We took our user feedback into consideration and decided against adding food for each hour, and instead focused on updating the background image so the clock is readable and not crowded.
 
-\*\*\***TODO: Add video**\*\*\*
+**See our final video here! https://www.youtube.com/shorts/OLUb-G72180**
 
