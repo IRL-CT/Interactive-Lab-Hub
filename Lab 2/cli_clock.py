@@ -54,20 +54,39 @@ backlight.value = True
 
 
 # ============================================================
+# BUTTON
+# ============================================================
+#
+# Confirmed physical button:
+# GPIO23
+#
+# Button is active LOW:
+#
+# Not pressed = HIGH
+# Pressed     = LOW
+#
+# ============================================================
+
+button = digitalio.DigitalInOut(board.D23)
+button.direction = digitalio.Direction.INPUT
+button.pull = digitalio.Pull.UP
+
+
+# ============================================================
 # SETTINGS
 # ============================================================
 
-# Folder containing all animation frames
 IMAGE_FOLDER = "images"
 
 # Animation speed
-# 0.15 = about 6.7 frames per second
-#
-# Try 0.10 later if you want faster/smoother animation.
 FRAME_DELAY = 0.15
 
-# Every animation currently has 5 frames
+# Number of frames in every animation
 FRAMES_PER_ANIMATION = 5
+
+# After 60 seconds without pressing the button,
+# return to the correct real-time animation.
+DEMO_TIMEOUT = 60
 
 
 # ============================================================
@@ -97,14 +116,11 @@ FRAMES_PER_ANIMATION = 5
 # ============================================================
 
 hour_to_animation = {
-
-    # Morning
     8: 1,
     9: 2,
     10: 3,
     11: 4,
 
-    # Afternoon
     12: 5,
     13: 6,
     14: 7,
@@ -112,7 +128,6 @@ hour_to_animation = {
     16: 9,
     17: 10,
 
-    # Evening
     18: 11,
     19: 12,
     20: 13,
@@ -120,11 +135,9 @@ hour_to_animation = {
     22: 15,
     23: 16,
 
-    # Midnight / early morning
     0: 17,
     1: 18,
 
-    # Sleeping animation
     2: 19,
     3: 19,
     4: 19,
@@ -135,7 +148,7 @@ hour_to_animation = {
 
 
 # ============================================================
-# LOAD AND RESIZE IMAGE
+# LOAD IMAGE
 # ============================================================
 
 def load_image(filename):
@@ -147,10 +160,8 @@ def load_image(filename):
 
     print("Loading:", filepath)
 
-    # Open PNG
     image = Image.open(filepath).convert("RGB")
 
-    # Calculate aspect ratios
     image_ratio = image.width / image.height
     screen_ratio = width / height
 
@@ -200,22 +211,7 @@ def load_image(filename):
 
 
 # ============================================================
-# PRELOAD ALL ANIMATIONS
-# ============================================================
-#
-# Filenames are automatically generated:
-#
-# p1f1.png
-# p1f2.png
-# p1f3.png
-# p1f4.png
-# p1f5.png
-#
-# p2f1.png
-# ...
-#
-# p19f5.png
-#
+# LOAD ALL 19 ANIMATIONS
 # ============================================================
 
 print()
@@ -225,37 +221,22 @@ print()
 loaded_animations = {}
 
 
-# There are 19 animations
 for animation_number in range(1, 20):
 
     loaded_animations[animation_number] = []
 
-
-    # Each animation has 5 frames
     for frame_number in range(
         1,
         FRAMES_PER_ANIMATION + 1
     ):
-
-        # Automatically create filename
-        #
-        # Example:
-        # animation_number = 3
-        # frame_number = 2
-        #
-        # filename = p3f2.png
 
         filename = (
             f"p{animation_number}"
             f"f{frame_number}.png"
         )
 
-
-        # Load and resize the frame
         frame = load_image(filename)
 
-
-        # Store frame in memory
         loaded_animations[
             animation_number
         ].append(frame)
@@ -269,74 +250,158 @@ print()
 
 
 # ============================================================
-# MAIN CLOCK
+# CLOCK / DEMO STATE
 # ============================================================
 
-current_hour = None
-
-# Start each animation on frame 1
 current_frame = 0
 
+# False = normal clock mode
+# True  = manually browsing animations
+demo_mode = False
+
+# Animation being shown during demo mode
+demo_animation = None
+
+# Time of most recent button press
+last_button_press_time = 0
+
+# Used to detect a new button press
+last_button_state = True
+
+
+# ============================================================
+# MAIN LOOP
+# ============================================================
 
 while True:
 
     # --------------------------------------------------------
-    # GET CURRENT HOUR
+    # CURRENT REAL TIME
     # --------------------------------------------------------
 
-    # Returns 0 - 23
+    hour = int(time.strftime("%H"))
+
+    real_animation = hour_to_animation[hour]
+
+
+    # --------------------------------------------------------
+    # READ BUTTON
+    # --------------------------------------------------------
+
+    button_state = button.value
+
+
+    # --------------------------------------------------------
+    # DETECT BUTTON PRESS
+    # --------------------------------------------------------
     #
-    # Example:
-    # 8 AM  -> 8
-    # 4 PM  -> 16
-    # 12 AM -> 0
-
-    hour = int(
-        time.strftime("%H")
-    )
-
-
-    # --------------------------------------------------------
-    # CHECK IF THE HOUR CHANGED
+    # HIGH -> LOW means the button was just pressed.
+    #
+    # This prevents holding the button from rapidly
+    # switching through all 19 animations.
+    #
     # --------------------------------------------------------
 
-    if hour != current_hour:
+    if last_button_state and not button_state:
 
-        current_hour = hour
+        # --------------------------------------------
+        # FIRST PRESS
+        # --------------------------------------------
 
-        # Restart new animation from frame 1
+        if not demo_mode:
+
+            demo_mode = True
+
+            # Start from the animation AFTER the
+            # real current animation.
+            demo_animation = real_animation + 1
+
+            if demo_animation > 19:
+                demo_animation = 1
+
+        # --------------------------------------------
+        # ADDITIONAL PRESSES
+        # --------------------------------------------
+
+        else:
+
+            demo_animation += 1
+
+            if demo_animation > 19:
+                demo_animation = 1
+
+
+        # Restart the selected animation at frame 1
         current_frame = 0
 
-        animation_number = (
-            hour_to_animation[hour]
-        )
+        # Restart the 1-minute timeout
+        last_button_press_time = time.monotonic()
+
 
         print()
         print("==============================")
-        print("Hour:", hour)
-        print(
-            "Playing animation:",
-            "p" + str(animation_number)
-        )
+        print("DEMO MODE")
+        print("Showing animation: p" + str(demo_animation))
         print("==============================")
         print()
 
 
-    # --------------------------------------------------------
-    # FIND ANIMATION FOR CURRENT TIME
-    # --------------------------------------------------------
-
-    animation_number = (
-        hour_to_animation[hour]
-    )
-
-    animation = (
-        loaded_animations[animation_number]
-    )
+    # Save button state for next loop
+    last_button_state = button_state
 
 
     # --------------------------------------------------------
-    # GET CURRENT ANIMATION FRAME
+    # CHECK DEMO TIMEOUT
+    # --------------------------------------------------------
+
+    if demo_mode:
+
+        time_since_press = (
+            time.monotonic() - last_button_press_time
+        )
+
+        if time_since_press >= DEMO_TIMEOUT:
+
+            demo_mode = False
+            demo_animation = None
+            current_frame = 0
+
+            print()
+            print("==============================")
+            print("DEMO TIMEOUT")
+            print("Returning to normal clock mode")
+            print(
+                "Current animation: p"
+                + str(real_animation)
+            )
+            print("==============================")
+            print()
+
+
+    # --------------------------------------------------------
+    # CHOOSE ANIMATION
+    # --------------------------------------------------------
+
+    if demo_mode:
+
+        animation_number = demo_animation
+
+    else:
+
+        animation_number = real_animation
+
+
+    # --------------------------------------------------------
+    # GET ANIMATION
+    # --------------------------------------------------------
+
+    animation = loaded_animations[
+        animation_number
+    ]
+
+
+    # --------------------------------------------------------
+    # GET CURRENT FRAME
     # --------------------------------------------------------
 
     frame = animation[current_frame]
@@ -346,15 +411,11 @@ while True:
     # DISPLAY FRAME
     # --------------------------------------------------------
 
-    # No clock text.
-    # No black box.
-    # Just the animation.
-
     disp.image(frame)
 
 
     # --------------------------------------------------------
-    # MOVE TO NEXT FRAME
+    # NEXT FRAME
     # --------------------------------------------------------
 
     current_frame += 1
