@@ -1,28 +1,66 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Lab 3 — Chatterboxes setup
+#
+# Run this ONCE, from inside the Lab 3 directory, with your venv activated:
+#   source .venv/bin/activate
+#   ./setup.sh
+#
+# It installs the classic (non-neural) TTS engines, fetches the VAD model,
+# and pre-downloads a Piper voice so nobody is waiting on a download in class.
 
-# Function to print a message and install a package
-install_package() {
-    echo "Installing $1..."
-    shift  # Shift to get the rest of the arguments
-    echo "Y" | "$@"  # Run the command, piping 'Y' for approval
-    echo "$1 installed!"
-}
+set -euo pipefail
 
-# Install pip package
-# echo "Installing piper-tts via pip for local user..."
-# pip install piper-tts --user
-# echo "piper-tts installed!"
+LAB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MODELS_DIR="$LAB_DIR/models"
+VOICES_DIR="$LAB_DIR/voices"
 
-# Install packages using apt-get
-install_package "festival" sudo apt-get install festival
-install_package "espeak" sudo apt-get install espeak
-install_package "mplayer" sudo apt-get install mplayer
-install_package "mpg123" sudo apt-get install mpg123
-install_package "libttspico-utils" sudo apt-get install libttspico-utils
+if [[ -z "${VIRTUAL_ENV:-}" ]]; then
+  echo "WARNING: no virtualenv active. Run 'source .venv/bin/activate' first."
+  echo "Continuing in 5s — Ctrl-C to abort."
+  sleep 5
+fi
 
-# Change all scripts in the subfolder 'speech-scripts' to be executable
-echo "Making all scripts in the 'speech-scripts' subfolder executable..."
-chmod u+x ./speech-scripts/*
-echo "Scripts are now executable!"
+echo "==> Installing system audio and classic TTS packages"
+sudo apt-get update
+sudo apt-get install -y \
+  alsa-utils \
+  libportaudio2 \
+  espeak-ng \
+  festival festvox-kallpc16k \
+  flite
 
-echo "All tasks completed!"
+# Notes on what we deliberately no longer install:
+#   libttspico-utils — abandoned Android TTS code, not in current Debian
+#   mplayer          — was only there for the Google translate_tts hack
+#   portaudio19-dev  — only needed to *build* pyaudio; we use sounddevice
+
+echo "==> Fetching Silero VAD model"
+mkdir -p "$MODELS_DIR"
+if [[ ! -f "$MODELS_DIR/silero_vad.onnx" ]]; then
+  wget -q --show-progress \
+    -O "$MODELS_DIR/silero_vad.onnx" \
+    https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/silero_vad.onnx
+else
+  echo "    already present, skipping"
+fi
+
+echo "==> Downloading a Piper voice (en_US-lessac-medium)"
+mkdir -p "$VOICES_DIR"
+if [[ ! -f "$VOICES_DIR/en_US-lessac-medium.onnx" ]]; then
+  python3 -m piper.download_voices en_US-lessac-medium --data-dir "$VOICES_DIR"
+else
+  echo "    already present, skipping"
+fi
+
+echo "==> Warming the faster-whisper cache (tiny.en)"
+python3 - <<'PY'
+from faster_whisper import WhisperModel
+WhisperModel("tiny.en", device="cpu", compute_type="int8")
+print("    model cached")
+PY
+
+echo "==> Making speech-scripts executable"
+chmod u+x "$LAB_DIR"/speech-scripts/*.sh 2>/dev/null || true
+
+echo
+echo "Setup complete. Try:  python speech-scripts/transcribe.py --help"
