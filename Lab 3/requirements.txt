@@ -1,0 +1,24 @@
+# Lab 3 — Chatterboxes
+# Direct dependencies only. Transitive deps are resolved by pip/uv.
+# If you need byte-for-byte reproducibility across the class, generate a
+# lockfile from this file (`uv pip compile requirements.txt -o requirements.lock`)
+# and commit that alongside it. Do not hand-edit a lockfile.
+#
+# Everything here has aarch64 wheels and none of it pulls in PyTorch.
+
+# --- audio I/O ---
+sounddevice~=0.5.2
+soundfile~=0.13.1
+numpy~=2.3
+
+# --- speech to text (CTranslate2 backend) ---
+faster-whisper~=1.2
+
+# --- voice activity detection / endpointing (ONNX Runtime backend) ---
+sherpa-onnx~=1.13
+
+# --- neural text to speech ---
+piper-tts~=1.8
+
+# --- web server for the wizard controller ---
+flask~=3.1

@@ -5,7 +5,7 @@ for [Interactive Device Design](https://github.com/FAR-Lab/Developing-and-Design
 
 [Lab 2. Interactive Prototyping: The Clock of Pi](Lab%202/)
 
-Lab 3. Chatterboxes
+[Lab 3. Chatterboxes](Lab%203/)
 
 Lab 4. Ph-UI!!!
 
