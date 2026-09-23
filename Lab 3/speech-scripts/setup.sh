@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Lab 3 — Chatterboxes setup
+# Lab 3  Chatterboxes setup
 #
 # Run this ONCE, from inside the Lab 3 directory, with your venv activated:
 #   source .venv/bin/activate
@@ -10,7 +10,8 @@
 
 set -euo pipefail
 
-LAB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LAB_DIR="$(dirname "$SCRIPT_DIR")"
 MODELS_DIR="$LAB_DIR/models"
 VOICES_DIR="$LAB_DIR/voices"
 

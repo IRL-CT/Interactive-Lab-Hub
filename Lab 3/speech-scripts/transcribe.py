@@ -49,7 +49,7 @@ def main() -> None:
     print(f"transcription    {t_transcribe:.2f}s")
     print(f"real-time factor {t_transcribe / info.duration:.2f}x")
     print("\n(Model load is a one-time cost per process. In an interactive system "
-          "you load once and keep the model resident — which is what listen.py does.)")
+          "you load once and keep the model resident  which is what listen.py does.)")
 
 
 if __name__ == "__main__":
