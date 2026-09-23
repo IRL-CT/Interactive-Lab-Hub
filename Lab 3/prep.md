@@ -43,7 +43,7 @@ Alternatively, you can pair the speaker from the terminal:
    lsusb
 
    # you should see something like
-   # Bus 003 Device 002: ID 08bb:2902 Texas Instruments PCM2902 Audio Codec
+   # Bus 001 Device 002: ID 4c4a:4155 Jieli Technology UACDemoV1.0
    ```
 
 2. **Unmute the speaker:**
@@ -69,7 +69,7 @@ Alternatively, you can pair the speaker from the terminal:
    lsusb
 
    # you should see something like
-   # Bus 001 Device 002: ID 4c4a:4155 Jieli Technology UACDemoV1.0
+   # Bus 003 Device 002: ID 08bb:2902 Texas Instruments PCM2902 Audio Codec
    ```
 
 2. **Unmute the speaker:**
