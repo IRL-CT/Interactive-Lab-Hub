@@ -64,6 +64,7 @@ This takes a few minutes. If you would like it to take considerably less time, [
 Then run the setup script, which installs the classic speech synthesizers, downloads the voice activity detection model, and pre-fetches a neural voice and a speech recognition model so you are not waiting on downloads during lab:
 
 ```
+(.venv):~$ cd speech-scripts
 (.venv) $ ./setup.sh
 ```
 
@@ -123,6 +124,7 @@ The transcript is not the interesting output here — the timings are. Run it ag
 ```
 (.venv) $ python transcribe.py lookdave.wav --model base.en
 (.venv) $ python transcribe.py lookdave.wav --model small.en
+#  noted that the first run may take longer because the model is downloaded, and that the HF unauthenticated-request warning is expected and not an error.
 ```
 
 Available sizes, smallest first: `tiny.en`, `base.en`, `small.en`, `medium.en`. The `.en` variants are English-only and faster than their multilingual counterparts at the same size.
