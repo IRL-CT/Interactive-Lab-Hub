@@ -191,6 +191,7 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.
 2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.
 3. Make a new storyboard, diagram and/or script based on these reflections.
+4. (optional) Integrate [input devices](inputs.md) in the system
 
 ## Prototype your system
 
