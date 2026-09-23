@@ -161,30 +161,7 @@ There is no correct value. A system that takes drink orders and a system that li
 (.venv) $ python echo_bot.py
 ```
 
-It reports the latency of each stage after every turn. Two experiments worth running:
-
-```
-(.venv) $ python echo_bot.py --min-silence 1.0
-(.venv) $ python echo_bot.py --barge-in
-```
-
-`--barge-in` keeps the microphone open while the system is speaking. It will immediately begin transcribing its own voice. This is not a bug in the script; it is the acoustic echo problem, and it is the reason commercial voice assistants need either echo cancellation or a wake word. Notice that the default half-duplex behaviour — deaf while speaking — has its own cost: you cannot interrupt it.
-
-\*\***Modify the `respond()` function in `echo_bot.py` to do something other than parrot. It does not need to be smart. Then add a deliberate delay before it replies, and report what the delay does to how the system comes across.**\*\*
-
-## D. Serving Pages
-
-In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver:
-
-```
-(.venv) $ python server.py
- * Serving Flask app "server"
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
-```
-
-From a remote browser on the same network, go to `http://<YourPiIPAddress>:5000`. You should see "Hello World".
-
-## E. Storyboard
+## D. Storyboard
 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.)
 
@@ -196,17 +173,12 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 
 Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
 
-## F. Acting out the dialogue
+## E. Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
-## G. Wizarding with the Pi (optional)
-
-In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser. You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller at `http://<YourPiIPAddress>:5000`. You can control what the system says from the controller as well.
-
-\*\***Describe if the dialogue seemed different than what you imagined, or when acted out, when it was wizarded, and how.**\*\*
 
 ---
 
