@@ -77,14 +77,17 @@ Your Pi can speak in several quite different ways, and the differences are audib
 
 ```
 (.venv) $ cd speech-scripts
+
+(.venv) $ sudo apt update
+(.venv) $ sudo apt install -y espeak festival festvox-kallpc16k
+
 (.venv) $ ./espeak_demo.sh
 (.venv) $ ./festival_demo.sh
-(.venv) $ ./flite_demo.sh
 ```
 
 You can run these `.sh` files by typing `./filename`, and read one with `cat filename`. You can also play audio files directly with `aplay filename` — try `aplay lookdave.wav`.
 
-These are all decades-old technology and they sound like it. `espeak-ng` is a *formant synthesizer*: it generates speech from an acoustic model of the vocal tract, which is why it sounds robotic but also why the whole thing fits in a couple of megabytes and responds instantly. `festival` and `flite` are *concatenative*: they stitch together recorded fragments of a real speaker, which sounds more human but breaks audibly at the seams.
+These are all decades-old technology and they sound like it. `espeak-ng` is a *formant synthesizer*: it generates speech from an acoustic model of the vocal tract, which is why it sounds robotic but also why the whole thing fits in a couple of megabytes and responds instantly. `festival` is *concatenative*: they stitch together recorded fragments of a real speaker, which sounds more human but breaks audibly at the seams.
 
 ### Neural TTS with Piper
 
