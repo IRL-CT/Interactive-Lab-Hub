@@ -108,7 +108,7 @@ The demo script also shows `--output-raw`, which streams audio to the speaker as
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 (This shell file should be saved to your own repo for this lab.)
 
-\*\***Then answer: the same greeting, in these different voices, is not the same greeting. Describe one concrete way the voice changed what the utterance seemed to mean or who seemed to be speaking.**\*\*
+\*\***Then answer: Is the same greeting, in these different voices, the same greeting? Describe one concrete way the voice changed what the utterance seemed to mean or who seemed to be speaking.**\*\*
 
 ## B. Speech to Text
 
