@@ -5,13 +5,11 @@
 ### To prepare lab 3, you will need:
 
 - Raspberry Pi 5
-- Active Cooler for Pi 5
-- Stacking Header 40 pin
-- Bluetooth Speaker
-- Logitech Webcam w/camera 
+- USB Speaker
+- USB Microphone
 
 
-### Install Active Cooler
+### Install Active Cooler (optional)
 
 - Disconnect the Mini screen on pi just for now
 - Unpack the preassembled Active Cooler from its box.
@@ -30,66 +28,126 @@ See the [User Manual](https://datasheets.raspberrypi.com/cooling/raspberry-pi-ac
 See the [Video Walkthrough](https://www.youtube.com/shorts/e1CtdqeT3o0)
 
 
-### Set up and connect bluetooth speaker
+### Set up and connect speaker
 
-1. Charge the Bluetooth speaker with the paired USB type C cable.
-2. Disconnect the speaker from charging. Long press the power icon on the speaker body, until the small white LED flashes.
+1. Connect the speaker to the Raspberry Pi5 through the USB port.
 
 #### Option 1: GUI Method (VNC)
-3. Open VNC viewer and connect your Pi5. On the top right corner, click the Bluetooth icon, and on the dropdown menu, select "Make Discoverable". Meanwhile, select "Add Device". Once you find the 'X1', pair and connect with it. You should hear a "beep" if the connection is successful
-<img src="https://github.com/IRL-CT/Interactive-Lab-Hub/blob/Fall2025-shadow/Lab%203/Bluetooth.png" alt="choose os" height="400" />
+1. Open VNC viewer and connect your Pi5. On the top right corner, click the Speaker icon, and de-select "mute"
 
 #### Option 2: Command Line Method
-Alternatively, you can pair the X1 speaker from the terminal:
+Alternatively, you can pair the speaker from the terminal:
 
-1. **Start Bluetooth control:**
+1. **Confirmed if the USB speaker is connected:**
    ```bash
-   sudo bluetoothctl
+   lsusb
+
+   # you should see something like
+   # Bus 003 Device 002: ID 08bb:2902 Texas Instruments PCM2902 Audio Codec
    ```
 
-2. **Enable Bluetooth and make discoverable:**
+2. **Unmute the speaker:**
    ```bash
-   power on
-   agent on
-   discoverable on
-   scan on
+   wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+
+   # if you want to unmute it, wpctl set-mute @DEFAULT_AUDIO_SINK@ 1
+
+   wpctl set-volume @DEFAULT_AUDIO_SINK@ 80%
+   # change the volume of the speaker
    ```
 
-3. **Find your X1 speaker (filter devices by name):**
-   ```bash
-   devices
-   ```
-   Then look for a line containing "X1", or use this command to filter:
-   ```bash
-   exit
-   echo 'devices' | bluetoothctl | grep -i "X1"
-   ```
-   This will show something like: `Device XX:XX:XX:XX:XX:XX X1`
+### Set up the USB Microphone
 
-4. **Pair with your X1 (replace XX:XX:XX:XX:XX:XX with your device's MAC address):**
+#### Option 1: GUI Method (VNC)
+1. Open VNC viewer and connect your Pi5. On the top right corner, click the Microphone icon, and de-select "mute"
+
+#### Option 2: Command Line Method
+Alternatively, you can pair the speaker from the terminal:
+
+1. **Confirmed if the USB speaker is connected:**
    ```bash
-   bluetoothctl
-   pair XX:XX:XX:XX:XX:XX
-   trust XX:XX:XX:XX:XX:XX
-   connect XX:XX:XX:XX:XX:XX
-   exit
+   lsusb
+
+   # you should see something like
+   # Bus 001 Device 002: ID 4c4a:4155 Jieli Technology UACDemoV1.0
    ```
 
-You should hear a "beep" from the speaker when successfully connected.
+2. **Unmute the speaker:**
+   ```bash
+   wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0 
 
-### Set up the Web camera
+   # if you want to unmute it, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
 
-1. stay in the VNC, open terminal and run this commandline when on VNC or pi connect:
+   wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 80%
+   # change the microphone volume
+   ```
 
-	```
-	$ sudo apt install pavucontrol
-	```
-2. open pavucontrol through this commandline. You should see an GUI open.
 
- 	```
-	$ pavucontrol
-	```
-<img src="https://github.com/IRL-CT/Interactive-Lab-Hub/blob/Fall2025-shadow/Lab%203/pavucontrol.png" alt="choose os" height="400" />
-3. Navigate to the Configuration, make sure the profile of the C270 Webcam is Mono Input
-4. Navigate to the Input Devices, you should see a bar moving as you speak - which means you have set up correctly
-	
+### Test the Microphone and the Speaker
+
+1. **Find your microphone's card number:**
+```bash
+   arecord -l
+
+   # you should see something like
+   # **** List of CAPTURE Hardware Devices ****
+   # card 3: Device [USB PnP Sound Device], device 0: USB Audio [USB Audio]
+   #   Subdevices: 1/1
+   #   Subdevice #0: subdevice #0
+```
+   Note the number after `card` (here it is `3`). Yours may be different.
+
+2. **Create the recording script:**
+
+   Copy and paste the whole block below into the terminal. It writes a script called `record.sh` in your home folder.
+```bash
+   cat > ~/record.sh << 'EOF'
+   #!/bin/bash
+   # Records 5 seconds from the USB microphone and saves it as a .wav file
+
+   # Uses the first capture card found; to override, run: ./record.sh 3
+   MIC_CARD=${1:-$(arecord -l | awk -F'[ :]' '/^card/{print $2; exit}')}
+   OUT="$HOME/recording_$(date +%Y%m%d_%H%M%S).wav"
+
+   if [ -z "$MIC_CARD" ]; then
+       echo "No microphone found. Check the connection with: arecord -l"
+       exit 1
+   fi
+
+   echo "Recording 5 seconds from card $MIC_CARD... speak now!"
+   if arecord -D plughw:${MIC_CARD},0 -f S16_LE -r 16000 -c 1 -d 5 "$OUT"; then
+       echo "Saved to $OUT"
+   else
+       echo "Recording failed. Check the card number with: arecord -l"
+   fi
+   EOF
+```
+
+3. **Make the script executable and run it:**
+```bash
+   chmod +x ~/record.sh
+   ~/record.sh
+
+   # now speak, or sing a song you like, for 5 seconds
+```
+
+4. **Check that the file was saved:**
+```bash
+   ls ~/recording_*.wav
+
+   # you should see something like
+   # /home/pi/recording_20260922_192145.wav
+```
+
+5. **Play back your recording:**
+```bash
+   aplay "$(ls -t ~/recording_*.wav | head -1)"
+
+   # this plays your most recent recording
+   # you should hear what you just said or sang
+```
+
+#### Troubleshooting
+- **`audio open error: No such file or directory`**: the card number is wrong. Run `arecord -l` again and pass the right number, e.g. `~/record.sh 3`.
+- **The recording is silent or very quiet**: run `alsamixer`, press `F6` to select your USB microphone, press `F4` for capture, and raise the level. `MM` means muted; press `M` to unmute.
+- **You can't hear the playback**: check that the speaker is unmuted and set as the default output with `wpctl status`.
