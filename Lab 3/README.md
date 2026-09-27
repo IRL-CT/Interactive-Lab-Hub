@@ -193,6 +193,8 @@ However, after act it out, I realized that the conversation could not be complet
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
 
 \*\***Please describe and document your process.**\*\*
+
+
 First try:
 Dialogue Script:
 Device: “Did you work out today?”
@@ -220,6 +222,7 @@ Device: “Did you do cardio too?”
 → If NO: “Got it! Workout complete.”  
 If NO to the first question:
 Device: “No worries. See you tomorrow!”
+
 
 I first wrote a simple linear conversation with three questions: whether the user worked out, what they trained, and whether they did cardio. While making the storyboard and act it out, I realized that the conversation should change depending on the user’s yes/no responses. For example, if the user says “no” to the first question, the device should not continue asking what they trained. I therefore added branches for different responses. I also used what I learned from Part C to design the timing. Since 0.2 seconds sometimes cut me off and 1.5 seconds felt too slow, I chose about 0.7 seconds of silence before the device considers the user’s turn finished.
 
