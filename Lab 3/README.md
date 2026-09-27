@@ -94,11 +94,12 @@ I first wrote a simple linear conversation with three questions: whether the use
 
 ## E. Acting out the dialogue
 
-Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
-
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
-While developing the dialogue, I realized that the conversation could not be completely linear because yes/no responses change what the device should ask next. I therefore used a branching dialogue flow and used the storyboard to show one common path through the interaction.
+https://github.com/user-attachments/assets/dec34fbc-0d35-4743-bff7-a82feab5ae52
+
+
+The interaction mostly followed my original script, but one response was different from what I expected. Instead of answering “no” to a yes/no question, my partner said “I didn’t.” This made me realize that even simple yes/no questions can receive different natural-language responses. The device would need to recognize that “I didn’t” has the same meaning as “no” and follow the correct branch of the conversation.
 
 ---
 
