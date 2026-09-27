@@ -195,8 +195,9 @@ Write out what you imagine the dialogue to be. Use cards, post-its, or whatever 
 \*\***Please describe and document your process.**\*\*
 
 
-First try:
-Dialogue Script:
+First try dialogue script:
+
+
 Device: “Did you work out today?”
 Wait for user response. After the user stops speaking, wait 0.7 seconds before ending their turn.
 User: “Yes.”
@@ -211,6 +212,8 @@ Device: “Great job. Workout complete!”
 
 
 Improved/final version of the dialogue:
+
+
 Device: “Did you work out today?”
 Wait for response; end turn after 0.7s of silence.  
 If YES:
