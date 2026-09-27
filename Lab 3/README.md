@@ -1,6 +1,6 @@
 # Chatterboxes
 
-**NAMES OF COLLABORATORS HERE**
+**Rawisara Chairat, Lamiah Khan, Xiaoxi Xu, Afroza Aktar**
 
 [![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
 
@@ -233,10 +233,14 @@ Device: “Hope that helped. Sweet dreams!”
 
 ## E. Acting out the dialogue
 
-Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
+
+https://github.com/user-attachments/assets/0c0bc613-4ce0-4d80-bd9c-2192b5a68016
+
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
+
+Acting out the dialogue showed us that timing and pauses were more important than we expected. We noticed that interruptions need to feel natural and the device should clearly switch between listening and speaking. Overall, the acting helped us focus not just on what the device says, but also when it listens and responds.
 
 ---
 
