@@ -139,6 +139,8 @@ I tested my recording with `tiny.en` and `base.en`. The real-time factor was 0.2
 
 \*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
 
+I wrote a script that verbally asks, “How old are you?” and records the user’s response for 5 seconds. I answered “23,” and the speech recognition model correctly transcribed it as “23.” in the file number_question.py
+
 
 ## C. Turn-taking: knowing when someone has stopped talking
 
@@ -160,6 +162,8 @@ Speak, pause, and watch it transcribe. Now change the endpointing threshold — 
 
 \*\***Try both extremes, and something in between. Describe what each one feels like to talk to. Note specifically: at 0.2s, what kinds of normal speech get cut off? At 1.5s, what does the delay make the system seem like?**\*\*
 
+At 0.2s, the system was still usable for me. Some short pauses were cut off, but not every pause caused a problem. At 1.5s, the system felt noticeably slower because it waited too long after I finished speaking before responding. A middle value felt more natural because it allowed brief pauses without making the system seem unresponsive.
+
 There is no correct value. A system that takes drink orders and a system that listens to someone think out loud want very different thresholds, and the right one depends on what your users are doing with their pauses.
 
 ### The complete loop
@@ -174,11 +178,50 @@ There is no correct value. A system that takes drink orders and a system that li
 
 Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.)
 
+Concept: Workout Check-in Device
+I designed a simple voice-based workout check-in device. It asks the user whether they worked out that day, what body part they trained, and whether they did cardio. The goal is to make workout tracking quick and hands-free.
+
 \*\***Post your storyboard and diagram here.**\*\*
+
+<img width="4032" height="2268" alt="IMG_0476" src="https://github.com/user-attachments/assets/57e76daa-bf2d-4210-ba4c-2be682894488" />
+Storyboard: The storyboard shows a short voice interaction where the device guides the user through a daily workout check-in. The user can complete the whole interaction through speech without using a screen.
+
+However, after act it out, I realized that the conversation could not be completely linear because yes/no responses change what the device should ask next. I therefore draw another branching dialogue to show the different options might occur. 
+
+<img width="2268" height="4032" alt="IMG_0477" src="https://github.com/user-attachments/assets/6bf5ef5b-6527-41fd-805f-2124e2aa4ec4" />
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
 
 \*\***Please describe and document your process.**\*\*
+First try:
+Dialogue Script:
+Device: “Did you work out today?”
+Wait for user response. After the user stops speaking, wait 0.7 seconds before ending their turn.
+User: “Yes.”
+Wait 0.7 seconds.
+Device: “What did you train?”
+User: “Legs.”
+Wait 0.7 seconds.
+Device: “Did you do cardio too?”
+User: “Yes.”
+Wait 0.7 seconds.
+Device: “Great job. Workout complete!”
+
+
+Improved/final version of the dialogue:
+Device: “Did you work out today?”
+Wait for response; end turn after 0.7s of silence.  
+If YES:
+Device: “What did you train?”
+User: “Legs.”
+Wait 0.7s.
+Device: “Did you do cardio too?”  
+→ If YES: “Great job! Workout complete.”
+→ If NO: “Got it! Workout complete.”  
+If NO to the first question:
+Device: “No worries. See you tomorrow!”
+
+I first wrote a simple linear conversation with three questions: whether the user worked out, what they trained, and whether they did cardio. While making the storyboard and act it out, I realized that the conversation should change depending on the user’s yes/no responses. For example, if the user says “no” to the first question, the device should not continue asking what they trained. I therefore added branches for different responses. I also used what I learned from Part C to design the timing. Since 0.2 seconds sometimes cut me off and 1.5 seconds felt too slow, I chose about 0.7 seconds of silence before the device considers the user’s turn finished.
 
 Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
 
@@ -188,6 +231,7 @@ Find a partner, and *without sharing the script with your partner* try out the d
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
+While developing the dialogue, I realized that the conversation could not be completely linear because yes/no responses change what the device should ask next. I therefore used a branching dialogue flow and used the storyboard to show one common path through the interaction.
 
 ---
 
