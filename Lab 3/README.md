@@ -46,22 +46,6 @@ Even though the words were the same, the greeting did not feel the same. The voi
 
 ## B. Speech to Text
 
-We use [faster-whisper](https://github.com/SYSTRAN/faster-whisper), a reimplementation of OpenAI's Whisper model that runs several times faster on CPU and does not require PyTorch. All processing happens on the Pi; nothing is sent to a server.
-
-```
-(.venv) $ python transcribe.py lookdave.wav
-```
-
-The transcript is not the interesting output here — the timings are. Run it again with a larger model and compare:
-
-```
-(.venv) $ python transcribe.py lookdave.wav --model base.en
-(.venv) $ python transcribe.py lookdave.wav --model small.en
-#  noted that the first run may take longer because the model is downloaded, and that the HF unauthenticated-request warning is expected and not an error.
-```
-
-Available sizes, smallest first: `tiny.en`, `base.en`, `small.en`, `medium.en`. The `.en` variants are English-only and faster than their multilingual counterparts at the same size.
-
 \*\***Record a few seconds of your own speech (`arecord -d 5 -f cd -c 1 -r 16000 test.wav`) and transcribe it with at least two model sizes. Report the real-time factor for each. At what point does the accuracy improvement stop being worth the delay, for a system that has to answer you?**\*\*
 
 Answer: We tested the same five-second recording using tiny.en, base.en, and small.en. Their real-time factors were 0.20, 0.42, and 1.04, respectively.
@@ -70,7 +54,13 @@ All three models returned the digit sequence 01234. The base model added hyphens
 
 For this recording, increasing the model size did not improve the digit sequence, so the additional delay was not worthwhile. We would choose tiny.en for this interaction because it gave the same digits with the shortest waiting time. More varied recordings would be needed to see whether larger models perform better on difficult speech.
 
-\*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
+\*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* 
+
+Answer: We created `speech-scripts/ask_number.sh`. The script uses Piper to ask the respondent for a five-digit ZIP code, records the answer through the USB microphone, and transcribes the recording with faster-whisper.
+
+We tested the spoken sequence “one one two one eight.” The microphone was the USB PnP Sound Device on capture card 3. I compared tiny.en, base.en, and small.en using the same recording. The models sometimes displayed the digits as a continuous number, separated digits, or digits separated by hyphens. I compared the real-time factor and whether each model preserved all five digits, including the leading one.
+
+The main challenge was that digit strings can be formatted differently even when the recognized digits are correct. For an interactive system, I would repeat the recognized number back to the user and ask for confirmation before accepting it. All the file regarding part B is uploaded in "Part 1 (B)" folder. 
 
 ## C. Turn-taking: knowing when someone has stopped talking
 
