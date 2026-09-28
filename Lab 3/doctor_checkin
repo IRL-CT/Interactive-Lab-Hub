@@ -1,0 +1,212 @@
+import os
+import subprocess
+import tempfile
+import time
+
+import board
+import digitalio
+from PIL import Image, ImageDraw, ImageFont
+import adafruit_rgb_display.st7789 as st7789
+from faster_whisper import WhisperModel
+
+
+# ---------------- OLED ----------------
+
+cs_pin = digitalio.DigitalInOut(board.D5)
+dc_pin = digitalio.DigitalInOut(board.D25)
+spi = board.SPI()
+
+display = st7789.ST7789(
+    spi,
+    cs=cs_pin,
+    dc=dc_pin,
+    rst=None,
+    baudrate=64000000,
+    width=135,
+    height=240,
+    x_offset=53,
+    y_offset=40,
+)
+
+font_title = ImageFont.truetype(
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 18
+)
+
+font_text = ImageFont.truetype(
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 16
+)
+
+
+def show_oled(message):
+    image = Image.new("RGB", (240, 135), "black")
+    draw = ImageDraw.Draw(image)
+
+    # Doctor face
+    draw.ellipse((10, 10, 58, 58), outline="white", width=3)
+    draw.arc((10, 3, 58, 40), 180, 360, fill="white", width=3)
+    draw.ellipse((24, 28, 29, 33), fill="white")
+    draw.ellipse((41, 28, 46, 33), fill="white")
+    draw.arc((25, 34, 47, 49), 0, 180, fill="white", width=2)
+
+    # Doctor body
+    draw.line((20, 58, 14, 105), fill="white", width=3)
+    draw.line((50, 58, 56, 105), fill="white", width=3)
+    draw.line((14, 105, 56, 105), fill="white", width=3)
+
+    draw.text((75, 5), "DOCTOR", font=font_title, fill="cyan")
+
+    words = message.split()
+    lines = []
+    current = ""
+
+    for word in words:
+        test = current + (" " if current else "") + word
+
+        if len(test) <= 19:
+            current = test
+        else:
+            lines.append(current)
+            current = word
+
+    if current:
+        lines.append(current)
+
+    y = 38
+    for line in lines[:5]:
+        draw.text((75, y), line, font=font_text, fill="white")
+        y += 18
+
+    display.image(image, rotation=90)
+
+
+# ---------------- SPEECH OUTPUT ----------------
+
+def speak(message):
+    print("DOCTOR:", message)
+
+    piper = subprocess.Popen(
+        [
+            "python3",
+            "-m",
+            "piper",
+            "--model",
+            "en_US-lessac-medium",
+            "--output-raw",
+        ],
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+    )
+
+    audio, _ = piper.communicate(message.encode())
+
+    speaker = subprocess.Popen(
+        [
+            "aplay",
+            "-r",
+            "22050",
+            "-f",
+            "S16_LE",
+            "-c",
+            "1",
+        ],
+        stdin=subprocess.PIPE,
+    )
+
+    speaker.communicate(audio)
+
+
+# ---------------- RECORDING ----------------
+
+def record_answer(filename):
+    show_oled("Listening")
+    print("Listening...")
+
+    subprocess.run(
+        [
+            "arecord",
+            "-d",
+            "6",
+            "-f",
+            "S16_LE",
+            "-c",
+            "1",
+            "-r",
+            "16000",
+            filename,
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+
+
+# ---------------- TRANSCRIPTION ----------------
+
+def transcribe(filename, model):
+    show_oled("Thinking")
+    print("Thinking...")
+
+    segments, _ = model.transcribe(filename, beam_size=1)
+    answer = " ".join(segment.text.strip() for segment in segments)
+
+    return answer.strip()
+
+
+# ---------------- MAIN PROGRAM ----------------
+
+print("Loading speech-recognition model...")
+model = WhisperModel(
+    "tiny.en",
+    device="cpu",
+    compute_type="int8",
+)
+
+questions = [
+    "How is your pain today from zero to ten?",
+    "Did you complete your recovery exercise today?",
+    "Are you experiencing any unusual symptoms?",
+]
+
+try:
+    show_oled("Ready")
+    speak("Hello. I am your recovery doctor.")
+
+    for question in questions:
+        # Doctor asks
+        show_oled(question)
+        speak(question)
+
+        # Record answer
+        with tempfile.NamedTemporaryFile(
+            suffix=".wav",
+            delete=False
+        ) as audio_file:
+            filename = audio_file.name
+
+        record_answer(filename)
+
+        # Convert speech to text
+        answer = transcribe(filename, model)
+
+        os.remove(filename)
+
+        if answer == "":
+            answer = "I could not hear an answer."
+
+        # Show complete dialogue in terminal
+        print("You said:", answer)
+        print("I heard:", answer)
+        print()
+
+        # Show answer on OLED and confirm by voice
+        show_oled("I heard you")
+        speak("I heard you say " + answer)
+
+        time.sleep(1)
+
+    show_oled("Complete")
+    speak("Thank you. Your recovery check-in is complete.")
+    print("Recovery check-in complete.")
+
+except KeyboardInterrupt:
+    print("\nConversation stopped.")
+    show_oled("Stopped")
