@@ -63,6 +63,12 @@ The main challenge was that digit strings can be formatted differently even when
 
 \*\***Try both extremes, and something in between. Describe what each one feels like to talk to. Note specifically: at 0.2s, what kinds of normal speech get cut off? At 1.5s, what does the delay make the system seem like?**\*\*
 
+<img width="810" height="287" alt="Screenshot (33)" src="https://github.com/user-attachments/assets/955858f1-e66f-4131-8692-fa248e6acd9b" />
+
+
+<img width="1028" height="195" alt="Screenshot (34)" src="https://github.com/user-attachments/assets/7c8b1e86-95e7-41ef-8c98-7e888c7ef3df" />
+
+
 Answer: At the 0.2-second silence threshold, the system responded much faster, but it was more likely to treat short pauses, breaths, or pauses while thinking as the end of my turn. This could cut off a sentence or split normal speech into separate utterances. The system felt quick but somewhat impatient and interruptive. At the 1.5-second silence threshold, the system correctly transcribed my sentence after waiting for a longer pause. It recognized: “My name is Afroza. My other partners name are Lamiha, Cece and K.M.” The speech lasted 8.2 seconds, and transcription took 1.34 seconds. The longer threshold made the system feel patient, but it also created a noticeable delay before responding. Overall, 0.2 seconds felt too short for natural conversation, while 1.5 seconds felt more reliable but slower.
 
 ### The complete loop
