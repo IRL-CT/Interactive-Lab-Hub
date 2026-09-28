@@ -1,0 +1,7 @@
+Loading models...
+Input device: default
+Endpointing after 0.8s of silence. Ctrl-C to stop.
+
+[2.4s speech, 0.99s to transcribe]  Prozac CCKM Lameha.
+[1.6s speech, 0.87s to transcribe]  Hello, Raspberry Pi.
+[2.3s speech, 0.93s to transcribe]  We have four person in this group.
