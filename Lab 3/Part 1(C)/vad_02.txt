@@ -1,0 +1,6 @@
+Loading models...
+Input device: default
+Endpointing after 0.2s of silence. Ctrl-C to stop.
+
+[3.7s speech, 0.99s to transcribe]  name or a frozen CCK Mlamia.
+[3.2s speech, 1.04s to transcribe]  Proza CCKM Lameha.
