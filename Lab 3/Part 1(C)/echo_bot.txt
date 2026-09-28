@@ -1,0 +1,7 @@
+
+Loading models...
+Ready. Say something (endpointing after 0.4s of silence).
+
+  heard: All the partners name of our group are Afroza, La Mija, CC, KM.
+  reply: You said: All the partners name of our group are Afroza, La Mija, CC, KM.
+  [asr 1.16s | tts first audio 0.77s | total gap 1.93s]
