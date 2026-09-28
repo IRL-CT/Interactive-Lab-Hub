@@ -77,17 +77,7 @@ Answer: At the 0.2-second threshold, the system responded quickly but often trea
 At the 1.5-second threshold, the system kept more of my sentence together and correctly recognized most of my speech. However, it waited longer before responding, which made it feel slow. The system transcribed my 6.2-second speech in 1.29 seconds.
 The 0.2-second setting was faster but interruptive, while the 1.5-second setting was more patient but less responsive. A middle value, such as 0.8 seconds, would likely provide a better balance.
 
-### The complete loop
-
-`echo_bot.py` puts the pieces together: it listens, endpoints, transcribes, and speaks a reply through Piper. The dialogue policy is deliberately trivial — it repeats what you said — so that everything you notice is a property of the timing rather than the content.
-
-```
-(.venv) $ python echo_bot.py
-```
-
 ## D. Storyboard
-
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.)
 
 \*\***Post your storyboard and diagram here.**\*\*
 Our idea for a speech-enabled device is creating a bedside voice assistant that acts like a personal storyteller. The interaction is intentionally hands-free so the user can stay comfortable in bed, and hopefully if done well, can insure a good night's sleep for users of all ages. 
