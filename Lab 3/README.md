@@ -1,6 +1,6 @@
 # Chatterboxes
 
-**COLLABORATORS: Neeha Ravula (nr485), Gaurav Patel (gp438), Nishant Ray (nr487)**
+**COLLABORATORS: Neeha Ravula (nr485), Gaurav Patel (gp438), Nishant Ray (nr487), Ammar Syed (as4422)**
 
 ---
 
