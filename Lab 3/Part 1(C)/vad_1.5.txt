@@ -1,0 +1,6 @@
+
+Loading models...
+Input device: default
+Endpointing after 1.5s of silence. Ctrl-C to stop.
+
+[8.2s speech, 1.34s to transcribe]  My name is Afroza. My other partners name are Lamija, Cece and K.M.
