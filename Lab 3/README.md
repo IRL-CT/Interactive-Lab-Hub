@@ -64,11 +64,11 @@ Available sizes, smallest first: `tiny.en`, `base.en`, `small.en`, `medium.en`. 
 
 \*\***Record a few seconds of your own speech (`arecord -d 5 -f cd -c 1 -r 16000 test.wav`) and transcribe it with at least two model sizes. Report the real-time factor for each. At what point does the accuracy improvement stop being worth the delay, for a system that has to answer you?**\*\*
 
-Answer: I tested the same five-second recording using tiny.en, base.en, and small.en. Their real-time factors were 0.20, 0.42, and 1.04, respectively.
+Answer: We tested the same five-second recording using tiny.en, base.en, and small.en. Their real-time factors were 0.20, 0.42, and 1.04, respectively.
 
 All three models returned the digit sequence 01234. The base model added hyphens between the digits, but the numbers remained the same. Tiny took 0.99 seconds, base took 2.12 seconds, and small took 5.19 seconds.
 
-For this recording, increasing the model size did not improve the digit sequence, so the additional delay was not worthwhile. I would choose tiny.en for this interaction because it gave the same digits with the shortest waiting time. More varied recordings would be needed to see whether larger models perform better on difficult speech.
+For this recording, increasing the model size did not improve the digit sequence, so the additional delay was not worthwhile. We would choose tiny.en for this interaction because it gave the same digits with the shortest waiting time. More varied recordings would be needed to see whether larger models perform better on difficult speech.
 
 \*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
 
