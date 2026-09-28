@@ -69,7 +69,13 @@ The main challenge was that digit strings can be formatted differently even when
 <img width="1028" height="195" alt="Screenshot (34)" src="https://github.com/user-attachments/assets/7c8b1e86-95e7-41ef-8c98-7e888c7ef3df" />
 
 
-Answer: At the 0.2-second silence threshold, the system responded much faster, but it was more likely to treat short pauses, breaths, or pauses while thinking as the end of my turn. This could cut off a sentence or split normal speech into separate utterances. The system felt quick but somewhat impatient and interruptive. At the 1.5-second silence threshold, the system correctly transcribed my sentence after waiting for a longer pause. It recognized: “My name is Afroza. My other partners name are Lamiha, Cece and K.M.” The speech lasted 8.2 seconds, and transcription took 1.34 seconds. The longer threshold made the system feel patient, but it also created a noticeable delay before responding. Overall, 0.2 seconds felt too short for natural conversation, while 1.5 seconds felt more reliable but slower.
+<img width="1165" height="190" alt="Screenshot (35)" src="https://github.com/user-attachments/assets/d3f9f2fc-3b33-4401-8eb6-8fb3bfc49281" />
+
+
+
+Answer: At the 0.2-second threshold, the system responded quickly but often treated normal pauses, breathing, or thinking pauses as the end of my turn. It split my speech into short and sometimes incomplete phrases, so it felt impatient.
+At the 1.5-second threshold, the system kept more of my sentence together and correctly recognized most of my speech. However, it waited longer before responding, which made it feel slow. The system transcribed my 6.2-second speech in 1.29 seconds.
+The 0.2-second setting was faster but interruptive, while the 1.5-second setting was more patient but less responsive. A middle value, such as 0.8 seconds, would likely provide a better balance.
 
 ### The complete loop
 
