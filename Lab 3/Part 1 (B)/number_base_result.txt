@@ -1,0 +1,10 @@
+
+1, 1, 2, 1, 8.
+
+model            base.en (int8, beam=1)
+audio duration   8.00s
+model load       0.69s
+transcription    1.92s
+real-time factor 0.24x
+
+(Model load is a one-time cost per process. In an interactive system you load once and keep the model resident  which is what listen.py does.)
