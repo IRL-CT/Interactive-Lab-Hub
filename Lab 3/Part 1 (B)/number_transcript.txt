@@ -1,0 +1,10 @@
+
+1, 1, 2, 1, 8.
+
+model            tiny.en (int8, beam=1)
+audio duration   8.00s
+model load       0.54s
+transcription    0.97s
+real-time factor 0.12x
+
+(Model load is a one-time cost per process. In an interactive system you load.)
