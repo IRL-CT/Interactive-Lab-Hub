@@ -84,7 +84,7 @@ The dialogue felt less natural when acted out than we had imagined. Our partner 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
 
 Feedback from classmates:
-- **[Abiola Bolaji](https://github.com/9JAyemi/Interactive-Lab-Hub/tree/Fall2026/Lab%203):**
+- **[Abiola Bolaji](https://github.com/9JAyemi/Interactive-Lab-Hub/tree/Fall2026/Lab%203):** I like the overall idea for this project and I think the interface is cool. One piece of advice I would say is maybe have the machine not reply too fast in order to process the language of the chosen snack correctly.
 - **[Feiyu (Morin) Zhou](https://github.com/Morinzzz/Interactive-Lab-Hub/tree/Fall2026/Lab%203):** I really like the idea of vending machine and the states of the machine. I think the states you came up with covered every scenario possible. Maybe the machine can just ask for the snack, no need for welcome message, or maybe indicate how long the welcome message will last.
 
 ## Prep for Part 2
