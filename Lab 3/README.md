@@ -83,12 +83,24 @@ The dialogue felt less natural when acted out than we had imagined. Our partner 
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
 
+Feedback from classmates:
+- **[Abiola Bolaji](https://github.com/9JAyemi/Interactive-Lab-Hub/tree/Fall2026/Lab%203):**
+- **[Feiyu (Morin) Zhou](https://github.com/Morinzzz/Interactive-Lab-Hub/tree/Fall2026/Lab%203):** I really like the idea of vending machine and the states of the machine. I think the states you came up with covered every scenario possible. Maybe the machine can just ask for the snack, no need for welcome message, or maybe indicate how long the welcome message will last.
+
 ## Prep for Part 2
 
-1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.
-2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.
-3. Make a new storyboard, diagram and/or script based on these reflections.
-4. (optional) Integrate [input devices](inputs.md) in the system
+**1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.**
+
+From the dialogue we found a few issues. Options were hidden, the first thing the partner said was what are the options and the machine doesn't really answer that question. It's also annoying for the transcriptoin to match the exact wording of the item and rely on that to select the snack. Another thing is that listening windows are very fixed and some snacks have a longer name or the user might be thinking a lot.
+
+**2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.**
+
+We can use the joystick for browsing through the vending machine items. This addresses the what are the options questions as users can see and figure it out themselves. The screen can show the currently selected item/menu one by one. We can show on the LED the current state on whether the device is listening or speaking or dispensing.
+
+**3. Make a new storyboard, diagram and/or script based on these reflections.**
+**TODO**
+
+**4. (optional) Integrate [input devices](inputs.md) in the system**
 
 ## Prototype your system
 
