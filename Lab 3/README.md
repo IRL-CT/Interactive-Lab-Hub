@@ -163,9 +163,28 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 ## Prep for Part 2
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.
+There are two concrete things that could be improved:
+a. Timing: 
+- The 1s wait after the user speaks is probably too short. People who are sleepy pause and trail off mid-sentence. We'd use about 1.0s for one-word answers like "Horror" and about 1.5s for longer, open-ended speech like "I can't sleep, please…".
+- The story should get a longer silence tolerance over time. If the user goes quiet, that's good, because they may be falling asleep. Silence shouldn't trigger a "Are you still there?" prompt.
+  
+b. Anticipating misunderstandings
+- The interruption "Wait, a haunted house or castle?" is ambiguous. The device might treat it as a new genre request instead of a question about the current story. We'd have it answer briefly, then explicitly resume ("Shall I go on?").
+- Mishearing is likely at night. People whisper, mumble, or speak into a pillow. If the device didn't catch the genre, it should ask once with options instead of guessing or restarting.
+- We need a concrete way to interrupt the user, because often the voice it can be hearing could be its own audio, rather than the user's voice. 
+
 2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.
-3. Make a new storyboard, diagram and/or script based on these reflections.
-4. (optional) Integrate [input devices](inputs.md) in the system
+Speech-only interaction leaves the user guessing about the turn-taking state. The screen and LED can make the device's state visible at a glance, which matters in a dark room.
+- Listening: Open, attentive "o" mouth, small eyes for the device's facial design.
+- Thinking: Eyes closed, flat mouth
+- Speaking: Round eyes, wavy/moving mouth
+- Idle/asleep: Dimmed or off.
+
+Moreover, some design choices we can make are keeping brightness low and colors warm. For example, bright blue light can work against sleep, so dimming the screen and LED, or turn them off once the user is likely asleep.
+
+4. Make a new storyboard, diagram and/or script based on these reflections.
+5. (optional) Integrate [input devices](inputs.md) in the system
+   We will also be integrating the joystick to interrupt the device. 
 
 ## Prototype your system
 
