@@ -183,7 +183,7 @@ Speech-only interaction leaves the user guessing about the turn-taking state. Th
 Moreover, some design choices we can make are keeping brightness low and colors warm. For example, bright blue light can work against sleep, so dimming the screen and LED, or turn them off once the user is likely asleep.
 
 4. Make a new storyboard, diagram and/or script based on these reflections.
-   <img width="1360" height="1156" alt="IMG_3766" src="https://github.com/user-attachments/assets/36d170a1-1d0e-45dd-9164-edb491e60ce6" />
+   <img width="737" height="488" alt="IMG_3766" src="https://github.com/user-attachments/assets/36d170a1-1d0e-45dd-9164-edb491e60ce6" />
 
    This is the refined story board, updated to include the joy stick & better engaging/natural facial expressions for the device.
    
