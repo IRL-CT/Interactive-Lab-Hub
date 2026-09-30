@@ -184,7 +184,7 @@ Moreover, some design choices we can make are keeping brightness low and colors 
 
 4. Make a new storyboard, diagram and/or script based on these reflections.
 5. (optional) Integrate [input devices](inputs.md) in the system
-   We will also be integrating the joystick to interrupt the device. 
+We will also be integrating the joystick to interrupt the device. 
 
 ## Prototype your system
 
