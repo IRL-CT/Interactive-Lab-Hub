@@ -160,7 +160,7 @@ Acting out the dialogue showed us that timing and pauses were more important tha
 
 For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
 
-## Prep for Part 2
+## Prep for Part 2 - BEDSY or BEDDY
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.
 There are two concrete things that could be improved:
@@ -183,7 +183,11 @@ Speech-only interaction leaves the user guessing about the turn-taking state. Th
 Moreover, some design choices we can make are keeping brightness low and colors warm. For example, bright blue light can work against sleep, so dimming the screen and LED, or turn them off once the user is likely asleep.
 
 4. Make a new storyboard, diagram and/or script based on these reflections.
-5. (optional) Integrate [input devices](inputs.md) in the system
+   <img width="1360" height="1156" alt="IMG_3766" src="https://github.com/user-attachments/assets/36d170a1-1d0e-45dd-9164-edb491e60ce6" />
+
+   This is the refined story board, updated to include the joy stick & better engaging/natural facial expressions for the device.
+   
+6. (optional) Integrate [input devices](inputs.md) in the system
 We will also be integrating the joystick to interrupt the device. 
 
 ## Prototype your system
