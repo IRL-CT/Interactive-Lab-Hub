@@ -1,36 +1,59 @@
 import unittest
+from cooking_assistant import Conversation
 
-from cooking_assistant import SharedSession, create_app
 
-
-class ControllerTest(unittest.TestCase):
+class ConversationTest(unittest.TestCase):
     def setUp(self):
-        self.session = SharedSession()
-        self.client = create_app(self.session, simulate=True).test_client()
+        self.bot = Conversation()
 
-    def test_state_endpoint(self):
-        response = self.client.get("/api/state")
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.get_json()["status"], "Starting")
+    def test_start_and_next(self):
+        self.assertIn("chop", self.bot.respond("start")[0].lower())
+        self.assertIn("heat", self.bot.respond("next")[0].lower())
 
-    def test_reply_is_queued(self):
-        self.session.update(status="Waiting for wizard")
-        response = self.client.post("/api/reply", json={"text": "  Next step.  "})
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(self.session.replies.get_nowait(), "Next step.")
+    def test_repeat(self):
+        first = self.bot.respond("start")[0]
+        self.assertEqual(self.bot.respond("repeat that")[0], first)
 
-    def test_blank_reply_is_rejected(self):
-        self.assertEqual(self.client.post("/api/reply", json={"text": " "}).status_code, 400)
+    def test_substitution(self):
+        self.assertIn("vegetable oil", self.bot.respond("I do not have olive oil")[0].lower())
 
-    def test_early_reply_is_rejected(self):
-        self.assertEqual(
-            self.client.post("/api/reply", json={"text": "Too early"}).status_code,
-            409,
-        )
+    def test_multiple_ingredient_substitutions(self):
+        examples = {
+            "I don't have onions": "shallot",
+            "We are out of butter": "olive oil",
+            "Can I make this without milk?": "oat milk",
+            "I have no eggs": "flax egg",
+            "I don't have garlic": "garlic powder",
+        }
+        for request, expected in examples.items():
+            with self.subTest(request=request):
+                self.assertIn(expected, self.bot.respond(request)[0].lower())
 
-    def test_simulated_speech_is_queued(self):
-        self.client.post("/api/simulate-speech", json={"text": "repeat that"})
-        self.assertEqual(self.session.simulated_speech.get_nowait(), "repeat that")
+    def test_unknown_missing_ingredient(self):
+        reply, _ = self.bot.respond("I don't have basil")
+        self.assertIn("which ingredient", reply.lower())
+
+    def test_stop(self):
+        self.assertTrue(self.bot.respond("stop cooking")[1])
+
+    def test_timer_confirmation(self):
+        self.assertIn("7 minutes", self.bot.respond("set a timer for seven minutes")[0])
+        self.assertIn("started", self.bot.respond("yes")[0])
+        self.assertEqual(self.bot.timer_action, ("start", 7))
+
+    def test_numeric_timer_and_cancel(self):
+        self.bot.respond("set a timer for 12 minutes")
+        self.bot.respond("yes")
+        self.bot.respond("cancel the timer")
+        self.assertEqual(self.bot.timer_action, ("cancel", None))
+
+    def test_timer_remaining(self):
+        reply, _ = self.bot.respond("how much time is left on the timer", 125)
+        self.assertIn("2 minutes and 5 seconds", reply)
+
+    def test_timer_range(self):
+        reply, _ = self.bot.respond("set a timer for 99 minutes")
+        self.assertIn("between one and sixty", reply)
 
 
 if __name__ == "__main__":
