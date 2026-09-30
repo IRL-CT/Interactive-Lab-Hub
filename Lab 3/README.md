@@ -39,23 +39,7 @@ We wrote a speech_to_text.sh script (under speech-scripts/) using the piper spee
 
 ## C. Turn-taking: knowing when someone has stopped talking
 
-Everything so far has worked on fixed audio files. A real conversational device does not get told when to start and stop recording — it has to decide. This is the problem that makes speech interfaces hard, and it is mostly not a speech recognition problem.
-
-We use a **voice activity detector** (VAD) to segment the microphone stream into utterances. `listen.py` runs Silero VAD continuously and hands each detected utterance to faster-whisper:
-
-```
-(.venv) $ cd speech-scripts
-(.venv) $ python listen.py
-```
-
-Speak, pause, and watch it transcribe. Now change the endpointing threshold — the amount of silence the system requires before it decides your turn is over:
-
-```
-(.venv) $ python listen.py --min-silence 0.2
-(.venv) $ python listen.py --min-silence 1.5
-```
-
-\*\***Try both extremes, and something in between. Describe what each one feels like to talk to. Note specifically: at 0.2s, what kinds of normal speech get cut off? At 1.5s, what does the delay make the system seem like?**\*\*
+We tested various extremes of the **voice activity detector** (VAD).
 
 There is no correct value. A system that takes drink orders and a system that listens to someone think out loud want very different thresholds, and the right one depends on what your users are doing with their pauses.
 
@@ -79,12 +63,6 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
 
 ![alt text](image.png)
 
-Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
-
-\*\***Please describe and document your process.**\*\*
-
-Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
-
 We chose a speech-enabled vending machine because it provides a simple, familiar interaction that can be completed through a short conversation. We started with the successful path: the machine asks what snack the user wants, the user chooses, and the machine confirms before announcing that the snack is ready. We then considered alternative responses, including an unavailable snack, an incorrect selection, and silence. These became branches in the diagram, allowing the machine to repeat the available options, accept a correction, or cancel the interaction. We chose a five-second listening window for selecting a snack and a three-second window for confirmation because choosing a snack may take longer than answering yes or no. We also simplified the system by making the snacks free and not having any payment, allowing us to focus on asking for a snack, recognizing the response, and confirming the selection.
 
 ## E. Acting out the dialogue
@@ -93,30 +71,8 @@ Find a partner, and *without sharing the script with your partner* try out the d
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
-Here is our transcript of testing out the device:
+[Link to dialogue recording](https://drive.google.com/file/d/1If0gT5JYrgCUZfPp079eUhKI9P43WqOS/view?usp=sharing)
 
-00:00 Nishant: What snack would you like?
-00:03 Partner: Uh, what are the options?
-00:07 Nishant: Please choose chips, cookies, or a bar. (Listens for 5 seconds)
-00:08 Partner: Oh, okay how about cookies.
-00:13 Nishant: Please choose chips, cookies, or a bar. (Listens for 5 seconds)
-00:14 Partner: Cookies.
-00:19 Nishant: You chose cookies. Is that correct? (Listens for 3 seconds)
-00:20 Partner: Yes.
-00:23 Nishant: Here are your cookies. Enjoy!
-00:24 Nishant: Would you like to make another order? (Listens for 3 seconds)
-00:25 Partner: Sure.
-00:24 Nishant: What snack would you like? (Listens for 5 seconds)
-00:25 Partner: Chips.
-00:29 Nishant: You chose chips. Is that correct? (Listens for 3 seconds)
-00:31 Partner: Actually, no.
-00:34 Nishant: What snack would you like? (Listens for 5 seconds)
-00:37 Partner: Bar.
-00:41 Nishant: You chose a bar. Is that correct? (Listens for 3 seconds)
-00:43 Partner: Yes.
-00:46 Nishant: Here is your bar. Enjoy! Would you like to make another order? (Listens for 3 seconds)
-00:48 Partner: No.
-00:51 Nishant: Have a good day!
 The dialogue felt less natural when acted out than we had imagined. Our partner first asked what the options were, which showed that the machine should list the snacks in its opening question. They also said "Oh, okay how about cookies" instead of simply "Cookies." Repeating the options after that felt awkward because their choice was already clear. The fixed listening windows also created pauses even when my partner answered immediately. However, the confirmation step worked well when they changed their mind about chips, and asking whether they wanted another order made it easy to continue. We would improve the interaction by listing the options upfront, accepting more natural phrases, and responding sooner when the user finishes speaking if possible.
 
 
