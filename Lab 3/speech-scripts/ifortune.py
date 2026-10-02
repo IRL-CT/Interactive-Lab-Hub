@@ -269,8 +269,8 @@ def main() -> None:
         # ============================================================
         # NUMBER SELECTION WITH MPR121 SENSOr
         # ============================================================
-        screen_text("Pick a number from 1 to 10")
-        speaker.say("Great! Let's get started. Pick a number from one to ten.")
+        screen_text("Pick a number from 1 to 10 on the board.")
+        speaker.say("Great! Let's get started. Use the board to pick a number from one to ten.")
 
         while True:
             for i in range(10):
