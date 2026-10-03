@@ -198,6 +198,13 @@ The system should:
 * require participants to speak to it
 
 *Document how the system works.*
+## Project Description
+
+I built a Raspberry Pi 5–based bedtime storyteller called **Bedsy**. The input and sensor devices are a USB PnP microphone, which detects the user’s speech, and a momentary pushbutton, which acts as an interruption sensor. The pushbutton is connected to GPIO21 using physical pin 40, with the other side connected to ground using physical pin 39. The output devices are a speaker and an Adafruit MiniTFT ST7789 display connected through SPI. The display shows an animated storyteller face and the current mode: `SPEAKING`, `LISTENING`, `THINKING`, or `STOPPED`.
+
+When the program starts, Bedsy asks the user what type of story they want and then tells a fixed fictional horror story about four students working late at Cornell Tech. The story is divided into short sections so the user can interrupt it using the pushbutton sensor. When the button is pressed, the speaker stops and the system changes to listening mode. The USB microphone records the user’s question, and faster-whisper converts the speech into text. The question is shown in the laptop terminal, but the speaker does not repeat it. Instead, the system gives a predefined response based on the interruption number: the first interruption gives the girls’ names, the second explains why they are working late, and the third asks the user to stop interrupting. After responding, Bedsy continues the story.
+
+The software uses Python, `gpiozero` for the pushbutton sensor, `arecord` for microphone recording, faster-whisper for speech-to-text, Piper for text-to-speech, `aplay` for speaker output, and the Adafruit ST7789 display library for the MiniTFT. The story and interruption responses are scripted, so this version does not use an LLM.
 
 *Include videos or screencaptures of both the system and the controller.*
 
