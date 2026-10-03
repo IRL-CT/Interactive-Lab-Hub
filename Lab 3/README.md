@@ -198,9 +198,9 @@ When the program starts, Bedsy asks the user what type of story they want and th
 
 The software uses Python, `gpiozero` for the pushbutton sensor, `arecord` for microphone recording, faster-whisper for speech-to-text, Piper for text-to-speech, `aplay` for speaker output, and the Adafruit ST7789 display library for the MiniTFT. The story and interruption responses are scripted, so this version does not use an LLM.
 
-##**Video of BEDSY Story teller**
+##**Video Link of BEDSY Story teller**
 
-
+https://drive.google.com/file/d/1hKX2aMVuZPkSjAYvGI4n_aD4sj7d0-eb/view?usp=sharing
 
 ## Test the system
 
