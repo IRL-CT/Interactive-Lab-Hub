@@ -291,6 +291,11 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 3. Make a new storyboard, diagram and/or script based on these reflections.
 4. (optional) Integrate [input devices](inputs.md) in the system
 
+Based on our earlier storyboard and acted-out dialogue, we found that the design needed better timing, clearer error recovery, and more visible feedback about the device state. Instead of relying on a fixed 20-second check-in, the revised version lets the user control the pace with commands like “Next” and “Wait.” We also added confirmation for important numerical inputs such as timers to reduce mistakes. Beyond speech, the final prototype uses the ST7789 screen to show different states: blue for listening, yellow for processing, green for speaking, red for errors, and purple for timers, so users know when to talk and what the system is doing. In the revised storyboard, the same cooking flow remains, but it now includes these visual states, explicit wait/next control, and safer timer confirmation.
+
+<img width="3106" height="1833" alt="storyboard" src="https://github.com/user-attachments/assets/87a8f5d5-9399-4a86-833d-a9f5b8c4f370" />
+
+
 <details>
   <summary><strong>## Prototype your system</strong></summary>
 
