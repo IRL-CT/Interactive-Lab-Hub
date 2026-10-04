@@ -296,6 +296,86 @@ The system should:
 
 *Include videos or screencaptures of both the system and the controller.*
 
+## Prototype: Voice-Controlled Cooking Assistant
+
+Our prototype is a voice-controlled cooking assistant that runs locally on a
+Raspberry Pi. The system uses a USB microphone as its sensor, a speaker for
+audio responses, and a 1.14-inch ST7789 screen for visual feedback.
+
+The participant speaks directly to the microphone. Silero VAD detects when the
+participant has finished speaking, and Faster-Whisper converts the recorded
+speech into text locally on the Raspberry Pi. The Python program analyzes the
+transcript and automatically selects an appropriate response. Piper then
+converts the response into speech and plays it through the speaker.
+
+The assistant understands recipe commands such as “start,” “next,” “repeat,”
+and “wait.” It can suggest substitutions for missing ingredients and can
+create, check, or cancel a timer.
+
+### Screen Feedback
+
+The screen uses a pastel color system to communicate the current interaction
+state:
+
+- **Pastel blue — Listening:** the participant can speak.
+- **Pastel yellow — Processing:** the system is transcribing and interpreting speech.
+- **Pastel green — Speaking:** the assistant is producing a spoken response.
+- **Pastel red — Error:** the system encountered a problem.
+- **Pastel purple — Timer:** a timer is active.
+
+A chef-hat icon provides a consistent visual identity for the cooking
+assistant. When a timer is active, the screen displays the remaining time in
+`MM:SS` format and shows a progress bar.
+
+### Interaction Flow
+
+1. The screen displays the blue “Listening” state.
+2. The participant speaks into the USB microphone.
+3. Silero VAD detects the end of the speaking turn.
+4. The screen changes to the yellow “Processing” state.
+5. Faster-Whisper converts the speech into text.
+6. The Python program analyzes the transcript and selects a response.
+7. The screen changes to the green “Speaking” state.
+8. Piper generates and plays the response through the speaker.
+9. The system returns to the listening state.
+
+
+*Include videos or screencaptures of both the system and the controller.*
+
+
+The blue interface tells the participant that the microphone is active and
+that the system is ready to receive a command.
+
+<img width="4032" height="3024" alt="175337d83e22cbf8691ec289eea5ac7d" src="https://github.com/user-attachments/assets/bb214e64-eeca-4a35-80f5-a1b785f5a864" />
+
+
+### Speaking State
+
+The green interface indicates that the assistant is responding. The screen
+also displays a shortened version of the spoken response.
+
+<img width="3717" height="2367" alt="d67eb1ae7d7c7456e75f5171682b4eab" src="https://github.com/user-attachments/assets/0ee7ec35-a9ca-41e1-8d75-f06ef080aa7e" />
+
+
+### Timer
+
+After the participant confirms a timer duration, the screen changes to purple
+and displays a live countdown and progress bar.
+
+
+<img width="4032" height="3024" alt="1046b68caa358688b95fcd2f038ea0c2" src="https://github.com/user-attachments/assets/b0862d4d-5f0b-4db6-8cc1-eb06e00636bb" />
+
+
+### Interaction Demonstration
+
+The following video demonstrates a participant speaking to the cooking
+assistant, the screen changing between interaction states, and the Raspberry
+Pi producing a spoken response.
+
+
+
+https://github.com/user-attachments/assets/eb0bd011-a1b5-45b8-91fb-e226d649e2ee
+
 ## Test the system
 
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard *after* the interaction, but we recognize that can be hard.)
