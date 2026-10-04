@@ -8,6 +8,8 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
+from screen_display import ScreenDisplay
+
 LAB_DIR = Path(__file__).resolve().parent
 DEFAULT_VAD = LAB_DIR / "models" / "silero_vad.onnx"
 DEFAULT_VOICE = LAB_DIR / "voices" / "en_US-lessac-medium.onnx"
@@ -74,7 +76,9 @@ class Conversation:
             if timer_remaining is None:
                 return "There is no timer running.", False
             minutes, seconds = divmod(max(0, timer_remaining), 60)
-            return f"The timer has {minutes} minutes and {seconds} seconds remaining.", False
+            minute_word = "minute" if minutes == 1 else "minutes"
+            second_word = "second" if seconds == 1 else "seconds"
+            return f"The timer has {minutes} {minute_word} and {seconds} {second_word} remaining.", False
         if "timer" in text or "minute" in text:
             number_words = {
                 "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
@@ -89,14 +93,16 @@ class Conversation:
             if not 1 <= minutes <= 60:
                 return "Please choose a timer between one and sixty minutes.", False
             self.pending_timer_minutes = minutes
-            return f"I heard {minutes} minutes. Please say yes to confirm.", False
+            unit = "minute" if minutes == 1 else "minutes"
+            return f"I heard {minutes} {unit}. Please say yes to confirm.", False
         if text in {"yes", "yes.", "correct", "that's correct", "that is correct"}:
             if self.pending_timer_minutes is None:
                 return "There is nothing waiting for confirmation.", False
             minutes = self.pending_timer_minutes
             self.pending_timer_minutes = None
             self.timer_action = ("start", minutes)
-            return f"Confirmed. The {minutes} minute timer has started.", False
+            unit = "minute" if minutes == 1 else "minute"
+            return f"Confirmed. The {minutes} {unit} timer has started.", False
         if text in {"no", "no."}:
             self.pending_timer_minutes = None
             return "Okay. Please say the correct time again.", False
@@ -112,7 +118,7 @@ class SimulatedAudio:
 
 
 class PiAudio:
-    def __init__(self, model, vad_path, voice_path, min_silence):
+    def __init__(self, model, vad_path, voice_path, min_silence, screen):
         import numpy as np
         import sherpa_onnx
         import sounddevice as sd
@@ -123,6 +129,8 @@ class PiAudio:
             if not path.is_file():
                 raise FileNotFoundError(f"{label} not found at {path}. Run speech-scripts/setup.sh")
         self.np, self.sd = np, sd
+        self.screen = screen
+        self.speech_lock = threading.Lock()
         self.recognizer = WhisperModel(model, device="cpu", compute_type="int8")
         self.voice = PiperVoice.load(str(voice_path))
         config = sherpa_onnx.VadModelConfig()
@@ -134,6 +142,7 @@ class PiAudio:
 
     def listen(self):
         print("Listening...", flush=True)
+        self.screen.listening()
         vad = self.sherpa.VoiceActivityDetector(self.config, buffer_size_in_seconds=30)
         window = self.config.silero_vad.window_size
         buffer = self.np.empty(0, dtype=self.np.float32)
@@ -152,31 +161,43 @@ class PiAudio:
 
     def say(self, text):
         print(f"PI: {text}", flush=True)
-        for chunk in self.voice.synthesize(text):
-            audio = self.np.frombuffer(chunk.audio_int16_bytes, dtype=self.np.int16)
-            self.sd.play(audio, samplerate=chunk.sample_rate)
-            self.sd.wait()
+        self.screen.speaking(text)
+        with self.speech_lock:
+            for chunk in self.voice.synthesize(text):
+                audio = self.np.frombuffer(chunk.audio_int16_bytes, dtype=self.np.int16)
+                self.sd.play(audio, samplerate=chunk.sample_rate)
+                self.sd.wait()
 
 
 class TimerManager:
-    def __init__(self, announce):
+    def __init__(self, announce, screen):
         self.announce = announce
+        self.screen = screen
         self.timer = None
         self.deadline = None
+        self.total = None
+        self.stop_event = threading.Event()
 
     def start(self, minutes):
         self.cancel()
         seconds = minutes * 60
+        self.total = seconds
         self.deadline = time.monotonic() + seconds
+        self.stop_event = threading.Event()
         self.timer = threading.Timer(seconds, self._finished)
         self.timer.daemon = True
         self.timer.start()
+        threading.Thread(
+            target=self._update_screen, args=(self.stop_event,), daemon=True
+        ).start()
 
     def cancel(self):
         if self.timer is not None:
             self.timer.cancel()
+        self.stop_event.set()
         self.timer = None
         self.deadline = None
+        self.total = None
 
     def remaining(self):
         if self.deadline is None:
@@ -184,9 +205,18 @@ class TimerManager:
         return max(0, int(self.deadline - time.monotonic() + 0.999))
 
     def _finished(self):
+        self.stop_event.set()
         self.timer = None
         self.deadline = None
         self.announce("Your timer is finished.")
+
+    def _update_screen(self, stop_event):
+        while not stop_event.is_set() and self.deadline is not None:
+            remaining = self.remaining()
+            self.screen.timer(remaining, self.total)
+            if remaining == 0:
+                return
+            stop_event.wait(1)
 
 
 def main():
@@ -196,10 +226,14 @@ def main():
     parser.add_argument("--vad-model", type=Path, default=DEFAULT_VAD)
     parser.add_argument("--voice", type=Path, default=DEFAULT_VOICE)
     parser.add_argument("--min-silence", type=float, default=1.0)
+    parser.add_argument("--no-screen", action="store_true")
     args = parser.parse_args()
-    audio = SimulatedAudio() if args.simulate else PiAudio(args.model, args.vad_model, args.voice, args.min_silence)
+    screen = ScreenDisplay(enabled=not args.simulate and not args.no_screen)
+    audio = SimulatedAudio() if args.simulate else PiAudio(
+        args.model, args.vad_model, args.voice, args.min_silence, screen
+    )
     conversation = Conversation()
-    timer = TimerManager(audio.say)
+    timer = TimerManager(audio.say, screen)
     audio.say("Cooking assistant ready. Say hello or start when you are ready.")
     while True:
         heard = audio.listen()
@@ -207,6 +241,7 @@ def main():
             continue
         if not args.simulate:
             print(f"YOU: {heard}", flush=True)
+            screen.processing(heard)
         reply, should_exit = conversation.respond(heard, timer.remaining())
         audio.say(reply)
         if conversation.timer_action:
@@ -222,7 +257,3 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         print("\nStopped.")
-
-
-if __name__ == "__main__":
-    main()
