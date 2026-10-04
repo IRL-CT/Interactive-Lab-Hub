@@ -40,7 +40,7 @@ pi@ixe00:~/Interactive-Lab-Hub $ git push
 Option 2: On your own GitHub repo, create a pull request to get updates from the class Interactive-Lab-Hub. After you have the latest updates online, go to your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull`.
 
 ---
-<details/>
+</details>
 
 # Part 1
 
