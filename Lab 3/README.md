@@ -2,6 +2,11 @@
 
 **NAMES OF COLLABORATORS HERE**
 
+Jindi Chai & Sina Liu & Yilin Wu
+
+<details>
+  <summary><strong>## Prep </strong></summary>
+
 [![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://youtu.be/LZ0VJClIlRI?si=Yy84mcyVYuVV19mn)
 
 In this lab, we want you to design interaction with a speech-enabled device — something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1). First, we want you to storyboard what you imagine the conversational interaction to be like. Then you will use wizarding techniques to elicit examples of what people might say, ask, or respond. We then want you to use the examples collected from at least two other people to inform the redesign of the device.
@@ -35,6 +40,7 @@ pi@ixe00:~/Interactive-Lab-Hub $ git push
 Option 2: On your own GitHub repo, create a pull request to get updates from the class Interactive-Lab-Hub. After you have the latest updates online, go to your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull`.
 
 ---
+<details/>
 
 # Part 1
 
@@ -286,7 +292,8 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 4. (optional) Integrate [input devices](inputs.md) in the system
 
 <details>
-## Prototype your system
+  <summary><strong>## Prototype your system</strong></summary>
+
 
 The system should:
 * use the Raspberry Pi
