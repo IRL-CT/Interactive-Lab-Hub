@@ -285,6 +285,7 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 3. Make a new storyboard, diagram and/or script based on these reflections.
 4. (optional) Integrate [input devices](inputs.md) in the system
 
+<details>
 ## Prototype your system
 
 The system should:
@@ -295,6 +296,7 @@ The system should:
 *Document how the system works.*
 
 *Include videos or screencaptures of both the system and the controller.*
+</details>
 
 ## Prototype: Voice-Controlled Cooking Assistant
 
