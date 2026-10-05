@@ -1,8 +1,6 @@
 # Chatterboxes
 
-**NAMES OF COLLABORATORS HERE**
-
-[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
+Ziqiao Gao
 
 ---
 
@@ -110,9 +108,40 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 ## Prep for Part 2
 
 1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.
+
+Based on part e, I realized that users may not respond with the exact words I expected. For example, my partner said “I didn’t” instead of “no.” In the redesigned version, the device will recognize different natural language responses with the same meaning and follow the appropriate conversation branch. 
+
 2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.
+
+I think I would use the screen to shows the different form when device is listening, thinking, and speaking.   
+
 3. Make a new storyboard, diagram and/or script based on these reflections.
-4. (optional) Integrate [input devices](inputs.md) in the system
+
+Redesign Script:
+Device: Did you work out today?
+
+“Yes”
+“Yeah”
+“I did”
+“Yep”
+        ↓
+      YES branch
+        ↓
+What did you train?
+
+
+“No”
+“Nope”
+“I didn't”
+“Not today”
+        ↓
+      NO branch
+        ↓
+No worries. See you tomorrow!
+
+Redesign Storyboard:
+<img width="1702" height="3026" alt="IMG_0663" src="https://github.com/user-attachments/assets/a2ad1f71-f0b8-437b-8621-cfd0d218ea12" />
+
 
 ## Prototype your system
 
@@ -125,6 +154,8 @@ The system should:
 
 *Include videos or screencaptures of both the system and the controller.*
 
+The final prototype is a voice based workout checkin device that uses a small screen to communicate its current state. The user completes the workout check-in primarily through speech. The screen displays “LISTENING,” “THINKING,” or “SPEAKING” so the user knows when to talk when the device is processing their response and when the device is responding. 
+
 ## Test the system
 
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard *after* the interaction, but we recognize that can be hard.)
@@ -132,23 +163,18 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+
+The system successfully captured and responded correctly to both users’ answers. In the first test, the conversation flow worked as expected, but the wait between the user’s answer and the device’s next response felt a little too long. In the second test, the system also responded correctly, but for one question, User 2 had to repeat their answer twice before the Pi detected it. Overall, the system was able to understand the users and complete the conversation, but the response delay and speech detection for short answers could still be improved.
 
 ### What worked well about the controller and what didn't?
-\*\**your answer here*\*\*
+
+The controller worked well in guiding the conversation through different branches based on the user’s responses. For example, if the user answered “no” to the first question, the conversation ended instead of asking unnecessary follow-up questions. The screen also clearly showed whether the device was listening, thinking, or speaking. However, the controller still depended on the speech recognition system to correctly detect the user’s response, so when a short answer was not captured, the conversation could not move forward smoothly.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-\*\**your answer here*\*\*
+
+The WoZ interaction showed that users do not always respond with the exact words we expect. For example, instead of simply saying “no,” a user might say “I didn’t.” This showed us that an autonomous system needs to handle different natural ways of expressing the same meaning rather than relying on exact keywords. It also showed that turn taking and response timing are important for making the conversation feel natural.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-\*\**your answer here*\*\*
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
-
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-</details>
+The system could log each interaction, including the user’s spoken response, the speech to text result, response time, and whether the user had to repeat themselves. Over multiple users, this could create a dataset for understanding common responses and where speech recognition or turn taking fails. One sensing modalities could include a camera to detect whether the user is present or performing an exercise. This could provide additional context beyond speech and make the system more responsive to the user’s actual behavior.
