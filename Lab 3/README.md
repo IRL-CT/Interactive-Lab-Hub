@@ -45,59 +45,58 @@ Since the dialogue will be semi-structured, I anticipate the pauses won't be too
 
 ## E. Acting out the dialogue
 
-Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
-
-\*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
-
+I found a partner during Wednesday's lab to go through my dialogue. Truthfully, the dialogue didn't diverge much from what I had anticipated, which is part of the reason why I chose a fortune theme since people will just be selecting from options. However, before I acted out the dialogue with my partner, I had to be very intentional about my quesiton wording so that I could avoid any dialogue deviations. 
 
 ---
 
 # Lab 3 Part 2
 
-For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
+
+
+
 
 ## Prep for Part 2
 
-1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.
-2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.
-3. Make a new storyboard, diagram and/or script based on these reflections.
-4. (optional) Integrate [input devices](inputs.md) in the system
+For the part 2 of this lab, I didn't change much of what I initially wanted to do since my initial plans already included the touch sensor. However, when reflecting on more ways people interact with devices, I realized more visual and audio cues would be helpful for not only guiding users through the interactions, but making the experience more engaging. So, I added text to the screen in case users forgot or couldn't hear what the speaker was saying clearly, and also a "complete" sound for when the fortune was about to be told so that users weren't left waiting for an unknown amount of time (fortune_complete.wav). Also, while iterating through the project, I realized I needed output for when the system didn't hear one of the programmed responses, so I added in dialogue to address that. 
 
-## Prototype your system
+As a general overview, the way the program works is that the mic picks up audio and begins speaking asking what topic the user would like to focus on for their fortune. The majority of the program is just made with if/else and while statements, where users go through a topic, number to pick on the sensor board, and then a color of the rainbow.
 
-The system should:
-* use the Raspberry Pi
-* use one or more sensors
-* require participants to speak to it
 
-*Document how the system works.*
+<img width="609" height="322" alt="Screenshot 2026-10-04 at 7 51 42 PM" src="https://github.com/user-attachments/assets/47c1433b-b65c-40d5-888f-408b72665f72" />
 
-*Include videos or screencaptures of both the system and the controller.*
+After receiving all those inputs, the code picks a random fortune (shown below) and reads it out loud. 
 
-## Test the system
+<img width="496" height="486" alt="Screenshot 2026-10-04 at 7 51 28 PM" src="https://github.com/user-attachments/assets/ebf40907-5f74-49aa-acb4-86fa8ed1fd4c" />
+<img width="593" height="609" alt="Screenshot 2026-10-04 at 7 51 55 PM" src="https://github.com/user-attachments/assets/c6c04bba-da31-4af4-925a-99f780ddec82" />
 
-Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard *after* the interaction, but we recognize that can be hard.)
+This is the video of the final result:
 
-Answer the following:
+https://github.com/user-attachments/assets/347e24e5-0a6b-4696-a667-521b7435ce3d
+
+What the terminal is showing:
+<img width="679" height="171" alt="Screenshot 2026-10-04 at 7 39 29 PM" src="https://github.com/user-attachments/assets/e3ef2834-7c9a-4772-8675-6ceae6de6507" />
+
+Final setup:
+<img width="1006" height="653" alt="Screenshot 2026-10-04 at 7 50 18 PM" src="https://github.com/user-attachments/assets/bb8e3cea-af8a-4bb3-83b9-20653e9ded40" />
+
+The full code file is here: https://github.com/chonjessica23/Interactive-Lab-Hub/blob/Fall2026/Lab%203/speech-scripts/ifortune.py 
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+The speech recognition was probably the most difficult aspect of this project. I found that users had to articulate their words loudly and clearly in order for the system to process them correctly. Even within the video above, you can see that it heard random words at times. During trials, it would  often mistake "school" for "cool," which made it difficult for the system to recognize the user's intended response.
 
 ### What worked well about the controller and what didn't?
-\*\**your answer here*\*\*
+
+I found that the controller worked well for keeping the interaction organized and moving the user through each step of the fortune-telling experience. However, I think the biggest issue was how dependent it was on everything progressed. If the speech recognition misunderstood something or the user gave an answer that the program wasn't expecting, the controller didn't have much flexibility to work around it. This made me realize that even if the individual parts of the system work, connecting everything together can still be difficult when the system has to account for unexpected interactions.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-\*\**your answer here*\*\*
+
+I learned that it's hard to not only anticipate how users will interact, but also take into account the technical limitations, whether that be my own abilities of the technology I'm working with. Basically, I believe the flexibility on both ends is something that I have to really account for and work around. For example, if the program is expecting the user to say "career," it should ideally also be able to understand something like "I want to know about my future job" is the same thing.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-\*\**your answer here*\*\*
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
+If I iterated again, I would make the interaction a bit longer and more elaborate so that I could keep a record of each interaction and gather more data such as how long they took to respond, what they're speaking about, etc.. I'd also keep track of when the system misunderstood the user or had to ask them to try again so that I could learn how to understand users better.
 
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-</details>
+For other sensing modalities, I think a camera would be useful for capturing things like facial expressions, where the user is looking, and whether they're paying attention to the system. I'd probably also work more on the microphone to pick up pauses, like I mentioned above, so that the entire fortune-telling experience can feel more personalized and natural.
+
+
