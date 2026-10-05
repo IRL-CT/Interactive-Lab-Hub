@@ -1,0 +1,201 @@
+time,state,item,event,source,detail
+2026-10-04 21:38:09,TALKING,Chips,say,machine,"Hi! Use the joystick to browse snacks, and press it to pick one."
+2026-10-04 21:38:30,BROWSE,Chips,next,wizard,
+2026-10-04 21:38:33,BROWSE,Cookies,next,wizard,
+2026-10-04 21:38:35,BROWSE,Candy Bar,press,wizard,
+2026-10-04 21:38:35,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 21:38:47,THINKING,Candy Bar,answer:None,,So I've just landed some of those fellows and then some of that like seniors also.
+2026-10-04 21:38:47,TALKING,Candy Bar,say,machine,"Sorry, I didn't catch that. Say yes or no, or press the joystick to take it."
+2026-10-04 21:39:01,THINKING,Candy Bar,answer:no,,"Yeah, I don't want to abandon some of them. So long, try it."
+2026-10-04 21:39:01,TALKING,Candy Bar,say,machine,No problem. Feel free to cycle through the items with the joystick.
+2026-10-04 21:42:39,BROWSE,Candy Bar,next,wizard,
+2026-10-04 21:42:40,BROWSE,Soda,next,wizard,
+2026-10-04 21:42:40,BROWSE,Chips,next,wizard,
+2026-10-04 22:14:01,TALKING,Chips,say,machine,"Hi! Use the joystick to browse snacks, and press it to pick one."
+2026-10-04 22:16:33,TALKING,Chips,say,machine,"Hi! Press the next button to browse snacks, and the select button to pick one."
+2026-10-04 22:17:29,TALKING,Chips,say,machine,"Hi! Press the next button to browse snacks, and the select button to pick one."
+2026-10-04 22:17:45,BROWSE,Chips,next,button,
+2026-10-04 22:17:46,BROWSE,Cookies,next,button,
+2026-10-04 22:17:46,BROWSE,Candy Bar,next,button,
+2026-10-04 22:17:47,BROWSE,Soda,next,button,
+2026-10-04 22:17:48,BROWSE,Chips,next,button,
+2026-10-04 22:17:48,BROWSE,Cookies,next,button,
+2026-10-04 22:17:49,BROWSE,Candy Bar,next,button,
+2026-10-04 22:17:51,BROWSE,Soda,press,button,
+2026-10-04 22:17:51,TALKING,Soda,say,machine,You picked soda. Do you want this one?
+2026-10-04 22:17:56,THINKING,Soda,answer:yes,,Yes.
+2026-10-04 22:17:56,ENJOY,Soda,say,machine,Here is your soda. Enjoy!
+2026-10-04 22:18:00,TALKING,Soda,say,machine,Want anything else? Press the next button to browse.
+2026-10-04 22:18:04,BROWSE,Soda,next,button,
+2026-10-04 22:18:09,BROWSE,Chips,press,button,
+2026-10-04 22:18:09,TALKING,Chips,say,machine,You picked chips. Do you want this one?
+2026-10-04 22:18:14,THINKING,Chips,answer:yes,,I do.
+2026-10-04 22:18:14,ENJOY,Chips,say,machine,Here are your chips. Enjoy!
+2026-10-04 22:18:18,TALKING,Chips,say,machine,Want anything else? Press the next button to browse.
+2026-10-04 22:18:22,BROWSE,Chips,next,button,
+2026-10-04 22:18:23,BROWSE,Cookies,next,button,
+2026-10-04 22:18:23,BROWSE,Candy Bar,next,button,
+2026-10-04 22:18:24,BROWSE,Soda,next,button,
+2026-10-04 22:18:25,BROWSE,Chips,next,button,
+2026-10-04 22:18:25,BROWSE,Cookies,press,button,
+2026-10-04 22:18:25,TALKING,Cookies,say,machine,You picked cookies. Do you want this one?
+2026-10-04 22:18:30,THINKING,Cookies,answer:yes,,I do not.
+2026-10-04 22:18:30,ENJOY,Cookies,say,machine,Here are your cookies. Enjoy!
+2026-10-04 22:18:35,TALKING,Cookies,say,machine,Want anything else? Press the next button to browse.
+2026-10-04 22:18:39,BROWSE,Cookies,next,button,
+2026-10-04 22:18:39,BROWSE,Candy Bar,press,button,
+2026-10-04 22:18:39,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:18:44,THINKING,Candy Bar,answer:no,,No.
+2026-10-04 22:18:44,TALKING,Candy Bar,say,machine,No problem. Press the next button to browse the other snacks.
+2026-10-04 22:18:51,BROWSE,Candy Bar,press,button,
+2026-10-04 22:18:51,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:18:56,THINKING,Candy Bar,answer:None,,I would.
+2026-10-04 22:18:56,TALKING,Candy Bar,say,machine,"Sorry, I didn't catch that. Say yes or no, or press the select button to take it."
+2026-10-04 22:19:04,THINKING,Candy Bar,answer:yes,,Yes.
+2026-10-04 22:19:04,ENJOY,Candy Bar,say,machine,Here is your candy bar. Enjoy!
+2026-10-04 22:19:08,TALKING,Candy Bar,say,machine,Want anything else? Press the next button to browse.
+2026-10-04 22:19:35,BROWSE,Candy Bar,press,button,
+2026-10-04 22:19:35,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:19:40,THINKING,Candy Bar,answer:no,,cancel.
+2026-10-04 22:19:40,TALKING,Candy Bar,say,machine,No problem. Press the next button to browse the other snacks.
+2026-10-04 22:19:46,BROWSE,Candy Bar,press,button,
+2026-10-04 22:19:46,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:19:55,LISTENING,Candy Bar,answer:None,,
+2026-10-04 22:19:55,TALKING,Candy Bar,say,machine,"Sorry, I didn't catch that. Say yes or no, or press the select button to take it."
+2026-10-04 22:20:04,THINKING,Candy Bar,answer:no,,Not really.
+2026-10-04 22:20:04,TALKING,Candy Bar,say,machine,No problem. Press the next button to browse the other snacks.
+2026-10-04 22:32:44,TALKING,Chips,say,machine,"Hi! Press the next button to browse snacks, and the select button to pick one."
+2026-10-04 22:32:52,BROWSE,Chips,next,button,
+2026-10-04 22:32:53,BROWSE,Cookies,next,button,
+2026-10-04 22:32:54,BROWSE,Candy Bar,press,button,
+2026-10-04 22:32:54,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:32:59,THINKING,Candy Bar,answer:yes,,Yes.
+2026-10-04 22:32:59,TALKING,Candy Bar,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:33:05,TALKING,Candy Bar,say,machine,How much cash do you have?
+2026-10-04 22:33:09,THINKING,Candy Bar,payment_failed,machine,I couldn't understand the cash amount. Please select a snack again.
+2026-10-04 22:33:09,TALKING,Candy Bar,say,machine,I couldn't understand the cash amount. Please select a snack again.
+2026-10-04 22:33:18,BROWSE,Candy Bar,next,button,
+2026-10-04 22:33:20,BROWSE,Soda,next,button,
+2026-10-04 22:33:20,BROWSE,Chips,next,button,
+2026-10-04 22:33:20,BROWSE,Cookies,next,button,
+2026-10-04 22:33:21,BROWSE,Candy Bar,press,button,
+2026-10-04 22:33:21,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:33:26,THINKING,Candy Bar,answer:yes,,Yes.
+2026-10-04 22:33:26,TALKING,Candy Bar,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:33:34,TALKING,Candy Bar,say,machine,How much cash do you have?
+2026-10-04 22:33:38,THINKING,Candy Bar,payment_accepted,cash,simulated
+2026-10-04 22:33:38,ENJOY,Candy Bar,say,machine,Here is your candy bar. Enjoy!
+2026-10-04 22:33:43,TALKING,Candy Bar,say,machine,Want anything else? Press the next button to browse.
+2026-10-04 22:33:49,BROWSE,Candy Bar,press,button,
+2026-10-04 22:33:49,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:33:54,THINKING,Candy Bar,answer:yes,,Yes.
+2026-10-04 22:33:54,TALKING,Candy Bar,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:34:01,TALKING,Candy Bar,say,machine,How much cash do you have?
+2026-10-04 22:34:05,THINKING,Candy Bar,payment_failed,machine,Insufficient funds.
+2026-10-04 22:34:05,TALKING,Candy Bar,say,machine,Insufficient funds.
+2026-10-04 22:34:10,BROWSE,Candy Bar,press,button,
+2026-10-04 22:34:10,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:34:15,THINKING,Candy Bar,answer:no,,No.
+2026-10-04 22:34:15,TALKING,Candy Bar,say,machine,No problem. Press the next button to browse the other snacks.
+2026-10-04 22:34:20,BROWSE,Candy Bar,next,button,
+2026-10-04 22:34:21,BROWSE,Soda,press,button,
+2026-10-04 22:34:21,TALKING,Soda,say,machine,You picked soda. Do you want this one?
+2026-10-04 22:34:26,THINKING,Soda,answer:yes,,Yes.
+2026-10-04 22:34:26,TALKING,Soda,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:34:37,TALKING,Soda,say,machine,"Please say cash or card. Or press next for cash, select for card."
+2026-10-04 22:34:44,TALKING,Soda,say,machine,"Give me a four digit card number. For this demo, use a made-up number and say each digit separately."
+2026-10-04 22:34:54,THINKING,Soda,payment_accepted,card,simulated
+2026-10-04 22:34:54,ENJOY,Soda,say,machine,Here is your soda. Enjoy!
+2026-10-04 22:34:58,TALKING,Soda,say,machine,Want anything else? Press the next button to browse.
+2026-10-04 22:35:04,BROWSE,Soda,next,button,
+2026-10-04 22:35:05,BROWSE,Chips,press,button,
+2026-10-04 22:35:05,TALKING,Chips,say,machine,You picked chips. Do you want this one?
+2026-10-04 22:35:10,THINKING,Chips,answer:yes,,Yes.
+2026-10-04 22:35:10,TALKING,Chips,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:35:17,TALKING,Chips,say,machine,"Give me a four digit card number. For this demo, use a made-up number and say each digit separately."
+2026-10-04 22:35:27,THINKING,Chips,payment_failed,machine,Incorrect card number.
+2026-10-04 22:35:27,TALKING,Chips,say,machine,Incorrect card number.
+2026-10-04 22:35:38,BROWSE,Chips,next,button,
+2026-10-04 22:35:38,BROWSE,Cookies,press,button,
+2026-10-04 22:35:38,TALKING,Cookies,say,machine,You picked cookies. Do you want this one?
+2026-10-04 22:35:44,THINKING,Cookies,answer:yes,,Yes.
+2026-10-04 22:35:44,TALKING,Cookies,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:35:51,TALKING,Cookies,say,machine,"Give me a four digit card number. For this demo, use a made-up number and say each digit separately."
+2026-10-04 22:36:02,THINKING,Cookies,payment_failed,machine,Incorrect card number.
+2026-10-04 22:36:02,TALKING,Cookies,say,machine,Incorrect card number.
+2026-10-04 22:36:16,BROWSE,Cookies,next,button,
+2026-10-04 22:36:17,BROWSE,Candy Bar,press,button,
+2026-10-04 22:36:17,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:36:26,LISTENING,Candy Bar,answer:None,,
+2026-10-04 22:36:26,TALKING,Candy Bar,say,machine,"Sorry, I didn't catch that. Say yes or no, or press the select button to take it."
+2026-10-04 22:36:38,LISTENING,Candy Bar,answer:None,,
+2026-10-04 22:36:38,TALKING,Candy Bar,say,machine,"No worries, take your time. Press a button when you're ready."
+2026-10-04 22:37:18,TALKING,Chips,say,machine,"Hi! Press the next button to browse snacks, and the select button to pick one."
+2026-10-04 22:37:24,BROWSE,Chips,next,button,
+2026-10-04 22:37:25,BROWSE,Cookies,press,button,
+2026-10-04 22:37:25,TALKING,Cookies,say,machine,You picked cookies. Do you want this one?
+2026-10-04 22:37:30,THINKING,Cookies,answer:yes,,Yes.
+2026-10-04 22:37:30,TALKING,Cookies,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:37:37,TALKING,Cookies,say,machine,Give me a four digit card number.
+2026-10-04 22:37:45,THINKING,Cookies,payment_accepted,card,simulated
+2026-10-04 22:37:45,ENJOY,Cookies,say,machine,Here are your cookies. Enjoy!
+2026-10-04 22:37:49,TALKING,Cookies,say,machine,Want anything else? Press the next button to browse.
+2026-10-04 22:39:02,TALKING,Chips,say,machine,"Hi! Press the next button to browse snacks, and the select button to pick one."
+2026-10-04 22:39:16,TALKING,Chips,say,machine,"Hi! Press the next button to browse snacks, and the select button to pick one."
+2026-10-04 22:39:51,TALKING,Chips,say,machine,"Hi! Press the next button to browse snacks, and the select button to pick one."
+2026-10-04 22:39:58,BROWSE,Chips,next,button,
+2026-10-04 22:39:59,BROWSE,Cookies,next,button,
+2026-10-04 22:39:59,BROWSE,Candy Bar,press,button,
+2026-10-04 22:39:59,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:40:05,THINKING,Candy Bar,answer:yes,,Yes.
+2026-10-04 22:40:05,TALKING,Candy Bar,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:40:23,TALKING,Candy Bar,say,machine,"Please say cash or card. Or press next for cash, select for card."
+2026-10-04 22:40:31,TALKING,Chips,say,machine,"Hi! Press the next button to browse snacks, and the select button to pick one."
+2026-10-04 22:40:38,BROWSE,Chips,next,button,
+2026-10-04 22:40:39,BROWSE,Cookies,next,button,
+2026-10-04 22:40:41,BROWSE,Candy Bar,press,button,
+2026-10-04 22:40:41,TALKING,Candy Bar,say,machine,You picked candy bar. Do you want this one?
+2026-10-04 22:40:46,THINKING,Candy Bar,answer:yes,,Yes.
+2026-10-04 22:40:46,TALKING,Candy Bar,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:40:54,TALKING,Candy Bar,say,machine,How much cash do you have?
+2026-10-04 22:40:59,THINKING,Candy Bar,payment_accepted,cash,simulated
+2026-10-04 22:40:59,ENJOY,Candy Bar,say,machine,Here is your candy bar. Enjoy!
+2026-10-04 22:41:04,TALKING,Candy Bar,say,machine,Want anything else? Press the next button to browse.
+2026-10-04 22:41:09,BROWSE,Candy Bar,next,button,
+2026-10-04 22:41:10,BROWSE,Soda,press,button,
+2026-10-04 22:41:10,TALKING,Soda,say,machine,You picked soda. Do you want this one?
+2026-10-04 22:41:15,THINKING,Soda,answer:no,,No.
+2026-10-04 22:41:15,TALKING,Soda,say,machine,No problem. Press the next button to browse the other snacks.
+2026-10-04 22:41:19,BROWSE,Soda,next,button,
+2026-10-04 22:41:20,BROWSE,Chips,press,button,
+2026-10-04 22:41:20,TALKING,Chips,say,machine,You picked chips. Do you want this one?
+2026-10-04 22:41:25,THINKING,Chips,answer:yes,,Yes.
+2026-10-04 22:41:25,TALKING,Chips,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:41:32,TALKING,Chips,say,machine,How much cash do you have?
+2026-10-04 22:41:37,THINKING,Chips,payment_failed,machine,Insufficient funds.
+2026-10-04 22:41:37,TALKING,Chips,say,machine,Insufficient funds.
+2026-10-04 22:41:40,BROWSE,Chips,next,button,
+2026-10-04 22:41:41,BROWSE,Cookies,press,button,
+2026-10-04 22:41:41,TALKING,Cookies,say,machine,You picked cookies. Do you want this one?
+2026-10-04 22:41:46,THINKING,Cookies,answer:yes,,Yes.
+2026-10-04 22:41:46,TALKING,Cookies,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:41:53,TALKING,Cookies,say,machine,Give me a four digit card number.
+2026-10-04 22:42:00,THINKING,Cookies,payment_accepted,card,simulated
+2026-10-04 22:42:00,ENJOY,Cookies,say,machine,Here are your cookies. Enjoy!
+2026-10-04 22:42:05,TALKING,Cookies,say,machine,Want anything else? Press the next button to browse.
+2026-10-04 22:42:10,BROWSE,Cookies,next,button,
+2026-10-04 22:42:10,BROWSE,Candy Bar,next,button,
+2026-10-04 22:42:11,BROWSE,Soda,press,button,
+2026-10-04 22:42:11,TALKING,Soda,say,machine,You picked soda. Do you want this one?
+2026-10-04 22:42:15,THINKING,Soda,answer:yes,,Yes.
+2026-10-04 22:42:16,TALKING,Soda,say,machine,That costs 2.00 dollars. Cash or card?
+2026-10-04 22:42:23,TALKING,Soda,say,machine,Give me a four digit card number.
+2026-10-04 22:42:30,THINKING,Soda,payment_failed,machine,Incorrect card number.
+2026-10-04 22:42:30,TALKING,Soda,say,machine,Incorrect card number.
+2026-10-04 22:42:33,BROWSE,Soda,next,button,
+2026-10-04 22:42:34,BROWSE,Chips,press,button,
+2026-10-04 22:42:34,TALKING,Chips,say,machine,You picked chips. Do you want this one?
+2026-10-04 22:42:43,LISTENING,Chips,answer:None,,
+2026-10-04 22:42:43,TALKING,Chips,say,machine,"Sorry, I didn't catch that. Say yes or no, or press the select button to take it."
+2026-10-04 22:42:55,LISTENING,Chips,answer:None,,
+2026-10-04 22:42:55,TALKING,Chips,say,machine,"No worries, take your time. Press a button when you're ready."

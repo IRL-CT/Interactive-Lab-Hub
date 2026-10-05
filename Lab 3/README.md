@@ -83,43 +83,26 @@
 > <img width="3028" height="2069" alt="image" src="https://github.com/user-attachments/assets/9d9c610f-0b79-42f9-a71d-5f585e51a4ea" />
 
 
-**4. (optional) Integrate [input devices](inputs.md) in the system**
-
 ## Prototype your system
 
-The system should:
-* use the Raspberry Pi
-* use one or more sensors
-* require participants to speak to it
+[Here is the video of our system!](https://youtu.be/gHbyDP6Z504?si=-SviBDzsK90jyTxh)
 
-*Document how the system works.*
+<img width="1528" height="604" alt="Screenshot 2026-10-04 225459" src="https://github.com/user-attachments/assets/38053019-6308-4ec4-ac26-89823d3bbaf3" />
 
-*Include videos or screencaptures of both the system and the controller.*
+<img width="2880" height="1140" alt="Screenshot 2026-10-04 230450" src="https://github.com/user-attachments/assets/335e533d-cb11-44bb-a3e4-1d177942323b" />
+
+For the system to work, press the top button to browse through snacks and the bottom button to select one. Wait for “LISTENING,” then say "yes" to confirm or "no" to return to browsing. Each snack costs $2. Choose "cash" or "card" when prompted. For card payment, say a made-up four-digit number, one digit at a time. Telling the machine 0000 or an invalid number returns you to selection. For cash, state your amount. Telling it an amount that is $2 or more is accepted, while insufficient funds returns you to selection. Successful payment plays a dispensing animation and spoken confirmation. All payments and dispensing are simulated. Repeat the process to order another snack!
 
 ## Test the system
 
-Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard *after* the interaction, but we recognize that can be hard.)
-
-Answer the following:
-
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+The system was very clear about what needed to be done and what needed to be said. There was some very nice interactions between exactly what a vending machine would require just inside voice format. The animations also looked really nice for giving the snacks to us. It was sometimes difficult to wait for the vending machine and so we would say something earlier and it wouldn't work and would have to go back and say it again. Also sometimes, there are some versions of yes or no that we would say that wouldn't register as yes or no which is an issue like I would or I wouldn't. We struggled to connect the joystick alongside the screen, so we switched to the Adafruit buttons. This simplified the setup, although cycling through snacks with one button was less flexible than directional navigation.
 
 ### What worked well about the controller and what didn't?
-\*\**your answer here*\*\*
+The wizard controller (the webpage UI above) provided buttons for common responses and a text field for custom speech, making it possible to guide the interaction manually. Showing the current state helped the operator follow the flow. However, payment answers had to be submitted during the listening stage, so the operator still needed to coordinate their actions carefully with the machine's prompts.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-\*\**your answer here*\*\*
+A more autonomous version should preserve the wizard's ability to handle unexpected answers and clarify misunderstandings. Clear listening cues and enough time to respond are especially important when someone is saying several digits. Instead of immediately restarting after an invalid payment response, the system could explain what went wrong and let the user try again.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-\*\**your answer here*\*\*
-
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
-
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-</details>
+We could collect timestamped prompts, user responses, button presses, wizard interventions, and transaction outcomes to identify common interaction patterns and failures. With participants' consent, audio recordings could reveal recognition errors and awkward pauses, while video could capture gestures, hesitation, and attention to the screen. Comparing wizard decisions with automated responses would help guide improvements.
