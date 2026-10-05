@@ -397,16 +397,24 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+The system worked well for simple cooking commands such as “Next,” “Repeat,” and setting a timer. The visual states on the screen also helped users understand whether the device was listening, processing, or speaking. The main problem was that speech recognition was not always accurate, especially in a noisy kitchen or when users spoke quickly. Some responses also felt a little slow, so the interaction was not always as natural as a real conversation.
 
 ### What worked well about the controller and what didn't?
-\*\**your answer here*\*\*
+
+The controller side was useful because we could see the transcript and system response in the terminal and notice when something went wrong. It also helped us check that the microphone, speaker, and screen were working before each test.
+
+However, the controller still had to pay attention when speech recognition failed. Sometimes we needed to remind a participant to speak closer to the microphone or wait until the system was listening again. In a more autonomous version, the system should handle this by itself instead of depending on someone behind the scenes.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-\*\**your answer here*\*\*
+
+The WoZ test showed us that users may not always use the exact commands we expect, even when they are asking for the same thing. A more autonomous version should recognize different ways of saying commands such as “Next,” “Repeat,” or “Wait,” and should remember the current recipe step after interruptions. It should also confirm important information such as timer duration before starting the timer, since numerical speech can be misunderstood.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-\*\**your answer here*\*\*
+
+We could log the audio, transcript, recognized intent, current recipe step, system response, timer state, and whether the user repeated or corrected something. We could also label whether speech is an actual command, a question, confirmation, filler words like “um” or “uh,” background noise, or an incomplete sentence. This could help the assistant understand what information matters and avoid responding too early.
+
+Other useful sensors could include a camera to see whether the user is still preparing food, a distance sensor to check whether they are close enough to the microphone, and touch input as a backup in a noisy kitchen. We would need to ask for permission before collecting audio, video, or other personal data.
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
