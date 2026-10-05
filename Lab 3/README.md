@@ -156,6 +156,8 @@ The system should:
 
 The final prototype is a voice based workout checkin device that uses a small screen to communicate its current state. The user completes the workout check-in primarily through speech. The screen displays “LISTENING,” “THINKING,” or “SPEAKING” so the user knows when to talk when the device is processing their response and when the device is responding. 
 
+https://youtube.com/shorts/oZIfQKu27Oo?feature=share
+
 ## Test the system
 
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard *after* the interaction, but we recognize that can be hard.)
