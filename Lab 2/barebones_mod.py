@@ -1,3 +1,4 @@
+# modified screen_clock.py file
 import time
 import subprocess
 import digitalio
@@ -87,7 +88,6 @@ image = image.crop(
 # --------------------------------
 # Main loop
 # --------------------------------
-
 while True:
 
     current_time = strftime("%H:%M:%S")
@@ -96,7 +96,6 @@ while True:
     # 6:26:00 PM - 6:26:30 PM
     # Show red.jpg
     # --------------------------------
-
     if "18:26:00" <= current_time <= "18:26:30":
 
         disp.image(image, rotation)
@@ -106,7 +105,6 @@ while True:
     # 6:26:31 PM - 6:26:59 PM
     # Show red.jpg + text
     # --------------------------------
-
     elif "18:26:31:" <= current_time <= "18:26:59":
 
         # Make a copy so we don't permanently
@@ -124,11 +122,9 @@ while True:
 
         disp.image(display_image, rotation)
 
-
     # --------------------------------
     # Outside those times
     # --------------------------------
-
     else:
 
         # Black screen
@@ -141,3 +137,4 @@ while True:
         disp.image(black, rotation)
 
     time.sleep(1)
+
