@@ -2,6 +2,40 @@
 
 **Rawisara Chairat, Lamiah Khan, Xiaoxi Xu, Afroza Aktar**
 
+[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://youtu.be/LZ0VJClIlRI?si=Yy84mcyVYuVV19mn)
+
+In this lab, we want you to design interaction with a speech-enabled device — something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1). First, we want you to storyboard what you imagine the conversational interaction to be like. Then you will use wizarding techniques to elicit examples of what people might say, ask, or respond. We then want you to use the examples collected from at least two other people to inform the redesign of the device.
+
+We will focus on **audio** as the main modality for interaction to start; these general techniques can be extended to **video**, **haptics** or other interactive mechanisms in the second part of the Lab.
+
+A note on what you are building with. Speech interfaces are usually taught as two boxes — speech-in, speech-out — and that framing hides the part that actually determines whether an interaction works. Between listening and speaking sits the question of **whose turn it is**: when does the device decide you have finished talking, and how long does it make you wait before it answers? This lab gives you direct control over both, and we will ask you to notice what changes when you move them.
+
+## Prep for Part 1: Get the Latest Content and Pick up Additional Parts
+
+Please check instructions in [prep.md](prep.md) and complete the setup.
+
+### Pick up Web Camera If You Don't Have One
+
+Students who have not already received a web camera will receive their Webcam and at the beginning of lab. If you cannot make it to class this week, please contact the TAs to ensure you get these.
+
+### Get the Latest Content
+
+As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo.
+
+**\[recommended\]** Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the *personal access token* for this.
+
+```
+pi@ixe00:~$ cd Interactive-Lab-Hub
+pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2026
+pi@ixe00:~/Interactive-Lab-Hub $ git add .
+pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab3 updates"
+pi@ixe00:~/Interactive-Lab-Hub $ git push
+```
+
+Option 2: On your own GitHub repo, create a pull request to get updates from the class Interactive-Lab-Hub. After you have the latest updates online, go to your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull`.
+
+---
+
 # Part 1
 
 ## A. Text to Speech
