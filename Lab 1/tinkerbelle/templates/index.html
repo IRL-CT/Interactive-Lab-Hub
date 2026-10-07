@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Tinkerbelle</title>
+    
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<!--     <link rel="stylesheet" type="text/css" href="style.css" media="screen"/> -->
+    <link rel="stylesheet" href="static/vendor/water-dark.css">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/vendor/socket.io.js"></script>
+	<script src="static/vendor/d3-color.js"></script>
+	<script src="static/vendor/d3-interpolate.js"></script>
+	<script src="static/vendor/d3-ease.js"></script>
+	<script type="module" crossorigin src="static/tinkerButton.js"></script>
+
+<body>
+<div id='user'>
+	<button  id='control'>Wizard</button>
+	<button id='light'>Tinkerbelle</button>
+</div>
+<div id='controlPanel'>
+	<!-- teamLab Borderless key map. duration = ms for the fade to reach the colour.
+	     Slow fades = flowers growing. Short fades = petals scattering.
+	     Fades interpolate by hue (HCL), so they pass through intermediate colours.
+
+	     Keys that are not colours (handled in static/index.js, not by buttons):
+	       Space        tap at the touch point: nearby flowers burst into petals that drift and tumble
+	                    about the wall, bounce off each other, and after `gather` s fly home; the same
+	                    flower recomposes (the rest of the field ripples)
+	       arrows       swipe: same, then a hand sweeps through in that direction
+	       Enter        flick: flowers along a line from the touch point burst, petals fly downwind
+	       D / H        drag / hold: move or gather flowers, nothing dies
+	       A            approach: flowers near the touch point drift in, twinkle, warm (Shift+A: second point)
+	       L            leave: both approaches relax home and cool over 2 s
+	       Shift + any  the gesture lands at ?point2= instead of ?point= (two patches)
+	       T            jump the field clock forward (ages everything, shows the cycle on camera)
+	       R            reset: every slot back in full bloom (take one)
+	       Z            pause / resume natural aging (kills and regrowth still happen)
+	       S            next season: cherry -> summer -> autumn. Base colour fades over 5 s; new
+	                    flowers roll their shade and species from the new palette (T speeds it up)
+	       [ / ]        exposure down / up by 0.1 (0.6..2.0): flower and glow alpha, and lightness
+	       M / N        ambient sound on / off (plays on light pages; click the page once first)
+	       B            sound source: Web Audio synth (default; gestures play pentatonic notes) <-> files in static/sounds/
+	       P / Esc      run / cancel the scripted solo take (static/solo.js)
+	     Light-page URL options: ?mode=blobs&season=cherry&gather=12&bump=0.7&exposure=1.6&wave=0.3&point=50,50&dir=right&fps=1 (see index.js). -->
+
+	<!-- idle cycle: alternate 1 and 2 while nobody is there -->
+	<tinker-button letter="1" color_code="#0f6b4a" duration="6000" easing="SinInOut"></tinker-button>
+	<tinker-button letter="2" color_code="#5b2a8a" duration="6000" easing="SinInOut"></tinker-button>
+
+	<!-- bloom, in stages: 7 bud -> 8 soft pink -> 3 magenta -> 4 gold -->
+	<tinker-button letter="7" color_code="#2e8b57" duration="3000" easing="SinIn"></tinker-button>
+	<tinker-button letter="8" color_code="#ff8ac8" duration="3500" easing="SinInOut"></tinker-button>
+	<tinker-button letter="3" color_code="#ff2fa0" duration="3500" easing="SinOut"></tinker-button>
+	<tinker-button letter="4" color_code="#ffb400" duration="3500" easing="SinInOut"></tinker-button>
+
+	<!-- cold tones: 5 teal, 6 blue (warm tones are 8/3/4). Move between them for warm <-> cold shifts -->
+	<tinker-button letter="5" color_code="#14b8a6" duration="5000" easing="SinInOut"></tinker-button>
+	<tinker-button letter="6" color_code="#3b6cff" duration="5000" easing="SinInOut"></tinker-button>
+
+	<!-- whole-field presence, the Part 1 behaviour: G = warmer everywhere; K = the resting colour.
+	     (A / L are now local: approach at the touch point, leave. Handled in index.js.) -->
+	<tinker-button letter="G" color_code="#d4577f" duration="4000" easing="SinInOut"></tinker-button>
+	<tinker-button letter="K" color_code="#3a2f6e" duration="5000" easing="SinInOut"></tinker-button>
+
+	<!-- hard off -->
+	<tinker-button letter="0" color_code="#000000" duration="300" easing="Linear"></tinker-button>
+
+</div>
+<div id="preview" hidden title="click: touch point   shift-click: second point">
+	<div class="dot" id="dot1" hidden>1</div>
+	<div class="dot" id="dot2" hidden>2</div>
+</div>
+<div id="legend" hidden>
+	<table>
+	<tr><th>Colours</th><td><b>1</b> emerald &middot; <b>2</b> violet &middot; <b>7</b> bud green &middot; <b>8</b> soft pink &middot; <b>3</b> magenta &middot; <b>4</b> gold &middot; <b>5</b> teal &middot; <b>6</b> blue &middot; <b>G</b> whole field warm &middot; <b>K</b> rest (dim violet) &middot; <b>0</b> black</td></tr>
+	<tr><th>Gestures</th><td><b>Space</b> tap &middot; <b>&larr; &uarr; &rarr; &darr;</b> swipe &middot; <b>Enter</b> flick &middot; <b>D</b> drag &middot; <b>H</b> hold &middot; <b>A</b> approach (drift in, twinkle, warm) &middot; <b>L</b> leave &middot; <b>Shift</b> + any: at the second point. Touched flowers burst into petals that drift, bounce off each other, and fly home after 12 s</td></tr>
+	<tr><th>Seasons</th><td><b>S</b> next season: cherry &rarr; summer &rarr; autumn (base colour fades over 5 s)</td></tr>
+	<tr><th>Field</th><td><b>T</b> age the field 40 s &middot; <b>R</b> reset to full bloom &middot; <b>Z</b> pause / resume aging</td></tr>
+	<tr><th>Sound</th><td><b>M</b> ambient on &middot; <b>N</b> ambient off &middot; <b>B</b> synth &harr; files. Gestures play pentatonic notes, low on the left of the wall, high on the right; notes within 2 s ring as a chord</td></tr>
+	<tr><th>Exposure</th><td><b>[</b> darker &middot; <b>]</b> brighter (0.6 to 2.0)</td></tr>
+	<tr><th>Solo</th><td><b>P</b> run the scripted take &middot; <b>Esc</b> cancel</td></tr>
+	<tr><th>Touch point</th><td>click the wall preview (top right) to set it, shift-click for the second point; or start with <code>?point=30,50&amp;point2=70,50</code> on this URL (percent across, down). Light page: <code>?mode=blobs&amp;season=cherry&amp;fps=1</code>, click Tinkerbelle once.</td></tr>
+	</table>
+</div>
+
+	<link rel="stylesheet" href="static/vendor/pickr-classic.min.css" />
+	<!-- 'monolith' theme -->
+	<script src="static/vendor/pickr.min.js"></script>
+	<script src="static/index.js"></script>
+	<script src="static/solo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Tinkerbelle</title>
+    
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<!--     <link rel="stylesheet" type="text/css" href="style.css" media="screen"/> -->
+    <link rel="stylesheet" href="static/vendor/water-dark.css">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/vendor/socket.io.js"></script>
+	<script src="static/vendor/d3-color.js"></script>
+	<script src="static/vendor/d3-interpolate.js"></script>
+	<script src="static/vendor/d3-ease.js"></script>
+	<script type="module" crossorigin src="static/tinkerButton.js"></script>
+
+<body>
+<div id='user'>
+	<button  id='control'>Wizard</button>
+	<button id='light'>Tinkerbelle</button>
+</div>
+<div id='controlPanel'>
+	<!-- teamLab Borderless key map. duration = ms for the fade to reach the colour.
+	     Slow fades = flowers growing. Short fades = petals scattering.
+	     Fades interpolate by hue (HCL), so they pass through intermediate colours. -->
+
+	<!-- idle cycle: alternate 1 and 2 while nobody is there -->
+	<tinker-button letter="1" color_code="#0f6b4a" duration="6000" easing="SinInOut"></tinker-button>
+	<tinker-button letter="2" color_code="#5b2a8a" duration="6000" easing="SinInOut"></tinker-button>
+
+	<!-- bloom, in stages: 7 bud -> 8 soft pink -> 3 magenta -> 4 gold -->
+	<tinker-button letter="7" color_code="#2e8b57" duration="3000" easing="SinIn"></tinker-button>
+	<tinker-button letter="8" color_code="#ff8ac8" duration="3500" easing="SinInOut"></tinker-button>
+	<tinker-button letter="3" color_code="#ff2fa0" duration="3500" easing="SinOut"></tinker-button>
+	<tinker-button letter="4" color_code="#ffb400" duration="3500" easing="SinInOut"></tinker-button>
+
+	<!-- cold tones: 5 teal, 6 blue (warm tones are 8/3/4). Move between them for warm <-> cold shifts -->
+	<tinker-button letter="5" color_code="#14b8a6" duration="5000" easing="SinInOut"></tinker-button>
+	<tinker-button letter="6" color_code="#3b6cff" duration="5000" easing="SinInOut"></tinker-button>
+
+	<!-- presence: A = someone came close (warmer, a little brighter); L = they left (cooler, dimmer) -->
+	<tinker-button letter="A" color_code="#d4577f" duration="4000" easing="SinInOut"></tinker-button>
+	<tinker-button letter="L" color_code="#3a2f6e" duration="5000" easing="SinInOut"></tinker-button>
+
+	<!-- hard off -->
+	<tinker-button letter="0" color_code="#000000" duration="300" easing="Linear"></tinker-button>
+
+	<!-- optional sound on scatter (needs internet) -->
+	<tinker-button letter="S" sound_only="true" duration="3000" sound="wind chime"></tinker-button>
+</div>
+
+	<link rel="stylesheet" href="static/vendor/pickr-classic.min.css" />
+	<!-- 'monolith' theme -->
+	<script src="static/vendor/pickr.min.js"></script>
+	<script src="static/index.js"></script>
+	<script src="static/solo.js"></script>
+</body>
+
+</html>
