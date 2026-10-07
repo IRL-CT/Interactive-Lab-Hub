@@ -1,5 +1,6 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+
+Ziqiao Gao
 
 Does it feel like time is moving strangely during this semester?
 
@@ -156,7 +157,10 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
 
-\*\*\***Include a picture of your own Raspberry Pi displaying the piscreen.service with your unique MAC address. Additionally, please provide another picture showing the successful completion of the screen test.**\*\*\*
+<img width="1279" height="2275" alt="image" src="https://github.com/user-attachments/assets/8d04df0d-6d1b-46e7-93fc-42b6bc127b11" />
+<img width="2268" height="4032" alt="image" src="https://github.com/user-attachments/assets/49f5a5b8-b8cb-4457-bd3c-1e2d44210b51" />
+<img width="2268" height="4032" alt="image" src="https://github.com/user-attachments/assets/954b8620-7b69-4dc6-bff3-334a04244f19" />
+
 
 
 ## Part D. 
@@ -183,20 +187,43 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
+<img width="2268" height="4032" alt="image" src="https://github.com/user-attachments/assets/1380159f-f9eb-4255-b41f-4f0b8f066f24" />
+
+
 ## Part E. Read Part 2. Sketch and brainstorm further interactions and features you would like for your clock.
 
-One potential source of ideas might be thinking about other clocks and timekeeping devices for inspiration.
+Instead of representing a fixed 24-hour day, one ice cube represents the user's personal waking day. The ice starts melting when the user wakes up and gradually melts toward their expected bedtime. When the user goes to sleep, the current day ends, and a new ice cube appears when they wake up the next day. This makes the clock represent how much of the user's own day has passed rather than simply showing the time of day.
 
-Another might be novel units of time. How do you measure a year? [In daylights? In midnights? In cups of coffee?](https://www.youtube.com/watch?v=wsj15wPpjLY)
+1. Press Button B — Wake Up: A new personal day begins with a full ice cube.
 
-We strongly discourage literal digital or analog clock display: Be creative.
+2. During the Day: The ice continuously melts and the water around it increases as the day progresses.
 
+3. Press Button A — Check Time: Press and hold Button A to temporarily show the numerical time. Release the button to return to the ice cube display.
 
-** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf)), storyboards for your ideas **
+4. Approaching Bedtime: Most of the ice has melted, visually showing that most of the user's waking day has passed.
 
+5. Press Button B — Sleep: When the user is ready to sleep, pressing Button B enters sleep mode and stops the melting process.
 
+6. Next Morning: Press Button B again to wake the clock and start a new personal day with a new full ice cube.
+
+<img width="1000" height="366" alt="image" src="https://github.com/user-attachments/assets/bb6dcf88-f253-412c-8352-1f763ccd9f25" />
+
+Button A – Check Exact Time: The clock normally does not display numerical time. The user can press and hold Button A to temporarily see the exact time. When the button is released, the display returns to the melting ice cube. This keeps the main experience focused on feeling the passage of time while still allowing the user to check the exact time when needed.
+
+Button B – Sleep / Start a New Day: Button B controls the user's personal day. When the user is ready to sleep, pressing Button B ends the current day and stops the ice from melting. When the user wakes up, pressing Button B again starts a new personal day with a new full ice cube. This allows the clock to represent the user's waking day instead of a fixed 24-hour day.
 
 **Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
+
+David Zhang Chen - I find the idea of the ice cube quite innovative! It gives a very intuitive sense of how much of the day has passed. I also like the idea of having different functions for each button on the Raspberry Pi, especially the sleep mode on Button B, since it feels similar to a real phone feature. One thing to think about is what happens if the user forgets to press Button B, since that could make the melting progress inaccurate. Maybe there could be a default bedtime or a visual reminder if the clock has been active for longer than usual. 
+https://github.com/davidzhanggg/Interactive-Lab-Hub/tree/Fall2026/Lab%202
+
+Sina Liu - I really like the idea of one ice cube representing your personal day—it feels much more personal than a normal 24-hour clock! I was just wondering how the melting speed would be decided. Would the user set an expected bedtime, and what happens if they stay up much later or go to sleep earlier than planned? Maybe the clock could adjust based on the user’s previous sleep schedule. Also, what happens if someone forgets to press Button B when they wake up or go to sleep? It might be helpful to have a way to correct the start or end time later. And maybe holding Button B instead of just pressing it could prevent someone from accidentally ending their day.
+https://github.com/SinaL0123/Interactive-Lab-Hub/tree/Fall2026/Lab%202
+
+Jindi Chen - I really like the visual idea of using melting ice to represent the passage of time. People can look at how much the ice has melted and get a sense of how much of their day has passed. I also really like the idea of using a personal waking day, because everyone has different daily routines, so it feels more personal than using a fixed 24-hour day.
+
+One question I have is how the clock knows each person's expected bedtime. Would the user set it manually, or would there be some way for the clock to detect it? Also, what happens if the user goes to sleep earlier or later than expected? For example, if the ice has already completely melted but the user is still awake, how would the clock show that extra time? I'm also curious about what the screen would show after the user goes to sleep. And if the user wants to take a nap in the afternoon, would pressing the sleep button end the whole day?
+https://github.com/JindiChai/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
 
 # Lab 2 Part 2
 
@@ -206,6 +233,13 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
 **Put the feedback for your ideas here.**
+
+I received feedback from three classmates:
+  1. Sina: Liked the ice-melting concept, but pointed out that users might forget to press Button B. Suggested having a default schedule or reminder.
+  2. David: Asked how the clock would handle different bedtimes, sleeping earlier or later than expected, and accidentally pressing Button B. Suggested making the button interaction more intentional.
+  3. Jindi: Asked what would happen if the user forgot to start the clock, took a nap, or stayed awake after the ice completely melted.
+
+Based on this feedback, I changed Button B to a 2-second hold to prevent accidental presses and added a default 8 AM–12 AM schedule. If the user forgets to start the clock in the morning, the ice now automatically catches up to the current time instead of starting as a full ice cube.
 
 ## Update your Lab Hub
 
@@ -220,6 +254,11 @@ Start small, pick just one element of your overall idea, just to show you have a
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your barely modified PiClock.**\*\*\*
+
+This is a testing barely modified ice clock: I just upload all image on the pi and tested the core visualization. The video shows  the ice cube progress from fully frozen to fully melted.
+
+https://youtube.com/shorts/7202EMKcjmo?feature=share
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -237,13 +276,32 @@ Do take advantage of having done the previous iteration to refine and simplify y
 
 ** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
+Design Iteration:
+Based on the feedback I received, I made several changes to the Ice Cube Clock. One concern was accidentally pressing Button B, so I changed it from a single press to a 2-second hold to start or end the day. Another important concern was what would happen if the user forgot to start the clock after waking up. In my original idea, pressing Button B would always start with a full ice cube. In the final version, the clock uses an expected day from 8 AM to midnight instead. This allows the ice to reflect the actual time of day even if the user starts the clock late. For example, if the user forgets to press Button B in the morning and remembers later in the day, the clock will start with a partially melted ice cube instead of a full one.
+
+
+Here is the updated verplank diagram:
+<img width="3508" height="2480" alt="未命名作品 9" src="https://github.com/user-attachments/assets/267d7864-6668-400f-92a1-c6f353dbd7f3" />
+
+Here is the updated storyboard:
+<img width="1556" height="970" alt="image" src="https://github.com/user-attachments/assets/c11897ee-4a5a-4d51-94de-9556d03ee8a7" />
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
+The final implementation can be found called Lab 2/ice_clock.py , and the six images are named ice_0.png , ice_10.png, ice_25.png, ice_50.png , ice_75.png , ice_100.png . 
+The final Ice Cube Clock represents the progress of the day through six stages of melting ice: 100%, 75%, 50%, 25%, 10%, and 0% remaining. From 8 AM to midnight, the ice gradually moves through these stages until it becomes a puddle. Holding Button A temporarily shows the exact numerical time, while releasing it returns to the ice visualization. Holding Button B for two seconds starts or ends the day.
+
+
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+https://youtube.com/shorts/m28dsskoR7c?feature=share
+
+The video demonstrates two situations. In the first part, the user starts the clock in the morning and the ice begins as a full ice cube, then melts as the day progresses. In the second part, the user forgets to start the clock in the morning and presses Button B later in the day. Instead of restarting with a full ice cube, the clock immediately displays a partially melted stage based on the current time.
 
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+
+The final design was iterated based on feedback from Sina, David, and Jindi, especially around accidental button presses, forgetting to start the clock, and how the clock should behave around bedtime. I used ChatGPT to help brainstorm solutions to these edge cases, troubleshoot and debug the Raspberry Pi code, and create the updated storyboard. I made the final design decisions and implemented and tested the prototype on the Raspberry Pi.
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab.  Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page. 
 
