@@ -1,77 +1,8 @@
 # Recreating the Masters of Interactive Light
 
-_This project is to be done in teams of 2._
+**COLLABORATORS:** Neeha Ravula (nr485), Marisol Park (mp2365)
 
-**NAME OF BOTH COLLABORATOR(S) HERE**
-
-**THE MASTERWORK YOU DREW FROM THE HAT:**
-
----
-
-One way to understand greatness is to look to the greats. Just as painters learn
-the technique and artistry of the old masters by recreating their paintings, so
-too shall we come to understand computer-mediated interaction by recreating the
-interactive masterworks of our time.
-
-This week, every team will draw a different masterwork from a hat. Some are
-conceptual pieces, some are historical works, some are modern-day products —
-but they all share one thing: **their central mode of interaction is carried by
-light.** Think of Tinker Bell in the original stage production of *Peter Pan*,
-represented by nothing more than a darting circle of light from an off-stage
-mirror. There was no actor playing Tinker Bell; she existed entirely through the
-way the other characters interacted with that light.
-
-Your job is to recreate the *interaction* of the piece you drew — not to build a
-museum-grade replica, but to stage the moment that makes it what it is. Someone
-who knows your piece should watch your recreation and recognize it instantly.
-Someone who has never heard of it should walk away understanding what it is
-famous for.
-
-You will do this using the interaction staging techniques we will use all semester: a
-storyboard, some acting, a phone standing in as a controllable light (the
-*Tinkerbelle* tool), a hidden human "wizard" driving it, a costume, and a
-recorded video.
-
-*Make sure you read all the instructions and understand the whole activity
-before starting!*
-
-## Prep
-
-To start, you will need:
-
-1. Read about Git [here](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F).
-2. Set up your own Github "Lab Hub" by forking the [Interactive-Lab-Hub repository](https://github.com/IRL-CT/Interactive-Lab-Hub). To get lab updates, simply use [GitHub's "Sync fork" button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) when new content is available.
-
-3. Set up your `README.md` so it has your name and links to this lab. Learn to
-   format a README [here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-4. **Draw your masterwork from the hat and write it at the top of this file.**
-   Whatever you drew is yours — lean into it.
-
-## Materials
-
-For this lab you will need:
-
-1. Paper, markers/pens, scissors
-2. A smartphone with a browser that can display a webpage (your stand-in "light")
-3. A computer to host the control webpage
-4. Found objects and materials to **costume your phone so it looks like the
-   device in your masterwork** — doll clothes, a paper lantern, a bottle, foil,
-   a cardboard shell, whatever it takes. Be resourceful.
-
-## Deliverables
-
-Submit all of the following in this lab folder of your Lab Hub, as links or
-uploaded files. **Each group member posts their own copy to their own Github repo**, even if the work is
-shared.
-
-1. A short **research write-up** of your masterwork (what it is, when, who made
-   it, and — most importantly — what the interaction is)
-2. **3 iterated storyboards** of the interaction in the masterwork
-5. A **video sketch** of your prototyped interaction
-6. Any **reflections** on the process
-
-Labs are due on Mondays. Make sure this page is linked from your main class hub
-page.
+**THE MASTERWORK YOU DREW FROM THE HAT:** Timex Indiglo (1992)
 
 ---
 
@@ -79,106 +10,84 @@ page.
 
 ## Part 0. Know Your Master
 
-Before you prototype anything, get intimately acquainted with the piece you
-drew. Do real research. You are looking less for trivia than for the *shape of
-the interaction*:
+Before the 90s, there was no simple way to read a watch in the dark. People had to either move to a brighter room or hold a light against their watch to read the time. That's where the American watchmaking company, Timex, came in to save the day. Timex released its Indiglo watch in 1992, setting the standard of backlit watch faces as a key feature of all watches to come.
 
-- What inputs are available to the user? What responses does the work give?
-- Who is present, and how does the piece color the relationships between them?
-- What is the piece famous for? What are its strengths and its weaknesses?
+**The core interaction:** To read the time in the dark, users can simply press the crown button on the side of the watch, triggering the watch face light to turn on. After a few seconds, the light turns off automatically.
 
-  Sometimes the details of how the interaction worked are lost in history. Try filling it in with your imagination!
+**Strengths:** The indiglo technology was a lot safer than early attempts at producing watch face luminescence. Watchmakers had initially used a mix of radium and zinc sulfide to create the backlit glow, but this came with radioactive dangers. While safer iterations were released afterwards, they often didn't have a long-lasting glow. Timex solved these issues by building electroluminescent panels into the watch.
 
-**Describe your masterwork here, in your own words. What is the core interaction
-someone would recognize it by?**
+**Weaknesses:** The indiglo light is designed to only stay on for short periods of time, and relies on the user interaction of pressing the crown. If the crown-pressing feature stops working, the user will not be able to turn on the light.
+
+**Sources:**
+- [Indiglo: A Luminous History](https://timex.com/blogs/the-timex-blog/indiglo%C2%AE-a-luminous-history)
+- [Shining a Light On Timex Indiglo](https://www.hodinkee.com/articles/shining-a-light-on-timex-indiglo)
+- [Timex Indiglo two watches commercial 1993](https://www.youtube.com/watch?v=XZMk6H3UkDs)
 
 ## Part A. Plan
 
-For your masterwork, reconstruct the interaction as a scene:
+- **Setting:** In a dark room or the pitch-black night.
+- **Players:** Ben 10 (the hero); someone screaming for help outside while a villain threatens them; a hidden wizard operating the light
+- **Activity:** Ben 10 is awoken by his watch flashing an alert that a villain is nearby. He hears screams from the street below through his bedroom window, and decides 'it's hero time.' He twists the crown of his watch to select the best alien hero form he can transform into to defeat the villain. Once he makes a decision, he slams his watch and turns into the alien hero.
+- **Goals:** The people in danger want to survive, while the villain outside wants to cause them harm. Ben 10 wants to save the innocent people by transforming into the alien form he selected on his watch and defeating the villain. The hidden wizard wants the light to feel alive and in sync with Ben 10's actions.
 
-- **Setting:** Where and when does this interaction happen? (a jungle, a kitchen,
-  a spaceship corridor, a nightclub, a harbor at night)
-- **Players:** Who is involved? Who else is present? Think through everyone in
-  the setting, not just the primary user.
-- **Activity:** What is happening between the players and the light?
-- **Goals:** What is each player trying to do?
+### Storyboards
+**Iteration 1:** A very simple visual of the indiglo interaction. A user in a dark room wants to check the time, so they press the crown of the watch, which then illuminates the watch face and reveals the time.<br><br>
+<img width="2155" height="1666" alt="storyboard_1" src="https://github.com/user-attachments/assets/061b3d1b-7bbb-4a4f-9372-c9dd46a27567" />
 
-**Describe your setting, players, activity, and goals here.**
 
-Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
-don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
-and the people around it. If you're new to storyboarding, read
-[this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
+**Iteration 2**: Marisol and I recalled our childhood obsession with Ben 10, and decided to spruce up the interaction using Ben 10 as the main user.<br><br>
+<img width="2155" height="1666" alt="storyboard_2" src="https://github.com/user-attachments/assets/280bc6b2-d30d-4e30-b372-6eb97d599739" />
 
-**Include pictures of your storyboards here.**
 
-Use the storyboards to decide what interaction to prototype.
+**Iteration 3:** After acting out the scene (see Part B below) and playing around with the Tinkerbelle tool, we had to redesign the interaction to work around limitations of the tool and satisfy more use cases (ex: alert of danger nearby, choosing an alien form, turning into the alien form).<br><br>
+<img width="2155" height="1666" alt="storyboard_3" src="https://github.com/user-attachments/assets/14c954e1-1c12-4ead-8805-fb97dc526228" />
 
-**Summarize the feedback you got here.**
+**TODO: Summarize the feedback you got here.**
+
+This is a very cool project. I like how the green represents that everything is okay; whereas the red light represents danger and urgency. I originally thought this was life alert. Alas, it is Ben 10. 
 
 ## Part B. Act out the Interaction
 
-Physically act out the interaction you planned. For now, just pretend the light
-is doing what you've scripted — a person can wave a flashlight, or you can narrate
-it aloud.
+When we acted out the sequence, we discovered the following:
+- We noticed that we needed to add a reason/intent for the user to check their watch
+- We decided that we would need to use 2 colors, red and green, to differentiate between the feedback states of the indiglo (red for alerts, green for alien selection)
+- We realized that to visualize the interaction of Ben 10 switching between aliens by turning the crown on his watch, we needed to add more light interaction: light goes from black to green when an alien is selected
+- For recording the interaction, we realized that we need to adjust some of the angles of the scene to ensure the watch face was visible
 
-**Are there things that seemed better on paper than when acted out?**
-
-**Did new ideas about the piece surface once you were on your feet?**
-
-**Are there key moments in the interaction where things could go in a different direction?**
-Iterate your storyboards to capture key non-sequential aspects of the interaction. 
+We used these findings to iterate on our storyboard, resulting in the final storyboard above (Iteration 3).
 
 ## Part C. Prototype the Light (light first!)
 
-Use your smartphone as the light of your device. Open the browser on your phone
-to act as the "light," and use the remote control interface on your computer to
-change that light. Code and setup instructions for the *Tinkerbelle* tool are
-[here](https://github.com/IRL-CT/tinkerbelle) (we invented this tool for
-this lab). If you hit technical trouble, a manually or remotely controlled light
-switch, dimmer, or lamp is a fine substitute.
+**We only focused on light this week; no other modalities.**
 
-**Get the light interaction working before anything else.** Your grade this week
-rides on the *light* being recognizable — the color, the rhythm, the timing, the
-way it answers a person. Only once your light interaction genuinely reads as your
-masterwork should you consider layering in a second modality (sound, vibration,
-motion). If in doubt, keep polishing the light. The other modalities are next
-week's business.
+We used the Tinkerbelle tool, where the phone screen acted as the indiglo light and the laptop controlled its brightness and color. In order to simulate a blinking/flashing effect for the villain alert and alien selection interactions, we used the slider feature to rapidly switch between a black and red/green glow on the phone. We also made sure to time the 'flashing' with the turn of the crown when Ben 10 is looking for an alien on his watch.
+
+**Feedback on Tinkerbelle:** While the slider feature was fast enough for us to simulate a flashing effect, we wished there could've been a built-in blink/flash setting in the tool, where we could also adjust the latency of the blinking (in seconds).
 
 ## Part D. Wizard the Device
 
-Set up a "wizard" arrangement so one person can secretly drive the light while
-another acts with it — this is how you make the device feel alive without
-building any real electronics. (Zoom works well for recording; you can pin the
-video feed of whichever scene you want to capture.)
+One of us hid off-camera as the wizard, watching Ben 10's actions and using the Tinkerbelle controls on the laptop to time the light interactions. We recorded using Zoom.
 
-**Include your first attempts at recording the wizarded set-up here.**
+See our first wizarded attempt here: https://www.youtube.com/watch?v=42269kgHxoI
 
-## Part E. (optional) Costume the Device
+## Part E. Costume the Device
 
-Only now should you worry about what the device looks like. Costume your phone so it reads
-as the object from your masterwork — HAL's eye, a Simon shell, a paper-lantern
-Tinker Bell, an Ambient Orb, a lighthouse, a jack-o'-lantern, whatever you drew.
+We wanted to costume the phone to look more like a watch for a more realistic experience. We used paper and drew a watch, with a cutout for the watch face so that the phone light (our indiglo) can shine through:<br>
 
-Think about the world your device lives in: could that environment overheat it?
-Is water a danger? Does it need to be loud and bright for an emergency, or quiet
-and calm for a bedroom?
+<img width="3958" height="2969" alt="IMG_6926" src="https://github.com/user-attachments/assets/fff62118-f442-4920-a677-acd2a73b16ba" /><br>
 
-**Include sketches/photos of what your device might look like here.**
-
-**What concerns or opportunities shaped the way you designed its look?**
+**Concerns/opportunities in shaping the look:** The material has to be transparent enough to let light through the watch face cutout, but opaque enough that the watch band/design is visible. We also tried to use a color scheme of green, gray, and black to fit the Ben 10 universe.
 
 ## Part F. Record
 
-**Record your prototyped interaction as a video sketch.** Aim for the bar from
-the top of this lab: a viewer who knows the piece should recognize it; a viewer
-who doesn't should come away understanding what it's famous for. How might you illustrate the non-sequential aspects of the interaction in the sketch?
+**Video Sketch:** https://www.youtube.com/watch?v=3fDFrM_SdIQ 
 
-**Include your video here.**
+**Our aim:** Viewers who know Ben 10 will recognize the importance of his watch and its light interactions, but viewers who may not be familiar can still indentify the role that the indiglo light plays in helping the hero save the day.
 
-**Please indicate who you collaborated with on this lab.** Be generous in
-acknowledging their contributions, and credit any other influences (YouTube,
-Github, Twitter, a friend who lent you a lamp) that informed your recreation.
+**Collaborators and influences:**
+- Marisol Park (Ben 10)
+- Neeha Ravula (Wizard and Person In Danger)
+- Ben 10, the cartoon hero of our childhood
 
 ---
 
