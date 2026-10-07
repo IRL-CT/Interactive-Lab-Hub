@@ -1,0 +1,46 @@
+body{
+	/*background-color: white;*/
+}
+
+#user {
+	opacity: 0.6;
+	transition: opacity 1s;
+}
+
+#user.fadeOut{
+	opacity:0.1;
+}
+#user.fadeIn{
+	opacity: 0.6;
+}
+button.pcr-button {
+	display: none;
+}
+
+#controlPanel {
+	opacity: 0.0;
+	transition: opacity 1s;
+}
+
+#controlPanel.fadeIn{
+	opacity: 0.6;
+}
+#legend {
+	position: fixed; left: 12px; bottom: 12px; max-width: 720px;
+	font: 13px/1.5 monospace; color: #ddd; background: rgba(0,0,0,0.65);
+	padding: 8px 12px; border-radius: 6px; z-index: 5;
+}
+#legend th { text-align: left; padding-right: 10px; vertical-align: top; color: #9c9; white-space: nowrap; }
+#legend td { padding: 1px 0; }
+#legend b { color: #fff; }
+
+#preview {
+	position: fixed; right: 12px; top: 12px; width: 320px; height: 180px;
+	background: #000; border: 1px solid #666; border-radius: 3px; cursor: crosshair; z-index: 5;
+}
+#preview .dot {
+	position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%;
+	font: bold 10px/16px monospace; text-align: center; color: #000; pointer-events: none;
+}
+#dot1 { background: #7f7; }
+#dot2 { background: #fb5; }
