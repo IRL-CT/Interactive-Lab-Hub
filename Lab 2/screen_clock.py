@@ -4,6 +4,11 @@ import digitalio
 import board
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_rgb_display.st7789 as st7789
+from time import strftime, sleep
+
+from button_controls import button_a_pressed, button_b_pressed, create_time_screen, create_weather_screen
+from weather import get_current_weather
+from nyc_clock import NYCClock
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.D5) 
@@ -60,12 +65,33 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+
+# MY PART 2
+# while True:
+#     # Draw a black filled box to clear the image.
+#     draw.rectangle((0, 0, width, height), outline=0, fill=400)
+
+#     #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
+    
+#  
+#     # y = top
+#     # curr_time = strftime("%m/%d/%Y %H:%M:%S")
+
+#     # draw.text((x,y), curr_time, font=font, fill="#FFFFFF")
+    
+
+temperature, condition_code = get_current_weather()
+nyc_clock = NYCClock(width, height)
+
 while True:
-    # Draw a black filled box to clear the image.
-    draw.rectangle((0, 0, width, height), outline=0, fill=400)
+    if button_a_pressed():
+        frame = create_time_screen(width, height)
+    elif button_b_pressed():
+        frame = create_weather_screen(width, height, temperature, condition_code)
+    else:
+        # alex part here
+        frame = nyc_clock.frame()
 
-    #TODO: Lab 2 part D work should be filled in here. You should be able to look in cli_clock.py and stats.py 
+    disp.image(frame, rotation)
+    time.sleep(0.05)
 
-    # Display image.
-    disp.image(image, rotation)
-    time.sleep(1)
