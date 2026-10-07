@@ -50,7 +50,7 @@ Alternatively, you can pair the speaker from the terminal:
    ```bash
    wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
 
-   # if you want to unmute it, wpctl set-mute @DEFAULT_AUDIO_SINK@ 1
+   # if you want to mute it, wpctl set-mute @DEFAULT_AUDIO_SINK@ 1
 
    wpctl set-volume @DEFAULT_AUDIO_SINK@ 80%
    # change the volume of the speaker
