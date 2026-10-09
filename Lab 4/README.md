@@ -285,10 +285,19 @@ Your kit includes these [SparkFun Qwiic OLED screens](https://www.sparkfun.com/p
 As you develop your Feast Automata concept, consider where the sensor and actuator need to be placed, what parts move, how electronics are housed, and how the overall form and aesthetics support the interaction.
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
+<img width="2354" height="2145" alt="IMG_1023" src="https://github.com/user-attachments/assets/7e3dd1f9-f211-40b2-ab3b-62682de259e8" />
+<img width="2823" height="2233" alt="IMG_1022" src="https://github.com/user-attachments/assets/88581c8a-bcca-416a-bcfd-6c281d56f3a5" />
+
 
 **\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
 
+These sketches raise similar questions about the placement of the sensors and actuators, and the size and weight of the moving parts. Moreover, we are not sure whether the servo motor is strong enough to perform each action reliably. We also need to consider how far the servo can rotate, where the electronics shouls be housed, and how the user will interact with them without interfering with the mechanism.
+Hence, we would need to build some simple prototypes using lightweight materials, such as cardboard, tape and string. For example, for the Rotating Sushi Carousel idea, we would need a cross-shaped platform.
+
 **\*\*\*Pick one design to prototype and explain why.\*\*\***
+
+We pick the Rotating Sushi Carousel because it conbines a simple and intuitive interaction with a clear physical response. We also considered the limitation of the servo's movement (180 degree), making this the best and most realistic idea out of the five.  Last and most important, WE LOVE SUSHI!
+
 
 Build a cardboard or other low-fidelity physical prototype of your design.
 
