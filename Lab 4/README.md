@@ -18,7 +18,7 @@
 
 ## Lab Overview
 Team: <canvas group name>  
-Members: Full Name (netid, github-handle), ...  
+Members: David Zhang (xz2229, davidzhanggg), ...  
 Clock name: <name>
 
 
