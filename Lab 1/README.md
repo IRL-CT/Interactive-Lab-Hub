@@ -1,10 +1,8 @@
 # Recreating the Masters of Interactive Light
 
-_This project is to be done in teams of 2._
+**Rohil Saraf, Aryan Palave**
 
-**NAME OF BOTH COLLABORATOR(S) HERE**
-
-**THE MASTERWORK YOU DREW FROM THE HAT:**
+**THE MASTERWORK YOU DREW FROM THE HAT: E. T.'s Glowing Heart**
 
 ---
 
@@ -92,18 +90,35 @@ the interaction*:
 **Describe your masterwork here, in your own words. What is the core interaction
 someone would recognize it by?**
 
+**What it is:** E.T.'s glowing chest — his "glowing heart", is a practical effect from the movie E.T. the Extra-Terrestrial (1982). In our recreation, we're focusing on it as a response to kindness: E.T.'s heart glows when someone does something caring or thoughtful for him, making his gratitude and emotional response visible without words.
+
+**Inputs:** The "input" is an act of kindness directed at E.T. by someone else being fed, comforted, hidden and protected, spoken to gently, or cared for when he's scared or hurt.
+
+**Outputs:** A warm reddish-orange glow in his chest that brightens and pulses in response to the kindness, a small act might produce a soft, gentle pulse, while a deeply caring moment produces a fuller, brighter, steadier glow.
+
+**Who is present, and how it colors relationships:** E.T. is the receiver of kindness and the glow is his visible "thank you." Elliott (or whoever performs the kind act) becomes the giver the light lets Elliott see, in real time, that his care is landing and being felt, even though E.T. can't easily say so in words.
+
+**What it's famous for:** While the film's iconic light beats are usually tied to healing or dying, we're drawing on the quieter, tender moments, Elliott sharing food, wrapping him in blankets, hiding him from harm, and imagining the heartlight as the visible sign of E.T. registering that warmth.
+
+**Strengths:** It turns responses like gratitude, comfort, feeling cared for into something visible and immediate, which makes small acts of kindness feel rewarded and reciprocal. It also builds intimacy, since only the person doing the kind act gets to see the glow respond directly to them.
+
+**Weaknesses:** Because the trigger is an internal feeling rather than a clear physical action, it can be hard for an audience to tell exactly *what* kindness caused the glow without context. It also risks reading as generic "happy light" without a clear, legible connecting action beforehand.
+
+**Core interaction someone would recognize it by:** Someone performs a small act of kindness for E.T., feeding him, covering him with a blanket, speaking gently, and his chest glows in warm response, like saying a thankyou.
+
 ## Part A. Plan
 
-For your masterwork, reconstruct the interaction as a scene:
+**Setting:** A dim, quiet closet or blanket fort in a kid's bedroom at night, echoing the film's makeshift hideaway where Elliott cares for E.T. in secret.
 
-- **Setting:** Where and when does this interaction happen? (a jungle, a kitchen,
-  a spaceship corridor, a nightclub, a harbor at night)
-- **Players:** Who is involved? Who else is present? Think through everyone in
-  the setting, not just the primary user.
-- **Activity:** What is happening between the players and the light?
-- **Goals:** What is each player trying to do?
+**Players:**
+- **E.T.** — seated or lying down, chest dim and unlit at first.
+- **Elliott** — the one performing the kind act (offering food, covering him with a blanket, or speaking softly to him).
 
-**Describe your setting, players, activity, and goals here.**
+**Activity:** Elliott notices E.T. is cold, scared, or hungry, and does something small and caring for him. As the kindness registers, E.T.'s chest glow builds from dark to a warm, gentle pulse. Elliott notices the response and reacts with warmth/surprise, encouraging him to keep going — maybe trying a second kind gesture to see the glow respond again, even brighter.
+
+**Goals:**
+- **E.T.'s goal:** his only "goal" is an involuntary emotional response to being cared for, expressed as light.
+- **Elliott's goal:** to comfort E.T. and, once he notices the glow responds to kindness
 
 Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
 don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
@@ -112,9 +127,15 @@ and the people around it. If you're new to storyboarding, read
 
 **Include pictures of your storyboards here.**
 
+<img width="4284" height="5712" alt="IMG_7909" src="https://github.com/user-attachments/assets/357eed01-ceb2-42f2-b38d-8dc97d272cc4" />
+<img width="4284" height="5712" alt="IMG_7908" src="https://github.com/user-attachments/assets/a6eaacde-ba91-4631-812d-85c66840189f" />
+<img width="4284" height="5712" alt="IMG_7907" src="https://github.com/user-attachments/assets/c11db3fb-0708-4346-875f-d39b4882dd33" />
+
 Use the storyboards to decide what interaction to prototype.
 
 **Summarize the feedback you got here.**
+
+Feedback we got: Reactions were mixed. Most people picked up on the core interaction, that the glow was some kind of gratitude response tied to being fed/cared for. One person correctly guessed it was E.T. outright. But several others couldn't place the character, a few thought the drawing was just "a poorly drawn animal," not specifically E.T. This told us the interaction itself reads clearly on paper, but the character design in our storyboards isn't distinct enough on its own, we're relying on people already knowing the reference rather than the drawing carrying it.
 
 ## Part B. Act out the Interaction
 
@@ -128,6 +149,12 @@ it aloud.
 
 **Are there key moments in the interaction where things could go in a different direction?**
 Iterate your storyboards to capture key non-sequential aspects of the interaction. 
+
+Better on paper than acted out: A single glow color felt flat once we acted it out. The transition mattered more than we thought going from neutral to yellow to amber as the kindness lands reads way better live than just flipping the light on.
+
+New ideas on our feet: Starting from a neutral glow instead of fully dark worked well, it makes it feel like E.T.'s light is already alive and kindness just shifts its color/warmth, not a mechanical on/off. We also added warm, peaceful music playing under the color change, it helped capture the emotion way more than light alone.
+
+Non-sequential moments: If Elliott keeps being kind (offers food again, stays close) after the first glow shift, the light could keep climbing past amber to something brighter. If the moment just passes, it holds at amber. We want to storyboard both branches: amber-and-hold vs. amber-climbing-higher with repeated kindness.
 
 ## Part C. Prototype the Light (light first!)
 
@@ -153,6 +180,9 @@ building any real electronics. (Zoom works well for recording; you can pin the
 video feed of whichever scene you want to capture.)
 
 **Include your first attempts at recording the wizarded set-up here.**
+
+https://www.youtube.com/shorts/dc3uiMTK8dU
+
 
 ## Part E. (optional) Costume the Device
 
@@ -180,6 +210,12 @@ who doesn't should come away understanding what it's famous for. How might you i
 acknowledging their contributions, and credit any other influences (YouTube,
 Github, Twitter, a friend who lent you a lamp) that informed your recreation.
 
+https://www.youtube.com/shorts/dc3uiMTK8dU
+
+
+<img width="5712" height="4284" alt="IMG_7915" src="https://github.com/user-attachments/assets/1ef565ca-3e99-4374-8755-0185a50c0df0" />
+
+
 ---
 
 # Part 2 — ReMastering the light
@@ -195,6 +231,19 @@ wasn't clear.
 
 **Who were the other groups you kibitzed with? Add links to their project pages here.**
 **Summarize the feedback you got from your partners here.**
+
+https://github.com/vd269-dot/Vasudha-Lab-Hub/tree/Fall2026/Lab%201
+
+> **Groups we kibitzed with:**
+> 1. [(link)](https://github.com/vd269-dot/Vasudha-Lab-Hub/tree/Fall2026/Lab%201)
+> 2. [(link)](https://github.com/DanielXing373/Interactive-Lab-Hub/tree/Fall2026)
+> 3. [(link)](https://github.com/MortalJin/Interactive-Lab-Hub/tree/Fall2026/Lab%201)
+
+> **Feedback we got:**
+> 1. Start off on a red/orange color and transition to something more friendly, red/orange read more like alarm than comfort.
+> 2. Using gradients instead of hard color jumps could make the transition feel smoother and more alive.
+> 3. Didn't know it was E.T. specifically, but could tell the entity felt good about being given candy, so the core interaction read even without knowing the reference.
+
 
 ## Remix, Update, or Critique the Master
 
@@ -213,6 +262,14 @@ combine them):
 
 We will grade this second pass with an emphasis on **creativity** and on how well
 your response engages with what your master was really doing.
+
+We're addressing two weaknesses that came up across both feedback rounds: people couldn't always tell it was E.T., and starting on red/orange read as alarm instead of comfort. For this remix, we're dropping the "must be recognized as E.T." requirement and treating it as a general gratitude light instead, since the emotional interaction read clearly even when people didn't know the character. We're also fixing the color logic: starting from a neutral/cool tone instead of red/orange, and using a smooth gradient instead of hard color jumps, so the shift into warmth feels gradual and earned rather than a sudden switch. Also adding peaceful warm music when ET feels compassionate and grateful.
+
+Updated Story board:
+
+<img width="4284" height="5712" alt="IMG_7916" src="https://github.com/user-attachments/assets/35ee0540-20eb-457c-bfa5-c005c04a128f" />
+
+Video: https://youtube.com/shorts/L86rGn1VtBo?is=9yZM0PJBNNLctoDu
 
 **Document everything here — especially the storyboard and video. Photos of the
 prototype are great too.**
