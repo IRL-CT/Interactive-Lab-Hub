@@ -52,6 +52,7 @@ A demo video of our prototype can be seen in:
 https://drive.google.com/file/d/107zFRFPnj3CcGJ7PWsL-9535d5mnNfVf/view?usp=sharing
 
 For our low-fi prototype, we cut out a cardboard and used as the cross shape platform that turn every time user press the buttom. We cut out 4 paper circle as plate and used rice cake to mock the sushi.
+
 <img width="1279" height="1706" alt="image" src="https://github.com/user-attachments/assets/b3ffa979-5529-48cc-97be-4132ceb3336f" />
 <img width="3024" height="4032" alt="image" src="https://github.com/user-attachments/assets/e9ccc0cd-2dd9-4e79-9acf-858ed7acf3c5" />
 <img width="4032" height="3024" alt="image" src="https://github.com/user-attachments/assets/4e28671e-f446-43af-bf40-ff6661156121" />
