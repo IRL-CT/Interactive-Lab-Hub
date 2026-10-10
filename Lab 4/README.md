@@ -31,6 +31,13 @@ For lab this week, we focus on both sensing and actuation, bringing new modes of
 As you develop your Feast Automata concept, consider where the sensor and actuator need to be placed, what parts move, how electronics are housed, and how the overall form and aesthetics support the interaction.
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
+1. Tea Bag Lifter: A button activates a servo connected to the tea bag string, lifting the tea bag out of the mug when the user is ready.
+2. Instant Noodle Cooler: A proximity sensor detects when a bowl of noodles is placed nearby and activates a small fan to cool the food.
+3. Food Guardian: A proximity sensor detects when a hand approaches the food and triggers a servo-controlled arm to move in front of it and protect 
+4. Joystick Vending Machine: The user selects one of four snacks using the joystick directions, then presses the joystick to confirm and dispense the chosen item.
+5. Rotating Sushi Carousel: A button controls a servo that rotates a platform between three sushi serving positions, bringing the next piece toward the user.
+
+
 <img width="2823" height="2233" alt="IMG_1022" src="https://github.com/user-attachments/assets/88581c8a-bcca-416a-bcfd-6c281d56f3a5" />
 <img width="2354" height="2145" alt="IMG_1023" src="https://github.com/user-attachments/assets/7e3dd1f9-f211-40b2-ab3b-62682de259e8" />
 
