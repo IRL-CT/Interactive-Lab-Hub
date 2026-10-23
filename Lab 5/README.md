@@ -108,6 +108,18 @@ pi@raspberrypi:~ $ ollama list
 
 \*\*\***Include a screenshot of `ollama list` showing your models, and the `bus.jpg` result and your own photo with their boxes.**\*\*\*
 
+Both Qwen models pulled and running on the Pi:
+
+![ollama list](report_images/ollama_list.png)
+
+`yolo26n` exported to NCNN, run on the test image. It finds the bus (0.90) and four people, including the one cut off at the left edge (0.56). Inference took about 90 ms on the Pi 5.
+
+![bus.jpg with detections](report_images/bus_detected.jpg)
+
+My own photo from the webcam with `snap.py`. The camera was mounted upside down, and YOLO still found me (0.68) and the wall clock (0.50), but with lower confidence than the people in the bus photo.
+
+![snap.jpg with detections](report_images/snap_detected.jpg)
+
 
 ## Part B. 
 ### See: recognize people in real time with YOLO
@@ -132,6 +144,22 @@ Then press q to quit and run it again with a flag. Each one changes a single thi
 ```
 
 \*\*\***Include a short video or screenshots of the person detection. Write down three situations where it did not see you, or saw a person who was not there, and what you think the cause was.**\*\*\*
+
+`yolo_person.py` running live on the Pi, viewed through Raspberry Pi Connect screen sharing. Facing the camera, right side up, it detects me at about 0.9, much higher than the 0.68 from the upside-down `snap.jpg` in Part A.
+
+![yolo_person.py detecting me](report_images/yolo_person_detected.png)
+
+**Three situations where it got it wrong:**
+
+1. **A photo of a person on my phone (a person who is not there).** I held up a photo of myself on my phone and YOLO boxed it as `person 0.81`, almost as confident as the real me. YOLO only sees shapes and textures in a 2D frame, so a picture of a person looks the same to it as a person. For a bedside device, a poster, a TV or a phone screen on the nightstand would all count as someone in the room.
+
+   ![photo on a phone detected as a person](report_images/yolo_phone_photo.png)
+
+2. **Just my hand and shirt (a whole person from a part).** With only my hand and part of my T-shirt in frame, it still said `person 0.84` and drew the box over the whole frame. It is trained on people, not body parts, so any skin and clothing close to the camera is enough for a full "person". A hand reaching for the alarm would be counted the same as someone standing by the bed, so the box alone can't tell those apart.
+
+   ![hand and shirt detected as a person](report_images/yolo_hand.png)
+
+3. **The camera upside down (less sure of a real person).** In `snap.jpg` (Part A) the webcam was mounted upside down, and the confidence dropped to 0.68 from about 0.9 when right side up. The training photos are almost all upright people, so an unusual orientation looks less like what it learned. A person lying down in bed is a similar case, and that is the main pose this device would see at night.
 
 
 ## Part C. 
@@ -159,6 +187,19 @@ Try the two main features of this script: 1) pinching for percentage control (th
 Consider how you might use this position based approach to create an interaction, and write how you might use it on either face, hand or body pose tracking.
 
 \*\*\***Include a screenshot or short video of the hand pose demo, and write how you might use face, hand or body pose tracking in your observant system.**\*\*\*
+
+`hand_pose.py` running on the Pi at 10–13 FPS. On the left, a pinch: the distance between thumb and index fingertips sets the volume to 15%. On the right, the "quiet coyote" gesture is recognized and mutes it to 0%.
+
+| Pinch to set volume | Quiet coyote to mute |
+|---|---|
+| ![pinch gesture at 15%](report_images/hand_pinch.png) | ![quiet coyote gesture at 0%](report_images/hand_quiet_coyote.png) |
+
+**How I would use it: body pose to measure restlessness.** YOLO can tell me *that* someone is in bed, but not *how* they are sleeping. MediaPipe's body pose gives me the positions of my shoulders and hips, so the device could track how they move through the night. The event rule would work like the pinch rule in `hand_pose.py`: if the angle of the line between my shoulders changes by more than about 45° and stays changed for a few seconds, that counts as one turn. A few small shifts are normal, but a cluster of turns in a short window means a restless stretch. In the morning, the device would report how many times I turned over and when the restless stretches were, for example "you tossed and turned a lot between 3 and 4am".
+
+What I would need to handle:
+- **The dark.** Pose tracking needs to see me, and the webcam is close to blind with the lights off. I would need a dim night light, or an IR camera.
+- **The blanket.** It hides my hips and sometimes my shoulders. I would only count frames where MediaPipe is confident about the shoulder landmarks.
+- **The camera angle.** The camera would have to look down at the bed from the side, not face me like in the screenshots, because pose models are trained mostly on upright people (the same problem as the upside-down `snap.jpg` in Part A).
 
 
 ## Part D. 
@@ -193,6 +234,46 @@ Four things in the [Ollama API](https://github.com/ollama/ollama/blob/main/docs/
 A 0.8B model is slow and sometimes wrong. It will invent events that are not in the data and agree with a wrong premise. Give it the data, keep its job narrow, and decide what the device does when the model is unsure.
 
 \*\*\***Ask Qwen three questions a bedside device might need to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
+
+All run with `ask_qwen.py` (thinking off, 120-token cap) on the Pi 5.
+
+**Warm-up: Roosevelt Island (`qwen3.5:0.8b`, 81.7 s).** The first call includes loading the model.
+
+> Roosevelt Island is a historic district on Long Island, New York, known for its rich architectural heritage and vibrant community life. It was originally built as a military installation during World War II, which later became the home to the U.S. Navy's flagship ship *USS Roosevelt*. Today, it serves as a popular tourist destination featuring iconic landmarks like the USS Constitution, the National Museum of the American Revolution, and a thriving arts scene.
+
+Zero true facts. It is not on Long Island, was never a military base, and none of those landmarks are there. It never mentions Blackwell's Island, Welfare Island, the 1973 renaming or Cornell Tech. Everything sounds confident and is invented.
+
+**Bedside question 1 (`qwen3.5:0.8b`, 29.0 s)**
+
+> **Q:** I went to bed at 1am and have to be up at 8. How much sleep will I get, and is that enough?
+>
+> You would likely only get about 2 hours of restful sleep during your night shift, which is insufficient for a full day of work. You should aim for 7–9 hours of quality sleep to feel rested and productive.
+
+**Wrong.** 1am to 8am is 7 hours, which is inside the 7–9 hours it recommends itself. It can't do simple time arithmetic, and it invented a "night shift". The device should do the math in code and only give the model the result.
+
+**Bedside question 2 (`qwen3.5:0.8b`, 41.2 s)**
+
+> **Q:** I woke up at 3am and cannot fall back asleep. What should I do?
+>
+> Try to listen to white noise or gentle music to help your brain settle. If that fails, try a warm bath with hot water for ten minutes before bed. Do not lie down until you feel completely comfortable.
+
+**Partly right.** White noise is reasonable, but a warm bath "before bed" doesn't help when you're already in bed at 3am, and "do not lie down" makes no sense for someone lying in bed.
+
+**Bedside question 3 (`qwen3.5:0.8b`, 31.5 s).** This is the kind of summary my restlessness device would need.
+
+> **Q:** Last night the sensor counted 14 turns between 3am and 4am and only 3 turns the rest of the night. Write a one-line morning summary for me.
+>
+> The sensor shows a sharp drop in activity, suggesting the day ended early or there was a significant event at 4am that stopped the counting.
+
+**Wrong, and this is the one that matters most.** The point of the data was a restless hour from 3 to 4am. The model read the change after 4am as a "drop in activity" and guessed the sensor stopped. For Part 2 the summary can't be left to the model: the code should find the restless window itself and give Qwen only the wording job, for example "Write one friendly sentence saying the restless period was 3–4am."
+
+**Comparison: question 2 with `qwen3:0.6b` (18.2 s vs 41.2 s)**
+
+> Try to stay active and move around to help your body release the tension. If this is a common issue, consider speaking with a healthcare professional.
+
+The smaller model was more than twice as fast and its answer was vaguer, but less wrong: it didn't contradict the situation the way "do not lie down" did. Moving around is still questionable advice at 3am. For short, fixed-format text the 0.6b model is probably good enough and saves time; neither model should be trusted with facts or numbers.
+
+**Speed note.** The Pi has no fan, and after these runs it was at 84.5 °C and throttling (`vcgencmd get_throttled` = `0xe0008`, the soft temperature limit). Some of these times are slower than they would be on a cooled Pi.
 
 
 ## Part E. 
@@ -239,6 +320,72 @@ Run it with a partner: have them walk in, sit down, leave. Compare the log with 
 * **The timing.** `--seconds 300` watches longer. `--every` logs every reading instead of only changes, so the log grows to hundreds of lines and Qwen has to find the changes itself. See whether it still can.
 
 \*\*\***Document the pipeline: at least three runs with the log, the question, Qwen's answer, and whether it was right. Include one case where Qwen got it wrong, and say what you changed in the interpreter and why.**\*\*\*
+
+All runs were headless over SSH, 60 seconds each, with me and some friends moving in and out of frame.
+
+**Run 1: the default question.** Log (`watch_log_run1.txt`, 21 lines):
+
+```
+12:34:22 nobody
+12:34:25 1 person(s) at left/far
+12:34:26 nobody
+12:34:27 1 person(s) at left/far
+12:34:29 nobody
+12:34:31 1 person(s) at right/far
+12:34:32 nobody
+12:34:55 1 person(s) at right/close
+12:34:55 1 person(s) at center/close
+12:34:56 nobody
+12:35:04 1 person(s) at right/close
+12:35:05 nobody
+12:35:06 2 person(s) at right/close, center/close
+12:35:06 nobody
+12:35:07 2 person(s) at center/close, right/close
+12:35:08 1 person(s) at center/close
+12:35:09 nobody
+12:35:10 1 person(s) at left/close
+12:35:11 nobody
+12:35:15 1 person(s) at center/close
+12:35:17 1 person(s) at right/close
+```
+
+> **Q:** How many people were there, what were they doing, and did anything change?
+>
+> **Qwen (24.0 s):** There were a total of 6 people visible in the room during the 61-second observation. The activity varied significantly: initially, only one person was present at left and far distances; later, two individuals appeared at right/close and center/close locations simultaneously. Finally, the scene changed to show three people now located at center/close and right/close positions. No other changes occurred in this specific log entry.
+
+**Partly right.** The order is right: one person far away first, then two people close together. But "three people" at the end is not in the log, which never shows more than two at once. The total of 6 looks like it counted log lines with a person in them rather than people.
+
+**Run 2: same log, different question.** (`--log watch_log_run1.txt`)
+
+> **Q:** Did anyone leave the room? If so, when?
+>
+> **Qwen (10.4 s):** Yes, someone left the room around 12:35:06, as indicated by two people appearing at right/close and center/close simultaneously. No one was seen leaving earlier in the recorded timeframe.
+
+**Wrong.** Its evidence for someone leaving is two people *appearing*, and it says no one left earlier even though the log goes to `nobody` 9 times. The log has too many changes for it to follow: the reading flips between `nobody` and a person every second or two, because YOLO drops people for single frames, especially at the edge of the frame. With 21 changes in a minute, Qwen can't tell which ones are real.
+
+**What I changed in `interpret()` and why.** The problem is not the model; it is that the log is too noisy for the model. Three changes in `yolo_to_qwen.py`:
+
+1. **Hold a person for 2 seconds.** If YOLO sees nobody less than `HOLD = 2.0` seconds after it saw someone, the reading stays the same. A one-frame dropout is not someone leaving.
+2. **Merge overlapping boxes.** If two person boxes overlap by more than 60% of the smaller one, they count as one person, because YOLO sometimes boxes the same body twice. The tradeoff is that two people sitting shoulder to shoulder could be merged, which I accept for a device that watches one person in bed.
+3. **Drop left/center/right, keep close/far.** Every small move sideways was a new log line. My Part 2 idea (restlessness) needs to know whether someone is there and close, not which third of the frame they are in.
+
+**Run 3: the default question with the new interpreter.** Same kind of minute, people coming and going. Log (`watch_log_run3.txt`, 5 lines instead of 21):
+
+```
+12:40:45 nobody
+12:40:48 1 person(s), close
+12:41:03 nobody
+12:41:10 1 person(s), close
+12:41:29 nobody
+```
+
+> **Q:** How many people were there, what were they doing, and did anything change?
+>
+> **Qwen (14.8 s):** There was only one person present in the room throughout the entire 61-second observation period. They were standing close to each other and remained stationary for the duration of the camera's view. No changes occurred to their location or activity during this time.
+
+**The log is now right; Qwen is still wrong.** The interpreter fix worked: the log is a clean story of someone arriving, leaving, coming back and leaving again, and it was faster to reason over (14.8 s vs 24.0 s). Qwen got "one person" right, but "throughout the entire period" and "no changes" ignore the three `nobody` lines, and "standing close to each other" makes no sense for one person.
+
+**What I take from this for Part 2.** Cleaning up the interpreter fixed the input, but a 0.8B model still can't reliably read even five lines. So in my overnight system the code will do the counting: how many times I turned, when the restless stretches were, and how long the room was empty. Qwen will only turn those numbers into a friendly morning sentence, which is the one job it did reasonably well in Part D.
 
 ---
 
