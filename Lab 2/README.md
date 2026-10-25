@@ -1,6 +1,8 @@
 # Interactive Prototyping: The Clock of Pi
 **NAMES OF COLLABORATORS HERE**
 
+**Jindi Chai & Yilin Wu**
+
 Does it feel like time is moving strangely during this semester?
 
 For our first Pi project, we will pay homage to the [timekeeping devices of old](https://en.wikipedia.org/wiki/History_of_timekeeping_devices) by making simple clocks.
@@ -158,6 +160,15 @@ You can look in `image.py` for an example of how to display an image on the scre
 
 \*\*\***Include a picture of your own Raspberry Pi displaying the piscreen.service with your unique MAC address. Additionally, please provide another picture showing the successful completion of the screen test.**\*\*\*
 
+<img width="4032" height="3024" alt="IMG_1397" src="https://github.com/user-attachments/assets/8a441831-d4e8-455e-a5d4-69370959fd9a" />
+
+<img width="4032" height="3024" alt="IMG_1399" src="https://github.com/user-attachments/assets/9053a6a3-031a-4fe9-bdbe-5ab5cece88c3" />
+
+<img width="4032" height="3024" alt="IMG_1400" src="https://github.com/user-attachments/assets/5c720952-e2b7-42f2-9cae-d0825e8ae6cb" />
+
+<img width="4032" height="3024" alt="IMG_1401" src="https://github.com/user-attachments/assets/8b056132-bd8e-4cf6-91a4-2a3bfaa8c8c2" />
+
+
 
 ## Part D. 
 ### Set up the Display Clock Demo
@@ -183,6 +194,9 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
+<img width="3360" height="2375" alt="IMG_1403" src="https://github.com/user-attachments/assets/cf933bbf-0c63-4d3b-afe9-9f2af101fa12" />
+
+
 ## Part E. Read Part 2. Sketch and brainstorm further interactions and features you would like for your clock.
 
 One potential source of ideas might be thinking about other clocks and timekeeping devices for inspiration.
@@ -194,9 +208,27 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 ** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf)), storyboards for your ideas **
 
+I want to create a clock related to dogs and dog walking. Since I have a dog myself, walking and playing with my dog have always been a very important part of our daily routine. I don’t want to use the traditional hour-and-minute format; instead, I want the current time to be reflected through changes in the dog’s activity levels throughout the day. When there’s still a long time until the next walk, the dog on the screen will be sleeping or resting; as walk time gradually approaches, the dog will wake up and start paying attention to its surroundings; when it’s almost time for a walk, it will become excited, and paw prints will appear; if it’s past the usual walk time, the dog will appear to be waiting or getting anxious. The specific visual presentation still needs to be tested, as I’m not sure whether the Raspberry Pi’s LED screen can display images or emojis, or if it’s limited to text. I may make adjustments based on the results of future testing. Since the LED display has two interactive buttons, I plan to add several different interfaces. Users can use one button to log a completed walk, while the other button allows them to switch between viewing data at different scales—such as how many times they’ve walked the dog today, how many walks have been completed this year, and the total distance the owner and dog have walked together over the past year.
+
+**Sketches & Storyboard**
+
+<img width="2080" height="1668" alt="storyboard1" src="https://github.com/user-attachments/assets/3e4be031-8c1b-4766-9d79-4ccfa0b4ff3d" />
+
+**Verplank Diagrams**
+<img width="3292" height="1668" alt="verplank diagrams 48" src="https://github.com/user-attachments/assets/be4bfc1a-fc9b-4760-9c59-06c2aa46a38f" />
+
 
 
 **Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
+
+https://github.com/SinaL0123/Interactive-Lab-Hub/tree/Fall2026/Lab%202
+
+https://github.com/zg375/Interactive-Lab-Hub/tree/86dc14dd4b592afbeb4f4187617a6ae88da5ad3f/Lab%202
+
+https://github.com/bh654-dev/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
+
+https://github.com/Afrozaktar/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
+
 
 # Lab 2 Part 2
 
@@ -206,6 +238,19 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
 **Put the feedback for your ideas here.**
+
+
+(1) I really like your idea of showing time through the dog’s behavior! I was wondering what would happen in special situations though—like if the dog is sick, the weather is bad, or you just can’t go for a walk that day. Maybe there could be an option to skip or postpone the walk, so the dog doesn’t keep looking anxious 😭
+
+Also, are the usual walking times preset by the user? I feel like weekday and weekend schedules could be different, since people might walk their dog at different times when they don’t have work.
+
+(2) I really like the dog walking clock idea because it connects time with a real daily routine instead of just showing hours and minutes. The different dog behaviors, like sleeping, waking up, and getting excited, make it easy to understand how close it is to walk time. I also think using the buttons to log walks and check walking data is a nice way to make the clock more interactive. One suggestion would be to make the dog’s different states visually very clear, maybe by using simple icons or different background colors, so users can quickly understand what each state means.
+
+(3) I really like the progression from sleeping to awake to excited as walk time approaches. One thing I would think about is what happens if the user forgets to press the button after completing a walk. Since the clock depends on manually logging each walk, it might be useful to show a reminder or make it easy to correct a missed walk. 
+
+(4) Your dog walking clock idea is really creative. Tying the display to your dog's behavior states instead of a literal hour minute readout is very creative. It's also grounded in something personal and real (your own routine with your dog), which makes it more meaningful.
+Since you mentioned uncertainty about whether the screen can show images/emojis vs. just text, it might help to do a quick screen capability test early so your concept doesn't have to change last-minute.
+
 
 ## Update your Lab Hub
 
@@ -220,6 +265,12 @@ Start small, pick just one element of your overall idea, just to show you have a
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your barely modified PiClock.**\*\*\*
+
+https://github.com/user-attachments/assets/f18abc4a-c115-4b29-bef9-3047d9fdea37
+
+[Code](./dog_clock.py)
+
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -237,13 +288,43 @@ Do take advantage of having done the previous iteration to refine and simplify y
 
 ** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
+### Ideas
+
+After listening to our classmates’ comments and suggestions, we decided to keep improving our Dog Walk Clock. Based on our original demo, we added some new features to solve problems we noticed in the current design. Different dogs can have different walking routines. Some dogs may need several walks every day, while others may only need one or two. We added a customizable walk schedule, so users can change the clock settings through the computer. They can reduce the number of walks or set different walking times for weekdays and weekends based on their daily routine.
+
+We also added a speaker to the clock. When it reaches a scheduled walking time, the dog will make a barking sound to remind the owner that it is time for a walk. Compared with the silent visual reminder on the LED screen, the sound can work more clearly like an alarm. We also slightly changed the visual environment on the screen. The background color changes at different times of the day to represent changes in the environment. Finally, we added a missed-walk correction feature. If the user cannot walk the dog on time, or forgets to press the button after the walk, they can correct it later without affecting the rest of the clock.
+
+
+### Sketches & Storyboard
+
+<img width="2080" height="2538" alt="ss 51" src="https://github.com/user-attachments/assets/9ccf8696-2363-4292-8614-5ecabd7b691b" />
+
+
+### Verplank Diagram
+
+<img width="3292" height="1826" alt="vd 50" src="https://github.com/user-attachments/assets/f1bceb41-1f57-40fa-b1e5-e08ac10f9402" />
+
+
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
+[Code](./dog_clock_v3.py)
+
 \*\*\***Take a video of your PiClock.**\*\*\*
 
+<img width="588" height="701" alt="SS2026-09-20 下午6 25 15" src="https://github.com/user-attachments/assets/886d4185-c149-400e-b815-ac752dce7fbd" />
+
+
+** Demo Video  https://youtube.com/shorts/t_dNxQuSu40?feature=share **
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+
+For this dog clock project, Jindi came up with the original idea for the project and designed the basic interactions based on this idea. After that, we discussed and designed the project together and improved and added more features. Based on our discussions, Jindi created the sketches, storyboard, and Verplank diagram, and revised them as the project developed. Yilin was mainly responsible for developing the Dog Walk Clock based on the feature descriptions and sketches. Finally, we worked together to film and edit the clock demo video.
+
+Special Thanks: We would like to thank Longan (Jindi’s dog) for being the inspiration behind this project, helping us test the demo, and appearing in our demo video! We also used Codex to assist us with the development and testing of the clock.
+
+<img width="200" alt="IMG_1448" src="https://github.com/user-attachments/assets/8f982bf6-eaab-4961-b6ce-479b04442d61" />
+
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab.  Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page. 
 

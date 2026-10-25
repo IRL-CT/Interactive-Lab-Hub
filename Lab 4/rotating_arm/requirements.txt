@@ -1,0 +1,3 @@
+Adafruit-Blinka
+adafruit-circuitpython-apds9960
+adafruit-circuitpython-pca9685

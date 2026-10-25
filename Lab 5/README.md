@@ -1,8 +1,8 @@
 # Observant Systems: Overnight Sensation
 
-**Team:**
+**Team:** 
 
-**Members:** Full Name (netid, github-handle), ...
+**Members:** Jindi Chai
 
 **Project name:**
 
@@ -118,6 +118,7 @@ Now a photo of your own. Plug in the webcam and take one with `snap.py` (`--dela
 
 Every run gets its own numbered folder, so this one is in `runs/predict2/snap.jpg`; the command prints where it saved. Keep `snap.jpg`, you will show it to Qwen in Part D.
 
+
 ### Ollama: install it and pull Qwen
 
 [Ollama](https://ollama.com) runs language models locally. Nothing leaves the Pi: no API key, no internet after the download.
@@ -135,6 +136,13 @@ pi@raspberrypi:~ $ ollama list
 | `qwen3:0.6b` | ~0.5 GB | text only, smaller and faster (~16 tokens/s on a Pi 5) |
 
 \*\*\***Include a screenshot of `ollama list` showing your models.**\*\*\*
+
+<img width="810" height="1080" alt="bus" src="https://github.com/user-attachments/assets/399b7079-37ee-4b37-87b4-8f8226efb38f" />
+
+<img width="3024" height="4032" alt="snap" src="https://github.com/user-attachments/assets/b39a2d70-a664-45f1-b3b9-5305bed6a025" />
+
+<img width="569" height="65" alt="ollama list" src="https://github.com/user-attachments/assets/b9da23cb-effa-4a5e-bb17-7ec557357302" />
+
 
 
 ## Part B. 
@@ -160,6 +168,32 @@ Then press q to quit and run it again with a flag. Each one changes a single thi
 ```
 
 \*\*\***Include a short video or screenshots of your experiments with the person detection. Write down three situations where it did not see you, or saw a person who was not there, and what you think the cause was.**\*\*\*
+
+
+### yolo_person.py --conf 0.2：
+
+<img height="200" alt="截屏2026-10-23 下午4 30 24" src="https://github.com/user-attachments/assets/7fd4657e-efab-44fe-9031-e455be204504" />
+<img height="200" alt="截屏2026-10-23 下午4 32 52" src="https://github.com/user-attachments/assets/ec93d8a2-325d-46bc-9b7b-6f460075e514" />
+<img height="200" alt="截屏2026-10-23 下午4 35 03" src="https://github.com/user-attachments/assets/b3788ac7-da53-4016-993e-04e44515fc53" />
+<img height="200" alt="截屏2026-10-23 下午4 36 10" src="https://github.com/user-attachments/assets/aa050477-bd50-4aa4-a95a-41bb56cc84d4" />
+<img height="200" alt="截屏2026-10-23 下午4 36 20" src="https://github.com/user-attachments/assets/399810e2-dc11-4b9f-84db-16232ee391c8" />
+
+### yolo_person.py --conf 0.7：
+
+<img height="200" alt="截屏2026-10-23 下午4 53 25" src="https://github.com/user-attachments/assets/8438b1a5-f6e4-4275-814b-15b5d388cafd" />
+<img height="200" alt="截屏2026-10-23 下午4 56 34" src="https://github.com/user-attachments/assets/02a341cd-26df-4110-afb5-afcd09e10e0b" />
+<img height="200" alt="截屏2026-10-23 下午4 58 15" src="https://github.com/user-attachments/assets/670901ee-d033-416c-a3ab-5b3a02e19926" />
+<img height="200" alt="截屏2026-10-23 下午4 52 29" src="https://github.com/user-attachments/assets/22f29793-77d5-45cf-87de-7ddca5afaad7" />
+<img height="200" alt="截屏2026-10-23 下午4 52 49" src="https://github.com/user-attachments/assets/534d9d8d-c747-4bb1-85e3-21bd6f4641f1" />
+
+### yolo_person.py --all：
+
+<img height="200" alt="截屏2026-10-23 下午5 43 25" src="https://github.com/user-attachments/assets/5eea705d-06ba-4644-8d3e-233b83f77bfd" />
+<img height="200" alt="截屏2026-10-23 下午5 44 31" src="https://github.com/user-attachments/assets/bbb242de-3fd0-4a49-b2a2-07bff011a312" />
+<img height="200" alt="截屏2026-10-23 下午5 40 45" src="https://github.com/user-attachments/assets/ace287ac-d4a2-41fe-abac-628899b9756f" />
+<img height="200" alt="截屏2026-10-23 下午5 44 05" src="https://github.com/user-attachments/assets/bf34646b-1127-4ae6-9948-b070d1b4d223" />
+
+I noticed a few situations where YOLO made mistakes during my testing. First, in low-light or dark environments, it sometimes failed to detect me, especially when only part of my body was visible. I think this happened because the camera could not capture enough visual details for the model to recognize a person. Second, when I showed a photo of a person on my phone, YOLO detected the person in the photo as if someone were actually there. This might be because the model focuses on visual features and shapes rather than understanding whether a person is physically present. Third, when I tested the `--all` mode, YOLO sometimes mistakenly identified my blanket as a person. I think the folds, shadows, and shape of the blanket might have looked similar to parts of a human body. I also noticed some missing or incorrect object detections, which could be related to viewing angles, partial occlusion, or limitations in the model's training data.
 
 
 
@@ -188,6 +222,13 @@ Try the two main features of this script: 1) pinching for percentage control (th
 Consider how you might use this position based approach to create an interaction, and write how you might use it on either face, hand or body pose tracking.
 
 \*\*\***Include a screenshot or short video of the hand pose demo, and write how you might use face, hand or body pose tracking in your observant system.**\*\*\*
+
+<img height="200" alt="截屏2026-10-23 下午6 01 17" src="https://github.com/user-attachments/assets/79158fb7-1c88-4887-b7a2-7e6e165b840a" />
+<img height="200" alt="截屏2026-10-23 下午6 01 10" src="https://github.com/user-attachments/assets/700e5793-b7ef-4852-a87e-3315690244ab" />
+<img height="200" alt="截屏2026-10-23 下午6 01 02" src="https://github.com/user-attachments/assets/1df0f69c-747b-44eb-af56-330e838bc650" />
+
+I tested the hand pose demo, and both the volume control and Quiet Coyote gesture worked well. For my observant system, I think hand tracking could be used as a way to trigger specific actions without touching the device or using voice commands. For example, making a peace sign (✌️) could automatically take a photo, while an OK gesture (👌) could confirm that the user is satisfied with the result and save the file. I could also design a specific gesture as an emergency command to quickly trigger an alert or other action. I think this could make the interaction more convenient and intuitive, especially when users cannot easily reach the device. However, the system would need to distinguish intentional gestures from normal hand movements to avoid accidental triggers.
+
 
 
 ## Part D. 
@@ -226,6 +267,13 @@ A 0.8B model is slow and sometimes wrong. It will invent events that are not in 
   Q&A here
 </details>
 
+<img width="572" height="118" alt="截屏2026-10-23 下午6 49 35" src="https://github.com/user-attachments/assets/7052ac71-702f-4416-a007-83e0334d0169" />
+<img width="568" height="90" alt="截屏2026-10-23 下午6 50 12" src="https://github.com/user-attachments/assets/85c70bd8-a3fd-4037-b0e1-56386ac97b36" />
+<img width="563" height="119" alt="截屏2026-10-23 下午6 50 32" src="https://github.com/user-attachments/assets/026b19f4-b9a3-4a30-ba70-89d196f882f5" />
+<img width="581" height="148" alt="截屏2026-10-23 下午6 51 02" src="https://github.com/user-attachments/assets/41d7113a-d734-4c4c-98b2-d6fdc5f1fabc" />
+
+I tested Qwen with three questions that a bedside device might need to answer. The first question was about bedtime relaxation, and the model gave three reasonable suggestions, although one of them mentioned welcoming the sun, which didn't really fit the bedtime context (15.5s). For the second question, I asked it to calculate how long I was in bed, but it incorrectly answered approximately 4 hours instead of 6 hours and 55 minutes (4.2s). For the third question, I asked it to summarize an overnight activity log. Qwen 3.5 (0.8B) correctly identified when a person was detected without making unnecessary assumptions (5.4s). However, when I tested the same question with Qwen 3 (0.6B), it confused the timestamps and reported a detection at 2:12 AM instead of 2:10 AM (5.8s). Overall, I found that both models could generate natural responses fairly quickly, but they sometimes made mistakes even with simple calculations or clearly provided information. This made me realize that if I use a local LLM in my observant system, I shouldn't rely on it completely for accurate information, especially when interpreting sensor data.
+
 
 ## Part E. 
 ### Connect: from YOLO readings to Qwen reasoning
@@ -258,6 +306,39 @@ asking Qwen...
 Qwen (18.4 s):
 One person came in from the right, moved close to the camera, and left after about half a minute. ...
 ```
+
+Those four lines are the whole of what Qwen knows about the minute. If YOLO lost you for one frame, the log says you left and came back, and the report will say so too.
+
+Run it with a partner: have them walk in, sit down, leave. Compare the log with what Qwen concluded. Then change one thing at a time:
+
+* **The question.** `--question "Did anyone leave?"`, `--question "Should I be worried?"`, `--question "Write one sentence a sleepy person would want to hear."` Same log, different job for the reasoner.
+* **The interpreter.** Edit `interpret()`: drop the positions, add "standing" versus "sitting" (a sitting person's box is shorter and squarer), count only people who are close. Qwen's answers change because its world changed.
+* **The other objects.** By default the detector is told to look for people only. With `--all` it reports all 80 classes and the interpreter adds them to the reading, as in `1 person(s) at center/close; also chair, cup`. Look closely at what it names: at 320 pixels a white chair, a bucket or a sink is a "toilet" often enough, and Qwen will faithfully report the toilet in your bedroom. Deciding which objects deserve a mention is interpreter work.
+* **The log.** Every run saves `watch_log.txt`. Edit it so it contradicts itself and feed it back with `--log watch_log.txt`: the camera is skipped and Qwen reasons over your edited file. Does it notice?
+* **The format.** `--json` gets `{"people": 1, "activity": "...", "unusual": false}` back, which is what you will want in Part 2 to drive a display or a sound.
+* **The timing.** `--seconds 300` watches longer. `--every` logs every reading instead of only changes, so the log grows to hundreds of lines and Qwen has to find the changes itself. See whether it still can.
+
+\*\*\***Document the pipeline: at least three runs with the log, the question, Qwen's answer, and whether it was right. Include one case where Qwen got it wrong, and say what you changed in the interpreter and why.**\*\*\*
+
+### run 1
+
+<img width="567" height="468" alt="截屏2026-10-23 下午7 08 04" src="https://github.com/user-attachments/assets/29aaeae2-240c-4c89-bb6e-2f33159c63e5" />
+
+
+### run 2
+
+<img width="571" height="254" alt="截屏2026-10-23 下午7 08 50" src="https://github.com/user-attachments/assets/ae9b8da7-4397-4a65-a84d-617f157350f0" />
+
+
+### run 3
+
+<img width="577" height="314" alt="截屏2026-10-23 下午7 18 05" src="https://github.com/user-attachments/assets/4b98804f-25a8-4b8a-a812-70c06ecf4b74" />
+
+I tested the YOLO-to-Qwen pipeline three times to see how accurately Qwen could interpret the detection logs. In the first test, Qwen generally understood that someone appeared and moved around, but it ignored some periods when no person was detected and described the activity as more continuous than the log suggested. In the second test, Qwen incorrectly claimed that three people were present throughout the entire observation, even though YOLO never detected more than one person in a single frame.
+
+After these tests, I modified the interpret() function to make the logs more specific. Instead of using "nobody" or "1 person(s)," I changed the wording to "no person detected in this frame" and "1 person detection(s) in this frame." I wanted to make it clearer that each reading represents a single frame, rather than confirming how many people were actually in the room.
+
+In the third test, Qwen still incorrectly reported that two people were detected simultaneously, even though the detections happened at different timestamps. This showed me that clearer logs alone are not enough to prevent the model from making incorrect assumptions. For an observant system, I think it is important to verify important information, especially timestamps and counts, before using AI-generated summaries to make decisions.
 
 ---
 

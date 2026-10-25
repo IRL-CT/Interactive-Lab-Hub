@@ -17,9 +17,17 @@
 ---
 
 ## Lab Overview
-Team: <canvas group name>  
-Members: Full Name (netid, github-handle), ...  
-Project name: <name>
+Team: No-eye-deer
+
+Members: 
+
+Jindi Chai (jc3892), https://github.com/JindiChai/Interactive-Lab-Hub/blob/Fall2026/Lab%204/README.md
+
+Yilin Wu (yw2895), https://github.com/yw2895-ship-it/Interactive-Lab-Hub/edit/Fall2026/Lab%204/README.md
+
+Sina Liu (sl3733), https://github.com/SinaL0123/Interactive-Lab-Hub/blob/Fall2026/Lab%204/README.md
+
+Project name: The Escaping Snack Tray
 
 
 For lab this week, we focus on both sensing and actuation, bringing new modes of input and output into your devices, while also prototyping the physical structure and overall look of the device. You will consider how the physical form supports sensing and actuation, and how these elements come together to shape the interaction and aesthetics of the device.
@@ -285,13 +293,38 @@ As you develop your Feast Automata concept, consider where the sensor and actuat
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
 
+<img width="1949" height="2839" alt="sketch" src="https://github.com/user-attachments/assets/9256920c-0530-4a91-92ef-363eb1c0783c" />
+
+For this lab, we want to make a snack tray that moves away when someone tries to grab food from it. We will use a proximity sensor to detect when a hand gets close, and a servo motor to move the tray so the snack becomes harder to reach. We came up with several possible designs, including rotating, sliding, and swinging trays. We thought it would be funny to have a snack tray that makes people chase their food instead of just picking it up.
+
 **\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
 
+The five sketches made us think about which type of movement works best for the “runaway snack” interaction. For example, we need to test whether rotating the whole tray is too heavy for the servo, whether a rotating arm is stable enough to hold the snack, whether a sliding tray has too much friction, and whether a hanging tray will swing too much. We also need to test how far the snack should move and where the proximity sensor should be placed so it can detect the user consistently. We plan to use cardboard and lightweight materials to prototype the tray, arm, and support structure, then test the servo strength, movement range, balance, and sensor placement before choosing the final design.
+
 **\*\*\*Pick one design to prototype and explain why.\*\*\***
+
+Selected Design: Center Rotating Tray
+
+We selected Sketch 1, the Center Rotating Tray, for our physical prototype. We chose this design because it has the simplest structure and clearly communicates the interaction. It only requires one proximity sensor, one micro servo, a central axle, and a rotating tray. Compared with the other designs, it should be easier to construct, stabilize, and control. When a hand approaches the proximity sensor, the servo will rotate the tray and move the snack away. This creates a playful interaction using a familiar dining object.
+
+Low-Fidelity Prototype
+
+We built a low-fidelity prototype using cardboard, a cardboard box, and a lightweight center axle. The box represents the housing for the Raspberry Pi, servo, and wires. We positioned the proximity sensor at the front so it could detect an approaching hand. The tray is placed above the box and connected to the center axle. For this prototype, we manually rotated the tray to simulate the servo’s movement. This helped us test the device’s size, component placement, and the stability of the rotating tray before completing the electronic integration.
 
 Build a cardboard or other low-fidelity physical prototype of your design.
 
 **\*\*\*Document your rough prototype with photos and/or video.\*\*\***
+
+<img width="4284" height="5712" alt="e684026ccc2167fd68a6c22654de3e21" src="https://github.com/user-attachments/assets/81c2d26f-0f8b-47fd-9c1d-342306ccaa67" />
+
+<img width="4284" height="5712" alt="c9b184c3b5754f32ca670ebd71436191" src="https://github.com/user-attachments/assets/c005f1b8-45cd-4b89-82ef-7990c3f844e8" />
+
+<img width="3024" height="4032" alt="8bbadf7851ba7dd884173c2e9a2a3523" src="https://github.com/user-attachments/assets/a8ab72cc-acd9-4e3d-8cc7-1fbbac52d16a" />
+
+
+https://github.com/user-attachments/assets/a461cf13-3a02-49af-9a6f-0f9b2b0d9b1e
+
+
 
 ---
 
@@ -489,6 +522,111 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Looks like": shows how the device should look, feel, sit, weigh, etc.
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
+
+#### Looks Like
+
+Our final prototype is called **The Escaping Snack Tray**. It is built around a rectangular cardboard housing covered with white panels. The housing supports the moving tray and contains the Raspberry Pi, Servo pHAT, servo motor, and wiring. Placing the electronics inside the box protects the components and gives the outside of the prototype a cleaner appearance.
+
+The APDS-9960 proximity sensor is mounted on the front of the housing so that it faces the direction from which the user approaches. A lightweight cardboard snack tray is positioned above the box and attached to a rotating arm. We used cardboard and folded paper for the moving parts because they are light enough for the micro servo to move reliably.
+
+
+*Figure 1. Front view of the completed Escaping Snack Tray.*
+<img width="960" height="1280" alt="9809777cdf8f0a3aa752af1b87af7475" src="https://github.com/user-attachments/assets/8b9f9d20-1684-43ca-b432-4076e29b52ea" />
+
+
+*Figure 2. Side view showing the elevated tray and servo-driven rotating arm.*
+<img width="1707" height="1280" alt="ee3a01f175fb41e71e4e13940538859a" src="https://github.com/user-attachments/assets/712c05d5-0df6-41b4-a1db-310e8e239b04" />
+
+
+*Figure 3. Raspberry Pi, Servo pHAT, servo motor, sensor, and wiring inside the cardboard housing.*
+<img width="1280" height="1707" alt="f7848f24988eca7a39a6b5f550ee8664" src="https://github.com/user-attachments/assets/a1663d7e-852f-48e3-9fd8-5cbb3ad9c990" />
+
+
+*Figure 4. Open housing showing how the electronic and mechanical components are arranged.*
+<img width="1280" height="1707" alt="bb0924e3f02879e7159ffed63326a1a5" src="https://github.com/user-attachments/assets/b1a9f138-2873-4808-9aa0-bc35f5b31528" />
+
+*Figure 5-6. System build & sensor test.*
+<img width="3024" height="4032" alt="IMG_1587" src="https://github.com/user-attachments/assets/ca9f8f5d-9352-43ff-970c-d2d05d141e64" />
+
+https://github.com/user-attachments/assets/c0112c9b-9664-498b-966b-ea55e5ec7f34
+
+
+
+
+
+#### Works Like
+
+The prototype uses an APDS-9960 proximity sensor as its input and a servo motor as its physical output. The sensor continuously measures whether an object is approaching the front of the device. The Raspberry Pi reads the proximity value and compares it with a detection threshold.
+
+When a user's hand comes close enough, the reading crosses the threshold. The Raspberry Pi then sends a command to the Servo pHAT, which controls the angle of the servo motor. The servo rotates the supporting arm and moves the snack tray away from the user. This creates a complete connection between sensing and physical actuation.
+
+The sensing and actuation files are included here:
+
+* [Final interaction code](./rotating_arm/rotating_arm.py)
+* [Proximity sensor test](./rotating_arm/sensor_test.py)
+* [Required Python libraries](./rotating_arm/requirements.txt)
+
+#### Interaction Diagram
+
+<img width="1900" height="1330" alt="escaping-snack-tray-sequence" src="https://github.com/user-attachments/assets/4587a986-9e39-44e2-90b3-b716dce1f19b" />
+
+#### Design Iteration
+
+Our initial idea was to rotate the entire snack tray around a central axle. During prototyping, we realized that the tray and its contents could place too much weight on the small servo. We also needed enough clearance for the tray to move without rubbing against the housing.
+
+We therefore changed the design to use a lightweight rotating arm. The servo rotates the arm, which carries the tray away from the user. We used cardboard and folded paper for the moving parts to reduce their weight. We also placed the proximity sensor at the front of the housing so that it faces the direction from which a person is most likely to reach.
+
+#### Reflection
+
+This project showed us that sensing, movement, and physical form need to be designed together. The sensor’s position affected when the tray responded, while the weight and balance of the arm affected how smoothly the servo could move it.
+
+One challenge was making the movement noticeable without making the structure too heavy or unstable. Using lightweight materials helped the servo move the tray more easily. We also found that the sensor threshold mattered: if it was too sensitive, the tray could move before a person intended to reach for the snack; if it was not sensitive enough, the response could come too late.
+
+The most fun part was seeing the tray turn a familiar action into a playful interaction. When someone reached for the snack and the tray moved away, the device appeared to be protecting its food. This made a simple combination of a sensor and a motor feel like a small game.
+
+#### Running the Prototype
+
+The prototype uses an APDS-9960 proximity sensor and a servo connected to channel 0 of the Servo pHAT. The Servo pHAT is powered separately through its USB-C connection.
+
+From the `rotating_arm` folder, install the required libraries:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the sensor test and compare the readings with and without a hand in front of the sensor:
+
+```bash
+python sensor_test.py
+```
+
+Then start the interaction with thresholds chosen from the observed readings:
+
+```bash
+python rotating_arm.py run --near <near_threshold> --far <far_threshold>
+```
+
+Replace the placeholders with the measured values. The far threshold must be lower than the near threshold. The sensor reports values from 0 to 255, rather than distances in centimeters.
+
+#### Proximity Thresholds
+
+For the interaction, we used estimated proximity values of approximately 10–20 when no hand was present and 60–100 when a hand approached the sensor. Based on these estimates, the example configuration uses a near threshold of 50 and a far threshold of 30. When the reading stays at or above 50 for 0.1 seconds, the tray moves away. When it stays at or below 30 for 1 second, the tray returns to its resting position. These values can be adjusted based on the sensor placement and surrounding environment.
+
+```bash
+python rotating_arm.py run --near 50 --far 30
+```
+
+#### Acts Like
+
+The interaction begins with the snack tray waiting in its resting position. The user sees the snack and naturally reaches toward it. Before the user can take the snack, the proximity sensor detects the approaching hand and the tray moves away.
+
+This response makes the device appear playful and mischievous. Instead of acting like a passive serving tray, it seems to recognize the user's intention and deliberately protects the snack. The ordinary action of taking food becomes a short game between the user and the machine.
+
+##### Working Prototype Video
+
+[Watch the Escaping Snack Tray demonstration](https://github.com/user-attachments/assets/4337c387-abed-4144-8866-51d00bc93402)
+
+*The video shows the complete interaction: the user reaches toward the snack, the sensor detects the hand, and the servo-driven tray moves away.*
 
 ---
 
