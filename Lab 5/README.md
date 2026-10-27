@@ -415,10 +415,28 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
+**Idea: a restlessness monitor.** The Pi sits on my desk with the camera pointed across the room at my bed. It watches overnight, and in the morning it tells me how restless my night was.
+
+![Storyboard: turn on the Pi, it watches me overnight, I read the report in the morning](report_images/storyboard_v1.jpg)
+
+1. **Before bed: turn on the Raspberry Pi and camera.** I'm at my desk, I start the device, and then I go to bed.
+2. **While asleep: it watches me and records overnight.** The camera on the desk looks at the bed. `overnight.py` logs a reading every few seconds using the de-flickered `interpret()` from Part E.
+3. **When awake: I read the report.** At the desk in the morning, the screen shows a summary of my restlessness.
+
+This builds on what I learned in Part E. The code does the counting: how many times I moved, when the restless stretches were, and how long the bed was empty. Qwen only turns those numbers into a short morning summary, because it couldn't reliably read even a five-line log on its own.
+
 ## Prep for Part 2
 
 1. Look at and give feedback on the Part F storyboards.
    **Put the feedback for your ideas here.**
+
+   Feedback from classmates on my storyboard:
+
+   * **The camera may not see anything in the dark.** With the lights off, YOLO will probably see a black frame and log `nobody` all night. I need to test this in my room before building anything else on it.
+   * **The log can't show restlessness yet.** My Part E interpreter only logs whether someone is there and whether they're close or far, so a person in bed reads "1 person, close" all night. To count movement I need to log how the person's box or pose changes.
+   * **The bedtime hand-off is just "turn it on."** There's no ritual and no acknowledgement that the device is now watching.
+   * **The camera points at a bed,** which goes against the lab's house rule. I need to justify it: it's my own bed, I have my roommate's OK, and no images are saved.
+   * **The morning panel is vague.** It should show what the summary actually says, not just "summary of restlessness."
 2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
 3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
 4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
