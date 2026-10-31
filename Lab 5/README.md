@@ -448,6 +448,8 @@ Fake a night first: run it for thirty seconds while you walk around, stop it, an
 
 <img width="850" height="607" alt="截屏2026-10-31 下午7 03 33" src="https://github.com/user-attachments/assets/1df5de9f-ee20-48bf-94d9-8922c6d16f32" />
 
+<img width="606" height="238" alt="截屏2026-10-31 下午7 17 00" src="https://github.com/user-attachments/assets/43206a0c-9fcc-47a1-9745-d0699bdeebdf" />
+
 
 I used a Raspberry Pi 5 and a USB webcam with the existing YOLO26 Nano NCNN model, filtering for the dog class. The sampling interval was configured to ten seconds, and a state change required three consecutive matching valid observations. Raw detections and confirmed states were recorded separately.
 Although the program supports a configurable region of interest, this experiment used the full camera frame. Guiyuan was free to move around the home; I did not restrict her movement. The system stored detection metadata locally rather than saving photos or continuous video.
