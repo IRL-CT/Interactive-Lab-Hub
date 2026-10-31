@@ -2,9 +2,9 @@
 
 **Team:** 
 
-**Members:** Jindi Chai
+**Members:** Jindi Chai, Yilin Wu, Sina Liu
 
-**Project name:**
+**Project name:** Pet Night Diary
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
