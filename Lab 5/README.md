@@ -427,11 +427,8 @@ The hand-off: the person tells the device what to watch tonight, and the device 
 
 \*\*\***Describe the interaction before.**\*\*\*
 
-### Pet Night Diary — implemented hand-off
-
-The prototype is implemented in [pet_night_diary.py](pet_night_diary.py). The Mini PiTFT shows “Pet Night Diary / Press A to start.” Button A creates a unique session log. After the first successful camera/YOLO sample, the display confirms readiness and switches its backlight off after three seconds. Repeated A presses do not start another session. Holding B for 1.5 seconds stops monitoring. A terminal fallback supports development without the PiTFT.
-
-Wiring follows my Lab 2 implementation: CS GPIO5, DC GPIO25, backlight GPIO22, and active-low buttons GPIO23/24. See the [setup, testing and overnight guide](PET_NIGHT_DIARY.md) for exact commands.
+The intended bedtime interaction is a simple button press: the owner positions the webcam, presses Button A, receives a readiness confirmation, and lets the display turn off during monitoring. The code includes this Mini PiTFT interface.
+For the documented overnight experiment, I used the terminal interface over SSH. I started the program inside tmux and checked for the “Camera + YOLO ready” message before detaching the session. This allowed the Raspberry Pi to continue monitoring after I disconnected my laptop. The button and display interaction was not evaluated in this overnight run.
 
 ## Part H. 
 ### Incorporate the observant system
@@ -447,13 +444,17 @@ Fake a night first: run it for thirty seconds while you walk around, stop it, an
 
 \*\*\***Screenshots or videos of the running system.**\*\*\*
 
-### Pet Night Diary — implemented observer
+<img width="5712" height="4284" alt="IMG_1721" src="https://github.com/user-attachments/assets/d4339b96-65d0-490a-b0d8-8bcc1f01d4fe" />
 
-[pet_detector.py](pet_detector.py) uses the existing YOLO26 Nano NCNN model with COCO dog class 16, sampling approximately every ten seconds without a GUI. A configurable resting-area ROI counts a detection only when at least half of its bounding box overlaps the region. Three consecutive valid matching observations confirm a state; errors reset confirmation to unknown. Logs separate raw observations from confirmed states and record errors, recovery, gaps and heartbeats. The prototype stores metadata, not photos or continuous video, and runs locally inside tmux.
+I used a Raspberry Pi 5 and a USB webcam with the existing YOLO26 Nano NCNN model, filtering for the dog class. The sampling interval was configured to ten seconds, and a state change required three consecutive matching valid observations. Raw detections and confirmed states were recorded separately.
+Although the program supports a configurable region of interest, this experiment used the full camera frame. Guiyuan was free to move around the home; I did not restrict her movement. The system stored detection metadata locally rather than saving photos or continuous video.
 
-Labels describe observations: `dog_detected_in_area`, `dog_not_detected_in_area`, and `unknown`. They do not establish whether the dog slept or physically left. This refines the earlier storyboard's “leaves and returns” language.
+Before the overnight run, I tested the system for 60 seconds and then for three minutes. The first test recorded five camera-access failures before recovering; these samples were correctly labeled as unknown. In the three-minute test, the camera produced valid samples throughout, and three consecutive positive detections successfully changed the confirmed state. Isolated negative detections did not immediately reverse that state.
 
-**Validation status:** automated software tests and a short synthetic session are provided; real Pi camera/button testing and a genuine overnight recording remain to be completed. Simulated logs are explicitly labeled and are not experimental measurements. Add actual screenshots/video and test findings here after running on the Pi.
+<img width="645" height="394" alt="截屏2026-10-31 下午1 40 33" src="https://github.com/user-attachments/assets/38c51135-2440-4d5c-9884-ac858b7b6bad" />
+<img width="643" height="386" alt="截屏2026-10-31 下午1 40 20" src="https://github.com/user-attachments/assets/59d7f993-0172-478f-8ad1-6f6dfc74309d" />
+
+All timestamps use the Raspberry Pi’s local time, UTC−04:00. The session continued through the night and into the following afternoon.
 
 ## Part I. 
 ### Design the interaction after
@@ -468,11 +469,9 @@ Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from 
 
 ### Pet Night Diary — implemented morning reveal
 
-[pet_morning.py](pet_morning.py) calculates timestamps, counts and supported detection/non-detection intervals in Python. It excludes unknown data, pending transitions and long gaps from duration estimates. The display shows the last confirmed detection, approximate supported durations and data quality; A advances pages and a long B press exits. Full intervals are included in the saved JSON report.
-
-Local Qwen (`qwen3.5:0.8b`, thinking disabled) receives verified statistics and is constrained to three exact factual sentences. Changed wording or invalid output triggers the deterministic Python fallback, as does an unavailable Ollama service. An empty or interrupted log is reported as insufficient/incomplete data rather than invented activity. Detection does not establish sleep; non-detection does not prove absence.
-
-**AI acknowledgement:** OpenAI ChatGPT/Codex assisted with implementation, automated tests and documentation, based on my storyboard and existing lab examples. Hardware testing and real overnight findings must be added after the actual experiment. See [PET_NIGHT_DIARY.md](PET_NIGHT_DIARY.md) for limitations and reproducible commands.
+After stopping the session, the program generated a report from the saved log. The last confirmed dog detection was at 13:35:49 on October 31. The report contained approximately 1 hour 59 minutes of supported detection intervals, 14 hours 19 minutes of supported non-detection intervals, and 54 minutes of unclassified time.
+These durations are conservative estimates based on adjacent samples that support the same confirmed state. They are not measurements of sleep or physical absence. Unclassified time includes pending confirmation, alternating observations, and session boundaries; it does not necessarily indicate camera failure.
+This overnight run used the --no-qwen option, so the final report was generated deterministically by Python. Qwen integration is available in the code but was not used for this result.
 
 ## Final documentation
 
@@ -487,6 +486,10 @@ Document all the prototypes and iterations you have designed and worked on. The 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
+
+The experiment showed that the prototype could collect timestamped observations across a long unattended session and generate a reproducible report. However, continuous logging does not guarantee accurate interpretation of the dog’s behavior.
+Guiyuan was free to rest or play elsewhere in the home. A non-detection could therefore mean that she was outside the camera view, but it could also result from low light, occlusion, or a missed detection. The logs cannot distinguish these explanations. I did not collect independent ground-truth observations, so I cannot calculate detection accuracy from this session alone.
+This changed how I understand the project: its value is in showing when the detector observed a dog in a particular view, rather than making claims about sleep quality or movements throughout the home. Future improvements would include a calibrated resting-area ROI, controlled tests under nighttime lighting, and separate evaluation of the Mini PiTFT interaction.
 
 ## Deliverables & Submission for Lab 5
 
