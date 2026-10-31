@@ -500,6 +500,13 @@ The experiment showed that the prototype could collect timestamped observations 
 Guiyuan was free to rest or play elsewhere in the home. A non-detection could therefore mean that she was outside the camera view, but it could also result from low light, occlusion, or a missed detection. The logs cannot distinguish these explanations. I did not collect independent ground-truth observations, so I cannot calculate detection accuracy from this session alone.
 This changed how I understand the project: its value is in showing when the detector observed a dog in a particular view, rather than making claims about sleep quality or movements throughout the home. Future improvements would include a calibrated resting-area ROI, controlled tests under nighttime lighting, and separate evaluation of the Mini PiTFT interaction.
 
+### Contributions and AI Acknowledgement
+
+- **Yilin Wu:** Led the early planning, scenario design, and storyboard creation.
+- **Jindi Chai:** Tested the program, set up the physical monitoring environment, and conducted the overnight experiment.
+- **Sina Liu:** Organized the project documentation and created and edited the demo video.
+
+We used ChatGPT/Codex to assist with code development and debugging. Our implementation also builds on the course’s Lab 5 examples.
 ## Deliverables & Submission for Lab 5
 
 For submission, the readme.md page for this lab should be edited to include the work you have done:
