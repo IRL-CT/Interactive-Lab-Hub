@@ -216,7 +216,8 @@ def load_classifier():
 
 
 def load_detector():
-    """Returns find(img) -> (confidence, (x1, y1, x2, y2) as 0..1 of the crop) or (0.0, None).
+    """Returns find(img) -> [(confidence, (x1, y1, x2, y2) as 0..1 of the crop), ...], most
+    confident first: EVERY tram it sees, so both cabins can be tracked when both are in view.
     None if no detector has been trained yet (tram_train_det.py)."""
     det = Path("tram_det.pt")
     if not det.exists():
@@ -228,10 +229,8 @@ def load_detector():
 
     def find(img):
         r = model.predict(img, imgsz=imgsz, conf=0.05, verbose=False)[0]
-        if not len(r.boxes):
-            return 0.0, None
-        i = int(r.boxes.conf.argmax())
-        return float(r.boxes.conf[i]), tuple(r.boxes.xyxyn[i].tolist())
+        out = [(float(c), tuple(b)) for c, b in zip(r.boxes.conf.tolist(), r.boxes.xyxyn.tolist())]
+        return sorted(out, reverse=True)
     return find
 
 

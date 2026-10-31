@@ -23,6 +23,9 @@ estimates; check the official schedule.
 | `tram_cable.py` | Fits the cable line through your boxed grip points (0 = tower, 1 = station). |
 | `tram_train.py` | Fine-tunes a pretrained image classifier, with pseudo-labeling (semi-supervised). |
 | `tram_watch.py` | Live tracker: classifier → Bayes filter → pass log → prediction → `tram_state.json`. |
+| `tram_notify.py` | Push notifications to phones via the ntfy app, one per tram. |
+| `tram_accuracy.py` | Estimated vs true times: checks predictions, logs hand-timed events, learns the bias. |
+| `tram_web.py` | Tiny live web app + JSON API (`/api/state`, `/api/passes`). |
 | `tram_display.py` | PiTFT clock and status screen, reading `tram_state.json`. |
 
 Made by the scripts: `tram_config.json` (box, rotation, exposure), `tram_data/` (crops),
@@ -131,6 +134,17 @@ cabin reaches the station and when it left it, even though the camera can't see 
 stretch. Every pass's track is saved to `tram_tracks.jsonl`, which later becomes training data
 for a model of the real slow-down near the station.
 
+### Two cabins
+
+The tram has two cabins on two parallel ropes, and they often pass each other in view.
+`tram_watch.py` tracks **each cabin separately** (multi-object tracking): the detector reports
+every cabin it sees, each one gets its own Kalman filter, and every detection is matched to the
+cabin it most likely belongs to, using the predicted position along the cable and which rope it
+hangs from. A cabin counts after 3 detections, so one false alarm can't create a tram. Next-tram
+predictions are made **per direction** ("next arrival at the island" and "next departure from the
+island"), and the web page and notifications show both cabins. In a simulation with the cabins
+crossing in view every trip, all 20 trips were tracked with no mix-ups.
+
 ## 5. Run it live
 
 ```bash
@@ -181,6 +195,60 @@ seconds after leaving the box a cabin reaches the island:
 Only the cable box is stored, small, and it's pointed at the sky. No audio. Nothing is
 published, and no photos are saved while running live. Delete `tram_data/` when you no longer
 need it for training.
+
+## Phone alerts and the live web app
+
+Run these next to `tram_watch.py` (each in its own tmux window: Ctrl-B then C):
+
+```bash
+python tram_notify.py --test     # prints your private topic and sends a test notification
+python tram_notify.py            # one notification per tram
+python tram_web.py               # live page + JSON API on port 8080
+```
+
+**Notifications (ntfy):** install the free **ntfy** app, tap **+**, and subscribe to the topic
+`tram_notify.py` prints (a random name stored in `tram_config.json`). Anyone you give the topic
+to gets the same alerts:
+
+- *Tram to Roosevelt Island: arrives ~13:42*
+- *Tram just left Roosevelt Island · Next tram expected ~13:52*
+
+Quiet hours: set `"notify_hours": [7, 23]` in `tram_config.json` (default 6 to 24).
+
+**Live web app:** `http://<pi-address>:8080` shows the cabin moving along the cable, the
+arrival countdown, the next-tram estimate and recent trams. Our building network blocks
+device-to-device traffic, so to open it from phones use a free tunnel:
+
+```bash
+curl -L -o cf.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64.deb
+sudo dpkg -i cf.deb
+cloudflared tunnel --url http://localhost:8080     # prints https://<random>.trycloudflare.com
+```
+
+Put that link in `tram_config.json` as `"public_url"`, and tapping a notification opens it.
+(Quick-tunnel links change every time it restarts; a free Cloudflare account gives a fixed one.)
+The page and API serve only numbers, never camera images, and are labeled unofficial.
+
+API for other apps: `/api/state` (live JSON), `/api/passes`, `/api/recent` (estimated vs true)
+and `/api/accuracy`.
+
+### Estimated vs true, and how confident it is
+
+Every time shown is labeled as an estimate, with an **80% range** (e.g. *80% likely
+13:42:01–13:42:19*) and the **chance it's within ±30 s**. The range comes from the Kalman
+filter's own uncertainty plus the errors measured against reality.
+
+- **Next-tram predictions are checked automatically:** when a tram shows up, its real time is
+  compared with what was predicted after the previous one.
+- **Island arrival and departure need a person:** the camera can't see the stop behind the
+  trees. `tram_web.py` prints a private link (`?key=...`) that adds **"It arrived at the
+  island" / "It left the island"** buttons. Tap them at the moment it happens. Share the link
+  *without* the key with everyone else. (Or on the Pi: `python tram_accuracy.py arrival`.)
+- After **5+ hand-timed events** of a kind, estimates are shifted by the measured bias (the real
+  cabin brakes before the station, so plain extrapolation runs early) and the range is set by
+  the measured spread. In simulation that took errors from about 6 s to about 1 s.
+- `python tram_accuracy.py` prints the accuracy report; the page's "How accurate has it been?"
+  card shows the same.
 
 ## Later: API
 
