@@ -4,7 +4,7 @@
 
 **Project name:**
 
-<details>
+<!-- <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
   
 	**Submission Cleanup Reminder:**
@@ -25,7 +25,7 @@ This lab will help you think through the design of observant systems, particular
 **New this year: the AI runs on the Pi.** Your Pi 5 can run an object detector ([YOLO](https://docs.ultralytics.com/)) and a small language model ([Qwen](https://ollama.com/library/qwen3.5) through [Ollama](https://ollama.com)) completely offline. In Part 1 you get both running and connect them: YOLO *sees*, Qwen *reasons* about what was seen. These models are slow, but they have all night. In Part 2 you use them to design a **night-time interaction**: what you tell the device before bed, what it does while you sleep, and what it shows you when you wake up.
 
 **Please indicate anyone that helped with this Lab here.**
-Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
+Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design.  -->
 
 ## Overview
 
@@ -68,7 +68,7 @@ This readme.md page in your own repository should be edited to include the work 
 
 ## Part A. 
 ### Set up your Pi for on-device AI
-
+<!-- 
 Create a virtual environment and install the requirements. They include `ultralytics` (YOLO), which pulls in torch, so this takes a while:
 
 ```
@@ -78,10 +78,10 @@ pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ source .venv/bin/activate
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ pip install -r requirements.txt
 ```
 
-As in Lab 3, [`uv`](https://docs.astral.sh/uv/) is a much faster drop-in for `pip`: `pip install uv && uv pip install -r requirements.txt`.
+As in Lab 3, [`uv`](https://docs.astral.sh/uv/) is a much faster drop-in for `pip`: `pip install uv && uv pip install -r requirements.txt`. -->
 
 ### YOLO: download the nano model and export it for the Pi
-
+<!-- 
 We use the nano model of [YOLO26](https://docs.ultralytics.com/models/yolo26/), exported once to NCNN, the format that runs fastest on the Pi. This downloads the weights:
 
 ```
@@ -114,10 +114,10 @@ Now a photo of your own. Plug in the webcam and take one with `snap.py` (`--dela
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ yolo predict model=yolo26n_ncnn_model source=snap.jpg project=runs
 ```
 
-Every run gets its own numbered folder, so this one is in `runs/predict2/snap.jpg`; the command prints where it saved. Keep `snap.jpg`, you will show it to Qwen in Part D.
+Every run gets its own numbered folder, so this one is in `runs/predict2/snap.jpg`; the command prints where it saved. Keep `snap.jpg`, you will show it to Qwen in Part D. -->
 
 ### Ollama: install it and pull Qwen
-
+<!-- 
 [Ollama](https://ollama.com) runs language models locally. Nothing leaves the Pi: no API key, no internet after the download.
 
 ```
@@ -130,14 +130,14 @@ pi@raspberrypi:~ $ ollama list
 | model | download | what it does |
 |---|---|---|
 | `qwen3.5:0.8b` | ~1.3 GB | text **and images**; the one we use in this lab |
-| `qwen3:0.6b` | ~0.5 GB | text only, smaller and faster (~16 tokens/s on a Pi 5) |
+| `qwen3:0.6b` | ~0.5 GB | text only, smaller and faster (~16 tokens/s on a Pi 5) | -->
 
 \*\*\***Include a screenshot of `ollama list` showing your models.**\*\*\*
 ![ollama list](imgs/ollama_list.png)
 
 ## Part B. 
 ### See: recognize people in real time with YOLO
-
+<!-- 
 YOLO is an *object detector*: it finds every person, cup, cat and so on (the 80 [COCO](https://cocodataset.org/) classes), draws a box around each, and gives a confidence. For an observant system that is exactly what you want: *how many*, *where*, *how sure*.
 
 Connect your webcam, connect to your Pi through **VNC** (the script opens a window), and run the person detector. Read `yolo_person.py` first; the loop at the bottom is the whole idea.
@@ -155,7 +155,7 @@ Then press q to quit and run it again with a flag. Each one changes a single thi
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --conf 0.7     # raise the bar: see what you lose
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --all          # all 80 classes, not only people: what else is on your desk, and what does it get wrong?
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --headless     # no window, only the printed readings: how it runs over ssh, and at night
-```
+``` -->
 
 \*\*\***Include a short video or screenshots of your experiments with the person detection. Write down three situations where it did not see you, or saw a person who was not there, and what you think the cause was.**\*\*\*
 ![did_not_see_me](imgs/did_not_see_me.png)
@@ -175,7 +175,7 @@ Then press q to quit and run it again with a flag. Each one changes a single thi
 ## Part C. 
 ### See more: hands and pose with MediaPipe
 
-YOLO tells you that a person is there. Google's [MediaPipe](https://mediapipe.dev/) tells you what their hands and body are doing: face, hand and body pose detection, fast on the Pi.
+<!-- YOLO tells you that a person is there. Google's [MediaPipe](https://mediapipe.dev/) tells you what their hands and body are doing: face, hand and body pose detection, fast on the Pi.
 
 ![Media pipe](Readme_files/mp.gif)
 
@@ -194,7 +194,7 @@ Connect your webcam, connect to your Pi through **VNC**, and run the hand pose s
 
 Try the two main features of this script: 1) pinching for percentage control (the thumb-to-index distance sets the volume), and 2) "[Quiet Coyote](https://www.youtube.com/watch?v=qsKlNVpY7zg)" for instant percentage setting (the gesture mutes it). Notice how this example uses hardcoded positions and relates those positions with a desired set of events, in `hand_pose.py`: a hand is 21 landmark coordinates, and an *event* is a rule you write over them. That is the same job as `interpret()` in Part E.
 
-Consider how you might use this position based approach to create an interaction, and write how you might use it on either face, hand or body pose tracking.
+Consider how you might use this position based approach to create an interaction, and write how you might use it on either face, hand or body pose tracking. -->
 
 \*\*\***Include a screenshot or short video of the hand pose demo, and write how you might use face, hand or body pose tracking in your observant system.**\*\*\*
 ![Pinch, 24%](imgs/hand_pose_1.png)
