@@ -69,84 +69,97 @@ This readme.md page in your own repository should be edited to include the work 
 
 For Desk Night Watch, hand pose tracking could provide an alternative to the spoken start command. Holding an open palm steady for a short time could request monitoring, followed by an on-screen message and spoken confirmation after the first successful camera sample. Requiring a stable gesture would help prevent accidental activation during normal hand movements. I would use gesture recognition only during the bedtime hand-off, then stop tracking gestures once monitoring begins. This is a possible extension; the tested prototype currently starts with the spoken word "Hello."
 
-## Part D. 
-Reason: run Qwen on the Pi with Ollama
-I asked qwen3.5:0.8b three questions using ask_qwen.py, then repeated the first question with qwen3:0.6b. The script requested at most three short sentences. The times below are the elapsed request times reported by the script.
-Question 1: Roosevelt Island history
-Question: Tell me a bit about the history of Roosevelt Island.
+## Part D.
+### Reason: run Qwen on the Pi with Ollama
 
-Model: qwen3.5:0.8b
-Elapsed time: 12.9 seconds
+I asked `qwen3.5:0.8b` three questions using `ask_qwen.py`, then repeated the first question with `qwen3:0.6b`. The script requested at most three short sentences. The times below are the elapsed request times reported by the script.
 
-Original answer:
-Roosevelt Island was originally built as a private residence for President Franklin D. Roosevelt, who lived there from 1935 to 1945. It is now a historic site and one of the most popular tourist destinations in New York City. The island's history includes its original construction by the Rockefeller family and its current status as a museum dedicated to FDR's life and work.
+#### Question 1: Roosevelt Island history
 
-Correctness check:
+**Question:** Tell me a bit about the history of Roosevelt Island.
 
-The answer contains major factual errors. Roosevelt Island was not built as FDR's private residence. His principal lifelong residence was Springwood in Hyde Park, New York. The model's account of his residence on the island is incorrect. FDR Presidential Library
+- **Model:** `qwen3.5:0.8b`
+- **Elapsed time:** 12.9 seconds
 
-The island's documented history also differs from the model's construction and museum story. It was formerly called Blackwell's Island, became Welfare Island in 1921, and was renamed Roosevelt Island in 1973. Its institutional history includes prisons and hospitals. National Park Service
+**Original answer:**
 
-Another relevant milestone is the opening of Cornell Tech's Roosevelt Island campus in 2017. The model mentioned none of the four reference facts: the Blackwell's Island name, the 1921 and 1973 name changes, or the campus opening. Cornell Tech
-Question 2: Can object detection establish whether someone is asleep?
-Question: Can a person's bounding box and confidence score alone tell whether they are asleep? Explain briefly.
+> Roosevelt Island was originally built as a private residence for President Franklin D. Roosevelt, who lived there from 1935 to 1945. It is now a historic site and one of the most popular tourist destinations in New York City. The island's history includes its original construction by the Rockefeller family and its current status as a museum dedicated to FDR's life and work.
 
-Model: qwen3.5:0.8b
-Elapsed time: 7.1 seconds
+**Correctness check:**
 
-Original answer:
-Yes, but the system cannot definitively determine if someone is asleep solely based on these metrics. The user must also consider their physical state, such as breathing patterns or heart rate to confirm sleep onset.
+The answer contains major factual errors. Roosevelt Island was not built as FDR's private residence. His principal lifelong residence was Springwood in Hyde Park, New York. The model's account of his residence on the island is incorrect. [FDR Presidential Library](https://www.fdrlibrary.org/roosevelt-homes)
 
-Correctness check:
+The island's documented history also differs from the model's construction and museum story. It was formerly called **Blackwell's Island**, became **Welfare Island in 1921**, and was renamed **Roosevelt Island in 1973**. Its institutional history includes prisons and hospitals. [National Park Service](https://www.nps.gov/places/blackwell-s-island-new-york-city.htm)
 
-The answer is internally contradictory: it begins with "Yes," but immediately explains that these metrics alone cannot determine whether someone is asleep. The direct answer should be No.
+Another relevant milestone is the opening of Cornell Tech's Roosevelt Island campus in **2017**. The model mentioned none of the four reference facts: the Blackwell's Island name, the 1921 and 1973 name changes, or the campus opening. [Cornell Tech](https://tech.cornell.edu/news/cornell-tech-campus-opens-on-roosevelt-island-marking-transformational-mile/)
 
-Object detection produces bounding boxes, class labels, and confidence scores. In this experiment, the box describes the detected person's location and size, while the score expresses confidence in the detection. These outputs do not establish sleep state. A high confidence score for "person" is not a probability that the person is asleep. This interpretation follows from the documented detection outputs. Ultralytics object detection documentation
+#### Question 2: Can object detection establish whether someone is asleep?
+
+**Question:** Can a person's bounding box and confidence score alone tell whether they are asleep? Explain briefly.
+
+- **Model:** `qwen3.5:0.8b`
+- **Elapsed time:** 7.1 seconds
+
+**Original answer:**
+
+> Yes, but the system cannot definitively determine if someone is asleep solely based on these metrics. The user must also consider their physical state, such as breathing patterns or heart rate to confirm sleep onset.
+
+**Correctness check:**
+
+The answer is internally contradictory: it begins with "Yes," but immediately explains that these metrics alone cannot determine whether someone is asleep. The direct answer should be **No**.
+
+Object detection produces bounding boxes, class labels, and confidence scores. In this experiment, the box describes the detected person's location and size, while the score expresses confidence in the detection. These outputs do not establish sleep state. A high confidence score for "person" is not a probability that the person is asleep. This interpretation follows from the documented detection outputs. [Ultralytics object detection documentation](https://docs.ultralytics.com/tasks/detect)
 
 Breathing and heart rate were not measured in this experiment. The model's suggestion should therefore not be presented as a tested sleep-detection method.
-Question 3: Describe an image
-Question: How many people are in this photo, and what are they wearing?
 
-Input: The zidane.jpg image used in Part A, supplied with --image zidane.jpg.
+#### Question 3: Describe an image
 
-Model: qwen3.5:0.8b
-Elapsed time: 116.0 seconds
+**Question:** How many people are in this photo, and what are they wearing?
 
-Original answer:
-There are two men in the photo. The man on the left is bald and wearing a black suit with a white shirt and black tie. The man on the right has gray hair and is also wearing a black suit with a white shirt and dark tie.
+**Input:** The `zidane.jpg` image used in Part A, supplied with `--image zidane.jpg`.
 
-Correctness check:
+- **Model:** `qwen3.5:0.8b`
+- **Elapsed time:** 116.0 seconds
+
+**Original answer:**
+
+> There are two men in the photo. The man on the left is bald and wearing a black suit with a white shirt and black tie. The man on the right has gray hair and is also wearing a black suit with a white shirt and dark tie.
+
+**Correctness check:**
 
 The person count and main clothing description match the image: there are two people wearing dark suits, light-colored shirts, and ties. The left person is bald, and the right person has gray hair.
 
 The exact color descriptions are less precise; for example, the right person's tie appears blue. Overall, the answer addresses the requested count and clothing reasonably well. This image request took substantially longer than either text-only request in this run.
-Comparison with qwen3:0.6b
+
+#### Comparison with `qwen3:0.6b`
+
 I repeated the history question with the smaller model.
 
-Question: Tell me a bit about the history of Roosevelt Island.
+**Question:** Tell me a bit about the history of Roosevelt Island.
 
-Model: qwen3:0.6b
-Elapsed time: 6.9 seconds
+- **Model:** `qwen3:0.6b`
+- **Elapsed time:** 6.9 seconds
 
-Original answer:
-Roosevelt Island is a small island located in the Pacific Ocean, off the coast of the state of New York. It was originally a military base during World War II, and it became a significant site for the United States Navy. The island was later used as a research and development center for the United States Department of Defense. Today, it remains a popular destination for outdoor activities and is a symbol of the United States' commitment to the Pacific.
+**Original answer:**
 
-Correctness check:
+> Roosevelt Island is a small island located in the Pacific Ocean, off the coast of the state of New York. It was originally a military base during World War II, and it became a significant site for the United States Navy. The island was later used as a research and development center for the United States Department of Defense. Today, it remains a popular destination for outdoor activities and is a symbol of the United States' commitment to the Pacific.
 
-The location is incorrect: Roosevelt Island is in New York City's East River, not the Pacific Ocean. The military-base, Navy, and Department of Defense narrative is unsupported by the official history checked, which instead describes institutional uses including prisons, hospitals, and an asylum. National Park Service
+**Correctness check:**
+
+The location is incorrect: Roosevelt Island is in New York City's **East River**, not the Pacific Ocean. The military-base, Navy, and Department of Defense narrative is unsupported by the official history checked, which instead describes institutional uses including prisons, hospitals, and an asylum. [National Park Service](https://www.nps.gov/places/blackwell-s-island-new-york-city.htm)
 
 The answer also contains four sentences, exceeding the script's request for at most three.
-Aspect	qwen3.5:0.8b	qwen3:0.6b
-Time for the same history question	12.9 seconds	6.9 seconds
-Main factual problems	Incorrect FDR residence and island history	Incorrect location and unsupported military history
-Answer length	3 sentences	4 sentences
-Covered the four reference facts	0 of 4	0 of 4
 
+| Aspect | `qwen3.5:0.8b` | `qwen3:0.6b` |
+|---|---|---|
+| Time for the same history question | 12.9 seconds | 6.9 seconds |
+| Main factual problems | Incorrect FDR residence and island history | Incorrect location and unsupported military history |
+| Answer length | 3 sentences | 4 sentences |
+| Covered the four reference facts | 0 of 4 | 0 of 4 |
 
-The smaller model completed this request 6.0 seconds sooner, using approximately 46.5% less elapsed time. However, both models produced unreliable historical answers. The larger model followed the sentence limit, while the smaller model did not.
+The smaller model completed this request **6.0 seconds sooner**, using approximately **46.5% less elapsed time**. However, both models produced unreliable historical answers. The larger model followed the sentence limit, while the smaller model did not.
 
 These are single-request measurements, not a controlled performance benchmark. Model loading, caching, and answer length can affect elapsed time. For Desk Night Watch, the results support asking narrow questions, supplying recorded observations, and checking model claims against those observations before presenting a report.
-
 
 ## Part E. 
 ### Connect: from YOLO readings to Qwen reasoning
