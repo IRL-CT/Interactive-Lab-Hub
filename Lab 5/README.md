@@ -81,6 +81,7 @@ This readme.md page in your own repository should be edited to include the work 
 ### See: recognize people in real time with YOLO
 
 **Successfully Recognized**
+
 <img width="700" alt="Screenshot 2026-10-26 at 4 54 21 PM" src="https://github.com/user-attachments/assets/4d7e2c51-32d8-47a7-bf9b-bee5be355974" />
 
 <img width="700" alt="Screenshot 2026-10-26 at 4 55 04 PM" src="https://github.com/user-attachments/assets/3bb104bc-08c4-4425-b0c3-bffed9a68528" />
