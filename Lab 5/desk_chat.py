@@ -9,6 +9,7 @@ the objects on my desk had about me while I slept.
 import argparse
 import datetime
 import json
+import re
 
 import requests
 
@@ -42,6 +43,15 @@ span = f"{entries[0]['t'][11:16]} to {entries[-1]['t'][11:16]}" if entries else 
 # Step 2: build an on/off timeline for each thing (and the human)
 def ts(e):
     return datetime.datetime.fromisoformat(e["t"])
+
+
+# The camera needs a few seconds to adjust its exposure, so the first frames are often dark.
+# Skip the first 15 seconds and use the last reading in that window as the starting state.
+WARMUP = 15
+if readings:
+    t0 = ts(readings[0])
+    warm = [e for e in readings if (ts(e) - t0).total_seconds() < WARMUP]
+    readings = warm[-1:] + [e for e in readings if (ts(e) - t0).total_seconds() >= WARMUP]
 
 
 timeline = {}            # name -> list of (time, present)
@@ -138,13 +148,26 @@ def ask_qwen():
     return r.json()["response"]
 
 
-messages, raw = [], ""
+# Small models like to invent times. Drop any message with a time that is not in the log.
+valid_times = {line[:5] for line in events}
+
+
+def honest(m):
+    times = re.findall(r"\b\d{1,2}:\d{2}\b", str(m.get("text", "")))
+    return all(t.zfill(5) in valid_times for t in times)
+
+
+messages, raw, dropped = [], "", 0
 for attempt in range(3):
     raw = ask_qwen()
     try:
-        messages = json.loads(raw)["messages"]
+        got = json.loads(raw)["messages"]
     except (json.JSONDecodeError, KeyError, TypeError):
-        messages = []
+        got = []
+    kept = [m for m in got if honest(m)]
+    dropped += len(got) - len(kept)
+    if len(kept) > len(messages):
+        messages = kept
     if len(messages) >= 4:
         break
 
@@ -160,4 +183,6 @@ with open("morning_chat.txt", "w") as out:
         color = color_of.setdefault(who, COLORS[len(color_of) % len(COLORS)])
         print(f"{color}{BOLD}{who}:{RESET} {m.get('text', '')}")
         out.write(f"{who}: {m.get('text', '')}\n")
-print("\n(saved to morning_chat.txt)")
+if dropped:
+    print(f"\n({dropped} message(s) dropped because they made up a time that is not in the log)")
+print("(saved to morning_chat.txt)")
