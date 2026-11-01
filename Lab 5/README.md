@@ -410,7 +410,7 @@ Accurate tram arrival and departure notifier for night time!
 
 "Do you think it's actually possible to make an accurate preditiction of where the tram will be located when you can only see like 1/10 of where the tram travels?" - Pranav (friend)
 
-"How are you going to see the tram at night?" - Divyesh (friend) 
+"How are you going to see the tram at night?" - Elena (friend) [Invest in night time camera]
    
 3. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
 4. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
