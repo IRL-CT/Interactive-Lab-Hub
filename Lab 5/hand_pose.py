@@ -42,7 +42,7 @@ cap.set(3, wCam)
 cap.set(4, hCam)
 pTime = 0
  
-detector = htm.handDetector(detectionCon=int(0.7))
+detector = htm.handDetector(detectionCon=0.7)
 minVol = 0
 maxVol = 100
 vol = 0
