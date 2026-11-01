@@ -2,9 +2,9 @@
 
 **Team:**
 
-**Members:** Yuqi Wang (yw2897), ...
+**Members:** Yuqi Wang (yw2897)
 
-**Project name:**
+**Project name:** Desk Night Watch
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
@@ -238,57 +238,96 @@ Two house rules. Sample rather than stream: one look every 5 to 30 seconds is pl
 
 Storyboard a night-time interaction built on your observant system, in three panels:
 
-1. **Before bed.** How does the person hand the night over, and how does the device acknowledge it?
-2. **While asleep.** What does the device watch or work through?
-3. **When awake.** What is the one thing the person learns, and in what medium?
+Before bed, I will start Desk Night Watch and receive an on-screen confirmation that monitoring has begun. 
+While I sleep, the Raspberry Pi will sample the desk area with a webcam every 10 seconds and save detection records locally. 
+In the morning, a short report will show the last time a person was detected, or state that no person was detected during sampling.
 
-Stuck? A kitchen that tells you who raided the fridge. A desk that reports whether you actually went to bed. A window that names the quietest hour. A plant that describes its night. Find something better.
+![storyboard](./storyboard.png)
 
-Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf).
-
-\*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
 ## Prep for Part 2
 
-1. Look at and give feedback on the Part F storyboards.
-   **Put the feedback for your ideas here.**
-2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
-3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
-4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
+Design Feedback
 
-\*\*\***Post your revised storyboard here.**\*\*\*
+1. Make the hand-off clearer. Before starting, briefly check the camera framing and test detection under the intended overnight lighting. Display “Watch started” so the user knows recording has begun.
+2. Separate camera failures from no detections. Continue sampling every 10 seconds, but record failed captures separately from valid samples containing no detected person. Keep timestamped detection results locally without retaining camera images.
+3. Keep the morning report honest. Report the last recorded person detection and any gaps in the observations. If there are no detections, say “No person detected in valid samples,” without claiming that the desk was unused or that the user was asleep.
+Revised Storyboard
+
+The revised design adds a brief camera and lighting check before the bedtime hand-off. During the night, it will record detection results and flag camera failures. In the morning, it will present the last recorded detection alongside any missing observations, making the limits of the report visible.
+
+![revised](./revised.png)
+
+
 
 ## Part G. 
 ### Design the interaction before
 
-The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
+I designed a short voice interaction to hand the night over to Desk Night Watch. The original command was “Start night watch,” but speech recognition repeatedly misinterpreted it. I simplified the command to “Hello” for the successful test.
 
-\*\*\***Describe the interaction before.**\*\*\*
+The small display first shows “LISTENING” and prompts the user to speak. After accepting the command, the system checks the camera and begins recording observations. Only after the first successful sample is saved does the display show “WATCHING — Watch started,” accompanied by the spoken confirmation “Night watch started.” Microphone recording then remains off, and the screen turns off shortly afterward while observation continues.
+
+30-second test results
+Time	Observed result
+15:40:26	“Hello” was recognized and accepted on the first attempt.
+15:40:29	Camera logging began, and the system confirmed that the watch had started.
+15:40:43	The screen turned off while observation continued.
+15:41:00	The demonstration completed normally and saved its log.
+
+
+The test used a 30-second observation period with a 10-second sampling interval. It demonstrated the voice-triggered hand-off, display and speaker confirmation, and successful completion of a short recording session. A full overnight run remains to be tested in Part H.
 
 ## Part H. 
 ### Incorporate the observant system
 
-The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret()` from `yolo_to_qwen.py` every few seconds, people only unless you pass `--all`, and writes the readings to `night_log.jsonl`; the reasoning waits for the morning. Start it inside `tmux` so it keeps running after you close your laptop, and stop it with Ctrl-C in the morning:
+Part H. Incorporate the Observant System
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ tmux new -s night
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python overnight.py
-```
+Desk Night Watch uses the Raspberry Pi and webcam to observe the desk and chair area. After the voice hand-off, desk_watch.py runs YOLO with a configured sampling interval of 10 seconds. Each sample records a timestamp, the detected person count, and a brief description of their position in night_log.jsonl. Camera or inference failures are recorded separately from valid samples with no person detected. The system keeps text records locally without saving camera images.
 
-Fake a night first: run it for thirty seconds while you walk around, stop it, and run `morning.py` from Part I. When that looks right, run a real night. If your storyboard needs a sensor rather than the camera, swap in the Lab 4 example code and log its reading the same way.
+Short test
 
-\*\*\***Screenshots or videos of the running system.**\*\*\*
+I completed a 30-second test before attempting an overnight run. The log contained three valid samples:
+Time	Detection
+15:40:29	One person at center/close
+15:40:40	One person at center/close
+15:40:50	No person detected
+
+
+No sampling errors were recorded, and the session ended normally. These observations show two samples containing a person, rather than two distinct people. The last recorded person detection was at 15:40:40.
+
+Overnight setup
+
+For the overnight test, I will position the camera toward the desk and chair area and check detection under the intended lighting. I will run the system inside a tmux session so it can continue after I disconnect my Mac. The Pi will remain powered, and I will stop the recording the following morning.
+
+Running-system evidence
+
+Pending: add a photo or short video showing the device placement and the system running.
+
+Overnight results
+
+The overnight test has not yet been completed. After the home test, I will add the recording start and end times, detection results, any errors or recording gaps, and a link to the actual night_log.jsonl file.
 
 ## Part I. 
 ### Design the interaction after
+The morning interaction answers one question: “When was a person last detected in the desk area?” After stopping the watch, the user runs desk_morning.py and reads a short text report in the SSH terminal. The report includes the last recorded person detection, the final sample, and any recorded errors or long gaps.
 
-The reveal. The night produced a log; the morning turns it into something a half-awake person can take in. `morning.py` is the smallest version: it asks Qwen for a three-sentence report.
+If valid samples contain no detections, the report states that no person was detected in those samples. If there are no valid observations, it states that presence cannot be assessed. Neither result establishes that the desk was unused or that someone was asleep.
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python morning.py
-```
+Design Iteration
 
-Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
+The original free-text report incorrectly described an hour-long observation, two people, and sleeping occupants. These claims were unsupported by the short-test log.
+
+I revised the reporting pipeline so Python computes the facts directly from the log. Qwen receives these facts and returns structured JSON, which the program compares against the computed values. The displayed sentences come from a Python template, while Qwen’s original response and the comparison results are saved separately. This checks consistency with the log; it does not eliminate errors in the camera’s detections.
+
+Short-Test Results
+
+The approximately 30-second test contained three valid samples. Two samples detected a person, with a maximum of one person in any sample. The last person detection was at 15:40:40, and the final sample at 15:40:50 detected nobody. No sampling errors or long recording gaps were recorded.
+
+The revised report matched these observations, and Qwen’s structured response passed the field-by-field comparison. This was a short functional test, not an overnight validation.
+
+Overnight Results and Evidence
+
+Pending: after the home overnight run, I will add the actual morning report, a screenshot of its presentation, links to the corresponding log and report files, and a video clip showing the morning interaction.
 
 ## Final documentation
 
