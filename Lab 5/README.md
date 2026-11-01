@@ -315,28 +315,35 @@ Storyboard a night-time interaction built on your observant system, in three pan
 2. **While asleep.** What does the device watch or work through?
 3. **When awake.** What is the one thing the person learns, and in what medium?
 
-Stuck? A kitchen that tells you who raided the fridge. A desk that reports whether you actually went to bed. A window that names the quietest hour. A plant that describes its night. Find something better.
-
-Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf).
-
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
+
+The overnight observant system I want to implement is **Night Walker**.
+It is a device that tells me whether I got up and walked around at night. Before bed I hand the night over with a gesture; while I sleep the camera logs only words, never photos of me in bed; in the morning it tells me when I got up and for how long. It reports "got up", not "sleepwalking", because a camera cannot tell if someone is asleep.
+![storyboard](imgs/storyboard.jpg)
 
 ## Prep for Part 2
 
 1. Look at and give feedback on the Part F storyboards.
-   **Put the feedback for your ideas here.**
+   **Put the feedback for your ideas here.** Some feedbacks I got:
+   - Could add a confirmation prompt (LED or sound) to the first storyboard (after recognizing a gesture).
+   - When the person wakes up, how does Pi reacts when the person "didn't get up" the whole night?
+
 2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
 3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
 4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
 
 \*\*\***Post your revised storyboard here.**\*\*\*
+![revised storyboard](imgs/storyboard_revised.jpg)
 
 ## Part G. 
 ### Design the interaction before
 
-The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
-
 \*\*\***Describe the interaction before.**\*\*\*
+Before I go to bed, I have to show an open palm to the camera, hold it for two seconds, and a green bar fills up on the screen so I can see the device has seen my hand. When the bar is full, the screen shows "watching tonight" and speak it out. After that, the device starts a thirty-second countdown. That is my time to switch off the lamp and lie down. After the countdown, the device starts `overnight.py` by itself.
+
+I chose an open palm because it is one clear shape that is easy to tell from a resting hand, and because the device measures it relative to the size of my hand, so it works from different distances. It needs light to see my hand, so the order is lamp on, gesture, lamp off.
+
+The acknowledgement is the progress bar, the line "watching tonight" on the display, and a good night voice message. From then on the device only writes words to its log ("lying", "upright"), and it keeps a photo only at the moment I get up, so it never records me asleep. The only person needed for this demo is me.
 
 ## Part H. 
 ### Incorporate the observant system

@@ -5,12 +5,16 @@ It only senses and logs; the reasoning waits for the morning (morning.py).
     python overnight.py                  # one look every 5 s until Ctrl-C
     python overnight.py --interval 30    # look less often
     python overnight.py --all            # log the other objects too, not only people (see Part E)
+    python overnight.py --snaps          # also keep a photo each time someone gets up (see snaps/)
 
 Fake a night first: run it for thirty seconds while you walk around, Ctrl-C, then run morning.py.
 
-Writes night_log.jsonl (one JSON object per line) and a snapshot in snaps/ whenever
-the reading changes to something other than "nobody". Writes an "alive" line every
-10 minutes so you can tell a quiet night from a crashed one.
+Writes night_log.jsonl (one JSON object per line): only words, and no photos unless you pass
+--snaps, which saves one photo in snaps/ each time the reading turns "upright". Tell the people
+you live with, keep snaps/ out of git, and delete it after the demo.
+A reading is logged once it has been seen --confirm looks in a row, so one blurry frame
+does not make an entry. Writes an "alive" line every 10 minutes so you can tell a quiet
+night from a crashed one.
 Start it in tmux or with nohup so it survives the ssh disconnect (see the README).
 """
 import argparse
@@ -26,15 +30,20 @@ from yolo_to_qwen import interpret, model      # the interpreter you tuned in Pa
 parser = argparse.ArgumentParser()
 parser.add_argument("--interval", type=float, default=5, help="seconds between looks")
 parser.add_argument("--all", action="store_true", help="detect all 80 classes, not only people")
+parser.add_argument("--snaps", action="store_true", help="keep a photo each time someone gets up")
+parser.add_argument("--conf", type=float, default=0.3, help="minimum confidence; lower than by day because the room is dark")
+parser.add_argument("--confirm", type=int, default=2, help="looks in a row before a new reading is logged")
 args = parser.parse_args()
 classes = None if args.all else [0]        # class 0 is "person", as in yolo_to_qwen.py
 
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-pathlib.Path("snaps").mkdir(exist_ok=True)
+if args.snaps:
+    pathlib.Path("snaps").mkdir(exist_ok=True)
 log = open("night_log.jsonl", "a")
 last, last_beat = None, 0.0
+candidate, seen_in_a_row = None, 0
 
 
 def write(entry):
@@ -50,14 +59,16 @@ while True:
         ok, frame = cap.read()
         if not ok:
             raise RuntimeError("no frame")
-        r = model.predict(frame, imgsz=320, conf=0.4, classes=classes, verbose=False)[0]
+        r = model.predict(frame, imgsz=320, conf=args.conf, classes=classes, verbose=False)[0]
         reading = interpret(r)
         now = datetime.datetime.now()
         ts = now.isoformat(timespec="seconds")
-        if reading != last:
+        seen_in_a_row = seen_in_a_row + 1 if reading == candidate else 1
+        candidate = reading
+        if seen_in_a_row >= args.confirm and reading != last:
             write({"t": ts, "reading": reading})
-            if reading != "nobody":
-                cv2.imwrite(f"snaps/{now:%Y%m%d-%H%M%S}.jpg", frame)
+            if args.snaps and "upright" in reading and "upright" not in (last or ""):
+                cv2.imwrite(f"snaps/{now:%Y%m%d-%H%M%S}.jpg", frame)       # a photo as the person gets up
             last = reading
         if time.time() - last_beat > 600:
             write({"t": ts, "alive": True})

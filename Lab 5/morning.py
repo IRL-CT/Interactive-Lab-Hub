@@ -1,7 +1,10 @@
 """
-Part I, the smallest possible version: turn night_log.jsonl into a three-sentence
-morning report. Use it to check your thirty-second fake nights, then replace it with your
-own reveal (a display, a voice, a plot, a servo...).
+Part I: turn night_log.jsonl into a short morning report about whether anyone got up
+and walked around in the night. The camera cannot tell asleep from awake, so the report
+says "got up", never "sleepwalking".
+
+The episodes (when someone was upright, and for how long) are counted here in plain
+code, so the small model only has to put facts into words, not find them.
 
     python morning.py                          # print the report
     python morning.py --model qwen3:0.6b
@@ -9,6 +12,7 @@ own reveal (a display, a voice, a plot, a servo...).
 """
 import argparse
 import collections
+import datetime
 import json
 
 import requests
@@ -23,24 +27,53 @@ readings = [e for e in entries if "reading" in e]
 seen = [e for e in readings if e["reading"] != "nobody"]
 beats = sum(1 for e in entries if e.get("alive"))
 per_hour = dict(sorted(collections.Counter(e["t"][11:13] + ":00" for e in seen).items()))
-digest = "\n".join(f'{e["t"][11:19]} {e["reading"]}' for e in seen[-200:])   # keep the prompt small
 
 span = f"{entries[0]['t'][11:16]} to {entries[-1]['t'][11:16]}" if entries else "no entries"
-print(f"{len(readings)} changes, {len(seen)} with something in view, {beats} heartbeats, {span}")
+print(f"{len(readings)} changes, {len(seen)} with someone in view, {beats} heartbeats, {span}")
 print("changes per hour:", per_hour)
 
+
+def clock(iso):
+    return datetime.datetime.fromisoformat(iso)
+
+
+# An episode starts when a reading says "upright" and ends at the next reading that does not.
+episodes, start = [], None
+for e in readings:
+    if "upright" in e["reading"]:
+        if start is None:
+            start = e["t"]
+    elif start is not None:
+        then = "left the camera's view" if e["reading"] == "nobody" else "lay down again"
+        episodes.append((start, e["t"], then))
+        start = None
+if start is not None:                          # still up when the log stopped
+    episodes.append((start, entries[-1]["t"], "was still up when the log ended"))
+
+if not entries:
+    raise SystemExit("\nThe log is empty: the camera may not have run last night.")
 if not seen:                                   # nothing to summarize: say so, do not ask the model
-    print(f"\nQuiet night. The camera watched from {span} and saw nobody.")
+    print(f"\nQuiet night. The camera watched from {span} and saw nobody, "
+          "so I cannot say whether you stayed in bed.")
+    raise SystemExit
+if not episodes:
+    print(f"\nQuiet night. The camera watched from {span} and nobody got up.")
     raise SystemExit
 
-prompt = f"""You are a bedside night-watch device. The camera watched from {span}. Below is what it saw,
-one line per change (time reading). Changes per hour: {per_hour}.
+facts = "\n".join(
+    f"- got up at {s[11:16]}, up for {max(1, round((clock(t) - clock(s)).total_seconds() / 60))} min, then {then}"
+    for s, t, then in episodes
+)
+prompt = f"""You are a bedside night-watch device. The camera watched from {span}.
+It noticed {len(episodes)} time(s) when someone was upright (standing or sitting up):
 
-{digest}
+{facts}
 
-Write a warm three-sentence morning report. Mention the most unusual moment and when it happened.
-Only use facts from the log."""
+Write a warm three-sentence morning report. Say how many times they got up, when, and for how long.
+Say "got up", never "sleepwalking", because a camera cannot tell if someone is asleep.
+Only use facts from the list above."""
 
+print("\n" + facts, flush=True)
 r = requests.post("http://localhost:11434/api/generate", json={
     "model": args.model,
     "prompt": prompt,
