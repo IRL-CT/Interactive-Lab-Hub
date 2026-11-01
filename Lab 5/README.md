@@ -1,6 +1,6 @@
 # Observant Systems: Overnight Sensation
 
-**NAMES OF COLLABORATORS HERE**
+**Abiola Bolaji (ab3394), Pallavi Srinivas (ps2269), Pallavi Khanna (pk633)**
 
 For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
 Your **observant device** could, for example, count items, find objects, recognize an event or continuously monitor a room.
@@ -11,6 +11,9 @@ This lab will help you think through the design of observant systems, particular
 
 **Please indicate anyone you collaborated with on this Lab here.**
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
+
+* **Nishant Ray (nr487)** gave feedback on our Part F storyboard (see Prep for Part 2).
+* AI (Claude) helped turn our write-up into this README.
 
 ## Overview
 
@@ -165,6 +168,14 @@ Try the two main features of this script: 1) pinching for percentage control (th
 Consider how you might use this position based approach to create an interaction, and write how you might use it on either face, hand or body pose tracking.
 
 \*\*\***Include a screenshot or short video of the hand pose demo, and write how you might use face, hand or body pose tracking in your observant system.**\*\*\*
+
+We had to fix the demo before it would run on our Pi:
+
+* [hand_pose.py](hand_pose.py) now uses the Pi ribbon camera through `picamera2` and falls back to the first USB webcam that works. It also skips frames that fail to read instead of crashing.
+* The original `handDetector(detectionCon=int(0.7))` rounded the confidence down to 0. We changed it to `detectionCon=0.7`.
+* [HandTrackingModule.py](HandTrackingModule.py) now passes arguments to MediaPipe `Hands(...)` by keyword. Passed by position, the confidence values went into the wrong parameters.
+
+*TODO: add a screenshot or video of the demo, and how pose tracking could fit our sleep watcher.*
 
 
 ## Part D. 
