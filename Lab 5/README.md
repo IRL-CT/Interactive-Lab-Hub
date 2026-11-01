@@ -120,21 +120,32 @@ It's easier than finding a button in the dark.
 ## Part D. 
 ### Reason: run Qwen on the Pi with Ollama
 
-| Question | Model | Answer (short) | Time | Correct? |
-|---|---|---|---|---|
-| Tell me a bit about the history of Roosevelt Island. | qwen3.5:0.8b | Said it was a WWII military barracks, named after Theodore Roosevelt, who walked across it in 1902. | 11.1 s | No. It was Blackwell's Island, then Welfare Island, renamed for FDR in 1973. None of the 3 facts were right. |
-| What is 17 times 23? | qwen3.5:0.8b | 391 | 1.8 s | Yes |
-| What is in this photo? (snap.jpg) | qwen3.5:0.8b | A ceiling of a modern room with a large diamond-shaped light and two long LED strips running diagonally. | 4.7 s | ___ |
-| Tell me a bit about the history of Roosevelt Island. | qwen3:0.6b | Said it was set up in 1904 for the "Roosevelt Corridor Project" in the Hudson River. Kept repeating "Roosevelt Corridor" until it got cut off. | 14.3 s | No. Made up a project that doesn't exist, and it's in the East River, not the Hudson. |
+\*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
 
-**Comparison:** Both models made up history about Roosevelt Island, but the 0.6b model was worse. It repeated itself and got cut off by the token limit. It was also slower this time (14.3 s vs 11.1 s), because it kept going until it hit the limit. The 0.8b model did fine on the simple math question. So these small models seem OK for short, simple tasks, but you can't trust them on facts.
+**Q1: What is the capital of France?**
+qwen3.5:0.8b: The capital of France is **Paris**.
+Time: 54.4s (total duration). Most of the time was spent on thinking (337 tokens at 6.84 tokens/s).
 
+**Q2: Who wrote Romeo and Juliet?** (thinking off)
+qwen3.5:0.8b: Romeo and Juliet was written by William Shakespeare. ... It consists of four acts ...
+Time: 17.6s
+Note: The author is correct, but it made up details. The play has five acts, not four, and it did not premiere at Stratford-upon-Avon.
+
+**Q3: What is 12 times 8?** (thinking off)
+qwen3.5:0.8b: ... Final Answer: 12 × 8 = 96.
+Time: 25.8s
+Note: The final answer is correct, but the first step-by-step method is wrong (it gets 30), and only the second method (80 + 16) is right.
+
+**Comparison: What is 12 times 8? with qwen3:0.6b** (thinking off)
+qwen3:0.6b: 12 multiplied by 8 equals **96**.
+Time: 8.1s total, but 7.4s was loading the model. Generating the answer only took about 0.6s.
+
+qwen3:0.6b was much faster than qwen3.5:0.8b (23.28 vs 6.71 tokens/s) and gave a short, correct answer. qwen3.5:0.8b took 25.8s and wrote a long explanation with one wrong method. For a simple question like this, the smaller model worked better.
 
 ## Part E. 
 ### Connect: from YOLO readings to Qwen reasoning
 
 <img width="643" height="588" alt="6fdbcb92d2cd76aa3a823ae90ca7e148" src="https://github.com/user-attachments/assets/61e11d7b-46d1-45c7-a8ae-cf6cfb0dd2d7" />
-
 
 ---
 
