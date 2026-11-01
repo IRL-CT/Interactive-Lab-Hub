@@ -406,7 +406,11 @@ Accurate tram arrival and departure notifier for night time!
 1. Look at and give feedback on the Part F storyboards.
    **Put the feedback for your ideas here.**4
 
+"Instead of having the device check whether or not someone is turning off the lights in our apartment, why not help us figure out when the tram will arrive or leave the island?" - Nurain (roomate)
 
+"Do you think it's actually possible to make an accurate preditiction of where the tram will be located when you can only see like 1/10 of where the tram travels?" - Pranav (friend)
+
+"How are you going to see the tram at night?" - Divyesh (friend) 
    
 3. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
 4. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
