@@ -106,14 +106,13 @@ Users will give the system a bedtime, such as 11pm. 15 minutes before the bedtim
 
 I was responsible for programming the before bedtime portion of the project. I utilized ChatGPT, Piper for the speech, and mediapipe for the camera vision. Below is a video showing how the program works. 
 
-Code Link: https://github.com/chonjessica23/Interactive-Lab-Hub/blob/Fall2026/Lab%205/quiet_coyote_p1.py<img width="1920" height="1440" alt="IMG_20261030_232847" src="https://github.com/user-attachments/assets/80f00905-c7e7-4e0c-a095-cec1d52bb053" />
+Code Link: https://github.com/chonjessica23/Interactive-Lab-Hub/blob/Fall2026/Lab%205/quiet_coyote_p1.py
 
 https://drive.google.com/file/d/1TRhDM_q4PxSXFP7iWNiHiMuxS9sRXQ5v/view?usp=drive_link
 
 ***Screenshots or videos of the running system.***
 
-**Bedtime Interaction
-**
+**Bedtime Interaction**
 
 Once the system went into "sleep mode", the camera would detect 3 events: mouth open, instances of snoring, and instances when the user left the screen, perhaps to go to the bathroom, get a late night snack, etc. We believed these elements would help determine the user's sleep quality, discussed later in this documentation. Snoring was marked when sound was detected above a certain decibel threshold, while the mouth being open was detected by determining the distance between the points on the upper and lower lip, and setting a trigger threshold. The bedtime portion ends when the user signals Quiet Coyote again. All these instances were tracked in a separately created log file that will be used for the morning portion. 
 
@@ -121,8 +120,7 @@ This portion was handled by Shifeng. A video demonstration is below.
 
 https://drive.google.com/file/d/1FJmmQnf50g7aOtpMr3x_jOTYo-hQbLKE/view?usp=drive_link
 
-**Morning Interaction
-**
+**Morning Interaction**
 
 Once we both finished our parts, we sat together using AI to combine both our files and help create the morning report. The system compiles all the information created during the bedtime interaction that then writes a report on the minipi screen, rating your sleep quality and giving percentage of your time either snoring, having your mouth open, or disappearing. This report is also read out loud to users as well. 
 
@@ -130,8 +128,7 @@ Link to full code:
 
 [Video of it all working together:](https://drive.google.com/file/d/135YGaPZvVVAInZDiwK7Yw9aRUJEGCDgq/view?usp=drive_link) 
 
-**Real testing
-**
+**Real testing**
 
 <img width="1920" height="1440" alt="IMG_20261030_232847" src="https://github.com/user-attachments/assets/3235317b-99cc-4e30-896b-5c275616994c" />
 
