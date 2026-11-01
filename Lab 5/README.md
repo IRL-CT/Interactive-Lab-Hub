@@ -438,8 +438,8 @@ The hand-off: the person tells the device what to watch tonight, and the device 
 
 \*\*\***Describe the interaction before.**\*\*\*
 
-Before going to bed, the user uploads 50 photos of their week into a designated folder on the Raspberry Pi. Once the photos are ready, they press a physical button to activate the AI Dream Machine. The device acknowledges the hand-off with a short audio message: “Good night! I'll dream about your week.”
-The Raspberry Pi then begins processing the photos in the background using YOLO and Qwen. The user does not need to interact with the device again until the next morning. The entire hand-off takes less than 30 seconds, assuming the photos have already been transferred.
+Before going to bed, the user uploads 50 photos of their day/week into a designated folder on the Raspberry Pi. Once the photos are ready, they press a physical button to activate the AI Dream Machine. The device acknowledges the hand-off with a short audio message: “Good night! I'll dream about your day.”
+The Raspberry Pi then begins processing the photos in the background using YOLO and Qwen. The user does not need to interact with the device again until the next morning. The entire hand-off takes less than 30 seconds, assuming the photos have already been transferred. The next day, the user presses the button again and the Pi will narrate the generated dream through the speaker.
 
 ## Part H. 
 ### Incorporate the observant system
