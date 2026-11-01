@@ -106,11 +106,12 @@ Users will give the system a bedtime, such as 11pm. 15 minutes before the bedtim
 
 I was responsible for programming the before bedtime portion of the project. I utilized ChatGPT, Piper for the speech, and mediapipe for the camera vision. Below is a video showing how the program works. 
 
-**Code link**
+Code Link: https://github.com/chonjessica23/Interactive-Lab-Hub/blob/Fall2026/Lab%205/quiet_coyote_p1.py<img width="1920" height="1440" alt="IMG_20261030_232847" src="https://github.com/user-attachments/assets/80f00905-c7e7-4e0c-a095-cec1d52bb053" />
 
 https://drive.google.com/file/d/1TRhDM_q4PxSXFP7iWNiHiMuxS9sRXQ5v/view?usp=drive_link
 
 ***Screenshots or videos of the running system.***
+
 **Bedtime Interaction
 **
 
@@ -122,14 +123,17 @@ https://drive.google.com/file/d/1FJmmQnf50g7aOtpMr3x_jOTYo-hQbLKE/view?usp=drive
 
 **Morning Interaction
 **
+
 Once we both finished our parts, we sat together using AI to combine both our files and help create the morning report. The system compiles all the information created during the bedtime interaction that then writes a report on the minipi screen, rating your sleep quality and giving percentage of your time either snoring, having your mouth open, or disappearing. This report is also read out loud to users as well. 
 
-**Link to full code: **
+Link to full code:
 
 [Video of it all working together:](https://drive.google.com/file/d/135YGaPZvVVAInZDiwK7Yw9aRUJEGCDgq/view?usp=drive_link) 
 
 **Real testing
 **
+
+<img width="1920" height="1440" alt="IMG_20261030_232847" src="https://github.com/user-attachments/assets/3235317b-99cc-4e30-896b-5c275616994c" />
 
 Shifeng tested the program in his dorm and found the following matters comeup:
 
