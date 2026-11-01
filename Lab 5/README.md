@@ -1,33 +1,11 @@
 # Observant Systems: Overnight Sensation
 
-**Team:**
+**Team:** Yuqi Wang, Jerry Lee
 
-**Members:** Yuqi Wang (yw2897)
+**Members:** Yuqi Wang (yw2897), Jerry Lee
 
 **Project name:** Desk Night Watch
 
-<details>
-	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
-  
-	**Submission Cleanup Reminder:**
-	- This README.md contains extra instructional text for guidance.
-	- Before submitting, remove all instructional text and example prompts from this file.
-	- You may delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-	- Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-	This helps ensure your README.md is clear, professional, and uniquely yours!
-</details>
-
-
-For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
-Your **observant device** could, for example, count items, find objects, recognize an event or continuously monitor a room.
-
-This lab will help you think through the design of observant systems, particularly corner cases that the algorithms need to be aware of.
-
-**New this year: the AI runs on the Pi.** Your Pi 5 can run an object detector ([YOLO](https://docs.ultralytics.com/)) and a small language model ([Qwen](https://ollama.com/library/qwen3.5) through [Ollama](https://ollama.com)) completely offline. In Part 1 you get both running and connect them: YOLO *sees*, Qwen *reasons* about what was seen. These models are slow, but they have all night. In Part 2 you use them to design a **night-time interaction**: what you tell the device before bed, what it does while you sleep, and what it shows you when you wake up.
-
-**Please indicate anyone that helped with this Lab here.**
-Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
 ## Overview
 
@@ -89,103 +67,85 @@ This readme.md page in your own repository should be edited to include the work 
 ![pc3](./P-C-3.jpg)
 ![pc4](./P-C-4.jpg)
 
+For Desk Night Watch, hand pose tracking could provide an alternative to the spoken start command. Holding an open palm steady for a short time could request monitoring, followed by an on-screen message and spoken confirmation after the first successful camera sample. Requiring a stable gesture would help prevent accidental activation during normal hand movements. I would use gesture recognition only during the bedtime hand-off, then stop tracking gestures once monitoring begins. This is a possible extension; the tested prototype currently starts with the spoken word "Hello."
+
 ## Part D. 
-### Reason: run Qwen on the Pi with Ollama
-\*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
+Reason: run Qwen on the Pi with Ollama
+I asked qwen3.5:0.8b three questions using ask_qwen.py, then repeated the first question with qwen3:0.6b. The script requested at most three short sentences. The times below are the elapsed request times reported by the script.
+Question 1: Roosevelt Island history
+Question: Tell me a bit about the history of Roosevelt Island.
 
-I ran three questions with `qwen3.5:0.8b` using `ask_qwen.py`, then repeated the first question with `qwen3:0.6b`. Thinking was disabled. The script requested at most three short sentences and set a maximum of 120 generated tokens. The times below are the elapsed request times reported by the script.
+Model: qwen3.5:0.8b
+Elapsed time: 12.9 seconds
 
-### Question 1: Roosevelt Island history
+Original answer:
+Roosevelt Island was originally built as a private residence for President Franklin D. Roosevelt, who lived there from 1935 to 1945. It is now a historic site and one of the most popular tourist destinations in New York City. The island's history includes its original construction by the Rockefeller family and its current status as a museum dedicated to FDR's life and work.
 
-**Question:** Tell me a bit about the history of Roosevelt Island.
+Correctness check:
 
-**Model:** `qwen3.5:0.8b`  
-**Elapsed time:** 12.9 seconds
+The answer contains major factual errors. Roosevelt Island was not built as FDR's private residence. His principal lifelong residence was Springwood in Hyde Park, New York. The model's account of his residence on the island is incorrect. FDR Presidential Library
 
-**Original answer:**
+The island's documented history also differs from the model's construction and museum story. It was formerly called Blackwell's Island, became Welfare Island in 1921, and was renamed Roosevelt Island in 1973. Its institutional history includes prisons and hospitals. National Park Service
 
-> Roosevelt Island was originally built as a private residence for President Franklin D. Roosevelt, who lived there from 1935 to 1945. It is now a historic site and one of the most popular tourist destinations in New York City. The island's history includes its original construction by the Rockefeller family and its current status as a museum dedicated to FDR's life and work.
+Another relevant milestone is the opening of Cornell Tech's Roosevelt Island campus in 2017. The model mentioned none of the four reference facts: the Blackwell's Island name, the 1921 and 1973 name changes, or the campus opening. Cornell Tech
+Question 2: Can object detection establish whether someone is asleep?
+Question: Can a person's bounding box and confidence score alone tell whether they are asleep? Explain briefly.
 
-**Correctness check:**
+Model: qwen3.5:0.8b
+Elapsed time: 7.1 seconds
 
-The answer contains major factual errors. Roosevelt Island was not built as FDR?s private residence, and the claim that he lived there from 1935 to 1945 is incorrect. His principal residence was Springwood in Hyde Park, New York. The Rockefeller construction story and the description of the entire island as an FDR museum are also inconsistent with its documented history. [FDR Presidential Library](https://www.fdrlibrary.org/roosevelt-homes)
+Original answer:
+Yes, but the system cannot definitively determine if someone is asleep solely based on these metrics. The user must also consider their physical state, such as breathing patterns or heart rate to confirm sleep onset.
 
-The correct historical reference points are:
+Correctness check:
 
-- The island was formerly called **Blackwell?s Island**.
-- It became **Welfare Island in 1921**.
-- It was renamed **Roosevelt Island in 1973**.
-- Cornell Tech opened its Roosevelt Island campus in **2017**.
+The answer is internally contradictory: it begins with "Yes," but immediately explains that these metrics alone cannot determine whether someone is asleep. The direct answer should be No.
 
-The first three facts are documented by the [National Park Service](https://www.nps.gov/places/blackwell-s-island-new-york-city.htm), and the campus opening is documented by [Cornell Tech](https://tech.cornell.edu/news/cornell-tech-campus-opens-on-roosevelt-island-marking-transformational-mile/). The model mentioned none of these four reference facts.
+Object detection produces bounding boxes, class labels, and confidence scores. In this experiment, the box describes the detected person's location and size, while the score expresses confidence in the detection. These outputs do not establish sleep state. A high confidence score for "person" is not a probability that the person is asleep. This interpretation follows from the documented detection outputs. Ultralytics object detection documentation
 
-### Question 2: Can object detection establish whether someone is asleep?
+Breathing and heart rate were not measured in this experiment. The model's suggestion should therefore not be presented as a tested sleep-detection method.
+Question 3: Describe an image
+Question: How many people are in this photo, and what are they wearing?
 
-**Question:** Can a person's bounding box and confidence score alone tell whether they are asleep? Explain briefly.
+Input: The zidane.jpg image used in Part A, supplied with --image zidane.jpg.
 
-**Model:** `qwen3.5:0.8b`  
-**Elapsed time:** 7.1 seconds
+Model: qwen3.5:0.8b
+Elapsed time: 116.0 seconds
 
-**Original answer:**
+Original answer:
+There are two men in the photo. The man on the left is bald and wearing a black suit with a white shirt and black tie. The man on the right has gray hair and is also wearing a black suit with a white shirt and dark tie.
 
-> Yes, but the system cannot definitively determine if someone is asleep solely based on these metrics. The user must also consider their physical state, such as breathing patterns or heart rate to confirm sleep onset.
+Correctness check:
 
-**Correctness check:**
+The person count and main clothing description match the image: there are two people wearing dark suits, light-colored shirts, and ties. The left person is bald, and the right person has gray hair.
 
-The answer is internally contradictory: it begins with ?Yes,? but immediately explains that these metrics alone cannot determine whether someone is asleep. The direct answer should be **No**.
+The exact color descriptions are less precise; for example, the right person's tie appears blue. Overall, the answer addresses the requested count and clothing reasonably well. This image request took substantially longer than either text-only request in this run.
+Comparison with qwen3:0.6b
+I repeated the history question with the smaller model.
 
-A bounding box describes an object?s location and size, while the confidence score concerns its detected class. A high confidence score for ?person? is not a probability that the person is asleep. These outputs alone do not establish sleep state. [Ultralytics object detection documentation](https://docs.ultralytics.com/tasks/detect)
+Question: Tell me a bit about the history of Roosevelt Island.
 
-The model also mentions breathing and heart rate, but those signals were not measured by this experiment. Its suggestion should not be interpreted as a validated sleep-detection method.
+Model: qwen3:0.6b
+Elapsed time: 6.9 seconds
 
-### Question 3: Describe an image
+Original answer:
+Roosevelt Island is a small island located in the Pacific Ocean, off the coast of the state of New York. It was originally a military base during World War II, and it became a significant site for the United States Navy. The island was later used as a research and development center for the United States Department of Defense. Today, it remains a popular destination for outdoor activities and is a symbol of the United States' commitment to the Pacific.
 
-**Question:** How many people are in this photo, and what are they wearing?
+Correctness check:
 
-**Input:** The same `zidane.jpg` image used in Part A, supplied with `--image zidane.jpg`.
+The location is incorrect: Roosevelt Island is in New York City's East River, not the Pacific Ocean. The military-base, Navy, and Department of Defense narrative is unsupported by the official history checked, which instead describes institutional uses including prisons, hospitals, and an asylum. National Park Service
 
-**Model:** `qwen3.5:0.8b`  
-**Elapsed time:** 116.0 seconds
+The answer also contains four sentences, exceeding the script's request for at most three.
+Aspect	qwen3.5:0.8b	qwen3:0.6b
+Time for the same history question	12.9 seconds	6.9 seconds
+Main factual problems	Incorrect FDR residence and island history	Incorrect location and unsupported military history
+Answer length	3 sentences	4 sentences
+Covered the four reference facts	0 of 4	0 of 4
 
-**Original answer:**
 
-> There are two men in the photo. The man on the left is bald and wearing a black suit with a white shirt and black tie. The man on the right has gray hair and is also wearing a black suit with a white shirt and dark tie.
+The smaller model completed this request 6.0 seconds sooner, using approximately 46.5% less elapsed time. However, both models produced unreliable historical answers. The larger model followed the sentence limit, while the smaller model did not.
 
-**Correctness check:**
-
-The main description matches the image. There are two people, both wearing dark suits, light-colored shirts, and ties. The descriptions of the left person?s bald head and the right person?s gray hair also match the visible image.
-
-The model answered the requested count and clothing questions reasonably well, although precise clothing colors depend on lighting. This image request took 116.0 seconds, considerably longer than either text-only request in this run.
-
-### Comparison with `qwen3:0.6b`
-
-I repeated Question 1 with the smaller model using exactly the same question.
-
-**Question:** Tell me a bit about the history of Roosevelt Island.
-
-**Model:** `qwen3:0.6b`  
-**Elapsed time:** 6.9 seconds
-
-**Original answer:**
-
-> Roosevelt Island is a small island located in the Pacific Ocean, off the coast of the state of New York. It was originally a military base during World War II, and it became a significant site for the United States Navy. The island was later used as a research and development center for the United States Department of Defense. Today, it remains a popular destination for outdoor activities and is a symbol of the United States' commitment to the Pacific.
-
-**Correctness check:**
-
-The location is incorrect: Roosevelt Island is in New York City?s **East River**, not the Pacific Ocean. The military-base, Navy, and Department of Defense narrative is unsupported by the official historical accounts, which describe institutional uses including prisons and hospitals. [National Park Service](https://www.nps.gov/places/blackwell-s-island-new-york-city.htm), [New York City historical resources report](https://www.nyc.gov/html/oec/downloads/pdf/dme_projects/12DME004M/DEIS/12DME004M_DEIS_07_Historic.pdf)
-
-This answer also contains four sentences, exceeding the script?s request for at most three.
-
-| Aspect | `qwen3.5:0.8b` | `qwen3:0.6b` |
-|---|---|---|
-| Time for the same history question | 12.9 seconds | 6.9 seconds |
-| Main factual problems | Invented FDR residence and island history | Incorrect location and unsupported military history |
-| Answer length | 3 sentences | 4 sentences |
-| Covered the four reference facts | 0 of 4 | 0 of 4 |
-
-The smaller model completed this request **6.0 seconds sooner**, approximately **46.5% less elapsed time**. However, both models produced unreliable historical answers. The larger model followed the sentence limit, while the smaller one did not.
-
-These are single-request measurements, not a controlled performance benchmark. Model loading, caching, and answer length can affect elapsed time. For my observant system, these results suggest keeping model questions narrow, supplying relevant observations, and checking unsupported claims before using an answer to trigger an action.
+These are single-request measurements, not a controlled performance benchmark. Model loading, caching, and answer length can affect elapsed time. For Desk Night Watch, the results support asking narrow questions, supplying recorded observations, and checking model claims against those observations before presenting a report.
 
 
 ## Part E. 
@@ -247,7 +207,7 @@ In the morning, a short report will show the last time a person was detected, or
 
 ## Prep for Part 2
 
-Design Feedback
+### Design Feedback
 
 1. Make the hand-off clearer. Before starting, briefly check the camera framing and test detection under the intended overnight lighting. Display “Watch started” so the user knows recording has begun.
 2. Separate camera failures from no detections. Continue sampling every 10 seconds, but record failed captures separately from valid samples containing no detected person. Keep timestamped detection results locally without retaining camera images.
@@ -256,26 +216,51 @@ Revised Storyboard
 
 The revised design adds a brief camera and lighting check before the bedtime hand-off. During the night, it will record detection results and flag camera failures. In the morning, it will present the last recorded detection alongside any missing observations, making the limits of the report visible.
 
+### Feedback source
+
+The design feedback above was provided by OpenAI Codex in response to my initial Desk Night Watch proposal. It suggested clearer startup confirmation, separate records for camera failures and valid samples with no detections, and a morning report that states the limits of the observations. The revised storyboard reflects these suggestions and was created with OpenAI image generation. This was AI-assisted design feedback.
+
+### Overnight placement and agreement
+
+For the overnight test, I will place the device on my own desk at home, with the webcam aimed only at the desk and chair area. The camera will not face a bed or other private areas. Before starting, I will check the camera framing and test person detection under the intended overnight lighting.
+
+The people sharing my home have been informed about the planned test and have agreed to it. The overnight watch stores timestamped detection records locally without saving camera images. The microphone is used for the startup command and is not used to record audio during the watch.
+
 ![revised](./revised.png)
 
 
 
-## Part G. 
-### Design the interaction before
+## Part G.
+### Design the interaction before bed
 
-I designed a short voice interaction to hand the night over to Desk Night Watch. The original command was “Start night watch,” but speech recognition repeatedly misinterpreted it. I simplified the command to “Hello” for the successful test.
+Desk Night Watch uses a short voice interaction to begin monitoring. The question for the morning is: "When was a person last detected in the desk area?"
 
-The small display first shows “LISTENING” and prompts the user to speak. After accepting the command, the system checks the camera and begins recording observations. Only after the first successful sample is saved does the display show “WATCHING — Watch started,” accompanied by the spoken confirmation “Night watch started.” Microphone recording then remains off, and the screen turns off shortly afterward while observation continues.
+My original startup command was "Start night watch," but speech recognition repeatedly misinterpreted it. I simplified the command to "Hello," which was successfully recognized in the test.
 
-30-second test results
-Time	Observed result
-15:40:26	“Hello” was recognized and accepted on the first attempt.
-15:40:29	Camera logging began, and the system confirmed that the watch had started.
-15:40:43	The screen turned off while observation continued.
-15:41:00	The demonstration completed normally and saved its log.
+### Bedtime interaction
 
+1. The small display shows "READY" and then "LISTENING," prompting the user to say "Hello."
+2. After recognizing the command, the system checks the camera and starts the observation process.
+3. Only after the first successful camera sample has been saved does the display show "WATCHING" and "Watch started."
+4. The speaker says "Night watch started" to confirm that monitoring has begun.
+5. Microphone recording remains off during monitoring. The screen turns off shortly after confirmation while camera sampling continues.
 
-The test used a 30-second observation period with a 10-second sampling interval. It demonstrated the voice-triggered hand-off, display and speaker confirmation, and successful completion of a short recording session. A full overnight run remains to be tested in Part H.
+The screen and spoken confirmation let the user know that the system has actually started recording observations, rather than merely recognizing the command.
+
+### 30-second functional test
+
+The test was conducted on November 1, 2026, with a 30-second observation period and a configured sampling interval of 10 seconds.
+
+| Time | Observed result |
+|---|---|
+| 15:40:26 | "Hello" was recognized and accepted on the first attempt. |
+| 15:40:29 | The first valid camera sample was saved, and the system confirmed that the watch had started. |
+| 15:40:43 | The screen turned off while observation continued. |
+| 15:41:00 | The demonstration completed normally and reported that the log had been saved. |
+
+The log contained three valid samples: one person detected, one person detected, and no person detected. No sampling errors were recorded in this test.
+
+This short test demonstrated voice activation, screen and speaker confirmation, continued observation after the screen turned off, and successful log saving. It does not establish overnight reliability; the full overnight test remains pending.
 
 ## Part H. 
 ### Incorporate the observant system
@@ -331,30 +316,51 @@ Pending: after the home overnight run, I will add the actual morning report, a s
 
 ## Final documentation
 
-Document all the prototypes and iterations you have designed and worked on. The deliverables for this lab are writings, sketches, photos, and videos that show what your system:
+Desk Night Watch is a Raspberry Pi system designed to answer a focused morning question: "When was a person last detected in the desk area?" It combines a brief bedtime voice interaction, periodic camera observations, and a morning report based on the recorded data.
 
-* "Looks like": how the device sits in the room at night, and what it looks like at bedtime and in the morning.
-* "Works like": the pipeline from detector to interpreter to log to reasoner, with a real night's data.
-* "Acts like": how a person hands the night over and what they get back.
+### Looks like
 
-\*\*\***Include a short video of the whole system**\*\*\*
+The prototype consists of a Raspberry Pi 5, a small display, a webcam, a speaker, and a microphone. For the home test, it will sit on my desk with the camera aimed at the desk and chair area.
 
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+At bedtime, the display guides the user through the voice command and confirms that monitoring has started. The screen then turns off while observation continues. In the morning, the user views the report in an SSH terminal.
 
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
+An actual placement photo and overnight demonstration footage will be added after the home test.
 
-## Deliverables & Submission for Lab 5
+### Works like
 
-For submission, the readme.md page for this lab should be edited to include the work you have done:
-* Upload any materials that explain what you did, including your code and night log, into your Lab 5 repository, and link them in your Lab 5 readme.md.
-* Labs are due on Sundays, make sure to submit your Lab 5 readme.md to Canvas.
+The observation pipeline is:
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
+Webcam → YOLO person detection → interpreted readings → timestamped local log → computed facts → Qwen JSON consistency check → morning report.
 
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-</details>
+The watch uses a configured sampling interval of 10 seconds. Each valid sample records the person count and a brief description of position. Camera or inference failures are recorded separately from successful samples containing no detected person. The overnight watch saves text records without retaining camera images.
+
+For the morning report, Python computes facts directly from the log, including the last recorded person detection, the final sample, and any errors or long gaps. Qwen receives these facts and returns structured JSON, which is compared with the computed values. The displayed report is generated from a Python template.
+
+An accepted Qwen response means that its fields match the supplied facts. It does not independently verify the camera detections. Sampling also cannot establish continuous presence, identity, or whether someone was asleep.
+
+### Acts like
+
+Before bed, the user says "Hello" when prompted. After the first successful sample is saved, the display shows "Watch started" and the speaker confirms "Night watch started." The microphone is no longer used, and the screen turns off.
+
+For the overnight test, the watch will run inside tmux while the Pi remains powered. In the morning, the user will stop the watch and run the reporting script. The report will state the last recorded detection, or explain that no person was detected in the valid samples. If no valid observations are available, it will state that presence cannot be assessed.
+
+### Prototypes and iterations
+
+- **Initial and revised storyboards:** The initial storyboard established the bedtime, overnight, and morning stages. The revision added a camera and lighting check, clearer startup confirmation, and explicit handling of missing observations.
+- **Voice command:** "Start night watch" was repeatedly misrecognized. Changing the command to "Hello" produced a successful startup in the functional test.
+- **Morning report:** The original free-text response invented an hour-long observation, two people, and sleeping occupants. The revised pipeline computes facts from the log and generates the displayed report from a fixed template, while preserving Qwen's response and its validation result.
+
+### Validation so far
+
+A 30-second functional test produced three valid samples: one person, one person, and no person. The last person detection was at 15:40:40, and the final sample at 15:40:50 detected nobody. No sampling errors or long gaps were recorded. The revised reporting pipeline reproduced these facts, and Qwen's JSON response passed the field-by-field comparison.
+
+These results validate the short demonstration only. The actual overnight run has not yet been completed.
+
+### Final evidence to add after the overnight test
+
+- A photo showing the actual device placement and camera direction.
+- The real recording start and end times, detection summary, and any errors or gaps.
+- Links to the submitted source code, overnight log, and morning report.
+- A short video showing the complete interaction: the bedtime voice command and confirmation, the device operating in place, and the morning report.
+
+The video may combine bedtime and morning clips; the reported overnight results will come from the actual saved log.
