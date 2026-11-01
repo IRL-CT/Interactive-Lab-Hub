@@ -370,6 +370,8 @@ The reveal. The night produced a log; the morning turns it into something a half
 
 Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
 
+For our Roosevelt Island Tram observation system, we would customize morning.py to use Qwen to generate a simple three sentence summary of the tram's movements throughout the night. The report would use the timestamps and movement data collected by the Raspberry Pi camera to summarize when the tram was detected, how often it arrived, and how accurate our arrival predictions were. We would also display a timeline of the recorded tram movements so Person A could quickly understand what happened without reviewing the entire camera recording. If no tram activity was detected overnight, the system would explicitly report that no movements were observed and that there was insufficient data to make arrival predictions. This makes sure that the AI does not generate random data from no observations. Our goal is to turn the night's observations into a short, understandable report while continuing to provide useful arrival notifications to Person B.
+
 ## Final documentation
 
 Document all the prototypes and iterations you have designed and worked on. The deliverables for this lab are writings, sketches, photos, and videos that show what your system:
