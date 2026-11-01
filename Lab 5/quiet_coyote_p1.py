@@ -1,4 +1,4 @@
-#coded with assistance of ChatGPT, includes Piper speech, and references handtrackingmod.py
+#coded with assistance of ChatGPT, includes Piper speech, and references handtrackmod.py
 
 import cv2
 import math
