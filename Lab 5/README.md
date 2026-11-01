@@ -161,20 +161,22 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 
 ## Prep for Part 2
 
-1. Look at and give feedback on the Part F storyboards.
-   **Put the feedback for your ideas here.**
-2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
-3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
-4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
+**Feedback on our idea:** 
+
+**Revised storyboard:** After Part E, we saw that one photo at bedtime is not enough, because nothing changes during the night. So we changed it to watch the desk all night with `overnight.py --all`, and turn the whole night's log into the group chat in the morning.
 
 \*\*\***Post your revised storyboard here.**\*\*\*
 
 ## Part G. 
 ### Design the interaction before
 
-The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
-
 \*\*\***Describe the interaction before.**\*\*\*
+
+Before bed, I run one command: `./goodnight.sh`. The screen says "Shh... they're waking up. Good night." and the camera starts watching the desk. I start it when I sit down at the desk in the evening, then dim the lamp when I go to sleep.
+
+[goodnight.sh](goodnight.sh)
+
+(video: bedtime)
 
 ## Part H. 
 ### Incorporate the observant system
@@ -193,27 +195,30 @@ Fake a night first: run it for thirty seconds while you walk around, stop it, an
 ## Part I. 
 ### Design the interaction after
 
-The reveal. The night produced a log; the morning turns it into something a half-awake person can take in. `morning.py` is the smallest version: it asks Qwen for a three-sentence report.
+In the morning, I stop the night shift and run `python desk_chat.py`. It first lists what changed during the night (things showing up or disappearing, me leaving, the lights going off). Then Qwen turns that list into a group chat between the objects on my desk, gossiping about me. The camera is always in the chat, since it saw everything. If nothing happened, the objects just complain that the night was boring.
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python morning.py
-```
+[desk_chat.py](desk_chat.py)
 
-Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
+(screenshot: morning chat)
 
 ## Final documentation
 
-Document all the prototypes and iterations you have designed and worked on. The deliverables for this lab are writings, sketches, photos, and videos that show what your system:
-
-* "Looks like": how the device sits in the room at night, and what it looks like at bedtime and in the morning.
-* "Works like": the pipeline from detector to interpreter to log to reasoner, with a real night's data.
-* "Acts like": how a person hands the night over and what they get back.
-
 \*\*\***Include a short video of the whole system**\*\*\*
 
+(video link)
+
+- **Looks like:** (photo of the desk with the camera) The camera sits above the desk and looks down at the monitor, laptop, keyboard, book and bottle. A dim lamp stays on at night.
+- **Works like:** camera → YOLO (`overnight.py --all`) → night_log.jsonl → desk_chat.py → Qwen → group chat. This used a real night's data, from ___ to ___.
+- **Acts like:** I hand over the night with one command and a dim lamp. In the morning I get a group chat from my desk about what I did.
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
 
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
+### Reflection
+
+At first I worried that nothing on my desk moves at night. Then I realized the objects are not the story, they are the witnesses. The real events are about me (when I really left the desk, when the lights went off) and my cat. So I start the night shift when I sit down in the evening, not right before bed.
+
+YOLO was not perfect. It called my monitor a "tv", and things like the mouse flickered on and off when the confidence was close to the limit. So desk_chat.py renames "tv" to "monitor" and ignores blips shorter than 60 seconds. The first few frames are also dark while the camera adjusts, so it skips the first 15 seconds.
+
+The 0.8b model kept making up times that were not in the log (like 22:05 when the log only had 16:25 to 16:26), even when the prompt told it not to. So I added a check that drops any message with a time that is not in the log. This matches what we saw in Part D: small models are fun to write with, but you can't trust them on facts.
 
 ## Deliverables & Submission for Lab 5
 
