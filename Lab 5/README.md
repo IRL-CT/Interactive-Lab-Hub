@@ -394,12 +394,14 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
-Original Tram notifier idea.
+Original Light detector(Camera Sensor + Light Sensor): 
+
+<img width="1237" height="646" alt="image" src="https://github.com/user-attachments/assets/8ffab655-9a16-4bb4-a49a-54690f5f5b97" />
+
+
+Original Tram notifier idea:
+
 <img width="768" height="1024" alt="img_8382_1024" src="https://github.com/user-attachments/assets/794f5cfd-8834-4bca-b3e0-22d4d79be31d" />
-
-
-Accurate tram arrival and departure notifier for night time!
-<img width="768" height="1024" alt="img_8385_1024" src="https://github.com/user-attachments/assets/b1353d2d-4780-4702-9c0c-f5873d2f384c" />
 
 ## Prep for Part 2
 
@@ -419,6 +421,9 @@ Accurate tram arrival and departure notifier for night time!
 \*\*\***Post your revised storyboard here.**\*\*\*
 
 
+Accurate tram arrival and departure notifier for night time!
+<img width="768" height="1024" alt="img_8385_1024" src="https://github.com/user-attachments/assets/b1353d2d-4780-4702-9c0c-f5873d2f384c" />
+
 
 ## Part G. 
 ### Design the interaction before
@@ -426,6 +431,8 @@ Accurate tram arrival and departure notifier for night time!
 The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
 
 \*\*\***Describe the interaction before.**\*\*\*
+
+
 
 ## Part H. 
 ### Incorporate the observant system
@@ -440,6 +447,8 @@ The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret
 Fake a night first: run it for thirty seconds while you walk around, stop it, and run `morning.py` from Part I. When that looks right, run a real night. If your storyboard needs a sensor rather than the camera, swap in the Lab 4 example code and log its reading the same way.
 
 \*\*\***Screenshots or videos of the running system.**\*\*\*
+
+https://youtube.com/shorts/-ntIhPmZE9A 
 
 ## Part I. 
 ### Design the interaction after
@@ -462,7 +471,11 @@ Document all the prototypes and iterations you have designed and worked on. The 
 
 \*\*\***Include a short video of the whole system**\*\*\*
 
+https://youtube.com/shorts/-ntIhPmZE9A 
+
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+
+
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
 
