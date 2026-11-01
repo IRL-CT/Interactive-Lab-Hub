@@ -2,7 +2,7 @@
 
 **Members:** Chih-Hsin Liu (cl2889, Cyalisonliu), ...
 
-**Project name:**
+**Project name: Night Walker**
 
 <!-- <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
