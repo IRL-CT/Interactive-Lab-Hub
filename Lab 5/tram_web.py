@@ -90,6 +90,10 @@ h1{font-size:20px;margin:0 0 2px}.sub{color:var(--dim);font-size:13px;margin-bot
 const $ = id => document.getElementById(id);
 const KEY = new URLSearchParams(location.search).get("key");
 const hm = iso => iso ? iso.slice(11,16) : "–";
+const when = iso => { if (!iso) return "–"; const d = new Date(iso), t = new Date();
+  const days = Math.round((new Date(t.toDateString()) - new Date(d.toDateString())) / 864e5);
+  return days === 0 ? hm(iso) : days === 1 ? "yesterday " + hm(iso) :
+    d.toLocaleDateString(undefined, {weekday: "short"}) + " " + hm(iso); };
 const hms = iso => iso ? iso.slice(11,19) : "–";
 const secs = iso => iso ? Math.round((new Date(iso) - new Date()) / 1000) : null;
 const mmss = s => s == null ? "" : (s < 0 ? "now" : (s >= 60 ? Math.floor(s/60) + " min " : "") + (s % 60) + " s");
@@ -127,7 +131,7 @@ async function tick(){
     else if (!st.in_service){ $("pill").textContent = "closed"; $("pill").className = "pill";
       $("status").textContent = "Not running now"; $("detail").textContent = st.next && st.next.opens ? "Opens " + hm(st.next.opens) : ""; }
     else { $("pill").textContent = "waiting"; $("pill").className = "pill";
-      const lp = st.last_pass; $("status").textContent = lp ? "Last tram " + hm(lp.start) : "No tram yet today";
+      const lp = st.last_pass; $("status").textContent = lp ? "Last tram " + when(lp.start) : "No tram yet today";
       $("detail").textContent = lp ? (lp.direction || "") +
         (lp.est_station_arrival ? " · reached the island ~" + hms(lp.est_station_arrival) + " (estimated)" : "") +
         (lp.est_station_departure ? " · left the island ~" + hms(lp.est_station_departure) + " (estimated)" : "") : ""; }
@@ -148,13 +152,15 @@ async function tick(){
         (n.p_within_5min != null ? " · " + pct(n.p_within_5min) + " chance within 5 min" : ""); }
     else if (n.status === "overdue"){ $("next").textContent = "any moment"; $("nextd").textContent = "later than usual"; }
     else if (n.status === "closed"){ $("next").textContent = hm(n.opens); $("nextd").textContent = "first tram"; }
+    else if (n.status === "waiting"){ $("next").textContent = "–";
+      $("nextd").textContent = "Waiting to see a tram first" + (n.typical_gap_s ? " · they usually run every ~" + Math.round(n.typical_gap_s / 60) + " min now" : ""); }
     else { $("next").textContent = "–"; $("nextd").textContent = n.status || ""; }
     const by = st.next_by_direction || {};
     $("nextdirs").innerHTML = Object.keys(by).sort().map(d => { const p = by[d];
       const txt = p.status === "ok" && p.eta ? "~" + hm(p.eta) + (p.low && p.high ? " (80%: " + hm(p.low) + "–" + hm(p.high) + ")" : "")
-                : p.status === "overdue" ? "any moment" : (p.status || "–");
+                : p.status === "overdue" ? "any moment" : p.status === "waiting" ? "after the next tram" : (p.status || "–");
       return "<div class='row'><span>Next " + dirName(d) + "</span><span class='dim'>" + txt + "</span></div>"; }).join("") +
-      (Object.keys(by).length ? "<div class='dim small' style='margin-top:4px'>from " + (Object.values(by)[0].based_on || "") + "</div>" : "");
+      (Object.keys(by).length && Object.values(by)[0].based_on ? "<div class='dim small' style='margin-top:4px'>from " + Object.values(by)[0].based_on + "</div>" : "");
     $("foot").textContent = "Updated " + st.time.slice(11,19) + " · " + (st.passes_today || 0) + " trams seen today";
   }catch(e){ $("pill").textContent = "no connection"; }
 }

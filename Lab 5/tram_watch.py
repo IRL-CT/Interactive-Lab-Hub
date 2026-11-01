@@ -277,6 +277,10 @@ def predict(now, passes, gaps=None, direction=None):
     gaps = gaps if gaps is not None else learned_gaps(passes)
     last = max(datetime.datetime.fromisoformat(p["start"]) for p in passes)
     elapsed = (now - last).total_seconds()
+    if elapsed > MAX_GAP_S:
+        # the last tram we saw is too long ago (tracker was off, or night) to time the next one
+        return {"status": "waiting", "note": "no tram seen recently; next estimate after the next tram",
+                "since_last_s": round(elapsed), "typical_gap_s": round(schedule_prior(now))}
 
     here = gaps.get(period(now), [])
     pool = here if len(here) >= 8 else [g for v in gaps.values() for g in v]
@@ -428,6 +432,10 @@ def watch(args):
     filt = TramFilter(args.interval, mean_in_view=np.median(durations) if durations else 40)
     in_pass, start, track, last_pred = False, None, [], 0.0
     tracks = []                       # detector mode: the cabins currently followed
+    # detections below det_conf are ignored; a NEW cabin needs birth_conf. Lower both a bit if
+    # the detector sees the tram at night but only weakly (check with --show: grey boxes + numbers)
+    det_conf = cfg.get("det_conf", 0.3)
+    birth_conf = cfg.get("det_birth_conf", max(det_conf, 0.4))
     last_t = time.time()
     pending = {}                      # next-tram predictions per direction, checked when trams come
     background = None                 # running average of the crop with no tram in it
@@ -462,7 +470,7 @@ def watch(args):
                 boxes = find(img)
                 dets = []
                 for conf, box in boxes:
-                    if conf >= 0.3:
+                    if conf >= det_conf:
                         grip = ((box[0] + box[2]) / 2, box[1])
                         dets.append((conf, progress(grip, cfg["cable"]), lateral(grip, cfg["cable"])))
                 for tr in tracks:
@@ -475,7 +483,7 @@ def watch(args):
                         print(f"{now:%H:%M:%S} cabin {tracks[i].id} in view at {tracks[i].kf.s:.2f}", flush=True)
                 for j in unmatched:                     # a new cabin, unless it duplicates one
                     conf, z, off = dets[j]
-                    if conf >= 0.4 and all(abs(z - tr.kf.s) > 0.05 for tr in tracks) and len(tracks) < 3:
+                    if conf >= birth_conf and all(abs(z - tr.kf.s) > 0.05 for tr in tracks) and len(tracks) < 3:
                         tracks.append(CabinTrack(z, off, t0, now))
                 for tr in [tr for tr in tracks if t0 - tr.last_hit_t > CabinTrack.COAST_S]:
                     tracks.remove(tr)
@@ -540,7 +548,9 @@ def watch(args):
                     cv2.line(view, (int(ax * W), int(ay * H)), (int(bx * W), int(by * H)), (0, 160, 0), 1)
                 for conf, box in boxes:
                     cv2.rectangle(view, (int(box[0] * W), int(box[1] * H)), (int(box[2] * W), int(box[3] * H)),
-                                  (0, 0, 255) if conf >= 0.3 else (128, 128, 128), 2)
+                                  (0, 0, 255) if conf >= det_conf else (128, 128, 128), 2)
+                    cv2.putText(view, f"{conf:.2f}", (int(box[0] * W), int(box[3] * H) + 14),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 1)
                 y = 18
                 for tr in live_tracks:
                     cv2.putText(view, f"cabin {tr.id}: s {tr.kf.s:.2f} v {tr.kf.v:+.3f}/s", (6, y),
