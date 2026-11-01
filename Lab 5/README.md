@@ -71,7 +71,7 @@ This readme.md page in your own repository should be edited to include the work 
 ## Part A. 
 ### Set up your Pi for on-device AI
 
-***Include a screenshot of ollama list showing your models.***
+\*\*\***Include a screenshot of ollama list showing your models.**\*\*\*
 
 <img width="1088" height="144" alt="image" src="https://github.com/user-attachments/assets/3c1d195c-74d3-4496-8546-2bfc150c67b7" />
 
