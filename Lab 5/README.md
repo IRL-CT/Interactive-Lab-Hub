@@ -1,10 +1,10 @@
 # Observant Systems: Overnight Sensation
 
-**Team:**
+**Team: Tram Observers**
 
-**Members:** Full Name (netid, github-handle), ...
+**Members:** Viktor Radev - Github: https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub, Alex Yang - https://github.com/Alexyen04/Alex-Yen-Interactive-Lab-Hub
 
-**Project name:**
+**Project name: Real Time Tram Locator**
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
