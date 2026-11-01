@@ -122,8 +122,6 @@ It's easier than finding a button in the dark.
 
 \*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
 
-\*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
-
 #### Q1: What is the capital of France?
 - **Model:** `qwen3.5:0.8b` (thinking on)
 - **Answer:** The capital of France is **Paris**.
