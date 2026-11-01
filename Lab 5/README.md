@@ -320,6 +320,13 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
+Original Tram notifier idea.
+<img width="768" height="1024" alt="img_8382_1024" src="https://github.com/user-attachments/assets/794f5cfd-8834-4bca-b3e0-22d4d79be31d" />
+
+
+Accurate tram arrival and departure notifier for night time!
+<img width="768" height="1024" alt="img_8385_1024" src="https://github.com/user-attachments/assets/b1353d2d-4780-4702-9c0c-f5873d2f384c" />
+
 ## Prep for Part 2
 
 1. Look at and give feedback on the Part F storyboards.
