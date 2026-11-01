@@ -351,6 +351,9 @@ One person came in from the right, moved close to the camera, and left after abo
 
 # Lab 5 Part 2: Overnight Sensation
 
+<details>
+	<summary><strong>Part 2 Details (Click to Expand)</strong></summary>
+
 For Part 2, you will use the observant system from Part 1 to design a night-time interaction. On-device AI is slow, so let it work while you sleep. The person meets the device twice: **before bed**, when they hand the night over, and **when awake**, when the device gives something back. In between, the pipeline from Part E runs on its own.
 
 Two flavors, pick one or mix them:
@@ -360,8 +363,13 @@ Two flavors, pick one or mix them:
 
 Two house rules. Sample rather than stream: one look every 5 to 30 seconds is plenty, and it keeps the Pi cool. And keep everything on the Pi: tell the people you live with, point the camera at things rather than at beds, and delete the snapshots after the demo.
 
+</details>
+
 ## Part F. 
 ### Read Part 2 and storyboard your night-time interaction
+
+<details>
+	<summary><strong>Part F Details (Click to Expand)</strong></summary>
 
 Storyboard a night-time interaction built on your observant system, in three panels:
 
@@ -373,6 +381,8 @@ Stuck? A kitchen that tells you who raided the fridge. A desk that reports wheth
 
 Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf).
 
+</details>
+
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
 We brainstormed several ideas, including:
@@ -380,17 +390,25 @@ We brainstormed several ideas, including:
 - **Night digital processor**: The user uploads a folder of unsorted photos before going to bed. Overnight, YOLO analyzes the images and categorizes them based on detected objects, such as people, animals, food, or vehicles. In the morning, the user receives an organized photo collection and a summary of its contents.
 - **AI Dream Machine**: Before bed, the user uploads photos from their day, then YOLO analyzes them overnight and identifies objects, while Qwen uses these observations to come up with a creative, dream-like story. In the morning, the device reveals and narrates the dream using text-to-speech.
 
-We ended up choosing our third idea, AI Dream Machine, and this is our initial storyboard: 
+We ended up choosing our third idea, AI Dream Machine, and this is our initial storyboard and verplank diagram: 
 
 ![InitialStoryboard](pics/storyboard1.jpg)
 
+![VerplankDiagram](pics/verplankdiagram.jpeg)
+
+
 ## Prep for Part 2
+
+<details>
+	<summary><strong>Prep for Part 2 Details (Click to Expand)</strong></summary>
 
 1. Look at and give feedback on the Part F storyboards.
    **Put the feedback for your ideas here.**
 2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
 3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
 4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
+
+</details>
 
 \*\*\***Post your revised storyboard here.**\*\*\*
 
@@ -411,7 +429,12 @@ Our improved storyboard taking into account the feedback can be seen below:
 ## Part G. 
 ### Design the interaction before
 
+<details>
+	<summary><strong>Part G Details (Click to Expand)</strong></summary>
+
 The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
+
+</details>
 
 \*\*\***Describe the interaction before.**\*\*\*
 
@@ -421,6 +444,9 @@ The Raspberry Pi then begins processing the photos in the background using YOLO 
 ## Part H. 
 ### Incorporate the observant system
 
+<details>
+	<summary><strong>Part H Details (Click to Expand)</strong></summary>
+
 The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret()` from `yolo_to_qwen.py` every few seconds, people only unless you pass `--all`, and writes the readings to `night_log.jsonl`; the reasoning waits for the morning. Start it inside `tmux` so it keeps running after you close your laptop, and stop it with Ctrl-C in the morning:
 
 ```
@@ -429,6 +455,8 @@ The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret
 ```
 
 Fake a night first: run it for thirty seconds while you walk around, stop it, and run `morning.py` from Part I. When that looks right, run a real night. If your storyboard needs a sensor rather than the camera, swap in the Lab 4 example code and log its reading the same way.
+
+</details>
 
 \*\*\***Screenshots or videos of the running system.**\*\*\*
 
@@ -440,6 +468,9 @@ Fake a night first: run it for thirty seconds while you walk around, stop it, an
 ## Part I. 
 ### Design the interaction after
 
+<details>
+	<summary><strong>Part I Details (Click to Expand)</strong></summary>
+
 The reveal. The night produced a log; the morning turns it into something a half-awake person can take in. `morning.py` is the smallest version: it asks Qwen for a three-sentence report.
 
 ```
@@ -448,13 +479,27 @@ The reveal. The night produced a log; the morning turns it into something a half
 
 Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
 
+</details>
+
+
+For our AI Dream Machine, we wanted the morning interaction to be simple and enjoyable, without requiring the user to wait for the AI to generate the dream.
+After processing the uploaded photos overnight, YOLO saves the detected objects into a log. Qwen then uses these observations to generate a short, creative dream story, and Piper converts it into audio. Both the story and narration are saved locally on the Raspberry Pi.
+In the morning, the user presses again the button to reveal their dream. The device plays the saved dream through a speaker, allowing the user to listen to it without having to read anything or interact with a computer.
+
+We also considered situations where no objects were detected or no photos were uploaded. In these cases, the device informs the user rather than generate a dream that appears to be based on observations that were never made.
+
 ## Final documentation
+
+<details>
+	<summary><strong> Details (Click to Expand)</strong></summary>
 
 Document all the prototypes and iterations you have designed and worked on. The deliverables for this lab are writings, sketches, photos, and videos that show what your system:
 
 * "Looks like": how the device sits in the room at night, and what it looks like at bedtime and in the morning.
 * "Works like": the pipeline from detector to interpreter to log to reasoner, with a real night's data.
 * "Acts like": how a person hands the night over and what they get back.
+
+</details>
 
 \*\*\***Include a short video of the whole system**\*\*\*
 
