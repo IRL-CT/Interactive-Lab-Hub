@@ -5,13 +5,13 @@ It only senses and logs; the reasoning waits for the morning (morning.py).
     python overnight.py                  # one look every 5 s until Ctrl-C
     python overnight.py --interval 30    # look less often
     python overnight.py --all            # log the other objects too, not only people (see Part E)
-    python overnight.py --snaps          # also keep a photo each time someone gets up (see snaps/)
+    python overnight.py --no-snaps       # words only: do not keep a photo when someone gets up
 
 Fake a night first: run it for thirty seconds while you walk around, Ctrl-C, then run morning.py.
 
-Writes night_log.jsonl (one JSON object per line): only words, and no photos unless you pass
---snaps, which saves one photo in snaps/ each time the reading turns "upright". Tell the people
-you live with, keep snaps/ out of git, and delete it after the demo.
+Writes night_log.jsonl (one JSON object per line): words, plus one photo in snaps/ each time
+the reading turns "upright" (switch that off with --no-snaps). Nothing is photographed while the
+person lies down. Tell the people you live with, keep snaps/ out of git, and delete it after the demo.
 A reading is logged once it has been seen --confirm looks in a row, so one blurry frame
 does not make an entry. Writes an "alive" line every 10 minutes so you can tell a quiet
 night from a crashed one.
@@ -31,7 +31,8 @@ from yolo_to_qwen import interpret, model      # the interpreter you tuned in Pa
 parser = argparse.ArgumentParser()
 parser.add_argument("--interval", type=float, default=5, help="seconds between looks")
 parser.add_argument("--all", action="store_true", help="detect all 80 classes, not only people")
-parser.add_argument("--snaps", action="store_true", help="keep a photo each time someone gets up")
+parser.add_argument("--snaps", action=argparse.BooleanOptionalAction, default=True,
+                    help="keep a photo each time someone gets up (default on; --no-snaps for words only)")
 parser.add_argument("--conf", type=float, default=0.3, help="minimum confidence; lower than by day because the room is dark")
 parser.add_argument("--confirm", type=int, default=2, help="looks in a row before a new reading is logged")
 args = parser.parse_args()

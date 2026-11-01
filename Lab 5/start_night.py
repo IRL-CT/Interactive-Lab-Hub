@@ -5,7 +5,7 @@ get a countdown to switch off the light, and then overnight.py starts.
 
     python start_night.py                    # window with a progress bar (VNC)
     python start_night.py --headless         # no window, over plain ssh
-    python start_night.py --snaps --interval 10    # anything else is passed on to overnight.py
+    python start_night.py --interval 10      # anything else is passed on to overnight.py (--no-snaps: words only)
     python start_night.py --hold 1.5 --delay 20      # hold the palm 1.5 s, 20 s to switch off the light
     python start_night.py --say "Sleep well."      # change what it says
 

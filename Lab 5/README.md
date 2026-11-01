@@ -250,6 +250,7 @@ A 0.8B model is slow and sometimes wrong. It will invent events that are not in 
   - [qwen3.5:0.8b, 7.1 s]
 - Q3: "--image snap.jpg What is in this photo?"
   - Ans: "A young woman with glasses and a Nike hoodie is standing against a plain wall."
+  - [qwen3.5:0.8b, 32.2 s]
 - Q1 with `qwen3:0.6b`:
   - Ans: "Roosevelt Island is a small, remote island located in the Pacific Ocean, off the coast of New Zealand. It was originally a military base during World War II, and it became a symbol of the United States in the 1950s. The island was used for various purposes, including military operations, and it has since become a significant cultural and historical site. Today, it is a peaceful place that attracts visitors and a symbol of the United States."
   - Comparison: 
@@ -335,11 +336,11 @@ Some feedbacks I got:
 ### Design the interaction before
 
 \*\*\***Describe the interaction before.**\*\*\*
-Before I go to bed, I have to show an open palm to the camera, hold it for two seconds, and a green bar fills up on the screen so I can see the device has seen my hand. When the bar is full, the screen shows "watching tonight" and speak it out. After that, the device starts a thirty-second countdown. That is my time to switch off the lamp and lie down. After the countdown, the device starts `overnight.py` by itself.
+Before I go to bed, I have to show an open palm to the camera, hold it for a second and a half, and a green bar fills up on the screen so I can see the device has seen my hand. When the bar is full, the screen shows "watching tonight" and speak it out. After that, the device starts a twenty-second countdown. That is my time to switch off the lamp and lie down. After the countdown, the device starts `overnight.py` by itself.
 
 I chose an open palm because it is one clear shape that is easy to tell from a resting hand, and because the device measures it relative to the size of my hand, so it works from different distances. It needs light to see my hand, so the order is lamp on, gesture, lamp off.
 
-The acknowledgement is the progress bar, the line "watching tonight" on the display, and a good night voice message. From then on the device only writes words to its log ("lying", "upright"), and it keeps a photo only at the moment I get up, so it never records me asleep. The only person needed for this demo is me.
+The acknowledgement is the progress bar, the line "watching tonight" on the display, and a good night voice message. From then on the device only writes words to its log ("lying", "upright"), and it keeps one photo at the moment I get up, so it never records me asleep. The only person needed for this demo is me.
 
 ## Part H. 
 ### Incorporate the observant system
@@ -375,19 +376,31 @@ Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from 
 
 ## Final documentation
 
-Document all the prototypes and iterations you have designed and worked on. The deliverables for this lab are writings, sketches, photos, and videos that show what your system:
+**Looks like.** The device sits on the desk (originally was my drawer but the height is not good for capturing human movements): a Raspberry Pi with a webcam pointed at the area next to the bed, and the Mini PiTFT screen facing me. At bedtime, the screen shows a progress bar; during the night it is dark; in the morning it shows the report.
 
-* "Looks like": how the device sits in the room at night, and what it looks like at bedtime and in the morning.
-* "Works like": the pipeline from detector to interpreter to log to reasoner, with a real night's data.
-* "Acts like": how a person hands the night over and what they get back.
+**Works like.**
+
+1. Detector: YOLO looks at the room every few seconds.
+2. Interpreter: `interpret()` turns each result into a short reading in words. It records where the person is (left/center/right), how close, and whether they are `lying` or `upright`, using the shape of the box.
+3. Log: a reading goes into `night_log.jsonl` only when it changes and has been seen twice in a row, so blurry frames won't count. When someone gets up, it also saves one photo in `snaps/`.
+4. Reasoner: in the morning, `morning.py` finds the times someone was upright, and Qwen only puts those facts into words. It shows the report on the screen, reads it aloud.
+
+**Acts like.** Before bed I show an open palm to the camera, the screen and a voice confirm "watching tonight", and I switch off the lamp during a countdown. In the morning I press Ctrl-C and run `morning.py`, and the device tells me when I got up and for how long.
+
+**What changed along the way.** My storyboard got an acknowledgement step (screen and voice) after feedback. From my YOLO tests in Part 1, blur, dim light and being hidden lower the confidence, so I log a reading only after two looks and use a lower threshold.
+
+**Credits.** I wrote the idea and storyboard. Claude helped write and debug the code (`overnight.py`, `morning.py`, `start_night.py`, `screen.py`, `voice.py`), suggested the open-palm gesture.
 
 \*\*\***Include a short video of the whole system**\*\*\*
 
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+1. Looks like: ![Looks like]()
+2. Before bed: ![Before bed]()
+3. While asleep: ![While asleep]()
+4. When awake: ![When awake]()
 
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
+<!-- You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page. -->
 
-## Deliverables & Submission for Lab 5
+<!-- ## Deliverables & Submission for Lab 5
 
 For submission, the readme.md page for this lab should be edited to include the work you have done:
 * Upload any materials that explain what you did, including your code and night log, into your Lab 5 repository, and link them in your Lab 5 readme.md.
@@ -401,4 +414,4 @@ For submission, the readme.md page for this lab should be edited to include the 
   - Remove all instructional text and example prompts from this file.
   - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
   - Your final submission should be neat, focused on your own work, and easy to read for grading.
-</details>
+</details> -->
