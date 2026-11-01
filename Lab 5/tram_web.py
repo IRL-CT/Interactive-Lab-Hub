@@ -48,6 +48,23 @@ h1{font-size:20px;margin:0 0 2px}.sub{color:var(--dim);font-size:13px;margin-bot
 .dim{color:var(--dim);font-size:14px}.row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-top:1px solid var(--line)}
 .row:first-child{border-top:0}
 .track{position:relative;height:44px;margin:14px 6px 4px}
+.route{position:relative;height:74px;margin:22px 20px 6px}
+.rope{position:absolute;left:0;right:0;top:14px;height:2px;background:var(--dim);opacity:.6}
+.station{position:absolute;top:6px;width:12px;height:18px;margin-left:-6px;border-radius:3px;background:var(--line);border:1px solid var(--dim)}
+.viewzone{position:absolute;top:2px;height:40px;border-radius:8px;background:var(--accent);opacity:.08}
+.viewzone span{position:absolute;top:-15px;right:2px;font-size:10px;color:var(--dim)}
+.rend{position:absolute;top:50px;font-size:12px;color:var(--dim);width:50%}
+.gondola{position:absolute;top:14px;width:30px;margin-left:-15px;transition:left 2s linear,opacity .6s;display:none}
+.gondola i{display:block;width:2px;height:9px;margin:0 auto;background:var(--fg);opacity:.7}
+.gondola b{display:block;height:17px;border-radius:5px;background:var(--accent);color:#fff;font:700 12px/17px system-ui;text-align:center}
+.gondola.ghost b{background:transparent;border:2px dashed var(--accent);color:var(--accent);line-height:13px;animation:breathe 3s ease-in-out infinite}
+.gondola.ghost i{opacity:.35}
+.gondola.seen b{animation:pulse 1.6s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.45}50%{opacity:.85}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,16,46,.5)}50%{box-shadow:0 0 0 7px rgba(200,16,46,0)}}
+@media (prefers-reduced-motion:reduce){.gondola{transition:none}.gondola b{animation:none!important}}
+.legend{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--dim);margin:6px 0 2px;flex-wrap:wrap}
+.lg{display:inline-block;width:16px;height:10px;border-radius:3px;margin-left:6px}.lg.solid{background:var(--accent)}.lg.ghost{border:2px dashed var(--accent)}
 .cable{position:absolute;left:0;right:0;top:20px;height:2px;background:var(--line)}
 .end{position:absolute;top:28px;font-size:12px;color:var(--dim)}
 .cab{position:absolute;top:12px;width:18px;height:18px;margin-left:-9px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;text-align:center;line-height:18px;background:var(--accent);transition:left 1s linear;display:none}
@@ -66,8 +83,15 @@ h1{font-size:20px;margin:0 0 2px}.sub{color:var(--dim);font-size:13px;margin-bot
   <div id="pill" class="pill">loading…</div>
   <div id="status" class="status" style="margin-top:8px">&nbsp;</div>
   <div id="detail" class="dim">&nbsp;</div>
-  <div class="track"><div class="tag">estimated position (shaded: 80% range)</div><div class="cable"></div><div id="dots"></div>
-    <div class="end" style="left:0">Manhattan side</div><div class="end" style="right:0">Island station</div></div>
+  <div class="route" id="route">
+    <div class="rope"></div>
+    <div class="station" style="left:0"></div><div class="station" style="left:100%"></div>
+    <div id="viewzone" class="viewzone"><span>camera</span></div>
+    <div class="gondola" id="g0"><i></i><b></b></div><div class="gondola" id="g1"><i></i><b></b></div>
+    <div class="rend" style="left:0">Manhattan</div><div class="rend" style="right:0;text-align:right">Roosevelt Island</div>
+  </div>
+  <div class="legend"><span class="lg solid"></span>seen by the camera <span class="lg ghost"></span>estimated position</div>
+  <div id="cablist" class="small dim"></div>
 </div>
 
 <div class="card">
@@ -135,15 +159,7 @@ async function tick(){
       $("detail").textContent = lp ? (lp.direction || "") +
         (lp.est_station_arrival ? " · reached the island ~" + hms(lp.est_station_arrival) + " (estimated)" : "") +
         (lp.est_station_departure ? " · left the island ~" + hms(lp.est_station_departure) + " (estimated)" : "") : ""; }
-    // one dot (with its shaded 80% band) per cabin
-    const dots = $("dots"); dots.innerHTML = "";
-    if (fresh && st.tram_in_view) cabins.forEach((c, i) => {
-      if (typeof c.position !== "number") return;
-      const x = Math.max(0, Math.min(1, c.position)), w = Math.min(1, Math.max(0.04, 2 * Z80 * (c.position_sd || 0)));
-      dots.insertAdjacentHTML("beforeend",
-        '<div class="band" style="display:block;left:' + (Math.max(0, x - w / 2) * 100) + '%;width:' + (w * 100) + '%"></div>' +
-        '<div class="cab" style="display:block;left:' + (x * 100) + '%">' + (cabins.length > 1 ? (i + 1) : "") + '</div>');
-    });
+    drawRoute(fresh ? st.route : null);
     const n = st.next || {};
     const dirName = d => /island/i.test(d || "") ? "arrival at the island" : /manhattan/i.test(d || "") ? "departure from the island" : "tram";
     if (n.status === "ok" && n.eta){ $("next").textContent = "~" + hm(n.eta);
@@ -165,6 +181,26 @@ async function tick(){
   }catch(e){ $("pill").textContent = "no connection"; }
 }
 const Z80 = 1.2816;
+
+function drawRoute(route){
+  const vz = $("viewzone"), list = $("cablist");
+  const cabins = route && route.cabins ? route.cabins : [];
+  if (route){ vz.style.display = "block"; vz.style.left = (route.view_start * 100) + "%"; vz.style.width = ((1 - route.view_start) * 100) + "%"; }
+  else vz.style.display = "none";
+  [0, 1].forEach(i => {
+    const g = $("g" + i), c = cabins[i];
+    if (!c){ g.style.display = "none"; return; }
+    g.style.display = "block";
+    g.className = "gondola " + (c.seen ? "seen" : "ghost");
+    g.style.left = (Math.max(0, Math.min(1, c.pos)) * 100) + "%";
+    g.title = c.label;
+    const h = (c.heading || "").toLowerCase();
+    g.querySelector("b").textContent = h.includes("island") && !h.includes("at ") ? "→" : h.includes("manhattan") && !h.includes("at ") ? "←" : "";
+  });
+  list.innerHTML = cabins.map(c => "<div class='row'><span>" + (c.seen ? "● seen" : "◌ estimated") +
+    "</span><span>" + c.label + "</span></div>").join("") ||
+    (route ? "<div style='margin-top:4px'>No cabins placed yet: the route fills in after the camera sees a tram each way.</div>" : "");
+}
 
 async function recent(){
   try{

@@ -215,8 +215,12 @@ to gets the same alerts:
 
 Quiet hours: set `"notify_hours": [7, 23]` in `tram_config.json` (default 6 to 24).
 
-**Live web app:** `http://<pi-address>:8080` shows the cabin moving along the cable, the
-arrival countdown, the next-tram estimate and recent trams. Our building network blocks
+**Live web app:** `http://<pi-address>:8080` shows the whole route from Manhattan to the island
+with both cabins on it. A cabin the camera can see right now is drawn solid and pulsing; a cabin
+out of view is a dashed "ghost" at its estimated position (worked out from the last passes and
+a ~230 s trip, `trip_s` in `tram_config.json`), gliding along the line as time passes. The
+shaded zone near the island end is the stretch the camera sees (`view_start`, default 0.88).
+Below it: the arrival countdown, the next-tram estimate and recent trams. Our building network blocks
 device-to-device traffic, so to open it from phones use a free tunnel:
 
 ```bash

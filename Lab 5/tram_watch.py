@@ -325,6 +325,92 @@ def predict_all(now, passes):
     return {"next": next(iter(by.values())), "by_direction": by}
 
 
+# ---------- the whole route: where both cabins are, seen or estimated ----------
+
+def route_model(now, passes, cabins_live, by_direction, cfg):
+    """Both cabins on the whole route (0 = Manhattan station, 1 = Island station).
+
+    The camera sees only the stretch near the island (route "view_start" to 1). Out of view,
+    each cabin is dead-reckoned: replay the recent passes in order (a cabin seen arriving at the
+    island is the one seen leaving it next; the other one is on the Manhattan side), then move
+    it along the route at the trip time, waiting at stations until the next predicted departure.
+    Cabins the camera sees right now are placed from the tracker instead (seen = True)."""
+    trip = cfg.get("trip_s", 230)                     # station to station, seconds
+    vs = cfg.get("view_route_start", 0.88)            # where the camera's view begins on the route
+    island_dir = cfg.get("directions", {}).get("toward_station", "to Island")
+    manh_dir = cfg.get("directions", {}).get("toward_tower", "to Manhattan")
+    ts = lambda iso: datetime.datetime.fromisoformat(iso)
+    recent = [p for p in passes if (now - ts(p["start"])).total_seconds() < 3600 and p.get("direction")]
+    cab = []                                          # [{"state", "since"}], at most two
+    for p in sorted(recent, key=lambda p: p["start"]):
+        if p["direction"] == island_dir:
+            t = ts(p.get("est_station_arrival") or p["end"])
+            # only a cabin that could physically have done the round trip since leaving the island
+            away = [c for c in cab if c["state"] != "at_island"
+                    and (t - c["since"]).total_seconds() >= 1.6 * trip]
+            c = min(away, key=lambda c: c["since"]) if away else None
+            if c is None:
+                if len(cab) >= 2:
+                    continue
+                c = {}
+                cab.append(c)
+            c.update(state="at_island", since=t)
+        elif p["direction"] == manh_dir:
+            t = ts(p.get("est_station_departure") or p["start"])
+            there = [c for c in cab if c["state"] == "at_island"]
+            c = min(there, key=lambda c: c["since"]) if there else None
+            if c is None:
+                if len(cab) >= 2:
+                    c = min(cab, key=lambda c: c["since"])
+                else:
+                    c = {}
+                    cab.append(c)
+            c.update(state="to_manhattan", since=t)
+
+    def eta(direction):
+        p = (by_direction or {}).get(direction) or {}
+        return ts(p["eta"]) if p.get("status") == "ok" and p.get("eta") else None
+
+    out = []
+    next_island_entry, next_island_leave = eta(island_dir), eta(manh_dir)
+    for c in sorted(cab, key=lambda c: c["since"]):
+        el = (now - c["since"]).total_seconds()
+        if c["state"] == "at_island":
+            leave = next_island_leave
+            out.append({"pos": 1.0, "seen": False, "heading": None,
+                        "label": "at the island, " + (f"leaves ~{leave:%H:%M}" if leave and leave > now
+                                                      else "leaving any moment")})
+        else:                                           # left the island at `since`
+            pos = 1 - el / trip
+            if pos > 0:
+                out.append({"pos": round(pos, 3), "seen": False, "heading": "manhattan",
+                            "label": f"to Manhattan, arrives ~{c['since'] + datetime.timedelta(seconds=trip):%H:%M}"})
+            else:                                       # at Manhattan, then heading back
+                start_back = (next_island_entry - datetime.timedelta(seconds=vs * trip)
+                              if next_island_entry else c["since"] + datetime.timedelta(seconds=trip + 180))
+                back = (now - start_back).total_seconds()
+                if back <= 0:
+                    out.append({"pos": 0.0, "seen": False, "heading": None,
+                                "label": f"at Manhattan, leaves ~{start_back:%H:%M}"})
+                else:
+                    out.append({"pos": round(min(vs, back / trip), 3), "seen": False, "heading": "island",
+                                "label": "to the island, due in view " +
+                                         ("any moment" if back / trip >= vs else
+                                          f"~{start_back + datetime.timedelta(seconds=vs * trip):%H:%M}")})
+    # cabins the camera sees right now replace the matching estimate
+    for live in cabins_live or []:
+        r = vs + max(0.0, min(1.0, live["position"])) * (1 - vs)
+        heading = "island" if live["heading"] == "station" else "manhattan" if live["heading"] == "tower" else None
+        if out:
+            j = min(range(len(out)), key=lambda j: abs(out[j]["pos"] - r) +
+                    (0 if out[j]["heading"] in (heading, None) else 0.5))
+            out.pop(j)
+        out.append({"pos": round(r, 3), "seen": True, "heading": heading,
+                    "label": "seen by the camera" + (", heading to the island" if heading == "island" else
+                                                     ", leaving the island" if heading == "manhattan" else "")})
+    return {"view_start": vs, "trip_s": trip, "cabins": sorted(out, key=lambda c: c["pos"])[:2]}
+
+
 # ---------- helpers ----------
 
 def write_state(state):
@@ -537,6 +623,7 @@ def watch(args):
                     "passes_today": sum(1 for q in passes if q["start"].startswith(today)),
                     "next": pa["next"],
                     "next_by_direction": pa["by_direction"],
+                    "route": route_model(now, passes, cabins, pa["by_direction"], cfg),
                 })
                 last_pred = time.time()
 
