@@ -3,7 +3,11 @@
 **Team:**
 
 **Members:** Viktor Radev - Github: https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub, Alex Yen
-**Project name:**
+
+
+**Project name:** Real Time Tram Locator
+
+
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
