@@ -80,7 +80,7 @@ This readme.md page in your own repository should be edited to include the work 
 ## Part B. 
 ### See: recognize people in real time with YOLO
 
-# Successfully Recognized
+**Successfully Recognized**
 <img width="700" alt="Screenshot 2026-10-26 at 4 54 21 PM" src="https://github.com/user-attachments/assets/4d7e2c51-32d8-47a7-bf9b-bee5be355974" />
 
 <img width="700" alt="Screenshot 2026-10-26 at 4 55 04 PM" src="https://github.com/user-attachments/assets/3bb104bc-08c4-4425-b0c3-bffed9a68528" />
@@ -89,7 +89,7 @@ This readme.md page in your own repository should be edited to include the work 
 
 <img width="700" alt="Screenshot 2026-10-26 at 4 55 42 PM" src="https://github.com/user-attachments/assets/24200ebf-73c5-4c59-9f3f-00b16cc03a03" />
 
-# Unsuccessfully Recognized
+**Unsuccessfully Recognized**
 
 <img width="700" alt="Screenshot 2026-10-26 at 5 18 41 PM" src="https://github.com/user-attachments/assets/7c15fd92-af8d-45cf-b67d-1208b8308925" />
 
