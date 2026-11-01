@@ -4,7 +4,7 @@
 
 **Members:** Yan Shen (ys2473, ys2473), Yangchen Jin (yj645, MortalJin)
 
-**Project name:** Camera Fantasic Night
+**Project name:** Camera Fantastic Night
 
 **Acknowledgements:** Thanks to Yan Shen for working on this lab together with me. We also used Claude (AI) to help with the code and the GitHub README formatting.
 
@@ -84,7 +84,7 @@ The tools from earlier versions of this lab (MobileNet, Teachable Machine, Moond
 
 [Watch Video](https://youtu.be/5uTxqnljpyc)
 
-We could use hand tracking for the "before bed" part of my idea. Instead of typing a command, we can show a goodnight gesture (like an open palm) to the camera, and that tells the Pi to take the desk photo and start the night. 
+We could use hand tracking for the "before bed" part of my idea. Instead of typing a command, we can show a goodnight gesture (like an open palm) to the camera, and that tells the Pi to start the night shift. 
 It's easier than finding a button in the dark.
 
 
@@ -133,15 +133,6 @@ It's easier than finding a button in the dark.
 
 # Lab 5 Part 2: Overnight Sensation
 
-For Part 2, you will use the observant system from Part 1 to design a night-time interaction. On-device AI is slow, so let it work while you sleep. The person meets the device twice: **before bed**, when they hand the night over, and **when awake**, when the device gives something back. In between, the pipeline from Part E runs on its own.
-
-Two flavors, pick one or mix them:
-
-* **Sense all night.** The Pi watches, listens or measures from bedtime until morning and keeps a log.
-* **Process all night.** You already have the data (a day of phone photos, a long recording) and the Pi needs hours to get through it.
-
-Two house rules. Sample rather than stream: one look every 5 to 30 seconds is plenty, and it keeps the Pi cool. And keep everything on the Pi: tell the people you live with, point the camera at things rather than at beds, and delete the snapshots after the demo.
-
 ## Part F. 
 ### Read Part 2 and storyboard your night-time interaction
 
@@ -157,15 +148,17 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
-<img width="1645" height="1279" alt="49f209699be69ce7671f768e68a0fe42" src="https://github.com/user-attachments/assets/4ebf3c31-77eb-4a2b-977b-b2caa9e953b9" />
+<img width="700" alt="49f209699be69ce7671f768e68a0fe42" src="https://github.com/user-attachments/assets/4ebf3c31-77eb-4a2b-977b-b2caa9e953b9" />
 
 ## Prep for Part 2
 
 **Feedback on our idea:** 
 
-**Revised storyboard:** After Part E, we saw that one photo at bedtime is not enough, because nothing changes during the night. So we changed it to watch the desk all night with `overnight.py --all`, and turn the whole night's log into the group chat in the morning.
+
 
 \*\*\***Post your revised storyboard here.**\*\*\*
+
+**Revised storyboard:** After Part E, we saw that one photo at bedtime is not enough, because nothing changes during the night. So we changed it to watch the desk all night with `overnight.py --all`, and turn the whole night's log into the group chat in the morning.
 
 ## Part G. 
 ### Design the interaction before
@@ -180,15 +173,6 @@ Before bed, I run one command: `./goodnight.sh`. The screen says "Shh... they're
 
 ## Part H. 
 ### Incorporate the observant system
-
-The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret()` from `yolo_to_qwen.py` every few seconds, people only unless you pass `--all`, and writes the readings to `night_log.jsonl`; the reasoning waits for the morning. Start it inside `tmux` so it keeps running after you close your laptop, and stop it with Ctrl-C in the morning:
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ tmux new -s night
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python overnight.py
-```
-
-Fake a night first: run it for thirty seconds while you walk around, stop it, and run `morning.py` from Part I. When that looks right, run a real night. If your storyboard needs a sensor rather than the camera, swap in the Lab 4 example code and log its reading the same way.
 
 \*\*\***Screenshots or videos of the running system.**\*\*\*
 
@@ -210,7 +194,6 @@ In the morning, I stop the night shift and run `python desk_chat.py`. It first l
 - **Looks like:** (photo of the desk with the camera) The camera sits above the desk and looks down at the monitor, laptop, keyboard, book and bottle. A dim lamp stays on at night.
 - **Works like:** camera → YOLO (`overnight.py --all`) → night_log.jsonl → desk_chat.py → Qwen → group chat. This used a real night's data, from ___ to ___.
 - **Acts like:** I hand over the night with one command and a dim lamp. In the morning I get a group chat from my desk about what I did.
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
 
 ### Reflection
 
@@ -219,19 +202,3 @@ At first I worried that nothing on my desk moves at night. Then I realized the o
 YOLO was not perfect. It called my monitor a "tv", and things like the mouse flickered on and off when the confidence was close to the limit. So desk_chat.py renames "tv" to "monitor" and ignores blips shorter than 60 seconds. The first few frames are also dark while the camera adjusts, so it skips the first 15 seconds.
 
 The 0.8b model kept making up times that were not in the log (like 22:05 when the log only had 16:25 to 16:26), even when the prompt told it not to. So I added a check that drops any message with a time that is not in the log. This matches what we saw in Part D: small models are fun to write with, but you can't trust them on facts.
-
-## Deliverables & Submission for Lab 5
-
-For submission, the readme.md page for this lab should be edited to include the work you have done:
-* Upload any materials that explain what you did, including your code and night log, into your Lab 5 repository, and link them in your Lab 5 readme.md.
-* Labs are due on Sundays, make sure to submit your Lab 5 readme.md to Canvas.
-
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
-
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-</details>
