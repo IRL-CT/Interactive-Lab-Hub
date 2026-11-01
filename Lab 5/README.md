@@ -122,25 +122,37 @@ It's easier than finding a button in the dark.
 
 \*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
 
-**Q1: What is the capital of France?**
-qwen3.5:0.8b: The capital of France is **Paris**.
-Time: 54.4s (total duration). Most of the time was spent on thinking (337 tokens at 6.84 tokens/s).
+\*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
 
-**Q2: Who wrote Romeo and Juliet?** (thinking off)
-qwen3.5:0.8b: Romeo and Juliet was written by William Shakespeare. ... It consists of four acts ...
-Time: 17.6s
-Note: The author is correct, but it made up details. The play has five acts, not four, and it did not premiere at Stratford-upon-Avon.
+#### Q1: What is the capital of France?
+- **Model:** `qwen3.5:0.8b` (thinking on)
+- **Answer:** The capital of France is **Paris**.
+- **Time:** 54.4s
+- **Note:** Most of the time was spent on thinking (337 tokens at 6.84 tokens/s).
 
-**Q3: What is 12 times 8?** (thinking off)
-qwen3.5:0.8b: ... Final Answer: 12 × 8 = 96.
-Time: 25.8s
-Note: The final answer is correct, but the first step-by-step method is wrong (it gets 30), and only the second method (80 + 16) is right.
+#### Q2: Who wrote Romeo and Juliet?
+- **Model:** `qwen3.5:0.8b` (thinking off)
+- **Answer:** Romeo and Juliet was written by William Shakespeare. ... It consists of four acts ...
+- **Time:** 17.6s
+- **Note:** The author is correct, but it made up details. The play has five acts, not four, and it did not premiere at Stratford-upon-Avon.
 
-**Comparison: What is 12 times 8? with qwen3:0.6b** (thinking off)
-qwen3:0.6b: 12 multiplied by 8 equals **96**.
-Time: 8.1s total, but 7.4s was loading the model. Generating the answer only took about 0.6s.
+#### Q3: What is 12 times 8?
+- **Model:** `qwen3.5:0.8b` (thinking off)
+- **Answer:** ... Final Answer: 12 × 8 = 96.
+- **Time:** 25.8s
+- **Note:** The final answer is correct, but the first step-by-step method is wrong (it gets 30). Only the second method (80 + 16) is right.
 
-qwen3:0.6b was much faster than qwen3.5:0.8b (23.28 vs 6.71 tokens/s) and gave a short, correct answer. qwen3.5:0.8b took 25.8s and wrote a long explanation with one wrong method. For a simple question like this, the smaller model worked better.
+#### Comparison: Q3 with `qwen3:0.6b`
+- **Model:** `qwen3:0.6b` (thinking off)
+- **Answer:** 12 multiplied by 8 equals **96**.
+- **Time:** 8.1s total, but 7.4s was loading the model. Generating the answer only took about 0.6s.
+
+| Model | Time | Speed | Answer |
+|---|---|---|---|
+| `qwen3.5:0.8b` | 25.8s | 6.71 tokens/s | Correct, but long with one wrong method |
+| `qwen3:0.6b` | 8.1s (0.6s without loading) | 23.28 tokens/s | Correct and short |
+
+`qwen3:0.6b` was much faster and gave a short, correct answer. For a simple question like this, the smaller model worked better.
 
 ## Part E. 
 ### Connect: from YOLO readings to Qwen reasoning
