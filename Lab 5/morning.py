@@ -14,12 +14,18 @@ import argparse
 import collections
 import datetime
 import json
+import threading
+import time
 
 import requests
+
+from screen import Screen
+from voice import speak
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--log", default="night_log.jsonl")
 parser.add_argument("--model", default="qwen3.5:0.8b")
+parser.add_argument("--print-only", action="store_true", help="only print the report: no screen, no voice")
 args = parser.parse_args()
 
 entries = [json.loads(line) for line in open(args.log) if line.strip()]
@@ -31,6 +37,27 @@ per_hour = dict(sorted(collections.Counter(e["t"][11:13] + ":00" for e in seen).
 span = f"{entries[0]['t'][11:16]} to {entries[-1]['t'][11:16]}" if entries else "no entries"
 print(f"{len(readings)} changes, {len(seen)} with someone in view, {beats} heartbeats, {span}")
 print("changes per hour:", per_hour)
+
+
+def deliver(text):
+    """Print the report, show it on the Mini PiTFT page by page, and say it aloud."""
+    print("\n" + text, flush=True)
+    if args.print_only:
+        return
+    screen = Screen()
+    pages = screen.pages(text)
+    talker = threading.Thread(target=speak, args=(text,))
+    talker.start()
+    i = 0
+    while pages and (talker.is_alive() or i < len(pages)):      # every page at least once
+        screen.lines(pages[i % len(pages)])
+        i += 1
+        talker.join(timeout=4)
+        if not talker.is_alive() and i < len(pages):
+            time.sleep(4)
+    talker.join()
+    if pages:
+        screen.lines(pages[0])                                  # leave the first page up
 
 
 def clock(iso):
@@ -53,11 +80,11 @@ if start is not None:                          # still up when the log stopped
 if not entries:
     raise SystemExit("\nThe log is empty: the camera may not have run last night.")
 if not seen:                                   # nothing to summarize: say so, do not ask the model
-    print(f"\nQuiet night. The camera watched from {span} and saw nobody, "
-          "so I cannot say whether you stayed in bed.")
+    deliver(f"Quiet night. The camera watched from {span} and saw nobody, "
+            "so I cannot say whether you stayed in bed.")
     raise SystemExit
 if not episodes:
-    print(f"\nQuiet night. The camera watched from {span} and nobody got up.")
+    deliver(f"Quiet night. The camera watched from {span} and nobody got up.")
     raise SystemExit
 
 facts = "\n".join(
@@ -82,4 +109,4 @@ r = requests.post("http://localhost:11434/api/generate", json={
     "options": {"num_ctx": 4096, "temperature": 0.3},
 }, timeout=600)
 r.raise_for_status()
-print("\n" + r.json()["response"])
+deliver(r.json()["response"].strip())

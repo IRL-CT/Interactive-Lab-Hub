@@ -1,12 +1,12 @@
 """
-Part G: the hand-off. Show an open palm to the camera and hold it for two seconds:
-the screen shows "watching tonight" and the speaker says it too (Piper, as in Lab 3), then you
+Part G: the hand-off. Show an open palm to the camera and hold it for 1.5 seconds:
+the screen shows "watching tonight" and the speaker says it too (Piper + sounddevice, as in Lab 4), then you
 get a countdown to switch off the light, and then overnight.py starts.
 
     python start_night.py                    # window with a progress bar (VNC)
     python start_night.py --headless         # no window, over plain ssh
     python start_night.py --snaps --interval 10    # anything else is passed on to overnight.py
-    python start_night.py --hold 3 --delay 20      # hold the palm 3 s, 20 s to switch off the light
+    python start_night.py --hold 1.5 --delay 20      # hold the palm 1.5 s, 20 s to switch off the light
     python start_night.py --say "Sleep well."      # change what it says
 
 An open palm is easy to tell from a resting hand and from most things on a bed, and it needs no
@@ -17,33 +17,36 @@ import argparse
 import math
 import os
 import pathlib
-import subprocess
 import sys
 import time
+
+from screen import Screen
 
 FINGER_OPEN = 1.5      # a finger counts as open if its tip is this many palm-sizes from the wrist
 THUMB_OPEN = 1.0       # the thumb is open if its tip is this many palm-sizes from the base of the pinky
 
 
-VOICES_DIR = pathlib.Path(__file__).resolve().parent.parent / "Lab 3" / "voices"     # the voice you downloaded in Lab 3
-VOICE = "en_US-lessac-medium"
+VOICE_MODEL = pathlib.Path(__file__).resolve().parent.parent / "Lab 3" / "voices" / "en_US-lessac-medium.onnx"
+SPEAKER_GAIN = 1.2     # same as Lab 4
 
 
-def speak(text, voices_dir=VOICES_DIR):
-    """Say `text` through the speaker with Piper, as in Lab 3. Returns False (and the screen
-    still says it) if Piper, aplay or the voice is missing, so the hand-off never breaks."""
+def speak(text, voice_model=VOICE_MODEL):
+    """Say `text` through the speaker the way Lab 4 does: Piper in Python, played with sounddevice.
+    Returns False (and the screen still says it) if something is missing, so the hand-off never
+    breaks; the reason is printed."""
     try:
-        tts = subprocess.Popen(
-            [sys.executable, "-m", "piper", "--model", VOICE, "--data-dir", str(voices_dir),
-             "--output-raw", "--", text],
-            stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
-        play = subprocess.Popen(["aplay", "-q", "-r", "22050", "-f", "S16_LE", "-t", "raw", "-"],
-                                stdin=tts.stdout, stderr=subprocess.DEVNULL)
-        tts.stdout.close()
-        play.wait()
-        return tts.wait() == 0 and play.returncode == 0
-    except OSError as e:
-        print("could not speak:", e, flush=True)
+        import numpy as np
+        import sounddevice as sd
+        from piper import PiperVoice
+        voice = PiperVoice.load(str(voice_model))
+        for chunk in voice.synthesize(text):
+            samples = np.frombuffer(chunk.audio_int16_bytes, dtype=np.int16)
+            louder = np.clip(samples.astype(np.float32) * SPEAKER_GAIN, -32768, 32767).astype(np.int16)
+            sd.play(louder, samplerate=chunk.sample_rate)
+            sd.wait()
+        return True
+    except Exception as e:                              # missing package, voice file or sound device
+        print(f"could not speak: {e!r}", flush=True)
         return False
 
 
@@ -65,11 +68,11 @@ def is_open_palm(lm):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--hold", type=float, default=2, help="seconds the palm must stay open")
-    parser.add_argument("--delay", type=float, default=30, help="seconds to switch off the light before watching starts")
+    parser.add_argument("--hold", type=float, default=1.5, help="seconds the palm must stay open")
+    parser.add_argument("--delay", type=float, default=20, help="seconds to switch off the light before watching starts")
     parser.add_argument("--headless", action="store_true", help="do not open a window")
     parser.add_argument("--say", default="Watching tonight. Good night.", help="what the device says when it accepts the hand-off")
-    parser.add_argument("--voices", default=str(VOICES_DIR), help="folder with the Piper voice from Lab 3")
+    parser.add_argument("--voice", default=str(VOICE_MODEL), help="the Piper voice file from Lab 3")
     args, overnight_args = parser.parse_known_args()
 
     import cv2
@@ -79,9 +82,11 @@ def main():
     cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-    detector = htm.handDetector(detectionCon=0.7)
+    detector = htm.handDetector(detectionCon=0)
     print("show an open palm to the camera and hold it", flush=True)
 
+    screen = Screen()                                   # the Mini PiTFT; does nothing if it is not available
+    screen.bar("Show an open palm", 0)
     palm_since = None
     while True:
         ok, img = cap.read()
@@ -97,6 +102,7 @@ def main():
             palm_since, held = None, 0
         if held >= args.hold:
             break
+        screen.bar("Hold your palm", held / args.hold)
         if show:
             cv2.rectangle(img, (20, 440), (20 + int(300 * held / args.hold), 465), (0, 200, 0), cv2.FILLED)
             cv2.rectangle(img, (20, 440), (320, 465), (255, 255, 255), 2)
@@ -115,8 +121,10 @@ def main():
         cv2.putText(img, "watching tonight", (150, 240), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
         cv2.imshow("start night", img)
         cv2.waitKey(1)
-    speak(args.say, args.voices)                        # ... and so does the speaker
+    screen.text("Watching tonight", "Good night", color="#00FF00")
+    speak(args.say, args.voice)                         # ... and so does the speaker
     for left in range(int(args.delay), 0, -1):          # time to switch off the light
+        screen.text("Watching tonight", f"Light off: {left} s")
         if show:
             img[:] = (0, 0, 0)
             cv2.putText(img, "watching tonight", (150, 220), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
@@ -127,6 +135,7 @@ def main():
             time.sleep(1)
     cap.release()                                       # overnight.py needs the camera
     cv2.destroyAllWindows()
+    screen.off()                                        # a dark room: overnight.py keeps the screen off
     os.execvp(sys.executable, [sys.executable, "overnight.py", *overnight_args])
 
 

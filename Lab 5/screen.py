@@ -50,6 +50,36 @@ class Screen:
             y += 30
         self._show(image)
 
+    def pages(self, text):
+        """Cut `text` into pages of small lines that fit the screen: a list of lists of lines."""
+        if not self.ok:
+            return []
+        measure = ImageDraw.Draw(Image.new("RGB", (1, 1)))
+        lines, line = [], ""
+        for word in text.split():
+            trial = f"{line} {word}".strip()
+            if line and measure.textlength(trial, font=self._small) > self.width - 16:
+                lines.append(line)
+                line = word
+            else:
+                line = trial
+        if line:
+            lines.append(line)
+        per_page = (self.height - 12) // 20
+        return [lines[i:i + per_page] for i in range(0, len(lines), per_page)]
+
+    def lines(self, lines, color="#FFFFFF"):
+        """Show one page of small lines, as cut by pages()."""
+        if not self.ok:
+            return
+        image = Image.new("RGB", (self.width, self.height))
+        draw = ImageDraw.Draw(image)
+        y = 6
+        for line in lines:
+            draw.text((8, y), line, font=self._small, fill=color)
+            y += 20
+        self._show(image)
+
     def bar(self, title, fraction, color="#00C800"):
         """A title and a progress bar, 0 (empty) to 1 (full)."""
         if not self.ok:

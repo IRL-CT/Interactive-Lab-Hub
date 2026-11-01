@@ -25,6 +25,7 @@ import time
 
 import cv2
 
+from screen import Screen
 from yolo_to_qwen import interpret, model      # the interpreter you tuned in Part E
 
 parser = argparse.ArgumentParser()
@@ -36,6 +37,8 @@ parser.add_argument("--confirm", type=int, default=2, help="looks in a row befor
 args = parser.parse_args()
 classes = None if args.all else [0]        # class 0 is "person", as in yolo_to_qwen.py
 
+screen = Screen()          # the Mini PiTFT stays dark all night (stop piscreen.service first, see screen.py)
+screen.off()
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
@@ -81,4 +84,5 @@ while True:
         time.sleep(args.interval)
 
 cap.release()
+screen.text("Good morning", "Run morning.py", color="#FFFF00")
 print("night shift stopped", flush=True)

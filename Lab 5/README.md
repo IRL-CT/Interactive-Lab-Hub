@@ -212,7 +212,7 @@ The camera cannot tell whether a person is asleep, so the device reports "up and
 
 ## Part D. 
 ### Reason: run Qwen on the Pi with Ollama
-
+<!-- 
 Talk to the model in the terminal first. Qwen3 models "think" before they answer, which is slow on a Pi, so turn it off. Then ask about something you can check:
 
 ```
@@ -238,7 +238,7 @@ Things in the [Ollama API](https://github.com/ollama/ollama/blob/main/docs/api.m
 * `format` makes the model answer as JSON with the fields you name (`--json`). Handy when a display or a servo has to read the answer.
 * `images` sends a photo along with the prompt (`--image snap.jpg`, the photo from Part A). `qwen3.5:0.8b` can look at pictures.
 
-A 0.8B model is slow and sometimes wrong. It will invent events that are not in the data and agree with a wrong premise. Give it the data, keep its job narrow, and decide what the device does when the model is unsure.
+A 0.8B model is slow and sometimes wrong. It will invent events that are not in the data and agree with a wrong premise. Give it the data, keep its job narrow, and decide what the device does when the model is unsure. -->
 
 \*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
 
@@ -262,7 +262,7 @@ A 0.8B model is slow and sometimes wrong. It will invent events that are not in 
 
 
 ## Part E. 
-### Connect: from YOLO readings to Qwen reasoning
+<!-- ### Connect: from YOLO readings to Qwen reasoning
 
 An observant system is a pipeline: a **detector** turns pixels into boxes, an **interpreter** turns boxes into readings in words ("one person, left, close"), the readings pile up in a **log**, and a **reasoner** answers a question about the log. The language model never sees pixels, only the words you chose in the interpreter. That makes the interpreter the most important design decision in the system.
 
@@ -293,7 +293,7 @@ Qwen (18.4 s):
 One person came in from the right, moved close to the camera, and left after about half a minute. ...
 ```
 
----
+--- -->
 
 # Lab 5 Part 2: Overnight Sensation
 
@@ -323,14 +323,10 @@ It is a device that tells me whether I got up and walked around at night. Before
 
 ## Prep for Part 2
 
-1. Look at and give feedback on the Part F storyboards.
-   **Put the feedback for your ideas here.** Some feedbacks I got:
-   - Could add a confirmation prompt (LED or sound) to the first storyboard (after recognizing a gesture).
-   - When the person wakes up, how does Pi reacts when the person "didn't get up" the whole night?
-
-2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
-3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
-4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
+**Put the feedback for your ideas here.** 
+Some feedbacks I got:
+- Could add a confirmation prompt (LED or sound) to the first storyboard (after recognizing a gesture).
+- When the person wakes up, how does Pi reacts when the person "didn't get up" the whole night?
 
 \*\*\***Post your revised storyboard here.**\*\*\*
 ![revised storyboard](imgs/storyboard_revised.jpg)
@@ -348,27 +344,34 @@ The acknowledgement is the progress bar, the line "watching tonight" on the disp
 ## Part H. 
 ### Incorporate the observant system
 
-The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret()` from `yolo_to_qwen.py` every few seconds, people only unless you pass `--all`, and writes the readings to `night_log.jsonl`; the reasoning waits for the morning. Start it inside `tmux` so it keeps running after you close your laptop, and stop it with Ctrl-C in the morning:
+<!-- The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret()` from `yolo_to_qwen.py` every few seconds, people only unless you pass `--all`, and writes the readings to `night_log.jsonl`; the reasoning waits for the morning. Start it inside `tmux` so it keeps running after you close your laptop, and stop it with Ctrl-C in the morning:
 
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ tmux new -s night
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python overnight.py
 ```
 
-Fake a night first: run it for thirty seconds while you walk around, stop it, and run `morning.py` from Part I. When that looks right, run a real night. If your storyboard needs a sensor rather than the camera, swap in the Lab 4 example code and log its reading the same way.
+Fake a night first: run it for thirty seconds while you walk around, stop it, and run `morning.py` from Part I. When that looks right, run a real night. If your storyboard needs a sensor rather than the camera, swap in the Lab 4 example code and log its reading the same way. -->
 
 \*\*\***Screenshots or videos of the running system.**\*\*\*
+1. recognizing gesture: [1st recognizing gesture](https://drive.google.com/file/d/1HRMQArkhpGZeeEI9y3GxY13Oy_G_TK7_/view?usp=sharing)
+2. Pi says good night: [2nd Pi says good night](https://drive.google.com/file/d/1CgjtLx5a6TbNY0Tszd-qFnm5fHimQvkD/view?usp=drive_link)
+3. Short round: [fake night testing](https://drive.google.com/file/d/13SEFnQpMuEA3rRNrS60Rtda0wCnTY7no/view?usp=sharing)
 
 ## Part I. 
 ### Design the interaction after
 
-The reveal. The night produced a log; the morning turns it into something a half-awake person can take in. `morning.py` is the smallest version: it asks Qwen for a three-sentence report.
+<!-- The reveal. The night produced a log; the morning turns it into something a half-awake person can take in. `morning.py` is the smallest version: it asks Qwen for a three-sentence report.
 
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python morning.py
 ```
 
-Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
+Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened. -->
+
+**Summary report:**
+- Terminal output: ![summary](imgs/morning_summary.png)
+- Voice report: [voice report](https://drive.google.com/file/d/1cA_bHnbTLyQpMJ8AvG0UGp_YC_Gfcfbj/view?usp=sharing)
 
 ## Final documentation
 
