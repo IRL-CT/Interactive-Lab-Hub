@@ -4,12 +4,15 @@ import requests
 import subprocess
 import shutil
 import argparse
+import re
 from pathlib import Path
 
 # Configuration
-LOG_FILE = Path("dream_log.jsonl")
-OUTPUT_FILE = Path("dream_story.txt")
-AUDIO_FILE = Path("dream.wav")
+BASE_DIR = Path(__file__).resolve().parent
+
+LOG_FILE = BASE_DIR / "dream_log.jsonl"
+OUTPUT_FILE = BASE_DIR / "dream_story.txt"
+AUDIO_FILE = BASE_DIR / "dream.wav"
 
 MODEL = "qwen3.5:0.8b"
 
@@ -51,9 +54,21 @@ def load_observations():
 
 
 def generate_dream(observations):
-    """Ask Qwen to generate a creative dream."""
+    """Generate a creative dream using Qwen."""
+
     if not observations:
         raise ValueError("No photo observations found.")
+
+    if all(
+        "No recognizable objects" in obs
+        for obs in observations
+    ):
+        return (
+            "The Empty Dream\n\n"
+            "I looked through your photos, but couldn't "
+            "recognize any objects to inspire a dream. "
+            "Try uploading some different photos tonight."
+        )
 
     photo_log = "\n".join(observations)
 
@@ -98,11 +113,45 @@ Rules:
     )
 
     response.raise_for_status()
-    return response.json()["response"].strip()
+
+    dream = response.json()["response"].strip()
+
+    if not dream:
+        raise RuntimeError("Qwen returned an empty dream.")
+
+    return dream
 
 
-def narrate_dream(dream, regenerate_audio=True):
-    """Convert a dream to speech and play it using Piper."""
+def prepare_narration(dream):
+    """Add an introduction and clean formatting for Piper."""
+
+    # Separate title from story
+    lines = dream.strip().split("\n", 1)
+
+    title = lines[0].strip().strip("*# ")
+    story = lines[1].strip() if len(lines) > 1 else ""
+
+    # Remove Markdown formatting
+    title = re.sub(r"[*_#`]", "", title)
+    story = re.sub(r"[*_#`]", "", story)
+
+    # Clean unnecessary whitespace
+    title = " ".join(title.split())
+    story = " ".join(story.split())
+
+    narration = (
+        "Good morning! I hope you slept well. "
+        "Last night, I dreamed about your day. "
+        f"Your dream is called {title}. "
+        "Here's how it went. "
+        f"{story}"
+    )
+
+    return narration
+
+
+def narrate_dream(dream, regenerate_audio=True, play=True):
+    """Generate Piper audio and optionally play it."""
 
     if regenerate_audio:
         if not shutil.which("piper"):
@@ -115,6 +164,8 @@ def narrate_dream(dream, regenerate_audio=True):
                 f"Voice model not found: {VOICE_MODEL}"
             )
 
+        narration = prepare_narration(dream)
+
         print("\nGenerating dream narration...")
 
         subprocess.run(
@@ -123,7 +174,7 @@ def narrate_dream(dream, regenerate_audio=True):
                 "--model", VOICE_MODEL,
                 "--output_file", str(AUDIO_FILE)
             ],
-            input=dream,
+            input=narration,
             text=True,
             encoding="utf-8",
             check=True
@@ -136,12 +187,13 @@ def narrate_dream(dream, regenerate_audio=True):
             f"Audio file not found: {AUDIO_FILE}"
         )
 
-    print("Playing your dream...")
+    if play:
+        print("Playing your dream...")
 
-    subprocess.run(
-        ["aplay", str(AUDIO_FILE)],
-        check=True
-    )
+        subprocess.run(
+            ["aplay", str(AUDIO_FILE)],
+            check=True
+        )
 
 
 def main():
@@ -153,6 +205,12 @@ def main():
         "--replay",
         action="store_true",
         help="Replay the saved dream without generating a new one."
+    )
+
+    parser.add_argument(
+        "--no-play",
+        action="store_true",
+        help="Generate audio without playing it overnight."
     )
 
     args = parser.parse_args()
@@ -168,10 +226,10 @@ def main():
         print("\n===== SAVED DREAM =====\n")
         print(dream)
 
-        # Reuse existing audio if available
         narrate_dream(
             dream,
-            regenerate_audio=not AUDIO_FILE.exists()
+            regenerate_audio=not AUDIO_FILE.exists(),
+            play=not args.no_play
         )
 
     else:
@@ -183,7 +241,7 @@ def main():
             f"{len(observations)} photos.\n"
         )
 
-        # Step 2: Generate a dream using Qwen
+        # Step 2: Generate dream using Qwen
         dream = generate_dream(observations)
 
         print("\n===== YOUR DREAM =====\n")
@@ -193,8 +251,11 @@ def main():
         OUTPUT_FILE.write_text(dream, encoding="utf-8")
         print(f"\nDream saved to {OUTPUT_FILE}")
 
-        # Step 4: Generate and play narration
-        narrate_dream(dream)
+        # Step 4: Generate audio and optionally play
+        narrate_dream(
+            dream,
+            play=not args.no_play
+        )
 
 
 if __name__ == "__main__":
