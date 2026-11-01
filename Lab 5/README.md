@@ -2,8 +2,7 @@
 
 **Team:**
 
-**Members:** Full Name (netid, github-handle), ...
-
+**Members:** Viktor Radev - Github: https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub, Alex Yen
 **Project name:**
 
 <details>
