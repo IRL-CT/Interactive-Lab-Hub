@@ -432,7 +432,12 @@ The hand-off: the person tells the device what to watch tonight, and the device 
 
 \*\*\***Describe the interaction before.**\*\*\*
 
+**The hand-off.** A tram watcher has no question to ask at bedtime. The hand-off is setting up the device and letting it watch:
 
+1. The Pi sits on the windowsill with the webcam lens flat against the glass, aimed at the stretch of tram cable we can see from our room. Only that small outlined area of sky is ever cropped, analyzed or saved: no street, no windows, no people.
+2. We start the watcher in `tmux` (`tram_watch.py` for the camera and tracker, `tram_web.py` for the website), so it keeps running after the laptop is closed.
+3. The device acknowledges it: the terminal prints `watching... N passes in the log so far`, and the website switches from "offline" to "waiting" until the next tram shows up.
+4. Anyone we share the link with can open the site. We keep a private version of the link with two buttons, **"It arrived at the island"** and **"It left the island."** When we see the tram stop, one tap gives the system the true time, so it can measure and correct its own error.
 
 ## Part H. 
 ### Incorporate the observant system
@@ -448,10 +453,56 @@ Fake a night first: run it for thirty seconds while you walk around, stop it, an
 
 \*\*\***Screenshots or videos of the running system.**\*\*\*
 
-https://youtube.com/shorts/-ntIhPmZE9A 
+Original website after making prediction logic work:
+https://github.com/user-attachments/assets/066c9faf-1aaf-4a25-a7f7-9c60f56198ee
+
+labeled "Manhattan side" on the left and "Island station" on the right. A red dot appeared while a cabin was in view and disappeared as soon as it left. For most of the tram's trip the bar was empty.
+
+My teammate and I did not like this, for reasons that come straight from Don Norman's design principles:
+
+- **Mapping.** The bar looked like the whole route, with Manhattan on one end and the island on the other, but it was really about a tenth of it. A dot at the right end looked like a tram at the island station when it had actually just entered the camera's view. The layout of the display did not match the layout of the world.
+- **Conceptual model.** Both cabins are always somewhere on the cable. On the first dashboard, a tram that left the camera's view simply stopped existing, so it taught the wrong picture of how the tram works.
+- **Feedback.** Most of the time the screen showed nothing, so you couldn't tell "no tram nearby" apart from "the tram is just out of view."
+
+**The redesign.** The line now spans the whole route, Manhattan station to Roosevelt Island station, and the stretch the camera can see is shaded and labeled "camera." Both cabins are always on the line:
+
+- A **solid, pulsing** cabin is one the camera sees right now.
+- A **dashed "ghost"** cabin is our estimate of where the other cabin is, and it glides along the line as time passes.
+- Each cabin shows an arrow for its direction (→ to the island, ← to Manhattan), and a legend explains solid versus dashed.
+
+Solid versus dashed is the signifier that separates what the camera actually sees from what we are guessing. That matters because every time on the page is an estimate, shown with an 80% range and the chance it is within 30 seconds.
 
 ## Part I. 
 ### Design the interaction after
+
+https://youtube.com/shorts/-ntIhPmZE9A 
+
+**Our version of `overnight.py`.** The lab's starter `overnight.py` and `morning.py` are in our Lab 5 folder, but there is no `night_log.jsonl`, so we did not run them for this project. Our tram pipeline replaced them. Its night shift is `tram_watch.py`, which follows the same detector → interpreter → log → reasoner structure as Part E:
+
+| Stage | Part E | Our tram watcher |
+|---|---|---|
+| Detector | YOLO person detector | Our own YOLO26n detector, trained on our boxed tram photos, finds every cabin in the crop once a second |
+| Interpreter | left/center/right, close/far | A grip point on each cabin is projected onto the fitted cable line, giving a position from 0 (tower end) to 1 (station end) |
+| Log | `watch_log.txt` / `night_log.jsonl` | `tram_events.jsonl` (one line per tram pass, with estimated and true times) and `tram_tracks.jsonl` (each cabin's position over time) |
+| Reasoner | Qwen | A Kalman filter, a renewal (semi-Markov) model of the gaps between trams, and the error measured against our hand-timed taps |
+
+The live state is rewritten every second to `tram_state.json`, which the website reads.
+
+**What we found over one day (Nov 1), shown in the video:**
+
+- **Daytime works well.** The detector sees the cabins clearly. "TRAM IN VIEW" appears with an arrival estimate and an 80% range, and the second cabin is drawn as a ghost on the rest of the route.
+- **Dusk still works.** The detector keeps finding the cabin as the light fades.
+- **Night fails.** After dark the camera can no longer see the cabin. Our exposure control lengthens the exposure and raises the gain, but the cabin isn't lit, and the detector was trained mostly on daytime photos. It stops detecting, so the ghost cabins stop at the edge of the camera zone and say "due in view any moment." The last-tram card stays on the last tram seen (17:08). After 45 minutes without a sighting, the next-tram estimate switches to "Waiting to see a tram first" rather than inventing a time.
+
+**Results from the log, as shown on the site's "How accurate has it been?" card at 17:55:**
+
+- **179 tram passes** detected that day.
+- **Next-tram predictions:** 177 were checked automatically against when the tram actually came. They were typically off by about 40 s, within 2 minutes 90% of the time, and the true time fell inside our 80% range 86% of the time. That means the stated confidence matches reality.
+- **Island arrivals:** compared with 6 that we hand-timed, the estimates were typically off by about 10 s. The system measured that it ran about 9.5 s early and now corrects for it.
+- **Island departures:** only 1 hand-timed so far (off by 4 s). It needs 5 before it starts correcting itself.
+
+<img width="590" height="532" alt="image" src="https://github.com/user-attachments/assets/c812ce78-901b-4621-acb5-b608758f091d" />
+
 
 The reveal. The night produced a log; the morning turns it into something a half-awake person can take in. `morning.py` is the smallest version: it asks Qwen for a three-sentence report.
 
@@ -475,6 +526,7 @@ https://youtube.com/shorts/-ntIhPmZE9A
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
 
+- the idea, the sketches, the storyboards and the design decisions were ours. We used Claude mainly for implementation. It wrote the Python, walked us through setting up the Pi and the laptop GPU, and set up the website and the Tailscale tunnel. It also worked out how to apply robotics concepts we already knew (Kalman filtering, Markov models, Bayes filters) to the tram. The data was ours: Viktor labeled about 3,000 images and drew bounding boxes on more than 300 tram photos, and we hand-timed real arrivals to check the estimates. Details are in "How the system was built".
 
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
