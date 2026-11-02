@@ -1,0 +1,1 @@
+{"valid_samples": 3395, "samples_with_people": 6, "error_samples": 0, "long_gap_count": 0, "max_people": 1, "last_sample_people": 0, "last_person_detection": "2026-11-02T09:33:51.477-05:00", "last_sample_time": "2026-11-02T09:34:13.069-05:00", "observation_seconds": 36626.925, "session_closed": true}
