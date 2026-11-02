@@ -115,6 +115,7 @@ pi@raspberrypi:~ $ ollama list
 | `qwen3:0.6b` | ~0.5 GB | text only, smaller and faster (~16 tokens/s on a Pi 5) |
 
 \*\*\***Include a screenshot of `ollama list` showing your models.**\*\*\*
+<img width="526" height="76" alt="Screenshot 2026-10-27 at 5 22 06 PM" src="https://github.com/user-attachments/assets/a657381d-d3df-498f-9461-225c93fa7fb0" />
 
 
 ## Part B. 
@@ -140,6 +141,11 @@ Then press q to quit and run it again with a flag. Each one changes a single thi
 ```
 
 \*\*\***Include a short video or screenshots of the person detection.**\*\*\*
+<img width="656" height="862" alt="Screenshot 2026-10-27 at 5 29 35 PM" src="https://github.com/user-attachments/assets/0de2d0dd-080e-4c0b-b952-5b97b3bd6fd0" />
+<img width="1038" height="947" alt="Screenshot 2026-10-27 at 5 29 44 PM" src="https://github.com/user-attachments/assets/35ea298e-d015-4f88-b915-0926c20609db" />
+<img width="719" height="948" alt="Screenshot 2026-10-27 at 5 33 53 PM" src="https://github.com/user-attachments/assets/eb825452-61ce-4cb8-8339-5c6c78139615" />
+<img width="776" height="948" alt="Screenshot 2026-10-27 at 5 34 39 PM" src="https://github.com/user-attachments/assets/e2769777-f9e7-4f7b-8891-731625a7684c" />
+<img width="1017" height="948" alt="Screenshot 2026-10-27 at 5 35 44 PM" src="https://github.com/user-attachments/assets/c7c394e2-78ac-4069-8a7e-096e0cb2bc8e" />
 
 
 ## Part C. 
@@ -167,7 +173,9 @@ Try the two main features of this script: 1) pinching for percentage control (th
 Consider how you might use this position based approach to create an interaction, and write how you might use it on either face, hand or body pose tracking.
 
 \*\*\***Include a screenshot or short video of the hand pose demo, and write how you might use face, hand or body pose tracking in your observant system.**\*\*\*
+<img width="1512" height="885" alt="Screenshot 2026-10-27 at 5 59 34 PM" src="https://github.com/user-attachments/assets/e1d9ea68-963a-44fe-b9d2-6f1616c1ddb4" />
 
+https://drive.google.com/file/d/1Z-X0qpjYGkEK5MtZyjLlab4PLNfmd9cS/view?usp=sharing
 
 ## Part D. 
 ### Reason: run Qwen on the Pi with Ollama
@@ -204,6 +212,9 @@ A 0.8B model is slow and sometimes wrong. It will invent events that are not in 
 <details>
   Q&A here
 </details>
+
+<img width="1512" height="158" alt="Screenshot 2026-10-27 at 6 04 02 PM" src="https://github.com/user-attachments/assets/071eafba-9542-45a5-bf92-ed31a680bd07" />
+<img width="1512" height="369" alt="Screenshot 2026-10-27 at 6 12 53 PM" src="https://github.com/user-attachments/assets/57cf9b55-2709-4adf-8dbb-dcee7d14dcce" />
 
 
 ## Part E. 
@@ -265,6 +276,11 @@ Stuck? A kitchen that tells you who raided the fridge. A desk that reports wheth
 Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf).
 
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
+**Initial storyboard.** We picked *sense all night*. Before bed, the camera is placed near the bed. While asleep, it records tossing and turning. After bed, a web interface shows a graph of movement during sleep.
+
+<img width="4284" height="5712" alt="IMG_7814" src="https://github.com/user-attachments/assets/4553f90a-3b63-4f59-a22c-2c5acb615e10" />
+<img width="4284" height="5712" alt="IMG_7815" src="https://github.com/user-attachments/assets/f35ef964-0879-4afe-b469-ea35be5d8408" />
+Our initial storyboards were not as creative as we could have made them. When coming up with our ideas we were thinking very small and one-dimensional: we were so focused on capturing the movement the user made during their sleep and reporting it back to them. We didn't recognize how we could make a story that is 1) worth capturing and processing and 2) worth buying. The important question we needed to ask was "Why us?" Why should a user go out of their way to buy our device?
 
 ## Prep for Part 2
 
@@ -273,15 +289,56 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
 3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
 4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
-
+ 
+ **Nishant Ray (nr487@cornell.edu):** "I like the idea of checking how someone is sleeping or if they move around during their sleep. It seems useful and would be something that I would actually use. I think one requirement from the README instructions say to not just have a camera pointing at the bed. Maybe there could be another form of interaction to see if they wake up during their sleep. Perhaps with any of the other sensors we received?"
+   
 \*\*\***Post your revised storyboard here.**\*\*\*
+<img width="616" height="332" alt="Screenshot 2026-11-01 at 11 52 28 PM" src="https://github.com/user-attachments/assets/4079f29d-a5c4-4ef8-be26-34a437ed4cfb" />
+
+1. **Before bed:** The user places the device on a desk or nightstand with the camera facing the bed and makes sure the mic is on.
+2. **While asleep:** The device takes in the video feed and records the user's movement (tossing and turning, changing sleeping positions). It also records audio from the room: cars and other vehicles, roommates, doors, and so on.
+3. **When awake:** By the time the user wakes up, the data has been processed. A dashboard shows information about their sleep quality: how many times they moved, how many of those moves came after a noise, and a graph with movement and noise as two lines on the same plot, spiking at the times with the most of each.
+
+Our revised storyboard combines several factors that each affect sleep quality. It also tells people about their surroundings so they can make meaningful decisions to improve them.
+
+We already knew from our first storyboards that we wanted to capture live data on how often, and when, a person tosses and turns during the night. We wanted to take it further and work out what would make someone buy a separate device. On its own, the number of times a person tosses and turns doesn't tell them anything useful. It also doesn't point them toward anything they could change about their sleeping habits or personal life.
+
+One of us mentioned that their room at the House faces the Queensboro Bridge, which can be distracting at night because of the lights on the bridge and the lights and sounds of the cars. We realized there could be a correlation between how much light a person is exposed to while trying to rest and how much they toss and turn. We decided the visualization would be a graph showing tossing and turning in one color and the device's light exposure in another.
+
+**Revision from the feedback.** Nishant pointed out that Part 2 asks us not to just point a camera at the bed, and suggested using one of the other sensors to tell when the sleeper wakes or moves. In response, the revised design adds a **motion sensor under the bed** (from the Lab 4 sensor kit). It feels the mattress move when the person tosses and turns, so movement can be detected without relying only on the camera, and it keeps working in the dark, when the webcam struggles. The camera stays as a second signal, and it saves no images, only numbers. *Status: planned. The current `sleep_watch.py` still detects movement with the camera only; the sensor is the next step.*
+
 
 ## Part G. 
 ### Design the interaction before
 
 The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
 
-\*\*\***Describe the interaction before.**\*\*\*
+\*\*\***Describe the bedtime interaction and include a short video of someone handing the night over to the device.**\*\*\*
+
+**Video:** [Bedtime hand-off (Google Drive)](https://drive.google.com/file/d/1y_KTMdEgEXjUukbvKvR_lEX8_eBrvzo9/view)
+
+**My bedtime hand-off: the sleep watcher ([sleep_watch.py](sleep_watch.py)).** Before bed the person asks the Pi to watch their sleep. The Pi asks out loud (espeak-ng), *"What would you like me to watch tonight?"*, and the person types or says their question, for example *"Do I toss and turn more when the room is noisier?"* (pressing Enter uses that question as the default). The Pi answers, *"Okay. I will count your tossing and turning and listen to the room... Good night,"* then waits a settling period so getting into bed is not counted.
+
+```
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ tmux new -s night
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python sleep_watch.py --until 07:00     # type the question
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python sleep_watch.py --voice           # or say it (needs faster-whisper from Lab 3)
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python sleep_watch.py --settle 300      # 5 minutes to fall asleep before counting (default 120 s)
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python sleep_watch.py --quiet           # no spoken acknowledgement
+```
+
+The Pi waits **2 minutes** after the hand-off before it starts counting (a countdown prints every 30 s), so getting into bed is not counted as tossing.
+
+**The voice** is Piper from Lab 3 with `en_GB-jenny_dioco-medium`, a British English woman's voice. Switch to any other downloaded Piper voice by name with `--tts`, for example `--tts en_GB-cori-medium` (another British woman) or `--tts en_US-amy-medium` (American). The voice is downloaded once into `Lab 3/voices`:
+
+```
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 3 $ python -m piper.download_voices en_GB-jenny_dioco-medium --data-dir voices
+```
+
+If the voice file is missing, the script falls back to espeak-ng.
+
+Detach from tmux with `Ctrl-b` then `d`; the night keeps running after the ssh session closes. With `--voice` the Pi listens for up to 15 seconds and stops early once you have spoken and paused for 1.5 seconds (change the limit with `--listen 30`). Without `--voice` the script falls back to typing, so it still works if faster-whisper is not installed in the Lab 5 venv.
+
 
 ## Part H. 
 ### Incorporate the observant system
@@ -295,7 +352,58 @@ The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret
 
 Fake a night first: run it for thirty seconds while you walk around, stop it, and run `morning.py` from Part I. When that looks right, run a real night. If your storyboard needs a sensor rather than the camera, swap in the Lab 4 example code and log its reading the same way.
 
-\*\*\***Screenshots or videos of the running system.**\*\*\*
+\*\*\***Run the system for at least one real night. Include the log (or an excerpt) and a few sentences on what broke or surprised you.**\*\*\*
+
+**My night shift.** `sleep_watch.py` replaces `overnight.py` for my interaction. It uses the webcam and the microphone together and takes one look every 5 seconds (`--interval`):
+
+* **Movement (tossing and turning):** YOLO (the `model` from `yolo_to_qwen.py`, people only, confidence 0.3 because a sleeper is half hidden) finds the person. The frame is compared with the previous look inside the person's box, padded by 15%, or the whole frame if YOLO cannot find them under the blanket. If more than `--motion` (default 0.04, i.e. 4%) of those pixels changed, or the box jumped sideways or changed shape (lying on the back vs. the side), that look counts as a toss. Tosses closer than `--cooldown` seconds (default 30) count once. If nearly the whole frame changes (a lamp switched on), the look is marked `light` and not counted.
+* **Sound level:** the microphone is read continuously in 0.1 s blocks and converted to loudness in dBFS. Each look records the average (`db`) and the peak (`peak`) since the previous look. dBFS is relative to the mic, not a calibrated sound meter: about -60 is a silent room, about -30 is talking nearby, and 0 is the loudest the mic can record. If no mic is found the night still runs and sound is logged as `null`.
+* **Privacy:** no photos are saved, only numbers.
+
+Everything goes into `sleep_log.jsonl`, one JSON object per look (a new night overwrites the previous log):
+
+```
+{"t": "2026-10-27T23:00:00", "start": true, "request": "Do I toss and turn more when the room is noisier?", "interval": 5}
+{"t": "2026-10-27T23:03:15", "person": true, "motion": 0.071, "toss": true, "db": -57.8, "peak": -38.2}
+{"t": "2026-10-27T23:03:20", "person": true, "motion": 0.009, "toss": false, "db": -58.4, "peak": -55.1}
+```
+
+Fake a night first: run `python sleep_watch.py --settle 5 --verbose`, toss around in view of the camera, clap a few times, then press Ctrl-C and check the report. Tuning tips:
+
+* If breathing or camera noise is counted as tossing, raise `--motion` (e.g. `--motion 0.08`); if real turns are missed, lower it.
+* A completely dark room makes YOLO and the motion detection unreliable. A dim night light helps.
+* Point the camera at the bed from the side or the foot, far enough away that the whole body is in the frame.
+* Check that the webcam and the mic show up first: `ls /dev/video0` and `arecord -l`.
+
+**The real nights.** We ran the system overnight on 30 October 2026, with the question *"Do I toss and turn more when the room is noisier?"*.
+
+**Night 1, 01:13 to 07:00 ([sleep_log_night1.jsonl](sleep_log_night1.jsonl)): a failure.** The room was completely dark. In 3,981 looks YOLO never found a person and the motion check counted **0 tosses**, so the morning report honestly said there was nothing to report. The microphone worked all night, with peaks between -39 and -16 dBFS.
+
+```
+{"t": "2026-10-30T01:13:15", "start": true, "request": "Do I toss and turn more when the room is noisier?", "interval": 5}
+{"t": "2026-10-30T01:15:18", "person": false, "motion": 0.0, "toss": false, "db": -33.1, "peak": -29.6, "dark": true}
+{"t": "2026-10-30T01:15:23", "person": false, "motion": 0.0, "toss": false, "db": -33.4, "peak": -29.9, "dark": true}
+```
+
+**The fix.** In a dark room the webcam image is almost black, so every frame looked the same. We added a low-light step (`--dark`, `--gamma`) that brightens frames whose average brightness is below 40/255 with a gamma curve. A gamma curve lifts the shadows without amplifying sensor noise as much as a plain gain would. Each brightened look is tagged `"dark": true`.
+
+**Night 2, 07:19 to 09:38 ([sleep_log.jsonl](sleep_log.jsonl)): it worked.** It counted 76 tosses in 1,584 looks, and the verdict was that the sleeper **tossed MORE when it was noisy**.
+
+```
+{"t": "2026-10-30T07:28:11", "person": false, "motion": 0.023, "toss": false, "db": -36.8, "peak": -32.7}
+{"t": "2026-10-30T07:28:16", "person": true,  "motion": 0.082, "toss": true,  "db": -35.3, "peak": -31.8}
+{"t": "2026-10-30T07:28:22", "person": false, "motion": 0.08,  "toss": false, "db": -33.6, "peak": -29.6}
+{"t": "2026-10-30T07:28:53", "person": false, "motion": 0.104, "toss": true,  "db": -37.3, "peak": -34.3}
+```
+
+![Night 2 graph](sleep_20261030-0721.png)
+
+**What surprised us:**
+
+* The camera was the weak link, not the AI. A dark bedroom gave the camera nothing to see, and we only found out in the morning. Next time we will do a dark-room test before the first real night.
+* YOLO rarely sees a sleeper under a blanket: `person` was true in only 80 of the 1,584 looks. Most tosses were caught by the whole-frame fallback, which is also why we plan to add a bed-mounted motion sensor (see the feedback above).
+* The cooldown matters. At 07:28:22 the motion was still 8% one look after a toss, and without the cooldown it would have counted as a second toss.
+
 
 ## Part I. 
 ### Design the interaction after
@@ -308,6 +416,32 @@ The reveal. The night produced a log; the morning turns it into something a half
 
 Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
 
+**My morning reveal.** When the night ends (Ctrl-C in the tmux window, or automatically at the `--until` time), `sleep_watch.py` gives the report straight away. To see it again, or to report on another log:
+
+```
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ tmux attach -t night                     # get back to the night window, then Ctrl-C
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python sleep_watch.py --morning          # report on the last sleep_log.jsonl
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python sleep_watch.py --morning --say    # and read it aloud
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python sleep_watch.py --morning --log fake.jsonl
+```
+
+The arithmetic is done in Python, not by Qwen, because a 0.8B model is bad at maths. The script prints all the facts first, then asks Qwen (`qwen3.5:0.8b`, change with `--model`) to turn them into a report of at most four sentences:
+
+* **Movement:** total tosses, tosses per hour, tosses in each hour of the night, and how much of the night the person was seen in bed.
+* **Sound:** when the room was noisiest and the quietest 10 minutes of the night. The report gives times, not decibel numbers; the dB values are only in the printout and the graph.
+* **Noise vs. movement:** a look counts as *noisy* when its peak is more than `--noisy-margin` dB (default 15) above the quiet baseline. The script compares how often the person tossed in noisy vs. quiet looks, counts the tosses that came within one minute after a noise, and computes the correlation between loudness and movement over 10-minute bins. From that it states a verdict: tossed MORE / LESS / about the SAME when it was noisy, or "not enough data to compare" (fewer than 3 tosses or no noisy moments).
+
+**The graph.** Every morning report also saves a picture of the night next to the log, `sleep_YYYYMMDD-HHMM.png` (the date and time the night started). Movement and noise are drawn as two overlapping lines on one chart, so you can see whether they spike together:
+
+* **Movement** (blue): how much of the picture changed (the biggest change per minute; per look for short test nights), with a dot for each counted toss.
+* **Noise** (orange): the loudest sound each minute, with a dashed line for the noisy threshold.
+* The two lines have different units (% of the picture vs. dB), so each one is scaled to its own range for the night: the bottom of the chart is that line's lowest point and the top its highest. The real ranges are in the legend.
+* The **three moments with the most movement** are shaded and labelled with their time and how loud the room was then.
+
+Open it over VNC, or copy it to your laptop with `scp pi@raspberrypi:"~/Interactive-Lab-Hub/Lab\ 5/sleep_*.png" .`
+
+It is honest about empty nights: if nothing was logged, or the camera never saw anyone in bed, it says so and does not ask Qwen. Qwen can still add small invented details (e.g. a time of day), so the printed numbers are the ground truth and the spoken report is the friendly version.
+
 ## Final documentation
 
 Document all the prototypes and iterations you have designed and worked on. The deliverables for this lab are writings, sketches, photos, and videos that show what your system:
@@ -316,7 +450,15 @@ Document all the prototypes and iterations you have designed and worked on. The 
 * "Works like": the pipeline from detector to interpreter to log to reasoner, with a real night's data.
 * "Acts like": how a person hands the night over and what they get back.
 
-\*\*\***Include a short video of the whole system**\*\*\*
+\*\*\***Include a short video of the whole system: the bedtime hand-off, a log excerpt or timelapse of the night, and the morning reveal from a real overnight run.**\*\*\*
+
+* **Bedtime hand-off:** [video](https://drive.google.com/file/d/1y_KTMdEgEXjUukbvKvR_lEX8_eBrvzo9/view)
+* **The night:** see the log excerpts in Part H, plus [sleep_log.jsonl](sleep_log.jsonl) and [sleep_log_night1.jsonl](sleep_log_night1.jsonl)
+* **Morning reveal:** [sleep_20261030-0721.png](sleep_20261030-0721.png), together with the spoken report from `sleep_watch.py --morning --say`
+
+**What we learned.** After testing the device, we found that the moments with the most light exposure brought bigger bursts of movement during sleep. That information can help users make lifestyle changes, such as adding curtains, moving the bed, rearranging the room, or even moving out to find a place that suits them better.
+
+*TODO: add a full-system video (hand-off, night, morning reveal).*
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
 
@@ -326,8 +468,8 @@ You are permitted (but not required) to work in groups and share a turn in; you 
 
 For submission, the readme.md page for this lab should be edited to include the work you have done:
 * Upload any materials that explain what you did, including your code and night log, into your Lab 5 repository, and link them in your Lab 5 readme.md.
-* Labs are due on Sundays, make sure to submit your Lab 5 readme.md to Canvas.
-
+* Link your Lab 5 readme.md in your main Interactive-Lab-Hub readme.md.
+* Labs are due on Mondays, make sure to submit your Lab 5 readme.md to Canvas.
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
 
