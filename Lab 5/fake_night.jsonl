@@ -1,0 +1,248 @@
+{"t": "2026-11-01T22:31:59", "event": "bedtime"}
+{"t": "2026-11-01T22:32:12", "event": "watching", "floor_brightness": 155.1}
+{"t": "2026-11-01T22:32:15", "reading": "no feet", "change": 0.238, "yolo": 0.0, "bright": 145.3}
+{"t": "2026-11-01T22:32:18", "reading": "feet", "change": 0.232, "yolo": 0.44, "bright": 143.8}
+{"t": "2026-11-01T22:32:21", "event": "trip_start", "since": "2026-11-01T22:32:17"}
+{"t": "2026-11-01T22:32:34", "reading": "no feet", "change": 0.028, "yolo": 0.0, "bright": 158.7}
+{"t": "2026-11-01T22:32:37", "event": "trip_end", "start": "2026-11-01T22:32:17", "seconds": 15, "trips_so_far": 1, "anger": 1}
+{"t": "2026-11-01T22:43:25", "event": "bedtime"}
+{"t": "2026-11-01T22:43:37", "event": "watching", "floor_brightness": 149.6}
+{"t": "2026-11-01T22:43:40", "reading": "no feet", "change": 0.0, "yolo": 0.0, "bright": 149.7}
+{"t": "2026-11-01T22:45:02", "event": "bedtime"}
+{"t": "2026-11-01T22:45:14", "event": "watching", "floor_brightness": 145.8}
+{"t": "2026-11-01T22:45:17", "reading": "no feet", "change": 0.0, "yolo": 0.0, "bright": 146.3}
+{"t": "2026-11-01T22:45:20", "reading": "feet", "change": 0.122, "yolo": 0.43, "bright": 144.7}
+{"t": "2026-11-01T22:45:21", "reading": "no feet", "change": 0.206, "yolo": 0.0, "bright": 147.1}
+{"t": "2026-11-01T22:45:22", "reading": "feet", "change": 0.209, "yolo": 0.35, "bright": 146.1}
+{"t": "2026-11-01T22:45:23", "event": "trip_start", "since": "2026-11-01T22:45:20"}
+{"t": "2026-11-01T22:45:24", "reading": "no feet", "change": 0.212, "yolo": 0.0, "bright": 146.0}
+{"t": "2026-11-01T22:45:25", "reading": "feet", "change": 0.207, "yolo": 0.41, "bright": 145.8}
+{"t": "2026-11-01T22:45:26", "reading": "no feet", "change": 0.077, "yolo": 0.0, "bright": 155.2}
+{"t": "2026-11-01T22:45:29", "event": "trip_end", "start": "2026-11-01T22:45:20", "seconds": 5, "trips_so_far": 1, "anger": 1}
+{"t": "2026-11-01T22:45:57", "reading": "feet", "change": 0.23, "yolo": 0.65, "bright": 145.0}
+{"t": "2026-11-01T22:46:00", "event": "trip_start", "since": "2026-11-01T22:45:56"}
+{"t": "2026-11-01T22:46:03", "reading": "no feet", "change": 0.036, "yolo": 0.0, "bright": 160.6}
+{"t": "2026-11-01T22:46:06", "event": "trip_end", "start": "2026-11-01T22:45:56", "seconds": 5, "trips_so_far": 2, "anger": 2}
+{"t": "2026-11-01T22:46:22", "reading": "feet", "change": 0.266, "yolo": 0.46, "bright": 140.7}
+{"t": "2026-11-01T22:46:25", "reading": "no feet", "change": 0.191, "yolo": 0.0, "bright": 143.9}
+{"t": "2026-11-01T22:46:37", "reading": "feet", "change": 0.282, "yolo": 0.28, "bright": 137.0}
+{"t": "2026-11-01T22:46:38", "reading": "no feet", "change": 0.347, "yolo": 0.0, "bright": 135.2}
+{"t": "2026-11-01T22:46:41", "reading": "feet", "change": 0.311, "yolo": 0.28, "bright": 148.5}
+{"t": "2026-11-01T22:46:41", "event": "trip_start", "since": "2026-11-01T22:46:37"}
+{"t": "2026-11-01T22:46:42", "reading": "no feet", "change": 0.335, "yolo": 0.0, "bright": 148.9}
+{"t": "2026-11-01T22:46:43", "reading": "feet", "change": 0.281, "yolo": 0.41, "bright": 151.3}
+{"t": "2026-11-01T22:46:44", "reading": "no feet", "change": 0.423, "yolo": 0.0, "bright": 159.8}
+{"t": "2026-11-01T22:46:47", "event": "trip_end", "start": "2026-11-01T22:46:37", "seconds": 6, "trips_so_far": 3, "anger": 3}
+{"t": "2026-11-01T22:46:54", "event": "heard_awake", "source": "voice"}
+{"t": "2026-11-01T22:47:01", "reading": "feet", "change": 0.217, "yolo": 0.68, "bright": 150.5}
+{"t": "2026-11-01T22:47:01", "event": "awake_confirmed", "by": "voice + feet"}
+{"t": "2026-11-01T22:47:39", "event": "morning", "night": "2026-11-01", "trips": 3, "anger": "furious", "times": ["10:45 PM", "10:45 PM", "10:46 PM"], "seconds": [5, 5, 6], "line": "Three trips last night, starting at 10:45. My floor is not a hallway. Grrr!", "line_source": "template", "qwen_seconds": 29.7}
+{"t": "2026-11-01T23:07:02", "event": "bedtime"}
+{"t": "2026-11-01T23:07:14", "event": "watching", "floor_brightness": 147.7}
+{"t": "2026-11-01T23:07:17", "reading": "no feet", "change": 0.0, "yolo": 0.0, "bright": 147.8}
+{"t": "2026-11-01T23:07:23", "reading": "feet", "change": 0.182, "yolo": 0.75, "bright": 150.6}
+{"t": "2026-11-01T23:07:24", "reading": "no feet", "change": 0.234, "yolo": 0.0, "bright": 146.8}
+{"t": "2026-11-01T23:07:25", "reading": "feet", "change": 0.233, "yolo": 0.35, "bright": 147.0}
+{"t": "2026-11-01T23:07:26", "event": "trip_start", "since": "2026-11-01T23:07:23"}
+{"t": "2026-11-01T23:07:27", "event": "trip_sound", "trip": 1}
+{"t": "2026-11-01T23:07:29", "reading": "no feet", "change": 0.072, "yolo": 0.0, "bright": 157.1}
+{"t": "2026-11-01T23:07:32", "event": "trip_end", "start": "2026-11-01T23:07:23", "seconds": 5, "trips_so_far": 1, "anger": 1}
+{"t": "2026-11-01T23:07:37", "reading": "feet", "change": 0.262, "yolo": 0.27, "bright": 149.3}
+{"t": "2026-11-01T23:07:38", "reading": "no feet", "change": 0.263, "yolo": 0.0, "bright": 149.2}
+{"t": "2026-11-01T23:07:39", "reading": "feet", "change": 0.255, "yolo": 0.27, "bright": 149.4}
+{"t": "2026-11-01T23:07:40", "event": "trip_start", "since": "2026-11-01T23:07:37"}
+{"t": "2026-11-01T23:07:43", "event": "trip_sound", "trip": 2}
+{"t": "2026-11-01T23:07:43", "reading": "no feet", "change": 0.162, "yolo": 0.0, "bright": 156.2}
+{"t": "2026-11-01T23:07:44", "event": "trip_end", "start": "2026-11-01T23:07:37", "seconds": 3, "trips_so_far": 2, "anger": 2}
+{"t": "2026-11-01T23:07:52", "reading": "feet", "change": 0.272, "yolo": 0.33, "bright": 142.9}
+{"t": "2026-11-01T23:07:53", "reading": "no feet", "change": 0.275, "yolo": 0.0, "bright": 142.7}
+{"t": "2026-11-01T23:07:54", "reading": "feet", "change": 0.267, "yolo": 0.31, "bright": 142.2}
+{"t": "2026-11-01T23:07:55", "event": "trip_start", "since": "2026-11-01T23:07:51"}
+{"t": "2026-11-01T23:07:59", "event": "trip_sound", "trip": 3}
+{"t": "2026-11-01T23:08:02", "reading": "no feet", "change": 0.055, "yolo": 0.0, "bright": 157.0}
+{"t": "2026-11-01T23:08:05", "event": "trip_end", "start": "2026-11-01T23:07:51", "seconds": 9, "trips_so_far": 3, "anger": 3}
+{"t": "2026-11-01T23:08:11", "event": "heard_awake", "source": "voice"}
+{"t": "2026-11-01T23:08:20", "reading": "feet", "change": 0.178, "yolo": 0.27, "bright": 149.0}
+{"t": "2026-11-01T23:08:20", "event": "awake_confirmed", "by": "voice + feet"}
+{"t": "2026-11-01T23:08:55", "event": "morning", "night": "2026-11-01", "trips": 3, "anger": "furious", "times": ["11:07 PM", "11:07 PM", "11:07 PM"], "seconds": [5, 3, 9], "line": "I am sorry, you are wrong! Your feet didn't even get on my floor; they were already out of bed at 11:07! I only woke up three times today, so the minutes you recorded must be either a mistake or fake numbers that shouldn't exist in reality.", "line_source": "qwen", "qwen_seconds": 15.6}
+{"t": "2026-11-01T23:51:38", "event": "bedtime"}
+{"t": "2026-11-01T23:51:51", "event": "watching", "floor_brightness": 59.2}
+{"t": "2026-11-01T23:51:58", "reading": "no feet", "change": 0.681, "yolo": 0.0, "bright": 90.5}
+{"t": "2026-11-01T23:52:04", "reading": "feet", "change": 0.406, "yolo": 0.76, "bright": 81.9}
+{"t": "2026-11-01T23:52:07", "event": "trip_start", "since": "2026-11-01T23:52:03"}
+{"t": "2026-11-01T23:52:08", "event": "trip_sound", "trip": 1}
+{"t": "2026-11-01T23:52:08", "reading": "no feet", "change": 0.296, "yolo": 0.0, "bright": 65.1}
+{"t": "2026-11-01T23:52:12", "event": "trip_end", "start": "2026-11-01T23:52:03", "seconds": 3, "trips_so_far": 1, "anger": 1}
+{"t": "2026-11-01T23:52:31", "reading": "feet", "change": 0.049, "yolo": 0.5, "bright": 81.4}
+{"t": "2026-11-01T23:52:32", "reading": "no feet", "change": 0.135, "yolo": 0.0, "bright": 73.5}
+{"t": "2026-11-01T23:52:42", "reading": "feet", "change": 0.043, "yolo": 0.79, "bright": 82.9}
+{"t": "2026-11-01T23:52:45", "reading": "no feet", "change": 0.067, "yolo": 0.0, "bright": 80.6}
+{"t": "2026-11-01T23:52:52", "reading": "feet", "change": 0.066, "yolo": 0.34, "bright": 82.8}
+{"t": "2026-11-01T23:52:55", "event": "trip_start", "since": "2026-11-01T23:52:51"}
+{"t": "2026-11-01T23:52:58", "event": "trip_sound", "trip": 2}
+{"t": "2026-11-01T23:52:58", "reading": "no feet", "change": 0.58, "yolo": 0.0, "bright": 47.7}
+{"t": "2026-11-01T23:52:59", "event": "trip_end", "start": "2026-11-01T23:52:51", "seconds": 3, "trips_so_far": 2, "anger": 2}
+{"t": "2026-11-01T23:53:03", "reading": "feet", "change": 0.546, "yolo": 0.82, "bright": 50.7}
+{"t": "2026-11-01T23:53:04", "reading": "no feet", "change": 0.125, "yolo": 0.0, "bright": 75.1}
+{"t": "2026-11-01T23:53:10", "reading": "feet", "change": 0.1, "yolo": 0.26, "bright": 95.9}
+{"t": "2026-11-01T23:53:11", "reading": "no feet", "change": 0.102, "yolo": 0.0, "bright": 96.0}
+{"t": "2026-11-01T23:53:16", "reading": "feet", "change": 0.058, "yolo": 0.25, "bright": 96.0}
+{"t": "2026-11-01T23:54:26", "event": "bedtime"}
+{"t": "2026-11-01T23:54:40", "event": "watching", "floor_brightness": 88.8}
+{"t": "2026-11-01T23:54:43", "reading": "no feet", "change": 0.011, "yolo": 0.0, "bright": 90.8}
+{"t": "2026-11-01T23:55:01", "reading": "feet", "change": 0.042, "yolo": 0.63, "bright": 86.6}
+{"t": "2026-11-01T23:55:02", "reading": "no feet", "change": 0.041, "yolo": 0.0, "bright": 86.5}
+{"t": "2026-11-01T23:55:04", "reading": "feet", "change": 0.038, "yolo": 0.49, "bright": 86.4}
+{"t": "2026-11-01T23:55:05", "event": "trip_start", "since": "2026-11-01T23:55:01"}
+{"t": "2026-11-01T23:55:06", "event": "trip_sound", "trip": 1}
+{"t": "2026-11-01T23:55:08", "reading": "no feet", "change": 0.034, "yolo": 0.0, "bright": 83.9}
+{"t": "2026-11-01T23:55:11", "event": "trip_end", "start": "2026-11-01T23:55:01", "seconds": 6, "trips_so_far": 1, "anger": 1}
+{"t": "2026-11-01T23:55:23", "reading": "feet", "change": 0.041, "yolo": 0.71, "bright": 84.6}
+{"t": "2026-11-01T23:55:25", "event": "trip_start", "since": "2026-11-01T23:55:22"}
+{"t": "2026-11-01T23:55:28", "event": "trip_sound", "trip": 2}
+{"t": "2026-11-01T23:55:28", "reading": "no feet", "change": 0.018, "yolo": 0.0, "bright": 91.7}
+{"t": "2026-11-01T23:55:29", "event": "trip_end", "start": "2026-11-01T23:55:22", "seconds": 3, "trips_so_far": 2, "anger": 2}
+{"t": "2026-11-01T23:55:52", "reading": "feet", "change": 0.06, "yolo": 0.32, "bright": 95.2}
+{"t": "2026-11-01T23:55:55", "event": "trip_start", "since": "2026-11-01T23:55:51"}
+{"t": "2026-11-01T23:55:59", "event": "trip_sound", "trip": 3}
+{"t": "2026-11-01T23:56:00", "reading": "no feet", "change": 0.045, "yolo": 0.0, "bright": 95.1}
+{"t": "2026-11-01T23:56:00", "event": "trip_end", "start": "2026-11-01T23:55:51", "seconds": 3, "trips_so_far": 3, "anger": 3}
+{"t": "2026-11-01T23:56:44", "reading": "feet", "change": 0.146, "yolo": 0.59, "bright": 87.7}
+{"t": "2026-11-01T23:56:48", "event": "trip_start", "since": "2026-11-01T23:56:44"}
+{"t": "2026-11-01T23:56:52", "event": "trip_sound", "trip": 4}
+{"t": "2026-11-01T23:56:53", "reading": "no feet", "change": 0.094, "yolo": 0.0, "bright": 92.7}
+{"t": "2026-11-01T23:56:53", "event": "trip_end", "start": "2026-11-01T23:56:44", "seconds": 3, "trips_so_far": 4, "anger": 3}
+{"t": "2026-11-01T23:56:59", "reading": "feet", "change": 0.038, "yolo": 0.27, "bright": 92.7}
+{"t": "2026-11-01T23:57:01", "reading": "no feet", "change": 0.1, "yolo": 0.0, "bright": 88.2}
+{"t": "2026-11-01T23:57:03", "reading": "feet", "change": 0.124, "yolo": 0.25, "bright": 86.5}
+{"t": "2026-11-01T23:57:03", "event": "trip_start", "since": "2026-11-01T23:56:59"}
+{"t": "2026-11-01T23:57:07", "event": "trip_sound", "trip": 5}
+{"t": "2026-11-01T23:57:11", "reading": "no feet", "change": 0.048, "yolo": 0.0, "bright": 90.3}
+{"t": "2026-11-01T23:57:13", "reading": "feet", "change": 0.035, "yolo": 0.27, "bright": 95.2}
+{"t": "2026-11-01T23:57:41", "event": "bedtime"}
+{"t": "2026-11-01T23:57:54", "event": "watching", "floor_brightness": 95.5}
+{"t": "2026-11-01T23:57:57", "reading": "no feet", "change": 0.0, "yolo": 0.0, "bright": 97.0}
+{"t": "2026-11-01T23:57:58", "reading": "feet", "change": 0.0, "yolo": 0.45, "bright": 97.0}
+{"t": "2026-11-01T23:58:00", "reading": "no feet", "change": 0.0, "yolo": 0.0, "bright": 97.0}
+{"t": "2026-11-01T23:58:01", "reading": "feet", "change": 0.0, "yolo": 0.35, "bright": 96.7}
+{"t": "2026-11-01T23:58:01", "event": "trip_start", "since": "2026-11-01T23:57:58"}
+{"t": "2026-11-01T23:58:02", "event": "trip_sound", "trip": 1}
+{"t": "2026-11-01T23:58:07", "reading": "no feet", "change": 0.0, "yolo": 0.0, "bright": 97.9}
+{"t": "2026-11-01T23:58:08", "reading": "feet", "change": 0.001, "yolo": 0.3, "bright": 97.7}
+{"t": "2026-11-01T23:58:10", "reading": "no feet", "change": 0.005, "yolo": 0.0, "bright": 97.8}
+{"t": "2026-11-01T23:58:11", "reading": "feet", "change": 0.006, "yolo": 0.33, "bright": 97.2}
+{"t": "2026-11-01T23:58:24", "reading": "no feet", "change": 0.018, "yolo": 0.0, "bright": 93.6}
+{"t": "2026-11-01T23:58:28", "reading": "feet", "change": 0.006, "yolo": 0.35, "bright": 93.8}
+{"t": "2026-11-01T23:58:29", "reading": "no feet", "change": 0.019, "yolo": 0.0, "bright": 96.9}
+{"t": "2026-11-01T23:58:32", "event": "trip_end", "start": "2026-11-01T23:57:58", "seconds": 30, "trips_so_far": 1, "anger": 1}
+{"t": "2026-11-01T23:59:06", "event": "bedtime"}
+{"t": "2026-11-01T23:59:20", "event": "watching", "floor_brightness": 95.4}
+{"t": "2026-11-01T23:59:23", "reading": "no feet", "change": 0.0, "yolo": 0.0, "bright": 95.5}
+{"t": "2026-11-02T00:00:00", "reading": "feet", "change": 0.048, "yolo": 0.33, "bright": 85.0}
+{"t": "2026-11-02T00:00:01", "reading": "no feet", "change": 0.048, "yolo": 0.0, "bright": 83.7}
+{"t": "2026-11-02T00:00:21", "reading": "feet", "change": 0.075, "yolo": 0.44, "bright": 85.9}
+{"t": "2026-11-02T00:00:24", "event": "trip_start", "since": "2026-11-02T00:00:20"}
+{"t": "2026-11-02T00:00:26", "event": "trip_sound", "trip": 1}
+{"t": "2026-11-02T00:00:27", "reading": "no feet", "change": 0.07, "yolo": 0.0, "bright": 93.9}
+{"t": "2026-11-02T00:00:30", "event": "trip_end", "start": "2026-11-02T00:00:20", "seconds": 5, "trips_so_far": 1, "anger": 1}
+{"t": "2026-11-02T00:01:01", "event": "bedtime"}
+{"t": "2026-11-02T00:01:14", "event": "watching", "floor_brightness": 96.3}
+{"t": "2026-11-02T00:01:18", "reading": "no feet", "change": 0.01, "yolo": 0.0, "bright": 95.3}
+{"t": "2026-11-02T00:01:40", "reading": "feet", "change": 0.048, "yolo": 0.49, "bright": 86.1}
+{"t": "2026-11-02T00:01:41", "reading": "no feet", "change": 0.098, "yolo": 0.0, "bright": 78.8}
+{"t": "2026-11-02T00:01:48", "reading": "feet", "change": 0.038, "yolo": 0.6, "bright": 87.2}
+{"t": "2026-11-02T00:01:51", "event": "trip_start", "since": "2026-11-02T00:01:48"}
+{"t": "2026-11-02T00:01:52", "event": "trip_sound", "trip": 1}
+{"t": "2026-11-02T00:01:56", "reading": "no feet", "change": 0.225, "yolo": 0.0, "bright": 75.9}
+{"t": "2026-11-02T00:01:59", "event": "trip_end", "start": "2026-11-02T00:01:48", "seconds": 7, "trips_so_far": 1, "anger": 1}
+{"t": "2026-11-02T00:02:01", "reading": "feet", "change": 0.104, "yolo": 0.67, "bright": 92.0}
+{"t": "2026-11-02T00:02:04", "event": "trip_start", "since": "2026-11-02T00:02:01"}
+{"t": "2026-11-02T00:02:07", "event": "trip_sound", "trip": 2}
+{"t": "2026-11-02T00:02:07", "reading": "no feet", "change": 0.082, "yolo": 0.0, "bright": 84.8}
+{"t": "2026-11-02T00:02:08", "event": "trip_end", "start": "2026-11-02T00:02:01", "seconds": 3, "trips_so_far": 2, "anger": 2}
+{"t": "2026-11-02T00:02:14", "reading": "feet", "change": 0.279, "yolo": 0.74, "bright": 110.7}
+{"t": "2026-11-02T00:02:15", "reading": "no feet", "change": 0.402, "yolo": 0.0, "bright": 116.4}
+{"t": "2026-11-02T00:02:23", "reading": "feet", "change": 0.054, "yolo": 0.54, "bright": 89.6}
+{"t": "2026-11-02T00:02:26", "event": "trip_start", "since": "2026-11-02T00:02:23"}
+{"t": "2026-11-02T00:02:30", "event": "trip_sound", "trip": 3}
+{"t": "2026-11-02T00:02:31", "reading": "no feet", "change": 0.645, "yolo": 0.0, "bright": 53.5}
+{"t": "2026-11-02T00:02:31", "event": "trip_end", "start": "2026-11-02T00:02:23", "seconds": 3, "trips_so_far": 3, "anger": 3}
+{"t": "2026-11-02T00:02:37", "reading": "feet", "change": 0.052, "yolo": 0.32, "bright": 90.2}
+{"t": "2026-11-02T00:02:39", "reading": "no feet", "change": 0.09, "yolo": 0.0, "bright": 85.7}
+{"t": "2026-11-02T00:02:43", "reading": "feet", "change": 0.042, "yolo": 0.31, "bright": 91.0}
+{"t": "2026-11-02T00:02:44", "reading": "no feet", "change": 0.04, "yolo": 0.0, "bright": 89.5}
+{"t": "2026-11-02T00:02:45", "reading": "feet", "change": 0.034, "yolo": 0.68, "bright": 89.5}
+{"t": "2026-11-02T00:02:46", "event": "trip_start", "since": "2026-11-02T00:02:42"}
+{"t": "2026-11-02T00:02:50", "event": "trip_sound", "trip": 4}
+{"t": "2026-11-02T00:02:50", "reading": "no feet", "change": 0.029, "yolo": 0.0, "bright": 94.4}
+{"t": "2026-11-02T00:02:50", "event": "trip_end", "start": "2026-11-02T00:02:42", "seconds": 3, "trips_so_far": 4, "anger": 3}
+{"t": "2026-11-02T00:03:11", "event": "heard_awake", "source": "voice"}
+{"t": "2026-11-02T00:03:20", "reading": "feet", "change": 0.06, "yolo": 0.6, "bright": 85.8}
+{"t": "2026-11-02T00:03:20", "event": "awake_confirmed", "by": "voice + feet"}
+{"t": "2026-11-02T00:03:56", "event": "morning", "night": "2026-11-02", "trips": 4, "anger": "furious", "times": ["12:01 AM", "12:02 AM", "12:02 AM", "12:02 AM"], "seconds": [7, 3, 3, 3], "line": "Four trips last night, starting at 12:01. My floor is not a hallway. Grrr!", "line_source": "template", "qwen_seconds": 27.9}
+{"t": "2026-11-02T00:04:23", "event": "bedtime"}
+{"t": "2026-11-02T00:04:35", "event": "watching", "floor_brightness": 96.2}
+{"t": "2026-11-02T00:04:37", "reading": "no feet", "change": 0.0, "yolo": 0.0, "bright": 96.4}
+{"t": "2026-11-02T00:04:44", "reading": "feet", "change": 0.241, "yolo": 0.26, "bright": 74.6}
+{"t": "2026-11-02T00:04:45", "reading": "no feet", "change": 0.044, "yolo": 0.0, "bright": 86.2}
+{"t": "2026-11-02T00:04:46", "reading": "feet", "change": 0.039, "yolo": 0.39, "bright": 85.3}
+{"t": "2026-11-02T00:04:47", "reading": "no feet", "change": 0.038, "yolo": 0.0, "bright": 85.9}
+{"t": "2026-11-02T00:04:48", "reading": "feet", "change": 0.031, "yolo": 0.27, "bright": 86.0}
+{"t": "2026-11-02T00:04:48", "event": "trip_start", "since": "2026-11-02T00:04:44"}
+{"t": "2026-11-02T00:04:50", "event": "trip_sound", "trip": 1}
+{"t": "2026-11-02T00:04:50", "reading": "no feet", "change": 0.031, "yolo": 0.0, "bright": 86.1}
+{"t": "2026-11-02T00:04:53", "event": "trip_end", "start": "2026-11-02T00:04:44", "seconds": 4, "trips_so_far": 1, "anger": 1}
+{"t": "2026-11-02T00:04:54", "reading": "feet", "change": 0.041, "yolo": 0.33, "bright": 84.3}
+{"t": "2026-11-02T00:04:55", "reading": "no feet", "change": 0.28, "yolo": 0.0, "bright": 75.4}
+{"t": "2026-11-02T00:05:01", "reading": "feet", "change": 0.323, "yolo": 0.44, "bright": 106.6}
+{"t": "2026-11-02T00:05:04", "reading": "no feet", "change": 0.286, "yolo": 0.0, "bright": 85.5}
+{"t": "2026-11-02T00:05:06", "reading": "feet", "change": 0.261, "yolo": 0.35, "bright": 85.1}
+{"t": "2026-11-02T00:05:06", "event": "trip_start", "since": "2026-11-02T00:05:00"}
+{"t": "2026-11-02T00:05:09", "event": "trip_sound", "trip": 2}
+{"t": "2026-11-02T00:05:12", "reading": "no feet", "change": 0.262, "yolo": 0.0, "bright": 84.8}
+{"t": "2026-11-02T00:05:13", "reading": "feet", "change": 0.242, "yolo": 0.27, "bright": 85.1}
+{"t": "2026-11-02T00:05:16", "reading": "no feet", "change": 0.663, "yolo": 0.0, "bright": 55.3}
+{"t": "2026-11-02T00:05:17", "event": "light_changed"}
+{"t": "2026-11-02T00:05:19", "event": "trip_end", "start": "2026-11-02T00:05:00", "seconds": 14, "trips_so_far": 2, "anger": 2}
+{"t": "2026-11-02T00:05:20", "reading": "feet", "change": 0.649, "yolo": 0.3, "bright": 85.8}
+{"t": "2026-11-02T00:05:23", "event": "trip_start", "since": "2026-11-02T00:05:20"}
+{"t": "2026-11-02T00:05:27", "event": "trip_sound", "trip": 3}
+{"t": "2026-11-02T00:05:28", "reading": "no feet", "change": 0.594, "yolo": 0.0, "bright": 81.2}
+{"t": "2026-11-02T00:05:28", "event": "trip_end", "start": "2026-11-02T00:05:20", "seconds": 3, "trips_so_far": 3, "anger": 3}
+{"t": "2026-11-02T00:05:30", "event": "light_changed"}
+{"t": "2026-11-02T00:05:31", "reading": "feet", "change": 0.009, "yolo": 0.42, "bright": 111.5}
+{"t": "2026-11-02T00:05:32", "reading": "no feet", "change": 0.41, "yolo": 0.0, "bright": 80.8}
+{"t": "2026-11-02T00:05:38", "reading": "feet", "change": 0.1, "yolo": 0.56, "bright": 110.1}
+{"t": "2026-11-02T00:05:42", "event": "trip_start", "since": "2026-11-02T00:05:38"}
+{"t": "2026-11-02T00:05:46", "event": "trip_sound", "trip": 4}
+{"t": "2026-11-02T00:05:46", "reading": "no feet", "change": 0.375, "yolo": 0.0, "bright": 76.6}
+{"t": "2026-11-02T00:05:46", "event": "trip_end", "start": "2026-11-02T00:05:38", "seconds": 3, "trips_so_far": 4, "anger": 3}
+{"t": "2026-11-02T00:06:36", "event": "bedtime"}
+{"t": "2026-11-02T00:06:50", "event": "watching", "floor_brightness": 94.5}
+{"t": "2026-11-02T00:06:53", "reading": "no feet", "change": 0.0, "yolo": 0.0, "bright": 94.2}
+{"t": "2026-11-02T00:07:09", "reading": "feet", "change": 0.031, "yolo": 0.55, "bright": 87.3}
+{"t": "2026-11-02T00:07:12", "event": "trip_start", "since": "2026-11-02T00:07:09"}
+{"t": "2026-11-02T00:07:13", "event": "trip_sound", "trip": 1}
+{"t": "2026-11-02T00:07:14", "reading": "no feet", "change": 0.025, "yolo": 0.0, "bright": 86.8}
+{"t": "2026-11-02T00:07:15", "reading": "feet", "change": 0.042, "yolo": 0.38, "bright": 84.5}
+{"t": "2026-11-02T00:07:16", "reading": "no feet", "change": 0.105, "yolo": 0.0, "bright": 87.7}
+{"t": "2026-11-02T00:07:19", "event": "trip_end", "start": "2026-11-02T00:07:09", "seconds": 6, "trips_so_far": 1, "anger": 1}
+{"t": "2026-11-02T00:07:30", "reading": "feet", "change": 0.059, "yolo": 0.52, "bright": 88.0}
+{"t": "2026-11-02T00:07:31", "reading": "no feet", "change": 0.029, "yolo": 0.0, "bright": 86.8}
+{"t": "2026-11-02T00:07:35", "reading": "feet", "change": 0.024, "yolo": 0.35, "bright": 87.1}
+{"t": "2026-11-02T00:07:38", "event": "trip_start", "since": "2026-11-02T00:07:35"}
+{"t": "2026-11-02T00:07:41", "event": "trip_sound", "trip": 2}
+{"t": "2026-11-02T00:07:41", "reading": "no feet", "change": 0.028, "yolo": 0.0, "bright": 86.6}
+{"t": "2026-11-02T00:07:42", "event": "trip_end", "start": "2026-11-02T00:07:35", "seconds": 3, "trips_so_far": 2, "anger": 2}
+{"t": "2026-11-02T00:07:57", "reading": "feet", "change": 0.07, "yolo": 0.55, "bright": 86.7}
+{"t": "2026-11-02T00:07:58", "reading": "no feet", "change": 0.039, "yolo": 0.0, "bright": 87.0}
+{"t": "2026-11-02T00:08:04", "reading": "feet", "change": 0.032, "yolo": 0.41, "bright": 85.1}
+{"t": "2026-11-02T00:08:08", "event": "trip_start", "since": "2026-11-02T00:08:04"}
+{"t": "2026-11-02T00:08:12", "event": "trip_sound", "trip": 3}
+{"t": "2026-11-02T00:08:16", "reading": "no feet", "change": 0.044, "yolo": 0.0, "bright": 86.9}
+{"t": "2026-11-02T00:08:19", "event": "trip_end", "start": "2026-11-02T00:08:04", "seconds": 10, "trips_so_far": 3, "anger": 3}
+{"t": "2026-11-02T00:08:34", "event": "heard_awake", "source": "voice"}
+{"t": "2026-11-02T00:08:45", "reading": "feet", "change": 0.031, "yolo": 0.48, "bright": 85.7}
+{"t": "2026-11-02T00:08:45", "event": "awake_confirmed", "by": "voice + feet"}
+{"t": "2026-11-02T00:09:02", "event": "morning", "night": "2026-11-02", "trips": 3, "anger": "furious", "times": ["12:07 AM", "12:07 AM", "12:08 AM"], "seconds": [6, 3, 10], "line": "Three trips last night, starting at 12:07. My floor is not a hallway. Grrr!", "line_source": "template", "qwen_seconds": 8.1}
+{"t": "2026-11-02T00:10:28", "event": "bedtime"}
