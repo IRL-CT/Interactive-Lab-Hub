@@ -299,7 +299,15 @@ For the overnight test, I will position the camera toward the desk and chair are
 
 Running-system evidence
 
-Pending: add a photo or short video showing the device placement and the system running.
+![pic1](./pic1.png)
+![pic2](./pic2.png)
+![pic3](./pic3.png)
+![pic4](./pic4.png)
+![pic5](./pic5.png)
+![pic6](./pic6.png)
+
+
+
 
 Overnight results
 
