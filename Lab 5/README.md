@@ -6,6 +6,8 @@
 
 **Project name:** Desk Night Watch
 
+**AI Disclosure**: I used Chatgpt help debug the code and check the grammar.
+
 
 ## Overview
 
@@ -35,8 +37,6 @@ The tools from earlier versions of this lab (MobileNet, Teachable Machine, Moond
 
 
 ## Prep for Part 1
-
-Please check the instructions in [prep.md](prep.md) and complete them before lab. The installs in Part A take a while, so prep.md also tells you how to get a head start.
 
 ## The Report
 
@@ -197,8 +197,6 @@ One person came in from the right, moved close to the camera, and left after abo
 
 # Lab 5 Part 2: Overnight Sensation
 
-For Part 2, you will use the observant system from Part 1 to design a night-time interaction. On-device AI is slow, so let it work while you sleep. The person meets the device twice: **before bed**, when they hand the night over, and **when awake**, when the device gives something back. In between, the pipeline from Part E runs on its own.
-
 Two flavors, pick one or mix them:
 
 * **Sense all night.** The Pi watches, listens or measures from bedtime until morning and keeps a log.
@@ -229,15 +227,12 @@ Revised Storyboard
 
 The revised design adds a brief camera and lighting check before the bedtime hand-off. During the night, it will record detection results and flag camera failures. In the morning, it will present the last recorded detection alongside any missing observations, making the limits of the report visible.
 
-### Feedback source
-
-The design feedback above was provided by OpenAI Codex in response to my initial Desk Night Watch proposal. It suggested clearer startup confirmation, separate records for camera failures and valid samples with no detections, and a morning report that states the limits of the observations. The revised storyboard reflects these suggestions and was created with OpenAI image generation. This was AI-assisted design feedback.
 
 ### Overnight placement and agreement
 
-For the overnight test, I will place the device on my own desk at home, with the webcam aimed only at the desk and chair area. The camera will not face a bed or other private areas. Before starting, I will check the camera framing and test person detection under the intended overnight lighting.
+For the overnight test, I placed Desk Night Watch on my own desk at home, with the webcam directed toward the desk and chair area. Before starting the overnight run, I completed a 30-second test at home to check voice activation, camera sampling, and log saving.
 
-The people sharing my home have been informed about the planned test and have agreed to it. The overnight watch stores timestamped detection records locally without saving camera images. The microphone is used for the startup command and is not used to record audio during the watch.
+The people sharing my home were informed and agreed to the test before it began. During monitoring, timestamped detection records were stored locally on the Pi without retaining camera images. The microphone was used for the startup command and was not used to record audio during the overnight watch.
 
 ![revised](./revised.png)
 
@@ -277,7 +272,6 @@ The log contained three valid samples: one person detected, one person detected,
 ## Part H. 
 ### Incorporate the observant system
 
-Part H. Incorporate the Observant System
 
 Desk Night Watch uses the Raspberry Pi and webcam to observe the desk and chair area. After the voice hand-off, desk_watch.py runs YOLO with a configured sampling interval of 10 seconds. Each sample records a timestamp, the detected person count, and a brief description of their position in night_log.jsonl. Camera or inference failures are recorded separately from valid samples with no person detected. The system keeps text records locally without saving camera images.
 
@@ -294,7 +288,7 @@ No sampling errors were recorded, and the session ended normally. These observat
 
 Overnight setup
 
-For the overnight test, I will position the camera toward the desk and chair area and check detection under the intended lighting. I will run the system inside a tmux session so it can continue after I disconnect my Mac. The Pi will remain powered, and I will stop the recording the following morning.
+For the overnight test, I positioned the camera toward the desk and chair area and checked detection under the intended lighting. I ran the system inside a tmux session so it can continue after I disconnected my Mac. The Pi remained powered, and I stopped the recording the following morning.
 
 Running-system evidence
 
@@ -307,7 +301,28 @@ Running-system evidence
 
 
 Overnight results
+
+The overnight test ran from November 1 to November 2, 2026. All timestamps below are in Eastern Standard Time (UTC-05:00).
+
+| Measurement | Result |
+|---|---|
+| First valid camera sample | November 1, 23:23:52.788 |
+| Final camera sample | November 2, 09:34:13.069 |
+| Recording stopped | November 2, 09:34:19.713 |
+| Observation span, from first valid sample to stop | 10 hours, 10 minutes, 26.925 seconds |
+| Valid samples | 3,395 |
+| Samples detecting a person | 6 |
+| Samples detecting no person | 3,389 |
+| Maximum people detected in one sample | 1 |
+| Recorded sampling errors | 0 |
+| Recording gaps longer than 20 seconds | 0 |
+| Last recorded person detection | November 2, 09:33:51.477 |
+
+Each of the six positive samples detected one person. These are six detection samples, not evidence of six different people or six separate visits. The records do not establish continuous presence or sleep state.
+
 [Download the overnight detection log](overnight-results/2026-11-01/night_log.jsonl)
+
+[View the computed statistics](overnight-results/2026-11-01/facts.json)
 
 
 ## Part I. 
@@ -329,7 +344,22 @@ The approximately 30-second test contained three valid samples. Two samples dete
 The revised report matched these observations, and Qwen’s structured response passed the field-by-field comparison. This was a short functional test, not an overnight validation.
 
 Overnight Results and Evidence
+
+After stopping the watch on November 1, I ran `desk_morning.py` on the completed overnight log and viewed the report in the SSH terminal.
+
+The generated report was:
+
+> Across 36626.9 seconds of observed span, 6 of 3395 valid samples detected people (maximum 1 at once). Last person detection: 2026-11-02T09:33:51.477-05:00; last sample at 2026-11-02T09:34:13.069-05:00: 0 people. Sampling cannot prove continuous presence or sleep; errors: 0; long gaps: 0.
+
+Python computed the statistics from the log and generated the report using a fixed template. The structured response from `qwen3.5:0.8b` matched the computed fields and passed the consistency check. The Qwen request took **38.374 seconds**.
+
+The accepted result confirms agreement with the supplied log statistics. It does not independently verify the camera detections or establish whether anyone was asleep.
+
 [Read the verified morning report](overnight-results/2026-11-01/verified_report.txt)
+
+[View the Qwen consistency check](overnight-results/2026-11-01/validation.json)
+
+[Read the original Qwen response](overnight-results/2026-11-01/qwen_raw.txt)
 
 
 ## Final documentation
@@ -341,9 +371,9 @@ Desk Night Watch is a Raspberry Pi system designed to answer a focused morning q
 
 ### Looks like
 
-The prototype consists of a Raspberry Pi 5, a small display, a webcam, a speaker, and a microphone. For the home test, it will sit on my desk with the camera aimed at the desk and chair area.
+The prototype consists of a Raspberry Pi 5, a small Mini PiTFT display, a webcam, a speaker, and a microphone. During the home overnight test, the device sat on my desk with the webcam directed toward the desk and chair area.
 
-At bedtime, the display guides the user through the voice command and confirms that monitoring has started. The screen then turns off while observation continues. In the morning, the user views the report in an SSH terminal.
+At bedtime, the display prompted the voice command and showed confirmation that monitoring had started. The screen then turned off while camera sampling continued. In the morning, I viewed the report in the SSH terminal on my Mac.
 
 ### Works like
 
@@ -359,9 +389,11 @@ An accepted Qwen response means that its fields match the supplied facts. It doe
 
 ### Acts like
 
-Before bed, the user says "Hello" when prompted. After the first successful sample is saved, the display shows "Watch started" and the speaker confirms "Night watch started." The microphone is no longer used, and the screen turns off.
+Before the overnight run, I said “Hello” when the device prompted me to speak. After recognizing the command and saving the first valid camera sample, the display showed “Watch started” and the speaker provided a spoken confirmation.
 
-For the overnight test, the watch will run inside tmux while the Pi remains powered. In the morning, the user will stop the watch and run the reporting script. The report will state the last recorded detection, or explain that no person was detected in the valid samples. If no valid observations are available, it will state that presence cannot be assessed.
+The microphone was no longer used during monitoring, and the screen turned off shortly after confirmation. The watch continued collecting timestamped detection records inside the tmux session.
+
+In the morning, I stopped the watch with Ctrl+C and ran the reporting script. The report identified the last recorded person detection, described the final sample, and stated the recorded errors and gaps. The last person detection was at 09:33:51 on November 2, and the final sample at 09:34:13 detected nobody.
 
 ### Prototypes and iterations
 
@@ -369,15 +401,13 @@ For the overnight test, the watch will run inside tmux while the Pi remains powe
 - **Voice command:** "Start night watch" was repeatedly misrecognized. Changing the command to "Hello" produced a successful startup in the functional test.
 - **Morning report:** The original free-text response invented an hour-long observation, two people, and sleeping occupants. The revised pipeline computes facts from the log and generates the displayed report from a fixed template, while preserving Qwen's response and its validation result.
 
-### Validation so far
+### Validation results
 
-A 30-second functional test produced three valid samples: one person, one person, and no person. The last person detection was at 15:40:40, and the final sample at 15:40:50 detected nobody. No sampling errors or long gaps were recorded. The revised reporting pipeline reproduced these facts, and Qwen's JSON response passed the field-by-field comparison.
+The initial 30-second functional tests verified the startup interaction, camera sampling, and log saving before the overnight experiment.
 
+The completed overnight test recorded **3,395 valid samples** across an observation span of approximately **10 hours and 10 minutes**. Six samples each detected one person, while 3,389 samples detected nobody. No sampling errors or recording gaps longer than 20 seconds were recorded.
 
-### Final evidence to add after the overnight test
+The last recorded person detection was at **09:33:51 on November 2, 2026**. The final sample at **09:34:13** detected nobody. The morning report matched the recorded statistics, and Qwen’s structured response passed the consistency check in **38.374 seconds**.
 
-- A photo showing the actual device placement and camera direction.
-- The real recording start and end times, detection summary, and any errors or gaps.
-- Links to the submitted source code, overnight log, and morning report.
-- A short video showing the complete interaction: the bedtime voice command and confirmation, the device operating in place, and the morning report.
+These results demonstrate operation across this overnight test and successful generation of a report from the saved log. They do not establish that the detector identified every person present, that someone occupied the desk continuously, or that anyone was asleep.
 
