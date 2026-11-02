@@ -4,7 +4,7 @@
 
 **Members:** Xiaowei David Zhang Chen (xz2229, davidzhanggg), Ziqiao Gao (zg375, zg375)
 
-**Project name:**
+**Project name:** AI Dream Machine
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
@@ -16,8 +16,6 @@
 	- Your final submission should be neat, focused on your own work, and easy to read for grading.
   
 	This helps ensure your README.md is clear, professional, and uniquely yours!
-</details>
-
 
 For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
 Your **observant device** could, for example, count items, find objects, recognize an event or continuously monitor a room.
@@ -26,8 +24,11 @@ This lab will help you think through the design of observant systems, particular
 
 **New this year: the AI runs on the Pi.** Your Pi 5 can run an object detector ([YOLO](https://docs.ultralytics.com/)) and a small language model ([Qwen](https://ollama.com/library/qwen3.5) through [Ollama](https://ollama.com)) completely offline. In Part 1 you get both running and connect them: YOLO *sees*, Qwen *reasons* about what was seen. These models are slow, but they have all night. In Part 2 you use them to design a **night-time interaction**: what you tell the device before bed, what it does while you sleep, and what it shows you when you wake up.
 
+</details>
+
 **Please indicate anyone that helped with this Lab here.**
-Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
+Thanks to ChatGPT help us debug and implement our code!
+
 
 ## Overview
 
@@ -424,6 +425,9 @@ Based on this feedback and our observations, we decided to improve our design by
 - Keeping all processing local on the Raspberry Pi to protect the privacy of the user's photos.
 
 Our improved storyboard taking into account the feedback can be seen below:
+
+![RevisedStoryboard](pics/revisedstoryboard.jpeg)
+
 
 
 ## Part G. 
