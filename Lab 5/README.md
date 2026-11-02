@@ -150,7 +150,7 @@ The objects on my desk watch me at night. In the morning, they tell me what they
 - We also asked ourselves: what if nothing at all happens during the night? We decided the system should be honest about it, so if the log is empty, the objects just complain that the night was boring instead of making something up.
 
 
-\*\*\***Post your revised storyboard here
+\*\*\***Post your revised storyboard here**\*\*\*
 
 <img width="1426" height="476" alt="37ea551c20565f4c2c8e83388a4041e6" src="https://github.com/user-attachments/assets/affbb22d-325e-45e8-b11f-25167d3e8129" />
 
