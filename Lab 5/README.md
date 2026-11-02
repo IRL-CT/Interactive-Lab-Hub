@@ -121,7 +121,8 @@ Only the machine-vision parts are machine learning. The timing and position esti
 
 \*\*\***Include a short video of the whole system**\*\*\*
 
-[video link]
+[Final Video](https://youtube.com/shorts/-ntIhPmZE9A 
+)
 
 - **Looks like:** a Raspberry Pi 5 on the windowsill, with a USB webcam pressed against the glass and aimed at the tram cable. People see it through a web page on their phone or laptop.
 - **Works like:** webcam → crop of the cable only → YOLO detector → position on the cable → one Kalman filter per cabin → pass log (`tram_events.jsonl`) → next-tram model and accuracy check → `tram_state.json` → website.
