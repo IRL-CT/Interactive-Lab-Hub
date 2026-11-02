@@ -162,49 +162,26 @@ The model accepted the false premise instead of correcting it. Cornell Tech neve
 
 # Lab 5 Part 2: Overnight Sensation
 
-For Part 2, you will use the observant system from Part 1 to design a night-time interaction. On-device AI is slow, so let it work while you sleep. The person meets the device twice: **before bed**, when they hand the night over, and **when awake**, when the device gives something back. In between, the pipeline from Part E runs on its own.
-
-Two flavors, pick one or mix them:
-
-* **Sense all night.** The Pi watches, listens or measures from bedtime until morning and keeps a log.
-* **Process all night.** You already have the data (a day of phone photos, a long recording) and the Pi needs hours to get through it.
-
-Two house rules. Sample rather than stream: one look every 5 to 30 seconds is plenty, and it keeps the Pi cool. And keep everything on the Pi: tell the people you live with, point the camera at things rather than at beds, and delete the snapshots after the demo.
-
 ## Part F. 
 ### Read Part 2 and storyboard your night-time interaction
-
-Storyboard a night-time interaction built on your observant system, in three panels:
-
-1. **Before bed.** How does the person hand the night over, and how does the device acknowledge it?
-2. **While asleep.** What does the device watch or work through?
-3. **When awake.** What is the one thing the person learns, and in what medium?
-
-Stuck? A kitchen that tells you who raided the fridge. A desk that reports whether you actually went to bed. A window that names the quietest hour. A plant that describes its night. Find something better.
-
-Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf).
 
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
 ![alt text](IMG_8113.jpeg)
 
 ## Prep for Part 2
+   
+**Feedback for Part F ideas (from [Abiola Bolaji](https://github.com/9JAyemi/Interactive-Lab-Hub)):**
+Overall, I think your idea is super useful as sleep walking is a common issue with not as many known solutions and can cause harm to the person or others. I think placing the device under the bed is a good idea, as it avoids directly facing the user. However, it's important to consider how the device will communicate data gathered to the user and how that information can be presented in a meaningful and understandable way.
 
-1. Look at and give feedback on the Part F storyboards.
-   **Put the feedback for your ideas here.**
-2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
-3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
-4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
-
-\*\*\***Post your revised storyboard here.**\*\*\*
+\*\*\***Revised storyboard here.**\*\*\*
 ![alt text](updated.jpeg)
 
 ## Part G. 
 ### Design the interaction before
 
-The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
-
 \*\*\***Describe the interaction before.**\*\*\*
+
 The user says, “I am going to sleep,” into the microphone. The monster opens its eyes and replies, “Confirmed. You have one minute to get into bed.” After the countdown, it triggers the sleeping animation and begins monitoring the floor beside the bed for nighttime trips.
 
 ## Part H. 
