@@ -1,5 +1,3 @@
-<img width="1104" height="344" alt="58429a42988db6fb624d461c4a30e6cd" src="https://github.com/user-attachments/assets/1a1ebd55-2503-4119-8504-117ff1a16ff9" /># Observant Systems: Overnight Sensation
-
 **Team:** Ignorance is bliss
 
 **Members:** Yan Shen (ys2473, ys2473), Yangchen Jin (yj645, MortalJin)
@@ -148,6 +146,7 @@ The objects on my desk watch me at night. In the morning, they tell me what they
 
 **Feedback on our idea:** 
 
+Simin Xu asked if we could just record a few minutes and call it a night, since the objects on a desk don't move anyway. That was a fair question. A short test is enough to check that the code works, but it can't show what really happens overnight, like the lights going down, YOLO getting worse in the dark, or when I actually come back. So we ran it for a real night, from 01:33 to 09:54.
 
 
 \*\*\***Post your revised storyboard here.**\*\*\*
