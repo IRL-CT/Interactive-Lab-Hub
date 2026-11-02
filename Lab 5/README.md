@@ -1,10 +1,9 @@
 # Observant Systems: Overnight Sensation
 
-**Team:**
-
 **Members:** [Neeha Ravula](https://github.com/neeharavula/Interactive-Lab-Hub/tree/Fall2026) (nr485), [Gaurav Patel](https://github.com/Gtpatel02/Interactive-Lab-Hub) (gp438), [Nishant Ray](https://github.com/Nishant-Ray/Interactive-Lab-Hub) (nr487)
 
 **Project name:**
+Monster Under the Bed
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
