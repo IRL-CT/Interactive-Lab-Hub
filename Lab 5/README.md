@@ -498,6 +498,8 @@ As always, make sure you document contributions and ideas from others (and AI) e
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
 
+**Demo Video：https://youtu.be/cTSQHLFZ3P4 **
+
 The experiment showed that the prototype could collect timestamped observations across a long unattended session and generate a reproducible report. However, continuous logging does not guarantee accurate interpretation of the dog’s behavior.
 Guiyuan was free to rest or play elsewhere in the home. A non-detection could therefore mean that she was outside the camera view, but it could also result from low light, occlusion, or a missed detection. The logs cannot distinguish these explanations. I did not collect independent ground-truth observations, so I cannot calculate detection accuracy from this session alone.
 This changed how I understand the project: its value is in showing when the detector observed a dog in a particular view, rather than making claims about sleep quality or movements throughout the home. Future improvements would include a calibrated resting-area ROI, controlled tests under nighttime lighting, and separate evaluation of the Mini PiTFT interaction.
