@@ -193,16 +193,16 @@ Full chat: [morning_chat.txt](morning_chat.txt)
 
 - **Looks like:** <img width="5712" height="4284" alt="2635b7ddb34abbcb5dcad366f90b590e" src="https://github.com/user-attachments/assets/75b2e3a0-3c26-4d63-8105-b86640e42589" />
 
-The camera sits above the desk and looks down at the monitor, laptop, keyboard, book and bottle. A dim lamp stays on at night.
-- **Works like:** camera → YOLO (`overnight.py --all`) → night_log.jsonl → desk_chat.py → Qwen → group chat. This used a real night's data, from ___ to ___.
-- **Acts like:** I hand over the night with one command and a dim lamp. In the morning I get a group chat from my desk about what I did.
+The camera sits above the desk and looks down at the monitor, laptop, keyboard, book, and bottle. A dim lamp stays on at night.
+- **Works like:** camera → YOLO (`overnight.py --all`) → night_log.jsonl → desk_chat.py → Qwen → group chat. This used a real night's data, from 01:33 to 09:54.
+- **Acts like:** I hand over the night with one command and a dim lamp. In the morning, I get a group chat from my desk about what I did.
 
 ### Reflection
 
-At first I worried that nothing on my desk moves at night. Then I realized the objects are not the story, they are the witnesses. The real events are about me (when I really left the desk, when the lights went off) and my cat. So I start the night shift when I sit down in the evening, not right before bed.
+At first we worried that nothing on the desk moves at night. Then we realized the objects are not the story, they are the witnesses. The real events are about the person at the desk (when they really left, when the lights went off) and the cat. So we start the night shift when we sit down at the desk in the evening, not right before bed.
 
-YOLO was not perfect. It called my monitor a "tv", and things like the mouse flickered on and off when the confidence was close to the limit. So desk_chat.py renames "tv" to "monitor" and ignores blips shorter than 60 seconds. The first few frames are also dark while the camera adjusts, so it skips the first 15 seconds.
+YOLO was not perfect. It called the monitor a "tv", and things like the mouse flickered on and off when the confidence was close to the limit. So desk_chat.py renames "tv" to "monitor" and ignores blips shorter than 60 seconds. The first few frames are also dark while the camera adjusts, so it skips the first 15 seconds.
 
-The 0.8b model kept making up times that were not in the log (like 22:05 when the log only had 16:25 to 16:26), even when the prompt told it not to. So I added a check that drops any message with a time that is not in the log. This matches what we saw in Part D: small models are fun to write with, but you can't trust them on facts.
+The 0.8b model kept making up times that were not in the log (like 22:05 when the log only had 16:25 to 16:26), even when the prompt told it not to. So we added a check that drops any message with a time that is not in the log. This matches what we saw in Part D: small models are fun to write with, but you can't trust them on facts.
 
-The real night showed how much YOLO struggles in the dark. The log had 1770 changes from 01:33 to 09:54, but almost all of them were things blinking on and off. The keyboard "disappeared" and "showed up" many times, even though nothing moved. After filtering, there were only 30 events, and the only real one was me coming back to the desk at 09:53. So when the group chat says "the keyboard disappeared", it really means the camera couldn't see it well in the dim light.
+The real night showed how much YOLO struggles in the dark. The log had 1770 changes from 01:33 to 09:54, but almost all of them were things blinking on and off. The keyboard "disappeared" and "showed up" many times, even though nothing moved. After filtering, there were only 30 events, and the only real one was the person coming back to the desk at 09:53. So when the group chat says "the keyboard disappeared", it really means the camera couldn't see it well in the dim light.
