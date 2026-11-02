@@ -462,7 +462,7 @@ Fake a night first: run it for thirty seconds while you walk around, stop it, an
 
 ![Dream](pics/dream.png)
 ![PicsForDream](pics/dreampics.png)
-
+![pi](pics/pi.jpeg)
 
 
 ## Part I. 
@@ -503,22 +503,20 @@ Document all the prototypes and iterations you have designed and worked on. The 
 
 \*\*\***Include a short video of the whole system**\*\*\*
 
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+Throughout the development of our AI Dream Machine, we made several improvements based on feedback and testing. Initially, Qwen generated the dream after the user pressed the button in the morning, but this took considerable time, so we moved the entire process overnight, so the dream and its narration are ready when the user wakes up. We also added visual feedback to the Pi screen to make the interaction clearer.
 
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
+### Looks like
+The device sits on a desk next to the user's bed, with a physical button, a Mini PiTFT screen, and a speaker. The screen displays different icons and messages depending on the current state.
 
-## Deliverables & Submission for Lab 5
+### Works like
+After the user uploads their photos and presses the button, YOLO detects objects, the interpreter converts them into text descriptions, and the observations are saved in a log. Qwen then generates a creative dream, and Piper converts it into audio. Everything is processed locally while the user sleeps. The code files are the following: dream_display.py, dream_machine.py, dream_morning.py, dream_overnight.py.
 
-For submission, the readme.md page for this lab should be edited to include the work you have done:
-* Upload any materials that explain what you did, including your code and night log, into your Lab 5 repository, and link them in your Lab 5 readme.md.
-* Labs are due on Sundays, make sure to submit your Lab 5 readme.md to Canvas.
+![pi1](pics/pi1.jpeg)
+![pi2](pics/pi2.jpeg)
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
+### Acts Like
+Before bed, the user uploads their photos and presses the button to start the process. The screen confirms that the device is working. In the morning, the user presses the same button to immediately hear their personalized dream, starting with a greeting and the dream's title. They can press it again to replay the narration.
 
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-</details>
+A demo video of our AI Dream Machine can be seen here: 
+
+https://drive.google.com/file/d/1R7dZj2wLami1X_ppWY9Ht1EsQm6G5xZF/view?usp=sharing
