@@ -136,19 +136,13 @@ It's easier than finding a button in the dark.
 ## Part F. 
 ### Read Part 2 and storyboard your night-time interaction
 
-Storyboard a night-time interaction built on your observant system, in three panels:
-
-1. **Before bed.** How does the person hand the night over, and how does the device acknowledge it?
-2. **While asleep.** What does the device watch or work through?
-3. **When awake.** What is the one thing the person learns, and in what medium?
-
-Stuck? A kitchen that tells you who raided the fridge. A desk that reports whether you actually went to bed. A window that names the quietest hour. A plant that describes its night. Find something better.
-
-Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf).
-
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
 <img width="700" alt="49f209699be69ce7671f768e68a0fe42" src="https://github.com/user-attachments/assets/4ebf3c31-77eb-4a2b-977b-b2caa9e953b9" />
+
+**Idea: What your desk says about you while you sleep**
+
+The objects on my desk watch me at night. In the morning, they tell me what they saw in a group chat. The camera watches the desk all night, YOLO finds the objects (monitor, laptop, keyboard, book, bottle), and Qwen turns what happened into the gossip they had about me. If YOLO gets something wrong, that object becomes an "impostor" in the chat.
 
 ## Prep for Part 2
 
