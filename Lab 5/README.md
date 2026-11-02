@@ -124,7 +124,7 @@ https://drive.google.com/file/d/1FJmmQnf50g7aOtpMr3x_jOTYo-hQbLKE/view?usp=drive
 
 Once we both finished our parts, we sat together using AI to combine both our files and help create the morning report. The system compiles all the information created during the bedtime interaction that then writes a report on the minipi screen, rating your sleep quality and giving percentage of your time either snoring, having your mouth open, or disappearing. This report is also read out loud to users as well. 
 
-Link to full code:
+Link to full code: https://github.com/chonjessica23/Interactive-Lab-Hub/blob/Fall2026/Lab%205/quiet_coyote_night.py
 
 [Video of it all working together:](https://drive.google.com/file/d/135YGaPZvVVAInZDiwK7Yw9aRUJEGCDgq/view?usp=drive_link) 
 
