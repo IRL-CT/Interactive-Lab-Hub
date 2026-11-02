@@ -186,6 +186,8 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
+![alt text](IMG_8113.jpeg)
+
 ## Prep for Part 2
 
 1. Look at and give feedback on the Part F storyboards.
@@ -195,6 +197,7 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
 
 \*\*\***Post your revised storyboard here.**\*\*\*
+![alt text](updated.jpeg)
 
 ## Part G. 
 ### Design the interaction before
@@ -202,6 +205,7 @@ Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/25
 The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
 
 \*\*\***Describe the interaction before.**\*\*\*
+The user says, “I am going to sleep,” into the microphone. The monster opens its eyes and replies, “Confirmed. You have one minute to get into bed.” After the countdown, it triggers the sleeping animation and begins monitoring the floor beside the bed for nighttime trips.
 
 ## Part H. 
 ### Incorporate the observant system
