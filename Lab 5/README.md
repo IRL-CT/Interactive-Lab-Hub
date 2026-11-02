@@ -251,17 +251,7 @@ Document all the prototypes and iterations you have designed and worked on. The 
 * "Works like": the pipeline from detector to interpreter to log to reasoner, with a real night's data.
 * "Acts like": how a person hands the night over and what they get back.
 
-\*\*\***Include a short video of the whole system**\*\*\*
-
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
-
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
-
-## Deliverables & Submission for Lab 5
-
-For submission, the readme.md page for this lab should be edited to include the work you have done:
-* Upload any materials that explain what you did, including your code and night log, into your Lab 5 repository, and link them in your Lab 5 readme.md.
-* Labs are due on Sundays, make sure to submit your Lab 5 readme.md to Canvas.
+Youtube link: https://youtu.be/cTSQHLFZ3P4
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
