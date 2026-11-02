@@ -146,7 +146,8 @@ The objects on my desk watch me at night. In the morning, they tell me what they
 
 **Feedback on our idea:** 
 
-Simin Xu asked if we could just record a few minutes and call it a night, since the objects on a desk don't move anyway. That was a fair question. A short test is enough to check that the code works, but it can't show what really happens overnight, like the lights going down, YOLO getting worse in the dark, or when I actually come back. So we ran it for a real night, from 01:33 to 09:54.
+- Simin Xu asked if we could just record a few minutes and call it a night, since the objects on a desk don't move anyway. That was a fair question. A short test is enough to check that the code works, but it can't show what really happens overnight, like the lights going down, YOLO getting worse in the dark, or when I actually come back. So we ran it for a real night, from 01:33 to 09:54.
+- We also asked ourselves: what if nothing at all happens during the night? We decided the system should be honest about it, so if the log is empty, the objects just complain that the night was boring instead of making something up.
 
 
 \*\*\***Post your revised storyboard here.**\*\*\*
