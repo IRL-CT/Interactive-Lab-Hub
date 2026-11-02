@@ -2,9 +2,9 @@
 
 **Team:**
 
-**Members:** David Zhang (xz2229, davidzhanggg), 
+**Members:** David Zhang (xz2229, davidzhanggg), Ziqiao Gao (zg375)
 
-**Project name:**
+**Project name:** Dream Machine
 
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
@@ -163,6 +163,7 @@ We brainstormed several ideas, including:
 
 We ended up choosing our third idea, AI Dream Machine, and this is our initial storyboard:
 <img width="3769" height="1279" alt="image" src="https://github.com/user-attachments/assets/ee87f53f-2861-4c1c-9180-23775d2a0121" />
+<img width="1600" height="903" alt="image" src="https://github.com/user-attachments/assets/34b8728e-7c0b-4f9d-9019-3cceb28ace4c" />
 
 
 ## Prep for Part 2
@@ -174,6 +175,23 @@ We ended up choosing our third idea, AI Dream Machine, and this is our initial s
 4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
 
 \*\*\***Post your revised storyboard here.**\*\*\*
+
+Some of the feedback we received was that it was not clear how the user would provide the Raspberry Pi with photos or what the morning interaction would look like. It was also unclear how the user would know when the device had started processing, so we were encouraged to add a physical button and clearer feedback to make the interaction more intuitive. There were also concerns about the privacy of the uploaded photos.
+
+From Part E, we learned about several technical limitations of our system. YOLO can detect people and objects, but it cannot fully understand the context or meaning behind a photo. It can also miss or incorrectly identify objects, meaning the generated dream might not accurately reflect the uploaded images. Additionally, Qwen cannot see the images directly and relies entirely on the textual descriptions produced by the interpreter. We also noticed that Qwen takes a considerable amount of time to generate a story on the Raspberry Pi.
+
+Based on this feedback and our observations, we decided to improve our design by:
+
+1. Moving dream generation overnight, so the user doesn't have to wait for Qwen and Piper in the morning.
+2. Using a single physical button to start the process before bed and reveal the dream in the morning.
+3. Providing clear screen and voice feedback so users know when processing has started and when their dream is ready.
+4. Improving the interpreter to include more useful details from YOLO detections, helping Qwen generate more meaningful stories.
+5. Keeping all processing local on the Raspberry Pi to protect the privacy of the user's photos.
+
+
+Our improved storyboard taking into account the feedback can be seen below:
+<img width="2276" height="1280" alt="image" src="https://github.com/user-attachments/assets/423454ba-0967-4e4d-af2d-2fcd547f54cd" />
+
 
 ## Part G. 
 ### Design the interaction before
@@ -197,32 +215,42 @@ The entire hand-off takes less than 30 seconds, assuming the photos have already
 
 <img width="1856" height="607" alt="image" src="https://github.com/user-attachments/assets/6529a3cb-1f41-4879-9f5c-c31da49157b0" />
 <img width="872" height="340" alt="image" src="https://github.com/user-attachments/assets/01c32333-a6f7-47e5-b37a-3775ec9fc8a0" />
+<img width="1600" height="1120" alt="image" src="https://github.com/user-attachments/assets/7e22434a-4b4a-4f7b-8806-685393e00cd8" />
 
 
 ## Part I. 
 ### Design the interaction after
 
-The reveal. The night produced a log; the morning turns it into something a half-awake person can take in. `morning.py` is the smallest version: it asks Qwen for a three-sentence report.
+For our AI Dream Machine, we wanted the morning interaction to be simple and enjoyable, without requiring the user to wait for the AI to generate the dream. After processing the uploaded photos overnight, YOLO saves the detected objects into a log. Qwen then uses these observations to generate a short, creative dream story, and Piper converts it into audio. Both the story and narration are saved locally on the Raspberry Pi. In the morning, the user presses again the button to reveal their dream. The device plays the saved dream through a speaker, allowing the user to listen to it without having to read anything or interact with a computer.
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python morning.py
-```
+We also considered situations where no objects were detected or no photos were uploaded. In these cases, the device informs the user rather than generate a dream that appears to be based on observations that were never made.
 
-Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
 
 ## Final documentation
 
-Document all the prototypes and iterations you have designed and worked on. The deliverables for this lab are writings, sketches, photos, and videos that show what your system:
+Throughout the development of our AI Dream Machine, we made several improvements based on feedback and testing. Initially, Qwen generated the dream after the user pressed the button in the morning, but this took considerable time, so we moved the entire process overnight, so the dream and its narration are ready when the user wakes up. We also added visual feedback to the Pi screen to make the interaction clearer.
 
-* "Looks like": how the device sits in the room at night, and what it looks like at bedtime and in the morning.
-* "Works like": the pipeline from detector to interpreter to log to reasoner, with a real night's data.
-* "Acts like": how a person hands the night over and what they get back.
+Looks like:
 
-\*\*\***Include a short video of the whole system**\*\*\*
 
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+The device sits on a desk next to the user's bed, with a physical button, a Mini PiTFT screen, and a speaker. The screen displays different icons and messages depending on the current state.
 
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
+Works like:
+
+
+After the user uploads their photos and presses the button, YOLO detects objects, the interpreter converts them into text descriptions, and the observations are saved in a log. Qwen then generates a creative dream, and Piper converts it into audio. Everything is processed locally while the user sleeps. The code files are the following: dream_display.py, dream_machine.py, dream_morning.py, dream_overnight.py.
+<img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/0fce93f4-b862-496a-86fd-61dee14ccbdc" />
+<img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/e0c277c5-46fa-424f-acac-53ccadd51e7b" />
+
+Acts Like:
+
+
+Before bed, the user uploads their photos and presses the button to start the process. The screen confirms that the device is working. In the morning, the user presses the same button to immediately hear their personalized dream, starting with a greeting and the dream's title. They can press it again to replay the narration.
+
+A demo video of our AI Dream Machine can be seen here:
+https://drive.google.com/file/d/1R7dZj2wLami1X_ppWY9Ht1EsQm6G5xZF/view?usp=sharing
+
+
 
 ## Deliverables & Submission for Lab 5
 
