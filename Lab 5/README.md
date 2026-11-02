@@ -21,7 +21,7 @@ Feedback before creating the system and showing the storyboard:
 
 https://github.com/user-attachments/assets/9cf59dcb-e187-4dd9-be10-a1be682bf0e8
 
-**The first version of the interaction (shown in our first video).** The first dashboard showed only what the camera could see: a short bar for the visible stretch of cable, labeled "Manhattan side" on the left and "Island station" on the right. A red dot appeared while a cabin was in view and disappeared as soon as it left. For most of the tram's trip the bar was empty.
+**The first version of the interaction.** The first dashboard showed only what the camera could see: a short bar for the visible stretch of cable, labeled "Manhattan side" on the left and "Island station" on the right. A red dot appeared while a cabin was in view and disappeared as soon as it left. For most of the tram's trip the bar was empty.
 
 My teammate and I did not like this, for reasons that come from Don Norman's design principles:
 
