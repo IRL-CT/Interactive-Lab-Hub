@@ -137,34 +137,61 @@ Two house rules. Sample rather than stream: one look every 5 to 30 seconds is pl
 ## Part F. 
 ### Read Part 2 and storyboard your night-time interaction
 
-Storyboard a night-time interaction built on your observant system, in three panels:
+Project Idea — Pet Night Diary
 
-1. **Before bed.** How does the person hand the night over, and how does the device acknowledge it?
-2. **While asleep.** What does the device watch or work through?
-3. **When awake.** What is the one thing the person learns, and in what medium?
+For Part 2, We want to design a Pet Night Diary that helps pet owners understand their dog's nighttime activity without having to check on them during the night. The device uses a Raspberry Pi, Mini PiTFT, and a webcam to observe the dog's resting area and record when the dog is detected.
 
-Stuck? A kitchen that tells you who raided the fridge. A desk that reports whether you actually went to bed. A window that names the quietest hour. A plant that describes its night. Find something better.
+Before going to bed, the owner can press a button to start monitoring. During the night, the device uses YOLO to check for the dog at regular intervals and records the detection results. The next morning, the owner can view a short summary of when their dog was detected near its resting area. I want the interaction to be simple and quiet, so it can work in the background without disturbing the owner or the dog.
 
-Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf).
+**Sketch**
 
-\*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
+<img width="695" height="395" alt="sketch" src="https://github.com/user-attachments/assets/cf7b1e15-c053-405e-9912-ba8f663ee7a0" />
+
 
 ## Prep for Part 2
 
-1. Look at and give feedback on the Part F storyboards.
-   **Put the feedback for your ideas here.**
-2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
-3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
-4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
+### feedback on the Part F storyboards.
 
-\*\*\***Post your revised storyboard here.**\*\*\*
+The current sketch clearly shows the physical setup and makes it easy to understand that the webcam observes a fixed resting area. The Raspberry Pi and Mini PiTFT are positioned close to the dog’s bed, and the camera is directed toward the pet rather than toward a human sleeping area. This supports privacy and makes the purpose of the system clear.
+
+However, the sketch currently explains what the system looks like more clearly than how the interaction unfolds over time. The revised storyboard should show three stages: the owner starting the system before bed, the device observing and logging changes during the night, and the owner receiving one short summary in the morning.
+
+The bedtime hand-off should also include clear acknowledgement. After the owner presses the button, the Mini PiTFT could briefly display “Monitoring started” and then dim so that it does not disturb the dog or owner.
+
+A possible technical problem is that YOLO may fail to detect the dog for a single frame, especially in low light. This could create a false event in which the log says that the dog left and immediately returned. To reduce this error, the system should confirm the same reading across several samples before recording a change.
+
+The morning report should remain simple and honest. Instead of displaying the entire log, it should answer one useful question, such as whether the dog left the resting area, how many times it left, and the longest amount of time it was away. If nothing happened, the report should clearly state that no unusual activity was detected.
+
+### Device Placement and Consent
+
+The device will spend the night beside the dog’s resting area in the living room. The webcam will be positioned so that its field of view includes only the dog bed and the surrounding floor, not any human sleeping area.
+
+Everyone who lives in the space will be informed about the experiment before the first overnight run, and monitoring will begin only after they agree. All detection results will remain on the Raspberry Pi. The system will sample one frame every ten seconds, and any temporary images will be deleted after the demonstration.
+
+
+### Revisions After Feedback
+
+Based on the feedback, we revised the original setup sketch into a six-panel storyboard that shows the complete interaction over time. The first two panels show the owner positioning the camera, pressing the start button, and receiving a “Monitoring started” acknowledgement. The middle panels show the system sampling the resting area every ten seconds and recording when the dog leaves and returns. The final panels show the owner checking the device in the morning and receiving one short summary.
+
+Part E showed that a single missed detection can create a false event and that Qwen may summarize a log incorrectly. To reduce this problem, the revised design will require the same detection result to appear in several consecutive samples before recording a change. The morning report will be generated from the confirmed events and will remain short and honest about uncertainty.
+
+
+### Revised Storyboard
+
+<img width="780" height="440" alt="截屏2026-10-30 15 54 39" src="https://github.com/user-attachments/assets/d9c23a9c-8c86-4605-99a0-e6282c304a79" />
+
 
 ## Part G. 
 ### Design the interaction before
 
 The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
 
-\*\*\***Describe the interaction before.**\*\*\*
+\*\*\***Interaction before.**\*\*\*
+
+The intended bedtime interaction is a simple button press: the owner positions the webcam, presses Button A, receives a readiness confirmation, and lets the display turn off during monitoring. The code includes this Mini PiTFT interface.
+For the documented overnight experiment, I used the terminal interface over SSH. I started the program inside tmux and checked for the “Camera + YOLO ready” message before detaching the session. This allowed the Raspberry Pi to continue monitoring after I disconnected my laptop. The button and display interaction was not evaluated in this overnight run.
+
+<img width="5712" height="4284" alt="IMG_1721" src="https://github.com/user-attachments/assets/d4339b96-65d0-490a-b0d8-8bcc1f01d4fe" />
 
 ## Part H. 
 ### Incorporate the observant system
@@ -180,6 +207,18 @@ Fake a night first: run it for thirty seconds while you walk around, stop it, an
 
 \*\*\***Screenshots or videos of the running system.**\*\*\*
 
+<img width="850" height="607" alt="截屏2026-10-31 下午7 03 33" src="https://github.com/user-attachments/assets/1df5de9f-ee20-48bf-94d9-8922c6d16f32" />
+
+<img width="606" height="238" alt="截屏2026-10-31 下午7 17 00" src="https://github.com/user-attachments/assets/43206a0c-9fcc-47a1-9745-d0699bdeebdf" />
+
+
+Jindi: I used a Raspberry Pi 5 and a USB webcam with the existing YOLO26 Nano NCNN model, filtering for the dog class. The sampling interval was configured to ten seconds, and a state change required three consecutive matching valid observations. Raw detections and confirmed states were recorded separately.
+Although the program supports a configurable region of interest, this experiment used the full camera frame. Guiyuan was free to move around the home; I did not restrict her movement. The system stored detection metadata locally rather than saving photos or continuous video.
+
+Before the overnight run, I tested the system for 60 seconds and then for three minutes. The first test recorded five camera-access failures before recovering; these samples were correctly labeled as unknown. In the three-minute test, the camera produced valid samples throughout, and three consecutive positive detections successfully changed the confirmed state. Isolated negative detections did not immediately reverse that state.
+
+All timestamps use the Raspberry Pi’s local time, UTC−04:00. The session continued through the night and into the following afternoon.
+
 ## Part I. 
 ### Design the interaction after
 
@@ -190,6 +229,19 @@ The reveal. The night produced a log; the morning turns it into something a half
 ```
 
 Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
+
+<img width="645" height="394" alt="截屏2026-10-31 下午1 40 33" src="https://github.com/user-attachments/assets/38c51135-2440-4d5c-9884-ac858b7b6bad" />
+<img width="643" height="386" alt="截屏2026-10-31 下午1 40 20" src="https://github.com/user-attachments/assets/59d7f993-0172-478f-8ad1-6f6dfc74309d" />
+
+Pet Night Diary answers one question: **When was a dog last detected within the camera’s view?** After stopping the overnight session, we reviewed a short report in the terminal. The Mini PiTFT interface was not evaluated in this run.
+
+The initial report was generated by Python. We then processed the same saved log with local Qwen (`qwen3.5:0.8b`), without repeating the overnight recording. Python calculated the statistics, and Qwen reproduced three verified factual sentences. The output was labeled `qwen-verified`, indicating that it passed validation.
+
+The last confirmed detection was at **13:35:49 on October 31**. Supported sampled intervals totaled approximately **1 hour 59 minutes of detection** and **14 hours 19 minutes of non-detection**, with **54 minutes unclassified**.
+
+These are detection estimates, not sleep measurements. Guiyuan could move freely around the home, so non-detection could reflect her being elsewhere, poor lighting, occlusion, or missed detections. The report cannot distinguish these causes.
+
+<img width="570" height="72" alt="截屏2026-10-31 下午7 08 07" src="https://github.com/user-attachments/assets/59243af3-10d7-4833-93cd-b2b4622c18a1" />
 
 ## Final documentation
 
