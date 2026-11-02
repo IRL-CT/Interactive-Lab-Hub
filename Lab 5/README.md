@@ -191,7 +191,9 @@ Full chat: [morning_chat.txt](morning_chat.txt)
 
 [Watch the bedtime video](https://youtu.be/Cr4N5npGk0U?si=b-fSRWyauTeYW3gt) · [Watch the morning video](早上视频的链接)
 
-- **Looks like:** <img width="700" alt="2635b7ddb34abbcb5dcad366f90b590e" src="https://github.com/user-attachments/assets/75b2e3a0-3c26-4d63-8105-b86640e42589" />
+- **Looks like:**
+
+<img width="700" alt="2635b7ddb34abbcb5dcad366f90b590e" src="https://github.com/user-attachments/assets/75b2e3a0-3c26-4d63-8105-b86640e42589" />
 
 The camera sits above the desk and looks down at the monitor, laptop, keyboard, book, and bottle. A dim lamp stays on at night.
 - **Works like:** camera → YOLO (`overnight.py --all`) → night_log.jsonl → desk_chat.py → Qwen → group chat. This used a real night's data, from 01:33 to 09:54.
