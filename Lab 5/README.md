@@ -1,4 +1,134 @@
-# Observant Systems: Overnight Sensation
+Feedback before creating the system and showing the storyboard:
+- **Nurain (roommate):** suggested we drop the bathroom-lights tracker and predict when the tram arrives at and leaves the island instead. [That became our project]
+- **Pranav (friend):** asked whether you can predict where the tram is when the camera sees only about a tenth of the route. [That question shaped the estimator and the full-route display.]
+- **Elena (friend):** asked how we would see the tram at night. It turned out to be our biggest limitation (see Part H).
+
+---
+
+## Part G.
+### Design the interaction before
+
+\*\*\***Describe the interaction before.**\*\*\*
+
+**The hand-off.** A tram watcher has no question to ask at bedtime. The hand-off is setting up the device and letting it watch:
+
+1. The Pi sits on the windowsill with the webcam lens flat against the glass, aimed at the stretch of tram cable we can see from our room. Only a small outlined area of sky is ever cropped, analyzed or saved: no street, no windows, no people.
+2. We start the watcher in `tmux` (`tram_watch.py` for the camera and tracker, `tram_web.py` for the website), so it keeps running after the laptop is closed.
+3. The device acknowledges it: the terminal prints `watching... N passes in the log so far`, and the website switches from "offline" to "waiting" until the next tram shows up.
+4. Anyone we share the link with can open the site. We keep a private version of the link with two buttons, **"It arrived at the island"** and **"It left the island."** When we see the tram stop, one tap gives the system the true time, so it can measure and correct its own error.
+
+[First Implementation of the System]:
+
+https://github.com/user-attachments/assets/9cf59dcb-e187-4dd9-be10-a1be682bf0e8
+
+**The first version of the interaction (shown in our first video).** The first dashboard showed only what the camera could see: a short bar for the visible stretch of cable, labeled "Manhattan side" on the left and "Island station" on the right. A red dot appeared while a cabin was in view and disappeared as soon as it left. For most of the tram's trip the bar was empty.
+
+My teammate and I did not like this, for reasons that come from Don Norman's design principles:
+
+- **Mapping.** The bar looked like the whole route, with Manhattan on one end and the island on the other, but it was really about a tenth of it. A dot at the right end looked like a tram at the island station when it had actually just entered the camera's view. The layout of the display did not match the layout of the world.
+- **Conceptual model.** Both cabins are always somewhere on the cable. On the first dashboard, a tram that left the camera's view simply stopped existing, so it taught the wrong picture of how the tram works.
+- **Feedback.** Most of the time the screen showed nothing, so you couldn't tell "no tram nearby" apart from "the tram is just out of view."
+
+**The redesign.** The line now spans the whole route, Manhattan station to Roosevelt Island station, and the stretch the camera can see is shaded and labeled "camera." Both cabins are always on the line:
+
+- A **solid, pulsing** cabin is one the camera sees right now.
+- A **dashed "ghost"** cabin is our estimate of where the other cabin is, and it glides along the line as time passes.
+- Each cabin shows an arrow for its direction (→ to the island, ← to Manhattan), and a legend explains solid versus dashed.
+
+Solid versus dashed is the signifier that separates what the camera actually sees from what we are guessing. That matters because every time on the page is an estimate, shown with an 80% range and the chance it is within 30 seconds.
+
+---
+
+## Part H.
+### Incorporate the observant system
+
+[Video of Final Product](https://youtube.com/shorts/-ntIhPmZE9A)
+
+**Our version of `overnight.py`.** The lab's starter `overnight.py` and `morning.py` are in our Lab 5 folder, but there is no `night_log.jsonl`, so we did not run them for this project. Our tram pipeline replaced them. Its night shift is `tram_watch.py`, which follows the same detector → interpreter → log → reasoner structure as Part E:
+
+| Stage | Part E | Our tram watcher |
+|---|---|---|
+| Detector | YOLO person detector | Our own YOLO26n detector, trained on our boxed tram photos, finds every cabin in the crop once a second |
+| Interpreter | left/center/right, close/far | A grip point on each cabin is projected onto the fitted cable line, giving a position from 0 (tower end) to 1 (station end) |
+| Log | `watch_log.txt` / `night_log.jsonl` | `tram_events.jsonl` (one line per tram pass, with estimated and true times) and `tram_tracks.jsonl` (each cabin's position over time) |
+| Reasoner | Qwen | A Kalman filter, a renewal (semi-Markov) model of the gaps between trams, and the error measured against our hand-timed taps |
+
+The live state is rewritten every second to `tram_state.json`, which the website reads.
+
+**What we found over one day (Nov 1), shown in the video:**
+
+- **Daytime works well.** The detector sees the cabins clearly. "TRAM IN VIEW" appears with an arrival estimate and an 80% range, and the second cabin is drawn as a ghost on the rest of the route.
+- **Dusk still works.** The detector keeps finding the cabin as the light fades.
+- **Night fails.** After dark the camera can no longer see the cabin. Our exposure control lengthens the exposure and raises the gain, but the cabin isn't lit, and the detector was trained mostly on daytime photos. It stops detecting, so the ghost cabins stop at the edge of the camera zone and say "due in view any moment." The last-tram card stays on the last tram seen (17:08). After 45 minutes without a sighting, the next-tram estimate switches to "Waiting to see a tram first" rather than inventing a time.
+
+**Results from the log, as shown on the site's "How accurate has it been?" card at 17:55:**
+
+- **179 tram passes** detected that day.
+- **Next-tram predictions:** 177 were checked automatically against when the tram actually came. They were typically off by about 40 s, within 2 minutes 90% of the time, and the true time fell inside our 80% range 86% of the time. That means the stated confidence matches reality.
+- **Island arrivals:** compared with 6 that we hand-timed, the estimates were typically off by about 10 s. The system measured that it ran about 9.5 s early and now corrects for it.
+- **Island departures:** only 1 hand-timed so far (off by 4 s). It needs 5 before it starts correcting itself.
+
+---
+
+## Part I.
+### Design the interaction after
+
+**Our version of `morning.py`.** We don't have a separate `morning.py`. The reveal is the website, which anyone can check whenever they want. It shows:
+
+- **"Recent trams: estimated vs true":** every pass, what the system estimated, what really happened, and how early or late the estimate was.
+- **"How accurate has it been?":** the summary above, in plain words.
+- **"Next tram expected":** separate estimates for the next arrival at the island and the next departure from the island, each with an 80% range.
+
+The page is honest about a night when nothing was seen. It says "waiting" and "Waiting to see a tram first" instead of making up a time, and every time on it is labeled as an estimate. The one dishonest-looking spot is the night-time ghost cabin: it waits at the camera zone saying "due in view any moment," when the real tram is still running and the camera just can't see it.
+
+<img width="717" height="688" alt="image" src="https://github.com/user-attachments/assets/2055ab73-68e6-438a-ba89-0cd87d3a920f" />
+
+
+**What we would do next:**
+
+1. **Assume missed passes.** If a cabin is overdue, assume it went by unseen and keep it moving on the timetable, marked "assumed, not seen," until the camera confirms a real tram.
+2. **Train for the night.** Collect and box night photos (the cabin's few lights) so the detector learns them, or use a camera that sees better in the dark.
+3. **Tell people when the camera is blind.** Show "camera can't see right now" so visitors know why the ghosts stopped.
+
+---
+
+## How the system was built (and who did what)
+
+**Our part: the idea and the data.**
+
+- The tram watcher grew out of our sketches and storyboards (Part F) and our friends' feedback.
+- We collected crops every 4 seconds in four 45-minute sessions: morning, midday, evening and night. We added "burst" captures, 50 photos taken while we watched a tram go by, because trams are in view only a few percent of the time.
+- We labeled about **3,000 images** (tram / no tram) and drew **bounding boxes on more than 300 tram photos** (the grip plus the cabin).
+- We hand-timed real arrivals and departures with the private buttons to check the system's estimates.
+
+**Claude's part: implementation.**
+
+- **Machine learning with YOLO.** Claude wrote the labeling and boxing tools and the training scripts. We first fine-tuned a YOLO26n classifier (tram / no tram) with semi-supervised pseudo-labeling and active learning (labeling the images the model was least sure about). Then we trained a YOLO26n detector on our boxes, running training on a laptop RTX 5050 GPU instead of the Pi. On held-out photos, the second detector found 40 of 48 trams, had 0 false alarms on 93 empty photos, and placed the grip point within about 1% of the crop width.
+- **The robotics estimator.** Claude worked out how to apply the robotics concepts we knew:
+  - **A constant-velocity Kalman filter** per cabin tracks its position along the cable and its speed. It keeps predicting through missed frames and behind the trees, and rejects detections more than 4 standard deviations off.
+  - **Arrival times** are predicted by extrapolating to the station. The uncertainty comes from propagating the filter's uncertainty through to the arrival time (first-order error propagation), plus the bias and spread measured from our hand-timed taps.
+  - **Telling the two cabins apart:** each detection is matched to the cabin it most likely belongs to, using a statistical distance from that cabin's predicted position plus which of the two parallel ropes it hangs from.
+  - **The next-tram prediction** is a renewal (semi-Markov) model. It learns the gaps between trams for each direction and time of day, then conditions on how long we have already waited.
+  - **The ghost cabins** come from dead reckoning: the trip time and the order of recent passes.
+  - **A two-state hidden Markov model** (a Bayes filter) smooths the classifier's output when the detector isn't available.
+- **Website and access.** Claude wrote the web app (a small Python server on the Pi with a JSON API) and helped set up Tailscale Funnel. Funnel gives the Pi a public HTTPS link without opening any ports on the building network, which blocks device-to-device traffic. The page serves only numbers, never camera images, and is labeled unofficial.
+
+Only the machine-vision parts are machine learning. The timing and position estimates use classical probabilistic estimation (Kalman filtering, Markov models, empirical statistics), the same predict–measure–correct loop a robot uses to localize itself. With one day of data, that worked better than a trained time-series model would have.
+
+---
+
+## Final documentation
+
+\*\*\***Include a short video of the whole system**\*\*\*
+
+[video link]
+
+- **Looks like:** a Raspberry Pi 5 on the windowsill, with a USB webcam pressed against the glass and aimed at the tram cable. People see it through a web page on their phone or laptop.
+- **Works like:** webcam → crop of the cable only → YOLO detector → position on the cable → one Kalman filter per cabin → pass log (`tram_events.jsonl`) → next-tram model and accuracy check → `tram_state.json` → website.
+- **Acts like:** you open the link and see where both cabins are on the whole route, solid if seen and dashed if estimated, when the next tram should come, and how accurate the estimates have been. If you're at the window, you can tap the moment the tram arrives to help it correct itself.
+
+
+<details># Observant Systems: Overnight Sensation
 
 **Team: Tram Observers**
 
@@ -43,6 +173,9 @@ D) [Reason: run Qwen on the Pi with Ollama](#part-d)
 
 E) [Connect: from YOLO readings to Qwen reasoning](#part-e)
 
+</details>
+
+<details> 
 **Part 2: Overnight Sensation**
 
 F) [Read Part 2 and storyboard your night-time interaction](#part-f)
@@ -545,4 +678,5 @@ For submission, the readme.md page for this lab should be edited to include the 
   - Remove all instructional text and example prompts from this file.
   - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
   - Your final submission should be neat, focused on your own work, and easy to read for grading.
+</details>
 </details>
