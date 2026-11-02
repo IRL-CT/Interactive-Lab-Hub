@@ -273,7 +273,6 @@ The test was conducted on November 1, 2026, with a 30-second observation period 
 
 The log contained three valid samples: one person detected, one person detected, and no person detected. No sampling errors were recorded in this test.
 
-This short test demonstrated voice activation, screen and speaker confirmation, continued observation after the screen turned off, and successful log saving. It does not establish overnight reliability; the full overnight test remains pending.
 
 ## Part H. 
 ### Incorporate the observant system
@@ -307,11 +306,9 @@ Running-system evidence
 ![pic6](./pic6.png)
 
 
-
-
 Overnight results
+[Download the overnight detection log](overnight-results/2026-11-01/night_log.jsonl)
 
-The overnight test has not yet been completed. After the home test, I will add the recording start and end times, detection results, any errors or recording gaps, and a link to the actual night_log.jsonl file.
 
 ## Part I. 
 ### Design the interaction after
@@ -332,10 +329,13 @@ The approximately 30-second test contained three valid samples. Two samples dete
 The revised report matched these observations, and Qwen’s structured response passed the field-by-field comparison. This was a short functional test, not an overnight validation.
 
 Overnight Results and Evidence
+[Read the verified morning report](overnight-results/2026-11-01/verified_report.txt)
 
-Pending: after the home overnight run, I will add the actual morning report, a screenshot of its presentation, links to the corresponding log and report files, and a video clip showing the morning interaction.
 
 ## Final documentation
+
+https://github.com/user-attachments/assets/ecbb5ed5-ddd1-4a7f-a728-366e3296f740
+
 
 Desk Night Watch is a Raspberry Pi system designed to answer a focused morning question: "When was a person last detected in the desk area?" It combines a brief bedtime voice interaction, periodic camera observations, and a morning report based on the recorded data.
 
@@ -344,8 +344,6 @@ Desk Night Watch is a Raspberry Pi system designed to answer a focused morning q
 The prototype consists of a Raspberry Pi 5, a small display, a webcam, a speaker, and a microphone. For the home test, it will sit on my desk with the camera aimed at the desk and chair area.
 
 At bedtime, the display guides the user through the voice command and confirms that monitoring has started. The screen then turns off while observation continues. In the morning, the user views the report in an SSH terminal.
-
-An actual placement photo and overnight demonstration footage will be added after the home test.
 
 ### Works like
 
@@ -375,7 +373,6 @@ For the overnight test, the watch will run inside tmux while the Pi remains powe
 
 A 30-second functional test produced three valid samples: one person, one person, and no person. The last person detection was at 15:40:40, and the final sample at 15:40:50 detected nobody. No sampling errors or long gaps were recorded. The revised reporting pipeline reproduced these facts, and Qwen's JSON response passed the field-by-field comparison.
 
-These results validate the short demonstration only. The actual overnight run has not yet been completed.
 
 ### Final evidence to add after the overnight test
 
@@ -384,4 +381,3 @@ These results validate the short demonstration only. The actual overnight run ha
 - Links to the submitted source code, overnight log, and morning report.
 - A short video showing the complete interaction: the bedtime voice command and confirmation, the device operating in place, and the morning report.
 
-The video may combine bedtime and morning clips; the reported overnight results will come from the actual saved log.
