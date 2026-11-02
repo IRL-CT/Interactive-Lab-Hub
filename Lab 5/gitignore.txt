@@ -1,0 +1,33 @@
+# Part A: the virtual environment (gigabytes) and Python's cache
+.venv/
+venv/
+__pycache__/
+
+# Part A: YOLO weights and the exported model; yolo export recreates them
+*.pt
+*.torchscript
+*.onnx
+*_ncnn_model/
+
+# Part A: yolo predict output (runs/predict, runs/predict2, ...)
+runs/
+
+# Part H: the snapshots overnight.py saves. Private, and deleted after the demo anyway.
+snaps/
+
+# Scripts started with nohup write their output here
+nohup.out
+
+# macOS
+.DS_Store
+
+# AI Dream Machine generated files
+dream.wav
+dream_story.txt
+dream_log.jsonl
+dream_state.json
+dream_photos/
+
+# Downloaded YOLO models
+yolo26n.pt
+yolo26n_ncnn_model/
