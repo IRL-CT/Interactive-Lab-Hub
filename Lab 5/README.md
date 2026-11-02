@@ -42,8 +42,6 @@ Solid versus dashed is the signifier that separates what the camera actually see
 ## Part H.
 ### Incorporate the observant system
 
-[Video of Final Product](https://youtube.com/shorts/-ntIhPmZE9A)
-
 **Our version of `overnight.py`.** The lab's starter `overnight.py` and `morning.py` are in our Lab 5 folder, but there is no `night_log.jsonl`, so we did not run them for this project. Our tram pipeline replaced them. Its night shift is `tram_watch.py`, which follows the same detector → interpreter → log → reasoner structure as Part E:
 
 | Stage | Part E | Our tram watcher |
