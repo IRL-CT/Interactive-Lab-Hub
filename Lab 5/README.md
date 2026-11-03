@@ -3,7 +3,7 @@
 **NAMES OF COLLABORATORS HERE**
 Partner: Shifeng Hong (Sh2769) https://github.com/mado0512/Interactive-Lab-Hub 
 
-**Please indicate anyone you collaborated with on this Lab here.**
+**Please indicate anyone that helped with this Lab here.**
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
 # Part 1
