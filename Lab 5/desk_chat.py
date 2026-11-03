@@ -118,7 +118,7 @@ Last night, from {span}, a camera watched the desk while the human slept. This i
 
 {event_text}
 
-Write 6 to 8 short, funny chat messages between the members. They gossip about the human and tease each other.
+Write 10 to 12 short, funny chat messages between the members. They gossip about the human and tease each other.
 Each message is one short sentence. Mention real times from the list, like "22:05".
 Every event they mention must come from the list above. Do not make up events.
 If nothing happened, they complain about how boring the night was.
@@ -142,7 +142,7 @@ def ask_qwen():
                 "required": ["from", "text"]}}},
             "required": ["messages"],
         },
-        "options": {"temperature": 0.7, "num_predict": 500},
+        "options": {"temperature": 0.7, "num_predict": 900},
     }, timeout=600)
     r.raise_for_status()
     return r.json()["response"]
@@ -168,7 +168,7 @@ for attempt in range(3):
     dropped += len(got) - len(kept)
     if len(kept) > len(messages):
         messages = kept
-    if len(messages) >= 4:
+    if len(messages) >= 8:
         break
 
 # Step 6: show it like a chat
