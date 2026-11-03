@@ -1,0 +1,12 @@
+{
+  "team": "team1",
+  "name": "kitchen-pi",
+  "description": "A Pi standing in for the coffee machine. Its screen shows 'HEATING' or 'OFF'.",
+  "publishes": [],
+  "accepts": [
+    {
+      "topic": "IDD/team1/kitchen/coffee",
+      "message": "'heat' starts heating the coffee machine; 'off' stops it"
+    }
+  ]
+}
