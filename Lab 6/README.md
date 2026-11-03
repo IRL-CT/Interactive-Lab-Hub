@@ -98,7 +98,8 @@ sudo systemctl start piscreen.service
  
 2. **Server** (one person on laptop):
 ```bash
-cd "Lab 6"  
+cd "Lab 6"
+python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-server.txt
 python app.py
