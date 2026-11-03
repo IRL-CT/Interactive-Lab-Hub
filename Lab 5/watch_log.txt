@@ -1,0 +1,5 @@
+10:49:11 1 person(s) at center/close
+10:49:17 1 person(s) at center/far
+10:49:18 1 person(s) at center/close
+10:49:30 2 person(s) at center/close, center/far
+10:49:31 1 person(s) at center/close
