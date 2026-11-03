@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Grid</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        #grid {
+            width: 100vw;
+            height: 100vh;
+            display: grid;
+            gap: 1px;
+            background: #000;
+        }
+        
+        .pixel {
+            background: #111;
+            transition: background-color 0.2s ease;
+            position: relative;
+        }
+        
+        .pixel.active {
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="grid"></div>
+    
+    <script>
+        const socket = io();
+        const grid = document.getElementById('grid');
+        let pixelData = [];
+        
+        function calculateGridSize(count) {
+            if (count === 0) return { rows: 1, cols: 1 };
+            
+            // Calculate grid size for up to 100 pixels
+            // Aim for roughly square grid
+            const cols = Math.ceil(Math.sqrt(count));
+            const rows = Math.ceil(count / cols);
+            return { rows, cols };
+        }
+        
+        function updateGrid() {
+            const count = pixelData.length;
+            const { rows, cols } = calculateGridSize(count);
+            
+            // Set grid template
+            grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+            grid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+            
+            // Clear existing
+            grid.innerHTML = '';
+            
+            // Create pixels
+            for (let i = 0; i < count; i++) {
+                const pixel = pixelData[i];
+                const div = document.createElement('div');
+                div.className = 'pixel active';
+                div.dataset.mac = pixel.mac;
+                div.dataset.position = pixel.position;
+                
+                const [r, g, b] = pixel.color;
+                div.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                
+                grid.appendChild(div);
+            }
+        }
+        
+        function updatePixelColor(mac, color) {
+            const pixel = grid.querySelector(`[data-mac="${mac}"]`);
+            if (pixel) {
+                const [r, g, b] = color;
+                pixel.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            }
+        }
+        
+        // Socket event handlers
+        socket.on('connect', () => {
+            console.log('Connected to server');
+        });
+        
+        socket.on('grid_state', (data) => {
+            console.log('Received grid state:', data.pixels.length, 'pixels');
+            pixelData = data.pixels.sort((a, b) => a.position - b.position);
+            updateGrid();
+        });
+        
+        socket.on('pixel_update', (data) => {
+            console.log('Pixel update:', data.mac, data.color);
+            
+            if (data.is_new) {
+                // New pixel - rebuild grid
+                pixelData.push({
+                    mac: data.mac,
+                    color: data.color,
+                    position: data.position
+                });
+                pixelData.sort((a, b) => a.position - b.position);
+                updateGrid();
+            } else {
+                // Update existing pixel color
+                const pixel = pixelData.find(p => p.mac === data.mac);
+                if (pixel) {
+                    pixel.color = data.color;
+                    updatePixelColor(data.mac, data.color);
+                }
+            }
+        });
+        
+        socket.on('grid_cleared', () => {
+            console.log('Grid cleared');
+            pixelData = [];
+            updateGrid();
+        });
+        
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+        });
+    </script>
+</body>
+</html>

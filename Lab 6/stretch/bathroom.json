@@ -1,0 +1,12 @@
+{
+  "team": "team1",
+  "name": "bathroom-pi",
+  "description": "A Pi by the bathroom door with a proximity sensor (APDS-9960).",
+  "publishes": [
+    {
+      "topic": "IDD/team1/bathroom/motion",
+      "message": "'1' when someone comes within about 10 cm of the sensor"
+    }
+  ],
+  "accepts": []
+}
