@@ -295,6 +295,7 @@ As you develop your Feast Automata concept, consider where the sensor and actuat
 3. **"HANDS OFF!" sign:** when the device detects the wrong hand, a servo motor flips up a "HANDS OFF!" sign.
 
 <img src="sketch_4.jpg" height="300" /> <img src="sketch_5.jpg" height="300" />
+<img width="680" height="780" alt="sketch_5" src="https://github.com/user-attachments/assets/42b8ff57-f856-464c-9957-ead876283615" />
 
 4. **Opening lid:** when the device detects the right hand, a servo opens the container's lid so the user can eat ("enjoy!").
 5. **Combination snack locker:** the user has to enter the correct combination on a keypad to open the locker. A wrong combination gets "Wrong combination, no snack!"
