@@ -192,7 +192,7 @@ Full chat: [morning_chat.txt](morning_chat.txt)
 
 \*\*\***Include a short video of the whole system**\*\*\*
 
-[Watch the bedtime video](https://youtu.be/Cr4N5npGk0U?si=b-fSRWyauTeYW3gt) · [Watch the morning video](早上视频的链接)
+[Watch the bedtime video](https://youtu.be/Cr4N5npGk0U?si=b-fSRWyauTeYW3gt) · [Watch the morning video](https://youtu.be/KdJpLVdjTVQ)
 
 - **Looks like:**
 
@@ -200,7 +200,7 @@ Full chat: [morning_chat.txt](morning_chat.txt)
 
 The camera sits above the desk and looks down at the monitor, laptop, keyboard, book, and bottle. A dim lamp stays on at night.
 - **Works like:** camera → YOLO (`overnight.py --all`) → night_log.jsonl → desk_chat.py → Qwen → group chat. This used a real night's data, from 01:33 to 09:54.
-- **Acts like:** I hand over the night with one command and a dim lamp. In the morning, I get a group chat from my desk about what I did.
+- **Acts like:** We hand over the night with one command and a dim lamp. In the morning, we get a group chat from the desk about what happened.
 
 ### Reflection
 
