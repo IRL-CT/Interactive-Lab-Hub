@@ -458,7 +458,7 @@ Document all the prototypes and iterations you have designed and worked on. The 
 
 **What we learned.** After testing the device, we found that the moments with the most light exposure brought bigger bursts of movement during sleep. That information can help users make lifestyle changes, such as adding curtains, moving the bed, rearranging the room, or even moving out to find a place that suits them better.
 
-*TODO: add a full-system video (hand-off, night, morning reveal).*
+(https://drive.google.com/file/d/1ESu-OE-o1BRuUXZ1fNBlBBo5GCOac2Zs/view?usp=sharing)
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
 
