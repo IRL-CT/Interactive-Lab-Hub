@@ -158,6 +158,15 @@ You can look in `image.py` for an example of how to display an image on the scre
 
 \*\*\***Include a picture of your own Raspberry Pi displaying the piscreen.service with your unique MAC address. Additionally, please provide another picture showing the successful completion of the screen test.**\*\*\*
 
+I was able to properly set up my raspberry pi, and received the following MAC address
+<img width="543" height="513" alt="Screenshot 2026-09-13 at 5 19 23 PM" src="https://github.com/user-attachments/assets/1fe30c92-ce97-4029-9f20-8ec8c2538c65" />
+
+After setting everything up, I successfully implemented the screen test in my terminal, changing the color to pink when I pressed the button. 
+
+<img width="624" height="62" alt="Screenshot 2026-09-13 at 4 26 11 PM" src="https://github.com/user-attachments/assets/fa2bf895-239c-4159-ad68-c963959f324a" />
+
+<img width="545" height="572" alt="Screenshot 2026-09-13 at 5 18 58 PM" src="https://github.com/user-attachments/assets/149fdf58-482e-4d41-b284-39560cfabf76" />
+
 
 ## Part D. 
 ### Set up the Display Clock Demo
@@ -183,6 +192,16 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
+**MY WORK**
+
+After referencing the files described above, I was able to show the current time and date onto the raspberry pi, as shown below. 
+
+<img width="531" height="331" alt="Screenshot 2026-09-13 at 5 21 57 PM" src="https://github.com/user-attachments/assets/0fbe54a9-9c79-4944-804f-22464a149b76" />
+
+<img width="524" height="323" alt="Screenshot 2026-09-13 at 5 21 44 PM" src="https://github.com/user-attachments/assets/ed43bbf1-5e3c-40b7-9da9-386db8869ad2" />
+
+<img width="568" height="201" alt="Screenshot 2026-09-13 at 5 21 49 PM" src="https://github.com/user-attachments/assets/5ab81e61-fe6a-4a1d-9ca8-fdb13d588843"/> 
+
 ## Part E. Read Part 2. Sketch and brainstorm further interactions and features you would like for your clock.
 
 One potential source of ideas might be thinking about other clocks and timekeeping devices for inspiration.
@@ -191,12 +210,26 @@ Another might be novel units of time. How do you measure a year? [In daylights? 
 
 We strongly discourage literal digital or analog clock display: Be creative.
 
-
 ** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf)), storyboards for your ideas **
 
+**MY BRAINSTORMING**
 
+I generally have a very consistent eating/hunger schedule so I thought it'd be fun to use that as a point-of-reference for time telling. I brainstormed the interaction, as shown in the pictures below. Essentially, if I want to see what time it is, I rate my hunger on thee device with the 12-key touch sensor. Based on how hungry I am, the device is able to estimate when my next meal is, which is an indirect way of letting me know the time is since I regularly eat at the same times each day. 
+
+<img width="529" height="292" alt="Screenshot 2026-09-13 at 5 23 15 PM" src="https://github.com/user-attachments/assets/467175bf-aadb-4bd5-aac8-0b0005752ac4" />
+
+The rough sketch below illustrate an instance where I'd use this device, most likely when I can't access my phone or have forgotten my watch. 
+
+<img width="538" height="656" alt="Screenshot 2026-09-13 at 5 23 30 PM" src="https://github.com/user-attachments/assets/adf29569-ad87-4d90-af6a-40c89661101e" />
 
 **Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
+
+Jenny Li - https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
+
+Shifeng Hong - https://github.com/mado0512/Interactive-Lab-Hub/edit/Fall2026/Lab%202/README.md
+
+Pallavi Khana - https://github.com/pk633-cu/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
+
 
 # Lab 2 Part 2
 
@@ -206,6 +239,18 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
 **Put the feedback for your ideas here.**
+
+Jenny Li - https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
+
+ "I love this way of measuring time by hunger! I think it's a philosophy of measuring your time by yourself, instead of by some rules or laws set up by nature or society. An interesting way to consider is that, maybe there are more interesting way to choose the level of your hunger than numbers, like, how much rice you wanna put in your bowl? How many chicken legs you wanna pick up? I think this kind of interaction will make your clock even more interesting and interactive."
+
+Shifeng Hong - https://github.com/mado0512/Interactive-Lab-Hub/edit/Fall2026/Lab%202/README.md
+
+"Love the connection with personal background, this could be a great project to explore how can one convery the subjective feeling of hungriness to a third person who might not have this subjective feeling of fullness vs hungriness. For example, make the reading go blur, or go wacky when it is close to eating time (to convey that you are REALLY HUNGRY)"
+
+Pallavi Khana - https://github.com/pk633-cu/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
+
+"I actually don't get hungry much and have to remind myself to eat. So I think it's a really nice idea to have a customizable clock and set "alarms" specifically for your own work day. Being able to get more bio signals would be nice so you could get more optimal eating times. But I think it'd be good for people who forget to eat."
 
 ## Update your Lab Hub
 
@@ -217,9 +262,15 @@ Start small, pick just one element of your overall idea, just to show you have a
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
+Link here as well: https://github.com/chonjessica23/Interactive-Lab-Hub/blob/Fall2026/Lab%202/barebones_mod.py 
+
 ## Make a short video of your modified barebones PiClock
 
+Below is a video of the modified PiClock. Given my new project direction, I just wanted to play around with timing and image/text displays. So, I made it so that once it reached a specific time, after 30 seconds, a line of text appeared. After 30 more seconds passed, the text was able to disappear. 
+
 \*\*\***Take a video of your barely modified PiClock.**\*\*\*
+
+https://github.com/user-attachments/assets/3d80eff1-ce7b-42d0-a73b-7518e28a46f2
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -237,11 +288,19 @@ Do take advantage of having done the previous iteration to refine and simplify y
 
 ** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
+Based on the feedback, I definitely revised my initial idea a bit. Pallavi's comment about using this type of clock as a reminder for individuals who forget to eat, so I decided to get rid of the rating my hunger input since other user's wouldn't be able to utilize that form of interaction. From Jenny's feedback, I decided it would be much simpler and more intuitive for users to understand the flow of time via food with images. I really liked her input of going on how many chicken legs, or grains of rice there are to quantify time. I didn't want that representation of time to be so direct though. I wanted to maintain the personal aspect that Shifeng appreciated, so I decided to instead "build a meal". That way it's implicitly still a clock meant for me since the finished meal is still set to when I eat. Overall, I'd summarize that the project shifted to a much more adaptable way to keep time for others, rather than solely be tailored to me. Below is a sketch of my new plan:
+
+<img width="460" height="718" alt="Screenshot 2026-09-20 at 10 31 46 PM" src="https://github.com/user-attachments/assets/2491e532-355a-437a-b7a3-7dbe04c16811" />
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
+Link to code here as well: https://github.com/chonjessica23/Interactive-Lab-Hub/blob/Fall2026/Lab%202/foodclock.py 
+
 \*\*\***Take a video of your PiClock.**\*\*\*
 
+https://github.com/user-attachments/assets/283b5c89-03b9-4fd6-8be7-e9cb258e3c30
+
+The clock goes by real time, but for the sake of the demo, you can see how different phases of the food clock with a button clock. 
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
 

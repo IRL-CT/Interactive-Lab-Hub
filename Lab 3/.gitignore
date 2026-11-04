@@ -1,0 +1,10 @@
+.venv/
+models/
+voices/
+
+*.onnx
+*.onnx.json
+
+test.wav
+welcome.wav
+zipanswer.wav

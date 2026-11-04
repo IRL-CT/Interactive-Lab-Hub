@@ -1,276 +1,69 @@
 # Observant Systems: Overnight Sensation
 
-**Team:**
-
-**Members:** Full Name (netid, github-handle), ...
-
-**Project name:**
-
-<details>
-	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
-  
-	**Submission Cleanup Reminder:**
-	- This README.md contains extra instructional text for guidance.
-	- Before submitting, remove all instructional text and example prompts from this file.
-	- You may delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-	- Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-	This helps ensure your README.md is clear, professional, and uniquely yours!
-</details>
-
-
-For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
-Your **observant device** could, for example, count items, find objects, recognize an event or continuously monitor a room.
-
-This lab will help you think through the design of observant systems, particularly corner cases that the algorithms need to be aware of.
-
-**New this year: the AI runs on the Pi.** Your Pi 5 can run an object detector ([YOLO](https://docs.ultralytics.com/)) and a small language model ([Qwen](https://ollama.com/library/qwen3.5) through [Ollama](https://ollama.com)) completely offline. In Part 1 you get both running and connect them: YOLO *sees*, Qwen *reasons* about what was seen. These models are slow, but they have all night. In Part 2 you use them to design a **night-time interaction**: what you tell the device before bed, what it does while you sleep, and what it shows you when you wake up.
+**NAMES OF COLLABORATORS HERE**
+Partner: Shifeng Hong (Sh2769) https://github.com/mado0512/Interactive-Lab-Hub 
 
 **Please indicate anyone that helped with this Lab here.**
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
-
-## Overview
-
-**Part 1: the tools**
-
-A) [Set up your Pi for on-device AI](#part-a)
-
-B) [See: recognize people in real time with YOLO](#part-b)
-
-C) [See more: hands and pose with MediaPipe](#part-c)
-
-D) [Reason: run Qwen on the Pi with Ollama](#part-d)
-
-E) [Connect: from YOLO readings to Qwen reasoning](#part-e)
-
-**Part 2: Overnight Sensation**
-
-F) [Read Part 2 and storyboard your night-time interaction](#part-f)
-
-G) [Design the interaction before bed](#part-g)
-
-H) [Incorporate the observant system during sleep](#part-h)
-
-I) [Design the interaction when awake](#part-i)
-
-The tools from earlier versions of this lab (MobileNet, Teachable Machine, Moondream, audio analysis, classic OpenCV) live in the [legacy folder](legacy/README.md). They are optional, but any of them can be the sensor in your Part 2 system.
-
-
-## Prep for Part 1
-
-Please check the instructions in [prep.md](prep.md) and complete them before lab. The installs in Part A take a while, so prep.md also tells you how to get a head start.
-
-## The Report
-
-This readme.md page in your own repository should be edited to include the work you have done. You can delete everything but the headers and the sections between the \*\*\***stars**\*\*\*. Write the answers to the questions under the starred sentences. Include any material that explains what you did in this lab hub folder, and link it in the readme.
-
----
 
 # Part 1
 
 ## Part A. 
 ### Set up your Pi for on-device AI
 
-Create a virtual environment and install the requirements. They include `ultralytics` (YOLO), which pulls in torch, so this takes a while:
+***Include a screenshot of ollama list showing your models.***
 
-```
-pi@raspberrypi:~$ cd Interactive-Lab-Hub/Lab\ 5
-pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python3 -m venv .venv
-pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ source .venv/bin/activate
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ pip install -r requirements.txt
-```
-
-As in Lab 3, [`uv`](https://docs.astral.sh/uv/) is a much faster drop-in for `pip`: `pip install uv && uv pip install -r requirements.txt`.
-
-### YOLO: download the nano model and export it for the Pi
-
-We use the nano model of [YOLO26](https://docs.ultralytics.com/models/yolo26/), exported once to NCNN, the format that runs fastest on the Pi. This downloads the weights:
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python -c "from ultralytics import YOLO; YOLO('yolo26n.pt').export(format='ncnn')"
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ yolo export model=yolo26n.pt format=ncnn
-```
-If every ultralytics message is followed by a `--- Logging error ---` traceback ending in `UnicodeEncodeError: 'latin-1' codec can't encode character`, fix your shell's locale once::
-
-```
-echo 'export LANG=C.UTF-8' >> ~/.bashrc
-echo 'export LC_ALL=C.UTF-8' >> ~/.bashrc
-echo 'export PYTHONIOENCODING=utf-8' >> ~/.bashrc
-source ~/.bashrc
-```
-
-The second command converts the .pt model to a .ncnn model.
-
-Test it on an image from the internet. `project="$PWD"` keeps the output in `predict` in the current lab folder; without it, ultralytics writes to a `runs/` folder at the top of your git repo, where you will not think to look.
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ yolo predict model=yolo26n_ncnn_model source=https://ultralytics.com/images/bus.jpg project="$PWD"
-```
-
-The result is in `predict/bus.jpg`: boxes around the people and the bus.
-
-Now a photo of your own. Plug in the webcam and take one with `snap.py` (`--delay 3` gives you three seconds to get into the frame), or choose any picture you downloaded from the internet and put under this folder. Put your selected picture after the `source=` Then run the same command on it:
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python snap.py --delay 3
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ yolo predict model=yolo26n_ncnn_model source=snap.jpg project=runs
-```
-
-Every run gets its own numbered folder, so this one is in `runs/predict2/snap.jpg`; the command prints where it saved. Keep `snap.jpg`, you will show it to Qwen in Part D.
-
-### Ollama: install it and pull Qwen
-
-[Ollama](https://ollama.com) runs language models locally. Nothing leaves the Pi: no API key, no internet after the download.
-
-```
-pi@raspberrypi:~ $ curl -fsSL https://ollama.com/install.sh | sh
-pi@raspberrypi:~ $ ollama pull qwen3.5:0.8b
-pi@raspberrypi:~ $ ollama pull qwen3:0.6b
-pi@raspberrypi:~ $ ollama list
-```
-
-| model | download | what it does |
-|---|---|---|
-| `qwen3.5:0.8b` | ~1.3 GB | text **and images**; the one we use in this lab |
-| `qwen3:0.6b` | ~0.5 GB | text only, smaller and faster (~16 tokens/s on a Pi 5) |
-
-\*\*\***Include a screenshot of `ollama list` showing your models.**\*\*\*
+Ollama list:
+<img width="548" height="79" alt="Screenshot 2026-10-21 at 10 40 26 AM" src="https://github.com/user-attachments/assets/e987d627-b7b4-45aa-b767-cf0f3f769425" />
 
 
 ## Part B. 
 ### See: recognize people in real time with YOLO
 
-YOLO is an *object detector*: it finds every person, cup, cat and so on (the 80 [COCO](https://cocodataset.org/) classes), draws a box around each, and gives a confidence. For an observant system that is exactly what you want: *how many*, *where*, *how sure*.
+***Include a short video or screenshots of your experiments with the person detection. Write down three situations where it did not see you, or saw a person who was not there, and what you think the cause was.***
 
-Connect your webcam, connect to your Pi through **VNC** (the script opens a window), and run the person detector. Read `yolo_person.py` first; the loop at the bottom is the whole idea.
+I actually had more trouble getting YOLO to not detect me than I expected. I was surprised by how sensitive it was, as it could detect a person sitting pretty far behind me who appeared very small in the camera frame. This made me assume that YOLO doesn't necessarily need to see a person's entire face or body to classify them as a “person.” Instead, it seems capable of identifying partial visual features associated with a person. For example, my hand was still detected as a person even when I was holding up my phone case.
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py
-```
+<img width="616" height="484" alt="Screenshot 2026-10-22 at 10 36 18 AM" src="https://github.com/user-attachments/assets/1b52f6f3-de3f-4371-b0aa-c07b1da7fe74" />
+<img width="643" height="534" alt="Screenshot 2026-10-22 at 10 34 15 AM" src="https://github.com/user-attachments/assets/c8bc0e77-3244-43bb-a3c3-38f0dab38679" />
 
-While it runs, walk in and out of the frame, sit down, turn your back, hold up a photo of a person on your phone. Watch the confidence number on the box change with each.
+What surprised me most, however, was that YOLO could still recognize me when only my torso was in the frame. I had assumed that wearing a large, solid-colored sweater would make it harder for the model to identify me, since there were fewer visible details. Although the detection occasionally flickered, YOLO was still able to recognize me as a person. This showed me how capable the model is of detecting people even when only part of the body is visible or when clothing obscures some of the usual visual features.
 
-Then press q to quit and run it again with a flag. Each one changes a single thing:
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --conf 0.2     # lower the bar: see what the model is unsure about
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --conf 0.7     # raise the bar: see what you lose
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --all          # all 80 classes, not only people: what else is on your desk, and what does it get wrong?
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --headless     # no window, only the printed readings: how it runs over ssh, and at night
-```
-
-\*\*\***Include a short video or screenshots of your experiments with the person detection. Write down three situations where it did not see you, or saw a person who was not there, and what you think the cause was.**\*\*\*
-
-
+<img width="648" height="561" alt="Screenshot 2026-10-22 at 10 29 54 AM" src="https://github.com/user-attachments/assets/91e31627-a7af-4842-b147-ccb64c432f57" />
+<img width="645" height="566" alt="Screenshot 2026-10-22 at 10 31 53 AM" src="https://github.com/user-attachments/assets/c0ecebfd-efe9-4805-92f4-ed19d4f48732" />
 
 ## Part C. 
 ### See more: hands and pose with MediaPipe
 
-YOLO tells you that a person is there. Google's [MediaPipe](https://mediapipe.dev/) tells you what their hands and body are doing: face, hand and body pose detection, fast on the Pi.
-
-![Media pipe](Readme_files/mp.gif)
-
-The demo plays a looping audio file, so make the helper script executable first:
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ chmod +x loop_audio.sh
-```
-
-Connect your webcam, connect to your Pi through **VNC**, and run the hand pose script:
-(***it will not work if you use ssh from your laptop***)
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python hand_pose.py
-```
-
-Try the two main features of this script: 1) pinching for percentage control (the thumb-to-index distance sets the volume), and 2) "[Quiet Coyote](https://www.youtube.com/watch?v=qsKlNVpY7zg)" for instant percentage setting (the gesture mutes it). Notice how this example uses hardcoded positions and relates those positions with a desired set of events, in `hand_pose.py`: a hand is 21 landmark coordinates, and an *event* is a rule you write over them. That is the same job as `interpret()` in Part E.
-
-Consider how you might use this position based approach to create an interaction, and write how you might use it on either face, hand or body pose tracking.
-
 \*\*\***Include a screenshot or short video of the hand pose demo, and write how you might use face, hand or body pose tracking in your observant system.**\*\*\*
 
+<img width="701" height="612" alt="Screenshot 2026-10-21 at 6 40 45 PM" src="https://github.com/user-attachments/assets/894dff6d-c25c-4223-8c6e-26f66d19d331" />
+
+My partner and I were thinking of using facial movements as the focus of our project. More specifically, we want to explore whether a computer vision system can detect when a user's eyes and mouth are open or closed in real time. The system would analyze facial features captured by a camera and classify their states based on visible movements. For example, it could identify when a user blinks, keeps their eyes closed for an extended period, or opens and closes their mouth.
 
 ## Part D. 
 ### Reason: run Qwen on the Pi with Ollama
 
-Talk to the model in the terminal first. Qwen3 models "think" before they answer, which is slow on a Pi, so turn it off. Then ask about something you can check:
+***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with qwen3:0.6b and compare.***
 
-```
-pi@raspberrypi:~ $ ollama run qwen3.5:0.8b
->>> /set nothink
->>> Tell me a bit about the history of Roosevelt Island. Three sentences.
->>> /bye
-```
+Below are the three questions I asked. My last two questions were comparing how using the model would effect the responses. I found that using qwen3:0.6B made the response time shorter, probably because its responses were briefer and less detailed than when I used the other model. 
 
-Roosevelt Island is a good first question because you know the ground truth: it was Blackwell's Island, then Welfare Island, got its current name in 1973, and Cornell Tech opened on it in 2017. Count how many of the model's facts are true.
+1.  python ask_qwen.py --image snap.jpg "What is in this photo?"
+A close-up selfie of a young woman with dark hair, wearing a gold ring on her index finger and making a peace sign.
 
-From Python, qwen requests can be triggered by the `ask_qwen.py` script. It turns thinking off, tells the model to answer in at most three sentences, and cuts it off after 120 tokens (`--max-tokens` changes that), because a small model left alone writes an essay. Read the script, then run:
+2. python ask_qwen.py --model qwen3:0.6b "Tell me briefly about TikTok."
+TikTok is a social media platform where users share short, creativevideos, often called "tiktoks." It's popular for people who want toexpress themselves or connect with others. The platform has a largeuser base and a wide range of content, from music and dance to foodand lifestyle. It's known for being a hub for trends and trends.
+	
+[qwen3:0.6b, 12.2 s]
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python ask_qwen.py "Tell me a bit about the history of Roosevelt Island."
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python ask_qwen.py --model qwen3:0.6b "Tell me a bit about the history of Roosevelt Island."
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python ask_qwen.py --image snap.jpg "What is in this photo?"
-```
-
-Things in the [Ollama API](https://github.com/ollama/ollama/blob/main/docs/api.md) worth knowing:
-
-* `think: false` skips the reasoning trace. Always, on a Pi. `ask_qwen.py` sends it on every request; `--think` turns the trace back on for one question, so you can see what you are skipping and how long it takes.
-* `format` makes the model answer as JSON with the fields you name (`--json`). Handy when a display or a servo has to read the answer.
-* `images` sends a photo along with the prompt (`--image snap.jpg`, the photo from Part A). `qwen3.5:0.8b` can look at pictures.
-
-A 0.8B model is slow and sometimes wrong. It will invent events that are not in the data and agree with a wrong premise. Give it the data, keep its job narrow, and decide what the device does when the model is unsure.
-
-\*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
-
-<details>
-  Q&A here
-</details>
-
-
-## Part E. 
-### Connect: from YOLO readings to Qwen reasoning
-
-An observant system is a pipeline: a **detector** turns pixels into boxes, an **interpreter** turns boxes into readings in words ("one person, left, close"), the readings pile up in a **log**, and a **reasoner** answers a question about the log. The language model never sees pixels, only the words you chose in the interpreter. That makes the interpreter the most important design decision in the system.
-
-`yolo_to_qwen.py` is the pipeline in one file, one function per stage. Read it before you run it:
-
-* `interpret(r)` is the interpreter. It takes one YOLO result and returns one reading. A person is *left*, *center* or *right* by which third of the frame the middle of their box is in, and *close* if the box is taller than 60% of the frame, *far* otherwise. The reading is a string like `1 person(s) at center/close`, or `nobody`. Fifteen lines, and they decide everything the model can know.
-* `watch(seconds)` is the detector and the log. Twice a second it reads a frame, runs YOLO on it and calls `interpret()`. A time-stamped reading goes into the log **only when it differs from the previous one**, so a minute of sitting still is one line, not 120.
-* `ask(log, question)` is the reasoner. It pastes the log and your question into one prompt, tells Qwen to answer in at most three sentences using only what is in the log, and sends it to Ollama with thinking off.
-
-Run it through VNC and a window opens with YOLO's boxes, the current reading and the seconds left. Press q to stop watching early. Over plain ssh add `--headless` and you get the same thing minus the window.
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_to_qwen.py
-```
-
-It watches for a minute, saves the log to `watch_log.txt` and asks Qwen the default question. The terminal looks something like this:
-
-```
-14:02:11 nobody
-14:02:19 1 person(s) at right/far
-14:02:24 1 person(s) at center/close
-14:02:51 nobody
-
-4 lines saved to watch_log.txt
-asking Qwen...
-
-Qwen (18.4 s):
-One person came in from the right, moved close to the camera, and left after about half a minute. ...
-```
+3. python ask_qwen.py "Tell me briefly about TikTok."
+TikTok is a social media platform that allows users to create and share videos, primarily focusing on music, trends, and entertainment.nIt has grown into one of the largest digital ecosystems by enablingcreators to reach millions of people instantly through short-form content. The service connects users with each other via comments, likes, shares, and stories to foster community engagement and discovery.
+	
+[qwen3.5:0.8b, 14.3 s]
 
 ---
 
 # Lab 5 Part 2: Overnight Sensation
-
-For Part 2, you will use the observant system from Part 1 to design a night-time interaction. On-device AI is slow, so let it work while you sleep. The person meets the device twice: **before bed**, when they hand the night over, and **when awake**, when the device gives something back. In between, the pipeline from Part E runs on its own.
-
-Two flavors, pick one or mix them:
-
-* **Sense all night.** The Pi watches, listens or measures from bedtime until morning and keeps a log.
-* **Process all night.** You already have the data (a day of phone photos, a long recording) and the Pi needs hours to get through it.
-
-Two house rules. Sample rather than stream: one look every 5 to 30 seconds is plenty, and it keeps the Pi cool. And keep everything on the Pi: tell the people you live with, point the camera at things rather than at beds, and delete the snapshots after the demo.
 
 ## Part F. 
 ### Read Part 2 and storyboard your night-time interaction
@@ -281,80 +74,68 @@ Storyboard a night-time interaction built on your observant system, in three pan
 2. **While asleep.** What does the device watch or work through?
 3. **When awake.** What is the one thing the person learns, and in what medium?
 
-Stuck? A kitchen that tells you who raided the fridge. A desk that reports whether you actually went to bed. A window that names the quietest hour. A plant that describes its night. Find something better.
-
-Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf).
-
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
+For our project, my partner and I are planning on making a sleep monitoring device that detects snoring and potential signs of sleep apnea. The device will log how often these instances occur so that users can better understand their sleep patterns and improve their sleep hygiene.
+
+We currently plan to set up a camera on the headboard of the bed, angled so that it can see the user's face. Users will turn on the device by pressing a button before going to sleep. Once the system detects that the user's eyes have been closed for five consecutive minutes, it will assume that the user has fallen asleep and move on to the second phase, which focuses on detecting snoring and possible signs of sleep apnea.
+
+We plan to achieve this by detecting when the user's mouth is open and, if time permits, analyzing audio to identify snoring sounds. If the system detects both an open mouth and snoring, it will record the event in a log, including the time it occurred and a short video clip of the event. In the morning, users will be able to review the log to see how frequently these events occurred throughout the night. This could help users recognize patterns in their snoring and become more aware of their sleep habits.
+
+Storyboard: 
+
+<img width="1385" height="771" alt="Screenshot 2026-10-22 at 11 12 04 AM" src="https://github.com/user-attachments/assets/8549331c-9eab-461f-b441-c802a357e9b7" />
+
 ## Prep for Part 2
-
-1. Look at and give feedback on the Part F storyboards.
-   **Put the feedback for your ideas here.**
-2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
-3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
-4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
-
 \*\*\***Post your revised storyboard here.**\*\*\*
 
-## Part G. 
-### Design the interaction before
+We received feedback from one of our classmates who said that the snoring aspect seems interesting. They noted that there may be instances of confusion where the user may trigger another event so audio cues may help. They also made comments that some more interactive elements would be nice. 
 
-The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
+With this feedback in mind we made the following revisions:
 
-\*\*\***Describe the interaction before.**\*\*\*
+	1. Instead of a button to activate, we decided on triggering the system with Quiet Coyote.  We thought Quiet Coyote was appropriate, since it was often used to signal children to calm down and be quiet. 
+	
+	2. We also added more audio elements, such as "good night", "good morning", and a verbal sleep quality report so that users would know when the system was working/processing, and it'd offer more convenient, natural interaction. 
+Having music play to let users know its time to sleep is also a subtle way users know to care more about their sleep.
 
-## Part H. 
-### Incorporate the observant system
+<img width="956" height="721" alt="Screenshot 2026-11-01 at 10 22 34 AM" src="https://github.com/user-attachments/assets/337fe215-3c88-4e50-9357-f2ecca8ebb4f" />
 
-The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret()` from `yolo_to_qwen.py` every few seconds, people only unless you pass `--all`, and writes the readings to `night_log.jsonl`; the reasoning waits for the morning. Start it inside `tmux` so it keeps running after you close your laptop, and stop it with Ctrl-C in the morning:
+***Describe the interaction before.***
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ tmux new -s night
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python overnight.py
-```
+Users will give the system a bedtime, such as 11pm. 15 minutes before the bedtime (in this case, 10:45pm), calming music will begin playing to let users know its time to go to bed. Users will be able to stop the music/let the system know they're about to sleep by signaling Quiet Coyote.Once the system processes the Quiet Coyote, a LED slowly pulses red and the system says "Good Night". 
 
-Fake a night first: run it for thirty seconds while you walk around, stop it, and run `morning.py` from Part I. When that looks right, run a real night. If your storyboard needs a sensor rather than the camera, swap in the Lab 4 example code and log its reading the same way.
+I was responsible for programming the before bedtime portion of the project. I utilized ChatGPT, Piper for the speech, and mediapipe for the camera vision. Below is a video showing how the program works. 
 
-\*\*\***Screenshots or videos of the running system.**\*\*\*
+Code Link: https://github.com/chonjessica23/Interactive-Lab-Hub/blob/Fall2026/Lab%205/quiet_coyote_p1.py
 
-## Part I. 
-### Design the interaction after
+https://drive.google.com/file/d/1TRhDM_q4PxSXFP7iWNiHiMuxS9sRXQ5v/view?usp=drive_link
 
-The reveal. The night produced a log; the morning turns it into something a half-awake person can take in. `morning.py` is the smallest version: it asks Qwen for a three-sentence report.
+***Screenshots or videos of the running system.***
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python morning.py
-```
+**Bedtime Interaction**
 
-Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
+Once the system went into "sleep mode", the camera would detect 3 events: mouth open, instances of snoring, and instances when the user left the screen, perhaps to go to the bathroom, get a late night snack, etc. We believed these elements would help determine the user's sleep quality, discussed later in this documentation. Snoring was marked when sound was detected above a certain decibel threshold, while the mouth being open was detected by determining the distance between the points on the upper and lower lip, and setting a trigger threshold. The bedtime portion ends when the user signals Quiet Coyote again. All these instances were tracked in a separately created log file that will be used for the morning portion. 
 
-## Final documentation
+This portion was handled by Shifeng. A video demonstration is below. 
 
-Document all the prototypes and iterations you have designed and worked on. The deliverables for this lab are writings, sketches, photos, and videos that show what your system:
+https://drive.google.com/file/d/1FJmmQnf50g7aOtpMr3x_jOTYo-hQbLKE/view?usp=drive_link
 
-* "Looks like": how the device sits in the room at night, and what it looks like at bedtime and in the morning.
-* "Works like": the pipeline from detector to interpreter to log to reasoner, with a real night's data.
-* "Acts like": how a person hands the night over and what they get back.
+**Morning Interaction**
 
-\*\*\***Include a short video of the whole system**\*\*\*
+Once we both finished our parts, we sat together using AI to combine both our files and help create the morning report. The system compiles all the information created during the bedtime interaction that then writes a report on the minipi screen, rating your sleep quality and giving percentage of your time either snoring, having your mouth open, or disappearing. This report is also read out loud to users as well. 
 
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+Link to full code: https://github.com/chonjessica23/Interactive-Lab-Hub/blob/Fall2026/Lab%205/quiet_coyote_night.py
 
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
+[Video of it all working together:](https://drive.google.com/file/d/135YGaPZvVVAInZDiwK7Yw9aRUJEGCDgq/view?usp=drive_link) 
 
-## Deliverables & Submission for Lab 5
+**Real testing**
 
-For submission, the readme.md page for this lab should be edited to include the work you have done:
-* Upload any materials that explain what you did, including your code and night log, into your Lab 5 repository, and link them in your Lab 5 readme.md.
-* Labs are due on Sundays, make sure to submit your Lab 5 readme.md to Canvas.
+<img width="1920" height="1440" alt="IMG_20261030_232847" src="https://github.com/user-attachments/assets/3235317b-99cc-4e30-896b-5c275616994c" />
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
+Shifeng tested the program in his dorm and found the following matters comeup:
 
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-</details>
+	1. Because of the bedframe, he was limited in how he could set up the camera which impacted how close the camera was to the face. This in turn impacted the amount of room a user had to signal Quiet Coyote, and changed our mouth distance threshold. 
+	
+	2. We thought having the LED shine brightly would be enough to illuminate the face for the camera to detect features, but found that more light was needed instead. So this system would only work if users slept with a night light as well. 
+
+If we had to iterate this project again or anyone else wanted to try, I would recommend getting the exact dimensions of the bed frame and camera height so you could anticipate those thresholds and positioning better. I would also look for alternative equipment that could perhaps capture imaging in the dark better, or alternative directions such as incorporating a soothing light. 

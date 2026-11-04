@@ -2,76 +2,9 @@
 
 _This project is to be done in teams of 2._
 
-**NAME OF BOTH COLLABORATOR(S) HERE**
+**Jessica Chon & Jenny Li**
 
-**THE MASTERWORK YOU DREW FROM THE HAT:**
-
----
-
-One way to understand greatness is to look to the greats. Just as painters learn
-the technique and artistry of the old masters by recreating their paintings, so
-too shall we come to understand computer-mediated interaction by recreating the
-interactive masterworks of our time.
-
-This week, every team will draw a different masterwork from a hat. Some are
-conceptual pieces, some are historical works, some are modern-day products —
-but they all share one thing: **their central mode of interaction is carried by
-light.** Think of Tinker Bell in the original stage production of *Peter Pan*,
-represented by nothing more than a darting circle of light from an off-stage
-mirror. There was no actor playing Tinker Bell; she existed entirely through the
-way the other characters interacted with that light.
-
-Your job is to recreate the *interaction* of the piece you drew — not to build a
-museum-grade replica, but to stage the moment that makes it what it is. Someone
-who knows your piece should watch your recreation and recognize it instantly.
-Someone who has never heard of it should walk away understanding what it is
-famous for.
-
-You will do this using the interaction staging techniques we will use all semester: a
-storyboard, some acting, a phone standing in as a controllable light (the
-*Tinkerbelle* tool), a hidden human "wizard" driving it, a costume, and a
-recorded video.
-
-*Make sure you read all the instructions and understand the whole activity
-before starting!*
-
-## Prep
-
-To start, you will need:
-
-1. Read about Git [here](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F).
-2. Set up your own Github "Lab Hub" by forking the [Interactive-Lab-Hub repository](https://github.com/IRL-CT/Interactive-Lab-Hub). To get lab updates, simply use [GitHub's "Sync fork" button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) when new content is available.
-
-3. Set up your `README.md` so it has your name and links to this lab. Learn to
-   format a README [here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-4. **Draw your masterwork from the hat and write it at the top of this file.**
-   Whatever you drew is yours — lean into it.
-
-## Materials
-
-For this lab you will need:
-
-1. Paper, markers/pens, scissors
-2. A smartphone with a browser that can display a webpage (your stand-in "light")
-3. A computer to host the control webpage
-4. Found objects and materials to **costume your phone so it looks like the
-   device in your masterwork** — doll clothes, a paper lantern, a bottle, foil,
-   a cardboard shell, whatever it takes. Be resourceful.
-
-## Deliverables
-
-Submit all of the following in this lab folder of your Lab Hub, as links or
-uploaded files. **Each group member posts their own copy to their own Github repo**, even if the work is
-shared.
-
-1. A short **research write-up** of your masterwork (what it is, when, who made
-   it, and — most importantly — what the interaction is)
-2. **3 iterated storyboards** of the interaction in the masterwork
-5. A **video sketch** of your prototyped interaction
-6. Any **reflections** on the process
-
-Labs are due on Mondays. Make sure this page is linked from your main class hub
-page.
+**Glow-in-the-dark Stars:**
 
 ---
 
@@ -79,147 +12,90 @@ page.
 
 ## Part 0. Know Your Master
 
-Before you prototype anything, get intimately acquainted with the piece you
-drew. Do real research. You are looking less for trivia than for the *shape of
-the interaction*:
+After doing some research and going off some of our own personal experiences with the glow-in-the-dark stars, we concluded that these stars glow a neon-ish simple light that fades over time, and you can "recharge" them with light to make them brighter with UV or sunlight. Normally, its just the stars that are present and a user occasionally looks at them or charges them. Because they need to be charged, the user takes on an almost caregiver-esque role that makes this device need maintenance. Otherwise, stars are just simply there to amuse onlookers.
 
-- What inputs are available to the user? What responses does the work give?
-- Who is present, and how does the piece color the relationships between them?
-- What is the piece famous for? What are its strengths and its weaknesses?
+Jenny and I both agreed that the core interaction for this light object is to recharge it occasionally through very convenient and seemingly indirect input. Typically, stars are already glowing when you receive them, so there's very little action needed to activate it. The interaction is just to sustain it with light. 
 
-  Sometimes the details of how the interaction worked are lost in history. Try filling it in with your imagination!
+**Strengths**: The stars became famous in the 80s/90s for being a cheap and convenient, yet aesthetic way to decorate a room, particularly for kids. For relatively low effort, children can be amused, decorate their room, or even feel a sense of peace and calm while being in the dark. 
 
-**Describe your masterwork here, in your own words. What is the core interaction
-someone would recognize it by?**
+**Weaknesses**: Some weaknesses were that they can get boring pretty fast, since there's very little engagement needed. Also, it's inconvenient to have to "recharge" each star when they fade, since they often need sunlight, so one would have to individually charge each star. Also, many complaints back then were that the stars ruined the walls with their adhesive backs.
 
 ## Part A. Plan
+**Setting**: We imagine this in either small children's bedrooms, or pre-k classrooms where kids take naps.
+**Players**: Aside from the children being the main users, we imagine parents or teachers also being present. Most likely supervising the children or observing the interactions.
+**Activity**: When the star is working properly, it's giving off a gentle glow for the users/kids to look at and admire. But when the star needs to be recharged, it starts flickering, signaling the kids it needs to make a wish to make the star shine bright again. 
+**Goals**: Children are trying to keep the light as bright as possible, while parents or teachers offer gentle guidance, such as reminding kids the stars are dimming or reminding them how to recharge the star.
 
-For your masterwork, reconstruct the interaction as a scene:
+<img width="445" height="695" alt="Screenshot 2026-08-29 at 4 55 09 PM" src="https://github.com/user-attachments/assets/a09445fb-f877-4e88-a8bf-a0b190977445" />
 
-- **Setting:** Where and when does this interaction happen? (a jungle, a kitchen,
-  a spaceship corridor, a nightclub, a harbor at night)
-- **Players:** Who is involved? Who else is present? Think through everyone in
-  the setting, not just the primary user.
-- **Activity:** What is happening between the players and the light?
-- **Goals:** What is each player trying to do?
-
-**Describe your setting, players, activity, and goals here.**
-
-Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
-don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
-and the people around it. If you're new to storyboarding, read
-[this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
-
-**Include pictures of your storyboards here.**
-
-Use the storyboards to decide what interaction to prototype.
-
-**Summarize the feedback you got here.**
+**Feedback**: We were unable to decide upon our project until outside of class, so we were unable to receive feedback for the storyboards. But we aim to get some more in the upcoming session. 
 
 ## Part B. Act out the Interaction
 
-Physically act out the interaction you planned. For now, just pretend the light
-is doing what you've scripted — a person can wave a flashlight, or you can narrate
-it aloud.
-
-**Are there things that seemed better on paper than when acted out?**
-
-**Did new ideas about the piece surface once you were on your feet?**
-
-**Are there key moments in the interaction where things could go in a different direction?**
-Iterate your storyboards to capture key non-sequential aspects of the interaction. 
+After completing the storyboard, we acted it out and overall it went very smoothly and followed our plan. Though while acting out the interaction, we realized we needed more direct and visual feedback to let users know when the stars were in a charging mode. After this realization, we decided that the stars would change to a different color (green or blue) to address this problem. 
 
 ## Part C. Prototype the Light (light first!)
 
-Use your smartphone as the light of your device. Open the browser on your phone
-to act as the "light," and use the remote control interface on your computer to
-change that light. Code and setup instructions for the *Tinkerbelle* tool are
-[here](https://github.com/IRL-CT/tinkerbelle) (we invented this tool for
-this lab). If you hit technical trouble, a manually or remotely controlled light
-switch, dimmer, or lamp is a fine substitute.
+While using the Tinkerbell program, we came up with 4 different states for the stars:
 
-**Get the light interaction working before anything else.** Your grade this week
-rides on the *light* being recognizable — the color, the rhythm, the timing, the
-way it answers a person. Only once your light interaction genuinely reads as your
-masterwork should you consider layering in a second modality (sound, vibration,
-motion). If in doubt, keep polishing the light. The other modalities are next
-week's business.
+ 1. Fully charged- a bright yellow, but not too obnoxious or harsh to look at
+ 2. Low battery- this would be a very dim, almost gray-ish yellow phase that would gently flicker, mimicking a dying light
+ 3. Charging- the stars would turn a non-yellow color to inform users that the stars are ready to listen to the wish
+ 4. Processing- after hearing the complete wish, some type of flickering would occur to show that the input has been accepted
+
+During this process, we realized that we had to be more intentional than anticipated with our color choices. Some of the initial color phases we chose weren't very noticeable, so we went with more dramatic color/hue differences.
 
 ## Part D. Wizard the Device
 
-Set up a "wizard" arrangement so one person can secretly drive the light while
-another acts with it — this is how you make the device feel alive without
-building any real electronics. (Zoom works well for recording; you can pin the
-video feed of whichever scene you want to capture.)
+Jenny played the child while I played the mother as we mimicked our storyboard. I was off-screen doing the "wizarding".
 
-**Include your first attempts at recording the wizarded set-up here.**
+https://github.com/user-attachments/assets/80fe6593-4f33-403e-ae41-386828eb92c0
 
 ## Part E. (optional) Costume the Device
 
-Only now should you worry about what the device looks like. Costume your phone so it reads
-as the object from your masterwork — HAL's eye, a Simon shell, a paper-lantern
-Tinker Bell, an Ambient Orb, a lighthouse, a jack-o'-lantern, whatever you drew.
+Initially, we did film the video without adding the post-it stars or making the phone look more like a star. But we found that it was harder to capture what we were envisioning with the storyboard. Adding the post-its and cut out star made the intention of our idea much more understandable. 
+<img width="768" height="1024" alt="2E15CFB3-81BD-4340-A5BF-B0D77B1F7625_1_105_c" src="https://github.com/user-attachments/assets/15545810-8a44-4f3a-9f9c-543fb3edd02c" />
+<img width="768" height="1024" alt="4E360122-1F8F-4672-A54B-5222FFA52EC0_1_105_c" src="https://github.com/user-attachments/assets/83fa7cab-97b9-4f6d-b7f4-6a6c2939052a" />
 
-Think about the world your device lives in: could that environment overheat it?
-Is water a danger? Does it need to be loud and bright for an emergency, or quiet
-and calm for a bedroom?
-
-**Include sketches/photos of what your device might look like here.**
-
-**What concerns or opportunities shaped the way you designed its look?**
+For the actual stars, we plan on 3D printing stars that hold small lights and can be taped with command tape for easier setup.
 
 ## Part F. Record
 
-**Record your prototyped interaction as a video sketch.** Aim for the bar from
-the top of this lab: a viewer who knows the piece should recognize it; a viewer
-who doesn't should come away understanding what it's famous for. How might you illustrate the non-sequential aspects of the interaction in the sketch?
+https://github.com/user-attachments/assets/746dd9b1-f86e-48aa-85f5-d75a19559881
 
-**Include your video here.**
+**Collaborators**: Jenny Li. Jenny made strong feedback points that helped refine our project idea (such as emphasizing the need for more gentle, indirect interactions) and helped set the scene with her tri-pod and star designs!
 
-**Please indicate who you collaborated with on this lab.** Be generous in
-acknowledging their contributions, and credit any other influences (YouTube,
-Github, Twitter, a friend who lent you a lamp) that informed your recreation.
 
 ---
+**Part 2 — ReMastering the light**
+**Feedback from Other Groups**
+1. Lamiah Khan & Rawisara Chairat (https://github.com/khanlamiah019/Interactive-Lab-Hub/tree/Fall2026/Lab%201) 
+They enjoyed the creativity of light up the stars interaction and agreed that adding the post-its helped clarify the entire scenario well. Lamiah noted that it'd be "nice to expand on what happens when the interaction ends", especially given that this project is intended for children. More specifically, she thought it'd be nice to see what happens after a wish is made.
+ 
+2. Shenye Wang & Bowei Huang (https://github.com/sw2486-hub/Interactive-Lab-Hub/blob/Fall2026/Lab%201/README.md 
+Utilizing the green light as feedback for the user was a "nice touch" because it signaled to the user when the interaction was successfully completed. Their feedback also said that adding more engagement with the glow-in-the-dark stars would be more entertaining. They were curious about what would happen if the star wasn't able to process the wish.
+ 
+3. Yujing Zhou, Youssef Hassan (https://github.com/jUSTbEarOCk/Interactive-Lab-Hub/tree/Fall2026/Lab%201)
+Their feedback was to perhaps add more interactive moments, such as adding movement when a wish was made. But overall, the interaction would be entertaining for children.
+ 
+**Our Revisions**
+The feedback from the groups was essentially:
+ 1) adding more engagement with the stars is an improvement and
+ 2) more feedback from the interactions with the star would help avoid confusion or increase engagement. 
 
-# Part 2 — ReMastering the light
+Jenny and I decided to review our video to see what points made the groups above come up with that feedback and where else we could improve. We concluded that there were two major points of interaction: initiating the charging mode and completing the charging. 
 
-*This describes the second week's work for this lab activity.*
+To improve the charging initiation, we decided to add sound on top of the blue color change so that it was more noticeable when the stars were processing the wish. We also brainstormed adding more animations when the charging mode was initiated, similar to the way Amazon Alexa lights up when you say "Alexa". However, we weren't sure how to modify the TinkerBelle app to execute this for the video. 
 
-## Prep (before the next lab)
+For charge completion mode, we also added sound for when the star relit, but made sure to distinguish the sounds from each other to avoid confusion by changing the tones. Jenny and I agreed to keep the reactions very minimal and simple, since we believe the appeal of the glow-in-the-dark stars is the simplicity, subtlety, and calm nature of the product. Also, since this product is meant for children, more "exciting" interactions would be overstimulating for them. 
 
-Find three other groups. (How? Maybe Slack?) Visit their Lab Hub pages, watch their
-videos, and give them reactions and feedback: tell them what you saw happening,
-guess the masterwork and the goals of the characters, and ask about anything that
-wasn't clear.
+<img width="477" height="712" alt="Screenshot 2026-09-06 at 6 17 11 PM" src="https://github.com/user-attachments/assets/507dc782-249d-4aa5-8453-d195ff1e0443" />
 
-**Who were the other groups you kibitzed with? Add links to their project pages here.**
-**Summarize the feedback you got from your partners here.**
+Some of the other groups' videos were very immersive because of the extra props or scenery they added to their video setting. Since this was so helpful in our understanding of their products, we also added more scenes and made the video setting more detailed. We made the bedroom environment clearer with added blankets, pillows, and more clearly drawn stars on the wall. Additionally, we included a "one month later" moment to make the interaction more-closely mimic a real-interaction. This was so users would understand that the star has faded over time, similar to real glow-in-the-dark stars.
 
-## Remix, Update, or Critique the Master
+We refilmed the video with these adjustments, which can be seen in the video below:
 
-Now that you understand your masterwork from the inside, respond to it. Do the
-recreation again, but this time make it your own — pick one of these moves (or
-combine them):
-
-1. **Remix the modality.** Your recreation no longer has to (just) use light. Use
-   vibration, sound, motion, heat — whatever best carries the interaction. Feel
-   free to fork and modify the Tinkerbelle code. (Add your updates to this lab's folder!)
-2. **Update it.** Redesign the piece for today's context, or for a setting its
-   creators never imagined (the piece with roommates in the room, with children
-   present, on a phone, in a car).
-3. **Fix its weaknesses.** You identified this master's strengths and weaknesses
-   in Part 0 — now address a weakness, or push a strength further.
-
-We will grade this second pass with an emphasis on **creativity** and on how well
-your response engages with what your master was really doing.
-
-**Document everything here — especially the storyboard and video. Photos of the
-prototype are great too.**
-
----
-
-
+https://github.com/user-attachments/assets/7976cf6d-9b78-4001-9baf-a05ae8ba84b4
 
 *Assignment lineage: this lab merges "Staging Interaction" (Interactive Lab Hub)
 with "Recreating the Masters" (Interaction Design Studio, Profs. Scott Minneman &

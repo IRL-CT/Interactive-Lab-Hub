@@ -22,19 +22,7 @@
 
 1 x [Adafruit MPR121 12-Key Capacitive Touch Sensor Gator Breakout - STEMMA QT / Qwiic](https://www.adafruit.com/product/4830)
 
-1 x [Breadboard](https://www.adafruit.com/product/4539)
-
-1 x [Copper Foil Tape](https://www.amazon.com/Conductive-Shielding-Repellent-Electrical-Grounding/dp/B0741ZRP4W/ref=sr_1_5?dchild=1&keywords=conductive+copper+tape&qid=1628142003&sr=8-5)
-
-1 x [Alligator Clips](https://www.amazon.com/WGGE-WG-026-Pieces-Colors-Alligator/dp/B06ZXSCLDH/ref=sr_1_3)
-
-1 x [9G Servo](https://www.digikey.com/en/products/detail/dfrobot/SER0048)
-
 1 x [SparkFun Servo pHAT for Raspberry Pi](https://www.sparkfun.com/sparkfun-servo-phat-for-raspberry-pi.html)
-
-1 x [Micro HDMI Cable - 3ft](https://www.sparkfun.com/micro-hdmi-cable-3ft.html)
-
-1 x [SparkFun Qwiic SHIM](https://www.sparkfun.com/products/15794)
 
 1 x [SparkFun Qwiic Button - Red LED](https://www.sparkfun.com/products/15932)
 
@@ -42,10 +30,15 @@
 
 1 x [SparkFun Qwiic Cable Kit](https://www.sparkfun.com/sparkfun-qwiic-cable-kit.html)
 
-1 x Bluetooth wireless speaker w/ microphone
+1 x [SparkFun Qwiic Joystick](https://www.sparkfun.com/sparkfun-qwiic-joystick.html?srsltid=AfmBOoo95Wuoriln-LS7e12ApAR3dMR5gBIA_HEJ0V2UGsQv9BCIXoRZ))
 
+1 x [SparkFun Proximity Sensor Breakout](https://www.sparkfun.com/sparkfun-proximity-sensor-breakout-20cm-vcnl4040-qwiic.html?srsltid=AfmBOop6ygAMz9Ig7CfPs6IuBbom5bad3SDMledXaLONdr65bJ6ofZwa)
 
+1 x [Mini External USB Stereo Speaker](https://www.adafruit.com/product/3369?srsltid=AfmBOoqzNs4KOu2nOID3hFrhkxtHABRarg_tdzPxeamCHqTn2NGMy4jl) 
 
+1 x [SparkFun Qwiic OLED Display 0.91 in, 128x32](https://www.sparkfun.com/sparkfun-qwiic-oled-display-0-91-in-128x32-lcd-24606.html?srsltid=AfmBOorXDh9_KXhBylB0C_12UoRYzfNSA5lPXiDmTUkfxqSFSY0Ui28a)
+
+1 x [SparkFun QWiic Proximity Sensor Breakout](https://www.sparkfun.com/sparkfun-qwiic-oled-display-0-91-in-128x32-lcd-24606.html?srsltid=AfmBOorXDh9_KXhBylB0C_12UoRYzfNSA5lPXiDmTUkfxqSFSY0Ui28a)
 
 
 
