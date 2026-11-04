@@ -1,5 +1,145 @@
 # Ph-UI!!!
 
+Teammate: [Alex Yen](https://github.com/Alexyen04/Alex-Yen-Interactive-Lab-Hub/tree/Fall2026/Lab%204)
+
+ Feast Automata prototype that turns sorting candy into a playful physical interaction.
+
+**[Watch the final interaction video](https://youtube.com/shorts/xA2eng8XUug)** · **[Code and setup](skittle_sorter/README.md)**
+
+## Documentation
+
+- [Final prototype](#final-prototype)
+- [Design exploration](#design-exploration)
+- [Rough prototype](#rough-prototype)
+- [Build and integration](#build-and-integration)
+- [User testing](#user-testing)
+- [Reflection](#reflection)
+- [Original assignment instructions](#original-assignment-instructions)
+
+## Final prototype
+
+[Watch the final project video](https://youtube.com/shorts/xA2eng8XUug).
+
+<img width="650" alt="IMG_8157" src="https://github.com/user-attachments/assets/8058e48f-8fa4-40cc-8b6b-cc1c61ae1456" />
+
+<img width="650" alt="IMG_8158" src="https://github.com/user-attachments/assets/d73b3466-30af-4a40-9661-8500a08aadb0" />
+
+## Design exploration
+
+### Five concept sketches
+
+We explored these five concepts:
+
+- OCD Food Sorter
+- Food Dispenser
+- Magnetic Claw Machine Idea
+- Auto Drink Mixer
+- Revolving Sushi Dispenser
+
+<img width="650" alt="Concept sketch 1" src="https://github.com/user-attachments/assets/154cf03c-9389-4c85-8d87-46b3aa070970" />
+
+<img width="650" alt="Concept sketch 2" src="https://github.com/user-attachments/assets/1a13d610-d22a-49f5-9475-ddd1b73c2bab" />
+
+<img width="650" alt="Concept sketch 3" src="https://github.com/user-attachments/assets/6315edc8-fc0a-45c2-b30e-0e53c3b777cf" />
+
+<img width="650" alt="Concept sketch 4" src="https://github.com/user-attachments/assets/b320b26d-3370-4b46-b159-ac05b198cbc9" />
+
+<img width="650" alt="Concept sketch 5" src="https://github.com/user-attachments/assets/8ba89425-416c-4bd9-9bde-bff2f16a8a07" />
+
+### What questions do these sketches raise? What do you need to physically prototype to answer them?
+
+Some questions that these sketches raise is the size of the contraption. Since we are working with very weak small motors, we have to make sure the actual prototype isn't too large for the motors. For most of these sketches, we have to physically prototype the components that interact with the motors, specifically the conveyor belt system, trap doors, fan blades, and mixing straw. Another question is how much torque the rotars actually produce, is it enough to stop and m and m from causing the motor to swivel. Is it enough to actually push a whole platform of food up and down? To physically prototype this we will most likely need to test these different interactions by making a mockup of the system and actually see whether or not the power they output is enough to complete the action we intended it to complete! So we will have to test whether or not the motor can push a spoon through liquid, or perhaps push a conveyor system with just one rail system to start off with.
+
+### Pick one design to prototype and explain why.
+
+We decided to choose the m and m / skittle sorter because it will have us work with servos, light detectors, and some sort of mathematical reasoning sorter to arrange the skittles and such into different flower shapes! We want to combine the cool physical movement and have it create an artistic design out of simple building blocks, which can then be eaten after the performance! So not only is the person happy from the delicious taste of the sugary treat, but they are also interacting with the visuals that the machines outputs as well! (We were not able to get the flower to work in the final video, however, the base build was completed!)
+
+## Rough prototype
+
+[Watch the cardboard / paper prototype video](https://youtu.be/_1U6LSeBOsY).
+
+## Build and integration
+
+### In-progress build
+
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/88f0249a-ed0e-44db-9ef3-43afb3747b30" />
+
+### Interaction diagram
+
+The following sketch shows how sensing and actuation are connected.
+
+<img width="650" alt="image" src="https://github.com/user-attachments/assets/07b06e6a-5acf-4d56-87f9-b66b663051b5" />
+
+### Code and setup
+
+Project files are in the [`skittle_sorter` folder](skittle_sorter/):
+
+- [`sorter.py`](skittle_sorter/sorter.py) — sorter program, including calibration mode.
+- [`config.py`](skittle_sorter/config.py) — configuration.
+- [`servo_channels.json`](skittle_sorter/servo_channels.json) — servo channel mapping.
+- [`calibration.json`](skittle_sorter/calibration.json) — saved calibration.
+- [`README.md`](skittle_sorter/README.md) — hardware, setup, and usage instructions.
+
+To calibrate, run `python sorter.py --calibrate` from the `skittle_sorter` directory.
+
+## User testing
+
+### Participant P01
+
+[Watch the P01 user-test video](https://youtube.com/shorts/YQO9DZD6NhA?feature=share).
+
+P01 was given no instructions on how to use the sorter, and we wanted to see if the instructions on the screen were good enough to guide a completely new user of the system. In the end, we discovered it was not good enough because it didn't specify "WHERE" the skittle needed to placed, but rather was saying when the skittle should be placed in the machine. It was apparent to my teammate and I however, they were initially confused.
+
+### Participant P02
+
+<img width="650" alt="IMG_8138 (2)" src="https://github.com/user-attachments/assets/30731c9c-baed-4501-b74e-02eeb4ed962c" />
+
+This user was able to immediately pick up when and "where to place the skittle with no help. The video was corrupted and so it's been replaced with a recovered photo of the interaction.
+
+P01’s confusion and P02’s successful interpretation suggest that the placement cues were not consistently clear to new users. Our proposed next iteration would label the camera presentation area and drop opening separately and distinguish these actions in the screen instructions.
+
+## Reflection
+
+### What did you learn about connecting sensing, movement, and physical form? What was fun, surprising, or challenging?
+
+I learned that integrating sensing, movement, and physical form is more difficult than I originally thought. The main difficulty is being able to synchronize the devices physically but also utilize the data / information gathered from the devices and transforming it into a useable form for the other devices. For example, in our design we decided to take the color sensor and use as a determinator for which physical motors would turn. The most fun part was design the motors and connecting them to physical components. It was exciting to see the motors actually rotate and move our scooper that was attached. Some challenging aspects were just connecting all the motors onto a physical cardboard and ensuring they are positioned correctly.
+
+### How does your chosen sensor or input shape the physical response?
+
+The camera sensor detects the color of each Skittle and determines how the sorting mechanism responds. Based on the detected color, the servos rotate the scoopers to direct the Skittle either left or right. The Skittle then travels through our multilevel sorting system until it reaches its designated container.
+
+### How does the physical arrangement of the sensor and actuator change the interaction?
+
+Overall the camera has to be put in a close enough position to detect the color but also not too close where it cannot get an accurate view of the Skittle with proper lighting. For the motors, they need to be placed in a certain position so that when they rotate, the Skittle is dropped into the other appropriate motors. If placed to far apart then the Skittles might miss the scooper and result in the interaction being award since it failed.
+
+### What thresholds, timing, or movement patterns make the interaction feel clear or playful?
+
+After the color is recognized, the display shows a three-second countdown. Following “DROP NOW!”, the system waits two seconds before moving the top flap, then waits 1.5 seconds before moving the second-level flap. It holds that position for another 1.5 seconds before returning home. This staged movement makes the sorting sequence visible and gives the Skittle time to travel between levels.
+
+### What changes when you adjust the sensor placement or servo motion?
+
+The webcam captures the Skittle, and our software classifies its color using calibrated hue values in HSV color space. Camera placement and lighting affect the measured color and can therefore change the selected sorting route. If the camera is moved too close or far away this can drastically change the whole machine since it won't be able to sort it properly according to the color being sensed. In addition, if the servo motion is changed to be a smaller angle then the Skittle may not fall out of the scooper. Likewise, if the angle is too large, then the scooper might turn the Skittle too far causing it to overshoot / undershoot to the next scooper.
+
+### Build iteration: Failed 3D print and revised approach
+
+<img width="768" height="1024" alt="img_8159_1024" src="https://github.com/user-attachments/assets/76b24eb9-3767-4d1a-9d9c-422c8037f70a" />
+
+
+### Build iteration: Automatic hopper to manual feeding
+
+We originally planned to use a 3D-printed automatic hopper to feed Skittles into the sorting mechanism. The print failed, leaving tangled filament instead of a usable hopper, as shown in the photo above.
+
+We revised the final interaction to use manual feeding. The user presents a Skittle to the webcam for color detection, waits for the countdown, and drops it into the sorting mechanism when prompted. This allowed us to demonstrate camera-based sensing and servo-driven sorting, while automatic feeding remained an unfinished feature.
+
+Testing this revised interaction revealed another design issue: P01 understood when to drop the Skittle but was initially unsure where to place it. Our proposed next iteration would add clearer labels for the camera presentation area and drop opening.
+
+- **Looks like:** A cardboard sorting structure with three servo-driven scoopers arranged across multiple levels, a webcam for detecting candy colors, and an OLED display for instructions.
+
+- **Works like:** The webcam and color-classification software identify red, orange, yellow, or green Skittles. The servos then move in sequence to route the candy through the structure toward its corresponding container.
+
+- **Acts like:** The user holds a Skittle in front of the camera, watches the color confirmation and countdown, and drops it into the opening when the display says “DROP NOW!” The user then watches the scoopers move the candy through the sorter.
+<details>
+	
 <details>
 	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
   
@@ -285,13 +425,31 @@ As you develop your Feast Automata concept, consider where the sensor and actuat
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
 
+OCD Food Sorter, Food Dispenser, Magnetic Claw Machine Idea, Auto Drink Mixer, Revolving Sushi Dispenser,
+
+<img width="2244" height="2904" alt="672726472-61a4eb67-f5c6-4df4-afb6-a3ce16c54cf4" src="https://github.com/user-attachments/assets/154cf03c-9389-4c85-8d87-46b3aa070970" />
+
+<img width="503" height="465" alt="672547630-33c8d65a-d248-4680-b0c7-2b0382539ea2" src="https://github.com/user-attachments/assets/1a13d610-d22a-49f5-9475-ddd1b73c2bab" />
+
+<img width="2244" height="2904" alt="672726571-4373e111-d94a-4074-be0a-30afe48a188e" src="https://github.com/user-attachments/assets/6315edc8-fc0a-45c2-b30e-0e53c3b777cf" />
+
+<img width="503" height="437" alt="672547819-c278cd20-a3ce-43d7-bc29-5cd34171f140" src="https://github.com/user-attachments/assets/b320b26d-3370-4b46-b159-ac05b198cbc9" />
+
+<img width="493" height="640" alt="672548028-a785d93c-bc1c-4c37-9d0e-66d8b920d4b0" src="https://github.com/user-attachments/assets/8ba89425-416c-4bd9-9bde-bff2f16a8a07" />
+
 **\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
+
+Some questions that these sketches raise is the size of the contraption. Since we are working with very weak small motors, we have to make sure the actual prototype isn't too large for the motors. For most of these sketches, we have to physically prototype the components that interact with the motors, specifically the conveyor belt system, trap doors, fan blades, and mixing straw. Another question is how much torque the rotars actually produce, is it enough to stop and m and m from causing the motor to swivel. Is it enough to actually push a whole platform of food up and down? To physically prototype this we will most likely need to test these different interactions by making a mockup of the system and actually see whether or not the power they output is enough to complete the action we intended it to complete! So we will have to test whether or not the motor can push a spoon through liquid, or perhaps push a conveyor system with just one rail system to start off with. 
 
 **\*\*\*Pick one design to prototype and explain why.\*\*\***
 
+We decided to choose the m and m / skittle sorter because it will have us work with servos, light detectors, and some sort of reasoning mathematical reasoning sorter to arrange the skittles and such into different flower shapes! We want to combine the cool physical movement and have it create an artistic design out of simple building blocks, which can then be eaten after the performance! So not only is the person happy from the delicious taste of the sugary treat, but they are also interacting with the visuals that the machines outputs as well!
+ 
 Build a cardboard or other low-fidelity physical prototype of your design.
 
 **\*\*\*Document your rough prototype with photos and/or video.\*\*\***
+
+https://youtu.be/_1U6LSeBOsY
 
 ---
 
@@ -306,6 +464,57 @@ Following exploration and reflection from Part 1, complete the "looks like," "wo
 #### Build & Integrate: Sensing + Actuation
 
 For Part 2, build the Feast Automata interaction you developed in Part D by connecting sensing/input to physical actuation.
+
+Code is in skittle_sorter folder:
+1. calibration.py
+2. servo_channels.json
+3. sorter.py
+4. config.py
+5. readme.md
+
+* photo of in progress build:
+
+<img width="570" height="801" alt="image" src="https://github.com/user-attachments/assets/88f0249a-ed0e-44db-9ef3-43afb3747b30" />
+
+
+* A simple interaction diagram or sketch showing how sensing and actuation are connected
+
+<img width="382" height="565" alt="image" src="https://github.com/user-attachments/assets/07b06e6a-5acf-4d56-87f9-b66b663051b5" />
+
+* paper prototype:
+https://youtu.be/_1U6LSeBOsY
+
+* Final project photos:
+1. <img width="3024" height="4032" alt="IMG_8157" src="https://github.com/user-attachments/assets/8058e48f-8fa4-40cc-8b6b-cc1c61ae1456" />
+2. <img width="3024" height="4032" alt="IMG_8158" src="https://github.com/user-attachments/assets/d73b3466-30af-4a40-9661-8500a08aadb0" />
+
+User testing: 
+1. https://youtube.com/shorts/YQO9DZD6NhA?feature=share
+P01 was given no instructions on how to use the sorter, and we wanted to see if the instructions on the screen were good enough to guide a completely new user of the system. In the end, we discovered it was not good enough because it didn't specify "WHERE" the skittle needed to placed, but rather was saying when the skittle should be placed in the machine. It was apparent to my teammate and I however, they were initially confused.
+
+2.
+<img width="4032" height="3024" alt="IMG_8138 (2)" src="https://github.com/user-attachments/assets/30731c9c-baed-4501-b74e-02eeb4ed962c" />
+
+This user was able to immediately pick up when and "where to place the skittle with no help. The video was corrupted and so it's been replaced with a recovered photo of the interaction.
+
+
+
+* Final project video:
+https://youtube.com/shorts/xA2eng8XUug
+
+Written reflection: What did you learn about connecting sensing, movement, and physical form? What was fun, surprising, or challenging?
+
+I learned that integrating sensing, movement, and physical form is more difficult than I originally thought. The main difficulty is being able to synchronize the devices physically but also utilize the data / information gathered from the devices and transforming it into a useable form for the other devices. For example, in our design we decided to take the color sensor and use as a determinator for which physical motors would turn. The most fun part was design the motors and connecting them to physical components. It was exciting to see the motors actually rotate and move our scooper that was attached. Some challenging aspects were just connecting all the motors onto a physical cardboard and ensuring they are positioned correctly.
+
+Questions to consider:
+
+How does your chosen sensor or input shape the physical response? The color sensor detects the color of each Skittle and determines how the sorting mechanism responds. Based on the detected color, the servos rotate the scoopers to direct the Skittle either left or right. The Skittle then travels through our multilevel sorting system until it reaches its designated container.
+
+How does the physical arrangement of the sensor and actuator change the interaction? Overall the sensor has to be put in a close enough position to detect the color but also not too close where it cannot get an accurate view of the Skittle with proper lighting. For the motors, they need to be placed in a certain position so that when they rotate, the Skittle is dropped into the other appropriate motors. If placed to far apart then the Skittles might miss the scooper and result in the interaction being award since it failed.
+
+What thresholds, timing, or movement patterns make the interaction feel clear or playful? The motors move very quickly and right after each other. It almost looks like a minigame watching the skittles move and sort themselves. Adding very short delays between each motor movement throughout the levels makes it very fun to watch for the user.
+
+What changes when you adjust the sensor placement or servo motion? The color of the Skittle is hardcoded by the sensor and is given a range for the RGB colors. If the sensor is moved too close or far away this can drastically change the whole machine since it won't be able to sort it properly according to the color being sensed. In addition, if the servo motion is changed to be a smaller angle then the Skittle may not fall out of the scooper. Likewise, if the angle is too large, then the scooper might turn the Skittle too far causing it to overshoot the next scooper.
 
 **Your prototype should:**
 - Use at least one sensing or input device.
@@ -503,3 +712,6 @@ For submission, the readme.md page for this lab should be edited to include the 
 * Upload any materials that explain what you did, into your lab 4 repository, and link them in your lab 4 readme.md.
 * Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
 * Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
+
+</details>
+

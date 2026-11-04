@@ -1,0 +1,2 @@
+{"event": "pass", "start": "2026-10-29T18:00:50", "end": "2026-10-29T18:00:57", "seconds": 7, "first_s": 0.368, "last_s": 0.148, "speed": -0.043, "direction": "to Manhattan", "est_station_departure": "2026-10-29T18:00:35"}
+{"event": "pass", "start": "2026-10-29T18:02:18", "end": "2026-10-29T18:02:25", "seconds": 7, "first_s": 0.516, "last_s": 0.773, "speed": 0.0455, "direction": "to Island", "est_station_arrival": "2026-10-29T18:02:30"}
