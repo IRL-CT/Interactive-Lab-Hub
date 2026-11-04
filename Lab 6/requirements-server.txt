@@ -1,0 +1,12 @@
+# Requirements for Server (laptop/desktop)
+# Install these on your server with: pip install -r requirements-server.txt
+
+# MQTT Communication
+paho-mqtt<2.0
+
+# Web Server
+Flask>=3.0.0
+Flask-SocketIO>=5.3.5
+python-socketio>=5.10.0
+python-engineio>=4.8.0
+eventlet>=0.33.3
