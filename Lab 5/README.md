@@ -1,6 +1,23 @@
 # Observant Systems: Overnight Sensation
 
-**Abiola Bolaji (ab3394), Pallavi Srinivas (ps2269), Pallavi Khanna (pk633)**
+**Team:**
+
+**Members:** Full Name (netid, github-handle), ...
+
+**Project name:**
+
+<details>
+	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
+  
+	**Submission Cleanup Reminder:**
+	- This README.md contains extra instructional text for guidance.
+	- Before submitting, remove all instructional text and example prompts from this file.
+	- You may delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
+	- Your final submission should be neat, focused on your own work, and easy to read for grading.
+  
+	This helps ensure your README.md is clear, professional, and uniquely yours!
+</details>
+
 
 For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
 Your **observant device** could, for example, count items, find objects, recognize an event or continuously monitor a room.
@@ -9,7 +26,7 @@ This lab will help you think through the design of observant systems, particular
 
 **New this year: the AI runs on the Pi.** Your Pi 5 can run an object detector ([YOLO](https://docs.ultralytics.com/)) and a small language model ([Qwen](https://ollama.com/library/qwen3.5) through [Ollama](https://ollama.com)) completely offline. In Part 1 you get both running and connect them: YOLO *sees*, Qwen *reasons* about what was seen. These models are slow, but they have all night. In Part 2 you use them to design a **night-time interaction**: what you tell the device before bed, what it does while you sleep, and what it shows you when you wake up.
 
-**Please indicate anyone you collaborated with on this Lab here.**
+**Please indicate anyone that helped with this Lab here.**
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
 * **Nishant Ray (nr487)** gave feedback on our Part F storyboard (see Prep for Part 2).
@@ -70,21 +87,32 @@ As in Lab 3, [`uv`](https://docs.astral.sh/uv/) is a much faster drop-in for `pi
 
 ### YOLO: download the nano model and export it for the Pi
 
-We use the nano model of [YOLO26](https://docs.ultralytics.com/models/yolo26/), exported once to NCNN, the format that runs fastest on the Pi. This downloads the weights, so you need internet:
+We use the nano model of [YOLO26](https://docs.ultralytics.com/models/yolo26/), exported once to NCNN, the format that runs fastest on the Pi. This downloads the weights:
 
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python -c "from ultralytics import YOLO; YOLO('yolo26n.pt').export(format='ncnn')"
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ yolo export model=yolo26n.pt format=ncnn
+```
+If every ultralytics message is followed by a `--- Logging error ---` traceback ending in `UnicodeEncodeError: 'latin-1' codec can't encode character`, fix your shell's locale once::
+
+```
+echo 'export LANG=C.UTF-8' >> ~/.bashrc
+echo 'export LC_ALL=C.UTF-8' >> ~/.bashrc
+echo 'export PYTHONIOENCODING=utf-8' >> ~/.bashrc
+source ~/.bashrc
 ```
 
-Test it on an image from the internet. `project=runs` keeps the output in this folder; without it, ultralytics writes to a `runs/` folder at the top of your git repo, where you will not think to look.
+The second command converts the .pt model to a .ncnn model.
+
+Test it on an image from the internet. `project="$PWD"` keeps the output in `predict` in the current lab folder; without it, ultralytics writes to a `runs/` folder at the top of your git repo, where you will not think to look.
 
 ```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ yolo predict model=yolo26n_ncnn_model source=https://ultralytics.com/images/bus.jpg project=runs
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ yolo predict model=yolo26n_ncnn_model source=https://ultralytics.com/images/bus.jpg project="$PWD"
 ```
 
-The result is in `runs/predict/bus.jpg`: boxes around the people and the bus.
+The result is in `predict/bus.jpg`: boxes around the people and the bus.
 
-Now a photo of your own. Plug in the webcam and take one with `snap.py` (`--delay 3` gives you three seconds to get into the frame), or copy a photo from your phone to the Pi with `scp`. Then run the same command on it:
+Now a photo of your own. Plug in the webcam and take one with `snap.py` (`--delay 3` gives you three seconds to get into the frame), or choose any picture you downloaded from the internet and put under this folder. Put your selected picture after the `source=` Then run the same command on it:
 
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python snap.py --delay 3
@@ -109,7 +137,7 @@ pi@raspberrypi:~ $ ollama list
 | `qwen3.5:0.8b` | ~1.3 GB | text **and images**; the one we use in this lab |
 | `qwen3:0.6b` | ~0.5 GB | text only, smaller and faster (~16 tokens/s on a Pi 5) |
 
-\*\*\***Include a screenshot of `ollama list` showing your models, and the `bus.jpg` result and your own photo with their boxes.**\*\*\*
+\*\*\***Include a screenshot of `ollama list` showing your models.**\*\*\*
 
 | `bus.jpg` | our own photo (`snap.jpg`) |
 |---|---|
@@ -129,7 +157,7 @@ Connect your webcam, connect to your Pi through **VNC** (the script opens a wind
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py
 ```
 
-While it runs, walk in and out of the frame, sit down, turn your back, turn the lights off, hold up a photo of a person on your phone. Watch the confidence number on the box change with each.
+While it runs, walk in and out of the frame, sit down, turn your back, hold up a photo of a person on your phone. Watch the confidence number on the box change with each.
 
 Then press q to quit and run it again with a flag. Each one changes a single thing:
 
@@ -140,7 +168,8 @@ Then press q to quit and run it again with a flag. Each one changes a single thi
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --headless     # no window, only the printed readings: how it runs over ssh, and at night
 ```
 
-\*\*\***Include a short video or screenshots of the person detection. Write down three situations where it did not see you, or saw a person who was not there, and what you think the cause was.**\*\*\*
+\*\*\***Include a short video or screenshots of your experiments with the person detection. Write down three situations where it did not see you, or saw a person who was not there, and what you think the cause was.**\*\*\*
+
 
 
 ## Part C. 
@@ -192,7 +221,7 @@ pi@raspberrypi:~ $ ollama run qwen3.5:0.8b
 
 Roosevelt Island is a good first question because you know the ground truth: it was Blackwell's Island, then Welfare Island, got its current name in 1973, and Cornell Tech opened on it in 2017. Count how many of the model's facts are true.
 
-From Python it is a dozen lines with `requests`; `ask_qwen.py` is that script. It turns thinking off, tells the model to answer in at most three sentences, and cuts it off after 120 tokens (`--max-tokens` changes that), because a small model left alone writes an essay. Read it, then run:
+From Python, qwen requests can be triggered by the `ask_qwen.py` script. It turns thinking off, tells the model to answer in at most three sentences, and cuts it off after 120 tokens (`--max-tokens` changes that), because a small model left alone writes an essay. Read the script, then run:
 
 ```
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python ask_qwen.py "Tell me a bit about the history of Roosevelt Island."
@@ -200,16 +229,19 @@ From Python it is a dozen lines with `requests`; `ask_qwen.py` is that script. I
 (.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python ask_qwen.py --image snap.jpg "What is in this photo?"
 ```
 
-Four things in the [Ollama API](https://github.com/ollama/ollama/blob/main/docs/api.md) worth knowing:
+Things in the [Ollama API](https://github.com/ollama/ollama/blob/main/docs/api.md) worth knowing:
 
 * `think: false` skips the reasoning trace. Always, on a Pi. `ask_qwen.py` sends it on every request; `--think` turns the trace back on for one question, so you can see what you are skipping and how long it takes.
-* `options.num_predict` is a hard cap on the answer length, in tokens. The model does not know about it, so it may stop mid-sentence; the `system` prompt is what asks it to be brief in the first place. `ask_qwen.py` uses both.
 * `format` makes the model answer as JSON with the fields you name (`--json`). Handy when a display or a servo has to read the answer.
 * `images` sends a photo along with the prompt (`--image snap.jpg`, the photo from Part A). `qwen3.5:0.8b` can look at pictures.
 
 A 0.8B model is slow and sometimes wrong. It will invent events that are not in the data and agree with a wrong premise. Give it the data, keep its job narrow, and decide what the device does when the model is unsure.
 
-\*\*\***Ask Qwen three questions a bedside device might need to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
+\*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
+
+<details>
+  Q&A here
+</details>
 
 
 ## Part E. 
@@ -243,72 +275,6 @@ asking Qwen...
 Qwen (18.4 s):
 One person came in from the right, moved close to the camera, and left after about half a minute. ...
 ```
-
-Those four lines are the whole of what Qwen knows about the minute. If YOLO lost you for one frame, the log says you left and came back, and the report will say so too.
-
-Run it with a partner: have them walk in, sit down, leave. Compare the log with what Qwen concluded. Then change one thing at a time:
-
-* **The question.** `--question "Did anyone leave?"`, `--question "Should I be worried?"`, `--question "Write one sentence a sleepy person would want to hear."` Same log, different job for the reasoner.
-* **The interpreter.** Edit `interpret()`: drop the positions, add "standing" versus "sitting" (a sitting person's box is shorter and squarer), count only people who are close. Qwen's answers change because its world changed.
-* **The other objects.** By default the detector is told to look for people only. With `--all` it reports all 80 classes and the interpreter adds them to the reading, as in `1 person(s) at center/close; also chair, cup`. Look closely at what it names: at 320 pixels a white chair, a bucket or a sink is a "toilet" often enough, and Qwen will faithfully report the toilet in your bedroom. Deciding which objects deserve a mention is interpreter work.
-* **The log.** Every run saves `watch_log.txt`. Edit it so it contradicts itself and feed it back with `--log watch_log.txt`: the camera is skipped and Qwen reasons over your edited file. Does it notice?
-* **The format.** `--json` gets `{"people": 1, "activity": "...", "unusual": false}` back, which is what you will want in Part 2 to drive a display or a sound.
-* **The timing.** `--seconds 300` watches longer. `--every` logs every reading instead of only changes, so the log grows to hundreds of lines and Qwen has to find the changes itself. See whether it still can.
-
-\*\*\***Document the pipeline: at least three runs with the log, the question, Qwen's answer, and whether it was right. Include one case where Qwen got it wrong, and say what you changed in the interpreter and why.**\*\*\*
-
-We ran `yolo_to_qwen.py` three times with people walking in and out of the frame. Each run used the same default interpreter but a different question. Full logs and answers are in the screenshots.
-
-**Run 1: "Did anyone leave?"** (33 log lines in 43 s, Qwen took 21.7 s)
-
-![Run 1](Readme_files/pipeline_run1_did_anyone_leave.png)
-
-```
-16:59:32 1 person(s) at center/close
-16:59:36 nobody
-16:59:37 1 person(s) at right/far
-16:59:40 3 person(s) at center/far, right/far, center/far
-...
-17:00:12 2 person(s) at center/close, right/close
-```
-
-> *Qwen:* "Yes, several people were seen leaving the room during the 43-second observation period. The log indicates that multiple individuals moved from their initial positions to new locations such as "right/far," "left/close," or "center/close" throughout the entire duration, with some instances showing a transition from one person count to another (e.g., dropping from 2 to 1)."
-
-**Partly right.** People did move around, but "several people leaving" overstates it. Most of the count changes (2 → 1 → 2 within a second) come from YOLO losing someone for one frame, not from anyone walking out.
-
-**Run 2: "Should I be worried?"** (16 log lines, Qwen took 22.9 s)
-
-![Run 2](Readme_files/pipeline_run2_should_i_be_worried.png)
-
-```
-17:05:01 1 person(s) at center/close
-17:05:13 nobody
-17:05:14 1 person(s) at center/close
-17:05:20 nobody
-...
-17:05:29 nobody
-17:05:30 1 person(s) at left/close
-```
-
-> *Qwen:* "Yes, you should be worried because there are two instances where no one was present (17:05:13 and 17:05:29), which indicates a potential safety or occupancy issue in the room. Additionally, the log shows multiple people moving around the space over time, suggesting activity that could indicate an emergency or disturbance."
-
-**Wrong.** Nothing alarming happened. The `nobody` lines last one second each, and someone shows up again on the very next line. They are detection dropouts, but the model reads them as real events and turns them into a "safety issue". A small model also tends to say yes to a leading question.
-
-**Run 3: "Write one sentence a sleepy person would want to hear."** (28 log lines in 56 s, Qwen took 15.4 s)
-
-![Run 3](Readme_files/pipeline_run3_sleepy_sentence.png)
-
-> *Qwen:* "The log indicates that there are no people sleeping or resting in the room during this 56-second observation period; instead, it shows a mix of people moving around and being absent (nobody). Therefore, a sleepy person would likely want to hear about the activity taking place rather than sleep."
-
-**Right about the facts, wrong about the job.** The room really was full of people moving around, but the model gave two sentences of analysis instead of one soothing sentence.
-
-**What we changed and why.** All three runs went wrong in the same way: the interpreter writes a new line whenever the person count changes, so one-frame dropouts become "nobody" events, and Qwen treats each one as real. For our night-time version ([sleep_watch.py](sleep_watch.py)) we rebuilt the interpreter around that problem:
-
-* We lowered YOLO's confidence to 0.3, because a sleeper under a blanket is half hidden.
-* We stopped logging counts and positions and logged **how much of the person's box changed** between looks. A look counts as a "toss" only when more than 4% of the pixels changed or the box jumped or changed shape.
-* Tosses less than 30 s apart count once (`--cooldown`), so one turn over is not logged as five.
-* We flag a look as `light` when almost the whole frame changes (a lamp switching on) instead of counting it as movement.
-* The arithmetic is done in Python and Qwen only gets the totals, because the model is unreliable at counting over a long log.
 
 ---
 
@@ -371,11 +337,11 @@ One of us mentioned that their room at the House faces the Queensboro Bridge, wh
 **Revision from the feedback.** Nishant pointed out that Part 2 asks us not to just point a camera at the bed, and suggested using one of the other sensors to tell when the sleeper wakes or moves. In response, the revised design adds a **motion sensor under the bed** (from the Lab 4 sensor kit). It feels the mattress move when the person tosses and turns, so movement can be detected without relying only on the camera, and it keeps working in the dark, when the webcam struggles. The camera stays as a second signal, and it saves no images, only numbers. *Status: planned. The current `sleep_watch.py` still detects movement with the camera only; the sensor is the next step.*
 
 ## Part G. 
-### Design the interaction before bed
+### Design the interaction before
 
 The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
 
-\*\*\***Describe the bedtime interaction and include a short video of someone handing the night over to the device.**\*\*\*
+\*\*\***Describe the interaction before.**\*\*\*
 
 **Video:** [Bedtime hand-off (Google Drive)](https://drive.google.com/file/d/1y_KTMdEgEXjUukbvKvR_lEX8_eBrvzo9/view)
 
@@ -402,7 +368,7 @@ If the voice file is missing, the script falls back to espeak-ng.
 Detach from tmux with `Ctrl-b` then `d`; the night keeps running after the ssh session closes. With `--voice` the Pi listens for up to 15 seconds and stops early once you have spoken and paused for 1.5 seconds (change the limit with `--listen 30`). Without `--voice` the script falls back to typing, so it still works if faster-whisper is not installed in the Lab 5 venv.
 
 ## Part H. 
-### Incorporate the observant system during sleep
+### Incorporate the observant system
 
 The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret()` from `yolo_to_qwen.py` every few seconds, people only unless you pass `--all`, and writes the readings to `night_log.jsonl`; the reasoning waits for the morning. Start it inside `tmux` so it keeps running after you close your laptop, and stop it with Ctrl-C in the morning:
 
@@ -413,7 +379,7 @@ The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret
 
 Fake a night first: run it for thirty seconds while you walk around, stop it, and run `morning.py` from Part I. When that looks right, run a real night. If your storyboard needs a sensor rather than the camera, swap in the Lab 4 example code and log its reading the same way.
 
-\*\*\***Run the system for at least one real night. Include the log (or an excerpt) and a few sentences on what broke or surprised you.**\*\*\*
+\*\*\***Screenshots or videos of the running system.**\*\*\*
 
 **My night shift.** `sleep_watch.py` replaces `overnight.py` for my interaction. It uses the webcam and the microphone together and takes one look every 5 seconds (`--interval`):
 
@@ -467,7 +433,7 @@ Fake a night first: run `python sleep_watch.py --settle 5 --verbose`, toss aroun
 
 
 ## Part I. 
-### Design the interaction when awake
+### Design the interaction after
 
 The reveal. The night produced a log; the morning turns it into something a half-awake person can take in. `morning.py` is the smallest version: it asks Qwen for a three-sentence report.
 
@@ -511,7 +477,7 @@ Document all the prototypes and iterations you have designed and worked on. The 
 * "Works like": the pipeline from detector to interpreter to log to reasoner, with a real night's data.
 * "Acts like": how a person hands the night over and what they get back.
 
-\*\*\***Include a short video of the whole system: the bedtime hand-off, a log excerpt or timelapse of the night, and the morning reveal from a real overnight run.**\*\*\*
+\*\*\***Include a short video of the whole system**\*\*\*
 
 * **Bedtime hand-off:** [video](https://drive.google.com/file/d/1y_KTMdEgEXjUukbvKvR_lEX8_eBrvzo9/view)
 * **The night:** see the log excerpts in Part H, plus [sleep_log.jsonl](sleep_log.jsonl) and [sleep_log_night1.jsonl](sleep_log_night1.jsonl)
@@ -529,8 +495,7 @@ You are permitted (but not required) to work in groups and share a turn in; you 
 
 For submission, the readme.md page for this lab should be edited to include the work you have done:
 * Upload any materials that explain what you did, including your code and night log, into your Lab 5 repository, and link them in your Lab 5 readme.md.
-* Link your Lab 5 readme.md in your main Interactive-Lab-Hub readme.md.
-* Labs are due on Mondays, make sure to submit your Lab 5 readme.md to Canvas.
+* Labs are due on Sundays, make sure to submit your Lab 5 readme.md to Canvas.
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>

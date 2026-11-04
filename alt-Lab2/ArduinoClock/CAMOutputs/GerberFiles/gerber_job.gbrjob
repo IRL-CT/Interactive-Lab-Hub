@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2020-09-15T01:54:35Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.6.2"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.57,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "ArduinoClock"
+        },
+        "Owner": "Wendy Ju <wendyju@cornell.edu>",
+        "Size": {
+            "X": 54.229,
+            "Y": 17.78
+        }
+    }
+}
