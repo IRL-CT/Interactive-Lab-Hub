@@ -1,0 +1,28 @@
+Partlist exported from /Users/wendyju/Documents/EAGLE/projects/ArduinoClock3/ArduinoClock.sch at 9/14/20 9:54 PM
+
+Qty Value                 Device                    Package                        Parts           Description                      
+1                         SOLDERJUMPER_2WAY         SOLDERJUMPER_2WAY_OPEN_NOPASTE VSELECT         2-Way Solder Jumper              
+4   0.1uF                 CAP_CERAMIC0805-NOOUTLINE 0805-NO                        C4, C6, C8, C10 Ceramic Capacitors               
+1   0.1uF                 CAP_CERAMIC_0805MP        _0805MP                        C5              Ceramic Capacitors               
+3   10K                   RESISTOR0805_NOOUTLINE    0805-NO                        R1, R3, R8      Resistors                        
+4   10uF                  CAP_CERAMIC0805-NOOUTLINE 0805-NO                        C1, C2, C3, C12 Ceramic Capacitors               
+1   1K                    RESISTOR0805_NOOUTLINE    0805-NO                        R11             Resistors                        
+1   1K                    RESISTOR_4PACK            RESPACK_4X0603                 R2              Resistor Packs (4 resistors)     
+1   1uF                   CAP_CERAMIC0805-NOOUTLINE 0805-NO                        C7              Ceramic Capacitors               
+1   20329                 USB_MICRO_20329_V2        4UCONN_20329_V2                X1              USB Connectors                   
+1   20609                 HEADER-1X6ROUND           1X06_ROUND                     AD1             PIN HEADER                       
+1   20609                 HEADER-1X8ROUND           1X08_ROUND                     AD              PIN HEADER                       
+1   20610                 HEADER-1X870MIL           1X08_ROUND_70                  POWER1          PIN HEADER                       
+1   20610                 HEADER-1X8ROUND           1X08_ROUND                     IOL             PIN HEADER                       
+1   ATMEGA328P            ATMEGA328P                MLF32-TH                       U2              ATMEGA 328P                      
+1   CP2104                CP2104                    QFN24_4MM_SMSC                 U3              CP2104 - USB to UART Bridge      
+1   CR1220                BATTERYCR1220_SMT         CR1220                         B1              CR1220 SMT - Digikey: 3001K-ND   
+1   CSTCE16M0V53-R0 16MHZ RESONATORMU               RESONATOR                      Y2                                               
+1   DS3231/SO             DS3231/SO                 SO16W                          IC1                                              
+1   GREEN                 LED0805_NOOUTLINE         CHIPLED_0805_NOOUTLINE         ON              LED                              
+1   KMR2                  SWITCH_TACT_SMT4.6X2.8    BTN_KMR2_4.6X2.8               RESET           SMT Tact Switches                
+1   MBR120                DIODE-SCHOTTKYSOD-123     SOD-123                        D3                                               
+1   MIC5225-3.3           VREG_SOT23-5              SOT23-5                        U4              SOT23-5 Fixed Voltage Regulators 
+1   MIC5225-5.0           VREG_SOT23-5              SOT23-5                        U1              SOT23-5 Fixed Voltage Regulators 
+1   RED                   LED0805_NOOUTLINE         CHIPLED_0805_NOOUTLINE         L               LED                              
+2   YELLOW                LED0805_NOOUTLINE         CHIPLED_0805_NOOUTLINE         D4, D5          LED                              
