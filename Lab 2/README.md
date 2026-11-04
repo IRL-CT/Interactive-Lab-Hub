@@ -1,6 +1,8 @@
 # Interactive Prototyping: The Clock of Pi
 **NAMES OF COLLABORATORS HERE**
 
+Yangchen Jin yj645
+
 Does it feel like time is moving strangely during this semester?
 
 For our first Pi project, we will pay homage to the [timekeeping devices of old](https://en.wikipedia.org/wiki/History_of_timekeeping_devices) by making simple clocks.
@@ -158,6 +160,15 @@ You can look in `image.py` for an example of how to display an image on the scre
 
 \*\*\***Include a picture of your own Raspberry Pi displaying the piscreen.service with your unique MAC address. Additionally, please provide another picture showing the successful completion of the screen test.**\*\*\*
 
+<img width="480" height="640" alt="73eaf842d0733d6ee88e9602ccb74820" src="https://github.com/user-attachments/assets/9762b01c-72b9-4136-95b9-4e98f32beff2" />
+<img width="480" height="640" alt="d0d85bb57d07285271ae0f0c744d5fb6" src="https://github.com/user-attachments/assets/7cbc80fe-ffc1-4442-9463-0dd02e1861d7" />
+<img width="320" height="426.75" alt="288006e01200f1555a0aa3f747d92913" src="https://github.com/user-attachments/assets/6335e1eb-8776-46eb-bf24-0afd9720c9ef" />
+
+*The Pi displaying its IP address and unique MAC address.*
+
+*Successful screen and button tests.*
+
+
 
 ## Part D. 
 ### Set up the Display Clock Demo
@@ -194,9 +205,29 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 ** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf)), storyboards for your ideas **
 
+<img width="500" height="500" alt="2ee049cd4f079473daf0af819ff3d5f0" src="https://github.com/user-attachments/assets/d551673e-116d-4c5d-beeb-c8dabb70de5b" />
 
+
+
+**Each large block represents six hours and contains 24 mini-blocks. Each mini-block represents 15 minutes. As time passes, completed mini-blocks gradually fill with the color associated with that period of the day.**
+
+**My clock prioritizes awareness of time over precise timekeeping. The block display divides the day into four meaningful phases and makes the passage of time visually tangible. Users can understand their position within the day at a glance, while pressing a button reveals the exact remaining time when precision is needed.**
+
+**Pressing a button switches between time elapsed and time remaining. The abstract block display provides ambient awareness of time. 
+Pressing a button temporarily reveals the exact time remaining, creating a stronger sense of urgency without turning the default display into a conventional digital clock.**
 
 **Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
+
+
+**Shenye Wang** https://github.com/bh654-dev/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
+
+**Tony Wang** https://github.com/TonyW755/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
+
+**Yanshen** https://github.com/ys2473/Interactive-Lab-Hub/tree/Fall2026/Lab%202
+
+**Zhimeng Zhang** https://github.com/Flora130/Interactive-Lab-Hub/tree/Fall2026/Lab%202
+
+**Simin Xu** https://github.com/Simonehina/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
 
 # Lab 2 Part 2
 
@@ -206,6 +237,18 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
 **Put the feedback for your ideas here.**
+
+**Recorded Feedback**
+
+**Yanshen**: She felt that my original block-based concept was somewhat plain and did not create a particularly engaging or memorable experience.
+
+**Zhimeng Zhang**: She pointed out that the button interaction was too limited because it only revealed the remaining time. As a result, the project still functioned mainly as a conventional clock rather than offering a meaningful interaction.
+
+**Simin Xu**: She suggested that the abstract block display might require too much interpretation. A more recognizable visual transformation could make the passage of time easier to understand at a glance.
+
+**Feedback Summary**
+
+My initial idea for the clock was very simple and straightforward. The main feedback I received was that it was still just a visual clock, and the function triggered by pressing the button was very dull and limited—it simply displayed the time remaining in the day. Further feedback indicated that the design and interaction were too boring and that relying solely on an image composed of multiple squares might require a great deal of time and effort to determine the current time. Therefore, I plan to iterate and modify the design to make it more creative and easier to understand. Also, I'd like to see more natural elements related to consumption or growth.
 
 ## Update your Lab Hub
 
@@ -217,34 +260,37 @@ Start small, pick just one element of your overall idea, just to show you have a
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
+[Prototype code](plant_clock.py)  
+
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your barely modified PiClock.**\*\*\*
 
-After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
-
-```
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git add .
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git commit -m 'your commit message here'
-(venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 2 $ git push
-```
-
-After that, Git will ask you to login to your GitHub account to push the updates online, you will be asked to provide your GitHub user name and password. Remember to use the "Personal Access Tokens" you set up in Part A as the password instead of your account one! Go on your GitHub repo with your laptop, you should be able to see the updated files from your Pi!
+[Prototype video](https://youtube.com/shorts/nwxGnN7v8eA)
 
 ## Now, make your own PiClock
 
-Do take advantage of having done the previous iteration to refine and simplify your design.
-
 ** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
+<img width="428" height="428" alt="8b93e9bfe081351fbbf2a03c2a765891" src="https://github.com/user-attachments/assets/9b5cfcec-984b-453a-872a-9b466b8f98a1" />
+
+<img width="428" height="428" alt="574b9f2a8688d56c16b5523b4c15bfc8" src="https://github.com/user-attachments/assets/c87f8311-9e8d-4b2d-91fb-5f138b7f0d8f" />
+
+
+
+After receiving feedback from several peers and discussing the matter with them, I drew inspiration from designs such as a gradually burning incense stick, a continuously melting ice cube, and a slowly ripening banana. These objects all express the passage of time through their own transformations. At first, I considered designing an ever-evolving organism, perhaps drawing on the process of human evolution; I also thought about using the human lifespan, from birth to old age, to symbolize time. However, I felt that the overall atmosphere of these concepts was somewhat heavy and pessimistic.
+
+Ultimately, I chose to use flowers as a symbol of time and redesigned the clock around five visual stages: a seed buried in the soil, a sprout breaking through the earth, a growing plant, a blooming flower, and finally, the flower being picked. For me, picking a flower isn’t merely the end of a day; it also evokes the continuation of the seed and the beginning of the next cycle of life. Therefore, this cycle not only represents the passage of time but also embodies the dual meanings of “ending” and “new life.” Compared to my earlier concepts, this design is easier to understand and conveys a more positive sentiment.
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
+[Final PiClock code](refined_plant_clock.py)  
+
 \*\*\***Take a video of your PiClock.**\*\*\*
 
+[Final PiClock video](https://youtu.be/MgH_5LoQb20)
 
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
-
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab.  Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page. 
+The demo video is sped up, showing the flower's changes over the course of a day in 60 seconds. Pressing the top button lets you water the flower, causing its appearance to change. Pressing the bottom button shows or hides the time.
 
 
+I developed the core concept, interaction design, and visual direction of the project. Feedback from my classmates helped me move from the original abstract block display toward a more natural and understandable growth cycle. ChatGPT assisted with generating, organizing, and debugging portions of the Python code, as well as refining the flower-picking animation. I reviewed, adapted, and tested the final implementation on the Raspberry Pi.

@@ -1,228 +1,281 @@
 # Chatterboxes
 
-**NAMES OF COLLABORATORS HERE**
-
-[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://youtu.be/LZ0VJClIlRI?si=Yy84mcyVYuVV19mn)
-
-In this lab, we want you to design interaction with a speech-enabled device — something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1). First, we want you to storyboard what you imagine the conversational interaction to be like. Then you will use wizarding techniques to elicit examples of what people might say, ask, or respond. We then want you to use the examples collected from at least two other people to inform the redesign of the device.
-
-We will focus on **audio** as the main modality for interaction to start; these general techniques can be extended to **video**, **haptics** or other interactive mechanisms in the second part of the Lab.
-
-A note on what you are building with. Speech interfaces are usually taught as two boxes — speech-in, speech-out — and that framing hides the part that actually determines whether an interaction works. Between listening and speaking sits the question of **whose turn it is**: when does the device decide you have finished talking, and how long does it make you wait before it answers? This lab gives you direct control over both, and we will ask you to notice what changes when you move them.
-
-## Prep for Part 1: Get the Latest Content and Pick up Additional Parts
-
-Please check instructions in [prep.md](prep.md) and complete the setup.
-
-### Pick up Web Camera If You Don't Have One
-
-Students who have not already received a web camera will receive their Webcam and at the beginning of lab. If you cannot make it to class this week, please contact the TAs to ensure you get these.
-
-### Get the Latest Content
-
-As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo.
-
-**\[recommended\]** Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the *personal access token* for this.
-
-```
-pi@ixe00:~$ cd Interactive-Lab-Hub
-pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2026
-pi@ixe00:~/Interactive-Lab-Hub $ git add .
-pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab3 updates"
-pi@ixe00:~/Interactive-Lab-Hub $ git push
-```
-
-Option 2: On your own GitHub repo, create a pull request to get updates from the class Interactive-Lab-Hub. After you have the latest updates online, go to your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull`.
+**Yangchen Jin**
 
 ---
 
 # Part 1
 
-## Setup
-
-Create and activate a virtual environment for this lab:
-
-```
-pi@ixe00:~$ cd Interactive-Lab-Hub/Lab\ 3
-pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python3 -m venv .venv
-pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ source .venv/bin/activate
-(.venv) pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $
-```
-
-Install the Python dependencies:
-
-```
-(.venv) $ pip install -r requirements.txt
-```
-
-This takes a few minutes. If you would like it to take considerably less time, [`uv`](https://docs.astral.sh/uv/) is a drop-in replacement for `pip` that is dramatically faster on the Pi:
-
-```
-(.venv) $ pip install uv && uv pip install -r requirements.txt
-```
-
-Then run the setup script, which installs the classic speech synthesizers, downloads the voice activity detection model, and pre-fetches a neural voice and a speech recognition model so you are not waiting on downloads during lab:
-
-```
-(.venv):~$ cd speech-scripts
-(.venv) $ ./setup.sh
-```
-
-Check your audio devices before going further. `arecord -l` lists capture devices and `aplay -l` lists playback devices; if your webcam microphone or Bluetooth speaker does not appear, fix that first — every script below assumes the system defaults are the ones you want.
-
 ## A. Text to Speech
 
-Your Pi can speak in several quite different ways, and the differences are audible in a way that matters for design. In `speech-scripts/` there are shell scripts for each.
-
-### The classic engines
-
-```
-(.venv) $ cd speech-scripts
-
-(.venv) $ sudo apt update
-(.venv) $ sudo apt install -y espeak festival festvox-kallpc16k
-
-(.venv) $ ./espeak_demo.sh
-(.venv) $ ./festival_demo.sh
-```
-
-You can run these `.sh` files by typing `./filename`, and read one with `cat filename`. You can also play audio files directly with `aplay filename` — try `aplay lookdave.wav`.
-
-These are all decades-old technology and they sound like it. `espeak-ng` is a *formant synthesizer*: it generates speech from an acoustic model of the vocal tract, which is why it sounds robotic but also why the whole thing fits in a couple of megabytes and responds instantly. `festival` is *concatenative*: they stitch together recorded fragments of a real speaker, which sounds more human but breaks audibly at the seams.
-
-### Neural TTS with Piper
-
-Note that the Piper command line changed in version 1.x — voices are now downloaded explicitly with `python3 -m piper.download_voices`, and you invoke it as `python3 -m piper`. Tutorials you find online may show the old `echo ... | piper --model ...` form, which no longer works. Browse the [voice samples](https://rhasspy.github.io/piper-samples) and download a different one if you'd like:
-
-```
-(.venv) $ python3 -m piper.download_voices en_US-lessac-medium
-```
-
-[Piper](https://github.com/OHF-Voice/piper1-gpl) synthesizes speech with a small neural network, runs comfortably on the Pi 5, and sounds markedly better than the above.
-
-```
-(.venv) $ ./piper_demo.sh
-```
-
-The demo script also shows `--output-raw`, which streams audio to the speaker as it is generated rather than writing a file first. Listen for the difference in how quickly speech begins. In a conversational system this gap is the thing your user experiences as responsiveness.
-
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
-(This shell file should be saved to your own repo for this lab.)
+
+I created [`greet_yangchen.sh`](speech-scripts/greet_yangchen.sh) to have the Pi greet me using Piper voice.
 
 \*\***Then answer: Is the same greeting, in these different voices, the same greeting? Describe one concrete way the voice changed what the utterance seemed to mean or who seemed to be speaking.**\*\*
 
+The words were the same, but the greeting did not feel the same. The eSpeak NG `en+f2` voice was less clear and sounded slightly tired or reluctant, which made the greeting feel almost forced. The Piper `en_US-lessac-medium` voice was clearer and more consistent, so it felt like a fully formed machine speaking to me rather than an uncertain person.
+
 ## B. Speech to Text
-
-We use [faster-whisper](https://github.com/SYSTRAN/faster-whisper), a reimplementation of OpenAI's Whisper model that runs several times faster on CPU and does not require PyTorch. All processing happens on the Pi; nothing is sent to a server.
-
-```
-(.venv) $ python transcribe.py lookdave.wav
-```
-
-The transcript is not the interesting output here — the timings are. Run it again with a larger model and compare:
-
-```
-(.venv) $ python transcribe.py lookdave.wav --model base.en
-(.venv) $ python transcribe.py lookdave.wav --model small.en
-#  noted that the first run may take longer because the model is downloaded, and that the HF unauthenticated-request warning is expected and not an error.
-```
-
-Available sizes, smallest first: `tiny.en`, `base.en`, `small.en`, `medium.en`. The `.en` variants are English-only and faster than their multilingual counterparts at the same size.
 
 \*\***Record a few seconds of your own speech (`arecord -d 5 -f cd -c 1 -r 16000 test.wav`) and transcribe it with at least two model sizes. Report the real-time factor for each. At what point does the accuracy improvement stop being worth the delay, for a system that has to answer you?**\*\*
 
-\*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
+I recorded the seven-second audio file [`my_speech.wav`](speech-scripts/my_speech.wav) and used [`transcribe.py`](speech-scripts/transcribe.py) to transcribe the same recording with two Whisper model sizes.
 
-## C. Turn-taking: knowing when someone has stopped talking
+| Model | Transcription | Audio Duration | Model Load | Transcription | Real-Time Factor |
+|---|---|---:|---:|---:|---:|
+| `tiny.en` | “Hi, my name is Yang Chen and I'm a student and co-ner attack.” | 7.00 s | 0.53 s | 1.18 s | 0.17x |
+| `base.en` | “Hi, my name is Yang Chen and I'm a student in Corner Tech.” | 7.00 s | 0.65 s | 2.29 s | 0.33x |
 
-Everything so far has worked on fixed audio files. A real conversational device does not get told when to start and stop recording — it has to decide. This is the problem that makes speech interfaces hard, and it is mostly not a speech recognition problem.
+The `base.en` model took 1.11 seconds longer and had about twice the real-time factor of `tiny.en`. However, its transcription of “Cornell Tech” as “Corner Tech” was much closer and easier to understand than “co-ner attack.” Both models were still faster than real time, so the accuracy improvement was worth the additional delay. Based on this test, I would stop at `base.en` for a conversational system because a larger model could introduce more waiting for a smaller improvement in accuracy.
 
-We use a **voice activity detector** (VAD) to segment the microphone stream into utterances. `listen.py` runs Silero VAD continuously and hands each detected utterance to faster-whisper:
 
-```
-(.venv) $ cd speech-scripts
-(.venv) $ python listen.py
-```
+\*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\*
 
-Speak, pause, and watch it transcribe. Now change the endpointing threshold — the amount of silence the system requires before it decides your turn is over:
+#### Numerical Input Test
 
-```
-(.venv) $ python listen.py --min-silence 0.2
-(.venv) $ python listen.py --min-silence 1.5
-```
+I created [`ask_zipcode.sh`](speech-scripts/ask_zipcode.sh), which verbally asks:
 
-\*\***Try both extremes, and something in between. Describe what each one feels like to talk to. Note specifically: at 0.2s, what kinds of normal speech get cut off? At 1.5s, what does the delay make the system seem like?**\*\*
+> Please say your five-digit ZIP code after I finish speaking.
 
-There is no correct value. A system that takes drink orders and a system that listens to someone think out loud want very different thresholds, and the right one depends on what your users are doing with their pauses.
+The script then records five seconds of audio and saves the response as [`zipcode_answer.wav`](speech-scripts/zipcode_answer.wav).
 
-### The complete loop
+I intended to say the ZIP code `07306`, but I accidentally said `070306`. Whisper transcribed the six-digit number that I actually spoke. This was not a transcription error, but it revealed another problem: an accurate transcription can still contain invalid user input.
 
-`echo_bot.py` puts the pieces together: it listens, endpoints, transcribes, and speaks a reply through Piper. The dialogue policy is deliberately trivial — it repeats what you said — so that everything you notice is a property of the timing rather than the content.
+A more complete system should check the number of digits before accepting the answer. In this case, it could respond:
 
-```
-(.venv) $ python echo_bot.py
-```
+> I heard 070306. That is six digits. Please repeat your five-digit ZIP code.
+
+## C. Turn-taking: knowing when someone has stopped talkin
+
+#### Endpointing Test
+
+| Silence Threshold | Experience |
+|---|---|
+| `0.2 s` | The system responded quickly, but it frequently ended the turn during normal pauses. Short breaths, filler words such as “uh,” and pauses between clauses caused one sentence to be divided into several fragments. For example, “And the team got a history for like, uh, 666 year” and “until now” were treated as separate turns. |
+| `0.8 s` | This produced the most natural rhythm. It allowed short thinking pauses without interrupting me, while still responding soon after I finished. Some unusually long sentences were still transcribed imperfectly, but the interaction did not feel either rushed or unresponsive. |
+| `1.5 s` | The system captured more complete utterances, but the silence after speaking felt noticeably long. Combined with approximately 1.1 seconds of transcription time, the total wait was around 2.6 seconds. This made the system seem slow and uncertain, as if it had not heard me or did not know that I had finished. |
+
+I selected `0.8 seconds` as the best compromise. It gives users enough room for ordinary pauses and brief moments of thought without making the system feel unresponsive.
 
 ## D. Storyboard
 
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.)
+## SATOR SQUARE Storyboard
 
-\*\***Post your storyboard and diagram here.**\*\*
+*Speak now. Hear yourself later.*
 
-Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
+<img width="428" height="348" alt="393e4957a9f310c57f0d86d54e2ca6f5" src="https://github.com/user-attachments/assets/87b9518e-0406-4f91-b689-022bdbb97bc6" />
 
-\*\***Please describe and document your process.**\*\*
+*A voice interface that allows users to speak with a simulated future version of themselves and leave messages that return at a later point in time.*
 
-Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/f974ae2e-d20f-41c4-87da-39649dc14f90" />
+
+**SATOR SQUARE:** Select a return point: tomorrow, one month, or one year.
+
+**User:** One month.
+
+**SATOR SQUARE:** Temporal channel open. This is a simulated connection to yourself one month from now. Tell me about a decision you have not been able to make.
+
+**User:** I am unsure whether I should commit to something that may not succeed.
+
+*After the user stops speaking, the device waits for 0.8 seconds of silence before ending the turn.*
+
+**SATOR SQUARE:** I heard that you are deciding whether to commit to something that may not succeed. Is that correct?
+
+*The device waits for the user’s confirmation. If the user remains silent for five seconds, it says, “Take your time. The line is still open.”*
+
+**User:** Yes.
+
+*The Wizard listens to the dilemma and selects one appropriate reflection card.*
+
+**Simulated Future Self:** I cannot tell you what happened. What would you regret not doing?
+
+**User:** I would regret never finding out what I was capable of.
+
+*After the user stops speaking, the device waits for 0.8 seconds of silence before sealing the answer.*
+
+**SATOR SQUARE:** Your answer has been sealed. Return date: October 27, 2026. You will hear your own voice again in one month. Connection closed.
+
+### Alternative Response Cards
+
+- **Regret:** What would you regret not doing?
+- **Fear:** Are you choosing this because you want it, or because you fear the alternative?
+- **Control:** Which part of this decision is still under your control?
+- **Identity:** Which choice is closer to the person you want to become?
+- **Time:** Will this still matter to you one year from now?
+
 
 ## E. Acting out the dialogue
 
-Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
+https://youtu.be/3asdAFzKRhc
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+
+When I acted out the interaction, the opening instructions felt clear and natural. The problem appeared when SATOR SQUARE asked the user a reflective question. The question was broad and slightly abstract, so the participant was not sure how to respond. This showed me two possible directions: the question should either be simpler and more universal, or more personalized based on what the user has just said. I also started to question what the returned message means after one month. During the first interaction, the question already creates a useful moment of reflection. However, simply replaying the recording one month later may feel like only a time capsule. To give the return more meaning, the device could ask the user to compare their past concern with how they feel now, turning the message into evidence of change rather than just an old recording.
 
 
 ---
 
 # Lab 3 Part 2
 
-For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
+### Design Changes for Part 2
 
-## Prep for Part 2
+Feedback from Part 1 showed that the original future-self question was
+too broad, and participants were sometimes unsure how to respond. The
+revised system uses the speech transcript to select a question from a
+small set of reflection cards. This keeps the questions open-ended while
+making them more relevant to what the participant said.
 
-1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.
-2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.
-3. Make a new storyboard, diagram and/or script based on these reflections.
-4. (optional) Integrate [input devices](inputs.md) in the system
+The interaction was also changed from silence-based endpointing to
+push-to-talk. The participant holds the green button while speaking and
+releases it to finish, removing uncertainty about when the device stops
+listening.
 
-## Prototype your system
+The screen and illuminated button communicate the system state. A dim
+green light means the device is ready, a bright green light means it is
+recording, and the light turns off while the system is processing. The
+screen displays states including LISTENING, QUESTION RECEIVED, FUTURE
+SELF CONNECTED, and MESSAGE SEALED.
 
-The system should:
-* use the Raspberry Pi
-* use one or more sensors
-* require participants to speak to it
+The rotary encoder is used to select tomorrow, one month, or one year.
+Pressing the encoder confirms the return point, and the illuminated
+button controls both spoken responses.
 
-*Document how the system works.*
+---
+### Redraft Interaction Dialogue
 
-*Include videos or screencaptures of both the system and the controller.*
+**Screen:** `A DECISION YOU KEEP AVOIDING?`
+
+**SATOR SQUARE:** Think of one decision you keep avoiding. Choose when you want this message to return: tomorrow, one month, or one year.
+
+*The user rotates the dial to select `ONE MONTH` and presses it to confirm.*
+
+**SATOR SQUARE:** One month selected. Hold the green button and tell me what you are deciding—and what makes the decision difficult. Release the green button when you are finished.
+
+**Screen:** `LISTENING...`  
+*The green button remains fully illuminated while it is held.*
+
+**User:** I am thinking about [decision], but I am worried about [concern].
+
+*The user releases the green button.*
+
+**Screen:** `QUESTION RECEIVED`  
+*The green LED turns off while the automatic controller transcribes the recording and selects a relevant question.*
+
+**Screen:** `FUTURE SELF CONNECTED`
+
+**Future Self:** I cannot tell you what happened. [Selected reflection question]
+
+**SATOR SQUARE:** Hold the green button to answer. Release it when you are finished.
+
+**Screen:** `LISTENING...`
+
+**User:** I think I am avoiding it because [answer].
+
+*The user releases the green button.*
+
+**Screen:** `MESSAGE SEALED`
+
+**SATOR SQUARE:** Your answer has been sealed. It will return in one month. Connection closed.
+
+---
+
+### One Month Later
+
+*The `TENET` row begins flashing.*
+
+**Screen:** `MESSAGE RETURNED`
+
+**SATOR SQUARE:** A message has returned. One month ago, you said:
+
+*The device plays the user's original recording. It waits one second after the recording ends.*
+
+**SATOR SQUARE:** That was you one month ago. What has changed?
+
+**SATOR SQUARE:** Hold the green button to answer. Release it when you are finished.
+
+**Screen:** `LISTENING...`
+
+**User:** Since then, [new reflection].
+
+*The user releases the green button.*
+
+**Screen:** `MESSAGE SEALED`
+
+**SATOR SQUARE:** Your new reflection has been sealed. Connection closed.
+
+---
+
+### Recovery Dialogue
+
+*If the speech is missing or unclear:*
+
+**SATOR SQUARE:** I may have missed that. Hold the green button and try again.
+
+## Prototype
+
+<img width="428" height="571" alt="2ad1e873b98163f0e95bd4a57de1b5d6" src="https://github.com/user-attachments/assets/76283920-9d14-46b1-926e-9add34d5af3a" />
+
+**System:** Physical interaction with the screen, rotary encoder, illuminated button, microphone, and speaker.
+
+<img width="1360" height="823" alt="image" src="https://github.com/user-attachments/assets/10a50f00-bbe3-4afe-a7a5-9db417ba0350" />
+
+**Controller:** Terminal view showing transcription and question-card selection.
+
+[Test Video](https://github.com/user-attachments/assets/e79375cc-f55c-4ff1-a955-85bd6f6f5a71)
+
+YouTube Video: [Full Interaction Process](https://youtube.com/shorts/aM9rMaL1U2Q)
+
+- [SATOR SQUARE Part 2 prototype](speech-scripts/sator_prototype_v2.py)
+- [Automatic question controller](speech-scripts/wizard_controller.py)
+
+SATOR SQUARE runs on a Raspberry Pi 5. A rotary encoder allows the
+participant to select tomorrow, one month, or one year as the return
+point. Pressing the encoder confirms the selection. The participant
+then holds an illuminated green button while speaking and releases it
+to finish recording.
+
+A Mini PiTFT communicates the current state of the interaction,
+including LISTENING, QUESTION RECEIVED, FUTURE SELF CONNECTED, and
+MESSAGE SEALED. The green button remains dim when the system is ready,
+
+
+becomes fully illuminated while recording, turns off while processing,
+and flashes twice when the message has been sealed.
+
+The Raspberry Pi records the participant through a USB microphone and
+uses a local Whisper model to transcribe the recording. A keyword-guided
+controller selects a reflection question from a set of question cards,
+and Piper reads the question aloud through the speaker. The original
+recordings, transcripts, selected questions, return point, and timestamps
+are saved together as one session.
+
+The controller view runs in the terminal and displays the selected
+return point, user transcript, drawn question card, and the question
+sent to the device. An earlier Wizard of Oz version allowed the wizard
+to approve or replace the question; the revised prototype performs this
+step automatically.
+
+
+
 
 ## Test the system
 
-Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard *after* the interaction, but we recognize that can be hard.)
+**Participant 1: Zining Yu**
 
-Answer the following:
+**Participant 2: Junzhe Sun**
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+The overall interaction flow worked well. The rotary encoder made the return-point selection physical, and holding the green button to speak was clearer than asking users to pause for a fixed amount of time. The screen and illuminated button also helped communicate when the system was ready, listening, processing, and finished. However, the screen was too small for some instructions, and the exposed components made the device look unfinished. The rotary shaft looked more like a screw than an intentional control. The tester suggested that the final device could resemble a compact MP4 player or iPod, integrating the screen, dial, button, microphone, and speaker into one portable enclosure. This familiar and personal form would fit an interaction based on private voice messages and memories. The current system also only supports English, which limits who can use it.
 
 ### What worked well about the controller and what didn't?
-\*\**your answer here*\*\*
+The controller successfully displayed the transcript, selected a reflection question, and recorded what was sent to the device. The automatic version allowed the interaction to continue without requiring me to type during the session. However, keyword matching and random selection from a small pool of questions did not always yield a relevant response. For example, when the topic was financial freedom, the system asked, “What are you protecting yourself from?” This made the controller feel as if it were randomly drawing from ten questions rather than understanding the participant. The earlier Wizard-of-Oz controller allowed me to replace an irrelevant question, but manually monitoring and typing could also create an awkward delay.
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-\*\**your answer here*\*\*
+The main lesson is that semantic relevance matters as much as timing. Even if the interaction runs smoothly, an unrelated question immediately makes the device feel less intelligent. A more autonomous version could use a constrained generative AI model to generate or rank one question based on the complete transcript. The model should only produce a short reflective question and should not predict the future, give direct advice, or reveal an outcome. The existing question cards could remain as a fallback when the model is unavailable or uncertain. A future version could also use multilingual speech recognition and matching text-to-speech voices while preserving the screen, LED, and push-to-talk feedback that helped users understand the interaction.
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-\*\**your answer here*\*\*
+Each session could become one structured data record containing the selected return point, original audio, transcript, question selected by the controller, spoken reflection, timestamps, and the participant’s later response when the message returns. I could also collect a short relevance rating for the selected question and record whether the wizard had to replace it. This dataset could help identify which questions work best for different concerns and could later be used to train or evaluate a more autonomous question-selection system. Additional useful signals include rotary and button-event timestamps, speech duration, pauses, response latency, and proximity to the device. With informed consent, video could also capture hesitation, gaze, and facial reactions, although voice and video data would need careful privacy protection and anonymization.
 
 <details>
   <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
