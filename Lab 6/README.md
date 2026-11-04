@@ -1,6 +1,6 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+**Xiaowei David Zhang Chen, Amy Gao, Alexander Yen, Viktor Radev**
 
 For submission, replace this section with your documentation!
 
@@ -129,6 +129,9 @@ Hold colored objects near sensor to change your pixel!
 ![Pixel grid with two devices](imgs/two-devices-grid.png)
 
 **📸 Include: Screenshot of grid + photo of your Pi setup**
+
+![Grid](screencolors.png)
+![Setup](setup.jpeg)
 
 ---
 
