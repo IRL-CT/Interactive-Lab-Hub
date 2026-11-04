@@ -2,9 +2,9 @@
 
 _This project is to be done in teams of 2._
 
-**NAME OF BOTH COLLABORATOR(S) HERE**
+**Pallavi Srinivas (ps2269), Abiola Bolaji (ab3394)**
 
-**THE MASTERWORK YOU DREW FROM THE HAT:**
+**Paul Revere's Lanterns: Old North Church in 1775**
 
 ---
 
@@ -89,8 +89,12 @@ the interaction*:
 
   Sometimes the details of how the interaction worked are lost in history. Try filling it in with your imagination!
 
-**Describe your masterwork here, in your own words. What is the core interaction
-someone would recognize it by?**
+The users of Paul Revere’s lanterns were soldiers who used the lightning as means to communicate important information. 
+Response warrants how the Americans would respond or prepare for a land attack vs a sea attack
+The American soldiers/settlers would be present and their reactions depend on which lantern is lit 
+I.e if one lantern is lit soldiers may prepare boots for walking and setting up a land defense compared to if f two then by sea 
+The piece is a central component of the American Revolutionary war. 
+
 
 ## Part A. Plan
 
@@ -105,14 +109,23 @@ For your masterwork, reconstruct the interaction as a scene:
 
 **Describe your setting, players, activity, and goals here.**
 
+- **Setting:** Old North Church in 1775
+
+- **Players:** A soldier near the Old North Church who is on guard at night awaiting the signal. Additionally, townspeople are also warned. 
+
+- **Activity:** The soldiers notice the number of lanterns that are present to deduce the next steps they may need to take against the British (prepare for battle or wait).
+
+- **Goals:** Each solider is trying to understand what the code of the lanterns means so awaiting for the next signal to know how to act and how to prepare for battle.
+
+
 Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
 don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
 and the people around it. If you're new to storyboarding, read
 [this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
 
-**Include pictures of your storyboards here.**
+<img width="633" height="246" alt="Screenshot 2026-09-02 at 6 17 45 PM" src="https://github.com/user-attachments/assets/7572b546-ab19-4667-8e38-aa03964e856b" />
 
-Use the storyboards to decide what interaction to prototype.
+
 
 **Summarize the feedback you got here.**
 
@@ -123,11 +136,13 @@ is doing what you've scripted — a person can wave a flashlight, or you can nar
 it aloud.
 
 **Are there things that seemed better on paper than when acted out?**
+It's easier to get the setting of the scenario on paper rather than acting it out. This is because the lanterns are placed outside of a church in the 1700's, which make it evident that it is a major historical event. This can be easily depicted through a drawing of cobblestone streets, horses, colonial buildings, and more.
 
 **Did new ideas about the piece surface once you were on your feet?**
+Not that much, we actually had to tone it down when acting considering the constraints we had regarding the setting of the lightwork.
 
 **Are there key moments in the interaction where things could go in a different direction?**
-Iterate your storyboards to capture key non-sequential aspects of the interaction. 
+Depending on the number of lamps that are lit, the interaction may go in a different direction. The crux of the interaction is that the user looks at the number of lamps that are lit to determine the soldiers best course of action. In reality, multiple things can happen to cause the lamps to provide incorrect information.
 
 ## Part C. Prototype the Light (light first!)
 
@@ -176,9 +191,11 @@ who doesn't should come away understanding what it's famous for. How might you i
 
 **Include your video here.**
 
-**Please indicate who you collaborated with on this lab.** Be generous in
-acknowledging their contributions, and credit any other influences (YouTube,
-Github, Twitter, a friend who lent you a lamp) that informed your recreation.
+https://drive.google.com/file/d/1ysYyZU4Gxwz5uTE3DxNIvmBnSPzKik2v/view?usp=sharing
+https://drive.google.com/file/d/1Y3zQLlVRPd6w7W8Ssoqe9VOqgTHRqemG/view?usp=sharing
+
+
+Abiola Bolaji (ab3394)
 
 ---
 
@@ -193,29 +210,23 @@ videos, and give them reactions and feedback: tell them what you saw happening,
 guess the masterwork and the goals of the characters, and ask about anything that
 wasn't clear.
 
-**Who were the other groups you kibitzed with? Add links to their project pages here.**
-**Summarize the feedback you got from your partners here.**
+Ani: (https://github.com/anihadagali7/Interactive-Lab-Hub/tree/anihadagali7-Aug26-Lab/Lab%201)
+The lanterns from Paul Revere are a famous and historical piece of interactive light. It symbolizes if there is an attack happening if the light is on. It is more about conveying a message and letting people know what to do rather than an actual product. The storyboard illustrates a scenario where the soldier sees that the lanterns are on and then alerts/warns others about the incoming attack. This chain of lights will indicate quickly to a larger group of people rather than relying on other forms of communication. The video is a bit hard to understand as to what is happening, but after reading the report, it is clear that the soldier sees the lantern and is scared/shocked of the oncoming attack.
+
+Pallavi: (https://github.com/pk633-cu/Interactive-Lab-Hub/blob/Fall2026/Lab%201/README.md)
+I think the interaction was great! It was clear that the interaction was about Paul Revere's Lantern. One thing that I would add is more scenery in the background (maybe a drawn out church) so the setting is more clear.
+
+Alison: (https://github.com/Cyalisonliu/Interactive-Lab-Hub/tree/Fall2026/Lab%201#part-f-record)
+I like the interaction that captures the moment when that person saw the light on.
+But I mistakenly thought it was a motion-sensor light because the light turns off immediately after the person walks away. I feel it would be easier to understand if the actor were holding something symbolic.
+
+
 
 ## Remix, Update, or Critique the Master
 
-Now that you understand your masterwork from the inside, respond to it. Do the
-recreation again, but this time make it your own — pick one of these moves (or
-combine them):
+To influence believability of the light source and make the user believe that it truly a lamp, we got a fire crackling audio from YouTube to play whenever the hex-code of the color of the light changed, indicating that the lamp is lit. We put the audio file in the static folder and and edited the index.js file to indicate the system to play the audio only during color changes and to play the audio only once. 
 
-1. **Remix the modality.** Your recreation no longer has to (just) use light. Use
-   vibration, sound, motion, heat — whatever best carries the interaction. Feel
-   free to fork and modify the Tinkerbelle code. (Add your updates to this lab's folder!)
-2. **Update it.** Redesign the piece for today's context, or for a setting its
-   creators never imagined (the piece with roommates in the room, with children
-   present, on a phone, in a car).
-3. **Fix its weaknesses.** You identified this master's strengths and weaknesses
-   in Part 0 — now address a weakness, or push a strength further.
-
-We will grade this second pass with an emphasis on **creativity** and on how well
-your response engages with what your master was really doing.
-
-**Document everything here — especially the storyboard and video. Photos of the
-prototype are great too.**
+We can improve upon this by making the audio louder for brighter colors and quieter for darker colors. Right now any light change results in the same audio being played, but in reality fire is a dynamic element and sounds different every second. Adding this gradual change would make it more believable.
 
 ---
 
