@@ -1,0 +1,4 @@
+Flask>=3.0.0
+Flask-SocketIO>=5.3.5
+simple-websocket>=1.0.0
+paho-mqtt

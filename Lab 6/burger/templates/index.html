@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pan Burger</title>
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<style>
+  :root {
+    --wall: #f6e7cf;
+    --wall2: #efd6b0;
+    --counter: #8a5a3b;
+    --counter-top: #b07a52;
+    --ink: #3b2a1e;
+    --p1: #e4572e;
+    --p2: #2e86de;
+    --ok: #3fa34d;
+    --bad: #d64545;
+    --bun: #d9963f;
+    --bun-dark: #b8742a;
+    --cheese: #f7c931;
+    --lettuce: #5cb85c;
+    --meat: #6b3a24;
+    --plate: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%; overflow: hidden;
+    font-family: "PingFang TC", "Noto Sans TC", "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    background: var(--wall);
+  }
+  #app { display: flex; flex-direction: column; height: 100vh; }
+
+  /* ---- top bar ---- */
+  #topbar {
+    display: flex; align-items: center; gap: 28px;
+    padding: 10px 28px; background: var(--ink); color: #fff;
+    font-size: 22px; font-weight: 700;
+  }
+  #topbar .title { font-size: 26px; margin-right: auto; }
+  #timer { font-variant-numeric: tabular-nums; }
+  .topbtn {
+    font: inherit; font-size: 16px; font-weight: 700; color: #fff; cursor: pointer;
+    background: rgba(255,255,255,.15); border: 2px solid rgba(255,255,255,.35);
+    border-radius: 10px; padding: 4px 12px;
+  }
+  .topbtn:hover { background: rgba(255,255,255,.3); }
+  #timer.low { color: #ff8a80; animation: pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity: .5; } }
+
+  /* ---- scene: customers behind the counter ---- */
+  #scene {
+    position: relative; flex: 1 1 auto; min-height: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 118px, rgba(0,0,0,.04) 118px 120px),
+      linear-gradient(var(--wall), var(--wall2));
+  }
+  #queue {
+    position: absolute; left: 0; right: 0; bottom: 30px; top: 70px;
+    display: flex; justify-content: flex-start; align-items: flex-end;
+    gap: 2%; padding: 0 3%;
+  }
+  #sign {
+    position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: #ffd36b; font-weight: 900; font-size: 26px; letter-spacing: 6px;
+    padding: 6px 26px; border-radius: 10px; box-shadow: 0 4px 0 rgba(0,0,0,.2);
+  }
+  .customer {
+    flex: 0 0 23%; display: flex; flex-direction: column; align-items: center;
+    transition: transform .4s, opacity .4s;
+    animation: walkin .6s ease-out;
+  }
+  @keyframes walkin { from { transform: translateX(60vw); } to { transform: none; } }
+  .customer.match .bubble { box-shadow: 0 0 0 4px var(--ok); }
+  .bubble {
+    background: #fff; border-radius: 16px; padding: 10px 14px 8px;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    box-shadow: 0 3px 0 rgba(0,0,0,.15); margin-bottom: 8px; min-width: 150px;
+    position: relative;
+  }
+  .bubble::after {
+    content: ""; position: absolute; bottom: -10px; left: 50%; margin-left: -10px;
+    border: 10px solid transparent; border-top-color: #fff; border-bottom: 0;
+  }
+  .order-words { font-size: 15px; font-weight: 600; text-align: center; }
+  .patience { width: 100%; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
+  .patience > div { height: 100%; background: var(--ok); transition: width .1s linear, background .3s; }
+  .person { display: flex; flex-direction: column; align-items: center; }
+  .head { font-size: min(13vh, 120px); line-height: 1; position: relative; z-index: 1; }
+  .body { width: min(24vh, 200px); height: min(12vh, 110px); border-radius: 100px 100px 0 0; margin-top: -12px; }
+  .bubble .order-burger { width: 130px; }
+  .order-words::before { content: "Bottom to top: "; color: #a08a70; font-weight: 400; }
+
+  #counter {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 44px;
+    background: linear-gradient(var(--counter-top) 0 12px, var(--counter) 12px);
+    box-shadow: 0 -4px 10px rgba(0,0,0,.15);
+  }
+
+  /* ---- burger drawing ---- */
+  .burger { display: flex; flex-direction: column-reverse; align-items: center; width: 100%; }
+  .layer { border-radius: 4px; margin-top: -2px; }
+  .layer.plate { width: 120%; height: 10px; background: var(--plate); border-radius: 50%;
+                 box-shadow: 0 2px 0 #ccc; margin-top: 0; }
+  .layer.bun { width: 100%; height: 14px; background: var(--bun); border-radius: 4px 4px 10px 10px; }
+  .layer.bun.top { height: 24px; border-radius: 40px 40px 6px 6px;
+                   background: radial-gradient(circle at 30% 30%, #f3e0b5 0 2px, transparent 3px) 0 0/14px 10px,
+                               var(--bun); }
+  .layer.cheese { width: 104%; height: 7px; background: var(--cheese); }
+  .layer.lettuce { width: 108%; height: 8px; background: var(--lettuce); border-radius: 8px; }
+  .layer.meat { width: 96%; height: 14px; background: var(--meat); border-radius: 7px; }
+  .layer.ghost { opacity: .25; }
+
+  /* ---- players: a steel kitchen counter ---- */
+  #players {
+    flex: 0 0 auto; display: flex; gap: 0; padding: 14px 10px 16px;
+    background: linear-gradient(#dfe3e6, #b9c0c6 70%, #9aa2a9);
+    border-top: 10px solid #8a939b; box-shadow: inset 0 3px 0 #f3f5f6;
+  }
+  .player { flex: 1; position: relative; padding: 0 10px; }
+  .player + .player { border-left: 3px dashed rgba(0,0,0,.18); }
+  .player-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .pname { font-size: 20px; font-weight: 900; color: #fff; padding: 2px 14px; border-radius: 999px; background: var(--p1); }
+  .player.p2 .pname { background: var(--p2); }
+  .pmode { font-size: 20px; font-weight: 800; }
+  .conn { margin-left: auto; font-size: 14px; color: #59636b; }
+  .conn.on { color: #1e7a32; font-weight: 700; }
+  .stations { display: flex; gap: 10px; align-items: stretch; }
+  .station {
+    flex: 1; border: 4px solid transparent; border-radius: 16px; padding: 6px 6px 8px;
+    opacity: .6; transition: all .2s; position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-height: 165px;
+  }
+  .station.active { opacity: 1; background: rgba(255,255,255,.55); border-color: var(--p1);
+                    transform: translateY(-6px); box-shadow: 0 8px 0 rgba(0,0,0,.12); }
+  .player.p2 .station.active { border-color: var(--p2); }
+  .station-name { font-size: 16px; font-weight: 800; margin-top: 6px; }
+  .hint { color: #59636b; font-size: 14px; height: 18px; letter-spacing: 0; }
+  .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; }
+
+  .pan { width: 112px; height: 112px; border-radius: 50%; background: #2d2d2d; position: relative;
+         box-shadow: inset 0 0 0 9px #4a4a4a, 0 4px 0 rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; }
+  .pan::after { content: ""; position: absolute; right: -46px; top: 50%; width: 50px; height: 14px; margin-top: -7px;
+                background: #2d2d2d; border-radius: 0 8px 8px 0; z-index: -1; }
+  .patty { width: 74px; height: 74px; border-radius: 50%; transition: background .2s, transform .25s;
+           box-shadow: inset 0 -5px 0 rgba(0,0,0,.2); }
+  .patty.flip { animation: flip .35s; }
+  @keyframes flip { 50% { transform: translateY(-50px) scaleY(.2); } }
+  .sides { display: flex; gap: 6px; margin-top: 6px; width: 100%; height: 30px; }
+  .side { flex: 1; font-size: 12px; }
+  .side .bar { height: 10px; background: #eee; border-radius: 5px; position: relative; overflow: hidden; }
+  .side .bar > div { height: 100%; }
+  .side .mark { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ink); }
+  .side.down b { color: var(--bad); }
+
+  .board { width: 150px; height: 92px; background: #d8a76a; border-radius: 14px;
+           box-shadow: inset 0 0 0 5px #c18e52, 0 4px 0 rgba(0,0,0,.2);
+           display: flex; align-items: center; justify-content: center; font-size: 50px; }
+  .board.chop { animation: chop .15s; }
+  @keyframes chop { 50% { transform: translateY(6px); } }
+  .dots { margin-top: 6px; font-size: 18px; letter-spacing: 4px; height: 30px; }
+  .dots.hint { font-size: 14px; letter-spacing: 0; height: 30px; }
+
+  .assembly-burger { width: 100px; min-height: 40px; display: flex; align-items: flex-end; justify-content: center; }
+  .plate-spot { width: 130px; height: 26px; border-radius: 50%; border: 3px dashed #7d878f; }
+
+  /* what is already cooked and ready to stack */
+  .ready {
+    flex: 0 0 150px; background: #7d878f; border-radius: 12px; padding: 8px;
+    box-shadow: inset 0 4px 8px rgba(0,0,0,.35); display: flex; flex-direction: column;
+  }
+  .ready-title { color: #fff; font-weight: 800; font-size: 15px; margin-bottom: 6px; }
+  .ready-items { display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start; flex: 1; }
+  .ready .none { color: #cfd5da; font-size: 13px; }
+  .item { position: relative; animation: pop .3s; }
+  @keyframes pop { from { transform: scale(0); } 70% { transform: scale(1.2); } }
+  .item.meat { width: 56px; height: 20px; border-radius: 10px; background:
+               repeating-linear-gradient(90deg, transparent 0 9px, rgba(0,0,0,.35) 9px 12px), var(--meat); }
+  .item.lettuce { width: 56px; height: 20px; border-radius: 10px; background:
+                  radial-gradient(circle at 6px 10px, #8fd18f 0 4px, transparent 5px) 0 0/12px 20px, var(--lettuce); }
+
+  .toast {
+    position: absolute; left: 50%; top: -18px; transform: translateX(-50%);
+    background: var(--ink); color: #fff; font-size: 20px; font-weight: 800;
+    padding: 6px 16px; border-radius: 999px; white-space: nowrap;
+    opacity: 0; transition: opacity .2s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+  .toast.error, .toast.burn { background: var(--bad); }
+  .toast.ding, .toast.serve, .toast.catch { background: var(--ok); }
+  .player.shake { animation: shake .3s; }
+  @keyframes shake { 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+
+  #banner {
+    position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%) scale(.6);
+    font-size: 64px; font-weight: 900; color: var(--ok); opacity: 0;
+    text-shadow: 0 4px 0 #fff, 0 6px 10px rgba(0,0,0,.2); pointer-events: none;
+    transition: all .25s;
+  }
+  #banner.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  #banner.bad { color: var(--bad); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .customer, .item, .patty.flip, .board.chop, .player.shake { animation: none; }
+  }
+
+  /* ---- overlays ---- */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(40,25,15,.75);
+    display: none; align-items: center; justify-content: center; z-index: 10;
+  }
+  .overlay.show { display: flex; }
+  .card {
+    background: #fff8ee; border-radius: 24px; padding: 32px 44px; text-align: center;
+    min-width: 520px; box-shadow: 0 10px 40px rgba(0,0,0,.4);
+  }
+  .card h1 { font-size: 52px; margin: 0 0 4px; }
+  .card h2 { margin: 18px 0 8px; font-size: 20px; color: #8a6a50; }
+  .choices { display: flex; gap: 12px; justify-content: center; }
+  .choice {
+    font: inherit; font-size: 20px; font-weight: 700; padding: 12px 22px;
+    border-radius: 14px; border: 3px solid #e2cfb3; background: #fff; cursor: pointer;
+  }
+  .choice.on { border-color: var(--ink); background: var(--ink); color: #fff; }
+  .go { margin-top: 26px; font: inherit; font-size: 26px; font-weight: 900; padding: 14px 60px;
+        border: 0; border-radius: 16px; background: var(--p1); color: #fff; cursor: pointer; }
+  .help { margin-top: 18px; font-size: 14px; color: #8a6a50; line-height: 1.7; }
+  .stat { font-size: 28px; margin: 6px 0; }
+
+  /* ---- simulator ---- */
+  #simToggle {
+    position: fixed; right: 12px; top: 64px; z-index: 5; font: inherit; font-size: 14px;
+    padding: 6px 12px; border-radius: 8px; border: 0; background: rgba(0,0,0,.55); color: #fff; cursor: pointer;
+  }
+  #sim {
+    position: fixed; right: 12px; top: 100px; z-index: 5; width: 300px;
+    background: rgba(255,255,255,.95); border-radius: 12px; padding: 10px 12px;
+    font-size: 13px; box-shadow: 0 4px 20px rgba(0,0,0,.25); display: none;
+  }
+  #sim.show { display: block; }
+  #sim h3 { margin: 6px 0; font-size: 15px; }
+  #sim button { font: inherit; font-size: 13px; margin: 2px; padding: 4px 8px; border-radius: 6px;
+                border: 1px solid #ccc; background: #fff; cursor: pointer; }
+  #sim kbd { background: #eee; border-radius: 4px; padding: 0 4px; font-family: monospace; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <div class="title">🍔 Pan Burger</div>
+    <div id="levelName"></div>
+    <div>⭐ <span id="score">0</span></div>
+    <div>✅ <span id="served">0</span></div>
+    <div>😡 <span id="missed">0</span></div>
+    <div id="timer">⏱ 3:00</div>
+    <button class="topbtn" id="restartBtn" title="Start again with the same settings">🔄 Restart</button>
+    <button class="topbtn" id="homeBtn" title="Back to the start screen">🏠 Lobby</button>
+  </div>
+  <div id="scene">
+    <div id="sign">PAN BURGER</div>
+    <div id="queue"></div>
+    <div id="counter"></div>
+    <div id="banner"></div>
+  </div>
+  <div id="players"></div>
+</div>
+
+<div class="overlay" id="lobby">
+  <div class="card">
+    <h1>🍔 Pan Burger</h1>
+    <div>Flip the pan, chop, stack the burgers in order and feed the queue!</div>
+    <h2>How many players?</h2>
+    <div class="choices" id="playerChoices">
+      <button class="choice" data-players="1">🧑‍🍳 Single</button>
+      <button class="choice on" data-players="2">🧑‍🍳🧑‍🍳 Two-player co-op</button>
+    </div>
+    <h2>Level</h2>
+    <div class="choices" id="levelChoices"></div>
+    <button class="go" id="startBtn">Open the shop!</button>
+    <div class="help">
+      Every burger, bottom to top: bun → fillings in the customer's order → bun. Assembly mode sets out the plate.<br>
+      Patties need both sides cooked on the 🍳 Grill; lettuce needs 5 chops on the 🔪 Board; cheese goes straight on.<br>
+      Pan buttons: A = previous mode, B = next mode (Grill → Board → Assembly), hold B = throw away. In co-op, swing the pan forward to throw food to your partner.
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="over">
+  <div class="card">
+    <h1>Closing time!</h1>
+    <div class="stat">⭐ <b id="finalScore">0</b> points</div>
+    <div class="stat">✅ <b id="finalServed">0</b> burgers served　😡 <b id="finalMissed">0</b> customers left angry</div>
+    <div class="choices" style="margin-top:24px">
+      <button class="go" id="againBtn">Play again</button>
+      <button class="go" id="lobbyBtn" style="background:#8a6a50">Lobby</button>
+    </div>
+  </div>
+</div>
+
+<button id="simToggle">⌨️ Simulator (`)</button>
+<div id="sim">
+  <div id="simBody"></div>
+  <div style="margin-top:8px; color:#666">
+    P1: <kbd>Q</kbd> mode <kbd>W</kbd> flip/chop <kbd>E</kbd> throw to partner <kbd>R</kbd> throw away<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;cards <kbd>1</kbd> bun <kbd>2</kbd> cheese <kbd>3</kbd> lettuce <kbd>4</kbd> patty<br>
+    P2: <kbd>U</kbd> mode <kbd>I</kbd> flip/chop <kbd>O</kbd> throw to partner <kbd>P</kbd> throw away<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;cards <kbd>6</kbd> bun <kbd>7</kbd> cheese <kbd>8</kbd> lettuce <kbd>9</kbd> patty
+  </div>
+</div>
+
+<script>
+const socket = io();
+const $ = id => document.getElementById(id);
+let state = null;
+let lobbyChoice = { players: 2, level: 1 };
+
+const NAMES = { plate: 'Plate', bun: 'Bun', cheese: 'Cheese', lettuce: 'Lettuce', meat: 'Patty' };
+const MODE_LABEL = { grill: '🍳 Grill', board: '🔪 Board', assembly: '🍔 Assembly' };
+const FACES = ['🧑', '👩', '👨‍🦱', '👧', '🧔', '👵'];
+const SHIRTS = ['#7cb3d9', '#e89ac7', '#9bd17c', '#f2b35c', '#b39ddb', '#80cbc4'];
+
+// ---------------------------------------------------------------- drawing --
+
+function burgerHTML(layers, { plate = true, ghostFrom = null } = {}) {
+  let html = plate ? '<div class="layer plate"></div>' : '';
+  layers.forEach((l, i) => {
+    const top = l === 'bun' && i > 0 ? ' top' : '';
+    const ghost = ghostFrom !== null && i >= ghostFrom ? ' ghost' : '';
+    html += `<div class="layer ${l}${top}${ghost}"></div>`;
+  });
+  return `<div class="burger">${html}</div>`;
+}
+
+function orderWords(order) {
+  const fill = order.slice(1, -1);
+  const counts = [];
+  fill.forEach(f => {
+    const last = counts[counts.length - 1];
+    if (last && last[0] === f) last[1]++; else counts.push([f, 1]);
+  });
+  return counts.map(([f, n]) => NAMES[f] + (n > 1 ? '×' + n : '')).join(' → ');
+}
+
+function renderQueue() {
+  const q = $('queue');
+  const ids = new Set(state.customers.map(c => String(c.id)));
+  [...q.children].forEach(el => { if (!ids.has(el.dataset.id)) el.remove(); });
+
+  // Which customers could take what a player is currently stacking.
+  const stacks = Object.values(state.players).map(p => p.stack).filter(s => s && s.length);
+
+  state.customers.forEach((c, i) => {
+    let el = q.querySelector(`[data-id="${c.id}"]`);
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'customer';
+      el.dataset.id = c.id;
+      el.innerHTML = `
+        <div class="bubble">
+          <div class="order-burger">${burgerHTML(c.order)}</div>
+          <div class="order-words">${orderWords(c.order)}</div>
+          <div class="patience"><div></div></div>
+        </div>
+        <div class="person">
+          <div class="head">${FACES[c.look]}</div>
+          <div class="body" style="background:${SHIRTS[c.look]}"></div>
+        </div>`;
+      q.appendChild(el);
+    }
+    if (q.children[i] !== el) q.insertBefore(el, q.children[i]);
+    const frac = Math.max(0, c.left / c.patience);
+    const bar = el.querySelector('.patience > div');
+    bar.style.width = (frac * 100) + '%';
+    bar.style.background = frac > .5 ? 'var(--ok)' : frac > .25 ? '#f0ad4e' : 'var(--bad)';
+    el.querySelector('.head').textContent = frac > .5 ? FACES[c.look] : frac > .25 ? '😐' : '😠';
+    const match = stacks.some(s => s.every((l, k) => c.order[k] === l));
+    el.classList.toggle('match', match);
+  });
+}
+
+function pattyColor(v) {
+  // raw pink -> brown -> black
+  if (v < state.cooked) {
+    const t = v / state.cooked;
+    return mix([232, 140, 140], [140, 80, 45], t);
+  }
+  const t = Math.min(1, (v - state.cooked) / (state.burnt - state.cooked));
+  return mix([140, 80, 45], [40, 25, 20], t);
+}
+function mix(a, b, t) {
+  return `rgb(${a.map((x, i) => Math.round(x + (b[i] - x) * t)).join(',')})`;
+}
+function sideBar(name, v, down) {
+  const pct = Math.min(100, v / state.burnt * 100);
+  const col = v >= state.cooked ? 'var(--ok)' : '#f0ad4e';
+  const markAt = state.cooked / state.burnt * 100;
+  return `<div class="side ${down ? 'down' : ''}">
+      <b>${name}${down ? ' ↓ down' : ''}</b>
+      <div class="bar"><div style="width:${pct}%;background:${v > state.cooked + 25 ? 'var(--bad)' : col}"></div>
+      <span class="mark" style="left:${markAt}%"></span></div></div>`;
+}
+
+function renderPlayers() {
+  const box = $('players');
+  const pids = Object.keys(state.players);
+  if (box.dataset.pids !== pids.join()) {
+    box.dataset.pids = pids.join();
+    box.innerHTML = pids.map(pid => `
+      <div class="player ${pid}" id="pl-${pid}">
+        <div class="toast"></div>
+        <div class="player-head">
+          <div class="pname">${pid.toUpperCase()}</div>
+          <div class="pmode"></div>
+          <div class="conn"></div>
+        </div>
+        <div class="stations">
+          <div class="station" data-mode="grill"></div>
+          <div class="station" data-mode="board"></div>
+          <div class="station" data-mode="assembly"></div>
+          <div class="ready"><div class="ready-title">✅ Ready</div><div class="ready-items"></div></div>
+        </div>
+      </div>`).join('');
+  }
+  pids.forEach(pid => {
+    const p = state.players[pid];
+    const el = $('pl-' + pid);
+    el.querySelector('.pmode').textContent = 'Now: ' + MODE_LABEL[p.mode];
+    const conn = (state.connected || {})[pid];
+    const c = el.querySelector('.conn');
+    c.textContent = conn ? '🟢 Pan connected' : '⚪ No pan (keyboard simulator)';
+    c.classList.toggle('on', !!conn);
+
+    // Cooked meat and chopped lettuce waiting to be stacked, drawn as food.
+    const ready = el.querySelector('.ready-items');
+    const readyKey = p.tray.join();
+    if (ready.dataset.key !== readyKey) {
+      ready.dataset.key = readyKey;
+      const sorted = [...p.tray].sort();
+      ready.innerHTML = sorted.length
+        ? sorted.map(t => `<div class="item ${t}" title="${t === 'meat' ? 'cooked patty' : 'chopped lettuce'}"></div>`).join('')
+        : '<div class="none">Nothing yet<br>(cooked patties and chopped lettuce go here)</div>';
+    }
+
+    el.querySelectorAll('.station').forEach(st => {
+      const m = st.dataset.mode;
+      st.classList.toggle('active', p.mode === m);
+      // Rebuild a station only when its structure changes, then update the
+      // numbers in place, so the flip / chop animations are not cut off.
+      let key, build, update = () => {};
+      const name = `<div class="station-name">${MODE_LABEL[m]}</div>`;
+      if (m === 'grill') {
+        key = p.patty ? 'patty' : 'empty';
+        build = p.patty
+          ? '<div class="pan"><div class="patty"></div></div><div class="sides"></div>' + name
+          : '<div class="pan"></div><div class="sides hint" style="justify-content:center">Scan <span class="sw" style="background:#f06ca0"></span> patty</div>' + name;
+        if (p.patty) update = () => {
+          st.querySelector('.patty').style.background = pattyColor(p.patty[p.patty.down]);
+          st.querySelector('.sides').innerHTML =
+            sideBar('A', p.patty.A, p.patty.down === 'A') + sideBar('B', p.patty.B, p.patty.down === 'B');
+        };
+      } else if (m === 'board') {
+        key = p.lettuce ? 'lettuce' : 'empty';
+        build = (p.lettuce
+          ? '<div class="board">🥬</div><div class="dots"></div>'
+          : '<div class="board"></div><div class="dots hint">Scan <span class="sw" style="background:#6aa8e8"></span> lettuce</div>') + name;
+        if (p.lettuce) update = () => {
+          const n = p.lettuce.chops;
+          st.querySelector('.dots').textContent = '●'.repeat(n) + '○'.repeat(state.chops_needed - n);
+        };
+      } else {
+        key = p.stack === null ? 'empty' : 'stack:' + p.stack.join(',');
+        build = (p.stack === null
+          ? '<div class="plate-spot"></div><div class="hint" style="margin-top:8px">Plate goes here</div>'
+          : `<div class="assembly-burger">${burgerHTML(p.stack)}</div>`) + name;
+      }
+      if (st.dataset.key !== key) { st.dataset.key = key; st.innerHTML = build; }
+      update();
+    });
+  });
+}
+
+function render() {
+  if (!state) return;
+  $('lobby').classList.toggle('show', state.phase === 'lobby');
+  $('over').classList.toggle('show', state.phase === 'over');
+  $('levelName').textContent = `Level ${state.level} · ${state.level_name} · ${state.num_players === 1 ? 'Single' : 'Co-op'}`;
+  $('score').textContent = state.score;
+  $('served').textContent = state.served;
+  $('missed').textContent = state.missed;
+  const t = Math.ceil(state.time_left);
+  $('timer').textContent = `⏱ ${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`;
+  $('timer').classList.toggle('low', state.phase === 'playing' && t <= 20);
+  $('finalScore').textContent = state.score;
+  $('finalServed').textContent = state.served;
+  $('finalMissed').textContent = state.missed;
+  renderQueue();
+  renderPlayers();
+  renderLobby();
+  renderSim();
+}
+
+// ----------------------------------------------------------------- events --
+
+const toastTimers = {};
+function toast(pid, kind, msg) {
+  const el = $('pl-' + pid);
+  if (!el) return;
+  const t = el.querySelector('.toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + kind;
+  clearTimeout(toastTimers[pid]);
+  toastTimers[pid] = setTimeout(() => t.classList.remove('show'), 1400);
+  if (kind === 'error' || kind === 'burn') {
+    el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');
+  }
+}
+function banner(msg, bad) {
+  const b = $('banner');
+  b.textContent = msg;
+  b.className = 'show' + (bad ? ' bad' : '');
+  clearTimeout(b._t);
+  b._t = setTimeout(() => b.className = bad ? 'bad' : '', 1300);
+}
+
+socket.on('event', e => {
+  sound(e.kind);
+  if (e.kind === 'serve') banner(e.msg);
+  else if (e.kind === 'angry') banner('😡 ' + e.msg, true);
+  if (e.pid) toast(e.pid, e.kind, typeof e.msg === 'string' ? e.msg : '');
+  if (e.kind === 'flip' || e.kind === 'chop') {
+    // Wait for the next state so the element exists, then animate it.
+    setTimeout(() => {
+      const sel = e.kind === 'flip' ? '.patty' : '.board';
+      const el = document.querySelector(`#pl-${e.pid} ${sel}`);
+      if (el) { el.classList.remove(e.kind); void el.offsetWidth; el.classList.add(e.kind); }
+    }, 0);
+  }
+});
+socket.on('state', s => { state = s; render(); });
+
+// ------------------------------------------------------------------ sound --
+
+let audio = null;
+function tone(freq, dur, type = 'sine', when = 0, vol = 0.15) {
+  if (!audio) return;
+  const o = audio.createOscillator(), g = audio.createGain();
+  o.type = type; o.frequency.value = freq;
+  const t0 = audio.currentTime + when;
+  g.gain.setValueAtTime(vol, t0);
+  g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+  o.connect(g).connect(audio.destination);
+  o.start(t0); o.stop(t0 + dur);
+}
+function sound(kind) {
+  switch (kind) {
+    case 'ok': tone(660, .08); break;
+    case 'flip': tone(500, .06, 'triangle'); tone(800, .08, 'triangle', .06); break;
+    case 'chop': tone(220, .05, 'square', 0, .08); break;
+    case 'ding': tone(1320, .4); tone(1760, .5, 'sine', .1); break;
+    case 'serve': [523, 659, 784, 1047].forEach((f, i) => tone(f, .18, 'triangle', i * .08)); break;
+    case 'error': tone(180, .2, 'square', 0, .08); break;
+    case 'burn': tone(150, .5, 'sawtooth', 0, .1); break;
+    case 'angry': tone(300, .25, 'sawtooth', 0, .1); tone(200, .35, 'sawtooth', .2, .1); break;
+    case 'toss': tone(400, .2, 'sine'); tone(900, .15, 'sine', .1); break;
+    case 'catch': tone(900, .1, 'triangle'); break;
+    case 'mode': tone(880, .05, 'triangle'); break;
+    case 'trash': tone(250, .15, 'triangle'); break;
+    case 'over': [784, 659, 523].forEach((f, i) => tone(f, .25, 'triangle', i * .15)); break;
+  }
+}
+
+// ------------------------------------------------------------------ lobby --
+
+function renderLobby() {
+  const lc = $('levelChoices');
+  if (!lc.children.length && state) {
+    lc.innerHTML = Object.entries(state.levels).map(([k, name]) =>
+      `<button class="choice" data-level="${k}">${k}. ${name}</button>`).join('');
+    lc.querySelectorAll('.choice').forEach(b => b.onclick = () => {
+      lobbyChoice.level = +b.dataset.level; renderLobby();
+    });
+  }
+  lc.querySelectorAll('.choice').forEach(b => b.classList.toggle('on', +b.dataset.level === lobbyChoice.level));
+  $('playerChoices').querySelectorAll('.choice').forEach(b =>
+    b.classList.toggle('on', +b.dataset.players === lobbyChoice.players));
+}
+$('playerChoices').querySelectorAll('.choice').forEach(b => b.onclick = () => {
+  lobbyChoice.players = +b.dataset.players; renderLobby();
+});
+function start() {
+  if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+  socket.emit('start', lobbyChoice);
+}
+$('startBtn').onclick = start;
+$('againBtn').onclick = () => {
+  lobbyChoice = { players: state.num_players, level: state.level };
+  start();
+};
+$('lobbyBtn').onclick = () => socket.emit('lobby');
+$('restartBtn').onclick = ev => {
+  ev.currentTarget.blur();          // so Enter / simulator keys don't press it again
+  if (!state) return;
+  lobbyChoice = { players: state.num_players, level: state.level };
+  start();
+};
+$('homeBtn').onclick = ev => { ev.currentTarget.blur(); socket.emit('lobby'); };
+
+// -------------------------------------------------------------- simulator --
+
+function sim(pid, kind, value) { socket.emit('sim', { pid, kind, value }); }
+function action(pid) {
+  // The "flip or chop" key: whichever gesture the current mode understands.
+  const p = state && state.players[pid];
+  if (!p) return;
+  sim(pid, 'gesture', p.mode === 'board' ? 'chop' : 'flip');
+}
+
+const KEYS = {
+  p1: { mode: 'q', action: 'w', toss: 'e', trash: 'r', cards: ['1', '2', '3', '4'] },
+  p2: { mode: 'u', action: 'i', toss: 'o', trash: 'p', cards: ['6', '7', '8', '9'] },
+};
+const CARD_ORDER = ['bun', 'cheese', 'lettuce', 'meat'];
+
+document.addEventListener('keydown', ev => {
+  if (ev.key === '`') { $('sim').classList.toggle('show'); return; }
+  if (!state) return;
+  if (state.phase !== 'playing') {
+    if (ev.key === 'Enter') (state.phase === 'over' ? $('againBtn') : $('startBtn')).click();
+    return;
+  }
+  const k = ev.key.toLowerCase();
+  for (const [pid, m] of Object.entries(KEYS)) {
+    if (k === m.mode) sim(pid, 'button', 'A');
+    else if (k === m.action) action(pid);
+    else if (k === m.toss) sim(pid, 'gesture', 'toss');
+    else if (k === m.trash) sim(pid, 'button', 'B');
+    else if (m.cards.includes(k)) sim(pid, 'card', CARD_ORDER[m.cards.indexOf(k)]);
+  }
+});
+
+function renderSim() {
+  const body = $('simBody');
+  const pids = Object.keys(state.players).join();
+  if (body.dataset.pids === pids) return;
+  body.dataset.pids = pids;
+  body.innerHTML = Object.keys(state.players).map(pid => `
+    <h3>${pid.toUpperCase()}</h3>
+    <div>${['grill', 'board', 'assembly'].map(m =>
+      `<button onclick="sim('${pid}','mode','${m}')">${MODE_LABEL[m]}</button>`).join('')}</div>
+    <div>${CARD_ORDER.map(c => `<button onclick="sim('${pid}','card','${c}')">${NAMES[c]} card</button>`).join('')}</div>
+    <div><button onclick="sim('${pid}','gesture','flip')">Flip</button>
+         <button onclick="sim('${pid}','gesture','chop')">Chop</button>
+         <button onclick="sim('${pid}','gesture','toss')">Throw to partner</button>
+         <button onclick="sim('${pid}','button','B')">Throw away</button></div>`).join('');
+}
+$('simToggle').onclick = () => $('sim').classList.toggle('show');
+</script>
+</body>
+</html>
