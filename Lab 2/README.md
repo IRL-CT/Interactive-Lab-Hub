@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+**Xiaowei David Zhang Chen and Alexander Yen**
 
 Does it feel like time is moving strangely during this semester?
 
@@ -158,6 +158,9 @@ You can look in `image.py` for an example of how to display an image on the scre
 
 \*\*\***Include a picture of your own Raspberry Pi displaying the piscreen.service with your unique MAC address. Additionally, please provide another picture showing the successful completion of the screen test.**\*\*\*
 
+![Raspberry Pi](RaspberryPi.jpeg)
+![Screen Test](ScreenTest.jpeg)
+
 
 ## Part D. 
 ### Set up the Display Clock Demo
@@ -183,6 +186,9 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
+![PartD](PartD.jpeg)
+
+
 ## Part E. Read Part 2. Sketch and brainstorm further interactions and features you would like for your clock.
 
 One potential source of ideas might be thinking about other clocks and timekeeping devices for inspiration.
@@ -194,9 +200,34 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 ** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf)), storyboards for your ideas **
 
+Our first idea was to create an hourglass clock, but we felt that it was a little too simple, so we decided to make the representation of time more personal. Since arriving in New York City, we have really enjoyed watching the sunsets, especially with the city skyline in the background. That inspired us to create a Sun and Moon Clock based on the way the sky changes throughout the day.
+
+This clock represents the passage of time using the movement of the sun and moon across the screen. During the day, the sun starts near the bottom-left of the display, gradually rises upward until it reaches the middle of the sky around midday, and then moves down toward the bottom-right to represent sunset.
+At night, the sun is replaced by the moon, which follows a similar path across the screen until the next morning, when the cycle begins again. The NYC skyline remains at the bottom of the display while the sky changes throughout the day and night. This creates a continuous visual representation of time that allows the user to understand roughly what part of the day they are in without having to read the exact time. 
+
+We also want the user to be able to check the exact time when needed, so we are thinking of an additional feature: by pressing one of the buttons on the Raspberry Pi, the display would temporarily switch from the Sun and Moon visualization to the current time. After a few seconds, it would return to the visual clock. This keeps the main experience more expressive while still allowing the clock to function as a practical timekeeping device.
+
+### Storyboard
+1. **Dawn**: Sun rises from the bottom-left. The city begins to wake up.
+2. **Morning**: The sun climbs higher along its arc in a brightening sky.
+3. **Midday**: The sun reaches its highest point, showing the middle of the day.
+4. **Sunset**: The sun descends toward the bottom-right as the sky turns orange.
+5. **Dusk**: The sun disappears and the moon begins its path across the sky.
+6. **Night**: The moon is high in the dark sky above the illuminated city. The cycle repeats
+
+![Storyboard](Storyboard.jpeg)
 
 
 **Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
+- Ziqiao Gao: I really like the storyboard and the transition from dawn to night is very clear, especially with the sun/moon moving along the arc and the lighting changing throughout the day. One thing you could explore is adding another interaction with the second button, since right now the user mainly watches the clock and uses one button to check the exact time. Maybe the second button could let the user interact with or change some aspect of the visualization.
+https://github.com/zg375/Interactive-Lab-Hub/tree/Fall2026/Lab%202
+
+- Sina Liu: I really like your Sun and Moon Clock idea! It would be so nice to watch the sunrise and sunset over the New York skyline on this tiny screen. Maybe you could connect the visualization to the actual sunrise and sunset times in New York, since the length of the day changes with the seasons. I was also thinking that adding some weather elements could be interesting too! （like rainy/ snowy days..). The button interaction you mentioned sounds really practical, and maybe you could also show it in the storyboard. Also, since the assignment discourages literal clock displays, I was wondering if the small analog clocks in the sketches are just annotations or if they would be part of the final interface. Overall, nice work!
+https://github.com/SinaL0123/Interactive-Lab-Hub/tree/Fall2026/Lab%202
+
+- Eric Liu: Looks good maybe you can make the movement more linear of the moon and sun, feels a little choppy. I like the clicking the button to show the time and temp.
+https://github.com/eliu1122/Interactive-Lab-Hub/tree/Fall2026/Lab%202
+
 
 # Lab 2 Part 2
 
@@ -221,6 +252,14 @@ Start small, pick just one element of your overall idea, just to show you have a
 
 \*\*\***Take a video of your barely modified PiClock.**\*\*\*
 
+
+This is a video of our barely modified PiClock. At this stage, the display had a black background with a simple “Weather” label and a fixed temperature value, since we had not yet implemented the Weather API. Later, we changed the background to white so that it matched the weather icons better. We also replaced the fixed temperature with real-time weather information retrieved from the WeatherAPI service (https://www.weatherapi.com/)
+
+https://drive.google.com/file/d/1NtzD44-0iaYGWbAIoqBGaINFnMogyse4/view?usp=sharing
+
+![BarelyModifiedPiClock](initialpiclock.png)
+
+
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
 ```
@@ -237,14 +276,20 @@ Do take advantage of having done the previous iteration to refine and simplify y
 
 ** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
+We utilized Gemini to help generate a Verplank diagram for better visual explanation. We also used WeatherAPI to retrieve real-time temperature and weather-condition data for New York City (it required using an API KEY).
+
+![VerplankDiagram](VerplankDiagram.png)
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
 \*\*\***Take a video of your PiClock.**\*\*\*
 
+https://drive.google.com/file/d/1vNujA6JBeXw9n8Dss075LqJndH7WuRUh/view?usp=sharing
 
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+After receiving feedback, we refined our initial clock design by creating a more realistic NYC-inspired day and night skyline. The sun and moon move across the screen over time to represent the progression of the day. In the actual clock, the sun follows the daytime period from approximately 6:00 AM to 6:00 PM, although for the demo we sped up the passage of time so that the full movement could be shown more clearly.
 
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab.  Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page. 
+Initially, we planned to use only Button A, which would display the current date and exact time. However, we later decided to make use of Button B as well by adding real-time weather information. To do this, we integrated WeatherAPI and displayed the current temperature together with a weather icon. We created different icons for conditions such as sunny, rainy, cloudy, stormy, and snowy, making the weather information easier to understand at a glance.
+
+I collaborated with Alexander Yen to complete this project: https://github.com/Alexyen04/Alex-Yen-Interactive-Lab-Hub/tree/Fall2026/Lab%202
 
 

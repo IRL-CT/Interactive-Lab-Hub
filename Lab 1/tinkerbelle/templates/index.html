@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='utf-8' />
+	<title>Tinkerbelle</title>
+
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+	<link rel="stylesheet" href="static/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
+
+</head>
+
+<body>
+	<!-- the firefly stage: dark forest, glow, label, title card -->
+	<div id='stage'>
+		<div id='glow'></div>
+		<div id='treeline'></div>
+		<div id='label'></div>
+		<div id='card'></div>
+	</div>
+
+	<div id='user'>
+		<button id='control'>Jane Wren</button>
+		<button id='light'>Male Firefly &#9794;</button>
+		<button id='female'>Female Firefly &#9792;</button>
+	</div>
+
+	<div id='controlPanel'>
+		<div id='fireflyPanel'>
+			<div class='row'>
+				<button id='runToggle'>Pause all</button>
+				<button id='scatter'>Spread rhythms apart</button>
+				<button id='syncNow'>Force sync</button>
+			</div>
+
+			<div class='row'>
+				<label><input type='checkbox' id='manual'> Manual flashing</label>
+				<button id='flashAll'>Flash all now</button>
+			</div>
+			<small>Leave manual off for the real demo: the fireflies find each other
+				on their own. Turn it on to drive each flash by hand, or tap a firefly's
+				screen to flash it at any time.</small>
+
+			<label>Phase coupling <span class='val' id='couplingVal'></span>
+				<input type='range' id='coupling' min='0' max='0.3' step='0.005'>
+			</label>
+			<small>0 = fireflies ignore each other and never sync. At the default
+				0.05 two phones take roughly 40&ndash;55s to come together; 0.10 cuts
+				that to about 10s. Below 0.03 they often never lock at all.</small>
+
+			<label>Rhythm adaptation <span class='val' id='periodCouplingVal'></span>
+				<input type='range' id='periodCoupling' min='0' max='0.3' step='0.005'>
+			</label>
+			<small>How much each firefly retunes its own natural rhythm toward what it
+				hears. Needed for full sync from very different starting speeds.</small>
+
+			<div class='row'>
+				<label>Slowest period (s) <span class='val' id='periodMaxVal'></span>
+					<input type='range' id='periodMax' min='0.8' max='4' step='0.1'>
+				</label>
+				<label>Fastest period (s) <span class='val' id='periodMinVal'></span>
+					<input type='range' id='periodMin' min='0.3' max='2' step='0.1'>
+				</label>
+			</div>
+
+			<label>Female response delay (ms) <span class='val' id='responseDelayVal'></span>
+				<input type='range' id='responseDelay' min='200' max='4000' step='100'>
+			</label>
+
+			<label>Flash length (ms) <span class='val' id='flashDurationVal'></span>
+				<input type='range' id='flashDuration' min='80' max='800' step='20'>
+			</label>
+
+			<div class='row'>
+				<label><input type='checkbox' id='sound'> Sound</label>
+				<label><input type='checkbox' id='decor'> Forest</label>
+				<label><input type='checkbox' id='showLabels'> Labels</label>
+			</div>
+
+			<label>Flash colour (male)</label>
+			<div class='row' id='flashColors'>
+				<button class='swatch' data-color='#fff200' style='background:#fff200' title='bright yellow'></button>
+				<button class='swatch' data-color='#ffe83d' style='background:#ffe83d' title='warm yellow'></button>
+				<button class='swatch' data-color='#fff6a3' style='background:#fff6a3' title='pale gold'></button>
+				<button class='swatch' data-color='#b6ff3d' style='background:#b6ff3d' title='yellow-green'></button>
+				<button class='swatch' data-color='#7cff5a' style='background:#7cff5a' title='green'></button>
+			</div>
+
+			<label>Title card (pushed to every firefly screen)
+				<input type='text' id='cardIn' placeholder='e.g. Each firefly has its own rhythm'>
+			</label>
+			<div class='row'>
+				<button id='cardPush'>Show card</button>
+				<button id='cardClear'>Clear card</button>
+			</div>
+
+			<div id='roster'></div>
+		</div>
+
+		<details id='classicPanel'>
+			<summary>Classic Tinkerbelle (colour picker + freesound audio)</summary>
+			<div class="pickr"></div>
+			<br>
+			<label> Audio
+				<input type="text" id='audioIn'>
+				<button id='play'>&#9654;&#65039;</button>
+				<button id='pause'>&#9632;</button>
+			</label>
+		</details>
+	</div>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+	<!-- 'monolith' theme -->
+	<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+	<script src="static/index.js"></script>
+</body>
+
+</html>

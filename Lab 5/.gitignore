@@ -20,3 +20,14 @@ nohup.out
 
 # macOS
 .DS_Store
+
+# AI Dream Machine generated files
+dream.wav
+dream_story.txt
+dream_log.jsonl
+dream_state.json
+dream_photos/
+
+# Downloaded YOLO models
+yolo26n.pt
+yolo26n_ncnn_model/

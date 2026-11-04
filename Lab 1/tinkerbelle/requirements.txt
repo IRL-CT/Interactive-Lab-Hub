@@ -1,0 +1,4 @@
+Flask>=2.0.0
+Flask-SocketIO>=5.0.0
+gevent>=20.0.0
+gevent-websocket>=0.10.0

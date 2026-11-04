@@ -18,9 +18,7 @@
 
 ## Lab Overview
 Team: <canvas group name>  
-Members: Full Name (netid, github-handle), ...  
-Project name: <name>
-
+Members: Xiaowei David Zhang Chen (xz2229, davidzhanggg), Ziqiao Gao (zg375, zg375)  
 
 For lab this week, we focus on both sensing and actuation, bringing new modes of input and output into your devices, while also prototyping the physical structure and overall look of the device. You will consider how the physical form supports sensing and actuation, and how these elements come together to shape the interaction and aesthetics of the device.
 
@@ -43,6 +41,9 @@ F) [Final Documentation](#part-f)
 ---
 
 ## Part 1 Lab Preparation
+<details>
+	<summary><strong> (Click to Expand)</strong></summary>
+
 
 ---
 
@@ -120,10 +121,15 @@ Option 3: (preferred) use the Github.com interface to update the changes.
 
 * [Gear Template Generator](https://woodgears.ca/gear_cutting/template.html) can help you prototype simple gear mechanisms for translating servo motion into physical movement.
 
+</details>
 
 ---
 
+
 ### Part A
+<details>
+	<summary><strong>Capacitive Sensing, a.k.a. Human-Twizzler Interaction (Click to Expand)</strong></summary>
+
 ### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
 
 We want to introduce you to the [capacitive sensor](https://learn.adafruit.com/adafruit-mpr121-gator) in your kit. It's one of the most flexible input devices we are able to provide. At boot, it measures the capacitance on each of the 12 contacts. Whenever that capacitance changes, it considers it a user touch. You can attach any conductive material. In your kit, you have copper tape that will work well, but don't limit yourself! In the example below, we use Twizzlers--you should pick your own objects.
@@ -144,10 +150,11 @@ Twizzler 10 touched!
 Twizzler 6 touched!
 ```
 
----
+</details>
 
 ### Part B
-### More sensors
+<details>
+	<summary><strong>More sensors (Click to Expand)</strong></summary>
 
 #### Light/Proximity/Gesture sensor (APDS-9960)
 
@@ -171,7 +178,8 @@ You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_C
 
 #### Rotary Encoder 
 
-A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came pre-soldered, so you do NOT need to solder anything.
+A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came with separate breakout board and encoder itself, that is, they will need to be soldered if you have not yet done so! We will be bringing the soldering station to the lab class for you to use, also, you can go to the MakerLAB to do the soldering off-class. Here is some [guidance on soldering](https://learn.adafruit.com/adafruit-guide-excellent-soldering/preparation) from Adafruit. When you first solder, get someone who has done it before (ideally in the MakerLAB environment). It is a good idea to review this material beforehand so you know what to look at.
+
 <p float="left">
 
    
@@ -222,9 +230,13 @@ Connect it to your pi with Qwiic connector and try running the example script to
 
 You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proximity_Py) to learn more about the sensor and see other examples
 
----
+</details>
 
 ### Part C
+
+<details>
+	<summary><strong>Servo Actuation (Click to Expand)</strong></summary>
+
 ### Servo Actuation
 
 Now that you have explored several forms of sensing, add physical output by learning to control a servo motor. Complete the Servo pHAT setup and basic servo test before beginning your interaction design.
@@ -250,9 +262,13 @@ python pi_servo_hat_test.py
 For more details and advanced usage, see the [official SparkFun Servo pHAT documentation](https://learn.sparkfun.com/tutorials/pi-servo-phat-v2-hookup-guide/all#resources-and-going-further).
 A servo motor is a rotary actuator that allows for precise control of angular position. The position is set by the width of an electrical pulse (PWM). You can read [this Adafruit guide](https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/servo-motors) to learn more about how servos work.
 
----
+</details>
 
 ### Part D
+
+<details>
+	<summary><strong>Physical Interaction Design: Feast Automata (Click to Expand)</strong></summary>
+
 ### Physical Interaction Design: Feast Automata
 
 **Feast Automata:** build a device that **transforms ordinary dining rituals into playful physical interactions.** Begin with a familiar experience around eating, drinking, cooking, serving, or sharing food, and explore how sensing and actuation might augment, exaggerate, automate, or reinterpret your dining experience.
@@ -283,15 +299,41 @@ Your kit includes these [SparkFun Qwiic OLED screens](https://www.sparkfun.com/p
 
 As you develop your Feast Automata concept, consider where the sensor and actuator need to be placed, what parts move, how electronics are housed, and how the overall form and aesthetics support the interaction.
 
+</details>
+
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
 
+1. Tea Bag Lifter: A button activates a servo connected to the tea bag string, lifting the tea bag out of the mug when the user is ready.
+2. Instant Noodle Cooler: A proximity sensor detects when a bowl of noodles is placed nearby and activates a small fan to cool the food.
+3. Food Guardian: A proximity sensor detects when a hand approaches the food and triggers a servo-controlled arm to move in front of it and protect 
+4. Joystick Vending Machine: The user selects one of four snacks using the joystick directions, then presses the joystick to confirm and dispense the chosen item.
+5. Rotating Sushi Carousel: A button controls a servo that rotates a platform between three sushi serving positions, bringing the next piece toward the user.
+
+![Ideas1](Ideas1.jpg)
+![Ideas2](Ideas2.jpg)
+
+
 **\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
+These sketches raise similar questions about the placement of the sensors and actuators, and the size and weight of the moving parts. Moreover, we are not sure whether the servo motor is strong enough to perform each action reliably. We also need to consider how far the servo can rotate, where the electronics shouls be housed, and how the user will interact with them without interfering with the mechanism.
+Hence, we would need to build some simple prototypes using lightweight materials, such as cardboard, tape and string. For example, for the Rotating Sushi Carousel idea, we would need a cross-shaped platform.
+
 
 **\*\*\*Pick one design to prototype and explain why.\*\*\***
+
+We pick the Rotating Sushi Carousel because it conbines a simple and intuitive interaction with a clear physical response. We also considered the limitation of the servo's movement (180 degrees), making this the best and most realistic idea out of the five.  Last and most important, WE LOVE SUSHI!
 
 Build a cardboard or other low-fidelity physical prototype of your design.
 
 **\*\*\*Document your rough prototype with photos and/or video.\*\*\***
+
+For our rough prototype, we cut cardboard to create the cross-shaped rotating platform and used paper circles to represent the plates. Instead of using real sushi, we placed small snacks on the plates to simulate the servings. We also included the servo motor and button in the prototype so the setup would more closely represent the intended interaction and help us test the physical arrangement of the final design.
+
+![Prototype](Prototype.jpg)
+![Prototype1](Prototype1.jpg)
+![Prototype2](Prototype2.jpg)
+
+A demo video of our prototype can be seen in:
+https://drive.google.com/file/d/107zFRFPnj3CcGJ7PWsL-9535d5mnNfVf/view?usp=sharing
 
 ---
 
@@ -305,6 +347,9 @@ Following exploration and reflection from Part 1, complete the "looks like," "wo
 
 #### Build & Integrate: Sensing + Actuation
 
+<details>
+	<summary><strong>Instructions (Click to Expand)</strong></summary>
+	
 For Part 2, build the Feast Automata interaction you developed in Part D by connecting sensing/input to physical actuation.
 
 **Your prototype should:**
@@ -326,6 +371,35 @@ For Part 2, build the Feast Automata interaction you developed in Part D by conn
 - What changes when you adjust the sensor placement or servo motion?
 
 Iterate on the sensing, movement, and physical form, and document what you discover.
+
+</details>
+
+For our final prototype, we built the Rotating Sushi Carousel using a laser-cut support structure for the servo motor and a laser-cut rotating platform for the food. We also 3D-printed some plates to simulate the real scenario. We used a button connected to the Raspberry Pi as the input, and the servo motor to provide the physical actuation by rotating the platform. 
+
+Our first working version used two opposite serving positions, with the servo rotating 180° each time the button was pressed. This worked well with the 180° movement limitation of our servo, but during testing we realized that the interaction could be improved further. We therefore iterated on the platform design by adding an additional arm and reducing the servo movement to 90°. This allowed the carousel to serve two people sitting on opposite sides at the same time while still keeping the movement within the servo’s available range. We also adjusted the servo movement speed after noticing that sudden rotations caused the snacks to slide or fall from the plates. By slowing down the movement and adding higher edges to the 3D-printed plates, the final interaction became more stable and controlled. These iterations showed us how changes in software, mechanical structure, and physical form all influenced the final behavior of the device.
+
+##### Reflection
+
+In this project we learned that connecting sensing, movement, and physical form is not just about making each component work independently, but about making the whole interaction feel natural. In our design, the button sends a signal to the Raspberry Pi, which then controls the servo motor and rotates the sushi platform. The movement needed to be clear and predictable so the user could easily understand what was happening.
+
+The physical arrangement also affected the interaction more than we expected. The servo had to be placed directly under the center of the platform so that the rotation would remain balanced, and the platform had to be light enough for the servo to move it reliably. We also found that the size and shape of the platform mattered, because a heavier or uneven structure could make the movement unstable.
+
+The timing and amount of rotation were also important. Since our servo motor can only rotate about 180 degrees, it was difficult to achieve our initial idea of a continuous rotating sushi carousel (360 degree). So instead, we used this limitation as part of the design process. We first created a two-position system using 180° rotations, and later improved the design by adding another arm and using 90° movements. We also tested smaller movements, but they were less noticeable and made the interaction feel less clear. Fast rotations were more visually clear, but they also caused the snacks to fall from the platform.
+
+The most fun part was seeing a simple button press create a visible physical action. The most challenging part was designing the mechanical structure around the limits of the servo, especially its range of motion. Overall, we learned that the electronics, motion, and physical form all need to be designed together rather than separately.
+
+Here is a simple interaction diagram of how sensing and actuation are connected for our Rotating Sushi Carousel, along with the iterative process we followed to build the mechanical structure. We used TinkerCAD to design the .svg files for laser cutting:
+
+![sketch](sketch.jpg)
+![idea](dimensions.png)
+![tinkercad](tinkercad.png)
+![tinkercad2](tinkercad2.png)
+![3dprint](3dprint.jpg)
+![lasercut](lasercut.jpg)
+
+
+<details>
+	<summary><strong>Example Application: Windmill Coaster (Click to Expand)</strong></summary>
 
 See encoder_accel_servo_dashboard.py in the Lab 4 folder for an optional example of chaining together three devices.
 
@@ -359,6 +433,11 @@ The script continuously reads the proximity value from the distance sensor. When
 You may need to adjust `CUP_THRESHOLD` in [`windmill_coaster.py`](windmill_coaster.py) depending on the size of your cup and the physical placement of the sensor. You can run `qwiic_distance.py` first to compare readings with and without a cup.
 
 Use this example as a starting point. Change the sensor, movement, physical form, or dining interaction to create your own Feast Automata variation.
+
+</details>
+
+<details>
+	<summary><strong>Optional Extensions (Click to Expand)</strong></summary>
 
 #### Optional Extensions
 
@@ -474,15 +553,16 @@ python gpio_expander.py
 
 This is a playful way to visualize how the expander works, but the same technique applies if you wanted to prototype buttons, switches, or other interaction elements. It’s a lightweight, flexible addition to your prototyping toolkit.
 
+</details>
+
 ---
-
-
----
-
 ---
 
 ### Part F
 
+<details>
+	<summary><strong>Final Documentation (Click to Expand)</strong></summary>
+	
 ### Final Documentation
 
 Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
@@ -490,8 +570,24 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
 
----
+</details>
 
+- **Looks like**: The final prototype consists of a laser-cut support structure containing the servo motor, with a cross-shaped rotating platform mounted above it. The button is placed next to the device so the user can easily control the carousel. The structure is lightweight and compact so the servo can rotate the platform reliably.
+
+- **Works like**: When the user presses the button, the Raspberry Pi detects the input and sends a command to the servo motor through the Servo pHAT. The servo rotates the platform 180 degrees, bringing the next sushi serving to the user.
+
+- **Acts like**: The carousel acts like a small automated sushi server. The user presses the button when they want the next serving, and the platform immediately rotates to bring food toward them. The interaction is intentionally simple and playful, with one clear input producing one visible physical response.
+
+Our final code is in the file sushi_carousel.py. A final demo of our product can be seen here:
+
+https://drive.google.com/file/d/1a9rUbpS7RJNq2u2ESoLvqGxZuvJmz5cW/view?usp=sharing
+
+![FinalProto](finalproto.jpg)
+
+---
+<details>
+	<summary><strong>Deliverables & Submission for Lab 4 (Click to Expand)</strong></summary>
+	
 ## Deliverables \& Submission for Lab 4
 
 The deliverables for this lab are, writings, sketches, photos, and videos that show what your prototype:
@@ -503,3 +599,5 @@ For submission, the readme.md page for this lab should be edited to include the 
 * Upload any materials that explain what you did, into your lab 4 repository, and link them in your lab 4 readme.md.
 * Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
 * Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
+
+</details>

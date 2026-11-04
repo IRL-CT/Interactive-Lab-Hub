@@ -5,4 +5,6 @@ venv*
 __*
 .venv*
 .venv/
-runs
+
+Lab 3/calendar-assistant/credentials.json
+Lab 3/calendar-assistant/token.json
