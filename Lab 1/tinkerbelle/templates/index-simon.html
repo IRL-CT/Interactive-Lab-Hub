@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Tinkerbelle</title>
+    
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<!--     <link rel="stylesheet" type="text/css" href="style.css" media="screen"/> -->
+    <link rel="stylesheet" href="static/vendor/water-dark.css">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/vendor/socket.io.js"></script>
+	<script src="static/vendor/d3-color.js"></script>
+	<script src="static/vendor/d3-interpolate.js"></script>
+	<script src="static/vendor/d3-ease.js"></script>
+	<script type="module" crossorigin src="static/tinkerButton.js"></script>
+
+<body>
+<div id='user'>
+	<button  id='control'>Wizard</button>
+	<button id='light'>Tinkerbelle</button>
+</div>
+<div id='controlPanel'>
+	<!-- Simon key map. Simon's lights snap on and off, so every fade is ~instant.
+	     Wizard plays the sequence by pressing a colour key, then 0 (off), then the next colour.
+	     Keys are laid out like the toy: R G on top, B Y below. -->
+	<tinker-button letter="R" color_code="#ff1a1a" duration="80" easing="Linear"></tinker-button>
+	<tinker-button letter="G" color_code="#1aff3c" duration="80" easing="Linear"></tinker-button>
+	<tinker-button letter="B" color_code="#1a5cff" duration="80" easing="Linear"></tinker-button>
+	<tinker-button letter="Y" color_code="#ffe11a" duration="80" easing="Linear"></tinker-button>
+
+	<!-- off between lights -->
+	<tinker-button letter="0" color_code="#000000" duration="80" easing="Linear"></tinker-button>
+
+	<!-- wrong press: dull red-brown, held, then 0 -->
+	<tinker-button letter="X" color_code="#3a0a00" duration="120" easing="Linear"></tinker-button>
+
+	<!-- optional sounds (need internet): a beep on each colour, a buzz on failure -->
+	<tinker-button letter="1" sound_only="true" duration="400" sound="beep"></tinker-button>
+	<tinker-button letter="2" sound_only="true" duration="1000" sound="buzzer"></tinker-button>
+</div>
+
+	<link rel="stylesheet" href="static/vendor/pickr-classic.min.css" />
+	<!-- 'monolith' theme -->
+	<script src="static/vendor/pickr.min.js"></script>
+	<script src="static/index.js"></script>
+</body>
+
+</html>
