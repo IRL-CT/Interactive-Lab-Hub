@@ -121,7 +121,7 @@ class MotionDetector:
                 if gesture:
                     out.append(('gesture', gesture))
                     self.lock_until = t + GESTURE_COOLDOWN
-        elif s['a'] > TRIGGER_A and t >= self.lock_until and self.mode in ('grill', 'board'):
+        elif s['a'] > TRIGGER_A and t >= self.lock_until:
             self.capture = list(self.recent)
             self.capture_until = t + WINDOW_AFTER
 
@@ -148,13 +148,15 @@ class MotionDetector:
         flip_rot = peak(AXES['flip_rot'])
         result = None
         if self.mode == 'grill':
-            if fwd > TOSS_MIN_FORWARD:
-                result = 'toss'
-            elif a_max > FLIP_MIN_A and flip_rot > FLIP_MIN_ROT:
+            # A forward swing is not a flip, even though it also jolts the pan.
+            if fwd <= TOSS_MIN_FORWARD and a_max > FLIP_MIN_A and flip_rot > FLIP_MIN_ROT:
                 result = 'flip'
         elif self.mode == 'board':
             if a_max > CHOP_MIN_A:
                 result = 'chop'
+        elif self.mode == 'assembly':
+            if fwd > TOSS_MIN_FORWARD:
+                result = 'toss'
         if self.debug:
             print(f'  [motion] mode={self.mode} |a|max={a_max:5.1f} fwd={fwd:5.1f} '
                   f'flip_rot={flip_rot:4.1f} -> {result}')

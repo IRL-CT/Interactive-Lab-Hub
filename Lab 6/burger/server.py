@@ -307,6 +307,8 @@ class Game:
             else:
                 self.event(pid, 'chop', f'Chop {p["lettuce"]["chops"]}/{CHOPS_NEEDED}')
         elif gesture == 'toss':
+            if mode != 'assembly':
+                return
             other = 'p2' if pid == 'p1' else 'p1'
             if other not in self.players:
                 return self.event(pid, 'error', 'No partner in single player')

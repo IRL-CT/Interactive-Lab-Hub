@@ -201,8 +201,17 @@
   #banner.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   #banner.bad { color: var(--bad); }
 
+  /* a customer is about to storm out: their bubble trembles, the room goes red */
+  .customer.urgent .bubble { animation: tremble .25s linear infinite; }
+  @keyframes tremble { 25% { transform: translateX(-3px) rotate(-1deg); } 75% { transform: translateX(3px) rotate(1deg); } }
+  #tension {
+    position: fixed; inset: 0; pointer-events: none; z-index: 5; opacity: var(--urgency, 0);
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(200,20,20,.6) 100%);
+    transition: opacity .3s linear;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .customer, .item, .patty.flip, .board.chop, .player.shake { animation: none; }
+    .customer, .item, .patty.flip, .board.chop, .player.shake, .customer.urgent .bubble { animation: none; }
   }
 
   /* ---- overlays ---- */
@@ -246,6 +255,7 @@
 </style>
 </head>
 <body>
+<div id="tension"></div>
 <div id="app">
   <div id="topbar">
     <div class="title">🍔 Pan Burger</div>
@@ -281,7 +291,7 @@
     <div class="help">
       Every burger, bottom to top: bun → fillings in the customer's order → bun. Assembly mode sets out the plate.<br>
       Patties need both sides cooked on the 🍳 Grill; lettuce needs 5 chops on the 🔪 Board; cheese goes straight on.<br>
-      Pan buttons: A = previous mode, B = next mode (Grill → Board → Assembly), hold B = throw away. In co-op, swing the pan forward to throw food to your partner.
+      Pan buttons: A = previous mode, B = next mode (Grill → Board → Assembly), hold B = throw away. In co-op, swing the pan forward at the Assembly station to throw food to your partner.
     </div>
   </div>
 </div>
@@ -376,6 +386,7 @@ function renderQueue() {
     el.querySelector('.head').textContent = frac > .5 ? FACES[c.look] : frac > .25 ? '😐' : '😠';
     const match = stacks.some(s => s.every((l, k) => c.order[k] === l));
     el.classList.toggle('match', match);
+    el.classList.toggle('urgent', frac < URGENT_FRAC);
   });
 }
 
@@ -537,7 +548,7 @@ socket.on('event', e => {
     }, 0);
   }
 });
-socket.on('state', s => { state = s; render(); });
+socket.on('state', s => { state = s; render(); updateSoundscape(); });
 
 // ------------------------------------------------------------------ sound --
 
@@ -552,22 +563,164 @@ function tone(freq, dur, type = 'sine', when = 0, vol = 0.15) {
   o.connect(g).connect(audio.destination);
   o.start(t0); o.stop(t0 + dur);
 }
+function noiseBuffer() {
+  if (!noiseBuffer.buf) {
+    const n = audio.sampleRate * 2;
+    noiseBuffer.buf = audio.createBuffer(1, n, audio.sampleRate);
+    const d = noiseBuffer.buf.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+  }
+  return noiseBuffer.buf;
+}
+// A burst of filtered noise: sizzles, blade hits, whooshes.
+function hiss(dur, freq, { type = 'bandpass', q = 1, vol = .15, when = 0, to = null } = {}) {
+  if (!audio) return;
+  const src = audio.createBufferSource(), f = audio.createBiquadFilter(), g = audio.createGain();
+  const t0 = audio.currentTime + when;
+  src.buffer = noiseBuffer();
+  src.loop = true;
+  f.type = type; f.Q.value = q; f.frequency.setValueAtTime(freq, t0);
+  if (to) f.frequency.exponentialRampToValueAtTime(to, t0 + dur);
+  g.gain.setValueAtTime(vol, t0);
+  g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+  src.connect(f).connect(g).connect(audio.destination);
+  src.start(t0, Math.random()); src.stop(t0 + dur);
+}
+// A low hit whose pitch drops quickly: knife on wood, heartbeat.
+function thump(from, to, dur, when = 0, vol = .3) {
+  if (!audio) return;
+  const o = audio.createOscillator(), g = audio.createGain();
+  const t0 = audio.currentTime + when;
+  o.frequency.setValueAtTime(from, t0);
+  o.frequency.exponentialRampToValueAtTime(to, t0 + dur);
+  g.gain.setValueAtTime(vol, t0);
+  g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+  o.connect(g).connect(audio.destination);
+  o.start(t0); o.stop(t0 + dur);
+}
 function sound(kind) {
   switch (kind) {
     case 'ok': tone(660, .08); break;
-    case 'flip': tone(500, .06, 'triangle'); tone(800, .08, 'triangle', .06); break;
-    case 'chop': tone(220, .05, 'square', 0, .08); break;
-    case 'ding': tone(1320, .4); tone(1760, .5, 'sine', .1); break;
-    case 'serve': [523, 659, 784, 1047].forEach((f, i) => tone(f, .18, 'triangle', i * .08)); break;
+    case 'flip':                               // whoosh up, patty slaps back into the hot pan
+      hiss(.16, 500, { to: 2200, q: .8, vol: .12 });
+      thump(170, 80, .09, .18, .25);
+      hiss(.45, 5000, { type: 'highpass', vol: .1, when: .18 });
+      break;
+    case 'chop':                               // blade click + wooden board
+      hiss(.03, 3000, { vol: .22 });
+      thump(190, 70, .1, 0, .35);
+      break;
+    case 'ding': tone(1320, .5); tone(1760, .6, 'sine', .1); break;
+    case 'serve':
+      [523, 659, 784, 1047].forEach((f, i) => tone(f, .18, 'triangle', i * .08));
+      tone(2093, .35, 'sine', .34, .08);
+      break;
     case 'error': tone(180, .2, 'square', 0, .08); break;
-    case 'burn': tone(150, .5, 'sawtooth', 0, .1); break;
-    case 'angry': tone(300, .25, 'sawtooth', 0, .1); tone(200, .35, 'sawtooth', .2, .1); break;
-    case 'toss': tone(400, .2, 'sine'); tone(900, .15, 'sine', .1); break;
-    case 'catch': tone(900, .1, 'triangle'); break;
+    case 'burn':                               // burst of steam + low groan
+      hiss(.9, 4000, { to: 900, type: 'highpass', vol: .18 });
+      tone(150, .6, 'sawtooth', 0, .1);
+      break;
+    case 'angry':
+      tone(300, .25, 'sawtooth', 0, .12); tone(200, .4, 'sawtooth', .2, .12);
+      thump(120, 45, .3, 0, .4);               // door slam
+      break;
+    case 'toss': hiss(.25, 700, { to: 3000, q: .7, vol: .14 }); break;
+    case 'catch': thump(300, 130, .08, 0, .25); tone(900, .1, 'triangle', .02, .1); break;
     case 'mode': tone(880, .05, 'triangle'); break;
-    case 'trash': tone(250, .15, 'triangle'); break;
+    case 'trash': hiss(.2, 1800, { to: 300, vol: .15 }); thump(110, 60, .15, .15, .25); break;
     case 'over': [784, 659, 523].forEach((f, i) => tone(f, .25, 'triangle', i * .15)); break;
   }
+}
+
+// Sounds that follow the state of the game, not one event.
+
+const WORRIED_FRAC = .4;    // below this share of patience the tension starts
+const URGENT_FRAC = .25;    // same line as the angry face and red patience bar
+const ALARM_FRAC = .12;     // nearly gone: the alarm joins in
+
+const music = new Audio('/static/cooking.mp3');
+music.loop = true;
+music.volume = .3;
+
+let sizzle = null;          // looping noise while a patty is on the grill
+let drone = null;           // low hum that rises with the tension
+let urgency = 0;            // 0 = calm, 1 = a customer is leaving right now
+let heartbeatOn = false;
+let popsOn = false;
+let pattiesOn = 0;
+
+function startLoops() {
+  sizzle = { gain: audio.createGain(), filter: audio.createBiquadFilter(), src: audio.createBufferSource() };
+  sizzle.src.buffer = noiseBuffer();
+  sizzle.src.loop = true;
+  sizzle.filter.type = 'highpass';
+  sizzle.filter.frequency.value = 3500;
+  sizzle.gain.gain.value = 0;
+  sizzle.src.connect(sizzle.filter).connect(sizzle.gain).connect(audio.destination);
+  sizzle.src.start();
+
+  drone = { gain: audio.createGain(), filter: audio.createBiquadFilter(), osc: audio.createOscillator() };
+  drone.osc.type = 'sawtooth';
+  drone.osc.frequency.value = 55;
+  drone.filter.type = 'lowpass';
+  drone.filter.frequency.value = 300;
+  drone.gain.gain.value = 0;
+  drone.osc.connect(drone.filter).connect(drone.gain).connect(audio.destination);
+  drone.osc.start();
+}
+
+function updateSoundscape() {
+  const playing = state.phase === 'playing';
+
+  // How close is the nearest customer to walking out?
+  const fracs = playing ? state.customers.map(c => c.left / c.patience) : [];
+  const worst = fracs.length ? Math.min(...fracs) : 1;
+  urgency = Math.max(0, Math.min(1, (WORRIED_FRAC - worst) / WORRIED_FRAC));
+  document.body.style.setProperty('--urgency', urgency.toFixed(2));
+
+  if (!audio) return;
+  if (!sizzle) startLoops();
+
+  // Background music during a round. The tension sounds play on top of it.
+  if (playing) {
+    if (music.paused) music.play().catch(() => {});
+  } else if (!music.paused) {
+    music.pause();
+    music.currentTime = 0;
+  }
+  const now = audio.currentTime;
+
+  // Sizzle: louder with more patties, harsher once a patty passes "cooked".
+  const patties = playing ? Object.values(state.players).map(p => p.patty).filter(Boolean) : [];
+  pattiesOn = patties.length;
+  const heat = Math.max(0, ...patties.map(p => (p[p.down] - state.cooked) / (state.burnt - state.cooked)));
+  sizzle.gain.gain.setTargetAtTime(pattiesOn ? .03 + .012 * pattiesOn + .035 * heat : 0, now, .08);
+  sizzle.filter.frequency.setTargetAtTime(3500 - 1500 * heat, now, .2);
+  if (pattiesOn && !popsOn) { popsOn = true; fatPop(); }
+
+  drone.gain.gain.setTargetAtTime(.1 * urgency, now, .3);
+  drone.osc.frequency.setTargetAtTime(55 + 40 * urgency, now, .3);
+  if (urgency > 0 && !heartbeatOn) { heartbeatOn = true; heartbeat(); }
+}
+
+// Fat spitting in the pan, at random moments.
+function fatPop() {
+  if (!pattiesOn) { popsOn = false; return; }
+  hiss(.015 + Math.random() * .03, 2500 + Math.random() * 4000, { q: 3, vol: .1 + Math.random() * .12 });
+  setTimeout(fatPop, 70 + Math.random() * 330);
+}
+
+// Faster as the patience runs out: 70 -> 170 beats a minute.
+function heartbeat() {
+  if (urgency <= 0) { heartbeatOn = false; return; }
+  const vol = .25 + .3 * urgency;
+  thump(75, 42, .13, 0, vol);
+  thump(62, 38, .15, .17, vol * .75);
+  if (urgency > 1 - ALARM_FRAC / WORRIED_FRAC) {
+    tone(988, .09, 'square', .28, .05);
+    tone(740, .09, 'square', .38, .05);
+  }
+  setTimeout(heartbeat, 60000 / (70 + 100 * urgency));
 }
 
 // ------------------------------------------------------------------ lobby --
@@ -590,6 +743,7 @@ $('playerChoices').querySelectorAll('.choice').forEach(b => b.onclick = () => {
 });
 function start() {
   if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+  music.currentTime = 0;
   socket.emit('start', lobbyChoice);
 }
 $('startBtn').onclick = start;

@@ -23,7 +23,3 @@ paho-mqtt<2.0
 
 # Image Processing (for display)
 Pillow>=10.0.0
-
-gpiod>=2.2.2,<3
-Adafruit-Blinka-Raspberry-Pi-PWM>=1.0.2
-Adafruit-Blinka-Raspberry-Pi5-Neopixel

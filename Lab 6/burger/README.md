@@ -60,9 +60,9 @@ sudo systemctl stop piscreen.service                 # 讓出螢幕
 
 | 模式 | 螢幕 | 動作 |
 |---|---|---|
-| 煎鍋 `grill` | 紅色 PAN | 往上甩＝翻面，往前甩＝丟給隊友 |
+| 煎鍋 `grill` | 紅色 PAN | 往上甩＝翻面 |
 | 砧板 `board` | 綠色 KNIFE | 用力往下剁＝切 |
-| 組裝台 `assembly` | 藍色 PLATE | 自動擺盤，拿卡片在感測器前 2–4 cm 掃 |
+| 組裝台 `assembly` | 藍色 PLATE | 自動擺盤，拿卡片在感測器前 2–4 cm 掃；往前甩＝丟給隊友 |
 
 只重新校準某幾張卡：`pan.py --calibrate meat`（其他卡保留）。
 看即時顏色讀數：`pan.py --watch-cards`。
