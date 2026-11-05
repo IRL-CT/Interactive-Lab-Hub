@@ -450,7 +450,7 @@ This builds on what I learned in Part E. The code does the counting: how many ti
 
 The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
 
-\*\*\***Describe the bedtime interaction and include a short video of someone handing the night over to the device.**\*\*\*
+Interaction Video: https://youtu.be/f2TG2skf9kc
 
 ## Part H. 
 ### Incorporate the observant system during sleep
