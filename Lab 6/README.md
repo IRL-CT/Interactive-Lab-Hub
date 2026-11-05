@@ -287,7 +287,9 @@ if card in ('meat', 'lettuce'):
 
 [Video of user testing](videos/user_test.mp4) (61 s, opens or downloads as a file)
 
-* **Before trying.** They were excited to play.
+We asked two classmates in class, neither of them on our team, to play a round in two-player mode.
+
+* **Before trying.** Both were excited to play.
 * **What surprised them.** Using colour cards as ingredients, read by a colour sensor, felt new
   to them.
 * **Overall.** They found it very fun.
