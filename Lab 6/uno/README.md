@@ -25,6 +25,8 @@ Teach each Pi the objects you'll use to pick wild colors. Readings change with t
 python player.py --calibrate
 ```
 
+A phone showing a full-screen solid color may work better than a printed or painted object, because it gives off its own light. If two colors are too close, the Pi shows its best guess and waits for a button instead of choosing by itself.
+
 This saves `colors.json`, which belongs to that Pi and isn't committed. Without it, the Pi falls back to fixed thresholds, which can mistake blue for green.
 
 Then, on each Pi, with the same `--team` and a different `--name`:

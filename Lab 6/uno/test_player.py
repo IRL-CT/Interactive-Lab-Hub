@@ -128,6 +128,20 @@ class ControlsLogic(unittest.TestCase):
         self.controls.set_mode('uno')
         self.assertFalse(self.controls.sensor.enable_gesture)
 
+    def test_slow_color_engine_only_runs_when_picking(self):
+        for mode, expected in (('turn', False), ('uno', False), ('pick', True), ('turn', False)):
+            self.controls.set_mode(mode)
+            self.assertEqual(self.controls.sensor.enable_color, expected)
+
+    def test_close_call_previews_but_waits_for_a_button(self):
+        self.controls.references = {'G': [0.147, 0.562, 0.291], 'B': [0.180, 0.495, 0.326]}
+        self.controls.set_mode('pick')
+        self.controls.sensor.proximity = 200
+        self.controls.sensor.color_data = (45, 111, 63, 206)  # a real reading from between the two
+        self.assertEqual(self.controls.poll(), [('pick', 'B')])
+        with mock.patch.object(hardware, 'HOLD_TO_PICK', 0):
+            self.assertEqual(self.controls.poll(), [])
+
     def test_swipes(self):
         self.controls.set_mode('turn')
         for code, event in {1: 'play', 2: 'draw', 3: 'prev', 4: 'next'}.items():

@@ -49,6 +49,15 @@ def classify_color(r, g, b, clear, references=None, min_clear=20):
     return 'G' if g == 1 else 'B'
 
 
+def is_confident(r, g, b, references, ratio=2.0):
+    """False if the two closest colors are too similar to pick between without asking"""
+    mix = color_mix(r, g, b)
+    if not references or len(references) < 2 or mix is None:
+        return True
+    gaps = sorted(sum((a - b) ** 2 for a, b in zip(mix, ref)) ** 0.5 for ref in references.values())
+    return gaps[1] >= gaps[0] * ratio
+
+
 class Display:
     def __init__(self):
         import board
@@ -104,10 +113,11 @@ class Controls:
         self.references = load_references()
 
     def set_mode(self, mode):
-        """Color and proximity readings stall while the gesture engine runs, so it only runs for 'turn'"""
+        """Each engine holds up the others. Color takes 712 ms a reading, so it only runs for 'pick'."""
         if mode != self.mode:
             self.mode = mode
             self.sensor.enable_gesture = mode == 'turn'
+            self.sensor.enable_color = mode == 'pick'
             self.covered_since = None
             self.seen_color = None
 
@@ -166,12 +176,13 @@ class Controls:
         return []
 
     def poll_color(self):
-        """Hold a colored thing steady near the sensor to choose that color"""
+        """Hold a colored thing steady near the sensor to choose that color. A close call needs a button."""
         if self.sensor.proximity < self.proximity or not self.sensor.color_data_ready:
             if self.sensor.proximity < self.proximity:
                 self.seen_color = None
             return []
-        color = classify_color(*self.sensor.color_data, references=self.references)
+        reading = self.sensor.color_data
+        color = classify_color(*reading, references=self.references)
         now = time.monotonic()
         if color is None:
             return []
@@ -179,7 +190,7 @@ class Controls:
             self.seen_color = color
             self.seen_since = now
             return [('pick', color)]
-        if now - self.seen_since >= HOLD_TO_PICK:
+        if now - self.seen_since >= HOLD_TO_PICK and is_confident(*reading[:3], self.references):
             self.seen_since = now
             return ['confirm']
         return []
@@ -191,6 +202,7 @@ def sensor_test():
     sensor = controls.sensor
 
     print('\n1. SWIPE across the sensor: left, right, up, down, a few times each (20 s)')
+    sensor.enable_color = False
     sensor.enable_gesture = True
     end = time.monotonic() + 20
     while time.monotonic() < end:
@@ -205,18 +217,20 @@ def sensor_test():
     end = time.monotonic() + 10
     while time.monotonic() < end:
         print(f'   proximity {sensor.proximity:3d}')
-        time.sleep(0.5)
+        time.sleep(0.25)
 
-    print('\n3. Hold up something RED, YELLOW, GREEN, then BLUE, about 5 s each (30 s)')
+    print('\n3. Hold up each colored object you have, about 5 s each (30 s)')
+    sensor.enable_color = True
     end = time.monotonic() + 30
     while time.monotonic() < end:
         r, g, b, c = sensor.color_data
         color = classify_color(r, g, b, c, references=controls.references)
-        print(f'   proximity {sensor.proximity:3d}  rgbc {r:5d} {g:5d} {b:5d} {c:5d}  -> {color}')
+        unsure = '' if is_confident(r, g, b, controls.references) else ' (unsure)'
+        print(f'   proximity {sensor.proximity:3d}  rgbc {r:5d} {g:5d} {b:5d} {c:5d}  -> {color}{unsure}')
         time.sleep(0.5)
 
 
-def calibrate(path=COLORS_FILE, check_seconds=30, samples=10):
+def calibrate(path=COLORS_FILE, check_seconds=30, samples=20):
     """Record what each color looks like on this Pi, in this room, then try them out"""
     controls = Controls()
     sensor = controls.sensor
@@ -267,5 +281,6 @@ def calibrate(path=COLORS_FILE, check_seconds=30, samples=10):
     end = time.monotonic() + check_seconds
     while time.monotonic() < end:
         r, g, b, c = sensor.color_data
-        print(f'   proximity {sensor.proximity:3d}  -> {classify_color(r, g, b, c, references=references)}')
+        unsure = '' if is_confident(r, g, b, references) else ' (unsure)'
+        print(f'   proximity {sensor.proximity:3d}  -> {classify_color(r, g, b, c, references=references)}{unsure}')
         time.sleep(0.5)
