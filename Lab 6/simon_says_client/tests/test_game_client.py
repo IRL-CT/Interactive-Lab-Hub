@@ -1,15 +1,27 @@
 import unittest
-from game_client import classify, GameState, event_topic, parse_message
+from game_client import arguments, classify, GameState, event_topic, parse_message
 
 
 class SensorTests(unittest.TestCase):
-    def test_original_thresholds_and_proximity_priority(self):
-        self.assertEqual(classify(201, (100, 0, 0, 100)), 'close')
-        self.assertEqual(classify(200, (120, 60, 50, 51)), 'red')
-        self.assertEqual(classify(0, (40, 100, 40, 100)), 'green')
-        self.assertEqual(classify(0, (10, 10, 70, 100)), 'blue')
-        self.assertIsNone(classify(0, (100, 50, 20, 50)))
-        self.assertIsNone(classify(0, (100, 50, 20, 100)))
+    def test_default_threshold_boundaries_and_proximity_priority(self):
+        self.assertEqual(classify(201, (300, 0, 0, 501)), 'close')
+        self.assertEqual(classify(200, (301, 150, 150, 501)), 'red')
+        self.assertEqual(classify(0, (150, 301, 150, 501)), 'green')
+        self.assertEqual(classify(0, (150, 150, 301, 501)), 'blue')
+        self.assertIsNone(classify(0, (300, 150, 100, 501)))
+        self.assertIsNone(classify(0, (300, 100, 150, 501)))
+        self.assertIsNone(classify(0, (301, 150, 150, 500)))
+
+    def test_command_line_defaults_apply_same_thresholds(self):
+        from unittest.mock import patch
+        with patch('sys.argv', ['game_client.py']):
+            args = arguments()
+        self.assertEqual(args.player, 'pi2')
+        thresholds = (args.proximity, args.clear, args.margin)
+        self.assertEqual(classify(201, (301, 150, 150, 501), *thresholds), 'close')
+        self.assertEqual(classify(200, (301, 150, 150, 501), *thresholds), 'red')
+        self.assertIsNone(classify(0, (301, 150, 150, 500), *thresholds))
+        self.assertIsNone(classify(0, (300, 150, 100, 501), *thresholds))
 
     def test_thresholds_are_tunable(self):
         self.assertEqual(classify(100, (0, 0, 0, 0), proximity=99), 'close')

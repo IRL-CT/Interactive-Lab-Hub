@@ -41,10 +41,10 @@ To inspect raw readings and the detected action without joining the game:
 python3 game_client.py --calibrate
 ```
 
-With hands and objects away, check that `action=None` appears consistently: the client needs a neutral reading to re-arm. If ambient light produces a color, try increasing `--clear` or `--margin`; if it produces `close`, increase `--proximity` above the idle reading. Then present each color and move a hand close to check that the intended actions still register; tune again if raising a threshold prevents recognition. Proximity takes priority over colors. The defaults match the supplied client: proximity `> 200`, clear channel `> 50`, and the winning color channel must exceed both others by more than 50. You can use the same tuning options with `--calibrate` and during play, for example:
+With hands and objects away, check that `action=None` appears consistently: the client needs a neutral reading to re-arm. If ambient light produces a color, try increasing `--clear` or `--margin`; if it produces `close`, increase `--proximity` above the idle reading. Then present each color and move a hand close to check that the intended actions still register; tune again if raising a threshold prevents recognition. Proximity takes priority over colors. The defaults match the supplied client: proximity `> 200`, clear channel `> 500`, and the winning color channel must exceed both others by more than 150. You can use the same tuning options with `--calibrate` and during play, for example:
 
 ```sh
-python3 game_client.py --proximity 200 --clear 50 --margin 50
+python3 game_client.py --proximity 200 --clear 500 --margin 150
 ```
 
 Run `python3 game_client.py --help` for options, including `--settle`. The existing Pi environment should include `paho-mqtt<2`, Adafruit Blinka, APDS9960, RGB Display, and Pillow. Stop with Ctrl+C. To run the hardware-independent tests from this folder:

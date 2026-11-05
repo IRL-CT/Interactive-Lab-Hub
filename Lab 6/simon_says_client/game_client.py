@@ -28,7 +28,7 @@ def parse_message(payload):
     return None
 
 
-def classify(proximity_value, color, proximity=200, clear=50, margin=50):
+def classify(proximity_value, color, proximity=200, clear=500, margin=150):
     if proximity_value > proximity:
         return 'close'
     r, g, b, c = color
@@ -134,8 +134,8 @@ def arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--player', choices=('pi1', 'pi2'), default='pi2', help='player identity (default: pi2)')
     parser.add_argument('--proximity', type=int, default=200, help='close threshold; trigger above this value (default: 200)')
-    parser.add_argument('--clear', type=int, default=50, help='minimum color clear channel; trigger above this value (default: 50)')
-    parser.add_argument('--margin', type=int, default=50, help='required lead over both other color channels (default: 50)')
+    parser.add_argument('--clear', type=int, default=500, help='minimum color clear channel; trigger above this value (default: 500)')
+    parser.add_argument('--margin', type=int, default=150, help='required lead over both other color channels (default: 150)')
     parser.add_argument('--settle', type=float, default=0.15, help='seconds to buffer first action after display (default: 0.15)')
     parser.add_argument('--calibrate', action='store_true', help='print sensor values without connecting to the game')
     return parser.parse_args()
