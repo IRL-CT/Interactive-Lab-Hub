@@ -1,15 +1,8 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
-
-For submission, replace this section with your documentation!
+Members: [Neeha Ravula](https://github.com/neeharavula/Interactive-Lab-Hub/tree/Fall2026) (nr485), [Gaurav Patel](https://github.com/Gtpatel02/Interactive-Lab-Hub) (gp438), [Nishant Ray](https://github.com/Nishant-Ray/Interactive-Lab-Hub) (nr487)
 
 ---
-
-## Prep
-
-1. Pull the new changes
-2. Read: [The Presence Table](https://dl.acm.org/doi/10.1145/1935701.1935800) ([video](https://vimeo.com/15932020))
 
 ## Overview
 
@@ -28,9 +21,16 @@ Build interactive systems where **multiple devices communicate over a network** 
 ![sub and pub](<Screenshot 2026-11-05 at 10.54.59 AM.png>)
 ![debug output](<Screenshot 2026-11-05 at 10.54.25 AM.png>)
 
-**💡 Brainstorm 5 ideas for messaging between devices**
+**💡 Brainstorm 5 ideas for messaging between devices:**
 
-MQTT agrees on almost nothing in advance: you invent the topics and what the messages mean. Smart-home standards like Matter fix the vocabulary instead (every "light" behaves the same). Keep this trade-off in mind when you design your topics in Part C.
+
+- **Fridge raider alert**: One Pi is placed inside/next to the fridge and senses light when the door opens and publishes an alert. The other Pi's receive the alert that "someone's in the fridge". Tracks openings per day, per Pi.
+- **Where should we eat?**: A group voting interaction where each person can vote on restaurant with a gesture or button, and the result appears on everyone's screen once all the votes are in
+- **Color imposter**: Every Pi gets a secret target color, and everyone has the same one except the imposter, who gets a different color. Players will go around holding objects to match their color, and the readings go to a shared display. The imposter tries to win by guessing the real color from what everyone else is showing.
+- **Hot potato**: A potato image is passed between Pis with a swipe gesture (left or right). A random timer runs, and whoever is holding the potato when it hits zero loses.
+- **Musical chairs:** One Pi is connected to a speaker and plays music. When it stops, players rush to cover their sensor, and the last one to publish "covered" is out.
+
+
 
 ---
 
