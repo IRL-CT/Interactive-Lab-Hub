@@ -61,7 +61,9 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'H
 **💡 Brainstorm 5 ideas for messaging between devices**
 - Traffic Light: Pi 1 is connected to a button, so whenever an user presses it, Pi 1 sends a signal/message to Pi 2, which will then change the color of the LED from green to red to stop the traffic. Pi 3 also receives the same message and displays a walking signal for pedestrians.
 - Multiplayer Game: Three Pis control a single character in a platform game. Pi 1 controls horizontal movements (left/right), Pi 2 controls jumping, and Pi 3 cnotrols throwing items or fighting enemies.
-- 
+- Bomb Defusing Game: Pi1 has to detect the correct color using the APDS-9960, Pi2 has to perform the correct gesture, and Pi3 has to press the buttons in the correct sequence.
+- Distributed Drawing Game: Pi1 controls the brush position, Pi2 selects the colors, and Pi3 controls brush size, drawing or erasing.
+- Overcooked: Pi1 selects ingredients, Pi2 controls cooking temperature, and Pi3 controls mixing and serving.
 
 MQTT agrees on almost nothing in advance: you invent the topics and what the messages mean. Smart-home standards like Matter fix the vocabulary instead (every "light" behaves the same). Keep this trade-off in mind when you design your topics in Part C.
 
