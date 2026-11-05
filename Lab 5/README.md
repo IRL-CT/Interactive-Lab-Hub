@@ -445,12 +445,29 @@ This builds on what I learned in Part E. The code does the counting: how many ti
 
 \*\*\***Post your revised storyboard here.**\*\*\*
 
+<!-- TODO: draw storyboard_v2 and add it here as report_images/storyboard_v2.jpg -->
+
+What changed after the feedback and after testing in my room:
+
+1. **Before bed: I wave goodnight at the camera.** Instead of just turning the Pi on, I start `restless_night.py`, stand in front of the desk and wave. MediaPipe picks up an open hand swinging side to side, the Pi says goodnight, and it waits two minutes before watching so that walking to bed isn't logged as restlessness. This answers the "just turn it on" feedback.
+2. **While asleep: it logs where my body is, not just whether I'm there.** Every 5 seconds YOLO finds the biggest person box and the script writes its corners to `restless_log.jsonl`. No images are saved, only four numbers per look, which is how I justify pointing a camera at a bed: it's my own bed, nothing leaves the Pi, and there is no picture to leak. <!-- TODO: add roommate's OK -->
+3. **When awake: the code reports, Qwen only says good morning.** `restless_morning.py` turns the boxes into moves, restless stretches and time out of bed, then prints those facts and an hour-by-hour bar chart. Qwen writes one greeting and never sees the facts, because it got them wrong when I let it (see Part I). A quiet night is reported as quiet without asking Qwen at all.
+
+The darkness worry turned out half right. The wave hand-off worked with the room lights off (logged at 20:08:48), but my first test night (`test_night.jsonl`) logged nobody once I lay down. Every box it did log touched the top of the frame, which means the camera was only seeing me while I stood near the desk. The camera has to be aimed at the bed itself, so I re-aimed it and measured the confidence threshold with me lying in bed. The numbers are in Part H.
+
 ## Part G. 
 ### Design the interaction before bed
 
 The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
 
 Interaction Video: https://youtu.be/f2TG2skf9kc
+
+**The ritual: wave goodnight.** I stand in front of the desk and wave at the camera. That's the whole hand-off, and it takes about five seconds. I picked a wave over a button because the camera is already watching, and it's the gesture I'd use to say goodnight to a person anyway.
+
+**How the wave is detected.** `wait_for_wave()` in `restless_night.py` uses MediaPipe hands from Part C. A hand only counts when it's open (all four fingertips above their middle joints), so a hand reaching for the light switch doesn't trigger it. Then the wrist has to change direction at least twice within 3 seconds, swinging more than 8% of the frame width each way. Small wobbles are ignored.
+
+**The acknowledgement.** With `--preview`, the script opens a window with the camera feed and writes on it: `wave to start the night`, then `goodnight. watching in 120 s` the moment the wave lands, then `night shift: watching`. That way I can see myself and the goodnight in one place, which a line in the terminal didn't give me. It also writes a `{"handoff": "wave"}` line in the log. Nothing from the window is saved. The two minutes of settling time is part of the acknowledgement too: the device doesn't start judging me until I've had time to get into bed. For the video I shortened it to 10 seconds with `--settle 10`.
+
 
 ## Part H. 
 ### Incorporate the observant system during sleep
@@ -466,6 +483,54 @@ Fake a night first: run it for thirty seconds while you walk around, stop it, an
 
 \*\*\***Run the system for at least one real night. Include the log (or an excerpt) and a few sentences on what broke or surprised you.**\*\*\*
 
+I run my own version, `restless_night.py`, instead of `overnight.py`. `overnight.py` only writes a line when the reading changes, and a person lying in bed reads "1 person, close" all night, so it would never see me turn over. Mine logs the box on every look and leaves deciding what counts as a move to the morning, so I can tune the threshold on a real night without running it again.
+
+```
+(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python restless_night.py --preview
+```
+
+`tmux` isn't installed on my Pi, so I run this in a terminal on the Pi's own desktop through Raspberry Pi Connect. It keeps running if my laptop disconnects, which matters because my Pi dropped off the network more than once while I was testing.
+
+**What broke on the first test night:** the camera never saw me in bed (see the revised storyboard above).
+
+**Aiming the camera, and what that showed.** I aimed the webcam at the bed, lay down, and logged every box YOLO found down to a confidence of 0.2. I expected that a person under a blanket would need a lower threshold. The opposite was true. Across about 240 frames of me in bed, a second box kept appearing at low confidence (0.2 to 0.44). It was bigger than the real one, so it won "biggest person" and made it look like I was jumping around:
+
+| `--conf` | Frames with me detected | Times the box jumped more than the 5% move threshold |
+|---|---|---|
+| 0.2 | 100% | 136 |
+| 0.3 | 98% | 118 |
+| 0.4 | 96% | 18 |
+| 0.5 | 90% | 3 |
+| 0.6 | 78% | 1 |
+| 0.7 | 57% | 0 |
+
+Lowering the threshold would have reported a terrible night for someone lying in bed. I changed the default to 0.5, which keeps most frames and nearly all of the false jumps go away. The frames it misses are short, at most 5 in a row, and the morning script already ignores gaps under a minute. This was a short test, so a real night still has to show whether it holds for hours in the dark.
+
+**A real night is still to do.** I haven't run a full night with the camera aimed at the bed, so I don't have a real overnight log yet. <!-- TODO: run a real night and paste a log excerpt here -->
+
+**Simulated night (not a real run).** Until I have a real night, I generated one with [`simulate_night.py`](simulate_night.py) to see what a log should look like and to test the morning script on it. It looks every 5 to 6 seconds, adds YOLO's jitter, sometimes catches a turn halfway through, misses me for single looks, and includes a trip out of bed. The full log is [`simulated_night.jsonl`](simulated_night.jsonl). An excerpt:
+
+```
+{"t": "2026-10-30T23:52:14", "handoff": "wave"}
+{"t": "2026-10-30T23:54:14", "box": [0.178, 0.407, 0.823, 0.788]}      <- watching starts 2 min after the wave
+...
+{"t": "2026-10-31T03:08:45", "box": [0.22, 0.379, 0.882, 0.808]}
+{"t": "2026-10-31T03:08:50", "box": [0.215, 0.37, 0.885, 0.805]}
+{"t": "2026-10-31T03:08:55", "box": [0.161, 0.428, 0.839, 0.805]}     <- caught halfway through turning over
+{"t": "2026-10-31T03:09:00", "box": [0.161, 0.447, 0.795, 0.757]}     <- settled on the other side
+{"t": "2026-10-31T03:09:05", "box": [0.148, 0.433, 0.775, 0.781]}
+...
+{"t": "2026-10-31T03:44:58", "box": [0.151, 0.44, 0.776, 0.775]}
+{"t": "2026-10-31T03:45:03", "box": null}                              <- out of bed
+...
+{"t": "2026-10-31T03:49:05", "box": null}
+{"t": "2026-10-31T03:49:10", "box": [0.146, 0.437, 0.789, 0.771]}     <- back in bed
+...
+{"t": "2026-10-31T07:04:49", "box": [0.159, 0.416, 0.829, 0.796]}
+```
+
+The turn at 03:08:55 is the case I was worried about. Here the halfway box moved 0.054 from the last one and the next box only 0.048, so it counted as one move, but with the default threshold of 0.05 that is close. A real night will show whether real turns land on the same side of the line.
+
 ## Part I. 
 ### Design the interaction when awake
 
@@ -476,6 +541,82 @@ The reveal. The night produced a log; the morning turns it into something a half
 ```
 
 Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
+
+**My morning reveal: numbers, a timeline, then two sentences.** `restless_morning.py` reads `restless_log.jsonl` and does all the counting in plain code:
+
+* **A move** is when any edge of my box shifts more than 5% of the frame (`--threshold`) from the last place I was seen. Small jitter from YOLO stays under that.
+* **Out of bed** is when nobody is in view for at least 60 seconds (`--away`). Shorter gaps are YOLO losing me for a look or two, and coming back to bed is not counted as a move.
+* **A restless stretch** is at least 3 moves (`--min-moves`), each within 10 minutes (`--window`) of the one before.
+
+It prints those facts and a moves-per-hour bar chart, then asks Qwen for one greeting. If I didn't move and never left the bed, it skips Qwen completely, so a quiet night can't be dressed up as an eventful one.
+
+**Checking the logic before a real night.** Since the camera wasn't aimed yet, I tested the counting on generated logs (made up by a script, not real data). A 7-hour night with planted turning around 1 am, a 6-minute trip out of bed at 2:30, and random single looks where YOLO drops me came out like this:
+
+```
+$ python restless_morning.py --log fake_night.jsonl --no-llm
+Watched from 23:42 to 06:41 (7.0 hours, 5040 looks).
+Moved 24 times.
+Restless from 00:56 to 01:20 (12 moves).
+Restless from 02:43 to 02:58 (3 moves).
+Out of bed from 02:30 to 02:36 (6 min).
+Longest still stretch: 01:20 to 02:43.
+
+moves per hour:
+  23:00
+  00:00 ##
+  01:00 ###########
+  02:00 ###
+  03:00 #
+  04:00 ###
+  05:00 ###
+  06:00 #
+```
+
+The planted restless hour and the trip out of bed both show up, and the dropped looks don't count as leaving. A night where the box never moves prints `Moved 0 times. No restless stretches.` and stops there, and a log with nobody in it prints `Nobody was in view the whole time.` What this can't tell me is whether one real turn over shows up as one move. With a look every 5 seconds, a slow turn might get caught halfway and count twice, so `--threshold` still has to be tuned on a real night.
+
+**On the simulated night** the morning script prints:
+
+```
+$ python restless_morning.py --log simulated_night.jsonl
+Watched from 23:54 to 07:04 (7.2 hours, 4917 looks).
+Moved 23 times.
+Restless from 01:18 to 01:26 (4 moves).
+Restless from 03:08 to 03:20 (3 moves).
+Restless from 06:01 to 06:08 (4 moves).
+Out of bed from 03:45 to 03:49 (4 min).
+Longest still stretch: 01:26 to 02:18.
+
+moves per hour:
+  23:00
+  00:00 ##
+  01:00 ####
+  02:00 ###
+  03:00 ######
+  04:00 #
+  05:00 #
+  06:00 ######
+  07:00
+```
+
+**Why Qwen doesn't summarize the night anymore.** My first version gave Qwen those exact facts and asked for a two-sentence summary using the exact times. I ran it on the Pi, and these are real outputs for the simulated night above:
+
+> The night was marked by significant restlessness, with the most intense episodes occurring from 01:18 to 01:26, 03:08 to 03:20, and 06:01 to 06:08, where they moved around 4 times each. Additionally, a longer period of restlessness lasted from 01:26 to 02:18, lasting over an hour, before the day began.
+
+01:26 to 02:18 was my *stillest* stretch, and it lasted 52 minutes. One of the stretches had 3 moves, not 4.
+
+> The night was remarkably restless, with frequent movements and stretches lasting up to 4 minutes between waking moments. Despite resting for several hours, the individual remained awake throughout the day.
+
+Nothing in the facts says that. Part E showed Qwen can't count from a log, and this showed that it can't be trusted to repeat finished numbers either. I also tried giving it a worked example, which kept the times but then described a restless stretch as "you were still from 03:08 to 03:20". Half-awake, I would believe whichever sentence I read, so wrong sentences are worse than none.
+
+So the facts and the chart now come straight from the code, and Qwen writes one greeting from the overall tone without seeing any numbers. If the greeting has a digit in it, the script prints `Good morning.` instead. These are real outputs from `qwen3:0.6b` when told the night was somewhat restless and that I got up once:
+
+> Good morning, and I hope you're having a peaceful start to your day.
+
+> Good morning, and I hope you're doing well!
+
+`qwen3.5:0.8b` is the bigger model, but it was worse at this ("Good morning, you are so kind for waking up just now."), so the greeting uses the smaller one. That is a much smaller job than the lab imagined for the language model, and it's the honest result of testing it on this device. The report is shown in the terminal for now.
+
+<!-- TODO: the morning report and Qwen's greeting from the real night -->
 
 ## Final documentation
 
@@ -488,6 +629,16 @@ Document all the prototypes and iterations you have designed and worked on. The 
 \*\*\***Include a short video of the whole system: the bedtime hand-off, a log excerpt or timelapse of the night, and the morning reveal from a real overnight run.**\*\*\*
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+
+**Where things are:**
+
+* **Video of the bedtime hand-off:** https://youtu.be/f2TG2skf9kc
+* **Code:** [`restless_night.py`](restless_night.py) (hand-off and night log), [`restless_morning.py`](restless_morning.py) (morning report), [`simulate_night.py`](simulate_night.py) (generates a test night)
+* **Night log:** only the simulated one so far, [`simulated_night.jsonl`](simulated_night.jsonl)
+
+<!-- TODO: whole-system video with the morning reveal from a real night -->
+
+**Contributions:** The feedback under Prep for Part 2 came from classmates, and it's what pushed me to log box positions, add a real hand-off and test the camera in the dark. I used Claude Code (Anthropic's AI coding tool) to help write and debug `restless_night.py`, `restless_morning.py` and `simulate_night.py`, to run the threshold and Qwen tests on the Pi, and to draft parts of this write-up. The simulated night is generated by a script and is labeled that way above.
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
 

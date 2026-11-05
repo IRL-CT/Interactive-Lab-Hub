@@ -1,13 +1,15 @@
 """
 Part I, my version of morning.py: turn restless_log.jsonl into a restlessness report.
 
-    python restless_morning.py                     # numbers, an hour-by-hour timeline, then Qwen's summary
+    python restless_morning.py                     # numbers, an hour-by-hour timeline, then Qwen's greeting
     python restless_morning.py --no-llm            # numbers and timeline only
     python restless_morning.py --threshold 0.08    # a box has to move more to count as a move
     python restless_morning.py --log some_other.jsonl
 
 Part E showed that Qwen can't count from a log, so all the counting happens here.
-Qwen only gets the finished numbers and turns them into two sentences.
+On the Pi it also got the finished facts wrong when asked to summarize them (it called
+my stillest stretch restless), so it no longer sees them. It only writes a greeting from
+the overall tone, and a greeting with a number in it is thrown away.
 
 Tune --threshold on a fake night: lie still for two minutes, then turn over a few times.
 Lying still should give 0 moves, and each turn should give roughly one.
@@ -26,7 +28,7 @@ parser.add_argument("--threshold", type=float, default=0.05,
 parser.add_argument("--away", type=float, default=60, help="seconds with nobody in view before I count as out of bed")
 parser.add_argument("--window", type=float, default=600, help="seconds; this many moves within it make a restless stretch")
 parser.add_argument("--min-moves", type=int, default=3, help="moves within --window that make it a restless stretch")
-parser.add_argument("--model", default="qwen3.5:0.8b")
+parser.add_argument("--model", default="qwen3:0.6b")
 parser.add_argument("--no-llm", action="store_true")
 args = parser.parse_args()
 
@@ -95,12 +97,10 @@ while hour <= end:
 if args.no_llm or not seen or (not moves and not away):
     raise SystemExit
 
-prompt = f"""You are a bedside device that watched someone sleep. Here are the facts about their night:
-
-{chr(10).join(facts)}
-
-Write a warm two-sentence morning summary of how restless the night was.
-Use only these facts and these exact times. Do not add anything that is not listed."""
+tone = "somewhat restless" if stretches else "mostly calm"
+got_up = f" and got up {'once' if len(away) == 1 else 'more than once'}" if away else ""
+prompt = (f"Write one warm good-morning sentence to someone who had a {tone} night{got_up}. "
+          "Do not use any numbers or times. Do not give advice. Do not claim anything else about their night.")
 
 r = requests.post("http://localhost:11434/api/generate", json={
     "model": args.model,
@@ -110,4 +110,5 @@ r = requests.post("http://localhost:11434/api/generate", json={
     "options": {"num_ctx": 2048, "temperature": 0.3},
 }, timeout=600)
 r.raise_for_status()
-print("\n" + r.json()["response"])
+greeting = r.json()["response"].encode("ascii", "ignore").decode().strip()      # it sometimes adds emoji
+print("\n" + ("Good morning." if any(c.isdigit() for c in greeting) else greeting))

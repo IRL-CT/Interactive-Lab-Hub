@@ -6,6 +6,8 @@ Part H, my version of overnight.py: log where I am in bed every few seconds, all
     python restless_night.py --seconds 30     # fake night: stop by itself after 30 s
     python restless_night.py --no-wave        # start right away instead of waiting for a wave
     python restless_night.py --settle 10      # start watching 10 s after the wave instead of 2 min
+    python restless_night.py --conf 0.4       # accept less certain person boxes (more false boxes)
+    python restless_night.py --preview        # show the camera feed in a window (nothing is saved)
 
 The hand-off: the script waits until I wave at the camera (an open hand moving side to
 side, using MediaPipe hands from Part C), says goodnight, and gives me --settle seconds
@@ -40,6 +42,8 @@ parser.add_argument("--seconds", type=float, default=None, help="stop after this
 parser.add_argument("--out", default="restless_log.jsonl")
 parser.add_argument("--no-wave", action="store_true", help="skip the wave hand-off")
 parser.add_argument("--settle", type=float, default=120, help="seconds after the wave before watching starts")
+parser.add_argument("--conf", type=float, default=0.5, help="YOLO confidence a person box needs to be logged")
+parser.add_argument("--preview", action="store_true", help="show the camera feed in a window; nothing is saved")
 args = parser.parse_args()
 
 WAVE_SIZE = 0.08       # the wrist has to swing this far (fraction of the frame width) to count
@@ -50,11 +54,33 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 log = open(args.out, "a")
+status = ""                 # the line drawn on the preview window
 
 
 def write(entry):
     log.write(json.dumps(entry) + "\n")
     log.flush()
+
+
+def show(frame):
+    if args.preview:
+        frame = frame.copy()        # the hand tracker still needs the clean frame
+        cv2.putText(frame, status, (15, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 0), 5, cv2.LINE_AA)
+        cv2.putText(frame, status, (15, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2, cv2.LINE_AA)
+        cv2.imshow("restless_night", frame)
+        cv2.waitKey(1)
+
+
+def pause(seconds):
+    """Wait, keeping the preview window live if there is one."""
+    if not args.preview:
+        time.sleep(seconds)
+        return
+    end = time.time() + seconds
+    while time.time() < end:
+        ok, frame = cap.read()
+        if ok:
+            show(frame)
 
 
 def biggest_person(r):
@@ -92,6 +118,7 @@ def wait_for_wave():
         ok, frame = cap.read()
         if not ok:
             continue
+        show(frame)
         res = hands.process(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
         now = time.time()
         if res.multi_hand_landmarks:
@@ -106,13 +133,16 @@ def wait_for_wave():
 
 
 if not args.no_wave:
+    status = "wave to start the night"
     print("wave at the camera to start the night", flush=True)
     wait_for_wave()
     write({"t": datetime.datetime.now().isoformat(timespec="seconds"), "handoff": "wave"})
+    status = f"goodnight. watching in {args.settle:.0f} s"
     print(f"goodnight. watching in {args.settle:.0f} s, Ctrl-C in the morning", flush=True)
-    time.sleep(args.settle)
+    pause(args.settle)
 
 t_end = time.time() + args.seconds if args.seconds else float("inf")
+status = "night shift: watching"
 print(f"night shift started, writing {args.out}", flush=True)
 while time.time() < t_end:
     try:
@@ -121,9 +151,10 @@ while time.time() < t_end:
         ok, frame = cap.read()
         if not ok:
             raise RuntimeError("no frame")
-        r = model.predict(frame, imgsz=320, conf=0.4, classes=[0], verbose=False)[0]
+        r = model.predict(frame, imgsz=320, conf=args.conf, classes=[0], verbose=False)[0]
         write({"t": datetime.datetime.now().isoformat(timespec="seconds"), "box": biggest_person(r)})
-        time.sleep(args.interval)
+        show(r.plot())
+        pause(args.interval)
     except KeyboardInterrupt:
         break
     except Exception as e:
