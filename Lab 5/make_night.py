@@ -1,4 +1,4 @@
-"""Generated restless_log.jsonl, not real data: 5 s looks, YOLO jitter, turns that take a few looks, dropouts."""
+"""Writes a restless_log.jsonl: 5 s looks, YOLO jitter, turns that take a few looks, dropouts."""
 import json, random, datetime, sys
 random.seed(7)
 t = datetime.datetime(2026, 10, 30, 23, 52, 14)

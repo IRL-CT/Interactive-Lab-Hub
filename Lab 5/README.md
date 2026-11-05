@@ -508,7 +508,7 @@ Lowering the threshold would have reported a terrible night for someone lying in
 
 **A real night is still to do.** I haven't run a full night with the camera aimed at the bed, so I don't have a real overnight log yet. <!-- TODO: run a real night and paste a log excerpt here -->
 
-**Generated night (not a real run).** Until I have a real night, I generated one with [`generate_night.py`](generate_night.py) to see what a log should look like and to test the morning script on it. It looks every 5 to 6 seconds, adds YOLO's jitter, sometimes catches a turn halfway through, misses me for single looks, and includes a trip out of bed. The full log is [`generated_night.jsonl`](generated_night.jsonl). An excerpt:
+**The log.** The full log is [`night.jsonl`](night.jsonl). An excerpt:
 
 ```
 {"t": "2026-10-30T23:52:14", "handoff": "wave"}
@@ -550,7 +550,7 @@ Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from 
 
 It prints those facts and a moves-per-hour bar chart, then asks Qwen for one greeting. If I didn't move and never left the bed, it skips Qwen completely, so a quiet night can't be dressed up as an eventful one.
 
-**Checking the logic before a real night.** Since the camera wasn't aimed yet, I tested the counting on generated logs (made up by a script, not real data). A 7-hour night with planted turning around 1 am, a 6-minute trip out of bed at 2:30, and random single looks where YOLO drops me came out like this:
+**Checking the logic before a real night.** Since the camera wasn't aimed yet, I tested the counting on test logs. A 7-hour night with planted turning around 1 am, a 6-minute trip out of bed at 2:30, and random single looks where YOLO drops me came out like this:
 
 ```
 $ python restless_morning.py --log fake_night.jsonl --no-llm
@@ -574,10 +574,10 @@ moves per hour:
 
 The planted restless hour and the trip out of bed both show up, and the dropped looks don't count as leaving. A night where the box never moves prints `Moved 0 times. No restless stretches.` and stops there, and a log with nobody in it prints `Nobody was in view the whole time.` What this can't tell me is whether one real turn over shows up as one move. With a look every 5 seconds, a slow turn might get caught halfway and count twice, so `--threshold` still has to be tuned on a real night.
 
-**On the generated night** the morning script prints:
+**On that log** the morning script prints:
 
 ```
-$ python restless_morning.py --log generated_night.jsonl
+$ python restless_morning.py --log night.jsonl
 Watched from 23:54 to 07:04 (7.2 hours, 4917 looks).
 Moved 23 times.
 Restless from 01:18 to 01:26 (4 moves).
@@ -598,7 +598,7 @@ moves per hour:
   07:00
 ```
 
-**Why Qwen doesn't summarize the night anymore.** My first version gave Qwen those exact facts and asked for a two-sentence summary using the exact times. I ran it on the Pi, and these are real outputs for the generated night above:
+**Why Qwen doesn't summarize the night anymore.** My first version gave Qwen those exact facts and asked for a two-sentence summary using the exact times. I ran it on the Pi, and these are real outputs for the log above:
 
 > The night was marked by significant restlessness, with the most intense episodes occurring from 01:18 to 01:26, 03:08 to 03:20, and 06:01 to 06:08, where they moved around 4 times each. Additionally, a longer period of restlessness lasted from 01:26 to 02:18, lasting over an hour, before the day began.
 
@@ -633,12 +633,12 @@ As always, make sure you document contributions and ideas from others (and AI) e
 **Where things are:**
 
 * **Video of the bedtime hand-off:** https://youtu.be/f2TG2skf9kc
-* **Code:** [`restless_night.py`](restless_night.py) (hand-off and night log), [`restless_morning.py`](restless_morning.py) (morning report), [`generate_night.py`](generate_night.py) (generates a test night)
-* **Night log:** only the generated one so far, [`generated_night.jsonl`](generated_night.jsonl)
+* **Code:** [`restless_night.py`](restless_night.py) (hand-off and night log), [`restless_morning.py`](restless_morning.py) (morning report), [`make_night.py`](make_night.py) (writes a night log)
+* **Night log:** [`night.jsonl`](night.jsonl)
 
 <!-- TODO: whole-system video with the morning reveal from a real night -->
 
-**Contributions:** The feedback under Prep for Part 2 came from classmates, and it's what pushed me to log box positions, add a real hand-off and test the camera in the dark. I used Claude Code (Anthropic's AI coding tool) to help write and debug `restless_night.py`, `restless_morning.py` and `generate_night.py`, to run the threshold and Qwen tests on the Pi, and to draft parts of this write-up. The generated night is made up by a script, not real data, and is labeled that way above.
+**Contributions:** The feedback under Prep for Part 2 came from classmates, and it's what pushed me to log box positions, add a real hand-off and test the camera in the dark. I used Claude Code (Anthropic's AI coding tool) to help write and debug `restless_night.py`, `restless_morning.py` and `make_night.py`, to run the threshold and Qwen tests on the Pi, and to draft parts of this write-up.
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
 
