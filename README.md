@@ -1,4 +1,4 @@
-# [Your name here]'s-Lab-Hub
+# [Yuqi Wang]'s-Lab-Hub
 for [Interactive Device Design](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/)
 
 Please place links here to the README.md's for each of your labs here:
@@ -9,11 +9,11 @@ Please place links here to the README.md's for each of your labs here:
 
 [Lab 3. Chatterboxes](Lab%203/)
 
-[Lab 4. Ph-UI!!!](Lab%204/)
+[Lab 4. Ph-UI!!! — Dinner Dial](Lab%204/README.md)
 
 [Lab 5. Observant Systems](Lab%205/)
 
-[Lab 6. Little Interactions Everywhere](Lab%206/)
+Lab 6. Little Interactions Everywhere
 
 Final Project
 

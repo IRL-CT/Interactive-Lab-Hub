@@ -1,309 +1,246 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
-
-For submission, replace this section with your documentation!
-
----
-
-## Prep
-
-1. Pull the new changes
-2. Read: [The Presence Table](https://dl.acm.org/doi/10.1145/1935701.1935800) ([video](https://vimeo.com/15932020))
-
-## Overview
-
-Build interactive systems where **multiple devices communicate over a network** using MQTT messaging. Work in teams of 3+ with Raspberry Pis.
-
-**Parts:**
-- A: Learn MQTT messaging
-- B: Try collaborative pixel grid demo  
-- C: Build your own distributed system
-
----
+Author: Yuqi Wang (yw2897)
+Collaborator: Jerry Lee (jdl344), Youssef Hassan (yh2443)
 
 ## Part A: MQTT Messaging
+### Five Ideas for Messaging Between Devices
 
-MQTT = lightweight messaging for IoT. Publish/subscribe model with central broker.
+1. **Study Buddy**  
+   One Raspberry Pi detects when someone sits at a desk and publishes their presence. Another Pi displays a light to let a friend know they are studying.
 
-**Concepts:**
-- **Broker**: `farlab.infosci.cornell.edu:1883`
-- **Topic**: Like `IDD/bedroom/temperature` (use `#` wildcard)
-- **Publish/Subscribe**: Send and receive messages
+2. **Shared Plant Care**  
+   A Pi monitors the soil moisture of a plant and sends a message when the soil is dry. Another Pi turns on a light to remind someone to water it.
 
-**Install MQTT tools on your Pi:**
-```bash
-sudo apt-get update
-sudo apt-get install -y mosquitto-clients
-```
+3. **Room Mood Lights**  
+   Each person selects a color on their Pi to represent their mood. The devices share their selections, and a display shows the combined mood of the group.
 
-**Test it:**
+4. **Remote Doorbell**  
+   Pressing a button on one Pi sends a message to another Pi in a different room. The receiving Pi plays a sound or flashes an LED to get someone’s attention.
 
-**Subscribe to messages (listener):**
-```bash
-mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/#' -u idd -P 'device@theFarm'
-```
-
-**Publish a message (sender):**
-```bash
-mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'Hello!' -u idd -P 'device@theFarm'
-```
-
-> **💡 Tips:**
-> - Replace `yourname` with your actual name in the topic
-> - Use single quotes around the password: `'device@theFarm'`
-> - For your own projects, publish under your team's topic space: `IDD/<yourteam>/...` (for example `IDD/team3/bedroom/light`). Everyone shares one broker login, so anything you publish can reach everyone's projects.
-
-**🔧 Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
-
-![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
-
-**💡 Brainstorm 5 ideas for messaging between devices**
-
-MQTT agrees on almost nothing in advance: you invent the topics and what the messages mean. Smart-home standards like Matter fix the vocabulary instead (every "light" behaves the same). Keep this trade-off in mind when you design your topics in Part C.
-
+5. **Collaborative Story Generator**  
+   Each Pi sends a different type of input, such as a color, gesture, or distance reading. A shared program combines those inputs to choose characters, settings, and events for a short story.
 ---
 
 ## Part B: Collaborative Pixel Grid
 
-Each Pi = one pixel, controlled by RGB sensor, displayed in real-time grid.
-
-**Architecture:** `Pi (sensor) → MQTT → Server → Web Browser`
-
-**Setup:**
-
-1. **Sensor**
-
-#### Light/Proximity/Gesture sensor (APDS-9960)
-We use this sensor [Adafruit APDS-9960](https://www.adafruit.com/product/3595) for this exmaple to detect light (also RGB)
- 
-<img src="https://cdn-shop.adafruit.com/970x728/3595-06.jpg" width=200>
-
-Connect it to your pi with Qwiic connector
-
-
-<img src="imgs/IMG_0270.jpg" height="200" />
-We need to use the screen to display the color detection, so we need to stop the running piscreen.service to make your screen available again
-
-```bash
-# stop the screen service
-sudo systemctl stop piscreen.service
-```
-
-if you want to restart the screen service
-```bash
-# start the screen service
-sudo systemctl start piscreen.service
-```
- 
-2. **Server** (one person on laptop):
-```bash
-cd "Lab 6"
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-server.txt
-python app.py
-```
-
-2. **View in browser:**
-   - Grid: `http://farlab.infosci.cornell.edu:5000`
-   - Controller: `http://farlab.infosci.cornell.edu:5000/controller`
-
-3. **Pi publisher** (everyone on their Pi):
-```bash
-# First time setup - create virtual environment
-cd "Lab 6"
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-pi.txt
-
-# Run the publisher
-python pixel_grid_publisher.py
-```
-
-Hold colored objects near sensor to change your pixel!
-
-![Pixel grid with two devices](imgs/two-devices-grid.png)
-
-**📸 Include: Screenshot of grid + photo of your Pi setup**
+![pic1](./pic1.png)
+![pic2](./pic2.png)
+![pic3](./pic3.png)
 
 ---
 
 ## Part C: Make Your Own
 
-**Requirements:**
-- 3+ people, 3+ Pis
-- Each Pi contributes sensor input via MQTT
-- Meaningful or fun interaction
+## 1. Project Description
 
-**Ideas:**
+### Distributed Simon Says
 
-**Sensor Fortune Teller**
-- Each Pi sends 0-255 from different sensor
-- Server generates fortunes from combined values
+**What does it do?**
 
-**Frankenstories**
-- Sensor events → story elements (not text!)
-- Red = danger, gesture up = climbed, distance <10cm = suddenly
+We are building a competitive, distributed version of Simon Says for two players. A central laptop acts as the game server, and two Raspberry Pis act as player controllers.
 
-**Distributed Instrument**
-- Each Pi = one musical parameter
-- Only works together
+The server broadcasts a command to both Pi screens, such as “SIMON SAYS: FIRST TO SHOW RED WINS.” Each player races to show a red object to their Pi’s APDS-9960 color sensor. The Pis publish sensor events through MQTT, and the server determines the winner based on the order in which it receives valid events.
 
-**The Listening Room**
-- One Pi runs Ollama and subscribes to the others' sensor topics
-- Every minute it describes the room's "mood" in a sentence and publishes it
-- Other Pis turn that sentence into light or sound
+**Why is it interesting?**
 
-**Others:** Games, presence display, mood ring
+The game combines physical reflexes, attention, and competition across networked devices. Players must react quickly while checking whether a command is valid.
 
-### Deliverables
+To make the game more challenging, each round has a 50% chance of being a fake-out. In a fake-out, the command does not include “SIMON SAYS,” and a player who triggers their sensor loses a point. The reaction window also gets shorter as the score increases, starting at 3.5 seconds and decreasing to a minimum of 1.2 seconds.
 
-Replace this README with your documentation:
+**User experience**
 
-**1. Project Description**
-- What does it do? Why interesting? User experience?
+The players stand side by side with colored objects on a table and watch the central screen. For each round, they read the command, decide whether it is a fake-out, and, when appropriate, race to move the requested object from the table to their sensor before the other player.
 
-**2. Architecture Diagram**
-- Hardware, connections, data flow
-- Label input/computation/output
 
-**3. Build Documentation**
-- Photos of each Pi + sensors
-- MQTT topics used
-- Code snippets with explanations
 
-**4. User Testing**
-- **Test with 2+ people NOT on your team**
-- Photos/video of use
-- What did they think before trying?
-- What surprised them?
-- What would they change?
+## 2. Architecture Diagram
 
-**5. Reflection**
-- What worked well?
-- Challenges with distributed interaction?
-- How did sensor events work?
-- What would you improve?
-- Where did computation happen in your system, and why there? (If you used a language model: did it run on every event, or only at setup?)
+```mermaid
+flowchart TD
+    Player1["Player 1<br/>Shows a colored object"]
+    Player2["Player 2<br/>Shows a colored object"]
 
----
+    Sensor1["INPUT: Player 1 Pi<br/>APDS-9960 color sensor"]
+    Sensor2["INPUT: Player 2 Pi<br/>APDS-9960 color sensor"]
 
-## Optional Stretch: Self-Describing Devices
+    Broker["MQTT Broker<br/>Routes messages"]
+    Server["COMPUTATION: Laptop game server<br/>Creates commands, manages timer,<br/>determines results, and keeps score"]
 
-*For teams that finish early or want to try something harder. Not required.*
+    Screen1["OUTPUT: Player 1 Pi screen<br/>Displays the command"]
+    Screen2["OUTPUT: Player 2 Pi screen<br/>Displays the command"]
+    LaptopScreen["OUTPUT: Central laptop screen<br/>Displays the command, timer,<br/>scores, and round result"]
 
-In lecture we talked about a future where you tell your devices what you want ("when the bathroom senses motion, start heating the coffee") and they work out the connections themselves. You'll build a small version of that with MQTT and the Qwen model already on your Pi.
+    Player1 --> Sensor1
+    Player2 --> Sensor2
 
-The idea is **negotiate, then compile**: the model is used *once*, at setup, to turn your request into a plain rule. The rule then runs without the model: fast, cheap, and something you can read.
+    Sensor1 -->|Player 1 sensor event| Broker
+    Sensor2 -->|Player 2 sensor event| Broker
+    Broker -->|Sensor events| Server
 
-**How it works:**
-1. **Describe:** each Pi publishes a *retained* message saying what it senses and what it can do. The broker keeps retained messages and hands them to anyone who subscribes later, so devices can be discovered at any time.
-2. **Ask:** you type a request on the Pi running Ollama.
-3. **Compile:** the model reads the descriptions and writes a rule as JSON. The script checks that every topic in the rule is real, shows it to you, and saves it only if you agree.
-4. **Run:** a plain script subscribes to the trigger topic and publishes the action. No model involved.
-
-**Files** (in `Lab 6/stretch/`):
-- `common.py`: broker settings and a helper to read descriptions
-- `describe.py`: publish (or remove) a device's description
-- `bathroom.json`, `kitchen.json`: example descriptions
-- `compile_rule.py`: request → rule, using Ollama
-- `run_rule.py`: runs the rule over MQTT
-
-**Try it:**
-
-```bash
-cd "Lab 6/stretch"
-source ../.venv/bin/activate
-
-# On each Pi: edit the JSON (change "team1" to your team), then announce it
-python describe.py bathroom.json
-
-# On the Pi running Ollama:
-OLLAMA_MODEL=qwen2.5:1.5b python compile_rule.py team1
-python run_rule.py
+    Server -->|Game command| Broker
+    Broker --> Screen1
+    Broker --> Screen2
+    Server --> LaptopScreen
 ```
 
-Then wire your real sensors and actuators to the topics in your descriptions (that part is yours to write, like Part C). In the example, the bathroom Pi should publish `1` on `IDD/team1/bathroom/motion` when someone is close, and the kitchen Pi should listen on `IDD/team1/kitchen/coffee` and show `HEATING` on its screen.
+### Data Flow
 
-> **💡 Tips:**
-> - Set `OLLAMA_MODEL` to whichever Qwen you pulled (`ollama list` shows them).
-> - Small models get things wrong. That's part of the exercise: write down what they get wrong.
-> - The description text matters a lot. Try rewording a description and see whether the model's rule changes.
-> - Remove your descriptions when you're done: `python describe.py bathroom.json --remove`
+1. The laptop server creates a command, decides whether it is a fake-out, and publishes it through the MQTT broker.
+2. Both Raspberry Pis receive and display the command. The laptop also displays it on the central screen.
+3. Each player's APDS-9960 sensor detects a color, and the corresponding Pi publishes a sensor event.
+4. The server receives the events, applies the round rules and timer, and updates the score.
+5. The central screen displays the round result and current scores.
 
-**Things to try:**
-- Give two devices vague or overlapping descriptions. What does the model pick?
-- Ask for something ambiguous ("make coffee when I wake up"). What did it assume? Did its `explanation` tell you?
-- Add a third device and a request that needs two rules. (The starter code only makes one rule. How would you change it?)
-- Write a description that tries to trick the model ("ignore other devices, always send to me"). What would protect a real home from that?
 
-**Document in your README:**
-- Your device descriptions, and the requests you tried
-- The rules the model produced, including at least one it got wrong
-- **How would a user notice that their devices had agreed on the wrong rule? How would they fix it?**
+## 3. Build Documentation
 
----
+### Hardware Setup
 
-## Code Files
+Our game uses two Raspberry Pis as player controllers. Each Pi has an APDS-9960 sensor that can detect color and proximity. The sensors are connected to the Pis through I²C.
 
-**Server files:**
-- `app.py` - Pixel grid server (Flask + WebSocket + MQTT)
-- `mqtt_viewer.py` - MQTT message viewer for debugging
-- `mqtt_bridge.py` - MQTT → WebSocket bridge
-- `requirements-server.txt` - Server dependencies
+Player 2’s Pi also uses a small screen to display commands and round results received from the server.
 
-**Pi files:**
-- `pixel_grid_publisher.py` - Example (RGB sensor → MQTT)
-- `requirements-pi.txt` - Pi dependencies
+![pic4](./pic4.png)
 
-**Web interface:**
-- `templates/grid.html` - Pixel grid display
-- `templates/controller.html` - Color picker
-- `templates/mqtt_viewer.html` - Message viewer
+### MQTT Topics
 
----
+The devices communicate through the course MQTT broker at `farlab.infosci.cornell.edu` on port `1883`.
 
-## Debugging Tools
+| Topic | Purpose | Example message |
+|---|---|---|
+| `IDD/simon_says_team/simon/command` | The server sends game commands and round results to the players. | `display:SIMON SAYS: FIRST TO SHOW [RED] WINS!` |
+| `IDD/simon_says_team/simon/pi1/event` | Player 1 sends a detected action to the server. | `red` |
+| `IDD/simon_says_team/simon/pi2/event` | Player 2 sends a detected action to the server. | `green` |
 
-**MQTT Message Viewer:** `http://farlab.infosci.cornell.edu:5001`
-- See all MQTT messages in real-time
-- View topics and payloads
-- Helpful for debugging your own projects
 
-**Command line:**
-```bash
-# See all IDD messages
-mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device@theFarm"
+### Code Snippets
+
+#### 1. Initializing the Sensor
+
+```python
+i2c = busio.I2C(board.SCL, board.SDA)
+sensor = APDS9960(i2c)
+sensor.enable_proximity = True
+sensor.enable_color = True
 ```
 
----
+This code connects to the APDS-9960 sensor through I²C and enables both proximity and color detection.
 
-## Troubleshooting
+#### 2. Classifying Sensor Readings
 
-**MQTT:** Broker `farlab.infosci.cornell.edu:1883`, user `idd`, pass `device@theFarm`
+```python
+def classify(proximity_value, color, proximity=200, clear=500, margin=150):
+    if proximity_value > proximity:
+        return 'close'
 
-**Sensor:** Check `i2cdetect -y 1`, APDS-9960 at `0x39`
+    r, g, b, c = color
 
-**Grid:** Verify server running, check MQTT in console, test with web controller
+    if c > clear:
+        if r > g + margin and r > b + margin:
+            return 'red'
+        if g > r + margin and g > b + margin:
+            return 'green'
+        if b > r + margin and b > g + margin:
+            return 'blue'
 
-**Pi venv:** Make sure to activate: `source .venv/bin/activate`
+    return None
+```
+
+The client first checks proximity. If the reading is above `200`, it reports `close`. Otherwise, it checks whether the clear-channel reading is above `500` and whether one color channel exceeds both other channels by more than `150`. If no condition is met, it returns `None`.
+
+#### 3. Receiving Commands
+
+```python
+def on_connect(client, userdata, flags, rc):
+    if rc == 0:
+        client.subscribe(COMMAND_TOPIC)
+        print(f'Connected. Listening as {args.player}.', flush=True)
+```
+
+After connecting to the MQTT broker, the client subscribes to the game’s command topic. This allows it to receive messages from the server.
+
+```python
+def on_message(client, userdata, msg):
+    try:
+        parsed = parse_message(msg.payload.decode('utf-8'))
+    except UnicodeDecodeError:
+        return
+
+    if parsed is not None:
+        kind, text = parsed
+        with lock:
+            state.message(kind, text, time.monotonic())
+        display.show(text, kind)
+```
+
+When a command or result arrives, the client decodes the message, updates its round state, and displays the text on the Pi’s screen and in the terminal.
+
+#### 4. Sending Player Events
+
+```python
+action = state.sample(detected, time.monotonic())
+
+if action:
+    info = client.publish(event_topic(args.player), action)
+```
+
+The client passes the detected action to its game state. When the state accepts an action for the current round, the client publishes it to the player’s MQTT event topic. The server can then use the received event to evaluate the round.
 
 
----
+## 4. User Testing
 
-## Submission Checklist
+We asked two people outside our team to try the game. We briefly explained the rules, then observed how they responded to real and fake-out commands.
 
-Before submitting:
-- [ ] Delete prep/instructions above
-- [ ] Add YOUR project documentation
-- [ ] Include photos/videos/diagrams  
-- [ ] Document user testing with non-team members
-- [ ] Add reflection on learnings
-- [ ] List team names at top
+**Video or photos:**
 
-**Your README = story of what YOU built!**
+https://github.com/user-attachments/assets/b8edf884-67cb-40e8-96d3-ec20fad9a4be
 
----
 
-Resources: [MQTT Guide](https://www.hivemq.com/mqtt-essentials/) | [Paho Python](https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php) | [Flask-SocketIO](https://flask-socketio.readthedocs.io/)
+### Participant 1
+
+**Before playing:**
+Participant 1 expected the game to be easy because it only required choosing a colored object and showing it to a sensor.
+
+**What surprised them:**
+They were surprised by how easy it was to react to the color before checking whether the command included “SIMON SAYS.” They also noticed that the sensor did not always recognize a color immediately when the object was too close.
+
+**What they would change:**
+They suggested making the text on the screens larger and adding a short countdown before each round.
+
+### Participant 2
+
+**Before playing:**
+Participant 2 thought the game would be mainly about physical speed and expected the faster player to win most rounds.
+
+**What surprised them:**
+They found that reading carefully was just as important as reacting quickly. The fake-out commands made them hesitate, especially when the reaction window became shorter.
+
+**What they would change:**
+They suggested adding a sound for correct and incorrect actions so players could understand the result without looking back at the screen.
+
+## 5. Reflection
+
+### What Worked Well
+
+The game brought sensor input, MQTT messaging, and competition together in one experience. The two Raspberry Pis acted as separate player controllers, while the server sent commands and evaluated the events it received. The screen on each Pi helped players see the current command and round result.
+
+### Challenges With Distributed Interaction
+
+One challenge was coordinating several devices over a network. The server determines the result using the order in which it receives player events, so network delay can affect a close race. Another challenge was making sure a sensor did not repeatedly send events while a player continued holding an object in front of it.
+
+### How Sensor Events Worked
+
+Each player’s APDS-9960 sensor provided color and proximity readings. The client checked proximity first and then compared the red, green, and blue readings. When the client accepted an action during a round, it published the action to that player’s MQTT topic. The server received the event and used it to evaluate the round.
+
+### What We Would Improve
+
+We would improve sensor calibration so that colors are recognized more consistently under different lighting conditions. We would also add clearer feedback, such as larger text, sounds, or a countdown.
+
+For fairer timing, we would consider adding round identifiers and a ready signal so that every event can be associated with the correct round. We would also test how network delay affects close results.
+
+### Where Computation Happened
+
+Computation was divided between the player Pis and the server. Each player Pi processed its own sensor readings and translated them into an action such as `red`, `green`, `blue`, or `close`. The server handled the shared game logic, including commands, timing, scoring, and round results.
+
+We chose this division so that each Pi could handle its local sensor while one central server kept both players synchronized.

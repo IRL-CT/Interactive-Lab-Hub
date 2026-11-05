@@ -1,33 +1,13 @@
 # Observant Systems: Overnight Sensation
 
-**Team:**
+**Team:** Yuqi Wang, Jerry Lee
 
-**Members:** Full Name (netid, github-handle), ...
+**Members:** Yuqi Wang (yw2897), Jerry Lee
 
-**Project name:**
+**Project name:** Desk Night Watch
 
-<details>
-	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
-  
-	**Submission Cleanup Reminder:**
-	- This README.md contains extra instructional text for guidance.
-	- Before submitting, remove all instructional text and example prompts from this file.
-	- You may delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-	- Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-	This helps ensure your README.md is clear, professional, and uniquely yours!
-</details>
+**AI Disclosure**: I used Chatgpt help debug the code and check the grammar.
 
-
-For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
-Your **observant device** could, for example, count items, find objects, recognize an event or continuously monitor a room.
-
-This lab will help you think through the design of observant systems, particularly corner cases that the algorithms need to be aware of.
-
-**New this year: the AI runs on the Pi.** Your Pi 5 can run an object detector ([YOLO](https://docs.ultralytics.com/)) and a small language model ([Qwen](https://ollama.com/library/qwen3.5) through [Ollama](https://ollama.com)) completely offline. In Part 1 you get both running and connect them: YOLO *sees*, Qwen *reasons* about what was seen. These models are slow, but they have all night. In Part 2 you use them to design a **night-time interaction**: what you tell the device before bed, what it does while you sleep, and what it shows you when you wake up.
-
-**Please indicate anyone that helped with this Lab here.**
-Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
 
 ## Overview
 
@@ -58,8 +38,6 @@ The tools from earlier versions of this lab (MobileNet, Teachable Machine, Moond
 
 ## Prep for Part 1
 
-Please check the instructions in [prep.md](prep.md) and complete them before lab. The installs in Part A take a while, so prep.md also tells you how to get a head start.
-
 ## The Report
 
 This readme.md page in your own repository should be edited to include the work you have done. You can delete everything but the headers and the sections between the \*\*\***stars**\*\*\*. Write the answers to the questions under the starred sentences. Include any material that explains what you did in this lab hub folder, and link it in the readme.
@@ -69,163 +47,119 @@ This readme.md page in your own repository should be edited to include the work 
 # Part 1
 
 ## Part A. 
-### Set up your Pi for on-device AI
-
-Create a virtual environment and install the requirements. They include `ultralytics` (YOLO), which pulls in torch, so this takes a while:
-
-```
-pi@raspberrypi:~$ cd Interactive-Lab-Hub/Lab\ 5
-pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python3 -m venv .venv
-pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ source .venv/bin/activate
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ pip install -r requirements.txt
-```
-
-As in Lab 3, [`uv`](https://docs.astral.sh/uv/) is a much faster drop-in for `pip`: `pip install uv && uv pip install -r requirements.txt`.
-
-### YOLO: download the nano model and export it for the Pi
-
-We use the nano model of [YOLO26](https://docs.ultralytics.com/models/yolo26/), exported once to NCNN, the format that runs fastest on the Pi. This downloads the weights:
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python -c "from ultralytics import YOLO; YOLO('yolo26n.pt').export(format='ncnn')"
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ yolo export model=yolo26n.pt format=ncnn
-```
-If every ultralytics message is followed by a `--- Logging error ---` traceback ending in `UnicodeEncodeError: 'latin-1' codec can't encode character`, fix your shell's locale once::
-
-```
-echo 'export LANG=C.UTF-8' >> ~/.bashrc
-echo 'export LC_ALL=C.UTF-8' >> ~/.bashrc
-echo 'export PYTHONIOENCODING=utf-8' >> ~/.bashrc
-source ~/.bashrc
-```
-
-The second command converts the .pt model to a .ncnn model.
-
-Test it on an image from the internet. `project="$PWD"` keeps the output in `predict` in the current lab folder; without it, ultralytics writes to a `runs/` folder at the top of your git repo, where you will not think to look.
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ yolo predict model=yolo26n_ncnn_model source=https://ultralytics.com/images/bus.jpg project="$PWD"
-```
-
-The result is in `predict/bus.jpg`: boxes around the people and the bus.
-
-Now a photo of your own. Plug in the webcam and take one with `snap.py` (`--delay 3` gives you three seconds to get into the frame), or choose any picture you downloaded from the internet and put under this folder. Put your selected picture after the `source=` Then run the same command on it:
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python snap.py --delay 3
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ yolo predict model=yolo26n_ncnn_model source=snap.jpg project=runs
-```
-
-Every run gets its own numbered folder, so this one is in `runs/predict2/snap.jpg`; the command prints where it saved. Keep `snap.jpg`, you will show it to Qwen in Part D.
-
-### Ollama: install it and pull Qwen
-
-[Ollama](https://ollama.com) runs language models locally. Nothing leaves the Pi: no API key, no internet after the download.
-
-```
-pi@raspberrypi:~ $ curl -fsSL https://ollama.com/install.sh | sh
-pi@raspberrypi:~ $ ollama pull qwen3.5:0.8b
-pi@raspberrypi:~ $ ollama pull qwen3:0.6b
-pi@raspberrypi:~ $ ollama list
-```
-
-| model | download | what it does |
-|---|---|---|
-| `qwen3.5:0.8b` | ~1.3 GB | text **and images**; the one we use in this lab |
-| `qwen3:0.6b` | ~0.5 GB | text only, smaller and faster (~16 tokens/s on a Pi 5) |
-
 \*\*\***Include a screenshot of `ollama list` showing your models.**\*\*\*
+![ollama](./ollama.png)
+
+
 
 
 ## Part B. 
-### See: recognize people in real time with YOLO
-
-YOLO is an *object detector*: it finds every person, cup, cat and so on (the 80 [COCO](https://cocodataset.org/) classes), draws a box around each, and gives a confidence. For an observant system that is exactly what you want: *how many*, *where*, *how sure*.
-
-Connect your webcam, connect to your Pi through **VNC** (the script opens a window), and run the person detector. Read `yolo_person.py` first; the loop at the bottom is the whole idea.
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py
-```
-
-While it runs, walk in and out of the frame, sit down, turn your back, hold up a photo of a person on your phone. Watch the confidence number on the box change with each.
-
-Then press q to quit and run it again with a flag. Each one changes a single thing:
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --conf 0.2     # lower the bar: see what the model is unsure about
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --conf 0.7     # raise the bar: see what you lose
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --all          # all 80 classes, not only people: what else is on your desk, and what does it get wrong?
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python yolo_person.py --headless     # no window, only the printed readings: how it runs over ssh, and at night
-```
-
-\*\*\***Include a short video or screenshots of your experiments with the person detection. Write down three situations where it did not see you, or saw a person who was not there, and what you think the cause was.**\*\*\*
-
-
+\*\*\***Include a short video or screenshots of the person detection.**\*\*\*
+![pb1](./P-B-1.png)
+![pb2](./P-B-2.png)
+![pb3](./P-B-3.png)
+![pb4](./P-B-4.png)
 
 ## Part C. 
-### See more: hands and pose with MediaPipe
-
-YOLO tells you that a person is there. Google's [MediaPipe](https://mediapipe.dev/) tells you what their hands and body are doing: face, hand and body pose detection, fast on the Pi.
-
-![Media pipe](Readme_files/mp.gif)
-
-The demo plays a looping audio file, so make the helper script executable first:
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ chmod +x loop_audio.sh
-```
-
-Connect your webcam, connect to your Pi through **VNC**, and run the hand pose script:
-(***it will not work if you use ssh from your laptop***)
-
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python hand_pose.py
-```
-
-Try the two main features of this script: 1) pinching for percentage control (the thumb-to-index distance sets the volume), and 2) "[Quiet Coyote](https://www.youtube.com/watch?v=qsKlNVpY7zg)" for instant percentage setting (the gesture mutes it). Notice how this example uses hardcoded positions and relates those positions with a desired set of events, in `hand_pose.py`: a hand is 21 landmark coordinates, and an *event* is a rule you write over them. That is the same job as `interpret()` in Part E.
-
-Consider how you might use this position based approach to create an interaction, and write how you might use it on either face, hand or body pose tracking.
-
 \*\*\***Include a screenshot or short video of the hand pose demo, and write how you might use face, hand or body pose tracking in your observant system.**\*\*\*
+![pc1](./P-C-1.jpg)
+![pc2](./P-C-2.jpg)
+![pc3](./P-C-3.jpg)
+![pc4](./P-C-4.jpg)
 
+For Desk Night Watch, hand pose tracking could provide an alternative to the spoken start command. Holding an open palm steady for a short time could request monitoring, followed by an on-screen message and spoken confirmation after the first successful camera sample. Requiring a stable gesture would help prevent accidental activation during normal hand movements. I would use gesture recognition only during the bedtime hand-off, then stop tracking gestures once monitoring begins. This is a possible extension; the tested prototype currently starts with the spoken word "Hello."
 
-## Part D. 
+## Part D.
 ### Reason: run Qwen on the Pi with Ollama
 
-Talk to the model in the terminal first. Qwen3 models "think" before they answer, which is slow on a Pi, so turn it off. Then ask about something you can check:
+I asked `qwen3.5:0.8b` three questions using `ask_qwen.py`, then repeated the first question with `qwen3:0.6b`. The script requested at most three short sentences. The times below are the elapsed request times reported by the script.
 
-```
-pi@raspberrypi:~ $ ollama run qwen3.5:0.8b
->>> /set nothink
->>> Tell me a bit about the history of Roosevelt Island. Three sentences.
->>> /bye
-```
+#### Question 1: Roosevelt Island history
 
-Roosevelt Island is a good first question because you know the ground truth: it was Blackwell's Island, then Welfare Island, got its current name in 1973, and Cornell Tech opened on it in 2017. Count how many of the model's facts are true.
+**Question:** Tell me a bit about the history of Roosevelt Island.
 
-From Python, qwen requests can be triggered by the `ask_qwen.py` script. It turns thinking off, tells the model to answer in at most three sentences, and cuts it off after 120 tokens (`--max-tokens` changes that), because a small model left alone writes an essay. Read the script, then run:
+- **Model:** `qwen3.5:0.8b`
+- **Elapsed time:** 12.9 seconds
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python ask_qwen.py "Tell me a bit about the history of Roosevelt Island."
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python ask_qwen.py --model qwen3:0.6b "Tell me a bit about the history of Roosevelt Island."
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python ask_qwen.py --image snap.jpg "What is in this photo?"
-```
+**Original answer:**
 
-Things in the [Ollama API](https://github.com/ollama/ollama/blob/main/docs/api.md) worth knowing:
+> Roosevelt Island was originally built as a private residence for President Franklin D. Roosevelt, who lived there from 1935 to 1945. It is now a historic site and one of the most popular tourist destinations in New York City. The island's history includes its original construction by the Rockefeller family and its current status as a museum dedicated to FDR's life and work.
 
-* `think: false` skips the reasoning trace. Always, on a Pi. `ask_qwen.py` sends it on every request; `--think` turns the trace back on for one question, so you can see what you are skipping and how long it takes.
-* `format` makes the model answer as JSON with the fields you name (`--json`). Handy when a display or a servo has to read the answer.
-* `images` sends a photo along with the prompt (`--image snap.jpg`, the photo from Part A). `qwen3.5:0.8b` can look at pictures.
+**Correctness check:**
 
-A 0.8B model is slow and sometimes wrong. It will invent events that are not in the data and agree with a wrong premise. Give it the data, keep its job narrow, and decide what the device does when the model is unsure.
+The answer contains major factual errors. Roosevelt Island was not built as FDR's private residence. His principal lifelong residence was Springwood in Hyde Park, New York. The model's account of his residence on the island is incorrect. [FDR Presidential Library](https://www.fdrlibrary.org/roosevelt-homes)
 
-\*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
+The island's documented history also differs from the model's construction and museum story. It was formerly called **Blackwell's Island**, became **Welfare Island in 1921**, and was renamed **Roosevelt Island in 1973**. Its institutional history includes prisons and hospitals. [National Park Service](https://www.nps.gov/places/blackwell-s-island-new-york-city.htm)
 
-<details>
-  Q&A here
-</details>
+Another relevant milestone is the opening of Cornell Tech's Roosevelt Island campus in **2017**. The model mentioned none of the four reference facts: the Blackwell's Island name, the 1921 and 1973 name changes, or the campus opening. [Cornell Tech](https://tech.cornell.edu/news/cornell-tech-campus-opens-on-roosevelt-island-marking-transformational-mile/)
 
+#### Question 2: Can object detection establish whether someone is asleep?
+
+**Question:** Can a person's bounding box and confidence score alone tell whether they are asleep? Explain briefly.
+
+- **Model:** `qwen3.5:0.8b`
+- **Elapsed time:** 7.1 seconds
+
+**Original answer:**
+
+> Yes, but the system cannot definitively determine if someone is asleep solely based on these metrics. The user must also consider their physical state, such as breathing patterns or heart rate to confirm sleep onset.
+
+**Correctness check:**
+
+The answer is internally contradictory: it begins with "Yes," but immediately explains that these metrics alone cannot determine whether someone is asleep. The direct answer should be **No**.
+
+Object detection produces bounding boxes, class labels, and confidence scores. In this experiment, the box describes the detected person's location and size, while the score expresses confidence in the detection. These outputs do not establish sleep state. A high confidence score for "person" is not a probability that the person is asleep. This interpretation follows from the documented detection outputs. [Ultralytics object detection documentation](https://docs.ultralytics.com/tasks/detect)
+
+Breathing and heart rate were not measured in this experiment. The model's suggestion should therefore not be presented as a tested sleep-detection method.
+
+#### Question 3: Describe an image
+
+**Question:** How many people are in this photo, and what are they wearing?
+
+**Input:** The `zidane.jpg` image used in Part A, supplied with `--image zidane.jpg`.
+
+- **Model:** `qwen3.5:0.8b`
+- **Elapsed time:** 116.0 seconds
+
+**Original answer:**
+
+> There are two men in the photo. The man on the left is bald and wearing a black suit with a white shirt and black tie. The man on the right has gray hair and is also wearing a black suit with a white shirt and dark tie.
+
+**Correctness check:**
+
+The person count and main clothing description match the image: there are two people wearing dark suits, light-colored shirts, and ties. The left person is bald, and the right person has gray hair.
+
+The exact color descriptions are less precise; for example, the right person's tie appears blue. Overall, the answer addresses the requested count and clothing reasonably well. This image request took substantially longer than either text-only request in this run.
+
+#### Comparison with `qwen3:0.6b`
+
+I repeated the history question with the smaller model.
+
+**Question:** Tell me a bit about the history of Roosevelt Island.
+
+- **Model:** `qwen3:0.6b`
+- **Elapsed time:** 6.9 seconds
+
+**Original answer:**
+
+> Roosevelt Island is a small island located in the Pacific Ocean, off the coast of the state of New York. It was originally a military base during World War II, and it became a significant site for the United States Navy. The island was later used as a research and development center for the United States Department of Defense. Today, it remains a popular destination for outdoor activities and is a symbol of the United States' commitment to the Pacific.
+
+**Correctness check:**
+
+The location is incorrect: Roosevelt Island is in New York City's **East River**, not the Pacific Ocean. The military-base, Navy, and Department of Defense narrative is unsupported by the official history checked, which instead describes institutional uses including prisons, hospitals, and an asylum. [National Park Service](https://www.nps.gov/places/blackwell-s-island-new-york-city.htm)
+
+The answer also contains four sentences, exceeding the script's request for at most three.
+
+| Aspect | `qwen3.5:0.8b` | `qwen3:0.6b` |
+|---|---|---|
+| Time for the same history question | 12.9 seconds | 6.9 seconds |
+| Main factual problems | Incorrect FDR residence and island history | Incorrect location and unsupported military history |
+| Answer length | 3 sentences | 4 sentences |
+| Covered the four reference facts | 0 of 4 | 0 of 4 |
+
+The smaller model completed this request **6.0 seconds sooner**, using approximately **46.5% less elapsed time**. However, both models produced unreliable historical answers. The larger model followed the sentence limit, while the smaller model did not.
+
+These are single-request measurements, not a controlled performance benchmark. Model loading, caching, and answer length can affect elapsed time. For Desk Night Watch, the results support asking narrow questions, supplying recorded observations, and checking model claims against those observations before presenting a report.
 
 ## Part E. 
 ### Connect: from YOLO readings to Qwen reasoning
@@ -263,8 +197,6 @@ One person came in from the right, moved close to the camera, and left after abo
 
 # Lab 5 Part 2: Overnight Sensation
 
-For Part 2, you will use the observant system from Part 1 to design a night-time interaction. On-device AI is slow, so let it work while you sleep. The person meets the device twice: **before bed**, when they hand the night over, and **when awake**, when the device gives something back. In between, the pipeline from Part E runs on its own.
-
 Two flavors, pick one or mix them:
 
 * **Sense all night.** The Pi watches, listens or measures from bedtime until morning and keeps a log.
@@ -277,84 +209,205 @@ Two house rules. Sample rather than stream: one look every 5 to 30 seconds is pl
 
 Storyboard a night-time interaction built on your observant system, in three panels:
 
-1. **Before bed.** How does the person hand the night over, and how does the device acknowledge it?
-2. **While asleep.** What does the device watch or work through?
-3. **When awake.** What is the one thing the person learns, and in what medium?
+Before bed, I will start Desk Night Watch and receive an on-screen confirmation that monitoring has begun. 
+While I sleep, the Raspberry Pi will sample the desk area with a webcam every 10 seconds and save detection records locally. 
+In the morning, a short report will show the last time a person was detected, or state that no person was detected during sampling.
 
-Stuck? A kitchen that tells you who raided the fridge. A desk that reports whether you actually went to bed. A window that names the quietest hour. A plant that describes its night. Find something better.
+![storyboard](./storyboard.png)
 
-Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf).
-
-\*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
 
 ## Prep for Part 2
 
-1. Look at and give feedback on the Part F storyboards.
-   **Put the feedback for your ideas here.**
-2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
-3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
-4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
+### Design Feedback
 
-\*\*\***Post your revised storyboard here.**\*\*\*
+1. Make the hand-off clearer. Before starting, briefly check the camera framing and test detection under the intended overnight lighting. Display “Watch started” so the user knows recording has begun.
+2. Separate camera failures from no detections. Continue sampling every 10 seconds, but record failed captures separately from valid samples containing no detected person. Keep timestamped detection results locally without retaining camera images.
+3. Keep the morning report honest. Report the last recorded person detection and any gaps in the observations. If there are no detections, say “No person detected in valid samples,” without claiming that the desk was unused or that the user was asleep.
+Revised Storyboard
 
-## Part G. 
-### Design the interaction before
+The revised design adds a brief camera and lighting check before the bedtime hand-off. During the night, it will record detection results and flag camera failures. In the morning, it will present the last recorded detection alongside any missing observations, making the limits of the report visible.
 
-The hand-off: the person tells the device what to watch tonight, and the device acknowledges it. Keep it to a thirty-second ritual. A button or a touch (Lab 4), a spoken sentence (Lab 3), a wave or a Quiet Coyote at the camera (Part C). The acknowledgement can be a line on the display, a tone, or an LED that dims rather than lights up. At its simplest, the hand-off just sets the question that the morning will answer.
 
-\*\*\***Describe the interaction before.**\*\*\*
+### Overnight placement and agreement
+
+For the overnight test, I placed Desk Night Watch on my own desk at home, with the webcam directed toward the desk and chair area. Before starting the overnight run, I completed a 30-second test at home to check voice activation, camera sampling, and log saving.
+
+The people sharing my home were informed and agreed to the test before it began. During monitoring, timestamped detection records were stored locally on the Pi without retaining camera images. The microphone was used for the startup command and was not used to record audio during the overnight watch.
+
+![revised](./revised.png)
+
+
+
+## Part G.
+### Design the interaction before bed
+
+Desk Night Watch uses a short voice interaction to begin monitoring. The question for the morning is: "When was a person last detected in the desk area?"
+
+My original startup command was "Start night watch," but speech recognition repeatedly misinterpreted it. I simplified the command to "Hello," which was successfully recognized in the test.
+
+### Bedtime interaction
+
+1. The small display shows "READY" and then "LISTENING," prompting the user to say "Hello."
+2. After recognizing the command, the system checks the camera and starts the observation process.
+3. Only after the first successful camera sample has been saved does the display show "WATCHING" and "Watch started."
+4. The speaker says "Night watch started" to confirm that monitoring has begun.
+5. Microphone recording remains off during monitoring. The screen turns off shortly after confirmation while camera sampling continues.
+
+The screen and spoken confirmation let the user know that the system has actually started recording observations, rather than merely recognizing the command.
+
+### 30-second functional test
+
+The test was conducted on November 1, 2026, with a 30-second observation period and a configured sampling interval of 10 seconds.
+
+| Time | Observed result |
+|---|---|
+| 15:40:26 | "Hello" was recognized and accepted on the first attempt. |
+| 15:40:29 | The first valid camera sample was saved, and the system confirmed that the watch had started. |
+| 15:40:43 | The screen turned off while observation continued. |
+| 15:41:00 | The demonstration completed normally and reported that the log had been saved. |
+
+The log contained three valid samples: one person detected, one person detected, and no person detected. No sampling errors were recorded in this test.
+
 
 ## Part H. 
 ### Incorporate the observant system
 
-The Part E pipeline becomes the night shift. `overnight.py` runs your `interpret()` from `yolo_to_qwen.py` every few seconds, people only unless you pass `--all`, and writes the readings to `night_log.jsonl`; the reasoning waits for the morning. Start it inside `tmux` so it keeps running after you close your laptop, and stop it with Ctrl-C in the morning:
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ tmux new -s night
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python overnight.py
-```
+Desk Night Watch uses the Raspberry Pi and webcam to observe the desk and chair area. After the voice hand-off, desk_watch.py runs YOLO with a configured sampling interval of 10 seconds. Each sample records a timestamp, the detected person count, and a brief description of their position in night_log.jsonl. Camera or inference failures are recorded separately from valid samples with no person detected. The system keeps text records locally without saving camera images.
 
-Fake a night first: run it for thirty seconds while you walk around, stop it, and run `morning.py` from Part I. When that looks right, run a real night. If your storyboard needs a sensor rather than the camera, swap in the Lab 4 example code and log its reading the same way.
+Short test
 
-\*\*\***Screenshots or videos of the running system.**\*\*\*
+I completed a 30-second test before attempting an overnight run. The log contained three valid samples:
+Time	Detection
+15:40:29	One person at center/close
+15:40:40	One person at center/close
+15:40:50	No person detected
+
+
+No sampling errors were recorded, and the session ended normally. These observations show two samples containing a person, rather than two distinct people. The last recorded person detection was at 15:40:40.
+
+Overnight setup
+
+For the overnight test, I positioned the camera toward the desk and chair area and checked detection under the intended lighting. I ran the system inside a tmux session so it can continue after I disconnected my Mac. The Pi remained powered, and I stopped the recording the following morning.
+
+Running-system evidence
+
+![pic1](./pic1.png)
+![pic2](./pic2.png)
+![pic3](./pic3.png)
+![pic4](./pic4.png)
+![pic5](./pic5.png)
+![pic6](./pic6.png)
+
+
+Overnight results
+
+The overnight test ran from November 1 to November 2, 2026. All timestamps below are in Eastern Standard Time (UTC-05:00).
+
+| Measurement | Result |
+|---|---|
+| First valid camera sample | November 1, 23:23:52.788 |
+| Final camera sample | November 2, 09:34:13.069 |
+| Recording stopped | November 2, 09:34:19.713 |
+| Observation span, from first valid sample to stop | 10 hours, 10 minutes, 26.925 seconds |
+| Valid samples | 3,395 |
+| Samples detecting a person | 6 |
+| Samples detecting no person | 3,389 |
+| Maximum people detected in one sample | 1 |
+| Recorded sampling errors | 0 |
+| Recording gaps longer than 20 seconds | 0 |
+| Last recorded person detection | November 2, 09:33:51.477 |
+
+Each of the six positive samples detected one person. These are six detection samples, not evidence of six different people or six separate visits. The records do not establish continuous presence or sleep state.
+
+[Download the overnight detection log](overnight-results/2026-11-01/night_log.jsonl)
+
+[View the computed statistics](overnight-results/2026-11-01/facts.json)
+
 
 ## Part I. 
 ### Design the interaction after
+The morning interaction answers one question: “When was a person last detected in the desk area?” After stopping the watch, the user runs desk_morning.py and reads a short text report in the SSH terminal. The report includes the last recorded person detection, the final sample, and any recorded errors or long gaps.
 
-The reveal. The night produced a log; the morning turns it into something a half-awake person can take in. `morning.py` is the smallest version: it asks Qwen for a three-sentence report.
+If valid samples contain no detections, the report states that no person was detected in those samples. If there are no valid observations, it states that presence cannot be assessed. Neither result establishes that the desk was unused or that someone was asleep.
 
-```
-(.venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 5 $ python morning.py
-```
+Design Iteration
 
-Make it yours: show the report on the Mini PiTFT, read it aloud with Piper from Lab 3, plot the night as a timeline, or ask for JSON (`--json`, Part D) and move a servo. Whatever you pick, make sure it is honest about a night in which nothing happened.
+The original free-text report incorrectly described an hour-long observation, two people, and sleeping occupants. These claims were unsupported by the short-test log.
+
+I revised the reporting pipeline so Python computes the facts directly from the log. Qwen receives these facts and returns structured JSON, which the program compares against the computed values. The displayed sentences come from a Python template, while Qwen’s original response and the comparison results are saved separately. This checks consistency with the log; it does not eliminate errors in the camera’s detections.
+
+Short-Test Results
+
+The approximately 30-second test contained three valid samples. Two samples detected a person, with a maximum of one person in any sample. The last person detection was at 15:40:40, and the final sample at 15:40:50 detected nobody. No sampling errors or long recording gaps were recorded.
+
+The revised report matched these observations, and Qwen’s structured response passed the field-by-field comparison. This was a short functional test, not an overnight validation.
+
+Overnight Results and Evidence
+
+After stopping the watch on November 1, I ran `desk_morning.py` on the completed overnight log and viewed the report in the SSH terminal.
+
+The generated report was:
+
+> Across 36626.9 seconds of observed span, 6 of 3395 valid samples detected people (maximum 1 at once). Last person detection: 2026-11-02T09:33:51.477-05:00; last sample at 2026-11-02T09:34:13.069-05:00: 0 people. Sampling cannot prove continuous presence or sleep; errors: 0; long gaps: 0.
+
+Python computed the statistics from the log and generated the report using a fixed template. The structured response from `qwen3.5:0.8b` matched the computed fields and passed the consistency check. The Qwen request took **38.374 seconds**.
+
+The accepted result confirms agreement with the supplied log statistics. It does not independently verify the camera detections or establish whether anyone was asleep.
+
+[Read the verified morning report](overnight-results/2026-11-01/verified_report.txt)
+
+[View the Qwen consistency check](overnight-results/2026-11-01/validation.json)
+
+[Read the original Qwen response](overnight-results/2026-11-01/qwen_raw.txt)
+
 
 ## Final documentation
 
-Document all the prototypes and iterations you have designed and worked on. The deliverables for this lab are writings, sketches, photos, and videos that show what your system:
+https://github.com/user-attachments/assets/ecbb5ed5-ddd1-4a7f-a728-366e3296f740
 
-* "Looks like": how the device sits in the room at night, and what it looks like at bedtime and in the morning.
-* "Works like": the pipeline from detector to interpreter to log to reasoner, with a real night's data.
-* "Acts like": how a person hands the night over and what they get back.
 
-\*\*\***Include a short video of the whole system**\*\*\*
+Desk Night Watch is a Raspberry Pi system designed to answer a focused morning question: "When was a person last detected in the desk area?" It combines a brief bedtime voice interaction, periodic camera observations, and a morning report based on the recorded data.
 
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+### Looks like
 
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page.
+The prototype consists of a Raspberry Pi 5, a small Mini PiTFT display, a webcam, a speaker, and a microphone. During the home overnight test, the device sat on my desk with the webcam directed toward the desk and chair area.
 
-## Deliverables & Submission for Lab 5
+At bedtime, the display prompted the voice command and showed confirmation that monitoring had started. The screen then turned off while camera sampling continued. In the morning, I viewed the report in the SSH terminal on my Mac.
 
-For submission, the readme.md page for this lab should be edited to include the work you have done:
-* Upload any materials that explain what you did, including your code and night log, into your Lab 5 repository, and link them in your Lab 5 readme.md.
-* Labs are due on Sundays, make sure to submit your Lab 5 readme.md to Canvas.
+### Works like
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
+The observation pipeline is:
 
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-</details>
+Webcam → YOLO person detection → interpreted readings → timestamped local log → computed facts → Qwen JSON consistency check → morning report.
+
+The watch uses a configured sampling interval of 10 seconds. Each valid sample records the person count and a brief description of position. Camera or inference failures are recorded separately from successful samples containing no detected person. The overnight watch saves text records without retaining camera images.
+
+For the morning report, Python computes facts directly from the log, including the last recorded person detection, the final sample, and any errors or long gaps. Qwen receives these facts and returns structured JSON, which is compared with the computed values. The displayed report is generated from a Python template.
+
+An accepted Qwen response means that its fields match the supplied facts. It does not independently verify the camera detections. Sampling also cannot establish continuous presence, identity, or whether someone was asleep.
+
+### Acts like
+
+Before the overnight run, I said “Hello” when the device prompted me to speak. After recognizing the command and saving the first valid camera sample, the display showed “Watch started” and the speaker provided a spoken confirmation.
+
+The microphone was no longer used during monitoring, and the screen turned off shortly after confirmation. The watch continued collecting timestamped detection records inside the tmux session.
+
+In the morning, I stopped the watch with Ctrl+C and ran the reporting script. The report identified the last recorded person detection, described the final sample, and stated the recorded errors and gaps. The last person detection was at 09:33:51 on November 2, and the final sample at 09:34:13 detected nobody.
+
+### Prototypes and iterations
+
+- **Initial and revised storyboards:** The initial storyboard established the bedtime, overnight, and morning stages. The revision added a camera and lighting check, clearer startup confirmation, and explicit handling of missing observations.
+- **Voice command:** "Start night watch" was repeatedly misrecognized. Changing the command to "Hello" produced a successful startup in the functional test.
+- **Morning report:** The original free-text response invented an hour-long observation, two people, and sleeping occupants. The revised pipeline computes facts from the log and generates the displayed report from a fixed template, while preserving Qwen's response and its validation result.
+
+### Validation results
+
+The initial 30-second functional tests verified the startup interaction, camera sampling, and log saving before the overnight experiment.
+
+The completed overnight test recorded **3,395 valid samples** across an observation span of approximately **10 hours and 10 minutes**. Six samples each detected one person, while 3,389 samples detected nobody. No sampling errors or recording gaps longer than 20 seconds were recorded.
+
+The last recorded person detection was at **09:33:51 on November 2, 2026**. The final sample at **09:34:13** detected nobody. The morning report matched the recorded statistics, and Qwen’s structured response passed the consistency check in **38.374 seconds**.
+
+These results demonstrate operation across this overnight test and successful generation of a report from the saved log. They do not establish that the detector identified every person present, that someone occupied the desk continuously, or that anyone was asleep.
+

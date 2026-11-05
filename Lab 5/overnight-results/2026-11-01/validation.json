@@ -1,0 +1,11 @@
+{
+  "status": "accepted",
+  "source_log": "/home/pi/Interactive-Lab-Hub/Lab 5/partG-results/run-20261101-232338-uv9j7k04/night_log.jsonl",
+  "source_sha256": "ea0ae6a5e179cdd87ad1dcf9920064ec333081751f45f7fba4614f10b87e0a75",
+  "report_source": "Python template using computed log facts",
+  "long_gap_threshold_seconds": 20,
+  "model": "qwen3.5:0.8b",
+  "elapsed_seconds": 38.374,
+  "errors": [],
+  "http_status": 200
+}

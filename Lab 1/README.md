@@ -2,9 +2,11 @@
 
 _This project is to be done in teams of 2._
 
-**NAME OF BOTH COLLABORATOR(S) HERE**
+**Jerry Lee**
+**Yuqi Wang**
 
 **THE MASTERWORK YOU DREW FROM THE HAT:**
+Philips Wake-Up Light (A lamp that simulates dawn to wake you gently before the alarm).
 
 ---
 
@@ -79,55 +81,44 @@ page.
 
 ## Part 0. Know Your Master
 
-Before you prototype anything, get intimately acquainted with the piece you
-drew. Do real research. You are looking less for trivia than for the *shape of
-the interaction*:
+The Philips Wake-Up Light is an alarm clock designed to make waking up feel more natural. Instead of suddenly waking the user with a loud alarm, it slowly increases the brightness of the light before the set wake-up time, similar to a sunrise. The main input from the user is setting the wake-up time, and depending on the model, the user can also adjust things like brightness and alarm sound. The main response from the device is the gradual change in light, followed by sound at the wake-up time.
 
-- What inputs are available to the user? What responses does the work give?
-- Who is present, and how does the piece color the relationships between them?
-- What is the piece famous for? What are its strengths and its weaknesses?
+The interaction mostly happens between one person and the light in a bedroom. What I find interesting is that the user does not really need to actively interact with the device while it is working. They are usually asleep. The light changes the environment around them first, and the person gradually responds by becoming more awake. This makes the interaction feel less like a normal alarm and more like the device is changing the room around the user.
 
-  Sometimes the details of how the interaction worked are lost in history. Try filling it in with your imagination!
+The Wake-Up Light is mainly known for simulating a sunrise. Its biggest strength is that the change happens gradually instead of all at once, which can make waking up feel less abrupt. One weakness is that the experience depends a lot on the environment and the person. For example, if the room is already bright or the user is a very heavy sleeper, the light may not be enough by itself.
 
-**Describe your masterwork here, in your own words. What is the core interaction
-someone would recognize it by?**
+The core interaction I would recognize is very simple: a person is sleeping in a dark room, the light slowly becomes brighter as the wake-up time gets closer, and the person gradually wakes up. The gradual transition from darkness to light, rather than just turning the light on, is what makes the Philips Wake-Up Light recognizable.
+
 
 ## Part A. Plan
 
-For your masterwork, reconstruct the interaction as a scene:
+**Setting:** A bedroom in the early morning, shortly before the user is supposed to wake up. The room starts dark and quiet so the gradual change in light can clearly feel like a sunrise.
 
-- **Setting:** Where and when does this interaction happen? (a jungle, a kitchen,
-  a spaceship corridor, a nightclub, a harbor at night)
-- **Players:** Who is involved? Who else is present? Think through everyone in
-  the setting, not just the primary user.
-- **Activity:** What is happening between the players and the light?
-- **Goals:** What is each player trying to do?
+**Players:** Me and Jerry. One of us acts as the sleeping user, while the other stays outside the scene and secretly controls the Wake-Up Light. The light itself also acts like a player because it changes the environment and causes the sleeping person to react.
 
-**Describe your setting, players, activity, and goals here.**
+**Activity:** The user starts out sleeping while the room is dark. As the wake-up time gets closer, the light slowly becomes brighter. The sleeping user gradually reacts by moving, opening their eyes, and eventually waking up.
 
-Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
-don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
-and the people around it. If you're new to storyboarding, read
-[this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
+**Goals:** The sleeping user wants to wake up naturally instead of being suddenly interrupted by an alarm. The hidden controller wants to make the change in light feel smooth and automatic. Our overall goal is to recreate the sunrise effect clearly enough that someone watching can understand the main idea of the Philips Wake-Up Light.
 
-**Include pictures of your storyboards here.**
 
-Use the storyboards to decide what interaction to prototype.
 
-**Summarize the feedback you got here.**
+![Philips Wake-Up Light Storyboards](./story_board.png)
+
+**Feedback:** After showing our storyboards to classmates, one suggestion was to make the change in brightness more obvious between each stage, since some of the middle frames looked too similar. Another point was that the user's reaction should happen gradually as well, instead of going directly from sleeping to fully awake. We also discussed keeping the scene simple and focusing on the relationship between the changing light and the person's waking process, rather than adding too many extra features such as sound or alarm controls. Based on this feedback, we decided to emphasize both the gradual increase in light and the user's gradual reaction in our prototype.
 
 ## Part B. Act out the Interaction
 
-Physically act out the interaction you planned. For now, just pretend the light
-is doing what you've scripted — a person can wave a flashlight, or you can narrate
-it aloud.
-
 **Are there things that seemed better on paper than when acted out?**
+
+Yes. On the storyboard, the transition from dark to bright looked very clear, but when we acted it out, some of the brightness changes were too small to notice. We realized that the difference between each stage needs to be more visible, especially when recording it with a camera. We also found that waking up immediately when the light became bright felt unnatural, so the user's reaction should be slower.
 
 **Did new ideas about the piece surface once you were on your feet?**
 
+We realized that the timing between the light and the person's reaction is really important. Instead of only controlling the brightness, we want to coordinate the light with small actions such as turning over, moving slightly, opening the eyes, and finally sitting up. This makes the interaction feel more like a gradual waking process rather than simply turning on a lamp.
+
 **Are there key moments in the interaction where things could go in a different direction?**
-Iterate your storyboards to capture key non-sequential aspects of the interaction. 
+
+One key moment is when the user first notices the light. The user might continue sleeping, start waking up, or wake up earlier than the planned alarm time. We also noticed that if the light becomes bright too quickly, it loses the feeling of a sunrise and starts to feel like a normal lamp being switched on. These possibilities made us think more carefully about the speed and timing of the light transition.
 
 ## Part C. Prototype the Light (light first!)
 
@@ -152,7 +143,9 @@ another acts with it — this is how you make the device feel alive without
 building any real electronics. (Zoom works well for recording; you can pin the
 video feed of whichever scene you want to capture.)
 
-**Include your first attempts at recording the wizarded set-up here.**
+https://github.com/user-attachments/assets/838939a2-527e-44b9-bc78-f80a79c37c06
+
+
 
 ## Part E. (optional) Costume the Device
 
@@ -169,16 +162,11 @@ and calm for a bedroom?
 **What concerns or opportunities shaped the way you designed its look?**
 
 ## Part F. Record
+Teammate: Jerry Lee 
 
-**Record your prototyped interaction as a video sketch.** Aim for the bar from
-the top of this lab: a viewer who knows the piece should recognize it; a viewer
-who doesn't should come away understanding what it's famous for. How might you illustrate the non-sequential aspects of the interaction in the sketch?
+https://github.com/user-attachments/assets/89f394a9-21f0-4a62-81c1-6d1c789890c3
 
-**Include your video here.**
 
-**Please indicate who you collaborated with on this lab.** Be generous in
-acknowledging their contributions, and credit any other influences (YouTube,
-Github, Twitter, a friend who lent you a lamp) that informed your recreation.
 
 ---
 
@@ -188,13 +176,16 @@ Github, Twitter, a friend who lent you a lamp) that informed your recreation.
 
 ## Prep (before the next lab)
 
-Find three other groups. (How? Maybe Slack?) Visit their Lab Hub pages, watch their
-videos, and give them reactions and feedback: tell them what you saw happening,
-guess the masterwork and the goals of the characters, and ask about anything that
-wasn't clear.
+Group 1: https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub/tree/Fall2026/Lab%201
+The feedback was generally positive. They correctly understood that our project recreated the Philips Wake-Up Light, which gradually increases light to simulate sunrise and create a more natural waking experience. They liked the detailed storyboards and thought the video successfully demonstrated the gradual waking interaction. However, they found the red light unclear and suggested making the light brighter or improving the appearance of the device so the interaction would be easier to understand.
 
-**Who were the other groups you kibitzed with? Add links to their project pages here.**
-**Summarize the feedback you got from your partners here.**
+Group 2: https://github.com/pp555-prog/Interactive-Lab-Hub/tree/Fall2026/Lab%201
+The feedback showed that they understood the project as a device that uses changes in light to create a sense of connection between two people. They liked how the interaction allowed the characters to communicate without directly talking and thought the use of light was subtle and interesting. However, they felt that the meaning of the different light changes was not completely clear and suggested making each light state more distinct so the interaction would be easier to understand.
+
+
+Group 3: https://github.com/stephen4513/Interactive-Lab-Hub/tree/Fall2026/Lab%201
+The project clearly communicates the gradual sunrise interaction and considers different user responses. Strong ideas include adjusting brightness based on movement. Possible improvements are shortening the video and adding morning sounds or red-to-white color changes to make the experience more realistic.
+
 
 ## Remix, Update, or Critique the Master
 
@@ -214,8 +205,13 @@ combine them):
 We will grade this second pass with an emphasis on **creativity** and on how well
 your response engages with what your master was really doing.
 
-**Document everything here — especially the storyboard and video. Photos of the
-prototype are great too.**
+![Philips Wake-Up Light Storyboards](./revised_storyboard.png)
+
+
+https://github.com/user-attachments/assets/936d56fb-992e-4d70-896c-b7b5c8124ff2
+
+
+
 
 ---
 
