@@ -332,10 +332,12 @@ class PotatoClient:
         if direction not in DIRECTIONS:
             self.flash("pick a direction first")
             return
+        print(f"[{self.name}]   -> throw {direction}")
         self.send("throw", dir=direction)
         self.aim_dir = None
 
     def catch(self):
+        print(f"[{self.name}]   -> catch")
         self.send("catch")
 
     def send(self, action, **extra):
@@ -385,7 +387,9 @@ class PotatoClient:
         except json.JSONDecodeError:
             return
         if msg.topic.endswith("/error"):
-            self.flash(data.get("reason", "rejected"))
+            reason = data.get("reason", "rejected")
+            print(f"[{self.name}]   server said no: {reason}")
+            self.flash(reason)
             return
         old = self.mode
         self.state = data
