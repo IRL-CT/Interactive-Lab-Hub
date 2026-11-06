@@ -22,3 +22,8 @@ piper-tts~=1.8
 
 # --- web server for the wizard controller ---
 flask~=3.1
+
+# --- Raspberry Pi ST7789 display ---
+adafruit-blinka~=8.64
+adafruit-circuitpython-rgb-display~=3.14
+pillow~=11.3
