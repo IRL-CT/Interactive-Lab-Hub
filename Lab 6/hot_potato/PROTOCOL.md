@@ -88,6 +88,9 @@ Notes
   "name": "viktor",
   "seat": 1,
   "mode": "incoming",
+  "holder": null,
+  "targets": {"left": "ana", "forward": "ben", "right": "cy"},
+  "boom_name": null,
   "heat": 0.0,
   "time_left": null,
   "hold_limit": 9.5,
@@ -120,7 +123,7 @@ Notes
 | `gameover` | Game finished. `loser` = name of the player who hit `max_booms`. | Loser vs winner | start |
 | `left` | You left the game (or the server dropped you). | "Disconnected" | join |
 
-Always available: `round_left` (seconds left in the 30 s round) to show as a small countdown, and `booms` / `max_booms` for lives.
+Always available: `round_left` (seconds left in the 30 s round) to show as a small countdown, `booms` / `max_booms` for lives, `holder` (name of whoever has the potato), and `targets` (who sits on your left / forward / right, so you can show "throwing to ana").
 
 **Smooth timers tip:** when a message arrives, remember the local time. Each frame, subtract the seconds since then from `time_left`, `round_left` and `flight_left`, so the red fade and countdowns move smoothly between updates.
 
@@ -196,13 +199,15 @@ while True:
     mode = state.get("mode")
     if event in ("left", "forward", "right") and mode == "holding":
         send("throw", dir=event)
-    elif event == "press" and mode == "incoming":
-        send("catch")
+    elif event == "press":
+        send("catch")          # server decides: catch if it's coming, butterfingers if not
     # draw(state, time.time() - got_at)   # PiTFT drawing based on state["mode"]
     time.sleep(0.02)
 ```
 
-Only sending catch while `mode == "incoming"` also protects you from butterfingers.
+Don't filter catches on the Pi (e.g. "only send while incoming"): that would let people spam the button and catch instantly. Let the server apply the butterfingers rule.
+
+**Easier:** `pi_client.py` already does all of this plus the PiTFT drawing. See `PI_CLIENT_GUIDE.md`.
 
 Suggested input mappings (each team decides its own):
 

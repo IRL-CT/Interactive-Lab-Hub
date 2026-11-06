@@ -4,7 +4,10 @@ Pretend to be one Pi from your laptop (no sensors needed).
     python test_player.py viktor            # join as "viktor" (any free seat)
     python test_player.py ana --seat 3      # ask for seat 3
 
-Then type:  l / f / r  throw left / forward / right,  c  catch,  s  start,  q  quit.
+Then type (and press Enter):
+    l / f / r  or  left / forward / right  or the arrow keys  ->  throw
+    c  or  catch  or the down arrow                        ->  catch
+    s  start,  q  quit
 It prints the state the server sends to this player, exactly what a Pi would receive.
 Use it to check the server, and as a reference for the real Pi scripts.
 """
@@ -12,6 +15,7 @@ Use it to check the server, and as a reference for the real Pi scripts.
 import argparse
 import json
 import os
+import time
 import uuid
 
 import paho.mqtt.client as mqtt
@@ -37,6 +41,7 @@ def make_client():
 
 
 last = None
+last_print = 0.0
 
 
 def on_connect(client, userdata, flags, rc):
@@ -49,16 +54,18 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_message(client, userdata, msg):
-    global last
+    global last, last_print
     data = json.loads(msg.payload)
     if msg.topic.endswith("/error"):
         print(f"\n  !! rejected: {data['reason']}")
         return
     mode = data.get("mode")
     key = (mode, data.get("caught"), data.get("seat"))
-    if key == last and mode != "holding":
+    # print every change, but while holding only every 2 s so you can still type
+    if key == last and (mode != "holding" or time.time() - last_print < 2):
         return
     last = key
+    last_print = time.time()
     extra = ""
     if mode == "holding":
         extra = f"  heat={data['heat']:.2f}  {data['time_left']:.1f}s left  (round {data['round_left']:.0f}s)"
@@ -83,18 +90,27 @@ client.on_message = on_message
 client.connect(BROKER, PORT, keepalive=30)
 client.loop_start()
 
-KEYS = {"l": "left", "f": "forward", "r": "right"}
+THROW = {"l": "left", "left": "left", "\x1b[d": "left",
+         "f": "forward", "forward": "forward", "u": "forward", "up": "forward", "\x1b[a": "forward",
+         "r": "right", "right": "right", "\x1b[c": "right"}
+CATCH = {"c", "catch", "\x1b[b", "down"}
 print(f"{NAME} on {BROKER} -> {ACTION_TOPIC}")
-print("l/f/r = throw left/forward/right, c = catch, s = start, q = quit")
+print("throw: l / f / r (or arrows),  catch: c (or down arrow),  s = start,  q = quit  - then Enter")
 while True:
     cmd = input("> ").strip().lower()
+    if cmd.startswith("\x1b["):
+        cmd = cmd[-3:]          # several arrows typed -> use the last one
     if cmd == "q":
         send({"action": "leave"})
         break
     if cmd == "s":
         send({"action": "start"})
-    elif cmd == "c":
+    elif cmd in CATCH:
         send({"action": "catch"})
-    elif cmd in KEYS:
-        send({"action": "throw", "dir": KEYS[cmd]})
+        print("  -> catch!")
+    elif cmd in THROW:
+        send({"action": "throw", "dir": THROW[cmd]})
+        print(f"  -> throwing {THROW[cmd]}")
+    elif cmd:
+        print("  ?? use l / f / r to throw, c to catch")
 client.loop_stop()

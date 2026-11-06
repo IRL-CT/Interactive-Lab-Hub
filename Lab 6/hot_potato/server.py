@@ -424,10 +424,14 @@ class Game:
             caught = self.flight["caught"]
             flight_left = max(0.0, FLIGHT_TIME - (now - self.flight["start"]))
         round_left = max(0.0, self.round_end - now) if self.phase == "playing" and self.round_end else None
+        targets = {d: self.name(target_seat(seat, d)) for d in DIR_OFFSET}
         return {
             "name": p["name"] if p else None,
             "seat": seat,
             "mode": mode,
+            "holder": self.name(self.holder),
+            "targets": targets,
+            "boom_name": self.name(self.boom_seat) if self.phase == "boom" else None,
             "heat": round(heat, 3),
             "time_left": None if time_left is None else round(time_left, 2),
             "hold_limit": self.hold_limit,
@@ -614,8 +618,8 @@ mqttc.on_message = mqtt_on_message
 # Game loop: advance timers, then push changes to Pis (MQTT) and browsers
 # --------------------------------------------------------------------------
 def view_key(v):
-    return (v["seat"], v["mode"], v["incoming_from"], v["caught"], v["butterfingers"], v["booms"],
-            v["phase"], v["hold_limit"], v["loser"])
+    return (v["seat"], v["mode"], v["holder"], v["incoming_from"], v["caught"], v["butterfingers"],
+            v["booms"], v["phase"], v["hold_limit"], v["loser"], tuple(v["targets"].values()))
 
 
 def game_loop():
