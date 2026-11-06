@@ -54,6 +54,7 @@ disp = st7789.ST7789(
     height=240,
     x_offset=53,
     y_offset=40,
+    rotation=90
 )
 # pylint: enable=line-too-long
 
@@ -74,7 +75,7 @@ draw = ImageDraw.Draw(image)
 draw.rectangle((0, 0, width, height), outline=0, fill=(0, 0, 0))
 disp.image(image)
 
-image = Image.open("red.jpg")
+image = Image.open("8am.png")
 backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
