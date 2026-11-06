@@ -59,6 +59,18 @@ DIR_ALIASES = {
     "r": "right", "right": "right",
 }
 MAX_NAME = 20
+LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "server_log.txt")
+_log_lock = threading.Lock()
+
+
+def log(line):
+    """Print and append to server_log.txt (handy for debugging what the Pis really sent)."""
+    print(line)
+    try:
+        with _log_lock, open(LOG_PATH, "a", encoding="utf-8") as f:
+            f.write(time.strftime("%H:%M:%S ") + line + "\n")
+    except OSError:
+        pass
 
 
 def target_seat(seat, direction):
@@ -505,6 +517,7 @@ def on_web_action(data):
     if not name:
         return {"ok": False, "reason": "open the page as /<your name> to play from the browser"}
     ok, reason = game.handle(name, data)
+    log(f"[web]  {name}: {data.get('action')} {data.get('dir') or ''} -> {'OK' if ok else 'REJECTED'}: {reason}")
     return {"ok": ok, "reason": reason}
 
 
@@ -601,7 +614,7 @@ def mqtt_on_message(client, userdata, msg):
         name = msg.topic[len(ACTION_PREFIX):-len("/action")]
         data = parse_payload(msg.payload)
         ok, reason = game.handle(name, data)
-        print(f"[MQTT] {name}: {data} -> {'OK' if ok else 'REJECTED'}: {reason}")
+        log(f"[MQTT] {name}: {data} -> {'OK' if ok else 'REJECTED'}: {reason}")
         if not ok:
             client.publish(f"{BASE}/player/{name}/error", json.dumps({"request": data, "reason": reason}))
     except Exception:
@@ -650,6 +663,9 @@ def _game_loop():
             snap = game.snapshot(now)
 
         for ev in events:
+            if ev["type"] in ("throw", "catch", "boom", "round", "join", "leave", "gameover"):
+                log("[game] " + ev["type"] + " " + " ".join(f"{k}={v}" for k, v in ev.items()
+                                                               if k not in ("type", "t")))
             mqttc.publish(f"{BASE}/events", json.dumps(ev))
             socketio.emit("event", ev)
 
@@ -682,15 +698,23 @@ def _game_loop():
         time.sleep(TICK)
 
 
-def local_ip():
+def local_ips():
+    """Every IPv4 address this laptop has (Wi-Fi, Ethernet, VPN...). The first one is the default route."""
+    ips = []
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(("8.8.8.8", 80))
-        ip = s.getsockname()[0]
+        ips.append(s.getsockname()[0])
         s.close()
-        return ip
     except OSError:
-        return "localhost"
+        pass
+    try:
+        for ip in socket.gethostbyname_ex(socket.gethostname())[2]:
+            if ip not in ips and not ip.startswith("127."):
+                ips.append(ip)
+    except OSError:
+        pass
+    return ips or ["localhost"]
 
 
 if __name__ == "__main__":
@@ -700,16 +724,19 @@ if __name__ == "__main__":
         sys.stderr.reconfigure(errors="replace")
     except AttributeError:
         pass
+    log(f"---- server started, logging to {LOG_PATH}")
     mqttc.connect_async(MQTT_BROKER, MQTT_PORT, keepalive=30)
     mqttc.loop_start()
     threading.Thread(target=game_loop, daemon=True).start()
 
-    ip = local_ip()
     print("=" * 62)
     print("  HOT POTATO server")
     print(f"  Topics:   {BASE}/player/<name>/action   (Pi -> server)")
     print(f"            {BASE}/player/<name>/state    (server -> Pi)")
-    print(f"  View:     http://localhost:{WEB_PORT}/<your name>")
-    print(f"  Others:   http://{ip}:{WEB_PORT}/<their name>")
+    print(f"  You:      http://localhost:{WEB_PORT}/<your name>")
+    print("  Others (same Wi-Fi) try these - the Wi-Fi one usually starts with 10. or 192.168.:")
+    for ip in local_ips():
+        print(f"            http://{ip}:{WEB_PORT}/<their name>")
+    print("  Can't connect? See TESTING.md -> 'Friends can't open the link'")
     print("=" * 62)
     socketio.run(app, host="0.0.0.0", port=WEB_PORT, allow_unsafe_werkzeug=True)

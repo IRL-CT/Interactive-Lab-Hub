@@ -312,7 +312,8 @@ class PotatoClient:
             raise ValueError(f"direction must be one of {DIRECTIONS}")
         if direction != self.aim_dir:
             self.aim_dir = direction
-            print(f"[{self.name}] aiming {direction} -> {(self.state.get('targets') or {}).get(direction)}")
+            who = (self.state.get("targets") or {}).get(direction)
+            print(f"[{self.name}] aiming {direction} -> {who or 'NOBODY sits there (throw will be refused)'}")
 
     def press(self):
         """One button that does the right thing for the moment."""
@@ -321,6 +322,7 @@ class PotatoClient:
             if self.aim_dir:
                 self.throw(self.aim_dir)
             else:
+                print(f"[{self.name}]   can't throw yet: pick a direction first ({self.aim_hint})")
                 self.flash("pick a direction first")
         elif mode in ("lobby", "gameover"):
             self.send("start")

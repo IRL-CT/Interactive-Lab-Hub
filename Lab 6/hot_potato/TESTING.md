@@ -73,8 +73,30 @@ python test_player.py viktor --seat 1
 | "nobody sits left of you" | That seat is empty (that player hasn't joined) |
 | Catch never works on the Pi | Only send catch while `mode == "incoming"`. Pressing earlier = butterfingers lockout. |
 | Pi screen frozen on an old picture | `piscreen.service` still running (`sudo systemctl stop piscreen.service`) or not subscribed to `.../player/<name>/state` |
-| Teammates can't open the laptop IP | Windows firewall, or the Wi-Fi blocks device-to-device traffic. Use the laptop's own screen instead. |
+| Teammates can't open the laptop IP | See **Friends can't open the link** below |
 | `WARNING: another Hot Potato server` | Someone else is also running `server.py`. Stop one, or set `POTATO_TOPIC`. |
+
+## Friends can't open the link
+
+The Pis talk through the class broker, so they keep working. This is only about the **browser view** that friends load from your laptop (`http://<laptop-ip>:5000/<name>`). Try these in order:
+
+**1. Use the right address.** Run `ipconfig` on the laptop and use the **Wi-Fi IPv4 address** (the server also prints all of them). Turn off the Cisco/Cornell VPN, since it changes the address and blocks local traffic. Type `http://` in full: some browsers quietly switch to `https://`, which won't work here.
+
+**2. Open the Windows firewall for port 5000** (most common fix on eduroam, which Windows treats as a *Public* network). Open **PowerShell as Administrator** (Start → type PowerShell → right-click → Run as administrator):
+```powershell
+New-NetFirewallRule -DisplayName "Hot Potato 5000" -Direction Inbound -Protocol TCP -LocalPort 5000 -Action Allow -Profile Any
+```
+To undo it after the demo: `Remove-NetFirewallRule -DisplayName "Hot Potato 5000"`
+
+**3. Mac browsers need "Local Network" permission** (macOS 15+): System Settings → Privacy & Security → **Local Network** → turn on Chrome (or whichever browser). Or just try **Safari**.
+
+**4. Still nothing? The Wi-Fi blocks device-to-device traffic.** Use a free Cloudflare tunnel, which gives the game a public link that works from any network (no account needed):
+```powershell
+winget install --id Cloudflare.cloudflared
+# open a NEW terminal, keep server.py running in the other one
+cloudflared tunnel --url http://localhost:5000
+```
+It prints a link like `https://some-random-words.trycloudflare.com`. Friends open `https://some-random-words.trycloudflare.com/<their name>`. The link changes each time you start the tunnel, and it stops working when you close that terminal.
 
 ## User testing (lab deliverable: 2+ people not on your team)
 
