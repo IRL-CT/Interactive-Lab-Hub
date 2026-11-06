@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hot Potato</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<style>
+  :root {
+    --bg: #15121f; --panel: #221e33; --panel2: #2c2742; --line: #3d3658;
+    --text: #f4f0ff; --muted: #a59fc0; --potato: #f2c14e; --hot: #ff3b30;
+    --incoming: #4cc9f0; --safe: #7bd88f;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: radial-gradient(ellipse at 50% 40%, #241d3a 0%, var(--bg) 70%);
+    color: var(--text); font-family: Fredoka, system-ui, sans-serif;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  header { display: flex; align-items: center; gap: 16px; padding: 12px 20px; flex-wrap: wrap; }
+  h1 { margin: 0; font-size: 26px; letter-spacing: .5px; }
+  h1 span { color: var(--potato); }
+  #message { flex: 1; min-width: 200px; color: var(--muted); font-size: 18px; }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  button {
+    font: inherit; font-size: 15px; border: 1px solid var(--line); background: var(--panel2);
+    color: var(--text); padding: 7px 14px; border-radius: 10px; cursor: pointer;
+  }
+  button:hover { border-color: var(--potato); }
+  button.primary { background: var(--potato); color: #2a1d00; border-color: var(--potato); font-weight: 600; }
+  button.on { border-color: var(--safe); color: var(--safe); }
+  button:disabled { opacity: .4; cursor: default; }
+  .seatpick button { padding: 7px 10px; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .seatpick button.active { background: var(--text); color: var(--bg); }
+  #conn { width: 10px; height: 10px; border-radius: 50%; background: var(--hot); }
+  #conn.ok { background: var(--safe); }
+  #banner {
+    display: none; margin: 0 20px; padding: 8px 14px; border-radius: 10px;
+    background: var(--panel2); border: 1px dashed var(--potato); color: var(--potato);
+  }
+
+  main { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
+  #stage { position: relative; width: min(92vw, calc(100vh - 160px)); aspect-ratio: 1; }
+  #stage svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #stage svg line { stroke: var(--line); stroke-width: .35; stroke-dasharray: 1.2 1.2; }
+
+  .seat {
+    position: absolute; transform: translate(-50%, -50%); width: 30%;
+    display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;
+  }
+  .avatar {
+    --heat: 0; position: relative; width: 62%; aspect-ratio: 1; border-radius: 50%;
+    background: var(--panel); border: 3px solid var(--line);
+    display: flex; align-items: center; justify-content: center; font-size: clamp(28px, 6vmin, 64px);
+    transition: border-color .2s, box-shadow .2s, background .2s;
+  }
+  .ring { position: absolute; inset: -9px; border-radius: 50%; opacity: 0; }
+  .seat.holding .ring {
+    opacity: 1;
+    background: conic-gradient(var(--hot) calc(var(--heat) * 360deg), transparent 0);
+    -webkit-mask: radial-gradient(circle, transparent 62%, #000 63%);
+            mask: radial-gradient(circle, transparent 62%, #000 63%);
+  }
+  .seat.holding .avatar {
+    background: color-mix(in srgb, var(--hot) calc(var(--heat) * 75%), var(--panel));
+    border-color: color-mix(in srgb, var(--hot) calc(var(--heat) * 100%), var(--potato));
+    box-shadow: 0 0 calc(10px + var(--heat) * 50px) color-mix(in srgb, var(--hot) calc(var(--heat) * 100%), var(--potato));
+  }
+  .seat.incoming .avatar { border-color: var(--incoming); box-shadow: 0 0 40px var(--incoming); animation: pulse .3s infinite alternate; }
+  .seat.incoming.caught .avatar { border-color: var(--safe); box-shadow: 0 0 40px var(--safe); animation: none; }
+  .seat.boom .avatar { background: var(--hot); border-color: #fff; box-shadow: 0 0 80px var(--hot); }
+  .seat.safe .avatar { border-color: var(--safe); }
+  .seat.empty .avatar { border-style: dashed; opacity: .45; }
+  .seat.me .name::after { content: " (you)"; color: var(--potato); }
+  @keyframes pulse { to { transform: scale(1.08); } }
+
+  .badge {
+    position: absolute; bottom: -6px; right: -10px; background: var(--bg); border: 2px solid var(--hot);
+    border-radius: 999px; padding: 1px 8px; font-size: clamp(13px, 2.2vmin, 20px); font-weight: 700; display: none;
+    white-space: nowrap;
+  }
+  .seat.holding .badge, .seat.incoming .badge, .seat.fumble .badge { display: block; }
+  .seat.incoming .badge { border-color: var(--incoming); color: var(--incoming); }
+  .seat.incoming.caught .badge { border-color: var(--safe); color: var(--safe); }
+  .seat.fumble:not(.holding):not(.incoming) .badge { border-color: var(--potato); color: var(--potato); }
+  .name { font-size: clamp(15px, 2.6vmin, 24px); font-weight: 600; }
+  .sub { font-size: clamp(11px, 1.7vmin, 15px); color: var(--muted); }
+  .booms { font-size: clamp(12px, 2vmin, 18px); letter-spacing: 2px; }
+  .booms .off { filter: grayscale(1); opacity: .25; }
+
+  #potato {
+    position: absolute; left: 50%; top: 50%; font-size: clamp(30px, 6.5vmin, 70px);
+    transform: translate(-50%, -50%); pointer-events: none; display: none; z-index: 5;
+    filter: drop-shadow(0 6px 6px rgba(0,0,0,.5));
+  }
+  #center {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center;
+    color: var(--muted); font-size: clamp(13px, 2.2vmin, 20px); width: 40%;
+  }
+  #center .big { font-size: clamp(34px, 8vmin, 84px); color: var(--text); font-weight: 700; line-height: 1; }
+  #center .label { text-transform: uppercase; letter-spacing: 2px; font-size: .8em; }
+  #center .bar { height: 6px; border-radius: 3px; background: var(--panel2); margin: 8px auto; width: 80%; overflow: hidden; }
+  #center .bar div { height: 100%; background: var(--potato); }
+  #center.urgent .big { color: var(--hot); animation: pulse .5s infinite alternate; }
+  #center.urgent .bar div { background: var(--hot); }
+
+  #help { position: absolute; left: 20px; bottom: 14px; color: var(--muted); font-size: 14px; }
+  kbd { background: var(--panel2); border: 1px solid var(--line); border-radius: 5px; padding: 0 6px; font-family: inherit; }
+  #toast {
+    position: absolute; bottom: 14px; right: 20px; background: var(--panel2); border: 1px solid var(--line);
+    padding: 8px 14px; border-radius: 10px; opacity: 0; transition: opacity .3s;
+  }
+  #toast.show { opacity: 1; }
+  .shake { animation: shake .5s; }
+  @keyframes shake {
+    10%, 90% { transform: translate(-4px, 2px); } 20%, 80% { transform: translate(6px, -3px); }
+    30%, 50%, 70% { transform: translate(-8px, 4px); } 40%, 60% { transform: translate(8px, -4px); }
+  }
+  #flash { position: fixed; inset: 0; background: var(--hot); opacity: 0; pointer-events: none; transition: opacity .6s; }
+  @media (max-width: 700px) { #help { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>🥔 Hot <span>Potato</span></h1>
+  <div id="conn" title="server connection"></div>
+  <div id="message">Connecting…</div>
+  <div class="controls">
+    <span class="sub">View as</span>
+    <div class="seatpick" id="seatpick"></div>
+    <button id="bots">🤖 Bots: off</button>
+    <button id="reset">Reset</button>
+    <button id="start" class="primary">Start</button>
+  </div>
+</header>
+<div id="banner"></div>
+
+<main>
+  <div id="stage">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <line x1="50" y1="82" x2="18" y2="50"/><line x1="18" y1="50" x2="50" y2="18"/>
+      <line x1="50" y1="18" x2="82" y2="50"/><line x1="82" y1="50" x2="50" y2="82"/>
+      <line x1="50" y1="82" x2="50" y2="18"/><line x1="18" y1="50" x2="82" y2="50"/>
+    </svg>
+    <div id="center"></div>
+    <div id="potato">🥔</div>
+  </div>
+  <div id="help">
+    <kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> throw · <kbd>↓</kbd> or <kbd>C</kbd> catch · <kbd>J</kbd> join ·
+    <kbd>1</kbd>–<kbd>4</kbd> view seat · <kbd>Space</kbd> start
+  </div>
+  <div id="toast"></div>
+</main>
+<div id="flash"></div>
+
+<script>
+const SEATS = [1, 2, 3, 4];
+// screen slot relative to the bottom player: 0 = bottom, then clockwise = their left, across, their right
+const SLOTS = [
+  { x: 50, y: 82, label: "you" },
+  { x: 18, y: 50, label: "your left" },
+  { x: 50, y: 18, label: "across" },
+  { x: 82, y: 50, label: "your right" },
+];
+const FACE = { empty: "·", lobby: "🙂", waiting: "🤲", incoming: "🙌", holding: "🥔", boom: "💥", safe: "😮‍💨", gameover: "🎉" };
+
+const params = new URLSearchParams(location.search);
+// who am I? /viktor  or  /?me=viktor  or  /?me=2 (a seat number)
+let ME = ({{ me|tojson }} || params.get("me") || "").trim();
+let state = null, recvAt = 0, flying = false;
+
+const stage = document.getElementById("stage");
+const potato = document.getElementById("potato");
+const cards = {};
+
+for (const s of SEATS) {
+  const el = document.createElement("div");
+  el.className = "seat";
+  el.innerHTML = `<div class="avatar"><div class="ring"></div><span class="face"></span><div class="badge"></div></div>
+                  <div class="name"></div><div class="sub"></div><div class="booms"></div>`;
+  stage.appendChild(el);
+  cards[s] = el;
+}
+const pick = document.getElementById("seatpick");
+const pickButtons = SEATS.map((s) => {
+  const b = document.createElement("button");
+  b.onclick = () => viewSeat(s);
+  pick.appendChild(b);
+  return b;
+});
+
+function seatOfName(name) {
+  if (!state || !name) return null;
+  const low = name.toLowerCase();
+  for (const s of SEATS) {
+    const p = state.players[s];
+    if (p && p.name.toLowerCase() === low) return s;
+  }
+  return null;
+}
+// the seat drawn at the bottom
+function meSeat() {
+  if (/^[1-4]$/.test(ME)) return parseInt(ME, 10);
+  return seatOfName(ME);
+}
+function bottomSeat() { return meSeat() || 1; }
+// the name the browser plays as
+function myName() {
+  const s = meSeat();
+  if (s && state && state.players[s]) return state.players[s].name;
+  return /^[1-4]$/.test(ME) ? "" : ME;
+}
+
+function slotOf(seat) { return SLOTS[(seat - bottomSeat() + 4) % 4]; }
+function potatoSpot(seat) {
+  const a = cards[seat].querySelector(".avatar").getBoundingClientRect();
+  const st = stage.getBoundingClientRect();
+  return { x: (a.left + a.width / 2 - st.left) / st.width * 100, y: (a.top + a.height / 2 - st.top) / st.height * 100 };
+}
+
+function viewSeat(s) {
+  const p = state && state.players[s];
+  ME = p ? p.name : String(s);
+  const url = p ? "/" + encodeURIComponent(p.name) : "/?me=" + s;
+  history.replaceState(null, "", url);
+  render();
+}
+
+function layout() {
+  for (const s of SEATS) {
+    const p = slotOf(s);
+    cards[s].style.left = p.x + "%";
+    cards[s].style.top = p.y + "%";
+  }
+}
+
+function render() {
+  if (!state) return;
+  layout();
+  document.getElementById("message").textContent = state.message;
+  const bots = document.getElementById("bots");
+  bots.textContent = "🤖 Bots: " + (state.bots_on ? "on" : "off");
+  bots.classList.toggle("on", state.bots_on);
+  const running = state.phase === "playing" || state.phase === "boom";
+  const startBtn = document.getElementById("start");
+  startBtn.disabled = running;
+  startBtn.textContent = state.phase === "gameover" ? "Play again" : "Start";
+
+  const mine = meSeat();
+  const banner = document.getElementById("banner");
+  if (ME && !mine && !/^[1-4]$/.test(ME)) {
+    banner.style.display = "block";
+    banner.textContent = `"${ME}" isn't in the game yet - start your Pi, or press J to join from this browser.`;
+  } else if (!ME) {
+    banner.style.display = "block";
+    banner.textContent = "Spectating. Open /yourname (e.g. /viktor) to see the game from your seat.";
+  } else {
+    banner.style.display = "none";
+  }
+
+  const elapsed = (performance.now() - recvAt) / 1000;
+  for (const s of SEATS) {
+    const v = state.seats[s], p = state.players[s], el = cards[s];
+    const b = pickButtons[s - 1];
+    b.textContent = p ? p.name : `seat ${s}`;
+    b.classList.toggle("active", s === bottomSeat());
+
+    el.className = "seat " + v.mode + (s === mine ? " me" : "") + (v.caught ? " caught" : "") +
+                   (v.butterfingers ? " fumble" : "");
+    let face = FACE[v.mode] || "🙂";
+    if (v.mode === "gameover") face = state.loser == s ? "💀" : "🎉";
+    if (v.mode === "incoming" && v.caught) face = "👐";
+    el.querySelector(".face").textContent = face;
+    el.querySelector(".name").textContent = p ? p.name : "empty seat";
+    el.querySelector(".sub").textContent = `seat ${s} · ${slotOf(s).label}` + (p ? ` · ${p.input}` : "");
+    const booms = p ? p.booms : 0;
+    el.querySelector(".booms").innerHTML = p
+      ? Array.from({ length: state.max_booms }, (_, i) => `<span class="${i < booms ? "" : "off"}">💣</span>`).join("")
+      : "";
+    const badge = el.querySelector(".badge");
+    if (v.mode === "holding") {
+      const left = Math.max(0, state.time_left - elapsed);
+      el.querySelector(".avatar").style.setProperty("--heat", Math.min(1, 1 - left / state.hold_limit).toFixed(3));
+      badge.textContent = left.toFixed(1) + "s";
+    } else if (v.mode === "incoming") {
+      badge.textContent = v.caught ? "got it!" : "CATCH!";
+    } else if (v.butterfingers) {
+      badge.textContent = "🧈 oops";
+    }
+  }
+
+  // flying potato (the holder's own circle shows 🥔, so this is only during throws)
+  if (!flying) {
+    const seat = !state.holder && state.flight && state.flight.to;
+    if (seat && state.phase === "playing") {
+      const spot = potatoSpot(seat);
+      potato.style.display = "block";
+      potato.style.left = spot.x + "%";
+      potato.style.top = spot.y + "%";
+    } else {
+      potato.style.display = "none";
+    }
+  }
+
+  const center = document.getElementById("center");
+  center.classList.remove("urgent");
+  if (state.phase === "lobby") {
+    const n = Object.values(state.players).filter(Boolean).length;
+    center.innerHTML = `<div class="big">${n}/4</div>players joined<br>press Start`;
+  } else if (state.phase === "playing") {
+    const left = Math.max(0, state.round_left - elapsed);
+    if (left <= 5) center.classList.add("urgent");
+    center.innerHTML = `<div class="label">round</div><div class="big">${Math.ceil(left)}s</div>
+      <div class="bar"><div style="width:${(left / state.round_time * 100).toFixed(1)}%"></div></div>
+      max hold ${+state.hold_limit.toFixed(1)}s · ${state.catches} catch${state.catches === 1 ? "" : "es"}`;
+  } else if (state.phase === "boom") {
+    const p = state.players[state.boom_seat];
+    center.innerHTML = `<div class="big">BOOM!</div>${p ? p.name : ""} ${state.boom_reason || ""}`;
+  } else if (state.phase === "gameover") {
+    const l = state.players[state.loser];
+    center.innerHTML = `<div class="big">Game over</div>${l ? l.name : ""} is toast`;
+  }
+}
+
+function frame() { render(); requestAnimationFrame(frame); }
+
+function animateThrow(from, to, seconds) {
+  const a = potatoSpot(from), b = potatoSpot(to);
+  const mid = { x: (a.x + b.x) / 2 + (50 - (a.x + b.x) / 2) * 0.2, y: (a.y + b.y) / 2 - 10 };
+  flying = true;
+  potato.style.display = "block";
+  potato.style.left = b.x + "%";
+  potato.style.top = b.y + "%";
+  const W = stage.clientWidth / 100, H = stage.clientHeight / 100;
+  const off = (p) => `translate(calc(-50% + ${(p.x - b.x) * W}px), calc(-50% + ${(p.y - b.y) * H}px))`;
+  potato.animate([
+    { transform: off(a) + " rotate(0deg) scale(1)" },
+    { transform: off(mid) + " rotate(360deg) scale(1.5)" },
+    { transform: off(b) + " rotate(720deg) scale(1)" },
+  ], { duration: seconds * 1000, easing: "ease-in-out" }).onfinish = () => { flying = false; };
+}
+
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toast.h);
+  toast.h = setTimeout(() => t.classList.remove("show"), 1800);
+}
+
+const socket = io();
+socket.on("connect", () => document.getElementById("conn").classList.add("ok"));
+socket.on("disconnect", () => document.getElementById("conn").classList.remove("ok"));
+socket.on("state", (s) => { state = s; recvAt = performance.now(); });
+socket.on("event", (ev) => {
+  if (ev.type === "throw") animateThrow(ev.from, ev.to, ev.flight_time);
+  if (ev.type === "boom" || ev.type === "gameover") {
+    stage.classList.remove("shake"); void stage.offsetWidth; stage.classList.add("shake");
+    const f = document.getElementById("flash");
+    f.style.transition = "none"; f.style.opacity = .55;
+    requestAnimationFrame(() => { f.style.transition = "opacity .8s"; f.style.opacity = 0; });
+  }
+});
+
+function send(action, extra = {}) {
+  const name = myName();
+  if (!name) { toast("Open the page as /yourname to play from the browser"); return; }
+  const seat = /^[1-4]$/.test(ME) ? parseInt(ME, 10) : undefined;
+  socket.emit("action", { name, action, input: "web", seat, ...extra }, (r) => { if (r && !r.ok) toast(r.reason); });
+}
+function control(cmd, extra = {}) {
+  socket.emit("control", { cmd, ...extra }, (r) => { if (r && !r.ok) toast(r.reason); });
+}
+document.getElementById("start").onclick = () => control("start");
+document.getElementById("reset").onclick = () => control("reset");
+document.getElementById("bots").onclick = () => control("bots", { on: !(state && state.bots_on) });
+
+document.addEventListener("keydown", (e) => {
+  const k = e.key;
+  if (k === "ArrowLeft") send("throw", { dir: "left" });
+  else if (k === "ArrowUp") send("throw", { dir: "forward" });
+  else if (k === "ArrowRight") send("throw", { dir: "right" });
+  else if (k === "ArrowDown" || k === "c" || k === "C") send("catch");
+  else if (k === "j" || k === "J") send("join");
+  else if (k === " ") control("start");
+  else if ("1234".includes(k) && k.length === 1) viewSeat(parseInt(k, 10));
+  else return;
+  e.preventDefault();
+});
+
+frame();
+</script>
+</body>
+</html>
