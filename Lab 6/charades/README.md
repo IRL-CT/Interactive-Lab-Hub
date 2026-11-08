@@ -8,6 +8,8 @@ Deliverables
 
 **Telephone Charades**
 
+Group members: Jessica Chon (jc3932), Shifeng Hong (sh2769), Arnav Whig (aww96)
+
 Our project is a remote, interactive charades game that lets friends play and socialize even when they can’t be in the same room. It works like a game of telephone, but with acting. Each player starts with a secret prompt, acts it out in front of a camera, and passes the clip to another player to guess. In the next round, someone acts out that guess. At the end, everyone can see how the original prompts changed as they passed from person to person. The fun comes from seeing how differently people interpret the same gestures and how far a guess can drift from the original prompt.
 
 In our three-player setup, each player uses a Raspberry Pi to record and submit their performance. They tap a physical button to start a short recording and hold it to send the clip. The Pi sends the camera frames over MQTT, and the next player watches the clip on a web page and enters a guess. Everyone gets something to do each round, and the game moves on once everyone has submitted or the round timer runs out.
