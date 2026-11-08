@@ -142,6 +142,15 @@ Hold colored objects near sensor to change your pixel!
 
 **📸 Include: Screenshot of grid + photo of your Pi setup**
 
+<img" height="2000" alt="IMG_1793" src="https://github.com/user-attachments/assets/186a8612-5d22-4f8c-b5f4-bf29e99a48bf" />
+
+<img height="2000" alt="IMG_1795" src="https://github.com/user-attachments/assets/66af0fb6-970f-40cb-9e87-38a8774b1d0a" />
+<img height="2000" alt="IMG_1796" src="https://github.com/user-attachments/assets/c948bf0f-a40f-4134-8e77-5521df0cf65c" />
+
+<img width="1509" height="781" alt="截屏2026-11-08 上午2 01 08" src="https://github.com/user-attachments/assets/796be895-5a31-4581-871d-ab37c64a9d82" />
+
+
+
 ---
 
 ## Part C: Make Your Own
