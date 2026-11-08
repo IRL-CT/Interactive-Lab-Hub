@@ -2,6 +2,8 @@
 📸 Include: Screenshot of grid + photo of your Pi setup
 
 Deliverables
+
+
 **1. Project Description**
 
 **Telephone Charades**
