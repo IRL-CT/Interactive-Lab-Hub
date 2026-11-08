@@ -4,6 +4,7 @@
 <img width="1170" height="1530" alt="Screenshot 2026-11-08 at 3 49 08 PM" src="https://github.com/user-attachments/assets/c7535e78-a696-4d60-b85d-f7adf70b1295" />
 
 <img width="1190" height="1580" alt="Screenshot 2026-11-08 at 3 49 16 PM" src="https://github.com/user-attachments/assets/06185c84-5477-4703-9f80-90634e16d616" />
+
 Deliverables
 
 **1. Project Description**
@@ -25,6 +26,13 @@ Parts needed for three players
 	• A laptop with a web browser for each player to watch clips and type guesses
 	• Optional speakers for countdown beeps and voice prompts
 	• Optional USB microphones for spoken guesses
+
+Since the theme of this week was communication, we wanted to really focus and iterate on that concept in a playful manner. We made some sketches to come up with the conclusion above. Below are the sketches detailing the user flow. 
+
+<img width="854" height="1414" alt="Screenshot 2026-11-08 at 3 53 07 PM" src="https://github.com/user-attachments/assets/83de243a-e74e-4614-b1bc-8d054e89f5f6" />
+
+<img width="1856" height="1466" alt="Screenshot 2026-11-08 at 3 53 11 PM" src="https://github.com/user-attachments/assets/78c9365b-d5c4-438d-bb71-bf147329d54b" />
+
 
 **2. Architecture Diagram**
 
