@@ -2,6 +2,8 @@
 
 **NAMES OF COLLABORATORS HERE**
 
+Jindi Chai & Yilin Wu & Sina Liu
+
 For submission, replace this section with your documentation!
 
 ---
@@ -58,7 +60,20 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'H
 
 ![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
 
+<img width="1145" height="230" alt="截屏2026-11-07 下午7 56 26" src="https://github.com/user-attachments/assets/f7aa043f-749a-4cd8-8224-23626994858c" />
+
+
 **💡 Brainstorm 5 ideas for messaging between devices**
+
+Shared Virtual Pet: Three Raspberry Pis are responsible for different pet care activities, such as feeding, playing, and resting. Players use sensors to interact with the same virtual pet, and MQTT keeps its status updated across devices.
+
+Distributed Escape Room: Each Pi has a different puzzle that players solve using sensors. Players need to communicate and complete all three challenges to unlock the final stage.
+
+Collaborative Garden: Three Pis control different environmental factors, such as sunlight, water, and temperature. Sensor inputs are shared through MQTT and influence how a virtual garden grows.
+
+Remote Music Jam: Each Pi controls a different musical element, such as rhythm, pitch, or volume. Players use sensor inputs to create music together, even from different locations.
+
+Three-Person Spaceship: Three players control different parts of the same spaceship, including direction, speed, and defense. Their Pis communicate through MQTT, requiring cooperation to navigate obstacles.
 
 MQTT agrees on almost nothing in advance: you invent the topics and what the messages mean. Smart-home standards like Matter fix the vocabulary instead (every "light" behaves the same). Keep this trade-off in mind when you design your topics in Part C.
 
