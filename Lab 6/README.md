@@ -1,7 +1,9 @@
 **Part B**
 📸 Include: Screenshot of grid + photo of your Pi setup
 
+<img width="1170" height="1530" alt="Screenshot 2026-11-08 at 3 49 08 PM" src="https://github.com/user-attachments/assets/c7535e78-a696-4d60-b85d-f7adf70b1295" />
 
+<img width="1190" height="1580" alt="Screenshot 2026-11-08 at 3 49 16 PM" src="https://github.com/user-attachments/assets/06185c84-5477-4703-9f80-90634e16d616" />
 Deliverables
 
 **1. Project Description**
