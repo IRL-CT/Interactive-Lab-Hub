@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Telephone Charades</title>
+<style>
+  :root {
+    --bg: #f6f4ef; --card: #ffffff; --ink: #1d1c1a; --muted: #6b6a66; --line: #e3dfd5;
+    --act: #d9531e; --guess: #2a6fd6; --wait: #6e46aa; --ok: #12935a; --reveal: #b98900; --rec: #c81e1e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16161a; --card: #222228; --ink: #f1efe9; --muted: #a9a7a0; --line: #34343c; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { display: flex; align-items: center; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--line); background: var(--card); }
+  .brand { font-weight: 800; letter-spacing: -0.01em; }
+  #who { color: var(--muted); font-size: 15px; flex: 1; }
+  #who b { color: var(--ink); }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--ok); margin-right: 6px; vertical-align: 1px; }
+  .dot.off { background: var(--rec); }
+  #timer { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 20px; }
+  main { max-width: 980px; margin: 0 auto; padding: 24px 20px 120px; }
+  .kicker { text-transform: uppercase; letter-spacing: 0.08em; font-size: 13px; font-weight: 700; color: var(--muted); }
+  .kicker.act { color: var(--act); } .kicker.guess { color: var(--guess); } .kicker.wait { color: var(--wait); } .kicker.reveal { color: var(--reveal); }
+  h1 { font-size: 30px; line-height: 1.15; margin: 6px 0 14px; letter-spacing: -0.02em; }
+  .prompt { font-size: clamp(34px, 6vw, 56px); font-weight: 800; line-height: 1.05; margin: 10px 0 18px; letter-spacing: -0.02em; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+  .muted { color: var(--muted); }
+  .clip { width: 100%; max-width: 640px; aspect-ratio: 4 / 3; background: #0d0f1a; border-radius: 12px; display: grid; place-items: center; color: #b9bdd6; overflow: hidden; }
+  .clip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .clip.small { max-width: none; border-radius: 8px; font-size: 13px; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; align-items: center; }
+  button { font: inherit; font-weight: 700; border: 0; border-radius: 10px; padding: 12px 18px; cursor: pointer; background: var(--ink); color: var(--bg); }
+  button.act { background: var(--act); color: #fff; } button.guess { background: var(--guess); color: #fff; }
+  button.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  button:disabled { opacity: 0.45; cursor: default; }
+  input[type=text] { font: inherit; font-size: 22px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); flex: 1; min-width: 220px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .chip { padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-weight: 600; }
+  .chip.done { border-color: var(--ok); color: var(--ok); }
+  #status { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); max-width: 92vw; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: 15px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  #status.show { opacity: 0.95; }
+  #busy { position: fixed; inset: 0; display: none; place-items: center; background: rgba(10, 10, 20, 0.82); color: #fff; text-align: center; padding: 16px; }
+  #busy.show { display: grid; }
+  .busybox { width: min(92vw, 760px); }
+  .livewrap { position: relative; aspect-ratio: 4 / 3; background: #000; border-radius: 14px; overflow: hidden; }
+  .livewrap.off { display: none; }
+  #live { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); display: block; }
+  #busyBig { font-size: 120px; font-weight: 800; line-height: 1; text-shadow: 0 2px 18px rgba(0,0,0,.6); }
+  .livewrap #busyBig { position: absolute; inset: 0; display: grid; place-items: center; }
+  .livewrap #busyBig.rec { inset: 14px auto auto 14px; display: inline-block; padding: 6px 16px; font-size: 30px;
+    color: #fff; background: rgba(200, 20, 20, 0.85); border-radius: 999px; text-shadow: none; }
+  #busySmall { font-size: 22px; margin-top: 12px; }
+  .livenote { font-size: 13px; opacity: .65; margin-top: 4px; }
+  .chain { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .step { min-width: 0; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+  .step .who { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .step + .step .who::before { content: "→ "; font-weight: 700; }
+  .step .words { font-size: 18px; font-weight: 800; line-height: 1.15; }
+  .ends { margin: 2px 0 12px; font-size: 18px; }
+  .ends b { font-weight: 800; }
+  ol.how { margin: 8px 0 0; padding-left: 20px; } ol.how li { margin: 4px 0; }
+  #warn { display: none; max-width: 980px; margin: 16px auto 0; padding: 12px 16px; border-radius: 12px;
+          background: #fde8e6; color: #8a1c12; border: 1px solid #f3b7b0; font-weight: 600; }
+  #warn.show { display: block; } #warn div + div { margin-top: 4px; }
+  @media (prefers-color-scheme: dark) { #warn { background: #3a1714; color: #ffb4aa; border-color: #6b2a24; } }
+  .chip.warn { border-color: var(--rec); color: var(--rec); }
+  .ver { color: var(--muted); font-size: 12px; margin-left: 8px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Telephone Charades</div>
+  <div id="who">connecting…</div>
+  <div id="timer"></div>
+</header>
+<div id="warn"></div>
+<main id="main"><div class="card muted">Connecting to your Pi…</div></main>
+<div id="busy"><div class="busybox">
+  <div class="livewrap" id="liveWrap"><img id="live" alt="live camera"><div id="busyBig"></div></div>
+  <div id="busySmall"></div><div class="livenote" id="liveNote">live camera, mirrored like a selfie (the clip itself is not)</div>
+</div></div>
+<div id="status"></div>
+
+<script>
+let view = null, sig = "", lastStatus = "", statusTimer = null, lastMicGuess = "", typed = false, pageVersion = null;
+const clips = {};                 // "game|key" or "take|<take id>" -> {n, frames, fps, fetchedAt}
+// Clip names repeat (every game has a c0r0, every take is "take"), so the page stores clips under the game
+// or the take id as well. Without this, a redo showed the old take and a new game showed the last game's clips.
+const ck = key => key === "take" ? `take|${view.take_id}` : `${view.game}|${key}`;
+let liveOn = false, liveUrl = null;
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+async function post(action, text) {
+  try { await fetch("/api/action", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({action, text})}); }
+  catch (e) { toast("Could not reach your Pi."); }
+  setTimeout(poll, 150);
+}
+
+async function poll() {
+  clearTimeout(poll.t);
+  try {
+    const r = await fetch("/api/state", {cache: "no-store"});
+    view = await r.json();
+    // the Pi was restarted with newer code: load the new page instead of running this old one
+    if (pageVersion === null) pageVersion = view.version;
+    else if (view.version !== pageVersion) { location.reload(); return; }
+    render();
+  } catch (e) {
+    document.getElementById("who").innerHTML = '<span class="dot off"></span>lost the connection to your Pi';
+  }
+  poll.t = setTimeout(poll, view && view.busy ? 300 : 700);
+}
+
+async function ensureClip(key, force) {
+  if (!key || !view) return;
+  const id = ck(key), game = view.game || "";
+  const c = clips[id];
+  const complete = c && c.n > 0 && c.frames.length >= c.n;
+  if (!force && (complete || (c && Date.now() - c.fetchedAt < 900))) return;
+  const r = await fetch(`/api/clip?key=${encodeURIComponent(key)}&game=${encodeURIComponent(game)}`, {cache: "no-store"});
+  const d = await r.json();
+  const store = key === "take" ? `take|${d.take_id}` : id;   // file it under what the Pi actually sent
+  clips[store] = {n: d.n, frames: d.frames || [], fps: d.fps || 5, actor: d.actor, fetchedAt: Date.now()};
+  updateClipLabels();
+}
+
+async function liveLoop() {
+  if (liveOn) return;
+  liveOn = true;
+  const img = document.getElementById("live");
+  img.removeAttribute("src");
+  while (view && (view.busy === "countdown" || view.busy === "recording")) {
+    try {
+      const r = await fetch("/api/live?t=" + Date.now(), {cache: "no-store"});
+      if (r.status === 200) {
+        const url = URL.createObjectURL(await r.blob());
+        img.src = url;
+        if (liveUrl) URL.revokeObjectURL(liveUrl);
+        liveUrl = url;
+      }
+    } catch (e) { /* keep trying */ }
+    await new Promise(res => setTimeout(res, 120));
+  }
+  liveOn = false;
+}
+
+function clipBox(key, cls, emptyText) {
+  return `<div class="clip ${cls || ""}" data-box="${esc(ck(key))}" data-empty="${esc(emptyText || "loading the clip…")}">${esc(emptyText || "loading the clip…")}</div>`;
+}
+
+function updateClipLabels() {
+  document.querySelectorAll("[data-box]").forEach(box => {
+    const c = clips[box.dataset.box];
+    if (c && c.frames.length) {
+      if (!box.querySelector("img")) box.innerHTML = `<img data-clip="${esc(box.dataset.box)}" alt="acting clip">`;
+    } else if (c && c.n > 0) {
+      box.textContent = `receiving the clip… ${c.frames.length}/${c.n}`;
+    }
+  });
+}
+
+// one animation loop for every clip on the page
+setInterval(() => {
+  document.querySelectorAll("img[data-clip]").forEach(img => {
+    const c = clips[img.dataset.clip];
+    if (!c || !c.frames.length) return;
+    const i = ((+img.dataset.i || 0) + 1) % c.frames.length;
+    img.dataset.i = i;
+    img.src = "data:image/jpeg;base64," + c.frames[i];
+  });
+}, 200);
+
+function toast(text) {
+  const el = document.getElementById("status");
+  el.textContent = text; el.classList.add("show");
+  clearTimeout(statusTimer); statusTimer = setTimeout(() => el.classList.remove("show"), 6000);
+}
+
+function render() {
+  const v = view;
+  document.getElementById("who").innerHTML =
+    `<span class="dot ${v.connected ? "" : "off"}"></span>you are <b>${esc(v.me)}</b> · team ${esc(v.team)}<span class="ver">v${esc(v.version)}</span>`;
+  const warn = document.getElementById("warn");
+  const ws = v.warnings || [];
+  warn.innerHTML = ws.map(w => `<div>⚠ ${esc(w)}</div>`).join("");
+  warn.classList.toggle("show", ws.length > 0);
+  const t = v.time_left;
+  document.getElementById("timer").textContent = (t !== null && t !== undefined) ? `${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}` : "";
+  if (v.status && v.status !== lastStatus) toast(v.status);
+  lastStatus = v.status;
+
+  const busy = document.getElementById("busy");
+  if (v.busy) {
+    busy.classList.add("show");
+    const big = document.getElementById("busyBig"), small = document.getElementById("busySmall");
+    const camera = v.busy === "countdown" || v.busy === "recording";
+    document.getElementById("liveWrap").classList.toggle("off", !camera);
+    document.getElementById("liveNote").style.display = camera ? "" : "none";
+    if (v.busy === "countdown") { big.className = ""; big.textContent = v.busy_text; small.textContent = "get in front of the camera"; }
+    if (v.busy === "recording") { big.className = "rec"; big.textContent = "● REC " + v.busy_text; small.textContent = "recording — act it out, no words!"; }
+    if (v.busy === "listening") { big.className = ""; big.textContent = "🎤"; small.textContent = "say your guess…"; }
+    if (v.busy === "listening") document.getElementById("busySmall").before(big);   // no camera: show the mic big
+    else document.getElementById("liveWrap").appendChild(big);
+    if (camera) liveLoop();
+  } else busy.classList.remove("show");
+
+  const a = v.assignment || {};
+  const newSig = [v.phase, v.game, v.round, a.task, a.clip, v.handed_in, v.in_game, v.take_frames, v.take_id,
+                  (v.lobby || []).join(","), (v.bots || []).join(","), JSON.stringify(v.versions || {}), v.mic].join("|");
+  if (newSig !== sig) {
+    sig = newSig; typed = false;
+    document.getElementById("status").classList.remove("show");   // old messages belong to the old screen
+    build();
+  }
+
+  // small live bits that must not rebuild the page (so typing is never interrupted)
+  const w = document.getElementById("waiting");
+  if (w) w.innerHTML = waitingChips(v);
+  const gi = document.getElementById("guessInput");
+  if (gi && v.guess && v.guess !== lastMicGuess && !typed) { gi.value = v.guess; lastMicGuess = v.guess; }
+  if (v.phase === "play" && a.task === "guess" && a.clip) ensureClip(a.clip);
+  if (v.phase === "reveal") (v.chains || []).forEach(ch => ch.steps.forEach(s => s.clip && ensureClip(s.clip)));
+}
+
+function waitingChips(v) {
+  const waiting = new Set(v.waiting_for || []);
+  return (v.players || []).map(p => `<span class="chip ${waiting.has(p) ? "" : "done"}">${waiting.has(p) ? "…" : "✓"} ${esc(p)}</span>`).join("");
+}
+
+function build() {
+  const v = view, a = v.assignment || {}, m = document.getElementById("main");
+  const head = v.round !== null && v.round !== undefined ? `Round ${v.round + 1} of ${v.rounds}` : "";
+  const h = v.hints || {tap: "tap", hold: "hold"};
+
+  if (v.phase === "connecting" || v.phase === "offline") {
+    m.innerHTML = `<div class="card"><div class="kicker">waiting</div><h1>${v.phase === "offline" ? "The host is offline" : "Connecting…"}</h1>
+      <p class="muted">Someone on your team needs to run <code>python host.py --team ${esc(v.team)}</code>.</p></div>`;
+    return;
+  }
+  if (v.phase === "lobby") {
+    m.innerHTML = `<div class="card"><div class="kicker">lobby</div><h1>Waiting for the game to start</h1>
+      <p class="muted">Players here:</p><div class="chips">${(v.lobby || []).map(p => {
+        const bot = (v.bots || []).includes(p), old = v.versions && v.versions[p] !== v.version;
+        return `<span class="chip ${old ? "warn" : ""}">${bot ? "🤖 " : ""}${esc(p)}${old ? ` (old version ${esc(v.versions[p] || "?")})` : ""}</span>`;
+      }).join("") || '<span class="muted">nobody yet</span>'}</div>
+      ${(v.bots || []).length ? '<p class="muted">🤖 = a bot from bots.py. Stop bots.py (Ctrl-C) before playing with real people.</p>' : ""}
+      <div class="row"><button onclick="post('hold')">Start the game</button><span class="muted">or hold your button (needs 2+ players)</span></div></div>
+      <div class="card"><div class="kicker">how to play</div><ol class="how">
+      <li><b>Act:</b> you get a secret prompt. Tap your button, wait for 3-2-1, then act it out for ${v.record_seconds} seconds. No words! Hold the button to send it.</li>
+      <li><b>Guess:</b> you see someone's clip here. Tap your button and say what you think it is${v.mic ? "" : " (this Pi has no mic, so type it)"}, or type it below the clip. Hold to send.</li>
+      <li>Your guess becomes the next player's prompt. At the end, see how every prompt changed on its way round.</li></ol></div>`;
+    return;
+  }
+  if (v.phase === "reveal") { m.innerHTML = reveal(v); updateClipLabels(); return; }
+  if (!v.in_game) {
+    m.innerHTML = `<div class="card"><div class="kicker">game in progress</div><h1>A game is running without you</h1><p class="muted">You will be in the next one.</p></div>`;
+    return;
+  }
+  if (v.handed_in) {
+    m.innerHTML = `<div class="card"><div class="kicker wait">${head} · sent ✓</div><h1>Waiting for everyone</h1>
+      <div class="chips" id="waiting">${waitingChips(v)}</div><p class="muted">The next round starts when everyone has sent theirs.</p></div>`;
+    return;
+  }
+  if (a.task === "act") {
+    m.innerHTML = `<div class="card"><div class="kicker act">${head} · your turn to act</div>
+      <div class="prompt">${esc(a.text)}</div>
+      <p class="muted">${h.tap === "click" ? "Click Record" : `Tap your button (${esc(h.tap)})`}: 3-2-1, then the webcam records ${v.record_seconds} seconds. No words, no sounds. ${h.tap === "click" ? "Click Send" : `Hold (${esc(h.hold)})`} to send your take.</p>
+      ${v.take_frames ? clipBox("take", "", "loading your take…") : '<div class="clip">no take yet</div>'}
+      <div class="row"><button class="act" onclick="post('tap')">● ${v.take_frames ? "Redo take" : "Record a take"}</button>
+      <button onclick="post('hold')" ${v.take_frames ? "" : "disabled"}>Send it ➜</button></div></div>`;
+    if (v.take_frames) ensureClip("take", true);
+    updateClipLabels();
+    return;
+  }
+  // guess
+  const from = a.from ? esc(a.from) : "Someone";
+  m.innerHTML = `<div class="card"><div class="kicker guess">${head} · your turn to guess</div>
+    <h1>What is ${from} acting?</h1>
+    ${a.clip ? clipBox(a.clip) : `<div class="clip">${from} didn't send a clip. Guess anything!</div>`}
+    <div class="row"><input type="text" id="guessInput" placeholder="type your guess" autocomplete="off"
+        oninput="typed=true" onkeydown="if(event.key==='Enter') sendGuess()">
+      <button class="guess" onclick="sendGuess()">Send guess ➜</button></div>
+    <div class="row">${v.mic ? `<button class="ghost" onclick="post('tap')">🎤 Say it (same as tapping your button)</button>` : ""}
+      <span class="muted">${v.mic ? `Or tap your button and speak, then hold it to send.` : "This Pi has no mic: type your guess."}</span></div></div>`;
+  if (a.clip) ensureClip(a.clip);
+  updateClipLabels();
+}
+
+function sendGuess() {
+  const gi = document.getElementById("guessInput");
+  const text = (gi && gi.value || "").trim();
+  if (!text) { toast("Type a guess first."); return; }
+  post("guess", text);
+}
+
+function reveal(v) {
+  const chains = v.chains || [];
+  const summary = v.summary || [];
+  return `<div class="card"><div class="kicker reveal">the reveal</div><h1>How every prompt changed</h1>
+    <div class="row"><button onclick="post('hold')">Play again</button><span class="muted">or hold your button</span></div></div>` +
+    chains.map((ch, i) => {
+      const s = summary[i] || {};
+      const steps = ch.steps.map(st => {
+        if (st.kind === "prompt") return `<div class="step"><div class="who">${esc(ch.owner)}'s secret prompt</div><div class="words">${esc(st.text)}</div></div>`;
+        if (st.kind === "act") return `<div class="step"><div class="who">${esc(st.player)} acted it</div>${
+          st.clip ? clipBox(st.clip, "small") : '<div class="clip small">skipped</div>'}</div>`;
+        return `<div class="step"><div class="who">${esc(st.player)} guessed</div><div class="words">${st.skipped ? '<span class="muted">(skipped)</span>' : esc(st.text)}</div></div>`;
+      }).join("");
+      return `<div class="card"><div class="kicker">${esc(ch.owner)}'s chain</div>
+        <p class="ends">Started as <b>${esc(s.start)}</b>, ended as <b>${esc(s.end)}</b></p><div class="chain">${steps}</div></div>`;
+    }).join("");
+}
+
+poll();
+</script>
+</body>
+</html>

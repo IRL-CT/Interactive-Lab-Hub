@@ -1,0 +1,9 @@
+# Telephone Charades, on top of Lab 6's requirements-pi.txt. Install into the Lab 6 venv:
+#     pip install -r charades/requirements-charades.txt
+paho-mqtt<2.0                    # same as Lab 6
+Pillow                           # drawing the PiTFT screen
+opencv-python-headless           # the webcam (headless: no window needed)
+sparkfun-qwiic-button            # the Qwiic Button (Lab 4); optional
+# Optional, for speaking guesses and hearing the device talk (both from Lab 3, aarch64 wheels):
+faster-whisper~=1.2
+piper-tts~=1.8
