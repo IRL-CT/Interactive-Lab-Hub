@@ -1,14 +1,16 @@
 **Part B**
 📸 Include: Screenshot of grid + photo of your Pi setup
 
-Deliverables
 
+Deliverables
 
 **1. Project Description**
 
 **Telephone Charades**
 
 Group members: Jessica Chon (jc3932), Shifeng Hong (sh2769), Arnav Whig (aww96)
+
+Link to project: https://github.com/chonjessica23/Interactive-Lab-Hub/tree/Fall2026/Lab%206/charades 
 
 Our project is a remote, interactive charades game that lets friends play and socialize even when they can’t be in the same room. It works like a game of telephone, but with acting. Each player starts with a secret prompt, acts it out in front of a camera, and passes the clip to another player to guess. In the next round, someone acts out that guess. At the end, everyone can see how the original prompts changed as they passed from person to person. The fun comes from seeing how differently people interpret the same gestures and how far a guess can drift from the original prompt.
 
