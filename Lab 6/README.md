@@ -27,16 +27,17 @@ Parts needed for three players
 	• Optional speakers for countdown beeps and voice prompts
 	• Optional USB microphones for spoken guesses
 
-Since the theme of this week was communication, we wanted to really focus and iterate on that concept in a playful manner. We made some sketches to come up with the conclusion above. Below are the sketches detailing the user flow. 
-
-<img width="854" height="1414" alt="Screenshot 2026-11-08 at 3 53 07 PM" src="https://github.com/user-attachments/assets/83de243a-e74e-4614-b1bc-8d054e89f5f6" />
+Since the theme of this week was communication, we wanted to really focus and iterate on that concept in a playful manner. Below are the initial sketches detailing the user flow. 
 
 <img width="1856" height="1466" alt="Screenshot 2026-11-08 at 3 53 11 PM" src="https://github.com/user-attachments/assets/78c9365b-d5c4-438d-bb71-bf147329d54b" />
+
+<img width="854" height="1414" alt="Screenshot 2026-11-08 at 3 53 07 PM" src="https://github.com/user-attachments/assets/83de243a-e74e-4614-b1bc-8d054e89f5f6" />
 
 
 **2. Architecture Diagram**
 
 <img width="6555" height="2446" alt="Lab 6 architecture" src="https://github.com/user-attachments/assets/a474674c-ecd9-4aaa-9dbe-2a8dfe91eba0" />
+
 
 **3. Build Documentation**
 
@@ -180,7 +181,11 @@ On every Pi (once): install with `pip install -r charades/requirements-charades.
 
 **4. User Testing**
 
-We found 3 non-team members in the Tata master’s studio to user test. After the game was completed, we received the following comments:
+First, we ran a few rounds of testing amongst ourselves to make sure the experience was smooth enough to move forward with non-team member testing. Initially, there was no live camera feed of the recording session and we agreed that adding that visual feedback would be helpful, so users could be properly positioned in frame. 
+
+<img width="1888" height="1652" alt="Screenshot 2026-11-08 at 3 09 30 PM" src="https://github.com/user-attachments/assets/eeff6556-7f78-4acd-b133-f058749f8ea9" />
+
+After we made some adjustments, we found 3 non-team members in the Tata master’s studio to user test. We received the following comments:
 
 * The instructions were clear, the layout was intuitive and clear also. IT “made sense the way it was”
 * All players said the interaction was more fun than they initially thought it’d be.  They appreciated being able to see all the clips and the progression of the tasks all at once in the end
@@ -188,8 +193,7 @@ We found 3 non-team members in the Tata master’s studio to user test. After th
 * It’d help to have more than 4 seconds to act out a seen
 * They thought more rounds/opportunities for engagement would be nice since they wanted to keep playing. This led to a suggestion that it could later change so that players actions are streamed live and have to take turns guessing as many tasks in real-time as possible within 60 seconds.
 
-<img width="1888" height="1652" alt="Screenshot 2026-11-08 at 3 09 30 PM" src="https://github.com/user-attachments/assets/eeff6556-7f78-4acd-b133-f058749f8ea9" />
-
+We weren't able to do anything about the camera quality or feed but we did extend the recording session to 10 seconds. We did another round of user testing and were told that the extended time was much more helpful.  
 
 **User testing videos:**
 
