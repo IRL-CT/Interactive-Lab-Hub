@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="pet-token" content="{{ token }}">
+<title>Longan · A little care, together</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+<main>
+<header><a class="brand" href="/">✿ &nbsp; little things<span>SHARED VIRTUAL PET</span></a><div id="connection" class="connection">● Connecting to MQTT</div></header>
+<section class="intro"><div class="eyebrow">THREE FRIENDS. ONE LITTLE WORLD.</div><h1>A little care,<br><em>together.</em></h1><p>Meet Longan. A small friend with a big heart,<br>feeling the love from wherever you are.</p></section>
+<div class="layout">
+<section class="habitat" aria-label="Longan's home">
+<div class="habitat-top"><span class="pill">YOUR SHARED COMPANION</span><span id="mood" class="pill mood">Waiting for friends</span></div>
+<span class="spark spark-one" aria-hidden="true">✧</span><span class="spark spark-two" aria-hidden="true">✦</span>
+<div class="pet-scene"><svg id="pet" class="normal" viewBox="0 0 360 300" role="img" aria-label="Longan, a round peach-colored pet">
+<ellipse cx="180" cy="260" rx="105" ry="15" fill="#d4d2b6" opacity=".45"/>
+<g class="pet-body"><path d="M167 87 Q139 42 116 68 Q107 85 132 110" fill="#f7c5a4" stroke="#b17a54" stroke-width="3"/>
+<path d="M190 78 Q193 35 228 44 Q226 74 190 78" fill="#9db798" stroke="#648961" stroke-width="3"/>
+<path d="M153 244 Q128 274 114 251 L124 227 M206 244 Q231 274 245 251 L234 225" fill="#f5c49d" stroke="#b17a54" stroke-width="3"/>
+<path d="M90 169 Q61 164 71 188 Q77 205 95 199 M267 169 Q298 164 290 188 Q280 205 263 199" fill="#f5c49d" stroke="#b17a54" stroke-width="3"/>
+<path d="M91 173 C91 109 124 76 178 78 C238 74 271 111 271 173 C275 227 236 250 180 250 C122 251 85 226 91 173Z" fill="#f8d4ae" stroke="#b17a54" stroke-width="3"/>
+<ellipse cx="123" cy="187" rx="18" ry="10" fill="#edac97" opacity=".75"/><ellipse cx="237" cy="187" rx="18" ry="10" fill="#edac97" opacity=".75"/>
+<g class="eyes-normal"><ellipse cx="145" cy="169" rx="5" ry="8" fill="#644c3e"/><ellipse cx="215" cy="169" rx="5" ry="8" fill="#644c3e"/></g>
+<g class="eyes-happy" fill="none" stroke="#644c3e" stroke-width="5" stroke-linecap="round"><path d="M135 171 Q145 156 155 171 M205 171 Q215 156 225 171"/></g>
+<path class="smile" d="M168 186 Q180 200 192 186" fill="none" stroke="#644c3e" stroke-width="4" stroke-linecap="round"/>
+<path class="frown" d="M169 195 Q180 183 191 195" fill="none" stroke="#644c3e" stroke-width="4" stroke-linecap="round"/>
+</g></svg></div>
+<div class="pet-title"><h2>Longan <span>龙眼</span></h2><p id="pet-caption">A little friend, waiting for your first hello.</p></div>
+<div class="habitat-footer"><span>⌂ &nbsp; One home, wherever you are</span><span>EST. 2026</span></div>
+</section>
+<section class="care-panel" aria-label="Pet status">
+<div class="panel-heading"><div><span class="eyebrow">A LITTLE CHECK-IN</span><h2>How’s our friend?</h2></div><span class="flower" aria-hidden="true">✿</span></div>
+<div class="stat"><div><label for="fullness">◒ &nbsp; Fullness</label><span id="fullness-value">— <small>/ 100</small></span></div><progress id="fullness" max="100" value="0"></progress><p>A red or orange card makes a lovely snack.</p></div>
+<div class="stat"><div><label for="happiness">✧ &nbsp; Happiness</label><span id="happiness-value">— <small>/ 100</small></span></div><progress id="happiness" max="100" value="0"></progress><p>A friendly wave goes a long way.</p></div>
+<div class="stat"><div><label for="energy">☾ &nbsp; Energy</label><span id="energy-value">— <small>/ 100</small></span></div><progress id="energy" max="100" value="0"></progress><p>Cover the sensor for a peaceful little rest.</p></div>
+<div class="together"><div><strong id="goal-title">Better, together</strong><span id="countdown">0 / 10s</span></div><p id="goal-copy">Bring every bar to 70, then keep them there for 10 seconds.</p><progress id="cooperation" value="0" max="10"></progress><div class="roles"><span id="role-feed">● Feed</span><span id="role-play">● Play</span><span id="role-rest">● Rest</span></div></div>
+</section>
+</div>
+<section class="activity" aria-live="polite"><span class="activity-icon">♡</span><div><span class="eyebrow">THE LATEST LITTLE KINDNESS</span><p id="last-action">Waiting for the first moment of care…</p></div><span id="round-label">A shared story</span></section>
+{% if developer %}
+<section class="developer"><strong>Simulation / Developer Mode</strong><p>Test actions travel through MQTT. Start the engine with <code>--allow-simulation</code>. Allow 3 seconds between actions for the same role.</p><div class="buttons">{% for action in ['feed', 'play', 'rest', 'reset'] %}<button data-action="{{ action }}">{{ 'New game' if action == 'reset' else action.title() }}</button>{% endfor %}</div><p id="control-status" role="status"></p></section>
+{% endif %}
+<footer>Made of small moments & a little teamwork.<span>INTERACTIVE DEVICES · LAB 06</span></footer>
+</main>
+</body></html>
