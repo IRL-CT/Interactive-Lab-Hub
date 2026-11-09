@@ -129,7 +129,9 @@ Hold colored objects near sensor to change your pixel!
 ![Pixel grid with two devices](imgs/two-devices-grid.png)
 
 **📸 Include: Screenshot of grid + photo of your Pi setup**
+<img width="804" height="476" alt="image" src="https://github.com/user-attachments/assets/301d559e-2f6f-4059-965a-5598971882c3" />
 
+<img width="1062" height="926" alt="image" src="https://github.com/user-attachments/assets/e1ee59f4-a47e-43da-9c04-512eebd7bdaf" />
 ---
 
 ## Part C: Make Your Own
@@ -166,6 +168,8 @@ Replace this README with your documentation:
 
 **1. Project Description**
 - What does it do? Why interesting? User experience?
+
+- We made hot potato, but the game can be controlled by any sensor input that produces a json specified in hot_potato\PROTOCOL.md. It's interesting because you can use anything as an input, for example one of the controllers is a capacitive touch sensor + button, another is an IMU + button, another is a Joystick, and the last one we made was a rotary encoder!
 
 **2. Architecture Diagram**
 - Hardware, connections, data flow
