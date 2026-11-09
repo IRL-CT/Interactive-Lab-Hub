@@ -283,12 +283,144 @@ The web dashboard displays the shared pet, its three status values, and recent p
 - What surprised them?
 - What would they change?
 
+We tested Longan with two people who were not members of our project team:
+Yichen tested the Rest interaction, and Bowei tested the Feed interaction.
+Before each test, we briefly explained that three Raspberry Pis collaboratively
+care for the same virtual pet, but we did not demonstrate the gestures in
+advance.
+
+### Test 1: Rest — James
+
+James tested the Rest station by covering the APDS-9960 sensor with a hand.
+Before trying it, James expected the interaction to work like a button and was
+not sure how long the sensor needed to be covered.
+
+After covering the sensor for a few seconds, the Energy value increased on the
+shared dashboard. James was surprised that changing the light level on one
+physical device could immediately update the same virtual pet viewed by users
+on other devices.
+
+James suggested adding clearer instructions near the sensor, such as “Cover
+for 2–3 seconds,” as well as immediate visual feedback showing that the action
+had been detected.
+
+<img width="420"  alt="59028ce9ae6767f48ddec56a27442773" src="https://github.com/user-attachments/assets/eea3002f-1c6c-4a94-9a48-4bf863c46f7d" />
+
+
+*James covers the APDS-9960 sensor to help Longan rest and restore Energy.*
+
+### Test 2: Feed — Bowei
+
+Bowei tested the Feed station by showing a red or orange object to the
+APDS-9960 color sensor. Before trying it, Bowei understood that the object
+represented food but expected the interaction to affect only the local
+Raspberry Pi.
+
+Bowei was surprised that the Fullness value changed on the shared dashboard
+and that all three devices were contributing to one persistent pet. The
+connection between the physical color card and the virtual feeding action was
+easy to understand after the first successful attempt.
+
+Bowei suggested providing a dedicated food card with a stronger, more
+consistent color. Bowei also wanted the station to provide clearer confirmation,
+such as a sound, animation, or “Longan has been fed” message immediately after
+the color is recognized.
+
+<img width="420"  alt="91d70c38607c49e0ece7f251c81d30cf" src="https://github.com/user-attachments/assets/49c5fe48-0f34-406f-8469-1f0212459499" />
+
+
+*Bowei presents a colored object to the Feed sensor while monitoring Longan’s
+shared status.*
+
+
+### Findings
+
+Both participants understood the shared-pet concept after completing one
+interaction. The most surprising part was that a physical action on one Pi
+updated the same pet across multiple devices through MQTT. However, neither
+interaction clearly communicated when the sensor had successfully detected an
+action. Based on the tests, we would add:
+
+- Short instructions beside each sensor.
+- Immediate visual or audio confirmation after detection.
+- More forgiving sensor thresholds.
+- Dedicated physical props for Feed, Play, and Rest.
+
 **5. Reflection**
-- What worked well?
-- Challenges with distributed interaction?
-- How did sensor events work?
-- What would you improve?
-- Where did computation happen in your system, and why there? (If you used a language model: did it run on every event, or only at setup?)
+### What Worked Well
+
+The MQTT publish/subscribe model worked well for connecting three independent
+Raspberry Pis. Each station had a clear responsibility—Feed, Play, or Rest—but
+all three affected the same virtual pet. Updates appeared on the shared
+dashboard quickly, which made the devices feel like parts of one system rather
+than three separate projects.
+
+Dividing the interaction into three care activities also encouraged
+collaboration. One player could not maintain every pet attribute alone. The
+team needed to coordinate in order to keep Fullness, Happiness, and Energy
+above the target values.
+
+### Challenges with Distributed Interaction
+
+The main challenge was keeping multiple devices synchronized over the network.
+Every Pi needed a working Wi-Fi connection, the same MQTT topic prefix, and the
+correct broker credentials. If the pet engine, MQTT connection, or one sensor
+station stopped running, part of the experience became unavailable.
+
+It was also difficult to make sensor events reliable. Lighting conditions
+affected the color and ambient-light readings, while the APDS-9960 gesture
+recognition sometimes failed to detect a left or right movement. We added
+cooldowns to prevent one physical action from publishing multiple events and
+used proximity detection as a more reliable alternative for the Play station.
+
+### How the Sensor Events Worked
+
+Each Pi converted a physical sensor reading into a higher-level care event:
+
+- The Feed station detected a red or orange object and published a Feed event.
+- The Play station detected a hand gesture or proximity interaction and
+  published a Play event.
+- The Rest station detected that the sensor had been covered and published a
+  Rest event.
+
+These stations did not directly change the pet’s values. They published events
+through MQTT, and the pet engine interpreted them. A valid Feed event increased
+Fullness, Play increased Happiness, and Rest increased Energy. Cooldowns and
+thresholds helped distinguish intentional actions from noise.
+
+### What We Would Improve
+
+We would add clearer feedback at each station. During user testing, participants
+were not always sure whether the sensor had detected their action. A sound,
+animation, LED, or confirmation message would make each interaction easier to
+understand.
+
+We would also improve automatic sensor calibration for different rooms,
+especially for the Rest station’s light threshold and the Feed station’s color
+recognition. A dedicated set of physical props would make the interactions more
+consistent. Finally, we would add stronger reconnection handling and save the
+pet state so that a temporary network or engine failure would not reset the
+experience.
+
+### Where Computation Happened
+
+Computation was divided between the sensor stations and one central pet engine.
+Each sensor Pi performed local processing to decide whether its physical input
+represented a valid Feed, Play, or Rest action. It then published a small MQTT
+event rather than continuously transmitting raw sensor data.
+
+The main pet-state computation happened in `pet_engine.py`, which ran on
+Jindi’s Raspberry Pi. The engine subscribed to all three action topics,
+updated Fullness, Happiness, and Energy, applied gradual decay, checked the
+win condition, and published the shared state. The dashboards subscribed to
+this state and displayed it without independently changing the values.
+
+We chose a single state engine to avoid three Pis calculating conflicting
+versions of the same pet. This made synchronization and debugging simpler,
+although it also created a single point of failure. A future version could
+persist state or support a backup engine. We did not use a language model in
+this project; all interactions were processed with explicit sensor thresholds
+and deterministic rules.
 
 ---
 
