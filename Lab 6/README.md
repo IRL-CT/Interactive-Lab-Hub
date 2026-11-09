@@ -183,6 +183,37 @@ Replace this README with your documentation:
 
 Rotary Encoder
 <img width="519" height="437" alt="image" src="https://github.com/user-attachments/assets/7f37ddaf-0d4f-4c4a-a132-66dd88994825" />
+```try:
+    while True:
+        # negate the position to make clockwise rotation positive
+        raw = -encoder.position
+
+        if last_raw is None:
+            last_raw = raw
+
+        # clamp the tracked angle so it caps at -10 (right) and 10 (left)
+        angle = max(MIN_ANGLE, min(MAX_ANGLE, angle + (raw - last_raw)))
+        last_raw = raw
+
+        direction = direction_for_angle(angle)
+        game.aim(direction)
+        if direction != last_direction:
+            last_direction = direction
+            print("Direction: {}".format(direction))
+
+        if button_edge(not knob_button.value):   # encoder button is active-low
+            game.press()
+
+        time.sleep(0.01)
+```
+This little loop is what lets a person play the Hot Potato game using a physical knob. Turning the knob left or right aims the potato in that direction, and pressing the knob throws or catches it. The screen also shows what's happening in the game. Every 10 milliseconds it checks the knob and button, updates the game, and only announces a change when you actually turn to a new direction.
+
+- IDD/hotpotato/player/<name>/action — sent out when the player turns/presses (throw, catch, join, leave). The server listens here.
+- IDD/hotpotato/player/<name>/state — received so the Pi knows what to show on screen (who holds the potato, timers, etc.).
+- IDD/hotpotato/player/<name>/error — received if the server rejects a move.
+- IDD/hotpotato/game — the shared game status; the server publishes it here and also listens here (e.g., for game start/stop).
+- IDD/hotpotato/events — received game event announcements from the server.
+
 
 
 **4. User Testing**
