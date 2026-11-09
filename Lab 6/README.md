@@ -173,6 +173,9 @@ Replace this README with your documentation:
 - Hardware, connections, data flow
 - Label input/computation/output
 
+  <img width="742" height="507" alt="image" src="https://github.com/user-attachments/assets/47dcf81c-5efd-4af0-879a-4cfe0914826c" />
+
+
 **3. Build Documentation**
 - Photos of each Pi + sensors
 - MQTT topics used
