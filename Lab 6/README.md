@@ -2,8 +2,6 @@
 
 **Xiaowei David Zhang Chen, Amy Gao, Alexander Yen, Viktor Radev**
 
-For submission, replace this section with your documentation!
-
 ---
 
 ## Prep
@@ -23,6 +21,9 @@ Build interactive systems where **multiple devices communicate over a network** 
 ---
 
 ## Part A: MQTT Messaging
+
+<details>
+	<summary><strong>Part A Details (Click to Expand)</strong></summary>
 
 MQTT = lightweight messaging for IoT. Publish/subscribe model with central broker.
 
@@ -56,7 +57,11 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'H
 
 **🔧 Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
 
+MQTT agrees on almost nothing in advance: you invent the topics and what the messages mean. Smart-home standards like Matter fix the vocabulary instead (every "light" behaves the same). Keep this trade-off in mind when you design your topics in Part C.
+
 ![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
+
+</details>
 
 **💡 Brainstorm 5 ideas for messaging between devices**
 - Traffic Light: Pi 1 is connected to a button, so whenever an user presses it, Pi 1 sends a signal/message to Pi 2, which will then change the color of the LED from green to red to stop the traffic. Pi 3 also receives the same message and displays a walking signal for pedestrians.
@@ -65,11 +70,12 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'H
 - Distributed Drawing Game: Pi1 controls the brush position, Pi2 selects the colors, and Pi3 controls brush size, drawing or erasing.
 - Overcooked: Pi1 selects ingredients, Pi2 controls cooking temperature, and Pi3 controls mixing and serving.
 
-MQTT agrees on almost nothing in advance: you invent the topics and what the messages mean. Smart-home standards like Matter fix the vocabulary instead (every "light" behaves the same). Keep this trade-off in mind when you design your topics in Part C.
-
 ---
 
 ## Part B: Collaborative Pixel Grid
+
+<details>
+	<summary><strong>Part B Details (Click to Expand)</strong></summary>
 
 Each Pi = one pixel, controlled by RGB sensor, displayed in real-time grid.
 
@@ -130,6 +136,8 @@ Hold colored objects near sensor to change your pixel!
 
 ![Pixel grid with two devices](imgs/two-devices-grid.png)
 
+</details>
+
 **📸 Include: Screenshot of grid + photo of your Pi setup**
 
 ![Grid](screencolors.png)
@@ -138,6 +146,9 @@ Hold colored objects near sensor to change your pixel!
 ---
 
 ## Part C: Make Your Own
+
+<details>
+	<summary><strong>Part C Details (Click to Expand)</strong></summary>
 
 **Requirements:**
 - 3+ people, 3+ Pis
@@ -164,6 +175,8 @@ Hold colored objects near sensor to change your pixel!
 - Other Pis turn that sentence into light or sound
 
 **Others:** Games, presence display, mood ring
+
+</details>
 
 ### Deliverables
 
