@@ -1,0 +1,3 @@
+-r requirements.txt
+# Optional integration tests only; NOT required on a Pi for the actual game.
+amqtt==0.12.1
