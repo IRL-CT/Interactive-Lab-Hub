@@ -18,8 +18,9 @@
 
 ## Lab Overview
 Team: <canvas group name>  
-Members: Full Name (netid, github-handle), ...  
-Project name: <name>
+Fall2026
+Members: Pallavi Srinivas (ps2269), Pallavi Khanna (pk633), Abiola Bolaji (ab3394)
+Project name: Snack Locker
 
 
 For lab this week, we focus on both sensing and actuation, bringing new modes of input and output into your devices, while also prototyping the physical structure and overall look of the device. You will consider how the physical form supports sensing and actuation, and how these elements come together to shape the interaction and aesthetics of the device.
@@ -285,13 +286,38 @@ As you develop your Feast Automata concept, consider where the sensor and actuat
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
 
+<img src="sketches_1-3.jpg" width="800" />
+
+1. **Senses hand approaching:** a sensor on the side of the snack bowl detects a hand reaching toward it.
+2. **Red LED warning:** a red LED flashes when the wrong person approaches the snack.
+3. **"HANDS OFF!" sign:** when the device detects the wrong hand, a servo motor flips up a "HANDS OFF!" sign.
+
+<img src="sketch_4.jpg" height="300" /> <img src="sketch_5.jpg" height="300" />
+
+4. **Opening lid:** when the device detects the right hand, a servo opens the container's lid so the user can eat ("enjoy!").
+5. **Combination snack locker:** the user has to enter the correct combination on a keypad to open the locker. A wrong combination gets "Wrong combination, no snack!"
+
+**\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
+
+These sketches raise the question of whether this is only a sensing device or a container that actually holds the user's food. A sensor on its own doesn't do much more than a motion detector. It only becomes useful if the sensing controls access to the snack. To answer that, I needed to physically prototype:
+- A door that the servo can rotate open and closed, to see if it moves reliably and clearly shows whether the user is allowed in.
+- Where the sensor goes on the container, so it picks up a hand reaching for the snack without triggering on everything nearby.
+- How the user gets feedback (LED, sign, or screen) that tells them whether they're allowed in.
+
+
+
 **\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
 
 **\*\*\*Pick one design to prototype and explain why.\*\*\***
 
+We chose to build on **sketches 1–3**. A sensor beside the snack detects a hand approaching (sketch 1). The wrong person gets a warning, like the red LED in sketch 2 and the "HANDS OFF!" sign in sketch 3. In our prototype the warning appears on the OLED, and the servo's job is a door. When the right hand reaches in, the servo rotates the door open. When a second hand shows up, the door swings shut and the screen says "THIS IS NOT YOUR SNACK!" We chose these sketches because together they cover the full interaction: sense the hand, decide whether it's allowed, and respond physically. Each piece is simple to build with the proximity sensor, servo, and OLED from this lab. The rotating door makes the device more than a motion detector, because it actually controls access to the snack.
+
 Build a cardboard or other low-fidelity physical prototype of your design.
 
 **\*\*\*Document your rough prototype with photos and/or video.\*\*\***
+
+- [Rough prototype video 1](https://github.com/user-attachments/assets/76d3ac25-d530-46d7-adb4-6fac8fdd0a95)
+- [Rough prototype video 2](https://github.com/user-attachments/assets/10983fee-52f5-48ae-a76a-571c84895aa5)
 
 ---
 
@@ -329,36 +355,41 @@ Iterate on the sensing, movement, and physical form, and document what you disco
 
 See encoder_accel_servo_dashboard.py in the Lab 4 folder for an optional example of chaining together three devices.
 
-**`Lab 4/encoder_accel_servo_dashboard.py`**
+### Snack Locker
 
-#### Example Application: Windmill Coaster
+**Code:** [snack_guard.py](snack_guard.py)
 
-Now that you have explored both sensing and actuation, here is a simple example that combines the two.
+**Videos of Snack Locker:**
+- [Snack Locker video 1](https://drive.google.com/file/d/1_mpfoVjXOn37RH_Xh_lbrNQz1X_Jteo0/view?usp=sharing)
+- [Snack Locker video 2](https://drive.google.com/file/d/1TFaGe9iqzKjeyoY8Z7HTb4fAtV-pXrxk/view?usp=sharing)
+- [Snack Locker video 3](https://drive.google.com/file/d/1ohxB6HZLU9QFHRhHLbHmyhN7Tvn9Cg_0/view?usp=sharing)
 
-The **Windmill Coaster** uses a Qwiic distance/proximity sensor to detect when a cup is placed on a coaster. When the cup is detected, a servo motor animates a small windmill by sweeping it back and forth, turning an ordinary action during drinking into a playful physical interaction.
+**How sensing and actuation are connected:**
 
-<p align="center">
-    <img src="windmill_coaster11.gif" alt="Windmill Coaster Demo" width="400"/>
-</p>
+```
+VCNL4040 proximity sensor ──► Raspberry Pi (snack_guard.py) ──► Servo pHAT ──► servo rotates door open/closed
+                                         │
+                                         └──► Qwiic OLED ──► "Hi Enjoy Your Snack!" / "THIS IS NOT YOUR SNACK!"
 
-
-This example demonstrates a simple interaction pipeline:
-
-**cup placed → distance sensor detects cup → servo actuates windmill**
-
-Connect the Qwiic distance sensor to the Pi and connect the servo to Channel 0 of the Servo pHAT. Make sure the Servo pHAT is powered through its USB-C connection.
-
-Run the example script:
-
-```bash
-python windmill_coaster.py
+reading < 1      → nothing there: door closed, screen blank
+reading 1–10     → one hand: door rotates open 90°, holds 5 s, then closes slowly
+reading > 10     → more than one hand: door closes right away, warning on screen
 ```
 
-The script continuously reads the proximity value from the distance sensor. When the value passes a threshold, the servo begins animating the windmill. When the cup is removed, the servo stops and returns to its resting position.
+**How does your chosen sensor or input shape the physical response?**
+The VCNL4040 proximity sensor gives a number that gets bigger as more stuff is in front of it. A reading of 1–10 counts as one hand, so the servo rotates the door open and the OLED says "Hi Enjoy Your Snack!" A reading above 10 means more than one hand (someone else is reaching in), so the door swings shut right away and the screen says "THIS IS NOT YOUR SNACK!" Since the sensor only measures how close and how much is in front of it, the response is based on how many hands are there, not on who they belong to.
 
-You may need to adjust `CUP_THRESHOLD` in [`windmill_coaster.py`](windmill_coaster.py) depending on the size of your cup and the physical placement of the sensor. You can run `qwiic_distance.py` first to compare readings with and without a cup.
+**How does the physical arrangement of the sensor and actuator change the interaction?**
+The sensor is mounted on the side of the snack bowl, where a hand naturally reaches. The servo is attached to the door right next to it, so the door opens exactly where the hand is already reaching. Keeping the sensor, door, and screen close together makes cause and effect obvious: reach toward the snack, the door opens, and the message appears.
 
-Use this example as a starting point. Change the sensor, movement, physical form, or dining interaction to create your own Feast Automata variation.
+**What thresholds, timing, or movement patterns make the interaction feel clear or playful?**
+- Thresholds: 1–10 opens the door, above 10 triggers the warning, and below 1 clears the screen.
+- The door opens one degree at a time (about 1.8 s to go 90°). It feels like the door is welcoming you instead of snapping open.
+- The door stays open for 5 seconds so the user has time to grab a snack, then closes even more slowly.
+- The sensor keeps being read while the door moves, so a second hand can swing it shut mid-motion. That's the playful "caught you" moment.
+
+**What changes when you adjust the sensor placement or servo motion?**
+If the sensor is too close to the door or angled up, the moving door or the snack itself can change the reading and trigger it by accident. Placing it farther from where people naturally reach makes it miss hands. Making the servo faster made the door feel abrupt and startling. Making it slower made it feel more deliberate and friendly, but if the close is too slow, someone else can still sneak a snack in.
 
 #### Optional Extensions
 
