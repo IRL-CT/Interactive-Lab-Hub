@@ -1,7 +1,7 @@
 # Distributed Interaction
 
 **NAMES OF COLLABORATORS HERE**
-
+Alex Yen, David Zhang, Amy Gao, Viktor Radev
 For submission, replace this section with your documentation!
 
 ---
@@ -333,7 +333,9 @@ The controller also handles hardware problems. If the Qwiic Button isn’t found
 **4. User Testing**
 - **Test with 2+ people NOT on your team**
 - Photos/video of use
+- https://drive.google.com/file/d/1n89saDSGryIiYQgeSSRaj4L1D7J9EEE0/view?usp=sharing
 - What did they think before trying?
+- 
 - What surprised them?
 - What would they change?
 
