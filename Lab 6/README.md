@@ -251,23 +251,28 @@ The state message is retained by the broker, so a device that reconnects can rec
 
 Sensor Detection — sensor_triggers.py
 
+<img width="750" height="195" alt="截屏2026-11-08 下午7 35 55" src="https://github.com/user-attachments/assets/527cde57-91ad-45d8-bed5-616afd5331ab" />
+
+
 For the feeding interaction, we compare normalized RGB values to detect red or orange objects. We also added stable detection, release detection, and cooldowns to prevent the same physical action from being triggered repeatedly. This was important because the sensor continuously collects data, but we only want one feeding action each time the user shows a card.
 
 Game Logic — pet_logic.py
 
+<img width="724" height="306" alt="截屏2026-11-08 下午7 36 30" src="https://github.com/user-attachments/assets/416a9d21-7fb2-4d21-821a-c92fe3c8ae47" />
+
+
 The game logic handles all changes to the pet's status. Each valid care action increases the corresponding value by 20, with a maximum of 100. The values also decrease over time, so the players need to continue taking care of the pet. The code checks whether all three values meet the target and whether they remain there long enough to win.
 
 MQTT Communication — station.py and mqtt_client.py
+
+<img width="765" height="232" alt="截屏2026-11-08 下午7 37 13" src="https://github.com/user-attachments/assets/f50ad116-40a8-4671-87e8-ff4ab6d53848" />
+
 
 We use MQTT to send sensor events between the three devices and the central game engine. Each action is published to its corresponding topic, and the game engine broadcasts updated pet information. We also added event IDs and duplicate detection to avoid applying the same action multiple times.
 
 Visualization — dashboard.py and display.py
 
 The web dashboard displays the shared pet, its three status values, and recent player activity. Instead of calculating the game rules again, the dashboard receives the latest state and updates the interface. The Mini PiTFT provides an additional way to see the pet's status and receive feedback after an interaction.
-
-Simulation Mode
-
-Since our team worked remotely, we included a simulation mode that allows us to test all three roles without needing all three physical devices at the same time. Simulated actions follow the same MQTT communication process as real sensor events. This helped us develop and debug the system before integrating the three Raspberry Pis.
 
 
 
