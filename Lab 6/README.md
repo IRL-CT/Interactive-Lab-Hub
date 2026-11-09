@@ -176,8 +176,18 @@ It also encourages users to communicate with their friends about how they are fe
 - Label input/computation/output
 
 **3. Build Documentation**
-- Photos of each Pi + sensors
+Each Pi was setup with a proximity/gesture sensor:
+<img width="198" height="266" alt="Screenshot 2026-11-08 at 9 55 47 PM" src="https://github.com/user-attachments/assets/a0c28760-f077-407f-8029-88e31d458750" />
+The webpage showed the colors of the two users (the left circle demonstrated the left user’s mood and the right circle demonstrated the right user’s mood)
+<img width="622" height="346" alt="Screenshot 2026-11-08 at 9 55 54 PM" src="https://github.com/user-attachments/assets/6c370fae-337f-4d20-ad76-18df315f18cc" />
+
 - MQTT topics used
+```bash
+TEAM = os.environ.get('MOODRING_TEAM', 'moodring')
+COLOR_TOPIC = f'IDD/{TEAM}/colors'
+IDD/moodring/colors
+```
+
 - Code snippets with explanations
 ```bash
 def snapshot():
@@ -203,6 +213,7 @@ def snapshot():
     ]
     return {'count': count, 'average': average, 'devices': live}
 ```
+This code snippet contains the main mechanism that is averaging the RGB values across all of the Pi’s that are connected to the Mood Ring server. By deriving the live RGB values of all of the devices that are providing input, the live [averaged] RGB values of the singular color of the Mood Ring change in response to its environment. 
 
 **4. User Testing**
 - **Test with 2+ people NOT on your team**
