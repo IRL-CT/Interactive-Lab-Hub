@@ -249,7 +249,8 @@ if click(button == 0):
 ```
 
 IMU Controller:
-![Uploading image.png…]()
+<img width="3686" height="3024" alt="image" src="https://github.com/user-attachments/assets/3fb4f880-02a7-45dd-8914-cc05a64e52dd" />
+
 
 For this Pi controller, three components are used: the ST LSM6DS3 IMU to detect tilting movements to select another player; SparkFun Qwiic Button to throw, catch, or start the game depending on the current game state; and the miniPiTFT display to show the game status, selected target, countdown, and feedback.
 Both the IMU and button communicate with the Pi through I2C.
