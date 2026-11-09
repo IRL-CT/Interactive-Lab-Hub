@@ -176,7 +176,7 @@ Replace this README with your documentation:
 - Photos of each Pi + sensors
 - MQTT topics used
 - Code snippets with explanations
-'''bash
+```bash
 def snapshot():
     """Average the Pis that published within STALE_SECONDS."""
     now = time.time()
@@ -199,7 +199,7 @@ def snapshot():
         sum(item['b'] for item in live) // count,
     ]
     return {'count': count, 'average': average, 'devices': live}
-'''
+```
 
 **4. User Testing**
 - **Test with 2+ people NOT on your team**
