@@ -1,6 +1,9 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+Yangchen Jin(yj645)
+Yan Shen(ys2473)
+Simin Xu(sx333)
+Flora Zhang(
 
 For submission, replace this section with your documentation!
 
