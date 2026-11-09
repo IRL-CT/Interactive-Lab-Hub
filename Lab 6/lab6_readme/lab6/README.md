@@ -288,3 +288,6 @@ Each Pi turns continuous sensor readings into a few discrete events before anyth
 
 **Where did computation happen, and why there?**
 Sensor processing happens on each Pi, because each sensor is different and only that Pi knows how to read it. Game logic (legal throws, timers, explosions, scores) happens on the laptop server, because the game needs one authoritative state that all players agree on; if each Pi ran its own copy of the rules, they could disagree about who was holding the potato when it exploded. We did not use a language model; every event is handled by plain code, which keeps the game fast enough for quick catches.
+
+
+AI USE - Claude helped with programming, formatting the content, and provided insights on how to make the server work. However, our team had the final say in what project we wanted to build, the characteristics of the game, and we had external players try it to find feedback on what can be improved.
