@@ -198,6 +198,7 @@ This code snippet contains the main mechanism that is averaging the RGB values a
 **4. User Testing**
 - **Test with 2+ people NOT on your team**
 - Photos/video of use
+
 Initially, when we asked the users to try, they were not sure what to do and asked for clarification as the interface only demonstrated the users’ moods and a large circle demonstrating the combined colors. At the same time, they were intrigued by the combined color of all the users and how certain colors overpowered others. This could help start conversations and encourage individuals to communicate their feelings with long-distance partners or friends, strengthening relationships. One thing they recommended to change was adding more instructions on the interface to indicate how to operate the interaction.
 
 
