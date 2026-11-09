@@ -127,6 +127,18 @@ Hold colored objects near sensor to change your pixel!
 
 **📸 Include: Screenshot of grid + photo of your Pi setup**
 
+### Part B submission
+
+The live grid shows two independently updating pixels: the Raspberry Pi's
+APDS-9960 color sensor publisher and a browser-based controller simulator.
+
+![Collaborative Pixel Grid showing two active colors](imgs/part-b-pixel-grid.png)
+
+The Raspberry Pi is connected to an Adafruit APDS-9960 color/proximity sensor
+over Qwiic/I²C; the Pi display shows the published MQTT color payload.
+
+![Raspberry Pi connected to the APDS-9960 sensor](imgs/part-b-pi-apds9960.jpg)
+
 ---
 
 ## Part C: Make Your Own
