@@ -220,6 +220,71 @@ This little loop is what lets a person play the Hot Potato game using a physical
 - IDD/hotpotato/game — the shared game status; the server publishes it here and also listens here (e.g., for game start/stop).
 - IDD/hotpotato/events — received game event announcements from the server.
 
+Joystick Implementation
+<img width="3686" height="3024" alt="image" src="https://github.com/user-attachments/assets/e7a5010c-c34e-41de-b5ed-80dfcd285ce2" />
+
+For the joystick-controlled Raspberry Pi, we used a SparkFun Qwiic Joystick connected through I2C.
+The joystick provides horizontal and vertical values, along with a button state.
+We mapped three joystick movements to game directions:
+
+Move up → Forward
+Move left → Left
+Move right → Right
+Press joystick → Throw, catch, or start, depending on the current game state
+The code below reads the joystick values and translates them into actions:
+```
+x = read_register(0x03)
+y = read_register(0x05)
+button = read_register(0x07)
+
+if x > 220:
+    game.aim("forward")
+elif y < 40:
+    game.aim("left")
+elif y > 220:
+    game.aim("right")
+
+if click(button == 0):
+    game.press()
+```
+
+IMU Controller:
+![Uploading image.png…]()
+
+For this Pi controller, three components are used: the ST LSM6DS3 IMU to detect tilting movements to select another player; SparkFun Qwiic Button to throw, catch, or start the game depending on the current game state; and the miniPiTFT display to show the game status, selected target, countdown, and feedback.
+Both the IMU and button communicate with the Pi through I2C.
+The controller uses the shared PotatoClient class from pi_client.py to communicate with the central game server through MQTT. These are the topics used:
+
+
+IDD/hotpotato/player/david/action: Sends actions such as join, throw, catch, and start.
+IDD/hotpotato/player/david/state: Receives game-state updates from the server.
+IDD/hotpotato/player/david/error: Receives feedback when an action is rejectedSo for example, when you tilt left and press the button while holding the potato, the client publishes {“action”: “throw”, “dir”: “left”}. The server processes it and updates the game state.
+
+
+We first calibrated the IMU by collecting accelerometer readings while keeping the Pi flat, and then for tilt detection, we used acceleration thresholds to detect four directions:
+def detect_tilt(x, y):
+if x > TILT_THRESHOLD:
+return “left”
+elif x < -TILT_THRESHOLD:
+return “right”
+elif y < -TILT_THRESHOLD:
+return “forward”
+elif y > TILT_THRESHOLD:
+return “down”
+return None
+
+When the player is holding the potato, the IMU allows them to select a target by tilting the Pi. Tilting down cancels the current selection.
+if mode == “holding”:
+if direction != last_direction:
+if direction in (“left”, “right”, “forward”):
+game.aim(direction)
+elif direction == “down”:
+game.aim_dir = None
+game.flash(“selection cleared”)
+
+Finally, the button performs different actions depending on the game state: holding (throw potato), incoming (catch potato), and lobby/game over (start/restart the game):
+if button_edge(button.is_button_pressed()):
+game.press()
 
 
 **4. User Testing**
