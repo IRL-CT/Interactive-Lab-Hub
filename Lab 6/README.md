@@ -188,14 +188,88 @@ Replace this README with your documentation:
 **1. Project Description**
 - What does it do? Why interesting? User experience?
 
+## 1. Project Description
+
+### Shared Virtual Pet — Longan
+
+For this lab, we designed **Shared Virtual Pet**, a cooperative virtual pet game where three players use Raspberry Pis to take care of the same pet remotely. We wanted to explore how multiple physical devices could work together to create a shared experience, even when the users are in different locations. Instead of having each person interact with their own device independently, we wanted their actions to contribute to the same goal.
+
+In our game, each player is responsible for one of the pet's needs: feeding, playing, or resting. We used three APDS-9960 sensors with different types of input. The first player shows a red or orange card to feed the pet, the second player swipes their hand over the sensor to play with it, and the third player covers the sensor to help it rest. These actions are sent through MQTT and update the pet's Fullness, Happiness, and Energy. Players can see the pet's current status through a shared dashboard and their Raspberry Pi displays.
+
+The three values gradually decrease over time, so players need to cooperate to keep the pet healthy and happy. The goal is to raise all three values to at least 70 and maintain them for 10 seconds. Since each player can only control one activity, no one can complete the game alone. We think this makes the project interesting because simple sensor interactions become part of a larger shared experience, encouraging communication and cooperation between remote players.
+
 **2. Architecture Diagram**
 - Hardware, connections, data flow
 - Label input/computation/output
 
+<img width="2218" height="732" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/5f3b6676-2d6a-4c52-bcdf-a01d83c7102b" />
+
+Each Raspberry Pi collects input from an APDS-9960 sensor and sends an event to the MQTT broker. The Pet Engine receives these events, calculates changes to the pet's status, and publishes the updated data back through MQTT. All three devices can then receive the same information and display the pet's current state.
+
+We chose to keep the main game computation in one Pet Engine instead of calculating the pet's status separately on each Pi. This helps prevent different devices from showing conflicting values and keeps the game synchronized. Since the devices communicate through a shared MQTT broker, players do not need to be connected to the same local network.
+
 **3. Build Documentation**
 - Photos of each Pi + sensors
+
+Our system uses three Raspberry Pi 5 devices, each connected to an APDS-9960 sensor and a Mini PiTFT display. We use the same sensor for all three devices, but each player uses a different sensing function.
+
+| Device | Role | Sensor Input | Action |
+|---|---|---|---|
+| Pi 1 | Feeding | RGB color detection | Showing a red/orange card feeds the pet |
+| Pi 2 | Playing | Gesture detection | Swiping a hand over the sensor plays with the pet |
+| Pi 3 | Resting | Ambient light detection | Covering the sensor for two seconds lets the pet rest |
+
+The APDS-9960 sensors communicate with the Raspberry Pis through I²C. Each Pi processes its sensor readings locally and sends the corresponding action through MQTT. The Mini PiTFT displays provide feedback about the pet's current state.
+
+We chose to use different sensing functions because we wanted each care activity to feel like a different physical interaction, rather than having all three players simply press a button.
+
+<img width="3024" height="4032" alt="IMG_1811" src="https://github.com/user-attachments/assets/b9abff26-5f3c-4993-aff4-ad0f29372307" />
+
+ 
 - MQTT topics used
+
+We used MQTT to connect the three Raspberry Pis. Each Pi publishes an event when its sensor detects a valid interaction. These messages are sent to a shared MQTT broker and received by our Pet Engine, which updates the pet's state.
+
+We organized our MQTT Topics under the project prefix `IDD/jindi-sharedpet-2026`.
+
+| MQTT Topic | Purpose |
+|---|---|
+| `IDD/jindi-sharedpet-2026/event/feed` | Sends feeding events from Pi 1 |
+| `IDD/jindi-sharedpet-2026/event/play` | Sends playing events from Pi 2 |
+| `IDD/jindi-sharedpet-2026/event/rest` | Sends resting events from Pi 3 |
+| `IDD/jindi-sharedpet-2026/control/reset` | Starts a new game |
+| `IDD/jindi-sharedpet-2026/state` | Broadcasts the updated pet state |
+
+The action messages include information such as the device ID, action type, and event ID. We use unique event IDs to avoid processing the same action more than once.
+
+Instead of letting each Pi calculate the pet's status separately, we use one central Pet Engine. It receives the actions from all three players, updates Fullness, Happiness, and Energy, and publishes the latest state back through MQTT. This helps keep all three devices synchronized.
+
+The state message is retained by the broker, so a device that reconnects can receive the most recently published pet status.
+
+
 - Code snippets with explanations
+
+Sensor Detection — sensor_triggers.py
+
+For the feeding interaction, we compare normalized RGB values to detect red or orange objects. We also added stable detection, release detection, and cooldowns to prevent the same physical action from being triggered repeatedly. This was important because the sensor continuously collects data, but we only want one feeding action each time the user shows a card.
+
+Game Logic — pet_logic.py
+
+The game logic handles all changes to the pet's status. Each valid care action increases the corresponding value by 20, with a maximum of 100. The values also decrease over time, so the players need to continue taking care of the pet. The code checks whether all three values meet the target and whether they remain there long enough to win.
+
+MQTT Communication — station.py and mqtt_client.py
+
+We use MQTT to send sensor events between the three devices and the central game engine. Each action is published to its corresponding topic, and the game engine broadcasts updated pet information. We also added event IDs and duplicate detection to avoid applying the same action multiple times.
+
+Visualization — dashboard.py and display.py
+
+The web dashboard displays the shared pet, its three status values, and recent player activity. Instead of calculating the game rules again, the dashboard receives the latest state and updates the interface. The Mini PiTFT provides an additional way to see the pet's status and receive feedback after an interaction.
+
+Simulation Mode
+
+Since our team worked remotely, we included a simulation mode that allows us to test all three roles without needing all three physical devices at the same time. Simulated actions follow the same MQTT communication process as real sensor events. This helped us develop and debug the system before integrating the three Raspberry Pis.
+
+
 
 **4. User Testing**
 - **Test with 2+ people NOT on your team**
