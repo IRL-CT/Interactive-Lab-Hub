@@ -212,6 +212,9 @@ Replace this README with your documentation:
 
 ## Optional Stretch: Self-Describing Devices
 
+<details>
+	<summary><strong>Optional Stretch Details (Click to Expand)</strong></summary>
+
 *For teams that finish early or want to try something harder. Not required.*
 
 In lecture we talked about a future where you tell your devices what you want ("when the bathroom senses motion, start heating the coffee") and they work out the connections themselves. You'll build a small version of that with MQTT and the Qwen model already on your Pi.
@@ -264,9 +267,13 @@ Then wire your real sensors and actuators to the topics in your descriptions (th
 - The rules the model produced, including at least one it got wrong
 - **How would a user notice that their devices had agreed on the wrong rule? How would they fix it?**
 
+</details> 
 ---
 
 ## Code Files
+
+<details>
+	<summary><strong>Code Files Details (Click to Expand)</strong></summary>
 
 **Server files:**
 - `app.py` - Pixel grid server (Flask + WebSocket + MQTT)
@@ -283,9 +290,14 @@ Then wire your real sensors and actuators to the topics in your descriptions (th
 - `templates/controller.html` - Color picker
 - `templates/mqtt_viewer.html` - Message viewer
 
+</details>
+
 ---
 
 ## Debugging Tools
+
+<details>
+	<summary><strong>Debugging Tools Details (Click to Expand)</strong></summary>
 
 **MQTT Message Viewer:** `http://farlab.infosci.cornell.edu:5001`
 - See all MQTT messages in real-time
@@ -298,9 +310,14 @@ Then wire your real sensors and actuators to the topics in your descriptions (th
 mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device@theFarm"
 ```
 
+</details>
+
 ---
 
 ## Troubleshooting
+
+<details>
+	<summary><strong>Troubleshooting Details (Click to Expand)</strong></summary>
 
 **MQTT:** Broker `farlab.infosci.cornell.edu:1883`, user `idd`, pass `device@theFarm`
 
@@ -310,6 +327,7 @@ mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device
 
 **Pi venv:** Make sure to activate: `source .venv/bin/activate`
 
+</details>
 
 ---
 
