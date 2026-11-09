@@ -42,6 +42,8 @@ sudo apt-get install -y mosquitto-clients
 
 **Test it:**
 
+<img width="860" height="458" alt="image" src="https://github.com/user-attachments/assets/72794da6-d7fb-4c5e-894f-de2ff10eb26a" />
+
 **Subscribe to messages (listener):**
 ```bash
 mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/#' -u idd -P 'device@theFarm'
