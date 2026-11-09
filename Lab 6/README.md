@@ -174,6 +174,12 @@ Replace this README with your documentation:
 - Label input/computation/output
 
   <img width="742" height="507" alt="image" src="https://github.com/user-attachments/assets/47dcf81c-5efd-4af0-879a-4cfe0914826c" />
+  <img width="2031" height="1206" alt="image" src="https://github.com/user-attachments/assets/4391c6f9-8dcd-429e-bc66-b4c0f1fc5bca" />
+  <img width="577" height="665" alt="image" src="https://github.com/user-attachments/assets/1fae28ff-4495-4336-8423-14530430955c" />
+  <img width="1448" height="1086" alt="image" src="https://github.com/user-attachments/assets/eb9dfbd6-2f2e-4a2e-9b99-4901f8044375" />
+
+
+
 
 
 **3. Build Documentation**
