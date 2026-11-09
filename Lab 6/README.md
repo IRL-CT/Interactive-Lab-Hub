@@ -287,6 +287,46 @@ Finally, the button performs different actions depending on the game state: hold
 if button_edge(button.is_button_pressed()):
 game.press()
 
+Capacitive Touch Sensor:
+<img width="509" height="613" alt="image" src="https://github.com/user-attachments/assets/c9057753-8c7c-4990-bc8d-1802b1d32d3c" />
+```
+try:
+while True:
+touched = touch.touched_pins            # one I2C read for all 12 pads
+for pad, direction in PADS.items():
+if touched[pad]:
+current_aim = direction
+if current_aim:
+game.aim(current_aim)               # re-applied every loop, so it's always set
+for pad in range(12):                   # helps spot wiring/numbering mix-ups
+if pad not in PADS and other_edgespad:
+print(f"[pads] pad {pad} touched - not used (aim pads are {sorted(PADS)})")
+
+    if button_edge(button.is_down()):
+        print(f"[button] press  (screen says: {game.mode}, aim: {game.aim_dir}, "
+              f"pads touched now: {[p for p in range(12) if touched[p]] or 'none'})")
+        game.press()
+
+    # LED cue
+    mode, st = game.mode, game.state
+    if mode == "incoming" and not st.get("caught"):
+        button.led("blink")                                      # CATCH!
+    elif mode == "holding":
+        button.led("solid" if game.aim_dir else "dim")           # solid when aimed
+    elif mode in ("lobby", "gameover"):
+        button.led("start")                                      # press to start
+    else:
+        button.led("off")
+
+    if button.errors and time.time() - last_error_report > 5:
+        print(f"[button] {button.errors} I2C read errors in the last few seconds (loose Qwiic cable?)")
+        button.errors = 0
+        last_error_report = time.time()
+
+    time.sleep(POLL)
+```
+
+
 
 **4. User Testing**
 - **Test with 2+ people NOT on your team**
