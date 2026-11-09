@@ -104,12 +104,7 @@ Data Flow:
 **3. Build Documentation**
 
 #### Pi 1: Capacitive Touch Controller (Viktor)
-
-<!-- SKETCH: touch controller (imgs/touch_sketch.png) -->
-<img src="imgs/touch_sketch.png" alt="Touch controller sketch" width="500">
-
-<!-- PHOTO: touch controller Pi (imgs/touch_pi.jpg) -->
-<img src="imgs/touch_pi.jpg" alt="Touch controller Pi" width="450">
+<img width="950" height="1212" alt="image" src="https://github.com/user-attachments/assets/cd2b1d34-1c35-424a-aec6-c05ca8cff9ba" />
 
 This controller uses three components: the Adafruit MPR121 capacitive touch sensor to select another player by touching one of three pads; the SparkFun Qwiic Button to throw, catch, or start the game depending on the current game state; and the miniPiTFT display to show the game status, selected target, countdown, and feedback. Both the touch sensor and the button connect to the Pi through I2C (Qwiic cables).
 
@@ -152,11 +147,7 @@ The controller also handles hardware problems. If the Qwiic Button is not found 
 
 #### Pi 2: Joystick Controller (Amy)
 
-<!-- SKETCH: joystick controller (imgs/joystick_sketch.png) -->
-<img src="imgs/joystick_sketch.png" alt="Joystick sketch" width="500">
-
-<!-- PHOTO: joystick Pi (imgs/joystick_pi.jpg) -->
-<img src="imgs/joystick_pi.jpg" alt="Joystick Pi" width="450">
+<img width="2267" height="2108" alt="image" src="https://github.com/user-attachments/assets/3a28869d-1c76-4768-9a9d-bd618e0ed680" />
 
 For the joystick-controlled Pi, we used a SparkFun Qwiic Joystick connected through I2C. The joystick provides horizontal and vertical values, along with a button state. We mapped three joystick movements to game directions:
 
@@ -187,11 +178,8 @@ if click(button == 0):
 
 #### Pi 3: Rotary Encoder Controller (Alex)
 
-<!-- SKETCH: rotary encoder controller (imgs/encoder_sketch.png) -->
-<img src="imgs/encoder_sketch.png" alt="Rotary encoder sketch" width="500">
+<img width="1038" height="874" alt="image" src="https://github.com/user-attachments/assets/2442ccf5-c658-4597-bb79-0dfe653e23d9" />
 
-<!-- PHOTO: rotary encoder Pi (imgs/encoder_pi.jpg) -->
-<img src="imgs/encoder_pi.jpg" alt="Rotary encoder Pi" width="450">
 
 This loop lets a person play the game using a physical knob. Turning the knob left or right aims the potato in that direction, and pressing the knob throws or catches it. The screen shows what is happening in the game. Every 10 milliseconds the loop checks the knob and button, updates the game, and only announces a change when you actually turn to a new direction.
 
@@ -223,11 +211,8 @@ while True:
 
 #### Pi 4: IMU Controller (David)
 
-<!-- DIAGRAM: IMU controller (imgs/imu_diagram.png) -->
-<img src="imgs/imu_diagram.png" alt="IMU diagram" width="500">
+<img width="3686" height="3024" alt="image" src="https://github.com/user-attachments/assets/91e57e8c-dc17-4066-9cdd-105cc2080d4f" />
 
-<!-- PHOTO: IMU Pi (imgs/imu_pi.jpg) -->
-<img src="imgs/imu_pi.jpg" alt="IMU Pi" width="450">
 
 This controller uses three components: the ST LSM6DS3 IMU to detect tilting movements to select another player; the SparkFun Qwiic Button to throw, catch, or start the game depending on the current game state; and the miniPiTFT display to show the game status, selected target, countdown, and feedback. Both the IMU and button communicate with the Pi through I2C.
 
