@@ -189,6 +189,22 @@ Replace this README with your documentation:
 - Hardware, connections, data flow
 - Label input/computation/output
 
+#### Software Diagram
+![SoftwareDiagram](pics/diagram.png)
+
+#### Rotary Encoder Diagram
+![RotaryEncoderDiagram](pics/diagramalex.png)
+
+#### IMU Diagram
+![IMUDiagram](pics/diagramdavid.png)
+
+#### Joystick Diagram
+![JoystickDiagram](pics/diagramamy.jpg)
+
+#### Capacitive Touch Sensor Diagram
+![TouchSensorDiagram](pics/diagramviktor.png)
+
+
 **3. Build Documentation**
 - Photos of each Pi + sensors
 - MQTT topics used
