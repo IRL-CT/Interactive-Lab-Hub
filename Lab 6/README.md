@@ -151,6 +151,9 @@ It also encourages users to communicate with their friends about how they are fe
 
 **3. Build Documentation**
 
+Video of Build
+https://drive.google.com/file/d/1wykvbs4ZpKpx3aWbcGs9hSafB7RIA_UC/view?usp=sharing
+
 Each Pi was set up with a proximity/gesture sensor:
 
 <img width="198" height="266" alt="Proximity/gesture sensor" src="https://github.com/user-attachments/assets/a0c28760-f077-407f-8029-88e31d458750" />
@@ -166,7 +169,8 @@ COLOR_TOPIC = f'IDD/{TEAM}/colors'
 IDD/moodring/colors
 ```
 
-- Code snippets with explanations
+Code Snippets
+
 ```bash
 def snapshot():
     """Average the Pis that published within STALE_SECONDS."""
