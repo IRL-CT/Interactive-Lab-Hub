@@ -181,6 +181,10 @@ Replace this README with your documentation:
 - MQTT topics used
 - Code snippets with explanations
 
+Rotary Encoder
+<img width="519" height="437" alt="image" src="https://github.com/user-attachments/assets/7f37ddaf-0d4f-4c4a-a132-66dd88994825" />
+
+
 **4. User Testing**
 - **Test with 2+ people NOT on your team**
 - Photos/video of use
