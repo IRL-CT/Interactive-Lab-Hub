@@ -194,6 +194,108 @@ Replace this README with your documentation:
 - MQTT topics used
 - Code snippets with explanations
 
+#### Rotary Encoder:
+
+This little loop is what lets a person play the Hot Potato game using a physical knob. Turning the knob left or right aims the potato in that direction, and pressing the knob throws or catches it. The screen also shows what’s happening in the game. Every 10 milliseconds it checks the knob and button, updates the game, and only announces a change when you actually turn to a new direction.
+- IDD/hotpotato/player//action: Sent out when the player turns/presses (throw, catch, join, leave). The server listens here.
+- IDD/hotpotato/player//state: Received so the Pi knows what to show on screen (who holds the potato, timers, etc.).
+- IDD/hotpotato/player//error: Received if the server rejects a move.
+- IDD/hotpotato/game: The shared game status; the server publishes it here and also listens here (e.g., for game start/stop).
+- IDD/hotpotato/events: Received game event announcements from the server.
+
+```
+while True:
+        # negate the position to make clockwise rotation positive
+        raw = -encoder.position
+
+        if last_raw is None:
+            last_raw = raw
+
+        # clamp the tracked angle so it caps at -10 (right) and 10 (left)
+        angle = max(MIN_ANGLE, min(MAX_ANGLE, angle + (raw - last_raw)))
+        last_raw = raw
+
+        direction = direction_for_angle(angle)
+        game.aim(direction)
+        if direction != last_direction:
+            last_direction = direction
+            print("Direction: {}".format(direction))
+
+        if button_edge(not knob_button.value):   # encoder button is active-low
+            game.press()
+
+        time.sleep(0.01)
+```
+  
+#### IMU + Qwiic Button:
+For this Pi controller, three components are used: the ST LSM6DS3 IMU to detect tilting movements to select another player; SparkFun Qwiic Button to throw, catch, or start the game depending on the current game state; and the miniPiTFT display to show the game status, selected target, countdown, and feedback.
+Both the IMU and button communicate with the Pi through I2C.
+
+The controller uses the shared PotatoClient class from pi_client.py to communicate with the central game server through MQTT. These are the topics used:
+- IDD/hotpotato/player/david/action: Sends actions such as join, throw, catch, and start.
+- IDD/hotpotato/player/david/state: Receives game-state updates from the server.
+- IDD/hotpotato/player/david/error: Receives feedback when an action is rejected
+So for example, when you tilt left and press the button while holding the potato, the client publishes {"action": "throw", "dir": "left"}. The server processes it and updates the game state.
+
+We first calibrated the IMU by collecting accelerometer readings while keeping the Pi flat, and then for tilt detection, we used acceleration thresholds to detect four directions:
+```
+def detect_tilt(x, y):
+    if x > TILT_THRESHOLD:
+        return "left"
+    elif x < -TILT_THRESHOLD:
+        return "right"
+    elif y < -TILT_THRESHOLD:
+        return "forward"
+    elif y > TILT_THRESHOLD:
+        return "down"
+    return None
+```
+
+When the player is holding the potato, the IMU allows them to select a target by tilting the Pi. Tilting down cancels the current selection.
+```
+if mode == "holding":
+    if direction != last_direction:
+        if direction in ("left", "right", "forward"):
+            game.aim(direction)
+        elif direction == "down":
+            game.aim_dir = None
+            game.flash("selection cleared")
+```
+
+Finally, the button performs different actions depending on the game state: holding (throw potato), incoming (catch potato), and lobby/game over (start/restart the game):
+```
+if button_edge(button.is_button_pressed()):
+    game.press()
+```
+
+#### Joystick:
+
+For the joystick-controlled Raspberry Pi, we used a SparkFun Qwiic Joystick connected through I2C. The joystick provides horizontal and vertical values, along with a button state. We mapped three joystick movements to game directions:
+- Move up → Forward
+- Move left → Left
+- Move right → Right
+- Press joystick → Throw, catch, or start, depending on the current game state
+
+The code below reads the joystick values and translates them into actions:
+```
+x = read_register(0x03)
+y = read_register(0x05)
+button = read_register(0x07)
+
+if x > 220:
+    game.aim("forward")
+elif y < 40:
+    game.aim("left")
+elif y > 220:
+    game.aim("right")
+
+if click(button == 0):
+    game.press()
+```
+
+
+
+
 **4. User Testing**
 - **Test with 2+ people NOT on your team**
 - Photos/video of use
