@@ -193,7 +193,25 @@ def snapshot():
     ]
     return {'count': count, 'average': average, 'devices': live}
 ```
-This code snippet contains the main mechanism that is averaging the RGB values across all of the Pi’s that are connected to the Mood Ring server. By deriving the live RGB values of all of the devices that are providing input, the live [averaged] RGB values of the singular color of the Mood Ring change in response to its environment. 
+This code snippet contains the function snapshot which implements main mechanism that is averaging the RGB values across all of the Pi’s that are connected to the Mood Ring server. By deriving the live RGB values of all of the devices that are providing input, the live [averaged] RGB values of the singular color of the Mood Ring change in response to its environment. 
+
+```bash
+while True:
+        if sensor is None:
+            red, green, blue = fake_color
+        else:
+            raw_red, raw_green, raw_blue, _clear = sensor.color_data
+            red, green, blue = scale_sensor_color(raw_red, raw_green, raw_blue)
+
+        payload = json.dumps({
+            'id': device_id,
+            'r': red,
+            'g': green,
+            'b': blue,
+            'timestamp': int(time.time()),
+        })
+```
+The while True loop in mood_ring_publisher.py receives the live color data the user provides the sensor. The loop then converts these values into usable RGB values so that they can be provided to the server script. As stated previously, these RGB values are averaged across all connected Pi’s to provide the color of the Mood Ring.
 
 **4. User Testing**
 - **Test with 2+ people NOT on your team**
