@@ -3,8 +3,8 @@
 **Team**
 - Viktor Radev - https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub/
 - Alex Yen - https://github.com/Alexyen04/Alex-Yen-Interactive-Lab-Hub/
-- Amy - https://github.com/zg375/Interactive-Lab-Hub
-- David - https://github.com/davidzhanggg/Interactive-Lab-Hub/tree/Fall2026/Lab%206
+- Ziqiao Gao - https://github.com/zg375/Interactive-Lab-Hub
+- David Zhang - https://github.com/davidzhanggg/Interactive-Lab-Hub/tree/Fall2026/Lab%206
 
 ---
 
