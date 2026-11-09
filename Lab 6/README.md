@@ -148,6 +148,12 @@ Hold colored objects near sensor to change your pixel!
 
 **Ideas:**
 
+1. **Break vote light:** Each person waves in front of their own sensor to vote. Once everyone has voted, the Pi in the middle announces "Break time!"
+2. **RGB color mixing together:** Three Pis each control one part of the color (red, green, or blue). The three people use their sensors to work together and match a target color shown on a web page.
+3. **Color relay:** The first Pi detects a color and sends it out. The next person has to find an object with a similar color and get their sensor to recognize it, then pass it on to the next person.
+4. **Tug of war over the air:** Two Pis count how many times each team waves and send the counts over MQTT to the Pi in the middle. A servo on the middle Pi turns toward whichever team is ahead.
+5. **Combination lock:** Three Pis each check one condition: a certain color, a knob
+
 **Sensor Fortune Teller**
 - Each Pi sends 0-255 from different sensor
 - Server generates fortunes from combined values
