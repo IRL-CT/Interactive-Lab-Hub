@@ -1,8 +1,7 @@
 # Distributed Interaction
 
 **NAMES OF COLLABORATORS HERE**
-Alex Yen, David Zhang, Amy Gao, Viktor Radev
-For submission, replace this section with your documentation!
+Alex Yen, [David Zhang](https://github.com/davidzhanggg/Interactive-Lab-Hub/tree/Fall2026/Lab%206), [Amy Gao](https://cornelltech.slack.com/archives/C0CF90Z89HB/p1794192856369259), [Viktor Radev](https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub/)
 
 ---
 
