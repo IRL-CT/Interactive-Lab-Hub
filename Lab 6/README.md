@@ -1,9 +1,12 @@
 # Distributed Interaction
 
-Alex Yen, Viktor Radev, David Zhang, Ziqiao Gao
+Viktor Radev - https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub/
 
-For submission, replace this section with your documentation!
+Alex Yen - https://github.com/Alexyen04/Alex-Yen-Interactive-Lab-Hub/
 
+Ziqiao Gao - https://github.com/zg375/Interactive-Lab-Hub
+
+David Zhang - https://github.com/davidzhanggg/Interactive-Lab-Hub/tree/Fall2026/Lab%206
 
 ---
 
@@ -259,12 +262,18 @@ We used MQTT to send player actions and receive game-state updates.
 - Photos/video of use
 
 https://drive.google.com/file/d/1n89saDSGryIiYQgeSSRaj4L1D7J9EEE0/view?usp=sharing
-Our final demo video was shoot with two people that are not on our team and two teammates. 
+Testers: James and Allen (not on our team)
+**What did they think before trying?** At first they thought the game looked complicated. They weren't sure what catching, throwing, or selecting a target meant, and they asked us what class the project was for. After we demoed one round, we handed them the controllers and they picked it up quickly: they won 2 of the 3 rounds they played.
 
+**What surprised them?** They were surprised to see so many different controllers for one game. They were also bold enough to pick the two hardest ones, the IMU (tilting the whole Pi to aim) and the capacitive touch sensor, and still played well with them.
 
-- What did they think before trying?
-- What surprised them?
-- What would they change?
+**What would they change?**
+
+The game felt too simple. Once you know the rules, every turn is the same: aim, press, pass. Testers wanted more ways to make decisions during a turn.
+Two kinds of throws. A fast throw and a slow throw, so players can fake each other out and make the catcher react to timing instead of just pressing when they see CATCH!.
+Hide the timer. If players cannot see how long they can hold the potato, they are pushed to throw earlier instead of waiting until the last second.
+Power-ups like Mario Kart. Random items that can change how a round goes.
+The capacitive touch controller was finicky. The loose wire ends on the touch pads would brush the table, which registered as a touch and changed the aim. Because the last touched pad becomes the aim, a stray touch would send the potato to the wrong player.
 
 **5. Reflection**
 
