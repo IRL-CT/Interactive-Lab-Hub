@@ -1,6 +1,9 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+Viktor Radev - https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub/
+Alex Yen - https://github.com/Alexyen04/Alex-Yen-Interactive-Lab-Hub/
+Amy - 
+David - 
 
 For submission, replace this section with your documentation!
 
