@@ -223,7 +223,12 @@ The APDS-9960 sensors communicate with the Raspberry Pis through I²C. Each Pi p
 
 We chose to use different sensing functions because we wanted each care activity to feel like a different physical interaction, rather than having all three players simply press a button.
 
-<img width="3024" height="4032" alt="IMG_1811" src="https://github.com/user-attachments/assets/b9abff26-5f3c-4993-aff4-ad0f29372307" />
+
+<img width="350"  alt="IMG_1811" src="https://github.com/user-attachments/assets/b9abff26-5f3c-4993-aff4-ad0f29372307" />
+
+<img width="350"  alt="99e19dccac1c7eb50593f8f674e57353" src="https://github.com/user-attachments/assets/48233549-fbcd-484e-9816-4b85978b15a2" />
+
+<img width="350"  alt="45dad4c8a02bf5fb62e772b83956cba2" src="https://github.com/user-attachments/assets/07ae75aa-3240-481a-b0f8-959b41172685" />
 
  
 - MQTT topics used
