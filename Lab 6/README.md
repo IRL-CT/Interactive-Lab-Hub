@@ -153,11 +153,13 @@ It also encourages users to communicate with their friends about how they are fe
 - Label input/computation/output
 
 **3. Build Documentation**
-Each Pi was setup with a proximity/gesture sensor:
+Each Pi was set up with a proximity/gesture sensor:
 
-<img width="198" height="266" alt="Screenshot 2026-11-08 at 9 55 47 PM" src="https://github.com/user-attachments/assets/a0c28760-f077-407f-8029-88e31d458750" />
-The webpage showed the colors of the two users (the left circle demonstrated the left user’s mood and the right circle demonstrated the right user’s mood)
-<img width="622" height="346" alt="Screenshot 2026-11-08 at 9 55 54 PM" src="https://github.com/user-attachments/assets/6c370fae-337f-4d20-ad76-18df315f18cc" />
+<img width="198" height="266" alt="Proximity/gesture sensor" src="https://github.com/user-attachments/assets/a0c28760-f077-407f-8029-88e31d458750" />
+
+The webpage showed the colors of the two users (the left circle showed the left user's mood and the right circle showed the right user's mood):
+
+<img width="622" height="346" alt="Webpage showing two mood circles" src="https://github.com/user-attachments/assets/6c370fae-337f-4d20-ad76-18df315f18cc" />
 
 - MQTT topics used
 ```bash
