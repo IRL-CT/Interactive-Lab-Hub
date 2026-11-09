@@ -176,6 +176,7 @@ Replace this README with your documentation:
   <img width="742" height="507" alt="image" src="https://github.com/user-attachments/assets/47dcf81c-5efd-4af0-879a-4cfe0914826c" />
   <img width="2031" height="1206" alt="image" src="https://github.com/user-attachments/assets/4391c6f9-8dcd-429e-bc66-b4c0f1fc5bca" />
   <img width="577" height="665" alt="image" src="https://github.com/user-attachments/assets/1fae28ff-4495-4336-8423-14530430955c" />
+  <img width="743" height="569" alt="image" src="https://github.com/user-attachments/assets/7c83e6ba-01ed-4709-b526-d4cd01092c14" />
   <img width="1448" height="1086" alt="image" src="https://github.com/user-attachments/assets/eb9dfbd6-2f2e-4a2e-9b99-4901f8044375" />
 
 
@@ -289,43 +290,44 @@ game.press()
 
 Capacitive Touch Sensor:
 <img width="509" height="613" alt="image" src="https://github.com/user-attachments/assets/c9057753-8c7c-4990-bc8d-1802b1d32d3c" />
+For this Pi controller, three components are used: the Adafruit MPR121 capacitive touch sensor to select another player by touching one of three pads; the SparkFun Qwiic Button to throw, catch, or start the game depending on the current game state; and the miniPiTFT display to show the game status, selected target, countdown, and feedback.
+Both the touch sensor and the button communicate with the Pi through I2C.
+The controller uses the shared PotatoClient class from pi_client.py to talk to the central game server through MQTT. These are the topics used:
+
+IDD/hotpotato/player/viktor/action: Sends actions such as join, throw, catch, and start.
+IDD/hotpotato/player/viktor/state: Receives game-state updates from the server.
+IDD/hotpotato/player/viktor/error: Receives feedback when an action is rejected.
+For example, if you touch pad 6 and press the button while holding the potato, the client publishes {“action”: “throw”, “dir”: “left”}. The server processes it and updates the game state.
+We mapped three of the MPR121’s twelve pads to game directions:
+
+Pad 6 → Left
+Pad 8 → Forward
+Pad 11 → Right
+Green button → Throw, catch, or start, depending on the current game state
+
+
+python
+PADS = {6: "left", 8: "forward", 11: "right"}Each loop reads all twelve pads in a single I2C call. Whichever aim pad was touched most recently becomes the current aim, and it stays selected after you let go, similar to how the rotary encoder holds its knob position. The aim is re-sent to the game every loop so it is always set when the player throws.
+
+python
 ```
-try:
-while True:
 touched = touch.touched_pins            # one I2C read for all 12 pads
 for pad, direction in PADS.items():
-if touched[pad]:
-current_aim = direction
+    if touched[pad]:
+        current_aim = direction
 if current_aim:
-game.aim(current_aim)               # re-applied every loop, so it's always set
-for pad in range(12):                   # helps spot wiring/numbering mix-ups
-if pad not in PADS and other_edgespad:
-print(f"[pads] pad {pad} touched - not used (aim pads are {sorted(PADS)})")
-
-    if button_edge(button.is_down()):
-        print(f"[button] press  (screen says: {game.mode}, aim: {game.aim_dir}, "
-              f"pads touched now: {[p for p in range(12) if touched[p]] or 'none'})")
-        game.press()
-
-    # LED cue
-    mode, st = game.mode, game.state
-    if mode == "incoming" and not st.get("caught"):
-        button.led("blink")                                      # CATCH!
-    elif mode == "holding":
-        button.led("solid" if game.aim_dir else "dim")           # solid when aimed
-    elif mode in ("lobby", "gameover"):
-        button.led("start")                                      # press to start
-    else:
-        button.led("off")
-
-    if button.errors and time.time() - last_error_report > 5:
-        print(f"[button] {button.errors} I2C read errors in the last few seconds (loose Qwiic cable?)")
-        button.errors = 0
-        last_error_report = time.time()
-
-    time.sleep(POLL)
+    game.aim(current_aim)
 ```
+To catch wiring or numbering mistakes, the controller also prints a message whenever a pad that isn’t used for the game is touched.
+The button works the same way as on the other controllers. An edge detector makes sure one physical press counts as one action, and game.press() decides what that action is from the current state: holding (throw the potato), incoming (catch the potato), or lobby/game over (start or restart the game).
 
+python
+```
+if button_edge(button.is_down()):
+    game.press()
+```
+We ran into an issue where the Qwiic Button sometimes missed presses on the Pi’s I2C bus when we also sent it LED commands. To fix this, the button is read the same way as in David’s IMU controller: a plain is_button_pressed() check polled about 30 times per second, with no extra writes to the button. The LED is optional (--led flag). When it is on, it blinks when the potato is flying at you, stays solid once you’ve aimed, and glows dimly in the lobby.
+The controller also handles hardware problems. If the Qwiic Button isn’t found at its default address (0x6F), the code scans the I2C bus for it. If it still can’t be found, the two small built-in PiTFT buttons are used instead, so the game stays playable. Repeated I2C read errors are reported every few seconds, which usually means a loose Qwiic cable. Running the script with --test prints pad touches and button presses without joining the game, which we used to check the wiring before playing.
 
 
 **4. User Testing**
