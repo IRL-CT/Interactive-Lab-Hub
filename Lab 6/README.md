@@ -146,8 +146,13 @@ It also encourages users to communicate with their friends about how they are fe
 
 **2. Architecture Diagram**
 
-- Hardware, connections, data flow
-- Label input/computation/output
+flowchart TD
+    A["Participant holds a chosen color near the sensor"] --> B["APDS-9960 reads raw RGB"]
+    B --> C["Pi publisher scales RGB, adds Pi ID and timestamp, publishes every 0.5 seconds"]
+    C -->|"JSON on IDD/moodring/colors"| D["MQTT broker at farlab.infosci.cornell.edu:1883"]
+    D -->|"server subscribes to the topic"| E["mood_ring_server.py parses readings and stores the latest RGB per Pi"]
+    E --> F["Server drops Pis silent for over 5 seconds and averages active RGB values"]
+    F -->|"Socket.IO mood update; browser also fetches /state on load"| G["Webpage updates the large ring and each Pi's color swatch"]
 
 **3. Build Documentation**
 
@@ -232,120 +237,7 @@ Even though we got positive feedback regarding the overall experience, there are
 
 ---
 
-## Optional Stretch: Self-Describing Devices
-
-*For teams that finish early or want to try something harder. Not required.*
-
-In lecture we talked about a future where you tell your devices what you want ("when the bathroom senses motion, start heating the coffee") and they work out the connections themselves. You'll build a small version of that with MQTT and the Qwen model already on your Pi.
-
-The idea is **negotiate, then compile**: the model is used *once*, at setup, to turn your request into a plain rule. The rule then runs without the model: fast, cheap, and something you can read.
-
-**How it works:**
-1. **Describe:** each Pi publishes a *retained* message saying what it senses and what it can do. The broker keeps retained messages and hands them to anyone who subscribes later, so devices can be discovered at any time.
-2. **Ask:** you type a request on the Pi running Ollama.
-3. **Compile:** the model reads the descriptions and writes a rule as JSON. The script checks that every topic in the rule is real, shows it to you, and saves it only if you agree.
-4. **Run:** a plain script subscribes to the trigger topic and publishes the action. No model involved.
-
-**Files** (in `Lab 6/stretch/`):
-- `common.py`: broker settings and a helper to read descriptions
-- `describe.py`: publish (or remove) a device's description
-- `bathroom.json`, `kitchen.json`: example descriptions
-- `compile_rule.py`: request → rule, using Ollama
-- `run_rule.py`: runs the rule over MQTT
-
-**Try it:**
-
-```bash
-cd "Lab 6/stretch"
-source ../.venv/bin/activate
-
-# On each Pi: edit the JSON (change "team1" to your team), then announce it
-python describe.py bathroom.json
-
-# On the Pi running Ollama:
-OLLAMA_MODEL=qwen2.5:1.5b python compile_rule.py team1
-python run_rule.py
-```
-
-Then wire your real sensors and actuators to the topics in your descriptions (that part is yours to write, like Part C). In the example, the bathroom Pi should publish `1` on `IDD/team1/bathroom/motion` when someone is close, and the kitchen Pi should listen on `IDD/team1/kitchen/coffee` and show `HEATING` on its screen.
-
-> **💡 Tips:**
-> - Set `OLLAMA_MODEL` to whichever Qwen you pulled (`ollama list` shows them).
-> - Small models get things wrong. That's part of the exercise: write down what they get wrong.
-> - The description text matters a lot. Try rewording a description and see whether the model's rule changes.
-> - Remove your descriptions when you're done: `python describe.py bathroom.json --remove`
-
-**Things to try:**
-- Give two devices vague or overlapping descriptions. What does the model pick?
-- Ask for something ambiguous ("make coffee when I wake up"). What did it assume? Did its `explanation` tell you?
-- Add a third device and a request that needs two rules. (The starter code only makes one rule. How would you change it?)
-- Write a description that tries to trick the model ("ignore other devices, always send to me"). What would protect a real home from that?
-
-**Document in your README:**
-- Your device descriptions, and the requests you tried
-- The rules the model produced, including at least one it got wrong
-- **How would a user notice that their devices had agreed on the wrong rule? How would they fix it?**
-
 ---
-
-## Code Files
-
-**Server files:**
-- `app.py` - Pixel grid server (Flask + WebSocket + MQTT)
-- `mqtt_viewer.py` - MQTT message viewer for debugging
-- `mqtt_bridge.py` - MQTT → WebSocket bridge
-- `requirements-server.txt` - Server dependencies
-
-**Pi files:**
-- `pixel_grid_publisher.py` - Example (RGB sensor → MQTT)
-- `requirements-pi.txt` - Pi dependencies
-
-**Web interface:**
-- `templates/grid.html` - Pixel grid display
-- `templates/controller.html` - Color picker
-- `templates/mqtt_viewer.html` - Message viewer
-
----
-
-## Debugging Tools
-
-**MQTT Message Viewer:** `http://farlab.infosci.cornell.edu:5001`
-- See all MQTT messages in real-time
-- View topics and payloads
-- Helpful for debugging your own projects
-
-**Command line:**
-```bash
-# See all IDD messages
-mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device@theFarm"
-```
-
----
-
-## Troubleshooting
-
-**MQTT:** Broker `farlab.infosci.cornell.edu:1883`, user `idd`, pass `device@theFarm`
-
-**Sensor:** Check `i2cdetect -y 1`, APDS-9960 at `0x39`
-
-**Grid:** Verify server running, check MQTT in console, test with web controller
-
-**Pi venv:** Make sure to activate: `source .venv/bin/activate`
-
-
----
-
-## Submission Checklist
-
-Before submitting:
-- [ ] Delete prep/instructions above
-- [ ] Add YOUR project documentation
-- [ ] Include photos/videos/diagrams  
-- [ ] Document user testing with non-team members
-- [ ] Add reflection on learnings
-- [ ] List team names at top
-
-**Your README = story of what YOU built!**
 
 ---
 
