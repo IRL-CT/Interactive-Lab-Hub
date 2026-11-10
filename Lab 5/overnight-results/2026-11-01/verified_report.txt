@@ -1,0 +1,1 @@
+Across 36626.9 seconds of observed span, 6 of 3395 valid samples detected people (maximum 1 at once). Last person detection: 2026-11-02T09:33:51.477-05:00; last sample at 2026-11-02T09:34:13.069-05:00: 0 people. Sampling cannot prove continuous presence or sleep; errors: 0; long gaps: 0.

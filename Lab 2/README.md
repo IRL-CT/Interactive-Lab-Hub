@@ -156,7 +156,10 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
 
-\*\*\***Include a picture of your own Raspberry Pi displaying the piscreen.service with your unique MAC address. Additionally, please provide another picture showing the successful completion of the screen test.**\*\*\*
+![p1](./p1-1.png)
+![p2](./p2-2.png)
+![p3](./p3-3.png)
+
 
 
 ## Part D. 
@@ -185,18 +188,18 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 ## Part E. Read Part 2. Sketch and brainstorm further interactions and features you would like for your clock.
 
-One potential source of ideas might be thinking about other clocks and timekeeping devices for inspiration.
+Idea: Time Garden represents focused time through the growth of a plant. During a 25-minute session, a seed gradually sprouts, grows leaves, and blooms. Button A starts, pauses, or resumes the session, while Button B switches between the current plant and today’s garden. Each completed session adds one flower to the garden. Instead of emphasizing a numerical countdown, the design makes the passage of time visible through growth and accumulated flowers.
 
-Another might be novel units of time. How do you measure a year? [In daylights? In midnights? In cups of coffee?](https://www.youtube.com/watch?v=wsj15wPpjLY)
+![sketches](./sketches.png)
 
-We strongly discourage literal digital or analog clock display: Be creative.
+![Verplank](./Verplank.png)
 
-
-** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf)), storyboards for your ideas **
-
+![storyboard](./storyboard.png)
 
 
-**Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
+Jerry Lee: I really like the idea the Time Garden showcases because it makes the passage of time feel more rewarding instead of a looking at a typical clock. The plant's growth gives clear feedback on progress, and adding a flower after each completed session is a nice way to motivate the user. I also think the two-button controls is simple to understand. I could say you could improve this by adding an animation or message when a flower blooms to make going through a session feel more satisfying.
+
+https://github.com/JJL4/Interactive-Lab-Hub/tree/Fall2026/Lab%202
 
 # Lab 2 Part 2
 
@@ -205,7 +208,14 @@ We strongly discourage literal digital or analog clock display: Be creative.
 1. Pick up remaining parts for kit on Wednesday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
 
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
-**Put the feedback for your ideas here.**
+
+People1: I think the visual part of your idea is really interesting and makes the interaction more engaging. It would be nice if the display changed more clearly over time so users can easily see their progress. Maybe you could also add a small animation when the interaction is completed.
+
+People2: I like how your idea makes the clock more interactive instead of just showing the time. The main interaction is easy to understand. One thing you could improve is making the feedback after each action more obvious, so the user can immediately tell what happened.
+
+People3: I like that the controls are simple and do not require too many buttons. The interaction feels easy to learn. One suggestion is to make the different button functions more clear on the screen, especially for someone using it for the first time.
+
+
 
 ## Update your Lab Hub
 
@@ -235,12 +245,18 @@ After that, Git will ask you to login to your GitHub account to push the updates
 
 Do take advantage of having done the previous iteration to refine and simplify your design.
 
-** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
+For Part 2, I want to keep the main idea of Time Garden but make the interaction more clear and rewarding. The clock will still use plant growth to represent a focus session. As time passes, the plant will move through different growth stages. When the session is completed, the flower will bloom and a short completion message or animation will appear on the screen. I also want to keep the controls simple, with Button A used to start, pause, and resume the session, and Button B used to switch between the current session and today’s garden.
 
 
-\*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
+The code file is called "time_garden.py".
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+
+
+https://github.com/user-attachments/assets/742015b6-98f8-4efb-8e51-04f247a76084
+
+
+
+
 
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
