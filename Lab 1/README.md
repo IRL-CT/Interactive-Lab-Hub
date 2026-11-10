@@ -1,77 +1,9 @@
 # Recreating the Masters of Interactive Light
 
-_This project is to be done in teams of 2._
 
-**NAME OF BOTH COLLABORATOR(S) HERE**
+Ziqiao Gao, Yan Shen
 
-**THE MASTERWORK YOU DREW FROM THE HAT:**
-
----
-
-One way to understand greatness is to look to the greats. Just as painters learn
-the technique and artistry of the old masters by recreating their paintings, so
-too shall we come to understand computer-mediated interaction by recreating the
-interactive masterworks of our time.
-
-This week, every team will draw a different masterwork from a hat. Some are
-conceptual pieces, some are historical works, some are modern-day products —
-but they all share one thing: **their central mode of interaction is carried by
-light.** Think of Tinker Bell in the original stage production of *Peter Pan*,
-represented by nothing more than a darting circle of light from an off-stage
-mirror. There was no actor playing Tinker Bell; she existed entirely through the
-way the other characters interacted with that light.
-
-Your job is to recreate the *interaction* of the piece you drew — not to build a
-museum-grade replica, but to stage the moment that makes it what it is. Someone
-who knows your piece should watch your recreation and recognize it instantly.
-Someone who has never heard of it should walk away understanding what it is
-famous for.
-
-You will do this using the interaction staging techniques we will use all semester: a
-storyboard, some acting, a phone standing in as a controllable light (the
-*Tinkerbelle* tool), a hidden human "wizard" driving it, a costume, and a
-recorded video.
-
-*Make sure you read all the instructions and understand the whole activity
-before starting!*
-
-## Prep
-
-To start, you will need:
-
-1. Read about Git [here](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F).
-2. Set up your own Github "Lab Hub" by forking the [Interactive-Lab-Hub repository](https://github.com/IRL-CT/Interactive-Lab-Hub). To get lab updates, simply use [GitHub's "Sync fork" button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) when new content is available.
-
-3. Set up your `README.md` so it has your name and links to this lab. Learn to
-   format a README [here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-4. **Draw your masterwork from the hat and write it at the top of this file.**
-   Whatever you drew is yours — lean into it.
-
-## Materials
-
-For this lab you will need:
-
-1. Paper, markers/pens, scissors
-2. A smartphone with a browser that can display a webpage (your stand-in "light")
-3. A computer to host the control webpage
-4. Found objects and materials to **costume your phone so it looks like the
-   device in your masterwork** — doll clothes, a paper lantern, a bottle, foil,
-   a cardboard shell, whatever it takes. Be resourceful.
-
-## Deliverables
-
-Submit all of the following in this lab folder of your Lab Hub, as links or
-uploaded files. **Each group member posts their own copy to their own Github repo**, even if the work is
-shared.
-
-1. A short **research write-up** of your masterwork (what it is, when, who made
-   it, and — most importantly — what the interaction is)
-2. **3 iterated storyboards** of the interaction in the masterwork
-5. A **video sketch** of your prototyped interaction
-6. Any **reflections** on the process
-
-Labs are due on Mondays. Make sure this page is linked from your main class hub
-page.
+THE MASTERWORK YOU DREW FROM THE HAT: Birthday Candle 
 
 ---
 
@@ -79,140 +11,162 @@ page.
 
 ## Part 0. Know Your Master
 
-Before you prototype anything, get intimately acquainted with the piece you
-drew. Do real research. You are looking less for trivia than for the *shape of
-the interaction*:
+Birthday candles are a folk tradition with no single known inventor. Although some theories connect candlelit cakes to ancient Greek rituals, there is no direct historical evidence linking those practices to the modern birthday tradition. The modern custom is more clearly associated with the German Kinderfest tradition, in which candles on a cake represented the celebrant’s age.
 
-- What inputs are available to the user? What responses does the work give?
-- Who is present, and how does the piece color the relationships between them?
-- What is the piece famous for? What are its strengths and its weaknesses?
+In 1883, The Folk-Lore Journal published as an 1881 Swiss custom. It described a birthday cake with one lighted candle for each year of the celebrant’s life. Before eating the cake, the birthday person blew out the candles one after another. However,  it did not mention making a wish, suggesting that different parts of the modern ritual developed over time.
 
-  Sometimes the details of how the interaction worked are lost in history. Try filling it in with your imagination!
+cite: 
+https://www.nationalgeographic.com/history/article/history-of-birthday-candles
+https://en.wikisource.org/wiki/Page:The_Folk-Lore_Journal_Volume_1_1883.djvu/389
 
-**Describe your masterwork here, in your own words. What is the core interaction
-someone would recognize it by?**
+The birthday candle interaction usually follows a recognizable sequence. Someone places and lights the candles, and the people nearby gather around the cake and sing. The candlelight draws everyone’s attention toward the cake and the birthday person. The birthday person then pauses or closes their eyes to make a  wish before leaning forward and blowing out the candles. Once the flames disappear, the surrounding group cheers or applauds, signaling that the ritual is complete. The core interaction someone would recognize is the birthday person blowing toward the cake and causing the candlelight to go out. The person’s breath is the physical input, while the flickering and extinguishing flames are the visible response. The change from light to darkness clearly communicates that the action has succeeded. However, the birthday person does not create the interaction alone. Friends and family place and light the candles, sing, watch, wait, and celebrate afterward.  The other participants’ attention and reactions turn the simple act of extinguishing a flame into a **shared** birthday ritual. 
+
+One strength of this tradition is its simplicity. The candlelight creates a clear visual focus, and the flames respond immediately to the birthday person’s breath. However, the interaction depends on timing and cooperation. A match may go out before lighting the candle, the birthday person may need several attempts, or another person may accidentally blow out the candle. These interruptions can change the expected sequence and affect the emotions and relationships between the participants.
+
+
 
 ## Part A. Plan
 
-For your masterwork, reconstruct the interaction as a scene:
+Setting: The interaction takes place at a birthday celebration in a indoor space. A cake is placed at the center of a table.
 
-- **Setting:** Where and when does this interaction happen? (a jungle, a kitchen,
-  a spaceship corridor, a nightclub, a harbor at night)
-- **Players:** Who is involved? Who else is present? Think through everyone in
-  the setting, not just the primary user.
-- **Activity:** What is happening between the players and the light?
-- **Goals:** What is each player trying to do?
+Players: Amy is the birthday person who makes a wish and blows out the candles. Yan is Amy’s friend, who prepares and lights the candles, sings, and celebrates with Amy. There will also be an additional participant acts as an naughty kids in the third storyboard who interrupts the ritual by blowing out the candles.
 
-**Describe your setting, players, activity, and goals here.**
+Activity: The main activity is the birthday candle ritual. Yan places and lights the candles, sings “Happy Birthday,” and waits while Amy makes a wish. Amy then blows out the candles, and Yan celebrates with her.
 
-Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
-don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
-and the people around it. If you're new to storyboarding, read
-[this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
+Goals: Amy’s goal is to make a wish and complete the birthday ritual by blowing out the candles. Yan’s goal is to prepare the candles, guide the interaction, support Amy, and make the moment feel like a shared celebration.
 
-**Include pictures of your storyboards here.**
 
-Use the storyboards to decide what interaction to prototype.
 
-**Summarize the feedback you got here.**
+**Storyboard 1: The Normal Birthday Ritual
+**
+
+<img width="792" height="613" alt="IDD lab 1 storyboard 1" src="https://github.com/user-attachments/assets/84bd6971-02cb-44bf-8c1c-f6f8aab2507b" />
+   
+This storyboard shows the expected sequence:
+1. Yan inserts the candles into the cake.
+2. Yan lights the candles.
+3. Yan and the other participants sing “Happy Birthday.”
+4. Amy closes her eyes and makes a wish.
+5. Amy blows out the candles.
+6. Everyone cheers.
+
+This sequence presents the most recognizable version of the birthday candle tradition. We selected it as the interaction for our final prototype and video.
+
+
+**Storyboard 2: The Candle Does Not Light on the First Attempt
+**
+
+<img width="792" height="613" alt="IDD lab 1 storyboard 2" src="https://github.com/user-attachments/assets/1ad95dae-43d5-4405-a26e-e2835608a8e9" />
+
+   
+This storyboard explores what happens when the lighting process fails:
+1. Yan inserts the candles into the cake.
+2. Yan strikes a match and tries to light the candles.
+3. The match unexpectedly goes out.
+4. Yan apologizes and feels embarrassed.
+5. Yan strikes another match.
+6. Yan successfully lights the candles so the celebration can continue.
+
+This version shows that the ritual cannot continue until the light is successfully created. The failed match interrupts the expected sequence and creates an awkward pause.
+
+**Storyboard 3: The Candle Is Blown Out Too Early
+**
+
+<img width="792" height="613" alt="IDD lab 1 storyboard 3" src="https://github.com/user-attachments/assets/0bf55e9c-5214-4253-8a1a-9522722b3ae8" />
+
+
+This storyboard explores what happens when another participant interrupts the ritual:
+1. Yan inserts the candles into the cake.
+2. Yan lights the candles.
+3. Everyone begins singing “Happy Birthday.”
+4. While Amy closes her eyes to make a wish, a young child blows out the candles.
+5. Amy opens her eyes and becomes upset.
+6. Yan explains to the child that the birthday person is supposed to blow out the candles.
+
+This version shows that controlling the candlelight is connected to a specific social role. The child successfully extinguishes the flame, but the ritual fails because the wrong person performs the action at the wrong time.
+
+
+Feedback:
+We showed our three storyboards to several classmates. Storyboard 1 was the easiest for them to recognize because it clearly presented the familiar birthday candle tradition. Based on this feedback, we selected Storyboard 1 for our prototype and final video. It shows the complete sequence of inserting and lighting the candles, singing “Happy Birthday,” making a wish, blowing out the candles, and celebrating.
 
 ## Part B. Act out the Interaction
 
-Physically act out the interaction you planned. For now, just pretend the light
-is doing what you've scripted — a person can wave a flashlight, or you can narrate
-it aloud.
+We physically acted out the normal birthday candle interaction from Storyboard 1 and narrated how the light was supposed to behave. Amy played the birthday person, and Yan played the friend celebrating with her. Yan pretended to insert and light the candles, sang “Happy Birthday,” and waited while Amy made a wish. Amy then blew toward the light, and Yan celebrated after the imagined flame went out.
 
-**Are there things that seemed better on paper than when acted out?**
+The first problem we encountered was controlling the light. On paper, the interaction appeared simple, but during the performance we realized that we would either need a third person to control the light or one of us would have to operate it while performing. Since our group has only two people, we decided that Yan would act as both Amy’s friend and the hidden “wizard” controlling the light.
 
-**Did new ideas about the piece surface once you were on your feet?**
+We also found that the timing of the light’s response is very important. The light needs to turn off at the moment Amy blows toward it. If it turns off too early or too late, the connection between Amy’s breath and the light’s response becomes less convincing. Yan therefore needs to watch Amy carefully, control the light without making the remote visible, and continue acting naturally as Amy’s friend.
 
-**Are there key moments in the interaction where things could go in a different direction?**
-Iterate your storyboards to capture key non-sequential aspects of the interaction. 
+New idea from acting: We developed a subtle cue to improve the timing. Amy would lean closer to the light and take a visible breath before blowing, giving Yan enough time to prepare the remote control.
 
 ## Part C. Prototype the Light (light first!)
 
-Use your smartphone as the light of your device. Open the browser on your phone
-to act as the "light," and use the remote control interface on your computer to
-change that light. Code and setup instructions for the *Tinkerbelle* tool are
-[here](https://github.com/IRL-CT/tinkerbelle) (we invented this tool for
-this lab). If you hit technical trouble, a manually or remotely controlled light
-switch, dimmer, or lamp is a fine substitute.
+There will be two light source, lighter (phone flashlights) and candle (remote controlled light) 
 
-**Get the light interaction working before anything else.** Your grade this week
-rides on the *light* being recognizable — the color, the rhythm, the timing, the
-way it answers a person. Only once your light interaction genuinely reads as your
-masterwork should you consider layering in a second modality (sound, vibration,
-motion). If in doubt, keep polishing the light. The other modalities are next
-week's business.
+The interaction begins with both lights off. The iPhone flashlight turns on first to represent a flame being brought toward the candle. When it reaches the candle, the flashlight turns off and the candle light turns on. This transition creates the appearance that the candle has been lit. The candle light remains steady during the birthday song and the wish. When Amy blows toward it, the light immediately turns off. The change from light to darkness provides a clear response to her breath and signals that the birthday ritual is complete.
+
 
 ## Part D. Wizard the Device
 
-Set up a "wizard" arrangement so one person can secretly drive the light while
-another acts with it — this is how you make the device feel alive without
-building any real electronics. (Zoom works well for recording; you can pin the
-video feed of whichever scene you want to capture.)
+Amy acts as the birthday person, while Yan acts as both Amy’s friend and the hidden wizard controlling the candle light. Yan uses her iPhone flashlight as a pretend lighter and secretly operates the remote-controlled light. She watches Amy’s actions in real time and changes the light at the right moments.
 
-**Include your first attempts at recording the wizarded set-up here.**
+Phone approaches candle → Yan turns on the iPhone flashlight
 
-## Part E. (optional) Costume the Device
+Phone reaches candle → Yan turns on the candle light and turns off the flashlight
 
-Only now should you worry about what the device looks like. Costume your phone so it reads
-as the object from your masterwork — HAL's eye, a Simon shell, a paper-lantern
-Tinker Bell, an Ambient Orb, a lighthouse, a jack-o'-lantern, whatever you drew.
+Birthday song begins and Amy closes her eyes and makes a wish → Candle light on and steady
 
-Think about the world your device lives in: could that environment overheat it?
-Is water a danger? Does it need to be loud and bright for an emergency, or quiet
-and calm for a bedroom?
+Amy leans forward and blows → Yan turns off the candle light
 
-**Include sketches/photos of what your device might look like here.**
-
-**What concerns or opportunities shaped the way you designed its look?**
+This is our attempt to capture the right timing for turning the lights on and off. : https://youtu.be/qHGJD8u0MuM
 
 ## Part F. Record
 
-**Record your prototyped interaction as a video sketch.** Aim for the bar from
-the top of this lab: a viewer who knows the piece should recognize it; a viewer
-who doesn't should come away understanding what it's famous for. How might you illustrate the non-sequential aspects of the interaction in the sketch?
+Our final video sketch recreates the normal birthday candle ritual from Storyboard 1. Yan inserts the candle, uses her iPhone flashlight as a pretend lighter, and secretly turns on the remotely controlled candle light. She then sings “Happy Birthday” while Amy looks at the light and makes a wish. When Amy blows toward the candle, Yan turns off the light. After a short pause, Yan cheers and celebrates with Amy.
 
-**Include your video here.**
+We selected this interaction because our classmates found it to be the clearest and most recognizable representation of the birthday candle tradition. The video emphasizes the transition from darkness to light when the candle is lit and from light back to darkness when Amy blows. 
 
-**Please indicate who you collaborated with on this lab.** Be generous in
-acknowledging their contributions, and credit any other influences (YouTube,
-Github, Twitter, a friend who lent you a lamp) that informed your recreation.
+Our other two storyboards explore non-sequential outcomes: the match going out before the candle is lit and a young child blowing out the candle before the birthday person finishes making a wish. For the final video, however, we focused on the normal sequence so that the central interaction would be easy to recognize.
+
+Here is our final video: https://youtu.be/W525hTZRD5Q
+   
+Collaboration and Credit:
+Ziqiao Gao performed as the birthday person. Yan Shen performed as Ziqiao (Amy)’s friend and acted as the hidden wizard controlling the light. We worked together on the research, three storyboards, interaction design, physical acting, and video recording.
+
+We used a remotely controlled light and an iPhone flashlight to recreate the interaction without using a real flame. We shot our video on both Iphone and Macbook, then we upload our two videos and finalized on Youtube. We also used feedback from our classmates to choose the clearest storyboard and improve the timing and presentation of the light. We used ChatGPT to help organize our research, revise our English writing, and clarify the structure of the report.
 
 ---
 
 # Part 2 — ReMastering the light
 
-*This describes the second week's work for this lab activity.*
-
-## Prep (before the next lab)
-
-Find three other groups. (How? Maybe Slack?) Visit their Lab Hub pages, watch their
-videos, and give them reactions and feedback: tell them what you saw happening,
-guess the masterwork and the goals of the characters, and ask about anything that
-wasn't clear.
 
 **Who were the other groups you kibitzed with? Add links to their project pages here.**
+
+Fireflies Synchorny: https://github.com/Simonehina/Interactive-Lab-Hub/tree/2e857ccdebdab6d013ab053856731f81f699be20/Lab%201
+
+The Campfire: https://github.com/certaindragon3/Interactive-Lab-Hub/blob/89054915129f7235b13dd83e839858aa039445fb/Lab%201/README.md
+
+Bioluminescent Lures: https://github.com/manrongm/Interactive-Lab-Hub/tree/mm3599-lab1a/Lab%201
+
 **Summarize the feedback you got from your partners here.**
+
+All three groups easily recognized the birthday candle tradition and understood the roles and goals of both participants. They thought the timing between Amy’s breath and the light turning off made the interaction clear and convincing. However, one group were unsure how Yan controlled the light while also acting as Amy’s friend. The lighting action was also slightly confusing because it was not always clear whether the phone flashlight represented the lighter or the candle itself. one group suggested making the light flicker or gradually dim before turning off to look more like a real flame. They also encouraged us to consider different outcomes, such as what would happen if Amy did not blow hard enough or needed multiple attempts to extinguish the candle.
 
 ## Remix, Update, or Critique the Master
 
-Now that you understand your masterwork from the inside, respond to it. Do the
-recreation again, but this time make it your own — pick one of these moves (or
-combine them):
+Our updated version imagines two birthday people celebrating together through facetime from different locations. Instead of one person performing while the other watches, Amy and Yan each have a candle and participate equally in the same ritual. 
 
-1. **Remix the modality.** Your recreation no longer has to (just) use light. Use
-   vibration, sound, motion, heat — whatever best carries the interaction. Feel
-   free to fork and modify the Tinkerbelle code. (Add your updates to this lab's folder!)
-2. **Update it.** Redesign the piece for today's context, or for a setting its
-   creators never imagined (the piece with roommates in the room, with children
-   present, on a phone, in a car).
-3. **Fix its weaknesses.** You identified this master's strengths and weaknesses
-   in Part 0 — now address a weakness, or push a strength further.
+Here is our update facetime version storyboard:
+<img width="792" height="613" alt="IDD lab 1 part 2 storyboard 1" src="https://github.com/user-attachments/assets/8b9807a4-1819-4064-a312-71cf3f8db542" />
 
-We will grade this second pass with an emphasis on **creativity** and on how well
-your response engages with what your master was really doing.
+Amy and Yan light their own candles separately. Once both candles are ready, they sing for each other and make their own private wishes. They then count down and blow out their candles at the same time. Although the candles are in separate locations, both lights disappear together create one shared ending.
+
+The original birthday candle tradition is not only about blowing out a flame. It gathers people around the birthday person and turns a private wish into a shared, witnessed celebration. Our update recreates this experience without requiring the participants to share the same PHYSICAL space. The synchronized countdown and blowing connect their actions, when both lights disappear, the two separate spaces reach the same ending together and shows the shared ritual are complete. The design changes the relationship from one birthday person performing for an audience to two birthday people witnessing and supporting each other equally.
+
+Here is our update facetime version final video: https://youtu.be/qSQ6ethic9k
+
+Here is all of our prototype:
+<img width="2268" height="4032" alt="IDD lab 1 prototype" src="https://github.com/user-attachments/assets/b52f3969-9a4d-4c41-9690-f07f8ea38d43" />
 
 **Document everything here — especially the storyboard and video. Photos of the
 prototype are great too.**
