@@ -1,6 +1,6 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+**Aryan Palave (ap2578)**
 
 For submission, replace this section with your documentation!
 
@@ -59,6 +59,23 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'H
 ![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
 
 **💡 Brainstorm 5 ideas for messaging between devices**
+
+**My Part A test.** I installed `mosquitto-clients` on my Pi, subscribed to my own topic, and published to it from the same Pi. The message came back through the farlab broker:
+
+```
+$ mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/aryan' -u idd -P 'device@theFarm' -v
+IDD/test/aryan Hello from aryan pi
+```
+
+Subscribing to `IDD/#` also showed other teams' traffic, like a burger game posting its score on `IDD/panburger/burger/game` and walkie-talkie Pis posting whether they were online on `IDD/walkietalkie/walkie/presence/...`.
+
+**My 5 ideas:**
+
+1. **Quiet hours light.** My Lab 5 restless monitor already knows when I'm in bed. It publishes `asleep` on `IDD/aryan/bedroom/state`, and a Pi in the living room turns its screen dim red so my roommate knows to keep it down.
+2. **Laundry done.** A Pi with an accelerometer sits on the washer in the basement and publishes `done` when the shaking stops for two minutes. The Pi on my desk shows it, so I stop walking down to check.
+3. **Open seat finder.** Pis with proximity sensors on study room desks publish `taken` or `free`, and a screen at the door shows a grid of open seats.
+4. **Presence lamp.** Two Pis in two different homes. Tapping a capacitive sensor on one makes the other glow for a few minutes, a quiet "thinking of you" like the Presence Table reading.
+5. **Fridge left open.** A light sensor inside the fridge publishes when the light stays on for more than a minute, and a Pi in the next room beeps until someone closes it.
 
 MQTT agrees on almost nothing in advance: you invent the topics and what the messages mean. Smart-home standards like Matter fix the vocabulary instead (every "light" behaves the same). Keep this trade-off in mind when you design your topics in Part C.
 
