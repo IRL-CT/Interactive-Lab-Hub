@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+Abiola Bolaji (ab3394)
 
 Does it feel like time is moving strangely during this semester?
 
@@ -163,6 +163,12 @@ You can look in `image.py` for an example of how to display an image on the scre
 ### Set up the Display Clock Demo
 Work on `screen_clock.py`, try to show the time by filling in the while loop (at the bottom of the script where we noted "TODO" for you). You can use the code in `cli_clock.py` and `stats.py` to figure this out.
 
+**Completed**: `screen_clock.py` now clears the display each frame and draws the current date/time (`time.strftime("%m/%d/%Y %H:%M:%S")`) on the MiniPiTFT.
+
+<img src="IMG_3135.jpeg" height="300" />
+
+**AI Usage**: Used GitHub Copilot Chat (WendyTA) to implement the clock-drawing loop in `screen_clock.py`, and to debug a `ModuleNotFoundError` (venv not activated) and a `GPIO busy` error (caused by `piscreen.service` holding the display pins) on 2026-09-13. See `WendyTA/logs/Lab2_ai_interaction_log.md` for details.
+
 ### How to Edit Scripts on Pi
 Option 1. One of the ways for you to edit scripts on Pi through terminal is using [`nano`](https://linuxize.com/post/how-to-use-nano-text-editor/) command. You can go into the `screen_clock.py` by typing the follow command line:
 ```
@@ -194,6 +200,10 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 ** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf)), storyboards for your ideas **
 
+[Verplank diagram](Untitled%20Notebook.pdf)
+
+[Storyboard](Untitled%20Notebook_2.pdf)
+
 
 
 **Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
@@ -205,7 +215,13 @@ We strongly discourage literal digital or analog clock display: Be creative.
 1. Pick up remaining parts for kit on Wednesday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
 
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
-**Put the feedback for your ideas here.**
+Ani Hadagali (https://github.com/anihadagali7/Interactive-Lab-Hub/blob/anihadagali7-Aug26-Lab/Lab%202/README.md):
+I really like the idea of using distance to calculate time. It’s really creative because it might get people to be more healthy and get active. But i’m unsure when the clock would ‘reset’, is it after each activity? It might be nice to let people set goals and let them know how close they are to achieving it.
+
+Jonathan Tumalle (https://github.com/jontumalle/Interactive-Lab-Hub/blob/Lab2a/Lab%202/README.md)
+I like the idea of changing time to distance traveled over time. One thing that might be hard to understand for a user just looking at the screen is how many steps will make a kilometer. Similar to a clock shows you when a minute/hour is about to end it may be cool to have different visual meters that show when you’re about to complete a kilometer and a marathon.
+Pallavi Srinivas (https://github.com/pallavi-srinivas/Interactive-Lab-Hub/tree/Fall2026/Lab%202)
+This is a great idea because it will incentivize people to get more active and will push people to increase their time. People would be able to set new records for themselves and ensure they are physically taking care of themselves. Make sure to add information about km traveled (theoretically this would be a wearable device but with the tools we have we cannot do that!)
 
 ## Update your Lab Hub
 
@@ -215,11 +231,14 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 Start small, pick just one element of your overall idea, just to show you have a handle on the code and components.
 
-\*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
-## Make a short video of your modified barebones PiClock
+**Completed**: Added `distance_clock.py`, a modified version of `screen_clock.py` that reinterprets time as distance: 1 second = 1 step, 1,400 steps = 1 km, and 42 km = 1 marathon lap. Milestone messages (randomized) and a live pace readout ("Speeding up!"/"Slowing down!" based on how long each km takes) are shown on screen. Pressing `ctrl-c` stops the clock and shows/prints a summary (total steps, Mar/Km/Step breakdown, elapsed time), which is also logged to `distance_clock_log.json` and compared against the previous session's totals.
 
-\*\*\***Take a video of your barely modified PiClock.**\*\*\*
+<img src="IMG_3162.jpeg" height="300" />
+
+The stop summary shown after pressing `ctrl-c`, including the comparison against the previous session's total steps:
+
+<img src="IMG_3163.jpeg" height="300" />
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -238,9 +257,9 @@ Do take advantage of having done the previous iteration to refine and simplify y
 ** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
 
-\*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
+[Videos](https://drive.google.com/drive/folders/1GmYLaZrdEWwjOQLoHJjSnJxvRuVAFE3t?usp=drive_link)
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+**AI Usage**: Used GitHub Copilot Chat (WendyTA) on 2026-09-16 to iteratively build `distance_clock.py` from `screen_clock.py`: converting seconds/minutes/hours into steps/km/marathons, adding milestone messages, pace tracking, a Ctrl+C stop summary, and day-to-day session comparison logging. Also used it to debug a `ModuleNotFoundError` (needed to activate `/home/pi/venv`) and an `OSError: [Errno 121] Remote I/O error` (a since-reverted Qwiic Button integration that wasn't actually wired up).
 
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.

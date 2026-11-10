@@ -37,12 +37,50 @@ audio_process = play_audio()
 wCam, hCam = 640, 480
 ################################
  
-cap = cv2.VideoCapture(0)
-cap.set(3, wCam)
-cap.set(4, hCam)
+class Camera:
+    """Pi ribbon camera via picamera2, falling back to a USB webcam via OpenCV."""
+    def __init__(self):
+        self.pi = None
+        self.cap = None
+        try:
+            from picamera2 import Picamera2
+            self.pi = Picamera2()
+            self.pi.configure(self.pi.create_preview_configuration(
+                main={"size": (wCam, hCam), "format": "BGR888"}))
+            self.pi.start()
+            return
+        except Exception:
+            self.pi = None
+        for idx in range(4):
+            cap = cv2.VideoCapture(idx)
+            if cap.isOpened() and cap.read()[0]:
+                self.cap = cap
+                break
+            cap.release()
+        if self.cap is None:
+            raise RuntimeError("Camera not found - check connection")
+        self.cap.set(3, wCam)
+        self.cap.set(4, hCam)
+
+    def read(self):
+        if self.pi is not None:
+            return True, self.pi.capture_array()
+        return self.cap.read()
+
+    def release(self):
+        if self.pi is not None:
+            self.pi.stop()
+        else:
+            self.cap.release()
+
+try:
+    cap = Camera()
+except RuntimeError as e:
+    audio_process.terminate()
+    raise SystemExit(e)
 pTime = 0
  
-detector = htm.handDetector(detectionCon=int(0.7))
+detector = htm.handDetector(detectionCon=0.7)
 minVol = 0
 maxVol = 100
 vol = 0
@@ -50,6 +88,8 @@ volBar = 400
 volPer = 0
 while True:
     success, img = cap.read()
+    if not success:
+        continue
     img = detector.findHands(img)
     lmList = detector.findPosition(img, draw=False)
     if len(lmList) != 0:
