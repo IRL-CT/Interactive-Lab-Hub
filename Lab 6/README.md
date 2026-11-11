@@ -306,7 +306,22 @@ was = touched
 
 ### 4. User testing
 
-<!-- TODO: test with 2+ people NOT on the team, with photos or video. For each: what they expected before trying, what surprised them, what they would change. -->
+**Test plan.** Each tester gets one sentence: "This apartment has three Pis, one in my bedroom, one in the living room and one on my door." Then they play the roommate while I go to "sleep":
+
+1. Before touching anything, they say what they think each Pi does.
+2. They talk loudly in the living room.
+3. They want to ask me something, so they go to my door.
+4. I "wake up" and show them my morning screen.
+
+After each step I ask what they expected, what surprised them and what they would change.
+
+**What I expect going in:**
+
+- **Before trying:** the door pad doesn't look like a doorbell, so I expect at least one tester to knock on the door anyway. I also expect them to read the dim red living room screen as "something is wrong" rather than "Aryan's asleep."
+- **Surprises:** I expect the knock not waking me to surprise them, since most people assume a knock always gets through. I also think the living room screen reacting to their voice a second later will feel more like being watched than they expect.
+- **Changes:** I expect requests for an urgent option, like holding the door pad to actually wake me up, and for a softer warning than full red, like a gradual glow as the room gets louder.
+
+<!-- TODO: add what each tester actually said, with photos or video -->
 
 ### 5. Reflection
 
