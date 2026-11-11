@@ -35,59 +35,14 @@ Teamname:huadiweilao
 
 ## Part C: Make Your Own
 
-**Requirements:**
-- 3+ people, 3+ Pis
-- Each Pi contributes sensor input via MQTT
-- Meaningful or fun interaction
+<img width="4284" height="5712" alt="a9ad691653fa56ae33cb5ed3be230b03" src="https://github.com/user-attachments/assets/f7ffad0b-876d-4836-9ef6-fd3d533cb1da" />
 
+<img width="4284" height="5712" alt="43e95b0183c5fbab28362e759ff271fc" src="https://github.com/user-attachments/assets/bd3aeefb-fb0d-4441-816b-ece21983d068" />
 
-**Sensor Fortune Teller**
-- Each Pi sends 0-255 from different sensor
-- Server generates fortunes from combined values
+<img width="1028" height="314" alt="5c4036090bff02fb59ced193316bdbc3" src="https://github.com/user-attachments/assets/6cfda432-bc89-46bc-9a87-bec9f353f7df" />
 
-**Frankenstories**
-- Sensor events → story elements (not text!)
-- Red = danger, gesture up = climbed, distance <10cm = suddenly
+<img width="857" height="463" alt="869b649b888dd247610d60d371c08889" src="https://github.com/user-attachments/assets/3a9eceed-5a91-4196-b73e-be399ab7bf60" />
 
-**Distributed Instrument**
-- Each Pi = one musical parameter
-- Only works together
-
-**The Listening Room**
-- One Pi runs Ollama and subscribes to the others' sensor topics
-- Every minute it describes the room's "mood" in a sentence and publishes it
-- Other Pis turn that sentence into light or sound
-
-**Others:** Games, presence display, mood ring
-
-### Deliverables
-
-Replace this README with your documentation:
-
-**1. Project Description**
-- What does it do? Why interesting? User experience?
-
-**2. Architecture Diagram**
-- Hardware, connections, data flow
-- Label input/computation/output
-
-**3. Build Documentation**
-- Photos of each Pi + sensors
-- MQTT topics used
-- Code snippets with explanations
-
-**4. User Testing**
-- **Test with 2+ people NOT on your team**
-- Photos/video of use
-- What did they think before trying?
-- What surprised them?
-- What would they change?
-
-**5. Reflection**
-- What worked well?
-- Challenges with distributed interaction?
-- How did sensor events work?
-- What would you improve?
 - Where did computation happen in your system, and why there? (If you used a language model: did it run on every event, or only at setup?)
 
 ---
