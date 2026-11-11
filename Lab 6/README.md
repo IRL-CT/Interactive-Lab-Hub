@@ -35,13 +35,13 @@ Teamname: huadiweilao
 
 ## Part C: Break Vote Light
 
-1. Project Description
+# 1. Project Description
 
 When a group studies together, nobody wants to be the first one to say "let's take a break." The Break Vote Light lets everyone vote quietly instead. Each person votes from their own device, in their own way: one waves a hand over a proximity sensor, one shakes a motion sensor, and one presses a button. The center Pi counts the votes. Its screen turns gray when nobody has voted, yellow with the count (like "2/4") as votes come in, and green with "BREAK!" once everyone has voted. A vote only counts for 60 seconds, so old votes don't pile up.
 
 Our fourth member's Pi was not working, so their vote is simulated by a script (bot_voter.py, shows up as "simone"). It joins a few seconds after someone else votes.
 
-2. Architecture Diagram
+# 2. Architecture Diagram
 
 architecture
 
@@ -49,7 +49,7 @@ Input: APDS-9960 (wave), LSM6DS3 (shake), PiTFT button (press), plus one simulat
 Computation: Jin's Pi counts votes from the last 60 seconds
 Output: the PiTFT screen color, and a status message sent back to every voter
 
-3. Build Documentation
+# 3. Build Documentation
 
 Each Pi:
 
@@ -97,7 +97,7 @@ python
 live = sorted(n for n, t in votes.items() if now - t < VOTE_TTL)
 if len(live) >= NEEDED:
     show((0, 220, 80), "BREAK!")
-4. User Testing
+# 4. User Testing
 
 We tested with ___ and ___ (not on our team).
 
@@ -108,7 +108,7 @@ We tested with ___ and ___ (not on our team).
 Before trying: ___
 What surprised them: ___
 What they would change: ___
-5. Reflection
+# 5. Reflection
 
 What worked well: Using MQTT made it easy to add new kinds of voters. The center Pi doesn't care if a vote comes from a wave, a shake, or a button, it just counts messages on vote/<name>. So each person could use a different sensor without changing the center code.
 
