@@ -321,7 +321,18 @@ After each step I ask what they expected, what surprised them and what they woul
 - **Surprises:** I expect the knock not waking me to surprise them, since most people assume a knock always gets through. I also think the living room screen reacting to their voice a second later will feel more like being watched than they expect.
 - **Changes:** I expect requests for an urgent option, like holding the door pad to actually wake me up, and for a softer warning than full red, like a gradual glow as the room gets louder.
 
-<!-- TODO: add what each tester actually said, with photos or video -->
+**What actually happened.** Two people outside the team tried it.
+
+- **Tester 1** said it was a lot more functional than he expected. His one complaint was the touch pads: he had to get really close to them before a touch counted, so a quick tap didn't always register.
+- **Tester 2** was confused by the screens. She couldn't tell what each one meant or how they connected to each other, so the system didn't explain itself to her.
+
+My prediction that the screens would be misread came true, but it was bigger than one red screen. Each screen makes sense if you already know the whole system, and none of them make sense alone. The touch pad problem I didn't predict at all, because I had only tested touches with typed input.
+
+**What I'd change from this:**
+
+- Make the pads easier to trigger, either by lowering the MPR121's touch threshold or by wiring each pad to a bigger piece of foil so a tap doesn't have to land on a small electrode.
+- Have every screen say which room it is and what it's reacting to, for example "Living room: Aryan's asleep, you're at -18 dB, keep it under -25," instead of assuming people know there are three Pis.
+- Show the same short legend on all three screens the first time they start, so a new person can learn the system from whichever Pi they meet first.
 
 ### 5. Reflection
 
