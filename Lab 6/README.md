@@ -35,9 +35,9 @@ Teamname:huadiweilao
 
 ## Part C: Make Your Own
 
-<img width="4284" height="5712" alt="a9ad691653fa56ae33cb5ed3be230b03" src="https://github.com/user-attachments/assets/f7ffad0b-876d-4836-9ef6-fd3d533cb1da" />
+<img width="800" alt="a9ad691653fa56ae33cb5ed3be230b03" src="https://github.com/user-attachments/assets/f7ffad0b-876d-4836-9ef6-fd3d533cb1da" />
 
-<img width="4284" height="5712" alt="43e95b0183c5fbab28362e759ff271fc" src="https://github.com/user-attachments/assets/bd3aeefb-fb0d-4441-816b-ece21983d068" />
+<img width="800" alt="43e95b0183c5fbab28362e759ff271fc" src="https://github.com/user-attachments/assets/bd3aeefb-fb0d-4441-816b-ece21983d068" />
 
 <img width="1028" height="314" alt="5c4036090bff02fb59ced193316bdbc3" src="https://github.com/user-attachments/assets/6cfda432-bc89-46bc-9a87-bec9f353f7df" />
 
