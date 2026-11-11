@@ -65,43 +65,47 @@ Each Pi:
 
 <img width="857" height="463" alt="869b649b888dd247610d60d371c08889" src="https://github.com/user-attachments/assets/3a9eceed-5a91-4196-b73e-be399ab7bf60" />
 
-MQTT topics:
+**MQTT topics:**
 
-Topic	Message	Who sends it
-IDD/huadiweilao/vote/<name>	1	each voter
-IDD/huadiweilao/status	2/4 want a break: jin, yan or BREAK TIME!	the center Pi
+| Topic | Message | Who sends it |
+|---|---|---|
+| `IDD/huadiweilao/vote/<name>` | `1` | each voter |
+| `IDD/huadiweilao/status` | `2/4 want a break: jin, yan` or `BREAK TIME!` | the center Pi |
 
-Code:
+**Code:**
 
-- center_light.py: runs on the center Pi
-- voter.py: wave to vote (APDS-9960)
-- voter_shake.py: shake to vote (LSM6DS3)
-- bot_voter.py: the simulated fourth voter
+- [center_light.py](center_light.py): runs on the center Pi
+- [voter.py](voter.py): wave to vote (APDS-9960)
+- [voter_shake.py](voter_shake.py): shake to vote (LSM6DS3)
+- [bot_voter.py](bot_voter.py): the simulated fourth voter
 
 Voting is just one MQTT message. When the hand is close enough, the voter Pi sends a vote under its own name:
 
-python
+```python
 if sensor.proximity > THRESHOLD and time.time() - last > COOLDOWN:
     client.publish(f"{TEAM}/vote/{NAME}", "1")
+```
 
 The shake voter measures how far the total acceleration is from normal gravity (1 g). A quick shake pushes it over 0.7 g:
 
-python
+```python
 strength = abs(math.sqrt(x * x + y * y + z * z) - 1.0)
 if strength > SHAKE and time.time() - last > COOLDOWN:
     client.publish(f"{TEAM}/vote/{NAME}", "1")
+```
 
 The center Pi keeps the time of each person's last vote, and only counts votes from the last 60 seconds:
 
-python
+```python
 live = sorted(n for n, t in votes.items() if now - t < VOTE_TTL)
 if len(live) >= NEEDED:
     show((0, 220, 80), "BREAK!")
-# 4. User Testing
+```
+# 4. Video and User Testing
 
-We tested with ___ and ___ (not on our team).
+We tested with Lin and Eric.
 
-(video 1)
+[Test Video](https://youtube.com/shorts/swP6uVhB3Fg?feature=share)
 
 (video 2)
 
