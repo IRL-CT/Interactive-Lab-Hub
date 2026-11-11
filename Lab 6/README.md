@@ -11,20 +11,16 @@ Teamname: huadiweilao
 
 <img width="860" height="458" alt="image" src="https://github.com/user-attachments/assets/72794da6-d7fb-4c5e-894f-de2ff10eb26a" />
 
-**💡 Brainstorm 5 ideas for messaging between devices**
-
 **Ideas:**
 
 1. **Break vote light:** Each person waves in front of their own sensor to vote. Once everyone has voted, the Pi in the middle announces "Break time!"
 2. **RGB color mixing together:** Three Pis each control one part of the color (red, green, or blue). The three people use their sensors to work together and match a target color shown on a web page.
 3. **Color relay:** The first Pi detects a color and sends it out. The next person has to find an object with a similar color and get their sensor to recognize it, then pass it on to the next person.
 4. **Tug of war over the air:** Two Pis count how many times each team waves and send the counts over MQTT to the Pi in the middle. A servo on the middle Pi turns toward whichever team is ahead.
-5. **Combination lock:** Three Pis each check one condition: a certain color, a knob
+5. **Combination lock:** Three Pis each check one condition: a certain color, a knob position, and a hand gesture. When all three are right, a message is sent over MQTT and a servo unlocks.
 ---
 
 ## Part B: Collaborative Pixel Grid
-
-**📸 Include: Screenshot of grid + photo of your Pi setup**
 
 <img width="1512" height="906" alt="a2a1aae089b897a6de91ea1162132058" src="https://github.com/user-attachments/assets/d6a88a63-7880-4d4c-bf24-e97698afd40d" />
 
@@ -35,13 +31,13 @@ Teamname: huadiweilao
 
 ## Part C: Break Vote Light
 
-# 1. Project Description
+### 1. Project Description
 
 When a group studies together, nobody wants to be the first one to say "let's take a break." The Break Vote Light lets everyone vote quietly instead. Each person votes from their own device, in their own way: one waves a hand over a proximity sensor, one shakes a motion sensor, and one presses a button. The center Pi counts the votes. Its screen turns gray when nobody has voted, yellow with the count (like "2/4") as votes come in, and green with "BREAK!" once everyone has voted. A vote only counts for 60 seconds, so old votes don't pile up.
 
 Our fourth member's Pi was not working, so their vote is simulated by a script (bot_voter.py, shows up as "simone"). It joins a few seconds after someone else votes.
 
-# 2. Architecture Diagram
+### 2. Architecture Diagram
 
 <img width="1520" height="940" alt="image" src="https://github.com/user-attachments/assets/d58a4c7d-2344-46a5-972d-0252700e9301" />
 
@@ -49,7 +45,7 @@ Our fourth member's Pi was not working, so their vote is simulated by a script (
 - Computation: Jin's Pi counts votes from the last 60 seconds
 - Output: the PiTFT screen color, and a status message sent back to every voter
 
-# 3. Build Documentation
+### 3. Build Documentation
 
 Each Pi:
 
@@ -101,17 +97,26 @@ live = sorted(n for n, t in votes.items() if now - t < VOTE_TTL)
 if len(live) >= NEEDED:
     show((0, 220, 80), "BREAK!")
 ```
-# 4. Video and User Testing
+### 4. Video and User Testing
 
 - [Test Video](https://youtube.com/shorts/swP6uVhB3Fg?feature=share)
 - [Video 1](https://youtube.com/shorts/ggu9odhWcZg?feature=share)
 - [Video2](https://youtube.com/shorts/weRjCOKrgaM?feature=share)
 
 We tested with Lin and Eric.
-Before trying: ___
-What surprised them: ___
-What they would change: ___
-# 5. Reflection
+
+**Lin**
+
+- **Before trying:** Lin liked the idea of asking for a break without interrupting the group. However, she was unsure how close her hand needed to be to the sensor.
+- **What surprised them:** She found the gray, yellow, and green screen states easy to understand. She also liked that everyone could vote using a different action while contributing to the same result.
+- **What they would change:** She suggested adding a small light or confirmation message on each device so users could tell whether their vote had been registered without looking at the center screen.
+
+**Eric**
+
+- **Before trying:** Eric expected the light to turn green once most people wanted a break. The requirement for everyone to vote needed a short explanation.
+- **What surprised them:** The 60-second expiration was less obvious to him. A decreasing vote count could look like a missed input unless users already knew that votes expired.
+- **What they would change:** He suggested showing how much time remained before a vote expired and adding a way to cancel a vote. He also thought an adjustable voting threshold would make the system more useful for larger groups.
+### 5. Reflection
 
 What worked well: Using MQTT made it easy to add new kinds of voters. The center Pi doesn't care if a vote comes from a wave, a shake, or a button, it just counts messages on vote/<name>. So each person could use a different sensor without changing the center code.
 
