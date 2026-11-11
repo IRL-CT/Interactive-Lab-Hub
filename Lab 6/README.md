@@ -5,7 +5,7 @@ Yan Shen(ys2473)
 Simin Xu(sx333)
 Flora Zhang(
 
-Teamname:huadiweilao
+Teamname: huadiweilao
 ---
 ## Part A: MQTT Messaging
 
