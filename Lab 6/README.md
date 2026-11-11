@@ -45,9 +45,9 @@ Our fourth member's Pi was not working, so their vote is simulated by a script (
 
 architecture
 
-Input: APDS-9960 (wave), LSM6DS3 (shake), PiTFT button (press), plus one simulated voter
-Computation: Jin's Pi counts votes from the last 60 seconds
-Output: the PiTFT screen color, and a status message sent back to every voter
+- Input: APDS-9960 (wave), LSM6DS3 (shake), PiTFT button (press), plus one simulated voter
+- Computation: Jin's Pi counts votes from the last 60 seconds
+- Output: the PiTFT screen color, and a status message sent back to every voter
 
 # 3. Build Documentation
 
