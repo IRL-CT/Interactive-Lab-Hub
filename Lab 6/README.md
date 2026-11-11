@@ -104,8 +104,8 @@ if len(live) >= NEEDED:
 # 4. Video and User Testing
 
 - [Test Video](https://youtube.com/shorts/swP6uVhB3Fg?feature=share)
-- [Video 1]([video 2](https://youtube.com/shorts/ggu9odhWcZg?feature=share)
-- [Video2]([video 2](https://youtube.com/shorts/weRjCOKrgaM?feature=share)
+- [Video 1](https://youtube.com/shorts/ggu9odhWcZg?feature=share)
+- [Video2](https://youtube.com/shorts/weRjCOKrgaM?feature=share)
 
 We tested with Lin and Eric.
 Before trying: ___
