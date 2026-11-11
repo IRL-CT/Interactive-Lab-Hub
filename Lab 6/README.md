@@ -103,12 +103,12 @@ if len(live) >= NEEDED:
 ```
 # 4. Video and User Testing
 
+- [Test Video](https://youtube.com/shorts/swP6uVhB3Fg?feature=share)
+
+- [Video 1]([video 2](https://youtube.com/shorts/ggu9odhWcZg?feature=share)
+- [Video2]([video 2](https://youtube.com/shorts/ggu9odhWcZg?feature=share))
+
 We tested with Lin and Eric.
-
-[Test Video](https://youtube.com/shorts/swP6uVhB3Fg?feature=share)
-
-(video 2)
-
 Before trying: ___
 What surprised them: ___
 What they would change: ___
