@@ -18,16 +18,12 @@ Teamname: huadiweilao
 3. **Color relay:** The first Pi detects a color and sends it out. The next person has to find an object with a similar color and get their sensor to recognize it, then pass it on to the next person.
 4. **Tug of war over the air:** Two Pis count how many times each team waves and send the counts over MQTT to the Pi in the middle. A servo on the middle Pi turns toward whichever team is ahead.
 5. **Combination lock:** Three Pis each check one condition: a certain color, a knob position, and a hand gesture. When all three are right, a message is sent over MQTT and a servo unlocks.
----
 
 ## Part B: Collaborative Pixel Grid
 
 <img width="1512" height="906" alt="a2a1aae089b897a6de91ea1162132058" src="https://github.com/user-attachments/assets/d6a88a63-7880-4d4c-bf24-e97698afd40d" />
 
 <img width="1280" height="1707" alt="e43c1871e6bfde431b308bc1f12249b9" src="https://github.com/user-attachments/assets/23f6fefc-4cdd-4d97-8ec3-90132270bdf6" />
-
-
----
 
 ## Part C: Break Vote Light
 
