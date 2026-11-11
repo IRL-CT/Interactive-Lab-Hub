@@ -43,7 +43,7 @@ Our fourth member's Pi was not working, so their vote is simulated by a script (
 
 # 2. Architecture Diagram
 
-architecture
+<img width="1520" height="940" alt="image" src="https://github.com/user-attachments/assets/d58a4c7d-2344-46a5-972d-0252700e9301" />
 
 - Input: APDS-9960 (wave), LSM6DS3 (shake), PiTFT button (press), plus one simulated voter
 - Computation: Jin's Pi counts votes from the last 60 seconds
