@@ -5,8 +5,7 @@ Yan Shen(ys2473)
 Simin Xu(sx333)
 Flora Zhang(
 
-For submission, replace this section with your documentation!
-
+Teamname:huadiweilao
 ---
 
 ## Prep
