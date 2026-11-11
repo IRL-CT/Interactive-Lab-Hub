@@ -144,6 +144,8 @@ Hold colored objects near sensor to change your pixel!
 
 **📸 Include: Screenshot of grid + photo of your Pi setup**
 
+<!-- TODO: Part B needs the APDS-9960 color sensor, which I don't have yet. Once it's plugged in (it shows up at 0x39 in `i2cdetect -y 1`), run `python pixel_grid_publisher.py` from `Lab 6/.venv`, then add the grid screenshot and a photo of the Pi here. -->
+
 ---
 
 ## Part C: Make Your Own
@@ -203,6 +205,116 @@ Replace this README with your documentation:
 - How did sensor events work?
 - What would you improve?
 - Where did computation happen in your system, and why there? (If you used a language model: did it run on every event, or only at setup?)
+
+## Part C: Quiet Hours
+
+**Team:** <!-- TODO: teammates' names and netIDs, and whose Pi is which room -->
+
+### 1. Project description
+
+My roommate and I keep different hours. When I go to bed early, they have no way of knowing, so the living room stays loud and people knock on my door. Quiet Hours spreads the fact that I'm asleep around the apartment over three Pis:
+
+- **Bedroom Pi:** I tap a pad by my bed when I go to sleep. It publishes `asleep`, and its own screen goes black so it doesn't keep me up. With `--camera` it reuses my Lab 5 YOLO model to watch the bed, and if nobody is in it for three minutes it decides I got up and switches back to `awake`, so I can't forget to tap.
+- **Living room Pi:** listens to the room with its mic. While I'm asleep the screen is dim red, and when it gets loud it turns bright red and says "Aryan's asleep, keep it down."
+- **Door Pi:** a touch pad on my door that people tap instead of knocking. If I'm asleep, the screen asks them to text instead, and the knock is saved for the morning instead of waking me.
+
+When I tap the pad in the morning, my screen shows what happened overnight, like "2 knock(s), last 23:40, 1 loud moment(s)."
+
+What I find interesting is that no Pi does anything useful alone. The bedroom Pi knows I'm asleep but can't hear the living room. The living room Pi hears the noise but doesn't know if it matters. Only together do they know when loud is a problem.
+
+### 2. Architecture
+
+```mermaid
+flowchart LR
+    subgraph Bedroom Pi
+        T1[MPR121 pad<br/>input] --> B[bedroom.py<br/>asleep or awake?]
+        C[Webcam + YOLO<br/>input, optional] --> B
+        B --> S1[PiTFT<br/>morning summary]
+    end
+    subgraph Living room Pi
+        M[Webcam mic<br/>input] --> L[livingroom.py<br/>loudness in dBFS]
+        L --> S2[PiTFT<br/>red when loud]
+    end
+    subgraph Door Pi
+        T2[MPR121 pad<br/>input] --> D[door.py]
+        D --> S3[PiTFT<br/>reply to the visitor]
+    end
+    BR((farlab broker<br/>IDD/quiethours/#))
+    B -- bedroom/state, retained --> BR
+    BR -- bedroom/state --> L
+    BR -- bedroom/state --> D
+    L -- livingroom/noise, livingroom/loud --> BR
+    D -- door/knock --> BR
+    BR -- door/knock, livingroom/loud --> B
+```
+
+Input is the touch pads, the mic and the camera. Computation happens on each Pi, next to its own sensor. Output is the three PiTFT screens. The broker only passes messages along.
+
+### 3. Build
+
+<!-- TODO: photo of each Pi with its sensor and screen -->
+
+**MQTT topics**
+
+| Topic | Who publishes | Message | Retained? |
+|---|---|---|---|
+| `IDD/quiethours/bedroom/state` | bedroom | `{"state": "asleep", "since": "2026-11-11T23:05:12", "source": "tap"}` | yes |
+| `IDD/quiethours/livingroom/noise` | living room | `{"level": -42.1}` every 2 s | no |
+| `IDD/quiethours/livingroom/loud` | living room | `{"level": -18.3, "t": "..."}` once per loud stretch, only while I'm asleep | no |
+| `IDD/quiethours/door/knock` | door | `{"t": "..."}` | no |
+| `IDD/quiethours/<pi>/online` | each Pi | `1`, or `0` from the broker when the Pi drops | yes |
+
+**Code** (in [`quiet_hours/`](quiet_hours/)): `common.py` holds the broker settings, topic names, PiTFT and touch pad code, so all three Pis agree on names in one place. Each Pi runs one script:
+
+```bash
+cd "Lab 6/quiet_hours"
+source ../.venv/bin/activate
+sudo systemctl stop piscreen.service   # free the PiTFT
+python bedroom.py      # or livingroom.py, or door.py
+```
+
+Every script takes `--fake`, which swaps the sensors for typed input and the screen for the terminal. I used it to test the logic before the hardware was set up.
+
+The bedroom state is the one message that has to survive a restart, so it's **retained**. If the door Pi reboots at 2am, the broker hands it `asleep` as soon as it subscribes, and it doesn't wrongly tell a visitor to knock:
+
+```python
+common.send(client, common.STATE, {"state": state, "since": since, "source": source}, retain=True)
+```
+
+Each Pi also leaves a **last will**, so if one loses power the broker publishes `0` on its `online` topic for it, and it's easy to see in the MQTT viewer which room went quiet:
+
+```python
+client.will_set(f"{ROOT}/{name}/online", "0", retain=True)
+```
+
+The living room turns raw mic samples into one loudness number, and only that number leaves the Pi. No audio is ever sent:
+
+```python
+rms = math.sqrt(sum(s * s for s in samples) / len(samples))
+yield 20 * math.log10(max(rms, 1) / 32768)      # dBFS: 0 is the loudest the mic can record
+```
+
+The door touch pad counts a press once, not every 50 ms it stays down:
+
+```python
+if touched and not was:
+    on_touch()
+was = touched
+```
+
+<!-- TODO: say which threshold you ended up with after trying it in the real living room (the default is -25 dBFS) -->
+
+### 4. User testing
+
+<!-- TODO: test with 2+ people NOT on the team, with photos or video. For each: what they expected before trying, what surprised them, what they would change. -->
+
+### 5. Reflection
+
+**Where computation happens.** Each Pi does its own sensing next to the sensor: the living room Pi turns audio into one number, and the bedroom Pi runs YOLO on its own frames. That keeps audio and video of my bedroom off the shared broker, where every team can read everything. The decision about whether noise matters happens on the living room Pi, because it's the one that has to react right away. No language model runs anywhere, because every decision is a simple comparison.
+
+**Designing topics.** MQTT doesn't fix any vocabulary, so we had to agree on topic names and message shapes ourselves. Keeping them all in `common.py` meant a typo couldn't make one Pi silently publish to a topic nobody listened to.
+
+<!-- TODO: what worked well, the challenges of running it across real Pis, how the sensor events behaved in practice, and what you would improve after user testing -->
 
 ---
 
