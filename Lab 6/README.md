@@ -73,10 +73,10 @@ IDD/huadiweilao/status	2/4 want a break: jin, yan or BREAK TIME!	the center Pi
 
 Code:
 
-center_light.py: runs on the center Pi
-voter.py: wave to vote (APDS-9960)
-voter_shake.py: shake to vote (LSM6DS3)
-bot_voter.py: the simulated fourth voter
+- center_light.py: runs on the center Pi
+- voter.py: wave to vote (APDS-9960)
+- voter_shake.py: shake to vote (LSM6DS3)
+- bot_voter.py: the simulated fourth voter
 
 Voting is just one MQTT message. When the hand is close enough, the voter Pi sends a vote under its own name:
 
