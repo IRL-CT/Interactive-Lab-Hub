@@ -53,9 +53,9 @@ architecture
 
 Each Pi:
 
-Yanshen with APDS-9960
-Flora Zhang with LSM6DS3
-Jin's Pi with the Mini PiTFT
+- Yanshen with APDS-9960
+- Flora Zhang with LSM6DS3
+- Jin's Pi with the Mini PiTFT
 
 <img width="400" alt="a9ad691653fa56ae33cb5ed3be230b03" src="https://github.com/user-attachments/assets/f7ffad0b-876d-4836-9ef6-fd3d533cb1da" />
 
