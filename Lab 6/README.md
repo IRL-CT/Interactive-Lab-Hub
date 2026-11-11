@@ -57,6 +57,7 @@ Each Pi:
 
 <img width="857" height="463" alt="869b649b888dd247610d60d371c08889" src="https://github.com/user-attachments/assets/3a9eceed-5a91-4196-b73e-be399ab7bf60" />
 
+
 **MQTT topics:**
 
 | Topic | Message | Who sends it |
