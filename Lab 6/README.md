@@ -252,7 +252,11 @@ Input is the touch pads, the mic and the camera. Computation happens on each Pi,
 
 ### 3. Build
 
-<!-- TODO: photo of each Pi with its sensor and screen -->
+<img src="imgs/quiet_hours_setup.jpg" width="450" alt="Raspberry Pi 5 with the MiniPiTFT on its header and an MPR121 touch sensor on a Qwiic cable" />
+
+My Pi: a Raspberry Pi 5 with the MiniPiTFT on the GPIO header and the MPR121 capacitive touch sensor on a Qwiic cable. Pad 0 is the knock pad (and the sleep pad on the bedroom Pi). The pads are bare here, with no foil or wire attached, which is part of why testers had to press right on them.
+
+<!-- TODO: photos of the other two Pis -->
 
 **MQTT topics**
 
