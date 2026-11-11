@@ -1,9 +1,9 @@
 # Distributed Interaction
 
-Yangchen Jin(yj645)
-Yan Shen(ys2473)
-Simin Xu(sx333)
-Flora Zhang(zz979)
+- Yangchen Jin(yj645)
+- Yan Shen(ys2473)
+- Simin Xu(sx333)
+- Flora Zhang(zz979)
 
 Team name: huadiweilao
 ---
