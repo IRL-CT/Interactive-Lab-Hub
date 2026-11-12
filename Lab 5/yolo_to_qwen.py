@@ -29,26 +29,49 @@ from ultralytics import YOLO
 
 model = YOLO("yolo26n_ncnn_model")
 
+HOLD = 2.0                          # seconds a person is kept after YOLO loses them
+_last_people = (0.0, None)          # (time, reading) of the last frame that had someone in it
+
+
+def _overlap(a, b):
+    """How much of the smaller box lies inside the other, 0 to 1."""
+    ix = max(0, min(a[2], b[2]) - max(a[0], b[0]))
+    iy = max(0, min(a[3], b[3]) - max(a[1], b[1]))
+    smaller = min((a[2] - a[0]) * (a[3] - a[1]), (b[2] - b[0]) * (b[3] - b[1]))
+    return ix * iy / smaller if smaller else 0
+
 
 def interpret(r):
     """The interpreter: turn one YOLO result into one short reading in words.
 
     This is the most important design decision in the pipeline. The language model
     never sees pixels, only the words chosen here. Change it and the model's world changes.
+
+    Changed after run 1: Qwen read every flicker in the log as a new person arriving.
+    - boxes that mostly overlap are one person, not two (YOLO sometimes boxes the same body twice)
+    - a "nobody" within HOLD seconds of seeing someone is a dropped frame, not someone leaving
+    - no left/center/right: every small move was a new log line, and Part 2 only needs close/far
     """
+    global _last_people
     h, w = r.orig_shape
-    people, others = [], set()
+    boxes, others = [], set()
     for box in r.boxes:
         name = model.names[int(box.cls)]
         if name != "person":
             others.add(name)                 # only with --all; see watch()
             continue
-        x1, y1, x2, y2 = box.xyxy[0].tolist()
-        cx = (x1 + x2) / 2
-        side = "left" if cx < w / 3 else "right" if cx > 2 * w / 3 else "center"   # which third of the frame
-        dist = "close" if (y2 - y1) > 0.6 * h else "far"                           # how tall the box is
-        people.append(f"{side}/{dist}")
-    reading = f"{len(people)} person(s) at {', '.join(people)}" if people else "nobody"
+        xyxy = box.xyxy[0].tolist()
+        if not any(_overlap(xyxy, b) > 0.6 for b in boxes):
+            boxes.append(xyxy)
+    people = ["close" if (y2 - y1) > 0.6 * h else "far" for x1, y1, x2, y2 in boxes]   # how tall the box is
+    now = time.time()
+    if people:
+        reading = f"{len(people)} person(s), {', '.join(people)}"
+        _last_people = (now, reading)
+    elif now - _last_people[0] < HOLD:
+        reading = _last_people[1]
+    else:
+        reading = "nobody"
     if others:
         reading += "; also " + ", ".join(sorted(others))
     return reading

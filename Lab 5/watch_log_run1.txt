@@ -1,0 +1,21 @@
+12:34:22 nobody
+12:34:25 1 person(s) at left/far
+12:34:26 nobody
+12:34:27 1 person(s) at left/far
+12:34:29 nobody
+12:34:31 1 person(s) at right/far
+12:34:32 nobody
+12:34:55 1 person(s) at right/close
+12:34:55 1 person(s) at center/close
+12:34:56 nobody
+12:35:04 1 person(s) at right/close
+12:35:05 nobody
+12:35:06 2 person(s) at right/close, center/close
+12:35:06 nobody
+12:35:07 2 person(s) at center/close, right/close
+12:35:08 1 person(s) at center/close
+12:35:09 nobody
+12:35:10 1 person(s) at left/close
+12:35:11 nobody
+12:35:15 1 person(s) at center/close
+12:35:17 1 person(s) at right/close

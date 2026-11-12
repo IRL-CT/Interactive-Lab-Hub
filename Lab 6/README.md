@@ -1,6 +1,6 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+**Aryan Palave (ap2578)**
 
 For submission, replace this section with your documentation!
 
@@ -59,6 +59,23 @@ mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'H
 ![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
 
 **💡 Brainstorm 5 ideas for messaging between devices**
+
+**My Part A test.** I installed `mosquitto-clients` on my Pi, subscribed to my own topic, and published to it from the same Pi. The message came back through the farlab broker:
+
+```
+$ mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/aryan' -u idd -P 'device@theFarm' -v
+IDD/test/aryan Hello from aryan pi
+```
+
+Subscribing to `IDD/#` also showed other teams' traffic, like a burger game posting its score on `IDD/panburger/burger/game` and walkie-talkie Pis posting whether they were online on `IDD/walkietalkie/walkie/presence/...`.
+
+**My 5 ideas:**
+
+1. **Quiet hours light.** My Lab 5 restless monitor already knows when I'm in bed. It publishes `asleep` on `IDD/aryan/bedroom/state`, and a Pi in the living room turns its screen dim red so my roommate knows to keep it down.
+2. **Laundry done.** A Pi with an accelerometer sits on the washer in the basement and publishes `done` when the shaking stops for two minutes. The Pi on my desk shows it, so I stop walking down to check.
+3. **Open seat finder.** Pis with proximity sensors on study room desks publish `taken` or `free`, and a screen at the door shows a grid of open seats.
+4. **Presence lamp.** Two Pis in two different homes. Tapping a capacitive sensor on one makes the other glow for a few minutes, a quiet "thinking of you" like the Presence Table reading.
+5. **Fridge left open.** A light sensor inside the fridge publishes when the light stays on for more than a minute, and a Pi in the next room beeps until someone closes it.
 
 MQTT agrees on almost nothing in advance: you invent the topics and what the messages mean. Smart-home standards like Matter fix the vocabulary instead (every "light" behaves the same). Keep this trade-off in mind when you design your topics in Part C.
 
@@ -127,6 +144,8 @@ Hold colored objects near sensor to change your pixel!
 
 **📸 Include: Screenshot of grid + photo of your Pi setup**
 
+<!-- TODO: Part B needs the APDS-9960 color sensor, which I don't have yet. Once it's plugged in (it shows up at 0x39 in `i2cdetect -y 1`), run `python pixel_grid_publisher.py` from `Lab 6/.venv`, then add the grid screenshot and a photo of the Pi here. -->
+
 ---
 
 ## Part C: Make Your Own
@@ -186,6 +205,146 @@ Replace this README with your documentation:
 - How did sensor events work?
 - What would you improve?
 - Where did computation happen in your system, and why there? (If you used a language model: did it run on every event, or only at setup?)
+
+## Part C: Quiet Hours
+
+**Team:** <!-- TODO: teammates' names and netIDs, and whose Pi is which room -->
+
+### 1. Project description
+
+My roommate and I keep different hours. When I go to bed early, they have no way of knowing, so the living room stays loud and people knock on my door. Quiet Hours spreads the fact that I'm asleep around the apartment over three Pis:
+
+- **Bedroom Pi:** I tap a pad by my bed when I go to sleep. It publishes `asleep`, and its own screen goes black so it doesn't keep me up. With `--camera` it reuses my Lab 5 YOLO model to watch the bed, and if nobody is in it for three minutes it decides I got up and switches back to `awake`, so I can't forget to tap.
+- **Living room Pi:** listens to the room with its mic. While I'm asleep the screen is dim red, and when it gets loud it turns bright red and says "Aryan's asleep, keep it down."
+- **Door Pi:** a touch pad on my door that people tap instead of knocking. If I'm asleep, the screen asks them to text instead, and the knock is saved for the morning instead of waking me.
+
+When I tap the pad in the morning, my screen shows what happened overnight, like "2 knock(s), last 23:40, 1 loud moment(s)."
+
+What I find interesting is that no Pi does anything useful alone. The bedroom Pi knows I'm asleep but can't hear the living room. The living room Pi hears the noise but doesn't know if it matters. Only together do they know when loud is a problem.
+
+### 2. Architecture
+
+```mermaid
+flowchart LR
+    subgraph Bedroom Pi
+        T1[MPR121 pad<br/>input] --> B[bedroom.py<br/>asleep or awake?]
+        C[Webcam + YOLO<br/>input, optional] --> B
+        B --> S1[PiTFT<br/>morning summary]
+    end
+    subgraph Living room Pi
+        M[Webcam mic<br/>input] --> L[livingroom.py<br/>loudness in dBFS]
+        L --> S2[PiTFT<br/>red when loud]
+    end
+    subgraph Door Pi
+        T2[MPR121 pad<br/>input] --> D[door.py]
+        D --> S3[PiTFT<br/>reply to the visitor]
+    end
+    BR((farlab broker<br/>IDD/quiethours/#))
+    B -- bedroom/state, retained --> BR
+    BR -- bedroom/state --> L
+    BR -- bedroom/state --> D
+    L -- livingroom/noise, livingroom/loud --> BR
+    D -- door/knock --> BR
+    BR -- door/knock, livingroom/loud --> B
+```
+
+Input is the touch pads, the mic and the camera. Computation happens on each Pi, next to its own sensor. Output is the three PiTFT screens. The broker only passes messages along.
+
+### 3. Build
+
+<img src="imgs/quiet_hours_setup.jpg" width="450" alt="Raspberry Pi 5 with the MiniPiTFT on its header and an MPR121 touch sensor on a Qwiic cable" />
+
+My Pi: a Raspberry Pi 5 with the MiniPiTFT on the GPIO header and the MPR121 capacitive touch sensor on a Qwiic cable. Pad 0 is the knock pad (and the sleep pad on the bedroom Pi). The pads are bare here, with no foil or wire attached, which is part of why testers had to press right on them.
+
+<!-- TODO: photos of the other two Pis -->
+
+**MQTT topics**
+
+| Topic | Who publishes | Message | Retained? |
+|---|---|---|---|
+| `IDD/quiethours/bedroom/state` | bedroom | `{"state": "asleep", "since": "2026-11-11T23:05:12", "source": "tap"}` | yes |
+| `IDD/quiethours/livingroom/noise` | living room | `{"level": -42.1}` every 2 s | no |
+| `IDD/quiethours/livingroom/loud` | living room | `{"level": -18.3, "t": "..."}` once per loud stretch, only while I'm asleep | no |
+| `IDD/quiethours/door/knock` | door | `{"t": "..."}` | no |
+| `IDD/quiethours/<pi>/online` | each Pi | `1`, or `0` from the broker when the Pi drops | yes |
+
+**Code** (in [`quiet_hours/`](quiet_hours/)): `common.py` holds the broker settings, topic names, PiTFT and touch pad code, so all three Pis agree on names in one place. Each Pi runs one script:
+
+```bash
+cd "Lab 6/quiet_hours"
+source ../.venv/bin/activate
+sudo systemctl stop piscreen.service   # free the PiTFT
+python bedroom.py      # or livingroom.py, or door.py
+```
+
+Every script takes `--fake`, which swaps the sensors for typed input and the screen for the terminal. I used it to test the logic before the hardware was set up.
+
+The bedroom state is the one message that has to survive a restart, so it's **retained**. If the door Pi reboots at 2am, the broker hands it `asleep` as soon as it subscribes, and it doesn't wrongly tell a visitor to knock:
+
+```python
+common.send(client, common.STATE, {"state": state, "since": since, "source": source}, retain=True)
+```
+
+Each Pi also leaves a **last will**, so if one loses power the broker publishes `0` on its `online` topic for it, and it's easy to see in the MQTT viewer which room went quiet:
+
+```python
+client.will_set(f"{ROOT}/{name}/online", "0", retain=True)
+```
+
+The living room turns raw mic samples into one loudness number, and only that number leaves the Pi. No audio is ever sent:
+
+```python
+rms = math.sqrt(sum(s * s for s in samples) / len(samples))
+yield 20 * math.log10(max(rms, 1) / 32768)      # dBFS: 0 is the loudest the mic can record
+```
+
+The door touch pad counts a press once, not every 50 ms it stays down:
+
+```python
+if touched and not was:
+    on_touch()
+was = touched
+```
+
+<!-- TODO: say which threshold you ended up with after trying it in the real living room (the default is -25 dBFS) -->
+
+### 4. User testing
+
+**Test plan.** Each tester gets one sentence: "This apartment has three Pis, one in my bedroom, one in the living room and one on my door." Then they play the roommate while I go to "sleep":
+
+1. Before touching anything, they say what they think each Pi does.
+2. They talk loudly in the living room.
+3. They want to ask me something, so they go to my door.
+4. I "wake up" and show them my morning screen.
+
+After each step I ask what they expected, what surprised them and what they would change.
+
+**What I expect going in:**
+
+- **Before trying:** the door pad doesn't look like a doorbell, so I expect at least one tester to knock on the door anyway. I also expect them to read the dim red living room screen as "something is wrong" rather than "Aryan's asleep."
+- **Surprises:** I expect the knock not waking me to surprise them, since most people assume a knock always gets through. I also think the living room screen reacting to their voice a second later will feel more like being watched than they expect.
+- **Changes:** I expect requests for an urgent option, like holding the door pad to actually wake me up, and for a softer warning than full red, like a gradual glow as the room gets louder.
+
+**What actually happened.** Two people outside the team tried it.
+
+- **Tester 1** said it was a lot more functional than he expected. His one complaint was the touch pads: he had to get really close to them before a touch counted, so a quick tap didn't always register.
+- **Tester 2** was confused by the screens. She couldn't tell what each one meant or how they connected to each other, so the system didn't explain itself to her.
+
+My prediction that the screens would be misread came true, but it was bigger than one red screen. Each screen makes sense if you already know the whole system, and none of them make sense alone. The touch pad problem I didn't predict at all, because I had only tested touches with typed input.
+
+**What I'd change from this:**
+
+- Make the pads easier to trigger, either by lowering the MPR121's touch threshold or by wiring each pad to a bigger piece of foil so a tap doesn't have to land on a small electrode.
+- Have every screen say which room it is and what it's reacting to, for example "Living room: Aryan's asleep, you're at -18 dB, keep it under -25," instead of assuming people know there are three Pis.
+- Show the same short legend on all three screens the first time they start, so a new person can learn the system from whichever Pi they meet first.
+
+### 5. Reflection
+
+**Where computation happens.** Each Pi does its own sensing next to the sensor: the living room Pi turns audio into one number, and the bedroom Pi runs YOLO on its own frames. That keeps audio and video of my bedroom off the shared broker, where every team can read everything. The decision about whether noise matters happens on the living room Pi, because it's the one that has to react right away. No language model runs anywhere, because every decision is a simple comparison.
+
+**Designing topics.** MQTT doesn't fix any vocabulary, so we had to agree on topic names and message shapes ourselves. Keeping them all in `common.py` meant a typo couldn't make one Pi silently publish to a topic nobody listened to.
+
+<!-- TODO: what worked well, the challenges of running it across real Pis, how the sensor events behaved in practice, and what you would improve after user testing -->
 
 ---
 

@@ -1,26 +1,11 @@
 # Ph-UI!!!
 
+Members: Jaclyn Pham (cqp4), Vasudha Devkota (vd269), Aryan Palave (ap2578)
+
 <details>
-	<summary><strong>Instructions for Students (Click to Expand)</strong></summary>
-  
-	**Submission Cleanup Reminder:**
-	- This README.md contains extra instructional text for guidance.
-	- Before submitting, remove all instructional text and example prompts from this file.
-	- You may delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-	- Your final submission should be neat, focused on your own work, and easy to read for grading.
-  
-	This helps ensure your README.md is clear, professional, and uniquely yours!
-</details>
-
----
-
----
+<summary><strong>Lab structure and instructions (click to expand)</strong></summary>
 
 ## Lab Overview
-Team: <canvas group name>  
-Members: Full Name (netid, github-handle), ...  
-Project name: <name>
-
 
 For lab this week, we focus on both sensing and actuation, bringing new modes of input and output into your devices, while also prototyping the physical structure and overall look of the device. You will consider how the physical form supports sensing and actuation, and how these elements come together to shape the interaction and aesthetics of the device.
 
@@ -171,7 +156,8 @@ You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_C
 
 #### Rotary Encoder 
 
-A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came pre-soldered, so you do NOT need to solder anything.
+A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came with separate breakout board and encoder itself, that is, they will need to be soldered if you have not yet done so! We will be bringing the soldering station to the lab class for you to use, also, you can go to the MakerLAB to do the soldering off-class. Here is some [guidance on soldering](https://learn.adafruit.com/adafruit-guide-excellent-soldering/preparation) from Adafruit. When you first solder, get someone who has done it before (ideally in the MakerLAB environment). It is a good idea to review this material beforehand so you know what to look at.
+
 <p float="left">
 
    
@@ -283,17 +269,169 @@ Your kit includes these [SparkFun Qwiic OLED screens](https://www.sparkfun.com/p
 
 As you develop your Feast Automata concept, consider where the sensor and actuator need to be placed, what parts move, how electronics are housed, and how the overall form and aesthetics support the interaction.
 
-**\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
+**answers in the next section**
 
-**\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
+</details>
 
-**\*\*\*Pick one design to prototype and explain why.\*\*\***
+### Concept and artistic motivation
 
-Build a cardboard or other low-fidelity physical prototype of your design.
+**Feast on Your Life** is an interactive dining table inspired by the closing invitation of Derek Walcott’s poem *Love After Love*: to sit with oneself and welcome one’s own life. The study sheet is titled *Sit. Feast on your life.* The familiar gestures of a meal — walking up to the table, reaching for a cup, touching a spoon — become the way a memory arrives.
 
-**\*\*\*Document your rough prototype with photos and/or video.\*\*\***
+Engraved outlines of plates and utensils sit in the surface as quiet landmarks. Coming close makes light bloom along those lines. Touching a conductive detail plays a sound from the diner’s own life: a loved one’s voice, a remembered place, or an everyday sound that carries personal meaning.
+
+The motivation is to make memory feel present at the table. The Pi, the sensors, and the speaker live inside the table, and ordinary actions are what compose the experience. Light is a memory gradually coming into awareness. Sound lets the past briefly share the meal. A small servo-driven motion, such as a paper shade opening with the light, gives that response a physical gesture.
+
+The work asks: **What might it mean to sit down and feast on the experiences, relationships, and memories that have made you who you are?** The dining table becomes an intimate archive, opened by the diner’s presence and by their touch.
+
+Two signals carry the piece:
+
+| Gesture | Sensor | Response |
+| --- | --- | --- |
+| Approaching the place setting | SparkFun VCNL4040 proximity | A slow glow along the engraved outline, and a small shade that opens with the light |
+| Touching a spoon or an engraved conductive detail | MPR121 capacitive pad | A remembered sound from a speaker under the table |
+
+![Five arrangement sketches for Sit. Feast on your life.](<Lab4 sketches.png>)
 
 ---
+
+### What I have already built
+
+The touch-to-sound half of the table already runs. In these tests, Twizzlers stand in for spoons and other conductive tableware. Anything conductive can be clipped to the MPR121. The light half runs as a pattern on its own. Connecting that pattern to the proximity sensor is the next step.
+
+#### How the sound prototypes work
+
+All three music scripts use the same chain.
+
+1. The Adafruit MPR121 sits on the Qwiic I2C bus and reports whether each pad is touched.
+2. The main loop reads the pads about every 10 ms. It watches the *edge*: a new touch cues a part, and a release cuts it. Holding the Twizzler does not retrigger the sound on every loop.
+3. A `sounddevice` stream plays audio continuously at 44.1 kHz, in blocks of 512 samples. A sample counter advances whether or not anyone is touching. The position in the piece is that counter wrapped around the length of the loop.
+4. Each part has its own gain. A touch fades the part in; a release fades it out. The fade keeps the entrance from clicking.
+
+Because the clock never waits for a touch, a part that comes in late still lands on the beat. That is the behavior I want at a table, where a hand arrives in the middle of something already underway.
+
+Each orchestral voice is synthesized in the audio callback: a stack of sine harmonics, an envelope, and one detail that gives the instrument its color. The violin has a little bow noise, the oboe has a short reed chirp, and the timpani pitch falls after the strike.
+
+#### Orchestration
+
+Seven pads, one section each:
+
+| Pad | Part | Role |
+| --- | --- | --- |
+| 0 | violin | the tune |
+| 1 | viola | inner voice |
+| 2 | cello | the bass |
+| 3 | flute | the tune, an octave up |
+| 4 | horn | sustained harmony |
+| 5 | timpani | the pulse |
+| 6 | oboe | a countermelody |
+
+**Grieg, *In the Hall of the Mountain King*.** [`mountain_king_orchestra.py`](mountain_king_orchestra.py) loops the march at 126 BPM in B minor. The grid is a sixteenth note, so the tune can stay short and pointed. Melody parts are staccato: the last quarter of each note is silence. Gain fades over about a tenth of a second.
+
+[Grieg demo](https://youtu.be/P1fQQIjCXBU?si=kRvnSZQhSEFEwfpU)
+
+**Beethoven, *Ode to Joy*.** [`twizzler_orchestra.py`](twizzler_orchestra.py) uses the same seven pads and the same clock, at 100 BPM in C major. The grid is an eighth note, and the flute doubles the violin an octave higher. This pass checked that the same conducting gesture still works on a lyrical line.
+
+[Beethoven demo](https://www.instagram.com/p/DegK7smFazw/?img_index=2)
+
+The cue itself is small. `want[i]` is the only message the audio thread needs:
+
+```python
+down = bool(mpr121[i].value)
+if down and not held[i]:
+    held[i] = True
+    orchestra.want[i] = True   # fade this section in, on the current beat
+elif not down and held[i]:
+    held[i] = False
+    orchestra.want[i] = False  # fade it out; the clock keeps going
+```
+
+#### DJ version
+
+[`twizzler_dj.py`](twizzler_dj.py) is the same touch-to-layer idea on a house beat: 120 BPM, A minor, six pads.
+
+| Pad | Part | What it plays |
+| --- | --- | --- |
+| 0 | kick | four on the floor |
+| 1 | hats | offbeats, with an open hat at the end of the bar |
+| 2 | clap | beats 2 and 4 |
+| 3 | bass | one bar in A minor |
+| 4 | chord | an A-minor stab on the offbeats |
+| 5 | arp | A-minor pentatonic, in sixteenth notes |
+
+The fade is shorter here, about 20 ms, so a pad feels like a mute on a mixer. Bringing parts in one at a time shows that several touches can share one clock and still read as a single piece.
+
+[DJ demo](https://www.instagram.com/p/DeQE2kgjGT3/?img_index=1)
+
+#### Light pattern
+
+I tested LED patterns separately from the sound. The pattern runs on its own; distance does not change it yet.
+
+[Light pattern demo](https://www.instagram.com/p/Dej_RV5I2Bo/)
+
+The next step is the SparkFun VCNL4040, the same proximity sensor as [`qwiic_distance.py`](qwiic_distance.py) and [`windmill_coaster.py`](windmill_coaster.py). It reports a proximity value that rises as a hand or cup gets closer, out to about 20 cm. In the coaster example, crossing a threshold starts a servo. On this table, that value should drive brightness through a slow ramp and a low ceiling, so the engraving brightens as someone sits down. The same reading can move a servo a short distance, opening a paper shade as the light rises and closing it when the hand leaves.
+
+#### What these tests imply for the table
+
+The Twizzlers were clipped straight to the MPR121, so each touch was a bare conductive object. A spoon on the finished table is copper tape under a thin top, or a conductive inlay in the engraving. The cardboard section has to try a real top thickness. If the cover is too thick, the touch will not register.
+
+The orchestra and the DJ also showed that one pad can be one layer, and that layers can be live together. For the meal, each conductive detail plays one remembered sound through the speaker under the table. The fade that keeps a violin from clicking is the same fade that lets a voice arrive gently. Approach controls the light. Touch controls the sound. They can start at different moments.
+
+---
+
+### Questions the sketches raise
+
+The five drawings hold the sensor, the light, the touch point, and the speaker in different places. The open questions follow from those placements.
+
+- Can the SparkFun VCNL4040 reliably detect a hand or dinnerware near the table, and where should it sit? It needs a clear view of the target, so an opaque tabletop will block it.
+- How do plate material, color, angle, and placement affect the sensor readings?
+- Will a WS2812B strip look like a soft glow when it is hidden in a channel under tracing paper or another diffuser, or will individual LED dots show through?
+- Can a touch on the spoon, or on an engraved conductive detail, trigger the intended personal sound without accidental activations?
+- How can the Pi, speaker, sensor, and LED wiring be enclosed safely, away from food and spills?
+- What small movement could make the interaction feel like a ritual? A slow shade is the candidate. A snap from closed to open would feel like a mechanism announcing itself.
+
+---
+
+### What I need to prototype
+
+I will build a small tabletop section from cardboard or foam board, with one plate, one spoon, and the sensor and light in their intended positions. I will cut an opening for the VCNL4040 so it can see the diner’s hand or a nearby cup. I will place a short WS2812B strip under tracing paper or a translucent cover and test whether the light diffuses evenly.
+
+I will also test the existing touch-to-sound interaction at the spoon, then add a small servo that gently opens a paper flap or light-shade when someone approaches. I will try different sensor angles and distances, and record which dinnerware materials and positions produce useful readings.
+
+Concretely, the section has to answer four checks:
+
+1. **Sight line.** Readings from [`qwiic_distance.py`](qwiic_distance.py) with an empty setting, a hand, a cup, and a plate, at a few angles. The useful range is the gap between “someone is sitting nearby” and “a hand is over this place.”
+2. **Diffusion.** A short LED run under tracing paper, at a low brightness, viewed from a seated position. Success is a continuous glow along the engraving.
+3. **Touch through a top.** One MPR121 channel on copper tape at the spoon, under the same top thickness as the model. Success is one sound per deliberate touch, using the edge detect already in the orchestra scripts.
+4. **Shade.** A 9 g servo on channel 0 of the Servo pHAT, powered from the pHAT’s USB-C supply, moving a paper flap a short arc as proximity rises and returning when the reading falls. The Pi keeps its own supply. Servos do not run from the Pi’s 5V rail.
+
+The Pi, the Servo pHAT, the speaker, and the wiring sit in the cavity under the top. Food stays on the surface above them.
+
+---
+
+### Design I will prototype: The Living Inlay
+
+I will prototype the **Living Inlay**, sketch 03. It is the arrangement that matches a dining table with engraved tableware and hidden technology.
+
+From above, the diner sees engraved ware and a fine line of light. Under the surface sit the MPR121, the speaker, and the LEDs. The VCNL4040 rises through a small opening so it has a clear view, and that opening is meant to disappear into the engraving. Touching the spoon plays a sound from the diner’s life. As they come close, the engraving brightens, and a servo-operated paper shade opens slightly with the light.
+
+I chose this design because the table surface stays visually calm, and the light and the movement feel as though they come from inside it. One small section can test the three physical questions that decide whether the piece works: sensor visibility, light diffusion, and where each component sits. The larger arrangements (a shared bowl, a lantern centerpiece, a runner for several place settings) depend on those answers.
+
+The other four sketches stay useful as comparisons:
+
+| Sketch | Where the sensor and light sit | What it is good for |
+| --- | --- | --- |
+| 01 The Remembering Place | Sensor at the rim of one setting, halo around the plate | A first check of “can it see past the plate?” |
+| 02 The Common Table | Sensor at a shared bowl, light along paths to each seat | Several diners, and the risk of triggering from someone merely sitting nearby |
+| 03 The Living Inlay | Electronics under the top, sensor through a small opening | The calm surface, and a real test of cover thickness and diffusion |
+| 04 The Memory Lantern | Light above the table, in a paper shade | Whether a slow, dim fade feels intimate |
+| 05 The Portable Memory Runner | Three modules on a removable runner, one pod for the Pi | Alignment, and whether neighboring sensors fire on the wrong setting |
+
+Sketch 04’s fade is part of the inlay even though the lamp moves under the table: low brightness, slow rise, slow fall. Sketch 01 is the fallback if the inlay’s opening cannot see the hand. I can learn that from the same cardboard section by aiming the sensor at the rim instead of up through the top.
+
+---
+
+<details>
+<summary><strong>Part 2 lab instructions (click to expand)</strong></summary>
 
 ## Part 2
 
@@ -490,16 +628,56 @@ Document all the prototypes and iterations you have designed and worked on! Agai
 * "Works like": shows what the device can do
 * "Acts like": shows how a person would interact with the device
 
----
+</details>
 
-## Deliverables \& Submission for Lab 4
+### Part F
 
-The deliverables for this lab are, writings, sketches, photos, and videos that show what your prototype:
-* "Looks like": shows how the device should look, feel, sit, weigh, etc.
-* "Works like": shows what the device can do.
-* "Acts like": shows how a person would interact with the device.
+### Final Documentation
 
-For submission, the readme.md page for this lab should be edited to include the work you have done:
-* Upload any materials that explain what you did, into your lab 4 repository, and link them in your lab 4 readme.md.
-* Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
-* Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
+#### Tinfoil Concerto
+
+**Tinfoil Concerto** is built from the earlier sound and sensing tests. It is a small dining table for one. Ode to Joy loops in C major at 100 BPM, and every layer meets in one speaker. The score and the instrument voices come from [`twizzler_orchestra.py`](twizzler_orchestra.py). The table that joins them is [`table_orchestra.py`](table_orchestra.py).
+
+Earlier passes are documented above: the Grieg march, the Ode to Joy Twizzler orchestra, the house-beat DJ, and the light pattern. Those tests used Twizzlers as stand-ins for spoons. In the final piece the conductive tableware is tinfoil, and three sensors share one clock so a late gesture still lands on the beat.
+
+**Note.** A servo under the table is meant to bloom a flower as the conductor comes into range of the distance sensor. The motion is written into [`table_orchestra.py`](table_orchestra.py): the flower sweeps while someone is close and rests when they leave. On the day of filming the servo did not run. The video below shows the sound without that bloom. We will submit a revised video once the flower is working.
+
+[![Tinfoil Concerto final demo](https://img.youtube.com/vi/-xJ-nx6M46k/hqdefault.jpg)](https://youtu.be/-xJ-nx6M46k?si=GdRVrztpEzLHYCjd)
+
+[Sensor-by-sensor walkthrough](https://www.instagram.com/p/DeqIdZ1jF_7/?img_index=1)
+
+#### Looks like
+
+The diner sees a place setting, not a circuit. Pieces of tinfoil tableware sit on the surface where a hand would naturally land: a spoon, a cup, a plate. The Raspberry Pi, the MPR121, and the speaker stay under the table. The SparkFun VCNL4040 watches the approach from the setting. The Adafruit APDS-9960 looks up from beneath one object, so the opening reads as part of the ware. A paper flower on a servo is the one moving part, meant to open as someone sits down. In the filmed version that flower stays still.
+
+#### Works like
+
+Three sensors write into one mix. The audio callback never reads a sensor. The main loop only sets targets, and each part fades in and out on the shared clock.
+
+| Action | Sensor | What joins the piece |
+| --- | --- | --- |
+| Approaching the table | SparkFun VCNL4040, about 20 cm | The bass harmony builds: cello, then cello and viola, then cello, viola, and horn. It also grows louder. The flower servo is meant to sweep here. |
+| Holding a piece of tableware | MPR121 capacitive touch | One higher line, at full level, for as long as the foil is held |
+| Letting go | MPR121 | Only that line fades. Viola and horn can remain if the person is still close enough for the distance bed. |
+| Circling one object | Adafruit APDS-9960 | A C major drone (C, E, G). The place of the hand around the rim brightens the fifth, the octave, or the third. A still hand is silent. The tone rings briefly after the circle stops. |
+
+The tinfoil is clipped to six pads:
+
+| Pad | Instrument |
+| --- | --- |
+| 1 | violin |
+| 3 | flute |
+| 5 | oboe |
+| 6 | timpani |
+| 8 | viola |
+| 10 | horn |
+
+Notes written below middle C are played one or two octaves higher, in the same key, so the small speaker can produce them. The timpani is a struck drum on those lifted pitches. At startup the script measures the empty table, so the distance harmony and the drone stay silent until someone actually arrives.
+
+#### Acts like
+
+Someone walks up to a quiet table. As they come closer, the distance sensor hears them and builds the harmony from the bottom: cello, then viola, then horn, louder as they sit. The flower is meant to bloom with that approach. On the filmed day it did not, so the arrival is carried by the harmony alone.
+
+Their hands find the tableware. Holding a piece brings in a brighter voice, the violin, the flute, the oboe, or the timpani, and letting go fades only that voice. The low harmony can keep going underneath if they remain seated close.
+
+One object asks for a slower hand. Resting on it does nothing. Circling it, the way a mallet wakes a singing bowl, rings a soft chord in the same key as Ode to Joy. Moving around the rim changes which harmonic is bright, and the tone lingers for a moment after the circle stops.
