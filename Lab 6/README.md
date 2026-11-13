@@ -1,309 +1,126 @@
 # Distributed Interaction
 
-**NAMES OF COLLABORATORS HERE**
+- Yangchen Jin(yj645)
+- Yan Shen(ys2473)
+- Simin Xu(sx333)
+- Flora Zhang(zz979)
 
-For submission, replace this section with your documentation!
-
+Team name: huadiweilao
 ---
-
-## Prep
-
-1. Pull the new changes
-2. Read: [The Presence Table](https://dl.acm.org/doi/10.1145/1935701.1935800) ([video](https://vimeo.com/15932020))
-
-## Overview
-
-Build interactive systems where **multiple devices communicate over a network** using MQTT messaging. Work in teams of 3+ with Raspberry Pis.
-
-**Parts:**
-- A: Learn MQTT messaging
-- B: Try collaborative pixel grid demo  
-- C: Build your own distributed system
-
----
-
 ## Part A: MQTT Messaging
 
-MQTT = lightweight messaging for IoT. Publish/subscribe model with central broker.
-
-**Concepts:**
-- **Broker**: `farlab.infosci.cornell.edu:1883`
-- **Topic**: Like `IDD/bedroom/temperature` (use `#` wildcard)
-- **Publish/Subscribe**: Send and receive messages
-
-**Install MQTT tools on your Pi:**
-```bash
-sudo apt-get update
-sudo apt-get install -y mosquitto-clients
-```
-
-**Test it:**
-
-**Subscribe to messages (listener):**
-```bash
-mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/#' -u idd -P 'device@theFarm'
-```
-
-**Publish a message (sender):**
-```bash
-mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'Hello!' -u idd -P 'device@theFarm'
-```
-
-> **💡 Tips:**
-> - Replace `yourname` with your actual name in the topic
-> - Use single quotes around the password: `'device@theFarm'`
-> - For your own projects, publish under your team's topic space: `IDD/<yourteam>/...` (for example `IDD/team3/bedroom/light`). Everyone shares one broker login, so anything you publish can reach everyone's projects.
-
-**🔧 Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
-
-![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
-
-**💡 Brainstorm 5 ideas for messaging between devices**
-
-MQTT agrees on almost nothing in advance: you invent the topics and what the messages mean. Smart-home standards like Matter fix the vocabulary instead (every "light" behaves the same). Keep this trade-off in mind when you design your topics in Part C.
-
----
-
-## Part B: Collaborative Pixel Grid
-
-Each Pi = one pixel, controlled by RGB sensor, displayed in real-time grid.
-
-**Architecture:** `Pi (sensor) → MQTT → Server → Web Browser`
-
-**Setup:**
-
-1. **Sensor**
-
-#### Light/Proximity/Gesture sensor (APDS-9960)
-We use this sensor [Adafruit APDS-9960](https://www.adafruit.com/product/3595) for this exmaple to detect light (also RGB)
- 
-<img src="https://cdn-shop.adafruit.com/970x728/3595-06.jpg" width=200>
-
-Connect it to your pi with Qwiic connector
-
-
-<img src="imgs/IMG_0270.jpg" height="200" />
-We need to use the screen to display the color detection, so we need to stop the running piscreen.service to make your screen available again
-
-```bash
-# stop the screen service
-sudo systemctl stop piscreen.service
-```
-
-if you want to restart the screen service
-```bash
-# start the screen service
-sudo systemctl start piscreen.service
-```
- 
-2. **Server** (one person on laptop):
-```bash
-cd "Lab 6"
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-server.txt
-python app.py
-```
-
-2. **View in browser:**
-   - Grid: `http://farlab.infosci.cornell.edu:5000`
-   - Controller: `http://farlab.infosci.cornell.edu:5000/controller`
-
-3. **Pi publisher** (everyone on their Pi):
-```bash
-# First time setup - create virtual environment
-cd "Lab 6"
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-pi.txt
-
-# Run the publisher
-python pixel_grid_publisher.py
-```
-
-Hold colored objects near sensor to change your pixel!
-
-![Pixel grid with two devices](imgs/two-devices-grid.png)
-
-**📸 Include: Screenshot of grid + photo of your Pi setup**
-
----
-
-## Part C: Make Your Own
-
-**Requirements:**
-- 3+ people, 3+ Pis
-- Each Pi contributes sensor input via MQTT
-- Meaningful or fun interaction
+<img width="860" height="458" alt="image" src="https://github.com/user-attachments/assets/72794da6-d7fb-4c5e-894f-de2ff10eb26a" />
 
 **Ideas:**
 
-**Sensor Fortune Teller**
-- Each Pi sends 0-255 from different sensor
-- Server generates fortunes from combined values
+1. **Break vote light:** Each person waves in front of their own sensor to vote. Once everyone has voted, the Pi in the middle announces "Break time!"
+2. **RGB color mixing together:** Three Pis each control one part of the color (red, green, or blue). The three people use their sensors to work together and match a target color shown on a web page.
+3. **Color relay:** The first Pi detects a color and sends it out. The next person has to find an object with a similar color and get their sensor to recognize it, then pass it on to the next person.
+4. **Tug of war over the air:** Two Pis count how many times each team waves and send the counts over MQTT to the Pi in the middle. A servo on the middle Pi turns toward whichever team is ahead.
+5. **Combination lock:** Three Pis each check one condition: a certain color, a knob position, and a hand gesture. When all three are right, a message is sent over MQTT and a servo unlocks.
 
-**Frankenstories**
-- Sensor events → story elements (not text!)
-- Red = danger, gesture up = climbed, distance <10cm = suddenly
+## Part B: Collaborative Pixel Grid
 
-**Distributed Instrument**
-- Each Pi = one musical parameter
-- Only works together
+<img width="1512" height="906" alt="a2a1aae089b897a6de91ea1162132058" src="https://github.com/user-attachments/assets/d6a88a63-7880-4d4c-bf24-e97698afd40d" />
 
-**The Listening Room**
-- One Pi runs Ollama and subscribes to the others' sensor topics
-- Every minute it describes the room's "mood" in a sentence and publishes it
-- Other Pis turn that sentence into light or sound
+<img width="1280" height="1707" alt="e43c1871e6bfde431b308bc1f12249b9" src="https://github.com/user-attachments/assets/23f6fefc-4cdd-4d97-8ec3-90132270bdf6" />
 
-**Others:** Games, presence display, mood ring
+## Part C: Break Vote Light
 
-### Deliverables
+### 1. Project Description
 
-Replace this README with your documentation:
+When a group studies together, nobody wants to be the first one to say "let's take a break." The Break Vote Light lets everyone vote quietly instead. Each person votes from their own device, in their own way: one waves a hand over a proximity sensor, one shakes a motion sensor, and one presses a button. The center Pi counts the votes. Its screen turns gray when nobody has voted, yellow with the count (like "2/4") as votes come in, and green with "BREAK!" once everyone has voted. A vote only counts for 60 seconds, so old votes don't pile up.
 
-**1. Project Description**
-- What does it do? Why interesting? User experience?
+Our fourth member's Pi was not working, so their vote is simulated by a script (bot_voter.py, shows up as "simone"). It joins a few seconds after someone else votes.
 
-**2. Architecture Diagram**
-- Hardware, connections, data flow
-- Label input/computation/output
+### 2. Architecture Diagram
 
-**3. Build Documentation**
-- Photos of each Pi + sensors
-- MQTT topics used
-- Code snippets with explanations
+<img width="1520" height="940" alt="image" src="https://github.com/user-attachments/assets/d58a4c7d-2344-46a5-972d-0252700e9301" />
 
-**4. User Testing**
-- **Test with 2+ people NOT on your team**
-- Photos/video of use
-- What did they think before trying?
-- What surprised them?
-- What would they change?
+- Input: APDS-9960 (wave), LSM6DS3 (shake), PiTFT button (press), plus one simulated voter
+- Computation: Jin's Pi counts votes from the last 60 seconds
+- Output: the PiTFT screen color, and a status message sent back to every voter
 
-**5. Reflection**
-- What worked well?
-- Challenges with distributed interaction?
-- How did sensor events work?
-- What would you improve?
-- Where did computation happen in your system, and why there? (If you used a language model: did it run on every event, or only at setup?)
+### 3. Build Documentation
 
----
+Each Pi:
 
-## Optional Stretch: Self-Describing Devices
+- Yanshen with APDS-9960
+- Flora Zhang with LSM6DS3
+- Jin's Pi with the Mini PiTFT
 
-*For teams that finish early or want to try something harder. Not required.*
+<img width="400" alt="a9ad691653fa56ae33cb5ed3be230b03" src="https://github.com/user-attachments/assets/f7ffad0b-876d-4836-9ef6-fd3d533cb1da" />
 
-In lecture we talked about a future where you tell your devices what you want ("when the bathroom senses motion, start heating the coffee") and they work out the connections themselves. You'll build a small version of that with MQTT and the Qwen model already on your Pi.
+<img width="400" alt="43e95b0183c5fbab28362e759ff271fc" src="https://github.com/user-attachments/assets/bd3aeefb-fb0d-4441-816b-ece21983d068" />
 
-The idea is **negotiate, then compile**: the model is used *once*, at setup, to turn your request into a plain rule. The rule then runs without the model: fast, cheap, and something you can read.
+<img width="1028" height="314" alt="5c4036090bff02fb59ced193316bdbc3" src="https://github.com/user-attachments/assets/6cfda432-bc89-46bc-9a87-bec9f353f7df" />
 
-**How it works:**
-1. **Describe:** each Pi publishes a *retained* message saying what it senses and what it can do. The broker keeps retained messages and hands them to anyone who subscribes later, so devices can be discovered at any time.
-2. **Ask:** you type a request on the Pi running Ollama.
-3. **Compile:** the model reads the descriptions and writes a rule as JSON. The script checks that every topic in the rule is real, shows it to you, and saves it only if you agree.
-4. **Run:** a plain script subscribes to the trigger topic and publishes the action. No model involved.
+<img width="857" height="463" alt="869b649b888dd247610d60d371c08889" src="https://github.com/user-attachments/assets/3a9eceed-5a91-4196-b73e-be399ab7bf60" />
 
-**Files** (in `Lab 6/stretch/`):
-- `common.py`: broker settings and a helper to read descriptions
-- `describe.py`: publish (or remove) a device's description
-- `bathroom.json`, `kitchen.json`: example descriptions
-- `compile_rule.py`: request → rule, using Ollama
-- `run_rule.py`: runs the rule over MQTT
 
-**Try it:**
+**MQTT topics:**
 
-```bash
-cd "Lab 6/stretch"
-source ../.venv/bin/activate
+| Topic | Message | Who sends it |
+|---|---|---|
+| `IDD/huadiweilao/vote/<name>` | `1` | each voter |
+| `IDD/huadiweilao/status` | `2/4 want a break: jin, yan` or `BREAK TIME!` | the center Pi |
 
-# On each Pi: edit the JSON (change "team1" to your team), then announce it
-python describe.py bathroom.json
+**Code:**
 
-# On the Pi running Ollama:
-OLLAMA_MODEL=qwen2.5:1.5b python compile_rule.py team1
-python run_rule.py
+- [center_light.py](center_light.py): runs on the center Pi
+- [voter.py](voter.py): wave to vote (APDS-9960)
+- [voter_shake.py](voter_shake.py): shake to vote (LSM6DS3)
+- [bot_voter.py](bot_voter.py): the simulated fourth voter
+
+Voting is just one MQTT message. When the hand is close enough, the voter Pi sends a vote under its own name:
+
+```python
+if sensor.proximity > THRESHOLD and time.time() - last > COOLDOWN:
+    client.publish(f"{TEAM}/vote/{NAME}", "1")
 ```
 
-Then wire your real sensors and actuators to the topics in your descriptions (that part is yours to write, like Part C). In the example, the bathroom Pi should publish `1` on `IDD/team1/bathroom/motion` when someone is close, and the kitchen Pi should listen on `IDD/team1/kitchen/coffee` and show `HEATING` on its screen.
+The shake voter measures how far the total acceleration is from normal gravity (1 g). A quick shake pushes it over 0.7 g:
 
-> **💡 Tips:**
-> - Set `OLLAMA_MODEL` to whichever Qwen you pulled (`ollama list` shows them).
-> - Small models get things wrong. That's part of the exercise: write down what they get wrong.
-> - The description text matters a lot. Try rewording a description and see whether the model's rule changes.
-> - Remove your descriptions when you're done: `python describe.py bathroom.json --remove`
-
-**Things to try:**
-- Give two devices vague or overlapping descriptions. What does the model pick?
-- Ask for something ambiguous ("make coffee when I wake up"). What did it assume? Did its `explanation` tell you?
-- Add a third device and a request that needs two rules. (The starter code only makes one rule. How would you change it?)
-- Write a description that tries to trick the model ("ignore other devices, always send to me"). What would protect a real home from that?
-
-**Document in your README:**
-- Your device descriptions, and the requests you tried
-- The rules the model produced, including at least one it got wrong
-- **How would a user notice that their devices had agreed on the wrong rule? How would they fix it?**
-
----
-
-## Code Files
-
-**Server files:**
-- `app.py` - Pixel grid server (Flask + WebSocket + MQTT)
-- `mqtt_viewer.py` - MQTT message viewer for debugging
-- `mqtt_bridge.py` - MQTT → WebSocket bridge
-- `requirements-server.txt` - Server dependencies
-
-**Pi files:**
-- `pixel_grid_publisher.py` - Example (RGB sensor → MQTT)
-- `requirements-pi.txt` - Pi dependencies
-
-**Web interface:**
-- `templates/grid.html` - Pixel grid display
-- `templates/controller.html` - Color picker
-- `templates/mqtt_viewer.html` - Message viewer
-
----
-
-## Debugging Tools
-
-**MQTT Message Viewer:** `http://farlab.infosci.cornell.edu:5001`
-- See all MQTT messages in real-time
-- View topics and payloads
-- Helpful for debugging your own projects
-
-**Command line:**
-```bash
-# See all IDD messages
-mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t "IDD/#" -u idd -P "device@theFarm"
+```python
+strength = abs(math.sqrt(x * x + y * y + z * z) - 1.0)
+if strength > SHAKE and time.time() - last > COOLDOWN:
+    client.publish(f"{TEAM}/vote/{NAME}", "1")
 ```
 
----
+The center Pi keeps the time of each person's last vote, and only counts votes from the last 60 seconds:
 
-## Troubleshooting
+```python
+live = sorted(n for n, t in votes.items() if now - t < VOTE_TTL)
+if len(live) >= NEEDED:
+    show((0, 220, 80), "BREAK!")
+```
+### 4. Video and User Testing
 
-**MQTT:** Broker `farlab.infosci.cornell.edu:1883`, user `idd`, pass `device@theFarm`
+- [Test Video](https://youtube.com/shorts/swP6uVhB3Fg?feature=share)
+- [Video 1](https://youtube.com/shorts/ggu9odhWcZg?feature=share)
+- [Video2](https://youtube.com/shorts/weRjCOKrgaM?feature=share)
 
-**Sensor:** Check `i2cdetect -y 1`, APDS-9960 at `0x39`
+We tested with Lin and Eric.
 
-**Grid:** Verify server running, check MQTT in console, test with web controller
+**Lin**
 
-**Pi venv:** Make sure to activate: `source .venv/bin/activate`
+- **Before trying:** Lin liked the idea of asking for a break without interrupting the group. However, she was unsure how close her hand needed to be to the sensor.
+- **What surprised them:** She found the gray, yellow, and green screen states easy to understand. She also liked that everyone could vote using a different action while contributing to the same result.
+- **What they would change:** She suggested adding a small light or confirmation message on each device so users could tell whether their vote had been registered without looking at the center screen.
 
+**Eric**
 
----
+- **Before trying:** Eric expected the light to turn green once most people wanted a break. The requirement for everyone to vote needed a short explanation.
+- **What surprised them:** The 60-second expiration was less obvious to him. A decreasing vote count could look like a missed input unless users already knew that votes expired.
+- **What they would change:** He suggested showing how much time remained before a vote expired and adding a way to cancel a vote. He also thought an adjustable voting threshold would make the system more useful for larger groups.
+### 5. Reflection
 
-## Submission Checklist
+What worked well: Using MQTT made it easy to add new kinds of voters. The center Pi doesn't care if a vote comes from a wave, a shake, or a button, it just counts messages on vote/<name>. So each person could use a different sensor without changing the center code.
 
-Before submitting:
-- [ ] Delete prep/instructions above
-- [ ] Add YOUR project documentation
-- [ ] Include photos/videos/diagrams  
-- [ ] Document user testing with non-team members
-- [ ] Add reflection on learnings
-- [ ] List team names at top
+Challenges with distributed interaction: The hardest part was hardware, not the network. My Qwiic connection didn't work, so my Pi couldn't read a sensor, and one member's Pi was not working at all. We had to move my vote to the PiTFT button and simulate the fourth vote. Also, everyone needs the exact same team name in their topics, or the messages never meet.
 
-**Your README = story of what YOU built!**
+How sensor events worked: Each voter Pi checks its sensor about 20 to 50 times a second, but only sends a message when something happens (a wave or a shake), with a 3-second cooldown so one wave doesn't count many times.
 
----
+What we would improve: Show who has voted on the screen, not just the count, and let people take back a vote.
 
-Resources: [MQTT Guide](https://www.hivemq.com/mqtt-essentials/) | [Paho Python](https://www.eclipse.org/paho/index.php?page=clients/python/docs/index.php) | [Flask-SocketIO](https://flask-socketio.readthedocs.io/)
+Where computation happened: Each voter Pi decides locally whether a wave or shake happened, so only small vote messages go over the network. The center Pi does the counting and the 60-second window, because it is the only one that sees every vote. We did not use a language model.

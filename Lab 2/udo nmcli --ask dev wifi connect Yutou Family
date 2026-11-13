@@ -1,0 +1,54 @@
+IN-USE  BSSID              SSID                MODE   CHAN  RATE        SIGNAL  BARS  SECURITY    
+[32m [0m       [32m06:B3:C9:71:18:05[0m  [32mYutou Family[0m        [32mInfra[0m  [32m1[0m     [32m260 Mbit/s[0m  [32m100[0m     [32m****[0m  [32mWPA2 WPA3[0m   
+[32m [0m       [32m06:B3:C9:71:18:07[0m  [32mVerizon_KWVG9Q-IoT[0m  [32mInfra[0m  [32m1[0m     [32m260 Mbit/s[0m  [32m100[0m     [32m****[0m  [32mWPA2[0m        
+[32m [0m       [32m06:B3:C9:71:17:06[0m  [32mYutou Family[0m        [32mInfra[0m  [32m44[0m    [32m540 Mbit/s[0m  [32m100[0m     [32m****[0m  [32mWPA2 WPA3[0m   
+[32m [0m       [32m06:B3:C9:71:17:07[0m  [32m--[0m                  [32mInfra[0m  [32m44[0m    [32m540 Mbit/s[0m  [32m100[0m     [32m****[0m  [32mWPA2[0m        
+[32m [0m       [32m1C:D6:BE:38:C1:A9[0m  [32mVerizon_mywifi[0m      [32mInfra[0m  [32m11[0m    [32m260 Mbit/s[0m  [32m97[0m      [32m****[0m  [32mWPA2 WPA3[0m   
+[32m [0m       [32mAC:91:9B:0E:47:A5[0m  [32mVerizon_VQ9PW4[0m      [32mInfra[0m  [32m11[0m    [32m260 Mbit/s[0m  [32m85[0m      [32m****[0m  [32mWPA2[0m        
+[32m [0m       [32mAC:91:9B:3F:D8:31[0m  [32mVerizon_B9V4BC[0m      [32mInfra[0m  [32m6[0m     [32m260 Mbit/s[0m  [32m82[0m      [32m****[0m  [32mWPA2[0m        
+[33m [0m       [33m9A:9D:5D:D7:C8:08[0m  [33mmizu's home-2.4G[0m    [33mInfra[0m  [33m6[0m     [33m260 Mbit/s[0m  [33m77[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33m5E:7D:7D:85:C1:71[0m  [33mFoster Fam[0m          [33mInfra[0m  [33m6[0m     [33m540 Mbit/s[0m  [33m75[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33m9A:9D:5D:D7:C8:09[0m  [33m--[0m                  [33mInfra[0m  [33m6[0m     [33m260 Mbit/s[0m  [33m75[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33mB6:DB:48:D0:E5:B9[0m  [33m--[0m                  [33mInfra[0m  [33m1[0m     [33m540 Mbit/s[0m  [33m70[0m      [33m*** [0m  [33mWPA2 802.1X[0m 
+[33m [0m       [33mA6:DB:48:D0:E5:B9[0m  [33m--[0m                  [33mInfra[0m  [33m1[0m     [33m540 Mbit/s[0m  [33m70[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33mAC:DB:48:D0:E5:B9[0m  [33m1106[0m                [33mInfra[0m  [33m1[0m     [33m540 Mbit/s[0m  [33m70[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33m8C:76:3F:C6:0C:23[0m  [33mCommon[0m              [33mInfra[0m  [33m1[0m     [33m540 Mbit/s[0m  [33m70[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33mE2:DB:D1:23:91:FA[0m  [33mNet-1204[0m            [33mInfra[0m  [33m11[0m    [33m540 Mbit/s[0m  [33m69[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33m1C:D6:BE:38:C1:AA[0m  [33mVerizon_mywifi[0m      [33mInfra[0m  [33m120[0m   [33m540 Mbit/s[0m  [33m69[0m      [33m*** [0m  [33mWPA2 WPA3[0m   
+[33m [0m       [33m22:D6:BE:38:C1:AA[0m  [33m--[0m                  [33mInfra[0m  [33m120[0m   [33m540 Mbit/s[0m  [33m69[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33m1E:9D:72:D1:55:44[0m  [33mOliversHouse[0m        [33mInfra[0m  [33m11[0m    [33m540 Mbit/s[0m  [33m67[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33m9A:9D:5D:DE:C8:11[0m  [33mmizu's home-5G[0m      [33mInfra[0m  [33m44[0m    [33m540 Mbit/s[0m  [33m67[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33m9A:9D:5D:DE:C8:16[0m  [33m--[0m                  [33mInfra[0m  [33m44[0m    [33m540 Mbit/s[0m  [33m67[0m      [33m*** [0m  [33mWPA2 802.1X[0m 
+[33m [0m       [33m9A:9D:5D:DE:C8:13[0m  [33mxfinitywifi[0m         [33mInfra[0m  [33m44[0m    [33m540 Mbit/s[0m  [33m67[0m      [33m*** [0m  [33m--[0m          
+[33m [0m       [33m1E:9D:72:D8:55:45[0m  [33mOliversHouse[0m        [33mInfra[0m  [33m44[0m    [33m540 Mbit/s[0m  [33m67[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33m1E:9D:72:D8:55:47[0m  [33mxfinitywifi[0m         [33mInfra[0m  [33m44[0m    [33m540 Mbit/s[0m  [33m65[0m      [33m*** [0m  [33m--[0m          
+[33m [0m       [33mE2:DB:D1:23:91:FF[0m  [33m--[0m                  [33mInfra[0m  [33m11[0m    [33m540 Mbit/s[0m  [33m64[0m      [33m*** [0m  [33mWPA2 802.1X[0m 
+[33m [0m       [33m8C:76:3F:C6:0C:24[0m  [33mCommon[0m              [33mInfra[0m  [33m44[0m    [33m540 Mbit/s[0m  [33m64[0m      [33m*** [0m  [33mWPA2[0m        
+[33m [0m       [33m8A:76:3F:C6:0C:24[0m  [33mxfinitywifi[0m         [33mInfra[0m  [33m44[0m    [33m540 Mbit/s[0m  [33m64[0m      [33m*** [0m  [33m--[0m          
+[33m [0m       [33mBA:A5:35:9C:D8:BB[0m  [33mkoo_hub[0m             [33mInfra[0m  [33m1[0m     [33m260 Mbit/s[0m  [33m60[0m      [33m*** [0m  [33mWPA2 WPA3[0m   
+[33m [0m       [33mBA:A5:35:9C:D8:B8[0m  [33m--[0m                  [33mInfra[0m  [33m1[0m     [33m260 Mbit/s[0m  [33m59[0m      [33m*** [0m  [33mWPA2 802.1X[0m 
+[33m [0m       [33m9A:9D:5D:DE:C8:15[0m  [33mXfinity Mobile[0m      [33mInfra[0m  [33m44[0m    [33m540 Mbit/s[0m  [33m59[0m      [33m*** [0m  [33mWPA2 802.1X[0m 
+[35m [0m       [35mBC:F8:7E:8E:79:82[0m  [35mUrby 1202[0m           [35mInfra[0m  [35m6[0m     [35m540 Mbit/s[0m  [35m55[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35m1E:9D:72:D8:55:41[0m  [35mXfinity Mobile[0m      [35mInfra[0m  [35m44[0m    [35m540 Mbit/s[0m  [35m55[0m      [35m**  [0m  [35mWPA2 802.1X[0m 
+[35m [0m       [35mAC:91:9B:3F:D8:32[0m  [35mVerizon_B9V4BC[0m      [35mInfra[0m  [35m60[0m    [35m540 Mbit/s[0m  [35m55[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35mB2:91:9B:3F:D8:32[0m  [35m--[0m                  [35mInfra[0m  [35m60[0m    [35m540 Mbit/s[0m  [35m55[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35mE2:DB:D1:2A:91:FB[0m  [35mNet-1204[0m            [35mInfra[0m  [35m157[0m   [35m540 Mbit/s[0m  [35m50[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35mE2:DB:D1:2A:91:FD[0m  [35mxfinitywifi[0m         [35mInfra[0m  [35m157[0m   [35m540 Mbit/s[0m  [35m50[0m      [35m**  [0m  [35m--[0m          
+[35m [0m       [35mB6:DB:48:D0:E5:BA[0m  [35m--[0m                  [35mInfra[0m  [35m44[0m    [35m540 Mbit/s[0m  [35m49[0m      [35m**  [0m  [35mWPA2 802.1X[0m 
+[35m [0m       [35mAA:DB:48:D0:E5:BA[0m  [35mxfinitywifi[0m         [35mInfra[0m  [35m44[0m    [35m540 Mbit/s[0m  [35m49[0m      [35m**  [0m  [35m--[0m          
+[35m [0m       [35mAC:DB:48:D0:E5:BA[0m  [35m1106[0m                [35mInfra[0m  [35m44[0m    [35m540 Mbit/s[0m  [35m49[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35mAC:91:9B:0E:47:A6[0m  [35mVerizon_VQ9PW4[0m      [35mInfra[0m  [35m104[0m   [35m540 Mbit/s[0m  [35m47[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35mB2:91:9B:0E:47:A6[0m  [35m--[0m                  [35mInfra[0m  [35m104[0m   [35m540 Mbit/s[0m  [35m47[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35m1E:9D:72:49:09:F6[0m  [35mxfinitywifi[0m         [35mInfra[0m  [35m44[0m    [35m540 Mbit/s[0m  [35m45[0m      [35m**  [0m  [35m--[0m          
+[35m [0m       [35m1E:9D:72:49:09:F4[0m  [35mSstone[0m              [35mInfra[0m  [35m44[0m    [35m540 Mbit/s[0m  [35m45[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35m8E:6A:8D:4B:E7:F9[0m  [35mAOL dial-up[0m         [35mInfra[0m  [35m1[0m     [35m260 Mbit/s[0m  [35m44[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35m58:96:71:52:11:50[0m  [35mUrby 1205[0m           [35mInfra[0m  [35m1[0m     [35m260 Mbit/s[0m  [35m44[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35m1E:9D:72:49:09:F1[0m  [35m--[0m                  [35mInfra[0m  [35m44[0m    [35m540 Mbit/s[0m  [35m44[0m      [35m**  [0m  [35mWPA2 802.1X[0m 
+[35m [0m       [35m58:96:71:26:ED:BE[0m  [35mUrby 1206[0m           [35mInfra[0m  [35m11[0m    [35m260 Mbit/s[0m  [35m42[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35mE2:DB:D1:2A:91:FF[0m  [35mXfinity Mobile[0m      [35mInfra[0m  [35m157[0m   [35m540 Mbit/s[0m  [35m39[0m      [35m**  [0m  [35mWPA2 802.1X[0m 
+[35m [0m       [35m24:41:FE:65:F4:14[0m  [35mVerizon_H9Y6HB[0m      [35mInfra[0m  [35m11[0m    [35m260 Mbit/s[0m  [35m35[0m      [35m**  [0m  [35mWPA2[0m        
+[35m [0m       [35m1E:9D:72:49:09:F0[0m  [35mXfinity Mobile[0m      [35mInfra[0m  [35m44[0m    [35m540 Mbit/s[0m  [35m35[0m      [35m**  [0m  [35mWPA2 802.1X[0m 
+[35m [0m       [35m92:76:3F:C6:0C:24[0m  [35mXfinity Mobile[0m      [35mInfra[0m  [35m44[0m    [35m540 Mbit/s[0m  [35m32[0m      [35m**  [0m  [35mWPA2 802.1X[0m 
+[36m [0m       [36mB2:DB:48:D0:E5:BA[0m  [36mXfinity Mobile[0m      [36mInfra[0m  [36m44[0m    [36m540 Mbit/s[0m  [36m20[0m      [36m*   [0m  [36mWPA2 802.1X[0m 
+[36m [0m       [36m78:67:0E:31:B6:BD[0m  [36mVerizon_KSTW3N[0m      [36mInfra[0m  [36m40[0m    [36m540 Mbit/s[0m  [36m17[0m      [36m*   [0m  [36mWPA2[0m        
+[36m [0m       [36m7E:67:0E:31:B6:BD[0m  [36m--[0m                  [36mInfra[0m  [36m40[0m    [36m540 Mbit/s[0m  [36m17[0m      [36m*   [0m  [36mWPA2[0m        

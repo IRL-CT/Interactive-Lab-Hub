@@ -1,0 +1,1821 @@
+{"t": "2026-11-02T01:33:40", "reading": "1 person(s) at right/close; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T01:33:40", "alive": true}
+{"t": "2026-11-02T01:33:50", "reading": "1 person(s) at right/close; also book, bottle, laptop"}
+{"t": "2026-11-02T01:34:00", "reading": "1 person(s) at right/close; also book, keyboard, laptop"}
+{"t": "2026-11-02T01:34:10", "reading": "1 person(s) at right/close; also book, bottle, keyboard, laptop"}
+{"t": "2026-11-02T01:34:20", "reading": "1 person(s) at right/close; also book, keyboard, laptop"}
+{"t": "2026-11-02T01:34:30", "reading": "1 person(s) at right/close; also book, bottle, laptop, tv"}
+{"t": "2026-11-02T01:34:40", "reading": "1 person(s) at right/close; also book, keyboard, laptop"}
+{"t": "2026-11-02T01:34:51", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T01:35:01", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T01:35:21", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T01:35:31", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T01:35:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T01:35:52", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T01:36:02", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T01:36:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T01:36:32", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T01:36:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T01:36:53", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T01:37:03", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T01:37:13", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:37:43", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T01:37:53", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:41:16", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T01:41:27", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:43:49", "alive": true}
+{"t": "2026-11-02T01:45:40", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T01:46:01", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:46:11", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T01:46:21", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T01:46:31", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:48:43", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T01:48:53", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:49:03", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T01:49:13", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:50:24", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T01:50:35", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:52:26", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T01:52:36", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:52:57", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T01:53:07", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:53:27", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T01:53:37", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T01:53:58", "alive": true}
+{"t": "2026-11-02T01:56:40", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T01:56:50", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:00:54", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:01:14", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:02:36", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:02:46", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:02:56", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:03:06", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:04:07", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:04:07", "alive": true}
+{"t": "2026-11-02T02:04:17", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:04:48", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:04:58", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:05:39", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:05:49", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:06:09", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:06:19", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:07:00", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:07:10", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:07:30", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:07:41", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:07:51", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:08:01", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:08:41", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:08:52", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:09:02", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:09:12", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:10:23", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:10:33", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:11:34", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:11:54", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:12:04", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:12:25", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:12:55", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:13:05", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:13:56", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:14:06", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:14:16", "alive": true}
+{"t": "2026-11-02T02:15:07", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:15:17", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:15:48", "reading": "nobody; also book, bottle, chair, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:15:58", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:17:50", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:18:00", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:18:30", "reading": "nobody; also book, bottle, chair, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:18:40", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:18:50", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:19:01", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:20:52", "reading": "nobody; also book, bottle, chair, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:21:02", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:21:23", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:21:33", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:21:43", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:21:53", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:22:13", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:22:23", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:22:34", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:22:44", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:22:54", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:23:04", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:23:35", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:23:45", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:24:15", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:24:25", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:24:25", "alive": true}
+{"t": "2026-11-02T02:26:07", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:26:17", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:27:48", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:27:58", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:28:09", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:28:19", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:29:20", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:29:30", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:29:40", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:29:50", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:30:11", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:30:21", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:30:41", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:30:51", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:31:01", "reading": "nobody; also book, bottle, keyboard, laptop, tv"}
+{"t": "2026-11-02T02:31:11", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:31:32", "reading": "nobody; also book, bottle, chair, keyboard, tv"}
+{"t": "2026-11-02T02:31:42", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T02:32:43", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T02:32:53", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:33:03", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T02:33:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:33:34", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:33:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:33:54", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T02:34:04", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:34:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:34:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:34:35", "alive": true}
+{"t": "2026-11-02T02:34:45", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:34:55", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:35:05", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:35:15", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:35:25", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:35:35", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T02:35:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:36:06", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:36:16", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:36:26", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T02:36:36", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:36:47", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:37:07", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:37:17", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:37:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:37:37", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:37:47", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T02:37:58", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:38:08", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:38:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:38:28", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T02:38:38", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T02:38:48", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T02:38:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:39:09", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:39:19", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:39:29", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:39:49", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:40:00", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:40:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:40:20", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:40:30", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:40:50", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:41:00", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:41:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:41:51", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:42:01", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T02:42:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:42:52", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T02:43:02", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:43:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:43:23", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:43:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:43:43", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:43:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:44:34", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T02:44:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:44:44", "alive": true}
+{"t": "2026-11-02T02:44:54", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:45:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:45:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:45:45", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:46:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:46:36", "reading": "1 person(s) at right/close; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T02:46:46", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:46:56", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:47:06", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T02:47:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:47:26", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T02:47:37", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:47:57", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:48:07", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T02:48:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:48:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:48:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:48:48", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T02:48:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:49:08", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T02:49:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:49:28", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T02:49:38", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:49:49", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:49:59", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T02:50:09", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T02:50:19", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T02:50:29", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:50:50", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T02:51:00", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:51:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:51:20", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T02:51:30", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:51:51", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:52:11", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T02:52:21", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T02:52:31", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:52:41", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:52:52", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:53:02", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:53:12", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T02:53:22", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:53:32", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:53:42", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:53:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:54:03", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T02:54:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:54:23", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:54:33", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:54:43", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T02:54:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:54:53", "alive": true}
+{"t": "2026-11-02T02:55:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:55:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:55:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:55:34", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:55:44", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T02:55:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:56:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:56:15", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:56:25", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:56:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:56:45", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:56:55", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:57:05", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T02:57:15", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T02:57:26", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:57:36", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:57:46", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:57:56", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:58:06", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:58:16", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T02:58:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:58:37", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:58:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T02:58:57", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:59:07", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T02:59:17", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T02:59:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T02:59:38", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T02:59:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:00:28", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:00:39", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:00:49", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:00:59", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:01:09", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:01:19", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:01:29", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:01:50", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:02:20", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:02:30", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:02:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:03:31", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:03:52", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:04:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:04:22", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:04:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:04:42", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:04:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:05:03", "alive": true}
+{"t": "2026-11-02T03:05:23", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:05:33", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:05:43", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:05:53", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:06:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:06:24", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:06:34", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:06:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:07:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:07:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:07:25", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:07:35", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:07:45", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:07:55", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:08:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:08:16", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:08:26", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:08:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:08:46", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:08:56", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:09:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:09:27", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:09:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:10:17", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:10:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:10:58", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:11:18", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:11:28", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:11:38", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:11:49", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:11:59", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:12:09", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:12:19", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:12:29", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:12:39", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:13:00", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:13:10", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:13:20", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:13:40", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:13:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:14:01", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:14:11", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:14:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:14:31", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:14:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:15:01", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:15:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:15:12", "alive": true}
+{"t": "2026-11-02T03:15:22", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:15:32", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:15:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:16:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:16:13", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:16:23", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:16:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:16:43", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:16:53", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:17:03", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:17:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:17:34", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:17:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:17:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:18:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:18:45", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:18:55", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:19:05", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:19:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:19:26", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:19:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:19:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:19:56", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:20:06", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:20:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:20:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:20:37", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:20:47", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:21:07", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:21:17", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:21:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:22:08", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:22:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:22:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:22:39", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:22:49", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:22:59", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:23:09", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:23:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:23:29", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:23:40", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:23:50", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:24:00", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:24:10", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:24:20", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:24:30", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:24:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:24:51", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:25:01", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:25:11", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:25:21", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:25:21", "alive": true}
+{"t": "2026-11-02T03:25:31", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:25:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:25:52", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:26:22", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:26:32", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:26:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:26:53", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:27:03", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:27:33", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:27:43", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:27:54", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:28:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:28:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:28:44", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:28:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:29:15", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:29:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:29:45", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:29:55", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:30:06", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:30:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:30:26", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:30:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:30:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:31:06", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:31:17", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:31:27", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:31:37", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:32:07", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:32:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:32:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:33:08", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:33:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:33:59", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:34:09", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:34:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:35:00", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:35:30", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:35:30", "alive": true}
+{"t": "2026-11-02T03:35:41", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T03:35:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:36:01", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:36:11", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:36:21", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:36:31", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:36:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:37:02", "reading": "nobody; also book, bottle, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:37:12", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:37:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:37:42", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:37:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:38:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:38:23", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:38:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:38:43", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:38:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:39:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:39:24", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T03:39:34", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:39:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:39:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:40:04", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:40:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:41:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:41:16", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:41:26", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:41:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:41:56", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:42:06", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:42:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:42:47", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:42:57", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:43:07", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:43:17", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:43:28", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:44:18", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T03:44:28", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:44:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:44:49", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:44:59", "reading": "nobody; also book, bottle, mouse"}
+{"t": "2026-11-02T03:45:09", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:45:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:45:40", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:45:40", "alive": true}
+{"t": "2026-11-02T03:45:50", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:46:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:46:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:47:01", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:47:11", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:47:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:47:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:48:02", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T03:48:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:48:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:48:42", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:48:52", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:49:03", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T03:49:13", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:49:23", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:49:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:49:43", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:50:03", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:50:24", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:50:34", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:50:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:51:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:51:25", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:51:55", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:52:05", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:52:15", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T03:52:26", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:52:36", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:52:46", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T03:52:56", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:53:16", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:53:26", "reading": "nobody; also book, bottle, laptop, mouse"}
+{"t": "2026-11-02T03:53:37", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:53:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:54:07", "reading": "1 person(s) at right/close; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:54:17", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:54:38", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:54:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:54:58", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:55:08", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:55:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:55:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:55:49", "alive": true}
+{"t": "2026-11-02T03:56:09", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:56:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:56:29", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:56:49", "reading": "nobody; also book, bottle, laptop, mouse, tv"}
+{"t": "2026-11-02T03:57:00", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:57:10", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:57:20", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:57:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:57:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:58:01", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T03:58:11", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:58:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:58:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:58:51", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T03:59:01", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T03:59:42", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T03:59:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:00:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:00:13", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:00:23", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:00:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:00:53", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:01:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:01:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:01:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:01:34", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:01:54", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:02:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:02:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:02:45", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:03:05", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:03:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:03:26", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:03:36", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:03:56", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T04:04:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:04:16", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:04:27", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:04:47", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:04:57", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:05:17", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:05:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:05:48", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T04:05:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:05:58", "alive": true}
+{"t": "2026-11-02T04:06:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:06:49", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:06:59", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T04:07:09", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:07:29", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:07:39", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:07:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:08:10", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:08:20", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:08:30", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T04:08:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:08:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:09:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:09:31", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T04:09:41", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T04:09:51", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:10:02", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:10:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:10:22", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:10:32", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T04:10:42", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:11:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:11:23", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:11:43", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:11:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:12:03", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:12:13", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:12:34", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:12:54", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T04:13:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:13:14", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:13:24", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:13:34", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T04:13:45", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:13:55", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:14:05", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:14:15", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:14:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:15:06", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:15:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:15:26", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T04:15:37", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:15:57", "reading": "nobody; also book, bottle, keyboard, mouse"}
+{"t": "2026-11-02T04:16:07", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:16:07", "alive": true}
+{"t": "2026-11-02T04:16:27", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T04:16:38", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:16:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:17:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:17:49", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:17:59", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:18:09", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:18:29", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:18:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:19:00", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:19:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:19:30", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:19:40", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T04:19:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:20:01", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T04:20:11", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:20:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:21:02", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T04:21:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:21:22", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T04:21:32", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:21:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:21:52", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:22:03", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:22:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:22:23", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:22:43", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:22:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:23:03", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:23:14", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:24:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:24:14", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:24:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:24:45", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:24:55", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:25:36", "reading": "nobody; also book, bottle, keyboard, laptop, mouse"}
+{"t": "2026-11-02T04:25:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:26:06", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:26:16", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:26:16", "alive": true}
+{"t": "2026-11-02T04:26:27", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T04:26:37", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:26:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:27:07", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:27:17", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:27:28", "reading": "nobody; also book, bottle, laptop, mouse, tv"}
+{"t": "2026-11-02T04:27:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:27:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:28:08", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:28:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:28:39", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:28:49", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:28:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:29:50", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:30:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:30:20", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:30:30", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:30:40", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:30:50", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:31:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:31:21", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:31:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:31:52", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T04:32:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:32:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:32:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:32:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:32:53", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:33:03", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:33:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:34:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:34:14", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T04:34:24", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:34:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:35:05", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:35:25", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:35:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:35:55", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T04:36:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:36:16", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T04:36:26", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:36:26", "alive": true}
+{"t": "2026-11-02T04:36:36", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:37:47", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T04:37:57", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:38:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:38:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:39:29", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:39:39", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:40:20", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:40:30", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T04:40:40", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:40:50", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T04:41:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:41:20", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:41:31", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:42:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:42:32", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:42:42", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T04:42:52", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:43:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:43:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:44:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:44:13", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:44:23", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:44:33", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T04:44:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:45:14", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T04:45:34", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:45:45", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:45:55", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:46:25", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:46:35", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:46:35", "alive": true}
+{"t": "2026-11-02T04:47:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:47:26", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T04:47:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:47:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:47:57", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:48:07", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:48:37", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T04:48:48", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:48:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:49:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:49:28", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:50:09", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:50:19", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:50:29", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:50:39", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:50:49", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T04:50:59", "reading": "nobody; also book, bottle, mouse"}
+{"t": "2026-11-02T04:51:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:51:30", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T04:51:40", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:51:50", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:52:41", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T04:52:51", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:53:01", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:53:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:53:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:54:23", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T04:54:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:54:43", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:54:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:55:34", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:55:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:55:54", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T04:56:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:56:15", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:56:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:56:35", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:56:45", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:56:45", "alive": true}
+{"t": "2026-11-02T04:56:55", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:57:15", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:57:26", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T04:57:36", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:57:56", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:58:26", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:58:37", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:58:57", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T04:59:07", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:59:37", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T04:59:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T04:59:58", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T05:00:08", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T05:00:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:00:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:00:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:01:19", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:01:39", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:01:49", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:01:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:02:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:02:20", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:02:30", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:02:40", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T05:02:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:03:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:03:11", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T05:03:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:03:51", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:04:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:04:32", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T05:04:42", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:05:02", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T05:05:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:05:23", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:05:33", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:05:43", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:06:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:06:24", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:06:34", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T05:06:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:06:54", "alive": true}
+{"t": "2026-11-02T05:07:14", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T05:07:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:07:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:08:15", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:08:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:08:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:08:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:09:06", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:09:16", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:09:26", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:09:36", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:09:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:10:07", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:10:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:10:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:10:37", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T05:10:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:10:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:11:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:11:38", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:11:48", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T05:11:59", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:12:09", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:12:19", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:12:29", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:12:49", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:13:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:13:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:13:20", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T05:13:30", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T05:13:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:13:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:14:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:14:11", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:14:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:14:31", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:14:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:15:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:15:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:15:21", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:16:22", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:16:33", "reading": "nobody; also book, bottle, keyboard, laptop, mouse"}
+{"t": "2026-11-02T05:16:43", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:16:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:17:03", "alive": true}
+{"t": "2026-11-02T05:17:13", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:17:23", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:17:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:17:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:18:14", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T05:18:24", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:19:05", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:19:15", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:19:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:19:56", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:20:06", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:20:16", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:20:36", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:20:46", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:21:07", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:21:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:21:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:21:47", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:21:57", "reading": "nobody; also book, bottle, keyboard, mouse"}
+{"t": "2026-11-02T05:22:08", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:22:18", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:22:28", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:22:38", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T05:22:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:23:19", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:23:29", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:23:39", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:23:49", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:24:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:24:20", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:24:30", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:24:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:24:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:25:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:25:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:25:21", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:25:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:25:51", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:26:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:26:32", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:27:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:27:12", "alive": true}
+{"t": "2026-11-02T05:27:22", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T05:27:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:28:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:28:23", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:28:33", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:28:44", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T05:28:54", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:29:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:29:34", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:29:45", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:29:55", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T05:30:05", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T05:30:15", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:30:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:30:35", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:30:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:31:16", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:31:26", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:31:57", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:32:07", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:32:27", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:32:37", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:33:18", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:33:28", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:33:38", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:33:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:34:09", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:34:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:34:29", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:34:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:34:49", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:35:20", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:35:30", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:35:40", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T05:35:50", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:36:00", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T05:36:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:36:21", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:36:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:37:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:37:22", "alive": true}
+{"t": "2026-11-02T05:37:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:37:42", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:38:02", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:38:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:38:23", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:38:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:39:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:39:13", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:39:23", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:39:34", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:40:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:40:34", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T05:40:45", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:41:25", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T05:41:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:41:56", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:42:06", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T05:42:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:43:37", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:43:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:43:57", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:44:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:44:38", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:44:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:45:09", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:45:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:45:49", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:46:20", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:46:30", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:46:50", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:47:31", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:47:31", "alive": true}
+{"t": "2026-11-02T05:47:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:48:31", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:48:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:49:02", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T05:49:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:49:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:49:43", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:49:53", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T05:50:03", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:50:23", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:50:43", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:51:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:51:14", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T05:51:24", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:51:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:52:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:52:45", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:53:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:53:26", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T05:53:36", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:53:56", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:54:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:54:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:54:37", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:55:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:55:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:55:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:56:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:56:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:56:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:57:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:57:20", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:57:40", "alive": true}
+{"t": "2026-11-02T05:57:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:58:00", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T05:58:11", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T05:58:41", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T05:58:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T05:59:32", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:00:22", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:00:33", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:00:43", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:01:34", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:01:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:01:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:02:04", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:02:14", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:02:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:02:34", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:02:45", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:02:55", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:03:05", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:04:26", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T06:04:36", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:04:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:05:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:05:37", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T06:05:48", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:05:58", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T06:06:08", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:06:48", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T06:06:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:07:29", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:07:49", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:07:49", "alive": true}
+{"t": "2026-11-02T06:08:00", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:08:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:08:50", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T06:09:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:09:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:09:21", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:09:31", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T06:09:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:09:51", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:10:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:10:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:11:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:11:23", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T06:11:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:11:43", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:11:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:12:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:12:13", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T06:12:24", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:12:34", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:12:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:12:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:13:04", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:13:14", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:13:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:13:45", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:13:55", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:14:05", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T06:14:15", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:14:26", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:14:36", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:14:46", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:14:56", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:15:27", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:15:37", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T06:15:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:15:57", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T06:16:07", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:16:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:16:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:16:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:16:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:17:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:17:49", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T06:17:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:17:59", "alive": true}
+{"t": "2026-11-02T06:18:09", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:18:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:18:30", "reading": "nobody; also book, bottle, laptop, mouse, tv"}
+{"t": "2026-11-02T06:18:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:18:50", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:19:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:19:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:20:01", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T06:20:11", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:20:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:20:52", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:21:02", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:21:12", "reading": "nobody; also book, laptop, mouse"}
+{"t": "2026-11-02T06:21:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:21:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:21:42", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:22:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:22:23", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:22:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:22:53", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:23:14", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T06:23:24", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:23:44", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T06:23:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:24:05", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T06:24:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:24:45", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:25:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:25:46", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:26:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:26:16", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:26:37", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:26:57", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T06:27:07", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:27:17", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T06:27:28", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:27:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:27:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:28:08", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:28:08", "alive": true}
+{"t": "2026-11-02T06:28:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:28:39", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:28:49", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:28:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:29:40", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:29:50", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:30:20", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:30:30", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:30:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:30:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:31:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:31:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:31:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:31:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:32:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:32:12", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T06:32:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:34:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:34:24", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:34:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:35:05", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:35:35", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T06:35:45", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:36:06", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:36:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:36:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:36:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:36:56", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:37:06", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T06:37:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:37:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:37:37", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:37:57", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:38:07", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:38:18", "alive": true}
+{"t": "2026-11-02T06:38:38", "reading": "nobody; also book, keyboard, laptop, mouse"}
+{"t": "2026-11-02T06:38:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:38:58", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:40:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:40:40", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:41:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:41:30", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T06:41:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:41:51", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:42:01", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:42:11", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:42:31", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:42:42", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T06:42:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:43:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:43:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:43:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:44:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:44:23", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:44:53", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:45:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:45:24", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T06:45:34", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:45:44", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T06:45:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:46:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:46:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:46:55", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:47:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:47:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:47:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:48:06", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:48:27", "alive": true}
+{"t": "2026-11-02T06:48:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:49:17", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T06:49:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:49:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:49:58", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:50:28", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:50:59", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:51:09", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:51:19", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:51:50", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:52:00", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:52:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:52:20", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:52:30", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:52:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:52:51", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:53:01", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:53:11", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:53:31", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:53:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:53:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:54:32", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:54:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:54:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:55:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:55:13", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:55:23", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:55:43", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:55:53", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:56:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:56:34", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:56:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:57:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:57:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:57:35", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:57:45", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:58:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:58:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:58:36", "alive": true}
+{"t": "2026-11-02T06:58:46", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:59:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T06:59:37", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T06:59:57", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:00:07", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T07:00:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:00:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:00:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:00:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:00:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:01:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:01:28", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:02:19", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:02:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:02:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:03:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:03:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:03:30", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T07:03:41", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T07:03:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:04:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:04:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:04:42", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:04:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:05:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:05:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:05:43", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:06:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:06:13", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:06:23", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:07:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:07:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:07:34", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:07:55", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:08:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:08:25", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:08:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:08:46", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:08:46", "alive": true}
+{"t": "2026-11-02T07:09:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:09:26", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:10:27", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T07:10:37", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:10:57", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:11:08", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:11:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:11:58", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:12:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:12:29", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:13:30", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:14:00", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:14:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:14:31", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:14:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:15:32", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:15:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:16:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:16:22", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:17:13", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:17:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:17:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:17:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:18:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:18:45", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:18:55", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:18:55", "alive": true}
+{"t": "2026-11-02T07:19:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:19:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:19:56", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:20:06", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T07:20:16", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:20:36", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:20:46", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:20:57", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T07:21:07", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:21:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:21:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:21:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:22:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:22:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:23:49", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:24:20", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:24:30", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:24:40", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:24:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:25:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:25:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:26:11", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T07:26:22", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T07:26:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:27:02", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:27:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:27:23", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:27:43", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:27:53", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:28:13", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:28:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:28:34", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:28:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:28:54", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:29:04", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:29:04", "alive": true}
+{"t": "2026-11-02T07:29:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:29:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:29:55", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T07:30:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:30:25", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:30:36", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:30:46", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:30:56", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:31:06", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:31:26", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:31:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:31:57", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:32:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:32:37", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T07:32:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:33:08", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:33:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:33:28", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:33:38", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:33:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:34:19", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:35:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:35:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:35:30", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:35:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:36:00", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:36:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:36:31", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T07:36:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:36:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:37:11", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:37:22", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:37:32", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:37:42", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:37:52", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T07:38:02", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:39:13", "alive": true}
+{"t": "2026-11-02T07:39:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:40:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:40:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:41:15", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:41:25", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T07:41:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:41:56", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:42:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:42:57", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:43:17", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T07:43:27", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:43:37", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:43:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:44:08", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:44:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:44:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:44:49", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:44:59", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:45:29", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:46:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:46:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:47:01", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:47:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:47:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:48:42", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:48:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:49:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:49:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:49:23", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:49:23", "alive": true}
+{"t": "2026-11-02T07:49:43", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:50:03", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:50:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:50:34", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T07:50:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:50:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:51:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:51:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:51:55", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T07:52:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:52:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:52:35", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:52:56", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:53:16", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:54:27", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:54:37", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T07:54:47", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:54:58", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T07:55:08", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:55:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:55:28", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:55:59", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:56:09", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:56:19", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:56:50", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T07:57:00", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:57:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:57:20", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:57:30", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:58:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:58:21", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:58:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T07:59:32", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T07:59:32", "alive": true}
+{"t": "2026-11-02T07:59:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:00:03", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:00:33", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:00:43", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:01:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:01:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:01:34", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:01:54", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:02:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:02:35", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:02:45", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:03:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:03:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:03:36", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:03:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:03:56", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:04:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:04:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:05:07", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:05:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:05:48", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T08:05:58", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:06:08", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:06:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:06:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:08:20", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:08:30", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:08:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:09:11", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:09:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:09:31", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:09:41", "alive": true}
+{"t": "2026-11-02T08:09:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:10:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:10:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:10:42", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T08:10:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:11:43", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:11:53", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:12:03", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:12:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:12:24", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:12:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:13:45", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:14:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:14:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:14:46", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:15:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:15:26", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:15:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:15:57", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:16:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:16:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:16:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:17:18", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:17:28", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:18:09", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:18:29", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T08:18:39", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:19:20", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:19:40", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T08:19:50", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T08:19:50", "alive": true}
+{"t": "2026-11-02T08:20:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:20:21", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T08:20:31", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:20:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:21:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:21:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:21:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:22:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:22:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:22:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:23:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:23:14", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:23:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:24:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:24:25", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:24:55", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:25:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:25:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:25:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:26:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:26:16", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:26:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:27:07", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:27:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:28:08", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:28:39", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:28:49", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:29:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:29:29", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:29:39", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:29:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:30:00", "alive": true}
+{"t": "2026-11-02T08:30:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:30:30", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:30:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:31:01", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:31:11", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:31:21", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:31:31", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:31:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:32:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:32:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:32:52", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:33:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:33:23", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:33:53", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:34:14", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T08:34:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:34:34", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T08:34:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:34:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:35:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:35:15", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:35:35", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:35:55", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:36:05", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:36:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:36:26", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:36:56", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:37:27", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T08:37:37", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:37:57", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:38:07", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T08:38:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:38:48", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T08:38:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:39:08", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:39:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:39:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:39:49", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:40:09", "alive": true}
+{"t": "2026-11-02T08:40:19", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:40:30", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:40:40", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:41:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:41:20", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:41:51", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:42:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:42:52", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:43:12", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T08:43:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:44:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:44:23", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T08:44:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:44:44", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:44:54", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:45:24", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:45:45", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:45:55", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T08:46:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:46:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:46:35", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:47:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:47:26", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:47:36", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:49:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:49:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:49:48", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T08:49:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:50:09", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:50:19", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T08:50:19", "alive": true}
+{"t": "2026-11-02T08:50:29", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:50:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:50:49", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:50:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:51:10", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:51:30", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T08:51:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:51:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:52:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:52:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:52:51", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:53:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:54:02", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T08:54:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:54:23", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T08:54:33", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:55:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:55:34", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:55:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:56:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:56:14", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:56:45", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:57:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:57:25", "reading": "nobody; also book, bottle, keyboard, tv"}
+{"t": "2026-11-02T08:57:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:57:56", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:58:06", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:58:16", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T08:58:26", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:59:07", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T08:59:17", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:59:27", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T08:59:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T08:59:58", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:00:08", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:00:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:00:28", "alive": true}
+{"t": "2026-11-02T09:00:59", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:01:19", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:02:00", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T09:02:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:02:30", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:02:40", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:02:50", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:03:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:03:11", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T09:03:21", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:03:31", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:04:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:04:22", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:04:52", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:05:02", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:05:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:06:03", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:06:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:06:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:07:15", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T09:07:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:08:36", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:09:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:09:37", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:09:47", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:09:57", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:10:07", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:10:38", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:10:38", "alive": true}
+{"t": "2026-11-02T09:10:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:11:08", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:11:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:11:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:11:39", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:11:49", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:12:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:12:29", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:12:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:13:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:13:20", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:13:30", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T09:13:40", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:14:21", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:14:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:15:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:15:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:15:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:15:42", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:15:52", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:16:02", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:16:23", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:16:33", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:16:53", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:17:14", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:17:24", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:17:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:18:25", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:18:55", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T09:19:05", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:19:15", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:19:25", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:19:56", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T09:20:06", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:20:26", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:20:47", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T09:20:47", "alive": true}
+{"t": "2026-11-02T09:20:57", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:21:27", "reading": "nobody; also book, mouse"}
+{"t": "2026-11-02T09:21:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:21:48", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:21:58", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:22:08", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:22:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:22:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:23:09", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:23:29", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:23:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:24:00", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:24:20", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:24:50", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:25:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:25:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:25:21", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:25:31", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:25:41", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:25:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:26:02", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:26:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:26:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:26:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:27:12", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:27:23", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:27:33", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:27:43", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:28:14", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:28:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:29:04", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:29:14", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:29:45", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:29:55", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:30:05", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:30:25", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:30:56", "alive": true}
+{"t": "2026-11-02T09:31:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:31:16", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:32:07", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:32:17", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:32:38", "reading": "nobody; also book, keyboard, tv"}
+{"t": "2026-11-02T09:32:48", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:33:08", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:33:18", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:33:28", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:33:49", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:34:29", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:34:39", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:35:10", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:35:20", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:35:30", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:35:40", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T09:35:50", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:36:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:36:11", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:36:31", "reading": "nobody; also book, tv"}
+{"t": "2026-11-02T09:36:41", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:37:01", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:37:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:37:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:37:32", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:37:42", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:37:52", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:38:02", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:38:13", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:38:23", "reading": "nobody; also book, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T09:38:33", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:38:43", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:38:53", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:39:34", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:39:54", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:40:04", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:40:14", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:41:05", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:41:05", "alive": true}
+{"t": "2026-11-02T09:41:36", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:41:46", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:42:06", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:42:16", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:42:26", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:42:37", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:42:47", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:42:57", "reading": "nobody; also book, bottle, tv"}
+{"t": "2026-11-02T09:43:07", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:43:38", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:43:58", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:44:08", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:44:38", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:44:49", "reading": "nobody; also book, bottle, keyboard, laptop, mouse, tv"}
+{"t": "2026-11-02T09:44:59", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:45:19", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:45:49", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:46:10", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:46:30", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:46:40", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:46:50", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:47:11", "reading": "nobody; also book, keyboard, mouse"}
+{"t": "2026-11-02T09:47:21", "reading": "nobody; also book, laptop, mouse, tv"}
+{"t": "2026-11-02T09:47:31", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:47:51", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:48:02", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:48:12", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:48:22", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:48:32", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:48:42", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:48:52", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:49:13", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:49:33", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:49:43", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:49:53", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:50:04", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:50:24", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:50:34", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:50:44", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:51:15", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:51:15", "alive": true}
+{"t": "2026-11-02T09:51:25", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:51:35", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:51:45", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:51:55", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:52:05", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:52:16", "reading": "nobody; also book, bottle, mouse, tv"}
+{"t": "2026-11-02T09:52:26", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:52:46", "reading": "nobody; also book, bottle, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:52:56", "reading": "nobody; also book, keyboard, mouse, tv"}
+{"t": "2026-11-02T09:53:06", "reading": "nobody; also book, mouse, tv"}
+{"t": "2026-11-02T09:53:27", "reading": "1 person(s) at right/close; also book, laptop"}
+{"t": "2026-11-02T09:53:37", "reading": "1 person(s) at right/close; also book, keyboard, tv"}
+{"t": "2026-11-02T09:53:47", "reading": "1 person(s) at right/close; also book, keyboard, laptop, tv"}
+{"t": "2026-11-02T09:53:57", "reading": "1 person(s) at right/close; also book, bottle, laptop"}
+{"t": "2026-11-02T09:54:07", "reading": "1 person(s) at right/close; also book, bottle, keyboard, laptop"}
+{"t": "2026-11-02T09:54:17", "reading": "1 person(s) at right/close; also book, bottle, laptop"}
+{"t": "2026-11-02T09:54:28", "reading": "1 person(s) at right/close; also book, bottle, keyboard, tv"}
