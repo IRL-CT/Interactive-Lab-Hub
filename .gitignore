@@ -6,3 +6,5 @@ __*
 .venv*
 .venv/
 runs
+
+*.zip

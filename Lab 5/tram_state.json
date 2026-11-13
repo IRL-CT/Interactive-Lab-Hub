@@ -1,0 +1,29 @@
+{
+ "time": "2026-10-29T18:02:45",
+ "in_service": true,
+ "tram_in_view": false,
+ "belief": 0.0,
+ "model_p": 0.0,
+ "current_pass_started": null,
+ "live": null,
+ "last_pass": {
+  "event": "pass",
+  "start": "2026-10-29T18:02:18",
+  "end": "2026-10-29T18:02:25",
+  "seconds": 7,
+  "first_s": 0.516,
+  "last_s": 0.773,
+  "speed": 0.0455,
+  "direction": "to Island",
+  "est_station_arrival": "2026-10-29T18:02:30"
+ },
+ "passes_today": 2,
+ "next": {
+  "status": "ok",
+  "since_last_s": 27,
+  "eta": "2026-10-29T18:09:48",
+  "p_within_5min": null,
+  "typical_gap_s": 450.0,
+  "based_on": "posted schedule (not enough passes learned yet)"
+ }
+}

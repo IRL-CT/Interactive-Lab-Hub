@@ -1,0 +1,5 @@
+path: /home/pi/Documents/GitHub/Interactive-Lab-Hub/Lab 5/tram_det_dataset
+train: images/train
+val: images/val
+names:
+  0: tram

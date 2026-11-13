@@ -1,0 +1,4 @@
+time,question,model,transcript,digits,length_ok,transcribe_seconds,rtf
+2026-09-27T16:35:19,zip,base.en,My zip code is 10044.,10044,True,2.31,0.39
+2026-09-27T16:37:50,phone,base.en,6 1 2 7 6 3 6 5 7,612763657,False,2.69,0.45
+2026-09-27T16:38:33,pets,base.en,I have zero pets.,0,True,1.88,0.31

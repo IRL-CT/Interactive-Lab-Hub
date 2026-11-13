@@ -1,0 +1,24 @@
+{
+ "imgsz": 160,
+ "trained_on": 2259,
+ "history": [
+  {
+   "round": 1,
+   "pseudo": 0,
+   "accuracy": 0.9863247863247864,
+   "recall": 0.5625,
+   "precision": 0.9,
+   "missed": 7,
+   "false_alarms": 1
+  },
+  {
+   "round": 2,
+   "pseudo": 16,
+   "accuracy": 0.9829059829059829,
+   "recall": 0.5,
+   "precision": 0.8,
+   "missed": 8,
+   "false_alarms": 2
+  }
+ ]
+}

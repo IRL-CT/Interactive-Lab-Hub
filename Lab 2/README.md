@@ -1,5 +1,5 @@
 # Interactive Prototyping: The Clock of Pi
-**NAMES OF COLLABORATORS HERE**
+**NAMES OF COLLABORATORS HERE:** Nishant Ray (nr487), Gaurav Patel (gp438), Neeha Ravula (nr485)
 
 Does it feel like time is moving strangely during this semester?
 
@@ -158,6 +158,12 @@ You can look in `image.py` for an example of how to display an image on the scre
 
 \*\*\***Include a picture of your own Raspberry Pi displaying the piscreen.service with your unique MAC address. Additionally, please provide another picture showing the successful completion of the screen test.**\*\*\*
 
+<img width="576" height="1024" alt="WhatsApp Image 2026-09-13 at 10 42 40 PM" src="https://github.com/user-attachments/assets/6e190e0e-c2e2-4593-888e-31b8490ba9bd" />
+
+
+<img width="768" height="1024" alt="WhatsApp Image 2026-09-13 at 10 40 46 PM" src="https://github.com/user-attachments/assets/0c65845e-5650-4119-87f3-cc5ba4c0613d" />
+
+<img width="1600" height="1200" alt="WhatsApp Image 2026-09-13 at 11 20 47 PM" src="https://github.com/user-attachments/assets/15f7f054-789f-4938-8b65-0ad583c467b2" />
 
 ## Part D. 
 ### Set up the Display Clock Demo
@@ -194,10 +200,39 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 ** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf)), storyboards for your ideas **
 
+## Concept: Spider-Verse Clock
+
+Instead of showing literal time, a chibi Spider-Man mascot swaps suits every hour (24 suits total, one per hour). Each suit has a signature food, and the number of food items shown scales with the hour.
+
+| Hour | Suit | Food (qty = hour) |
+|---|---|---|
+| 8am | Spider-Man India (Pavitr) | 8 cups of chai |
+| 12pm | Spider-Ham (Peter Porker) | 12 mini pies |
+| 3pm | Miles Morales | 3 pizza slices |
+| 6pm | Peter Parker (classic) | 6 of Aunt May's pies |
+| 12am | Spider-Gwen | 12 donuts |
+| 2am | Spider-Man Noir | 2 cups of coffee |
+
+**Interaction loop:** clock ticks → pick suit for current hour → render mascot + food count → repeat every hour.
+
+**Extension ideas:**
+- Button press = "spider-sense" easter egg, flashes a random alt suit
+- Midnight = full-screen suit montage
+- 
+<img width="2244" height="2904" alt="Piclock Spiderman-1" src="https://github.com/user-attachments/assets/7ad4ed6a-b4cb-4be0-a0f9-5f99353d6418" />
 
 
 **Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
 
+Youssef Hassan (yh2443), Jonathan Tumalle (jrt285) - https://github.com/Youssef-Chip/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md
+Feedback: Overall I like your design as it follows the idea of the coffee mug where for time tracking you would note when you last drank coffee to tell you how long before you should get another one assuming it's still day time outside. Instead of literally pasting the time you want to show the user the position of the moon and the earth in relation to their geo-spatial location to inform them whether or not the sun will be rising or setting to give them some idea as to what time of day it is. Instead of using time in the quantifiable sense, you will inform the user based on the sense of the heavenly bodies of the moon and the sun. Some things that I think might be a problem come up when we talk about individuals who are located far away from the equator, which is that they usually have daytime and night time for much longer than your typical 12hr day time and 12night time cycle. How could you include additional information in your program to account for this issue? Could giving them a countdown on when the moon and the sun be helpful information, so that they can plan around that, as apposed to just showing the moon and the suns position? Is there some way you could integrate how the cycle of time is changing for the person, such as showing them when the lunar and the summer solstice will occur? These are just a few things that come to mind just from seeing your Verplank design.
+
+Feedback to Jovian Wang (jlw457) https://github.com/jovianw/Interactive-Lab-Hub - Hello Jovian, your design is very straightforward and uses the natural time of a plant growing and the movement of the sun to denote time passing! Something missing from the sketch is what happens to the plant when night time occurs? From the storyboard it just looks like the plant disappears and there is no moon or anything to indicate that it's night time. Perhaps adding the moon and stars would be a important feature to add to help show the user what time it is at night. Perhaps the number of petals says how many minutes have passed. There is a lot of things you can do. Overall very good design!
+
+Gaurav Patel - https://github.com/pk633-cu/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md - Feedback - 
+Feedback - Overall, I like the first idea, it seems like it is easy to tell time because the sunset is very recognizable. I like the idea that the sun's height will represent time. I am curious about the minutes thought will the sun only change per hour or will it slowly rise per minute. I think that is something that is probably an important distinction to make. The second idea is a little confusing. I don't understand fully what the buildings are representing? Like do they have any indication on the time or is it just the weather/sun? I like the last idea too where there is a step's associated with the clock. It tells you what time you need to have the steps done by. However it doesn't seem like a clock more like a goal that is needed to be achieved in that time-frame.
+
+Rohil Saraf - https://github.com/rohilsaraf97/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md#part-e-read-part-2-sketch-and-brainstorm-further-interactions-and-features-you-would-like-for-your-clock : Snacks are the best! Your snack clock is very fun and very thought out and I can see the tie in between an animated characters body language to denote how much time has passed since the user last ate a snack. I think some fun metrics to add to the clock would be how many snacks you did eat throughout the day and perhaps changing how the character (physically, fatter, skinner, based on the amount of snacks it had during the week). Overall very good design, and you can go very far with it. The only feedback I have is perhaps adding interaction based on the amount of snacks eaten would also be interesting to implement.
 # Lab 2 Part 2
 
 ## Prep 
@@ -206,6 +241,14 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
 **Put the feedback for your ideas here.**
+
+Pallavi Khanna - https://github.com/pk633-cu/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md - Feedback - Overall, I like the idea. It’s creative, fun, and doable! Something I would consider is that the Raspberry Pi’s screen is small, so fitting up to 12 food items or pies might get crowded. Instead, you could do something like a cake with up to 12 candles. It might also be helpful to use 12 suits instead of 24 since you plan to use a 12-hour clock. This could help users associate each suit with a specific hour more easily. For instance, at both 2 PM and 2 AM, Spider-Man would wear the same suit. This could also help users tell the time at a glance, especially when the screen is populated with multiple items. I think simplifying these elements could make the concept easier to read while still keeping the fun and playful parts of your original idea.
+
+Rohil Saraf - https://github.com/rohilsaraf97/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md#part-e-read-part-2-sketch-and-brainstorm-further-interactions-and-features-you-would-like-for-your-clock : Great design! Simple and does the job, just wondering if using 8 cups of chai or 2 cups of coffee counts as numerical representation? Also, if it doesn't, then something like using the chai and coffee cups etc. could be useful to represent another dimension, like minutes, and maybe the Spiderman variant, the background, and the animation could represent the hour? I was just thinking that since you have 24 Spiderman variations, representing the hours with a different prop might be redundant. Is finding Spidermen that look considerably different on such a small screen easy? maybe even a spiderman going to bed could mean its night time, time to go to bed, like does it have to convey actual time? It could revolve around your activities for the day maybe? Also, super cute diagrams!
+
+https://github.com/ammarsyed/Interactive-Lab-Hub/blob/Fall2026/Lab%202/README.md - The Spider Verse clock is a super creative way to represent time, far different than a traditional digital or analog display. I really like how each hour has a different Spider Man suit and a correlated food related to that suit. The quantity of that food is what correlates to the actual time. It is very playful and visually unique.
+My only concern is that displaying that many items at a high numbered time like 12:00, which means 12 food items, might make this small screen very crowded. Maybe you can adjust that by using one food icon and then a number, either inside or to the side of that food item, to show the relevant time.
+
 
 ## Update your Lab Hub
 
@@ -217,9 +260,15 @@ Start small, pick just one element of your overall idea, just to show you have a
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
+For our barebones clock, we modified images.py to allow for switching between two images on click: Spider-Man in the daytime and Spider-Man at night. This was the base functionality of our clock. We were surprised at how great the resolution is on the Adafruit screen! - "Neeha Ravula"
+
+Code: Modify the barebones clock to make it your own section.py
+
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your barely modified PiClock.**\*\*\*
+
+https://github.com/user-attachments/assets/38f377bb-8fe8-4318-b5a6-3d34cd9492ef
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -237,13 +286,18 @@ Do take advantage of having done the previous iteration to refine and simplify y
 
 ** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
+Now, make your own PiClock section:
+After we were able to successfully display and switch between images on our bare-bones clock, we generated images for each hour of Spider-Man's day to display on the Pi. To avoid copyright issues, we prompted our own version of a masked hero and came up with scenarios/actions he does for each time of day (ex: waking up at 6am, fighting a villain at 9pm, sleeping from 2am to 7am). Our scenarios were inspired by the Spider-Verse franchise, though we added our own twists as well. To spruce it up, we generated multiple images for each hour to simulate animation sequences and make the time display more film-like. We took our user feedback into consideration and decided against adding food for each hour, and instead focused on updating the background image so the clock is readable and not crowded. - Neeha Ravula
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
+Look into final_cli_clock.py
+
 \*\*\***Take a video of your PiClock.**\*\*\*
 
+https://youtube.com/shorts/OLUb-G72180?feature=share 
 
-As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
+As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup. AI helped with generating the images, and general code.
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab.  Make sure the page for the group turn in is linked to your personal Interactive Lab Hub page. 
 
