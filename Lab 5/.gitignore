@@ -20,3 +20,6 @@ nohup.out
 
 # macOS
 .DS_Store
+
+# Pet Night Diary: private runtime metadata and reports
+pet_night_data/

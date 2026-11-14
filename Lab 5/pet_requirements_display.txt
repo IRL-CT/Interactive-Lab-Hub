@@ -1,0 +1,5 @@
+# Optional: install only if the existing Lab 2 display libraries are missing.
+adafruit-blinka
+adafruit-circuitpython-rgb-display
+Pillow
+lgpio; platform_system == "Linux"
